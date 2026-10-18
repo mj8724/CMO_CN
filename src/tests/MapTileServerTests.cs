@@ -146,7 +146,7 @@ class MapTileServerTests
     {
         using (TcpClient idle = new TcpClient())
         {
-            idle.ReceiveTimeout = 1000;
+            idle.ReceiveTimeout = 2500;
             idle.Connect(IPAddress.Loopback, port);
             idle.GetStream().WriteByte((byte)'G');
             Thread.Sleep(100);
@@ -154,6 +154,114 @@ class MapTileServerTests
             try { Require(idle.GetStream().ReadByte() == -1, "Idle connection was not closed"); }
             catch (IOException) { throw new InvalidOperationException("idle_client_timeout: incomplete request remains open"); }
         }
+    }
+
+    private static void MultipleIdleClients()
+    {
+        CheckPng(Request("GET " + tilePath + " HTTP/1.1", 3000), true);
+        TcpClient[] idle = new TcpClient[3];
+        try
+        {
+            for (int i = 0; i < idle.Length; i++)
+            {
+                idle[i] = new TcpClient();
+                idle[i].Connect(IPAddress.Loopback, port);
+                idle[i].GetStream().WriteByte((byte)'G');
+            }
+            Thread.Sleep(100);
+            System.Diagnostics.Stopwatch elapsed = System.Diagnostics.Stopwatch.StartNew();
+            try { CheckPng(Request("GET " + tilePath + " HTTP/1.1", 3000), true); }
+            catch (IOException ex) { throw new InvalidOperationException("multi_idle_head_of_line: healthy GET blocked behind three incomplete requests", ex); }
+            Console.WriteLine("MULTI_IDLE three incomplete clients, healthy GET ms=" + elapsed.ElapsedMilliseconds);
+        }
+        finally { foreach (TcpClient client in idle) if (client != null) client.Close(); }
+    }
+
+    private static void TrickleDeadline()
+    {
+        CheckPng(Request("GET " + tilePath + " HTTP/1.1", 3000), true);
+        using (TcpClient slow = new TcpClient())
+        using (ManualResetEvent stop = new ManualResetEvent(false))
+        {
+            slow.ReceiveTimeout = 2300;
+            slow.SendTimeout = 1000;
+            slow.Connect(IPAddress.Loopback, port);
+            NetworkStream stream = slow.GetStream();
+            stream.WriteByte((byte)'G');
+            System.Diagnostics.Stopwatch elapsed = System.Diagnostics.Stopwatch.StartNew();
+            Thread sender = new Thread(delegate()
+            {
+                try { while (!stop.WaitOne(250)) stream.WriteByte((byte)'G'); }
+                catch (IOException) { }
+                catch (SocketException) { }
+                catch (ObjectDisposedException) { }
+            });
+            sender.IsBackground = true;
+            sender.Start();
+            try
+            {
+                try { Require(stream.ReadByte() == -1, "Unexpected response to incomplete trickle request"); }
+                catch (IOException ex)
+                {
+                    SocketException socket = ex.InnerException as SocketException;
+                    Require(socket != null && (socket.SocketErrorCode == SocketError.ConnectionReset || socket.SocketErrorCode == SocketError.ConnectionAborted),
+                        "trickle_deadline: connection stayed open while bytes refreshed the per-read timeout");
+                }
+                Require(elapsed.ElapsedMilliseconds < 2300, "trickle_deadline: total first-line budget exceeded");
+                Console.WriteLine("TRICKLE one byte every 250ms, closed ms=" + elapsed.ElapsedMilliseconds);
+            }
+            finally
+            {
+                stop.Set();
+                slow.Close();
+                Require(sender.Join(1500), "Trickle sender did not exit");
+            }
+        }
+        CheckPng(Request("GET " + tilePath + " HTTP/1.1", 3000), true);
+    }
+
+    private static bool Closed(TcpClient client)
+    {
+        try { return client.Client.Poll(0, SelectMode.SelectRead) && client.Client.Available == 0; }
+        catch (SocketException) { return true; }
+    }
+
+    private static void Pressure()
+    {
+        CheckPng(Request("GET " + tilePath + " HTTP/1.1", 3000), true);
+        int threadsBefore = System.Diagnostics.Process.GetCurrentProcess().Threads.Count;
+        TcpClient[] clients = new TcpClient[96];
+        int rejected = 0;
+        System.Diagnostics.Stopwatch elapsed = System.Diagnostics.Stopwatch.StartNew();
+        try
+        {
+            for (int i = 0; i < clients.Length; i++)
+            {
+                clients[i] = new TcpClient();
+                try
+                {
+                    clients[i].Connect(IPAddress.Loopback, port);
+                    clients[i].GetStream().WriteByte((byte)'G');
+                }
+                catch (SocketException) { clients[i].Close(); clients[i] = null; rejected++; }
+                catch (IOException) { clients[i].Close(); clients[i] = null; rejected++; }
+            }
+            Require(elapsed.ElapsedMilliseconds < 1000, "Pressure setup was too slow to distinguish queue rejection from deadline expiry");
+            Thread.Sleep(400);
+            int closedEarly = rejected;
+            foreach (TcpClient client in clients) if (client != null && Closed(client)) closedEarly++;
+            Require(closedEarly >= 28, "pressure_queue_bound: 96 idle connections were not bounded to four workers plus 64 queued clients");
+            int threadsDuring = System.Diagnostics.Process.GetCurrentProcess().Threads.Count;
+            Require(threadsDuring <= threadsBefore + 2, "Pressure created unbounded service threads");
+            Thread.Sleep(1800);
+            int closedTotal = rejected;
+            foreach (TcpClient client in clients) if (client != null && Closed(client)) closedTotal++;
+            Require(closedTotal == clients.Length, "pressure_queue_deadline: queued idle connections received a fresh timeout instead of expiring from accept time");
+            Console.WriteLine("PRESSURE clients=96 closedEarly=" + closedEarly + " closedTotal=" + closedTotal
+                + " threadsBefore=" + threadsBefore + " threadsDuring=" + threadsDuring + " ms=" + elapsed.ElapsedMilliseconds);
+            CheckPng(Request("GET " + tilePath + " HTTP/1.1", 3000), true);
+        }
+        finally { foreach (TcpClient client in clients) if (client != null) client.Close(); }
     }
 
     private static void Batch(string baseDir)
@@ -193,7 +301,7 @@ class MapTileServerTests
         TcpListener listener = null;
         try
         {
-            Require(args.Length == 3, "Usage: MapTileServerTests DLL fixtureDir starvation|protocol|idle|batch");
+            Require(args.Length == 3, "Usage: MapTileServerTests DLL fixtureDir starvation|protocol|idle|batch|multi-idle|trickle|pressure");
             Type type = Assembly.LoadFrom(Path.GetFullPath(args[0])).GetType("CMOLocalizer.CustomAppDomainManager", true);
             BindingFlags flags = BindingFlags.Static | BindingFlags.NonPublic;
             type.GetField("logPath", flags).SetValue(null, Path.Combine(args[1], "map_service.log"));
@@ -206,6 +314,9 @@ class MapTileServerTests
             else if (args[2] == "protocol") Protocol(args[1]);
             else if (args[2] == "idle") IdleClient();
             else if (args[2] == "batch") Batch(args[1]);
+            else if (args[2] == "multi-idle") MultipleIdleClients();
+            else if (args[2] == "trickle") TrickleDeadline();
+            else if (args[2] == "pressure") Pressure();
             else throw new InvalidOperationException("Unknown test mode");
             Console.WriteLine("PASS " + args[2]);
             return 0;

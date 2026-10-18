@@ -281,9 +281,24 @@ namespace CMOLocalizer
         }
 
         private static readonly List<MapPlaceEntry> mapPlaces = new List<MapPlaceEntry>();
+        private sealed class TileClient
+        {
+            public readonly TcpClient Client;
+            public readonly long AcceptedAt;
+
+            public TileClient(TcpClient client)
+            {
+                Client = client;
+                AcceptedAt = System.Diagnostics.Stopwatch.GetTimestamp();
+            }
+        }
+
         private static TcpListener tileListener = null;
         private const int TILE_CLIENT_TIMEOUT_MS = 1500;
+        private const int TILE_WORKERS = 4;
+        private const int TILE_QUEUE_CAPACITY = 64;
         private const int TILE_REQUEST_LOG_LIMIT = 16;
+        private static readonly object tileRequestLogLock = new object();
         private static int tileRequestLogCount;
 
         private static void StartLocalTileServer(string baseDir)
@@ -326,19 +341,36 @@ namespace CMOLocalizer
                 offsetMap[62636] = "zh-CN";
                 Log("LocalTileServer started on " + localUrl + " with " + mapPlaces.Count + " Chinese landmarks.");
 
+                // Game downloads also use the CLR pool. Keep both accepting and
+                // serving independent, with bounded workers and queued sockets.
+                var requests = new System.Collections.Concurrent.BlockingCollection<TileClient>(TILE_QUEUE_CAPACITY);
+                for (int i = 0; i < TILE_WORKERS; i++)
+                {
+                    Thread worker = new Thread(() =>
+                    {
+                        foreach (TileClient request in requests.GetConsumingEnumerable()) HandleTileClient(request);
+                    });
+                    worker.IsBackground = true;
+                    worker.Name = "CMO Chinese map tile worker " + i;
+                    worker.Start();
+                }
+
                 Thread serverThread = new Thread(() =>
                 {
-                    while (true)
+                    try
                     {
-                        try
+                        while (true)
                         {
-                            TcpClient client = tileListener.AcceptTcpClient();
-                            // Game downloads also use the CLR pool. Serve on this dedicated
-                            // thread so downloads cannot starve their own local tile server.
-                            HandleTileClient(client, baseDir);
+                            TileClient request = new TileClient(tileListener.AcceptTcpClient());
+                            if (!requests.TryAdd(request))
+                            {
+                                request.Client.Close();
+                                LogTileRequest("queue full; client closed");
+                            }
                         }
-                        catch { break; }
                     }
+                    catch (Exception ex) { LogTileRequest("accept stopped: " + ex.Message); }
+                    finally { requests.CompleteAdding(); }
                 });
                 serverThread.IsBackground = true;
                 serverThread.Name = "CMO Chinese map tiles";
@@ -352,21 +384,40 @@ namespace CMOLocalizer
 
         private static void LogTileRequest(string message)
         {
-            if (tileRequestLogCount++ < TILE_REQUEST_LOG_LIMIT) Log("LocalTile " + message);
+            if (Interlocked.Increment(ref tileRequestLogCount) <= TILE_REQUEST_LOG_LIMIT)
+                lock (tileRequestLogLock) Log("LocalTile " + message);
         }
 
-        private static void HandleTileClient(TcpClient client, string baseDir)
+        private static string ReadTileRequestLine(StreamReader reader, NetworkStream stream, long acceptedAt)
+        {
+            long deadline = acceptedAt + TILE_CLIENT_TIMEOUT_MS * System.Diagnostics.Stopwatch.Frequency / 1000;
+            StringBuilder line = new StringBuilder();
+            while (true)
+            {
+                long remaining = deadline - System.Diagnostics.Stopwatch.GetTimestamp();
+                if (remaining <= 0) throw new TimeoutException("first request line exceeded 1500ms from accept");
+                stream.ReadTimeout = Math.Max(1, (int)Math.Ceiling(remaining * 1000.0 / System.Diagnostics.Stopwatch.Frequency));
+                int next = reader.Read();
+                if (System.Diagnostics.Stopwatch.GetTimestamp() >= deadline)
+                    throw new TimeoutException("first request line exceeded 1500ms from accept");
+                if (next < 0) return null;
+                if (next == '\n') return line.ToString().TrimEnd('\r');
+                if (line.Length >= 1024) throw new InvalidDataException("request line exceeds 1024 bytes");
+                line.Append((char)next);
+            }
+        }
+
+        private static void HandleTileClient(TileClient request)
         {
             try
             {
-                using (client)
-                using (NetworkStream ns = client.GetStream())
+                using (request.Client)
+                using (NetworkStream ns = request.Client.GetStream())
                 using (StreamReader sr = new StreamReader(ns, Encoding.ASCII))
                 using (BinaryWriter bw = new BinaryWriter(ns))
                 {
-                    ns.ReadTimeout = TILE_CLIENT_TIMEOUT_MS;
                     ns.WriteTimeout = TILE_CLIENT_TIMEOUT_MS;
-                    string reqLine = sr.ReadLine();
+                    string reqLine = ReadTileRequestLine(sr, ns, request.AcceptedAt);
                     if (string.IsNullOrEmpty(reqLine)) return;
 
                     // Parse "GET /MapTiles/Labels/{z}/{x}/{y}.png HTTP/1.1"
