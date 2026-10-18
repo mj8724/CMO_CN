@@ -806,3 +806,25 @@
   因此**无法用 `WPF_TEXTLOG`/`CTRL_TREE` 量化它的频闪**；要观测/修复它，得先新增探针或改用抓屏逐帧比对（R4 的老办法）。
   注：这与前面已能量化的写回交替（现象 C/L，单位状态/编队状态面板，`WPF_TEXTLOG` 可证）是**不同位置**。
 - **证据（追加 4）**：`target_status_flicker.png`（09:44 用户截图，标注频闪位置为「目标状态」面板）。
+
+---
+
+## R33 数据库查看器与航空作业大量残留英文（DB 正文/枚举/记录名/复合字段全面补齐，v4.2.1）
+
+- **触发与现象**：用户 2026-10-18 反馈数据库查看器（常规数据、详情正文）与航空作业窗口（挂载方案、物资）存在大量残留英文，具体包括：
+  ① 数据库详情页复合字段：`Unmanned Aerial Vehicle (UAV) (WRA: Aircraft - Unspecified)`、`0 (Autonomy Level: ChangeableMission)`、`Undefined (Use Below) (ex: )`；
+  ② 挂载航程与飞行剖面：`2200 nm Recon radius. Cruise at optimum altitude and speed. No form-up time. 10% reserves.`；
+  ③ 挂载方案名与武器物资名：`Comms Monitor and Jammer`、`1x Generic Comms Jammer Pod [Advanced]`；
+  ④ 空中出动计划 (ATO) 按钮（`Create Flight` / `Delete Flight`）、缺少任务弹窗正文（`select a Mission and create at least one flight`）、悬停介绍长段落（`Waiting for trigger...`）、机堡机棚设施名等。
+- **根因分析**：
+  1. **描述正文缺口与管道静默丢弃**：DB/Descriptions（62k 行）中存在 5.76% 缺口（1,252 唯一待译行），且 `build_dict.py:sanitize()` 的括号平衡检查会静默删除 64 条全角括号微失衡的有效译文（导致无论译多少次都进不了词典）；
+  2. **记录名与扩展枚举长期未纳管**：数据库记录名（DataLoadout 8.8k、DataWeapon 4.5k、DataMount 3k）与扩展枚举（Enum* 2.1k）此前从未系统批量汉化，缺乏专门词库源文件；
+  3. **游戏引擎动态拼接复合串**：WRA 后缀、自主等级参数、座舱世代示例、航程句号变体（`nm Recon radius.`）、`1x ` 数量前缀在运行时动态拼接，导致整串精确查表必然落空；
+  4. **之前修复模式缺陷**：此前采取“按用户截图逐条修补”模式，未建立全量盘点和硬门禁，导致修一条漏百条。
+- **修复与验证**：
+  1. **正文清零与管道修复**：排除参考文献/鸣谢等口径保留项后，对剩余 96 条正文全部翻译入库；用 `db_desc_bracket_fix.py` 镜像修复 64 条被丢弃的译文，使 `dict/src/db_descriptions.json` 达 16,328 条且 100% 进入最终词库；
+  2. **扩展枚举与记录名全量入库**：生成 `dict/src/db_enums_extra.json`（769 条）与 `dict/src/db_record_names.json`（9,904 条），覆盖全部常见战术装备/挂载构型；
+  3. **引擎动态规则与复合解析**：在 `CMOLocalizer.cs` 落地 4 条复合串与数量前缀解析规则，并在 `TranslateFlightProfile` 补齐 Recon radius 等句型；
+  4. **UI 补全**：`dict/src/ui_cleanup_terms.json` 扩充 29 条 UI 按钮与悬停长句；
+  5. **门禁加固**：新增 `R33-static-db-records` 硬门禁，`gate_db_templates` 断言描述完整性；C# 独立单测 `build/test_db_translation.exe` 实测 6 个目标串全部 100% 翻译成功；`exact` 词典规模从 46,127 突破至 57,051。
+- **状态**：已修并验证（2026-10-18）。

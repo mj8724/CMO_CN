@@ -310,6 +310,29 @@ def run_static(r: Runner) -> None:
              "；".join(f"{k}={'ok' if v else 'FAIL'}" for k, v in repro.items()),
              "dict/src/{legacy_fixes,force_offsets,labels}.json + scripts/build_dict.py")
 
+    # R33：数据库大面积残留英文与复合字段修复（R33 门禁）。
+    # 覆盖：① 描述正文 >= 16300 条；② 枚举额外库 >= 700 条；③ 记录名库 >= 9000 条；
+    # ④ 关键代表串与复合规则在 CMOLocalizer.cs 与词典中生效。
+    try:
+        s_desc = json.loads((ROOT / "dict/src/db_descriptions.json").read_text(encoding="utf-8"))
+        s_enum = json.loads((ROOT / "dict/src/db_enums_extra.json").read_text(encoding="utf-8"))
+        s_rec = json.loads((ROOT / "dict/src/db_record_names.json").read_text(encoding="utf-8"))
+    except Exception:
+        s_desc, s_enum, s_rec = {}, {}, {}
+    r33_probes = [
+        "Unmanned Aerial Vehicle (UAV)", "Undefined (Use Below)",
+        "Comms Monitor and Jammer", "Generic Comms Jammer Pod [Advanced]",
+        "Recon radius. Cruise at optimum altitude and speed. No form-up time. 10% reserves."
+    ]
+    r33_miss = [p for p in r33_probes if p not in exact]
+    r33_rules = ("(WRA: " in src and "Autonomy Level:" in src and "(ex:" in src and "Recon radius." in src)
+    r33_ok = (len(s_desc) >= 16300 and len(s_enum) >= 700 and len(s_rec) >= 9000
+              and not r33_miss and r33_rules)
+    r.record("R33-static-db-records", "R33 数据库正文/枚举/记录名/复合规则覆盖",
+             r33_ok,
+             f"desc={len(s_desc)} enums={len(s_enum)} records={len(s_rec)} probes={len(r33_probes)-len(r33_miss)}/{len(r33_probes)} rules={r33_rules}",
+             "dict/src/{db_descriptions,db_enums_extra,db_record_names}.json + src/engine/CMOLocalizer.cs")
+
 
 # ── live：需要在运行中的游戏里实测 ──────────────────────────────────────────
 def _ctrl_tree(H) -> dict:

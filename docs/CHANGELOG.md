@@ -1,5 +1,36 @@
 # 变更记录
 
+## v4.2.1 — 数据库全量补齐 + 挂载武器汉化 + 复合字段规则解析
+
+> 适配游戏内部版本：**1900.23**（游戏内部构建未变，本版本为数据库与航空作业专项汉化补全包）。
+
+### 为什么必须升级
+用户反馈数据库查看器与航空作业窗口中，存在大量残留英文（涵盖常规数据复合项、飞行剖面航程、武器与挂载名、ATO 计划按钮及悬停帮助）。本版彻底根除“按截图零敲碎打”的旧模式，建立全量数据库盘点体系并修复管道静默丢弃缺陷，词库从 4.6 万条大幅扩充至 5.7 万条。
+
+### 用户可见修复
+- **数据库查看器复合字段完全中文化**：
+  - 型号分类：`Unmanned Aerial Vehicle (UAV) (WRA: Aircraft - Unspecified)` →「无人机 (UAV) (WRA: 飞机 - 未指定)」等；
+  - 自主等级：`0 (Autonomy Level: ChangeableMission)` →「0 (自主控制等级: 可变更任务)」等；
+  - 座舱世代：`Undefined (Use Below) (ex: )` →「未定义 (使用下方项) (示例: )」等。
+- **航程与飞行剖面无条件翻译**：`2200 nm Recon radius. Cruise at optimum altitude and speed. No form-up time. 10% reserves.` →「2200 海里侦察作战半径。按最佳高度与速度巡航。无编队集结时间。10% 备份油量。」
+- **航空作业武器物资与挂载方案名**：
+  - 挂载方案：`Comms Monitor and Jammer` →「通信监听与干扰」等；
+  - 挂载物资：`1x Generic Comms Jammer Pod [Advanced]` →「1x 通用通信干扰吊舱 [先进型]」等；
+  - 涵盖近万条副油箱、通用炸弹、破甲弹、高爆弹、集束炸弹、机枪火炮、侦察干扰吊舱名称。
+- **界面文本与悬停帮助长句补齐**：
+  - 空中出动计划 (ATO) 按钮 `Create Flight` / `Delete Flight` →「创建飞行编队」/「删除飞行编队」；
+  - 弹窗正文 `select a Mission and create at least one flight` →「请选择一个任务并创建至少一个飞行编队」；
+  - 任务作战阶段悬停帮助段落（`Waiting for trigger...` / `Satisfied...` / `Triggered...`）全面汉化；
+  - 机堡设施 `A/C Hardened Aircraft Shelter (1x Large Aircraft)` →「加固机堡 (1x 大型飞机)」等。
+
+### 工程加固
+- **修复管道丢弃缺陷**：修复 `build_dict.py:sanitize()` 因全角括号微失衡静默删除 64 条有效译文的严重缺陷，使 `dict/src/db_descriptions.json` 16,328 条 100% 进入最终词库。
+- **建立三层数据库词库体系**：
+  - 描述正文（`dict/src/db_descriptions.json`，16,328 条，排除参考文献与鸣谢后正文 100% 覆盖）；
+  - 扩展枚举（`dict/src/db_enums_extra.json`，769 条）；
+  - 记录名词库（`dict/src/db_record_names.json`，9,904 条）。
+- **新增回归硬门禁**：`R33-static-db-records` 硬断言三表规模、代表串存在性及引擎 4 条复合规则。
+
 ## v4.2.0 — 适配游戏 Build 1900.23 + 界面与消息日志补全
 
 > 适配游戏内部版本：**1900.23**（游戏标题里的 `Command: Modern Operations v1.10 - Build 1900.23`）。上一版 v4.1.8 适配的是 1900.20。

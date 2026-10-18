@@ -2496,7 +2496,7 @@ namespace CMOLocalizer
             }
 
             // 数据库战机预设挂载方案飞行剖面 (e.g. "3150 nm Strike radius, Hi-Hi-Hi profile...")
-            if (text.Contains("Strike radius") || text.Contains("Ferry Range") || text.Contains("profile.") || text.Contains("reserves."))
+            if (text.Contains("Strike radius") || text.Contains("Recon radius") || text.Contains("Ferry Range") || text.Contains("profile.") || text.Contains("reserves.") || text.Contains("reserves"))
             {
                 return TranslateFlightProfile(text);
             }
@@ -3629,6 +3629,11 @@ namespace CMOLocalizer
                        .Replace(" nm Maritime Surveillance.", " 海里海上监视巡逻。")
                        .Replace(" nm Ferry Range.", " 海里转场航程。")
                        .Replace(" nm Strike radius, ", " 海里打击作战半径，")
+                       .Replace(" nm Strike radius. ", " 海里打击作战半径。")
+                       .Replace(" nm Strike radius.", " 海里打击作战半径。")
+                       .Replace(" nm Recon radius, ", " 海里侦察作战半径，")
+                       .Replace(" nm Recon radius. ", " 海里侦察作战半径。")
+                       .Replace(" nm Recon radius.", " 海里侦察作战半径。")
                        .Replace("Cruise at optimum altitude and speed.", "按最佳高度与速度巡航。")
                        .Replace("Cruise at ", "巡航高度 ")
                        .Replace("Weapon release at max range.", "在最大射程发射武器。")
@@ -3644,6 +3649,7 @@ namespace CMOLocalizer
                        .Replace(" at 2k ft.", " @ 高度 2千英尺。")
                        .Replace(" at 36k ft", " @ 36千英尺")
                        .Replace("% reserves and ", "% 备份油量与 ")
+                       .Replace("% reserves.", "% 备份油量。")
                        .Replace("% reserves", "% 备份油量")
                        .Replace(" min loiter", " 分钟盘旋待机")
                        .Replace("Hi-Lo-Hi", "高-低-高 (Hi-Lo-Hi)")
@@ -3682,7 +3688,7 @@ namespace CMOLocalizer
                           + "作战能力";
             }
 
-            if (val.Contains(" minutes at ") || val.Contains(" nm CAP") || val.Contains("Transit at ") || val.Contains("Ingress at ") || val.Contains(" profile"))
+            if (val.Contains(" minutes at ") || val.Contains(" nm CAP") || val.Contains("Transit at ") || val.Contains("Ingress at ") || val.Contains(" profile") || val.Contains("Recon radius") || val.Contains("Strike radius") || val.Contains("reserves"))
             {
                 return TranslateFlightProfile(val);
             }
@@ -4608,6 +4614,69 @@ namespace CMOLocalizer
                 {
                     string trLog = TranslateMessageLogLine(normRaw);
                     if (trLog != null && trLog != normRaw) return trLog;
+                }
+
+                // 2.4 数据库平台详情复合字段 (WRA、自主等级、座舱世代示例)
+                if (normRaw.Contains(" (WRA: ") && normRaw.EndsWith(")"))
+                {
+                    int wraPos = normRaw.IndexOf(" (WRA: ");
+                    string catPart = normRaw.Substring(0, wraPos).Trim();
+                    string wraPart = normRaw.Substring(wraPos + " (WRA: ".Length).TrimEnd(')').Trim();
+                    string trCat = LookupPiece(catPart);
+                    string trWra = LookupPiece(wraPart);
+                    if (trCat != null && trWra != null)
+                    {
+                        return trCat + " (WRA: " + trWra + ")";
+                    }
+                }
+
+                Match mAuto = Regex.Match(normRaw, @"^(\d+)\s*\(Autonomy Level:\s*([A-Za-z0-9_]+)\)$");
+                if (mAuto.Success)
+                {
+                    string lvl = mAuto.Groups[2].Value.Trim();
+                    string trLvl = lvl;
+                    if (lvl == "Undefined") trLvl = "未定义";
+                    else if (lvl == "RemotelyPiloted") trLvl = "遥控驾驶";
+                    else if (lvl == "SelfRecovering") trLvl = "自主恢复";
+                    else if (lvl == "ChangeableMission") trLvl = "可变更任务";
+                    else if (lvl == "FaultEventAdaptive") trLvl = "故障/事件自适应";
+                    else if (lvl == "MultiVehicleCoordination") trLvl = "多机协同";
+                    else if (lvl == "BattlespaceCognizant") trLvl = "战场态势感知";
+                    else if (lvl == "FullyAutonomous") trLvl = "全自主";
+                    else
+                    {
+                        string lk = LookupPiece(lvl);
+                        if (lk != null) trLvl = lk;
+                    }
+                    return mAuto.Groups[1].Value + " (自主控制等级: " + trLvl + ")";
+                }
+
+                if (normRaw.Contains(" (ex:") && normRaw.EndsWith(")"))
+                {
+                    int exPos = normRaw.IndexOf(" (ex:");
+                    string basePart = normRaw.Substring(0, exPos).Trim();
+                    string exPart = normRaw.Substring(exPos + " (ex:".Length).TrimEnd(')').Trim();
+                    string trBase = LookupPiece(basePart);
+                    if (trBase != null)
+                    {
+                        string trEx = string.IsNullOrEmpty(exPart) ? "" : LookupPiece(exPart);
+                        if (string.IsNullOrEmpty(exPart)) return trBase + " (示例: )";
+                        if (trEx != null) return trBase + " (示例: " + trEx + ")";
+                        return trBase + " (示例: " + exPart + ")";
+                    }
+                }
+
+                // 数量前缀：1x / 2x / 4x 等装备与武器物资行（如 "1x Generic Comms Jammer Pod [Advanced]"）
+                Match mQty = Regex.Match(normRaw, @"^(\d+\s*[xX×]\s*)(.+)$");
+                if (mQty.Success)
+                {
+                    string pfx = mQty.Groups[1].Value;
+                    string itemPart = mQty.Groups[2].Value.Trim();
+                    string trItem = LookupPiece(itemPart);
+                    if (trItem != null && trItem != itemPart)
+                    {
+                        return pfx + trItem;
+                    }
                 }
 
                 // 通用「前缀 (正文)」组合：两侧都有整串词条且都不含中文时才组译（防误译/叠译）。

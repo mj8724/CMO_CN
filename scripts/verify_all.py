@@ -165,10 +165,12 @@ def gate_db_templates() -> None:
         if HAN.search(body):
             localized.append(f.name)
     platform_only = [f.name for f in files if f.name == "Platform.html"]
-    ok = len(localized) >= len(files) - len(platform_only) - 1
+    desc_file = ROOT / "dict/src/db_descriptions.json"
+    descs_ok = desc_file.is_file() and len(json.loads(desc_file.read_text(encoding="utf-8"))) >= 16300
+    ok = (len(localized) >= len(files) - len(platform_only) - 1) and descs_ok
     record("db templates", ok,
-           f"{len(localized)}/{len(files)} carry Chinese "
-           f"(Platform.html is the font-only wrapper)")
+           f"{len(localized)}/{len(files)} carry Chinese (Platform.html is the font-only wrapper), "
+           f"db_descriptions={len(json.loads(desc_file.read_text(encoding='utf-8')))} entries")
 
 
 def gate_version() -> None:
