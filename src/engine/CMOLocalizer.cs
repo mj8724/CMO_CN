@@ -272,15 +272,7 @@ namespace CMOLocalizer
             }
         }
 
-        private class MapPlaceEntry
-        {
-            public string Name;
-            public double Lat;
-            public double Lon;
-            public int Level;
-        }
-
-        private static readonly List<MapPlaceEntry> mapPlaces = new List<MapPlaceEntry>();
+        private static readonly List<CMOShared.MapLabelPlace> mapPlaces = new List<CMOShared.MapLabelPlace>();
         private sealed class TileClient
         {
             public readonly TcpClient Client;
@@ -321,7 +313,7 @@ namespace CMOLocalizer
                                 float lat = br.ReadSingle();
                                 float lon = br.ReadSingle();
                                 br.ReadUInt32();
-                                mapPlaces.Add(new MapPlaceEntry { Name = name, Lat = lat, Lon = lon, Level = lvl });
+                                mapPlaces.Add(new CMOShared.MapLabelPlace { Name = name, Lat = lat, Lon = lon, Level = lvl });
                             }
                         }
                     }
@@ -451,95 +443,11 @@ namespace CMOLocalizer
 
         private static byte[] RenderChineseTileBytes(int z, int x, int y, out int candidates, out int rendered)
         {
-            double n = Math.Pow(2.0, z);
-            double minLon = x / n * 360.0 - 180.0;
-            double maxLon = (x + 1) / n * 360.0 - 180.0;
-            double maxLat = Math.Atan(Math.Sinh(Math.PI * (1.0 - 2.0 * y / n))) * 180.0 / Math.PI;
-            double minLat = Math.Atan(Math.Sinh(Math.PI * (1.0 - 2.0 * (y + 1) / n))) * 180.0 / Math.PI;
-
-            List<MapPlaceEntry> inTile = new List<MapPlaceEntry>();
-            for (int i = 0; i < mapPlaces.Count; i++)
+            using (Bitmap bitmap = CMOShared.MapLabelRenderer.RenderTile(mapPlaces, z, x, y, out candidates, out rendered))
+            using (var stream = new MemoryStream())
             {
-                MapPlaceEntry p = mapPlaces[i];
-                if (p.Lon >= minLon && p.Lon <= maxLon && p.Lat >= minLat && p.Lat <= maxLat)
-                {
-                    if (z <= 5) { if (p.Level == 0) inTile.Add(p); }
-                    else { inTile.Add(p); }
-                }
-            }
-
-            candidates = inTile.Count;
-            rendered = 0;
-            using (Bitmap bmp = new Bitmap(256, 256, PixelFormat.Format32bppArgb))
-            {
-                using (Graphics g = Graphics.FromImage(bmp))
-                {
-                    g.Clear(Color.Transparent);
-                    if (inTile.Count > 0)
-                    {
-                        g.SmoothingMode = SmoothingMode.AntiAlias;
-                        g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
-                        inTile.Sort((a, b) => a.Level.CompareTo(b.Level));
-
-                        StringFormat sf = new StringFormat();
-                        sf.Alignment = StringAlignment.Center;
-                        sf.LineAlignment = StringAlignment.Center;
-
-                        List<RectangleF> occupied = new List<RectangleF>();
-                        foreach (MapPlaceEntry p in inTile)
-                        {
-                            double xExact = (p.Lon + 180.0) / 360.0 * n;
-                            double latRad = p.Lat * Math.PI / 180.0;
-                            double yExact = (1.0 - Math.Log(Math.Tan(latRad) + 1.0 / Math.Cos(latRad)) / Math.PI) / 2.0 * n;
-                            float rawPx = (float)((xExact - x) * 256.0);
-                            float rawPy = (float)((yExact - y) * 256.0);
-
-                            float fontSize = (p.Level == 0) ? (z <= 3 ? 9.5f : (z <= 4 ? 10.5f : 11.5f)) : (z <= 7 ? 9.0f : 8.5f);
-                            FontStyle fStyle = (p.Level == 0) ? FontStyle.Bold : FontStyle.Regular;
-
-                            using (Font f = new Font("Microsoft YaHei", fontSize, fStyle))
-                            {
-                                SizeF sz = g.MeasureString(p.Name, f);
-                                float halfW = sz.Width * 0.5f;
-                                float halfH = sz.Height * 0.5f;
-                                float px = Math.Max(halfW + 3f, Math.Min(256f - halfW - 3f, rawPx));
-                                float py = Math.Max(halfH + 3f, Math.Min(256f - halfH - 3f, rawPy));
-
-                                RectangleF bbox = new RectangleF(px - halfW - 2f, py - halfH - 2f, sz.Width + 4f, sz.Height + 4f);
-                                bool collides = false;
-                                foreach (RectangleF occ in occupied)
-                                {
-                                    if (bbox.IntersectsWith(occ)) { collides = true; break; }
-                                }
-                                if (collides) continue;
-                                occupied.Add(bbox);
-
-                                using (GraphicsPath gp = new GraphicsPath())
-                                {
-                                    gp.AddString(p.Name, new FontFamily("Microsoft YaHei"), (int)fStyle, fontSize, new PointF(px, py), sf);
-                                    Color penC = (p.Level == 0) ? Color.FromArgb(220, 15, 15, 15) : Color.FromArgb(200, 25, 25, 25);
-                                    float penW = (p.Level == 0) ? 3.0f : 2.2f;
-                                    using (Pen pen = new Pen(penC, penW))
-                                    {
-                                        pen.LineJoin = LineJoin.Round;
-                                        g.DrawPath(pen, gp);
-                                    }
-                                    Color txtC = (p.Level == 0) ? Color.FromArgb(255, 255, 255) : Color.FromArgb(240, 240, 240);
-                                    using (SolidBrush br = new SolidBrush(txtC))
-                                    {
-                                        g.FillPath(br, gp);
-                                    }
-                                    rendered++;
-                                }
-                            }
-                        }
-                    }
-                }
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    bmp.Save(ms, ImageFormat.Png);
-                    return ms.ToArray();
-                }
+                bitmap.Save(stream, ImageFormat.Png);
+                return stream.ToArray();
             }
         }
 

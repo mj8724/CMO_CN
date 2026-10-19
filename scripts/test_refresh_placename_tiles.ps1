@@ -21,16 +21,17 @@ function Check([bool]$Condition, [string]$Name) {
     Write-Output $line
 }
 
-function Fixture([string]$Name, [string]$Relative = '7\109\44.png', [switch]$NoCache, [switch]$NoTile) {
+function Fixture([string]$Name, [string]$Relative = '7\109\44.png', [switch]$NoCache, [switch]$NoTile,
+                 [string]$CityName = 'CitiesFixture', [float]$CityLat = 47.721432, [float]$CityLon = 128.875290) {
     $game = Join-Path $output $Name
     foreach ($set in @('Synoptic', 'Cities')) {
         $path = Join-Path $game "WW\PlacenameSets\$set\0000_0000.wwp"
         New-Item -ItemType Directory -Force -Path (Split-Path -Parent $path) | Out-Null
         $writer = [IO.BinaryWriter]::new([IO.File]::Create($path), [Text.Encoding]::UTF8)
         try {
-            $writer.Write([int]1); $writer.Write($set + 'Fixture')
-            $writer.Write([float]$(if ($set -eq 'Synoptic') { 0 } else { 47.721432 }))
-            $writer.Write([float]$(if ($set -eq 'Synoptic') { 0 } else { 128.875290 }))
+            $writer.Write([int]1); $writer.Write([string]$(if ($set -eq 'Synoptic') { 'SynopticFixture' } else { $CityName }))
+            $writer.Write([float]$(if ($set -eq 'Synoptic') { 0 } else { $CityLat }))
+            $writer.Write([float]$(if ($set -eq 'Synoptic') { 0 } else { $CityLon }))
             $writer.Write([uint32]1)
         }
         finally { $writer.Dispose() }
@@ -83,6 +84,59 @@ Check ([Convert]::ToBase64String([IO.File]::ReadAllBytes($normal.Backup)) -eq [C
 $null = Refresh $normal
 Check ([Convert]::ToBase64String([IO.File]::ReadAllBytes($normal.Backup)) -eq [Convert]::ToBase64String($pngBytes)) 'repeat refresh does not overwrite backup'
 Check ([IO.File]::ReadAllText($normal.Terrain) -eq 'terrain sentinel') 'terrain sentinel remains unchanged'
+$highZoom = Fixture 'high-zoom-synoptic' '8\128\128.png'
+$result = Refresh $highZoom
+Check ($result.Code -eq 0) 'high zoom label tile refresh succeeds'
+$bitmap = [Drawing.Bitmap]::new($highZoom.Tile)
+try {
+    $ink = 0
+    for ($y = 0; $y -lt $bitmap.Height; $y++) {
+        for ($x = 0; $x -lt $bitmap.Width; $x++) {
+            if ($bitmap.GetPixel($x, $y).A -gt 0) { $ink++ }
+        }
+    }
+    Check ($ink -ge 32) 'synoptic label remains visibly rendered above zoom seven'
+}
+finally { $bitmap.Dispose() }
+$emptyTile = Fixture 'empty-render-tile' '7\110\44.png'
+$result = Refresh $emptyTile
+Check ($result.Code -eq 0) 'tile without nearby labels refreshes successfully'
+$reader = [IO.BinaryReader]::new([IO.File]::OpenRead((Join-Path $repoRoot 'assets\placenames\Cities.wwp')), [Text.Encoding]::UTF8)
+$longest = $null
+try {
+    $count = $reader.ReadInt32()
+    for ($i = 0; $i -lt $count; $i++) {
+        $name = $reader.ReadString(); $lat = $reader.ReadSingle(); $lon = $reader.ReadSingle()
+        $null = $reader.ReadUInt32()
+        if (-not $longest -or $name.Length -gt $longest.Name.Length) {
+            $longest = [PSCustomObject]@{ Name = $name; Lat = $lat; Lon = $lon }
+        }
+    }
+}
+finally { $reader.Dispose() }
+$longX = [int][Math]::Floor(($longest.Lon + 180.0) / 360.0 * 256)
+$radians = $longest.Lat * [Math]::PI / 180.0
+$longY = [int][Math]::Floor((1.0 - [Math]::Log([Math]::Tan($radians) + 1.0 / [Math]::Cos($radians)) / [Math]::PI) / 2.0 * 256)
+$longTile = Fixture 'longest-real-city' "8\$longX\$longY.png" -CityName $longest.Name -CityLat $longest.Lat -CityLon $longest.Lon
+$longSource = Join-Path $longTile.Game 'WW\PlacenameSets\Cities\0000_0000.wwp'
+$longBefore = [Convert]::ToBase64String([IO.File]::ReadAllBytes($longSource))
+$result = Refresh $longTile
+Check ($result.Code -eq 0) 'longest real city refreshes at its original coordinates'
+Check ([Convert]::ToBase64String([IO.File]::ReadAllBytes($longSource)) -eq $longBefore) 'fitting the longest city keeps its complete WWP name and coordinates'
+$bitmap = [Drawing.Bitmap]::new($longTile.Tile)
+try {
+    $minX = 256; $minY = 256; $maxX = -1; $maxY = -1
+    for ($y = 0; $y -lt 256; $y++) {
+        for ($x = 0; $x -lt 256; $x++) {
+            if ($bitmap.GetPixel($x, $y).A -gt 0) {
+                $minX = [Math]::Min($minX, $x); $maxX = [Math]::Max($maxX, $x)
+                $minY = [Math]::Min($minY, $y); $maxY = [Math]::Max($maxY, $y)
+            }
+        }
+    }
+    Check ($minX -gt 0 -and $minY -gt 0 -and $maxX -gt $minX -and $maxX -lt 255 -and $maxY -gt $minY -and $maxY -lt 255) 'longest real city has visible ink fully inside the tile'
+}
+finally { $bitmap.Dispose() }
 foreach ($kind in @('missing', 'empty')) {
     $fixture = Fixture $kind -NoCache:($kind -eq 'missing') -NoTile
     $result = Refresh $fixture -MissingCompiler
@@ -137,6 +191,42 @@ foreach ($set in @('Synoptic', 'Cities')) {
 # Exercise the actual Save counter even when the renderer's internal catch swallows a locked-file error.
 $core = [Reflection.Assembly]::LoadFrom([IO.Path]::GetFullPath($CounterLibrary)).GetType('CMOLocalizerInstaller.InstallerCore', $true)
 $method = $core.GetMethod('LocalizeMapLabelTiles', [Reflection.BindingFlags]'Static,NonPublic')
+$placeType = $core.Assembly.GetType('CMOShared.MapLabelPlace')
+$rendererType = $core.Assembly.GetType('CMOShared.MapLabelRenderer')
+Check ($null -ne $placeType -and $null -ne $rendererType) 'installer contains the shared renderer dependency'
+if ($placeType -and $rendererType) {
+    $openList = [type]'System.Collections.Generic.List`1'
+    $render = @($rendererType.GetMethods() | Where-Object { $_.Name -eq 'RenderTile' -and $_.GetParameters().Count -eq 6 })[0]
+    foreach ($comparison in @(@($normal, 7, 109, 44, 1), @($highZoom, 8, 128, 128, 1), @($emptyTile, 7, 110, 44, 0), @($longTile, 8, $longX, $longY, 1))) {
+        $places = [Activator]::CreateInstance($openList.MakeGenericType([Type[]]@($placeType)))
+        $level = 0
+        foreach ($set in @('Synoptic', 'Cities')) {
+            $path = Join-Path $comparison[0].Game "WW\PlacenameSets\$set\0000_0000.wwp"
+            $reader = [IO.BinaryReader]::new([IO.File]::OpenRead($path), [Text.Encoding]::UTF8)
+            try {
+                $count = $reader.ReadInt32()
+                for ($i = 0; $i -lt $count; $i++) {
+                    $place = [Activator]::CreateInstance($placeType)
+                    $place.Name = $reader.ReadString(); $place.Lat = $reader.ReadSingle(); $place.Lon = $reader.ReadSingle()
+                    $null = $reader.ReadUInt32(); $place.Level = $level
+                    $places.Add($place)
+                }
+            }
+            finally { $reader.Dispose() }
+            $level++
+        }
+        $arguments = [object[]]@($places.PSObject.BaseObject, [int]$comparison[1], [int]$comparison[2], [int]$comparison[3], 0, 0)
+        $bitmap = $render.Invoke($null, $arguments)
+        $stream = [IO.MemoryStream]::new()
+        try {
+            $bitmap.Save($stream, [Drawing.Imaging.ImageFormat]::Png)
+            Check ([Convert]::ToBase64String($stream.ToArray()) -eq
+                [Convert]::ToBase64String([IO.File]::ReadAllBytes($comparison[0].Tile))) "offline/shared PNG bytes match at zoom $($comparison[1])"
+            Check ($arguments[4] -eq $comparison[4] -and $arguments[5] -eq $comparison[4]) "shared renderer selects and renders the expected labels at zoom $($comparison[1])"
+        }
+        finally { $stream.Dispose(); $bitmap.Dispose() }
+    }
+}
 $counted = $method.Invoke($null, @([string]$normal.Game))
 Check ($counted -is [int] -and $counted -eq 1) 'renderer returns actual successful Save count'
 New-Item -ItemType Directory -Force -Path ($locked.Cache + '.orig') | Out-Null

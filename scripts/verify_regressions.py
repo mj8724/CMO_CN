@@ -97,7 +97,8 @@ def _tile_harness(r: Runner, work: Path) -> None:
                                          TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
     builds = [
         subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
-                        "-optimize+", f"-out:{dll}", *refs, str(ENGINE),
+                        "-optimize+", f"-out:{dll}", *refs,
+                        str(ROOT / "src/shared/MapLabelRenderer.cs"), str(ENGINE),
                         str(ROOT / "src/engine/Reflect.cs")],
                        capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180),
         subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
@@ -464,7 +465,8 @@ def run_static(r: Runner) -> None:
                                                 TILE_WPF / "PresentationCore.dll",
                                                 TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
         _b1 = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
-                              "-optimize+", f"-out:{_dll39}", *_refs39, str(ENGINE),
+                              "-optimize+", f"-out:{_dll39}", *_refs39,
+                              str(ROOT / "src/shared/MapLabelRenderer.cs"), str(ENGINE),
                               str(ROOT / "src/engine/Reflect.cs")],
                              capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
         _b2 = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",

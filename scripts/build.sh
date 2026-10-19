@@ -25,6 +25,7 @@ WPF="/c/Windows/Microsoft.NET/Framework64/v4.0.30319/WPF"
   -reference:"$(W "$WPF/PresentationCore.dll")" \
   -reference:"$(W "$WPF/PresentationFramework.dll")" \
   -reference:"$(W "/c/Windows/Microsoft.NET/Framework64/v4.0.30319/System.Xaml.dll")" \
+  "$(W "$ROOT/src/shared/MapLabelRenderer.cs")" \
   "$(W "$ROOT/src/engine/CMOLocalizer.cs")" \
   "$(W "$ROOT/src/engine/Reflect.cs")"
 
@@ -87,6 +88,7 @@ fi
   -reference:System.IO.Compression.dll -reference:System.IO.Compression.FileSystem.dll \
   "${RES[@]}" \
   "$(W "$ROOT/src/shared/CMOShared.cs")" \
+  "$(W "$ROOT/src/shared/MapLabelRenderer.cs")" \
   "$(W "$ROOT/src/installer/CMO_Chinese_Setup.cs")"
 
 # Keep standard CMO_Chinese_Setup.exe as compatibility copy

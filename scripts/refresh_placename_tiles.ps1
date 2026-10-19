@@ -106,7 +106,8 @@ try {
         '-reference:System.dll' '-reference:System.Core.dll' '-reference:System.Drawing.dll' `
         '-reference:System.Windows.Forms.dll' '-reference:System.Xml.dll' `
         '-reference:System.IO.Compression.dll' '-reference:System.IO.Compression.FileSystem.dll' `
-        (Join-Path $repoRoot 'src\shared\CMOShared.cs') (Join-Path $repoRoot 'src\installer\CMO_Chinese_Setup.cs')
+        (Join-Path $repoRoot 'src\shared\CMOShared.cs') (Join-Path $repoRoot 'src\shared\MapLabelRenderer.cs') `
+        (Join-Path $repoRoot 'src\installer\CMO_Chinese_Setup.cs')
     if ($LASTEXITCODE) { throw 'Placename tile renderer compilation failed' }
     $core = [Reflection.Assembly]::LoadFrom($library).GetType('CMOLocalizerInstaller.InstallerCore', $true)
     $method = $core.GetMethod('LocalizeMapLabelTiles', [Reflection.BindingFlags]'Static,NonPublic')

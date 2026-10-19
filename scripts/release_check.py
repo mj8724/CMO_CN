@@ -46,6 +46,7 @@ REQUIRED_SOURCES = [
     "src/installer/CMO_Chinese_Setup.cs",
     "src/updater/CMO_Updater.cs",
     "src/shared/CMOShared.cs",
+    "src/shared/MapLabelRenderer.cs",
     "src/shared/CMOSharedTest.cs",
     "scripts/build.sh",
     "scripts/deploy.sh",
