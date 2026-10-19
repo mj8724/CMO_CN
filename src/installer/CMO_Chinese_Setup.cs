@@ -1376,13 +1376,14 @@ namespace CMOLocalizerInstaller
             public int Level;
         }
 
-        private static void LocalizeMapLabelTiles(string gamePath)
+        private static int LocalizeMapLabelTiles(string gamePath)
         {
+            int saved = 0;
             try
             {
                 string cacheDir = Path.Combine(gamePath, @"WW\Cache\Stamen Terrain - Labels");
                 string backupDir = Path.Combine(gamePath, @"WW\Cache\Stamen Terrain - Labels.orig");
-                if (!Directory.Exists(cacheDir)) return;
+                if (!Directory.Exists(cacheDir)) return 0;
 
                 if (!Directory.Exists(backupDir))
                 {
@@ -1423,7 +1424,7 @@ namespace CMOLocalizerInstaller
 
                 loadWwp(synWwp, 0);
                 loadWwp(citWwp, 1);
-                if (list.Count == 0) return;
+                if (list.Count == 0) return 0;
 
                 string[] pngs = Directory.GetFiles(cacheDir, "*.png", SearchOption.AllDirectories);
                 StringFormat sf = new StringFormat();
@@ -1519,12 +1520,14 @@ namespace CMOLocalizerInstaller
                                 }
                             }
                             bmp.Save(pngPath, ImageFormat.Png);
+                            System.Threading.Interlocked.Increment(ref saved);
                         }
                     }
                     catch { }
                 });
+                return saved;
             }
-            catch { }
+            catch { return 0; }
         }
 
         private static void RestoreMapLabelTiles(string gamePath)
