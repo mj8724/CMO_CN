@@ -150,51 +150,94 @@ namespace CMOLocalizer
 
         // ─────────────────────────────────────────────────────────────────────
         // 回写拉锯熔断：游戏把英文写回、我们又翻成中文，若它每收到我们的回写就再写回，
-        // 就是一场无终止的拉锯（表现为卡死/后台忙碌/最终栈溢出）。同一个控件被反复
-        // 写成同一个目标值时计数，超限就放弃该控件并留证。目标值在变时永不计入，
-        // 因此不会误伤燃油/时钟这类本当持续更新的面板。
+        // 就是一场无终止的拉锯（表现为卡死/后台忙碌/最终栈溢出）。
+        //
+        // 历史 bug（R43，2026-10-19 实测）：旧实现按「同一目标值重复写入次数」计数，
+        // 超过 6 次就**永久**拉黑。但游戏自己的面板刷新定时器（日志堆栈实测为
+        // Command.UnitStatus_WPF.RefreshPanel ← MainForm.BZIfsCBS3b ← Timer.OnTick）
+        // 本来就会每隔一段时间把同一段英文写回一次，我们的每帧修正因此重复写同一个中文
+        // 目标值——这不是拉锯，是正常工作。结果就是：先中英频闪，数到 6 次后永久停在英文。
+        //
+        // 现在改用令牌桶：只限制「写回速率」，不判死刑。持续 20 次/秒以内的刷新
+        // （即 50ms 以上一次的定时刷新）永远不会被拦；只有真正的高频风暴才会触发
+        // 一小段冷却，冷却到期自动恢复，绝不把控件永久留在英文。
         // ─────────────────────────────────────────────────────────────────────
         private static readonly Dictionary<int, string> lastWriteTarget = new Dictionary<int, string>();
-        private static readonly Dictionary<int, int> writeRepeatCount = new Dictionary<int, int>();
-        private static readonly HashSet<int> writeBlocked = new HashSet<int>();
+        private static readonly Dictionary<int, int> writeTokens = new Dictionary<int, int>();
+        private static readonly Dictionary<int, int> writeRefillTick = new Dictionary<int, int>();
+        private static readonly Dictionary<int, int> writeBlockedUntil = new Dictionary<int, int>();
         private static readonly object writeBurstLock = new object();
-        private const int WRITE_REPEAT_LIMIT = 6;
+        private const int WRITE_BUCKET_CAPACITY = 20;   // 允许的瞬时突发次数
+        private const int WRITE_REFILL_MS = 50;         // 每 50ms 回补 1 个令牌（20 次/秒）
+        private const int WRITE_COOLDOWN_MS = 1500;     // 风暴命中后只静音这么久，到期自动恢复
 
         private static bool IsWriteBlocked(int key)
         {
-            lock (writeBurstLock) { return writeBlocked.Contains(key); }
+            lock (writeBurstLock)
+            {
+                int until;
+                if (!writeBlockedUntil.TryGetValue(key, out until)) return false;
+                if (Environment.TickCount - until < 0) return true;
+                writeBlockedUntil.Remove(key);
+                writeTokens.Remove(key);          // 冷却结束：令牌桶重新装满，允许立刻修正
+                writeRefillTick.Remove(key);
+                return false;
+            }
         }
 
         /// <summary>
         /// 回写前调用。target = 本次要写入的目标文本。
-        /// 同一个目标值在同一个控件上被重复写入超过 WRITE_REPEAT_LIMIT 次，
-        /// 判定为与游戏拉锯，永久放弃该控件并记录一次堆栈。
+        /// 用令牌桶限制单个控件的写回速率：持续低频刷新（游戏定时刷新面板）永远放行，
+        /// 只有真正的高频拉锯才进入短时冷却，冷却到期自动恢复。
         /// </summary>
         private static bool AllowWrite(int key, string target, string what)
         {
             lock (writeBurstLock)
             {
-                if (writeBlocked.Contains(key)) return false;
-                string prev;
-                if (lastWriteTarget.TryGetValue(key, out prev) && prev == target)
+                int now = Environment.TickCount;
+                int until;
+                if (writeBlockedUntil.TryGetValue(key, out until))
                 {
-                    int n;
-                    writeRepeatCount.TryGetValue(key, out n);
-                    n++;
-                    writeRepeatCount[key] = n;
-                    if (n > WRITE_REPEAT_LIMIT)
-                    {
-                        writeBlocked.Add(key);
-                        Log("WRITE LOOP BLOCKED " + what + " after " + n + " identical writes; stack:\r\n"
-                            + Environment.StackTrace);
-                        return false;
-                    }
+                    if (now - until < 0) return false;
+                    writeBlockedUntil.Remove(key);
+                    writeTokens.Remove(key);
+                    writeRefillTick.Remove(key);
+                }
+
+                int tokens;
+                int refillAt;
+                if (!writeTokens.TryGetValue(key, out tokens))
+                {
+                    tokens = WRITE_BUCKET_CAPACITY;
+                    refillAt = now;
                 }
                 else
                 {
-                    lastWriteTarget[key] = target;
-                    writeRepeatCount[key] = 0;
+                    writeRefillTick.TryGetValue(key, out refillAt);
+                    int gained = (now - refillAt) / WRITE_REFILL_MS;
+                    if (gained > 0)
+                    {
+                        tokens += gained;
+                        if (tokens > WRITE_BUCKET_CAPACITY) tokens = WRITE_BUCKET_CAPACITY;
+                        refillAt = now;
+                    }
                 }
+
+                lastWriteTarget[key] = target;
+
+                if (tokens <= 0)
+                {
+                    writeBlockedUntil[key] = now + WRITE_COOLDOWN_MS;
+                    writeTokens[key] = WRITE_BUCKET_CAPACITY;
+                    writeRefillTick[key] = now;
+                    Log("WRITE LOOP BLOCKED " + what + " cooldown=" + WRITE_COOLDOWN_MS
+                        + "ms (write rate over " + (1000 / WRITE_REFILL_MS) + "/s); stack:\r\n"
+                        + Environment.StackTrace);
+                    return false;
+                }
+
+                writeTokens[key] = tokens - 1;
+                writeRefillTick[key] = refillAt;
                 return true;
             }
         }
@@ -1160,6 +1203,42 @@ namespace CMOLocalizer
             }
         }
 
+        /// <summary>
+        /// 每帧补扫 ElementHost 承载的 WPF 子树。ElementHost 不在顶层 HwndWrapper 窗口里，
+        /// TranslateWpfWindows() 永远枚举不到它，只能从 WinForms 控件树反查。
+        /// </summary>
+        private static void TranslateWpfElementHostsNow()
+        {
+            FormCollection forms = Application.OpenForms;
+            if (forms == null) return;
+            for (int i = 0; i < forms.Count; i++)
+            {
+                Form f = forms[i];
+                if (f == null || f.IsDisposed) continue;
+                TranslateElementHostsInControl(f, 0);
+            }
+        }
+
+        private static void TranslateElementHostsInControl(Control c, int depth)
+        {
+            if (c == null || depth > 12) return;
+            try
+            {
+                if (c.GetType().Name.IndexOf("ElementHost", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    PropertyInfo piChild = c.GetType().GetProperty("Child");
+                    object childObj = piChild != null ? piChild.GetValue(c, null) : null;
+                    System.Windows.DependencyObject depChild = childObj as System.Windows.DependencyObject;
+                    if (depChild != null) TranslateWpfElement(depChild);
+                }
+                foreach (Control sub in c.Controls)
+                {
+                    TranslateElementHostsInControl(sub, depth + 1);
+                }
+            }
+            catch { }
+        }
+
         private static void OnWpfRenderTick(object sender, EventArgs e)
         {
             if (_inRenderPass) return;
@@ -1173,6 +1252,13 @@ namespace CMOLocalizer
                 {
                     try { TranslateWpfWindows(); } catch { }
                 }
+
+                // ElementHost 里的 WPF 侧边栏（单位/编队状态）在**运行想定时**会随每个脉冲
+                // 重建元素：旧元素作废、新元素尚未登记，而 liveWpfTargets 只能看到旧元素，
+                // 全量重发现在又只能枚举顶层 HwndWrapper 窗口（看不到 ElementHost）——
+                // 于是“游戏刷新→英文上屏→下一次慢扫才变中文”，表现为运行时中英频闪。
+                // 这里每帧补扫一次 ElementHost 子树，把窗口期压到一帧以内。
+                try { TranslateWpfElementHostsNow(); } catch { }
 
                 System.Windows.DependencyObject[] snapshot;
                 lock (liveWpfTargets)
@@ -4362,6 +4448,142 @@ namespace CMOLocalizer
             return raw;
         }
 
+        // 组合翻译用的单位/量词表。这些是「结构」而不是「词汇」，数量有限，
+        // 放代码里比放数据里更安全（避免数据里出现会破坏游戏串的形状）。
+        private static readonly Dictionary<string, string> composeUnits =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "ft", "英尺" }, { "kft", "千英尺" }, { "m", "米" }, { "km", "千米" },
+                { "nm", "海里" }, { "kt", "节" }, { "kts", "节" }, { "kg", "千克" },
+                { "lb", "磅" }, { "lbs", "磅" }, { "liter", "升" }, { "liters", "升" },
+                { "gallon", "加仑" }, { "gallons", "加仑" }, { "unit", "个单位" },
+                { "units", "个单位" },
+            };
+
+        /// <summary>
+        /// 结构规则 + 术语表组合翻译。只处理「整串不含中文」的显示串，
+        /// 且必须**全部词**都在术语表里才成句（有任何生词就放弃，绝不半截翻译）。
+        /// </summary>
+        private static bool TryComposeTranslate(string raw, out string result)
+        {
+            result = null;
+            if (string.IsNullOrEmpty(raw) || wordsMap.Count == 0) return false;
+            string s = Regex.Replace(raw.Trim(), @"\s+", " ");
+            if (s.Length == 0 || ContainsChinese(s)) return false;
+
+            // 规则 1：`<名称> (<规格>)` —— 设施/装备名最主流的形状
+            Match paren = Regex.Match(s, @"^(?<name>[^()\[\]]+?)\s*\((?<spec>[^()]*)\)$");
+            if (paren.Success)
+            {
+                string nameZh = TranslateComposedName(paren.Groups["name"].Value);
+                string specZh = TranslateComposedSpec(paren.Groups["spec"].Value);
+                if (nameZh != null && specZh != null)
+                {
+                    result = nameZh + "（" + specZh + "）";
+                    return true;
+                }
+                return false;
+            }
+
+            // 规则 2：纯「数量 + 单位」（`151 ft`、`2500 m`、`12 kt`）
+            string numUnit = TranslateNumberWithUnit(s);
+            if (numUnit != null) { result = numUnit; return true; }
+
+            // 规则 3：整串术语最长匹配（`Underground Tank`、`Air Base`）
+            string term = TranslateComposedName(s);
+            if (term != null) { result = term; return true; }
+            return false;
+        }
+
+        /// <summary>
+        /// 按词边界做「最长术语优先」匹配。任何一段生词都返回 null，
+        /// 因为半截翻译（`AvGas (200k Liter 地下 Tank)`）比不翻译更糟。
+        /// </summary>
+        private static string TranslateComposedName(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return null;
+            string t = Regex.Replace(text.Trim(), @"\s+", " ");
+            if (t.Length == 0) return null;
+
+            string direct;
+            if (wordsMap.TryGetValue(t, out direct)) return direct;
+            if (exactMap.ContainsKey(t)) return exactMap[t];
+
+            string[] words = t.Split(' ');
+            StringBuilder sb = new StringBuilder();
+            int i = 0;
+            while (i < words.Length)
+            {
+                int bestJ = -1;
+                string bestZh = null;
+                for (int j = Math.Min(words.Length - 1, i + 4); j >= i; j--)
+                {
+                    StringBuilder cand = new StringBuilder();
+                    for (int k = i; k <= j; k++)
+                    {
+                        if (k > i) cand.Append(' ');
+                        cand.Append(words[k]);
+                    }
+                    string candStr = cand.ToString();
+                    string zh;
+                    if (wordsMap.TryGetValue(candStr, out zh)) { bestJ = j; bestZh = zh; break; }
+                    // 术语表让位于词典：已有的人工译法是唯一事实源，不再另造一种写法
+                    if (exactMap.TryGetValue(candStr, out zh)) { bestJ = j; bestZh = zh; break; }
+                }
+                if (bestJ < 0) return null;
+                sb.Append(bestZh);
+                i = bestJ + 1;
+            }
+            return sb.Length > 0 ? sb.ToString() : null;
+        }
+
+        /// <summary>
+        /// 规格部分：`10x Large Aircraft`、`98 units`、`200k Liter Underground Tank`、
+        /// `3201-4000m Runways` 这类。数量与单位由代码处理，剩余词汇查术语表。
+        /// </summary>
+        private static string TranslateComposedSpec(string spec)
+        {
+            if (string.IsNullOrEmpty(spec)) return null;
+            string s = Regex.Replace(spec.Trim(), @"\s+", " ");
+            if (s.Length == 0) return null;
+
+            Match qty = Regex.Match(s, @"^(?<n>\d+)\s*x\s*(?<rest>.+)$", RegexOptions.IgnoreCase);
+            if (qty.Success)
+            {
+                string rest = TranslateComposedSpec(qty.Groups["rest"].Value);
+                if (rest == null) return null;
+                return qty.Groups["n"].Value + " 个" + rest;
+            }
+
+            Match units = Regex.Match(s, @"^(?<n>\d[\d,]*)\s*units?$", RegexOptions.IgnoreCase);
+            if (units.Success) return units.Groups["n"].Value + " 个单位";
+
+            // `200k Liter Underground Tank`：先取数量+单位，再翻译剩余词汇
+            Match cap = Regex.Match(s,
+                @"^(?<num>\d[\d.,]*\s*k?)\s*(?<unit>Liter|Liters|Gallon|Gallons|kg|lbs?)\s+(?<rest>.+)$",
+                RegexOptions.IgnoreCase);
+            if (cap.Success)
+            {
+                string numZh = TranslateNumberWithUnit(cap.Groups["num"].Value.Trim() + " " + cap.Groups["unit"].Value);
+                string restZh = TranslateComposedName(cap.Groups["rest"].Value);
+                if (numZh != null && restZh != null) return numZh + restZh;
+            }
+
+            string numUnit = TranslateNumberWithUnit(s);
+            if (numUnit != null) return numUnit;
+
+            return TranslateComposedName(s);
+        }
+
+        private static string TranslateNumberWithUnit(string text)
+        {
+            Match m = Regex.Match((text ?? "").Trim(), @"^(?<num>\d[\d.,]*\s*k?)\s*(?<unit>[A-Za-z]+)$");
+            if (!m.Success) return null;
+            string unit;
+            if (!composeUnits.TryGetValue(m.Groups["unit"].Value, out unit)) return null;
+            return m.Groups["num"].Value.Trim() + " " + unit;
+        }
+
         /// <summary>
         /// 中文串里的英文括号片段（任务编辑器「可用」列表、单位名称拼装等）：
         /// 「苏法/风暴 #1 (Air Superiority BVR) (拉马特戴维)」这类整串查表必然落空，
@@ -4918,9 +5140,21 @@ namespace CMOLocalizer
                 }
             }
 
-            // 8. No word-level composition. Word-by-word assembly produced garbled
-            // mixed-language output and corrupted UI text; every display string is
-            // translated as a whole through exactMap or the offset string pool.
+            // 8. 组合翻译（R44）：只处理「整串不含中文 + 每个词都在术语表里」的显示名。
+            //
+            // 历史教训（R8）：早期做过按词猜译，生词被硬拼成中英夹生串，最后整块删掉并写下
+            // 「No word-level composition」。这里不是猜译——术语表是封闭词表，**任何一个词
+            // 不认识就整体放弃**，宁可留英文也不产出 `AvGas (200k Liter 地下 Tank)` 这种半译。
+            // 装备/设施名天生是「名称 + 数量 + 规格」的可组合结构，用规则+词表覆盖，
+            // 新增装备只要由已有词组成就自动成句，不必再逐条手写。
+            if (!ContainsChinese(raw))
+            {
+                string composed;
+                if (TryComposeTranslate(raw, out composed) && !string.IsNullOrEmpty(composed) && composed != raw)
+                {
+                    return composed;
+                }
+            }
             return raw;
         }
 
@@ -6387,6 +6621,11 @@ namespace CMOLocalizer
                     catch { }
                     return true;
                 }, IntPtr.Zero);
+
+                // ElementHost 承载的 WPF 面板（单位/编队状态侧边栏就是这一种）不在顶层
+                // HwndWrapper 窗口里，EnumWindows 永远看不到它们——只能从 WinForms 控件树
+                // 的 ElementHost.Child 进去。不补这一段，单位状态面板就是观测盲区。
+                try { DumpElementHostWpf(ref wpfJson, ref wpfFirst); } catch { }
                 wpfJson.Append("]}");
                 return wpfJson.ToString();
             }
@@ -6570,6 +6809,68 @@ namespace CMOLocalizer
             }
             catch { }
             return "";
+        }
+
+        /// <summary>
+        /// 把 ElementHost 承载的 WPF 视觉树也导出（单位状态侧边栏必须靠这条路才能看到）。
+        /// ElementHost.Child 是一个 DependencyObject，但它属于另一套 WPF 视觉树，
+        /// 不在任何顶层 HwndWrapper 窗口下，所以只能从 WinForms 控件树反查。
+        /// </summary>
+        private static void DumpElementHostWpf(ref StringBuilder json, ref bool first)
+        {
+            FormCollection forms = Application.OpenForms;
+            if (forms == null) return;
+            for (int i = 0; i < forms.Count; i++)
+            {
+                Form f = forms[i];
+                if (f == null || f.IsDisposed) continue;
+                DumpElementHostInControls(f, ref json, ref first, 0);
+            }
+        }
+
+        private static void DumpElementHostInControls(Control c, ref StringBuilder json, ref bool first, int depth)
+        {
+            if (c == null || depth > 12) return;
+            try
+            {
+                if (c.GetType().Name.IndexOf("ElementHost", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    PropertyInfo piChild = c.GetType().GetProperty("Child");
+                    object childObj = piChild != null ? piChild.GetValue(c, null) : null;
+                    System.Windows.DependencyObject depChild = childObj as System.Windows.DependencyObject;
+                    if (depChild != null)
+                    {
+                        StringBuilder tree = new StringBuilder();
+                        bool tFirst = true;
+                        try
+                        {
+                            System.Windows.Threading.Dispatcher dsp = depChild.Dispatcher;
+                            if (dsp != null && !dsp.CheckAccess())
+                            {
+                                dsp.Invoke(new Action(delegate { DumpWpfTree(depChild, 0, tree, ref tFirst); }));
+                            }
+                            else
+                            {
+                                DumpWpfTree(depChild, 0, tree, ref tFirst);
+                            }
+                        }
+                        catch { }
+                        if (tree.Length > 0)
+                        {
+                            if (!first) json.Append(",");
+                            first = false;
+                            json.Append("{\"hwnd\":\"elementhost:" + JsonEsc(c.Name ?? "")
+                                        + "\",\"title\":\"ElementHost:" + JsonEsc(c.Name ?? "") + "\",\"nodes\":["
+                                        + tree + "]}");
+                        }
+                    }
+                }
+                foreach (Control sub in c.Controls)
+                {
+                    DumpElementHostInControls(sub, ref json, ref first, depth + 1);
+                }
+            }
+            catch { }
         }
 
         private static void DumpWpfTree(System.Windows.DependencyObject dep, int depth, StringBuilder sb, ref bool first)

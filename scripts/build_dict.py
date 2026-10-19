@@ -53,6 +53,7 @@ from triage import classify, is_script_or_schema  # noqa: E402
 from inject_filter import injection_safe, harmful_shape  # noqa: E402
 
 ELLIPSIS = re.compile(r"…+")
+CJK_ANY = re.compile(r"[一-鿿]")
 DOT_RUN = re.compile(r"(?:\.\s*){3,}")
 # Literal two-character escape text that must become real control characters.
 LITERAL_ESC = re.compile(r"\\r\\n|\\n|\\r|\\t")
@@ -77,12 +78,32 @@ def iter_source_maps():
     for p in sorted(SRC.glob("*.json")):
         if p.name in ("blacklist.json", "labels.json", "identifiers.json",
                       "force_offsets.json", "dlc_briefing_fixes.json",
-                      "term_replacements.json"):
+                      "term_replacements.json", "terms.json"):
             continue
         data = load(p)
         if isinstance(data, dict):
             yield p.name, {k: v for k, v in data.items()
                            if isinstance(v, str) and not k.startswith("_")}
+
+
+def load_terms() -> dict:
+    """术语表（组合翻译的词汇层）。
+
+    引擎按「结构 + 术语」拼装显示串，所以这里只放词：加新装备时只要它由已有词
+    组合而成就无需任何改动；只有出现新词才需要加一行。写入产物的 `words` 段。
+    """
+    p = SRC / "terms.json"
+    if not p.is_file():
+        return {}
+    data = load(p)
+    if not isinstance(data, dict):
+        return {}
+    terms = {}
+    for k, v in data.items():
+        if k.startswith("_") or not isinstance(v, str):
+            continue
+        terms[k] = v
+    return terms
 
 
 def normalize_ellipsis(en: str, zh: str) -> str:
@@ -395,11 +416,42 @@ def build() -> dict:
         if en_sync is not None and en_sync in exact:
             offsets[off] = exact[en_sync]
 
+    # --- R44 组合翻译修复：把历史条目里的半译残留（`AvGas (200k Liter 地下 Tank)`）
+    # 用「结构规则 + 术语表」重算一遍，而不是逐条手改。只改「能整串组合成功」的条目，
+    # 组合不了（含生词）的一律不动——半截翻译比不翻译更糟。
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        from compose_terms import compose as _compose, residue_words as _residue  # noqa: PLC0415
+        _terms = load_terms()
+        if _terms:
+            fixed = 0
+            for _en in list(exact.keys()):
+                _zh = exact[_en]
+                if len(_en) > 60 or "http" in _en or '"' in _en or ";" in _en:
+                    continue
+                if not CJK_ANY.search(_zh):
+                    continue
+                # 只修「中文里还留着英文术语」的条目。已全中文的（哪怕是 `Tank`→`坦克`
+                # 这种语境专义）一律不动——否则术语表会覆盖人工裁定的正确译法。
+                if not _residue(_en, _zh, _terms):
+                    continue
+                _better = _compose(_en, _terms, exact)
+                if _better and _better != _zh:
+                    exact[_en] = _better
+                    fixed += 1
+            if fixed:
+                print(f"[compose] 组合翻译修复 {fixed} 条半译条目")
+    except Exception as _exc:  # noqa: BLE001
+        print(f"[compose] 跳过组合修复: {_exc}")
+
     # --- naming standard: one Chinese spelling per equipment/term ---------
     name_rules, _banned = load_term_replacements()
     if name_rules:
         exact = {k: apply_naming_standard(v, name_rules) for k, v in exact.items()}
         offsets = {k: apply_naming_standard(v, name_rules) for k, v in offsets.items()}
+
+    terms = load_terms()
+    ordered_words = {k: terms[k] for k in sorted(terms)}
 
     ordered_offsets = {str(k): offsets[k] for k in sorted(offsets)}
     ordered_exact = {k: exact[k] for k in sorted(exact)}
@@ -416,13 +468,13 @@ def build() -> dict:
                 "n_offsets": len(ordered_offsets),
                 "n_exact": len(ordered_exact),
                 "n_partial": len(ordered_partial),
-                "n_words": 0,
+                "n_words": len(ordered_words),
             },
         },
         "offsets": ordered_offsets,
         "exact": ordered_exact,
         "partial": ordered_partial,
-        "words": {},
+        "words": ordered_words,
     }
 
 

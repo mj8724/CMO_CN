@@ -574,6 +574,55 @@ def run_static(r: Runner) -> None:
     except Exception as exc:  # noqa: BLE001
         r42["异常"] = False
         _d42 = f"异常: {type(exc).__name__}: {exc}"
+    # R44：组合翻译（结构规则 + 术语表）。R8 当年因为「按词猜译」产出中英夹生串而整块删除，
+    # 所以这里必须证明：①结构规则对**没见过的**组合也能成句；②碰到生词一律放弃（宁可英文）；
+    # ③术语表真的进了产物；④词典里不存在「本可组合修复却仍是半译」的条目。
+    r44 = {}
+    _d44 = ""
+    try:
+        import sys as _sys44  # noqa: PLC0415
+        _sys44.path.insert(0, str(ROOT / "scripts"))
+        from compose_terms import compose as _compose44, load_terms as _load_terms44, residue_words as _residue44  # noqa: PLC0415
+        _terms44 = _load_terms44()
+        _doc44 = json.loads((ROOT / "dict" / "CMOLocalizer.json").read_text(encoding="utf-8"))
+        _exact44 = _doc44.get("exact") or {}
+        _words44 = _doc44.get("words") or {}
+
+        fixtures = {
+            "151 ft": "151 英尺",
+            "2500 m": "2500 米",
+            "Airfield (73 units)": "机场（73 个单位）",
+            "Hardened Aircraft Shelter (6x Medium Aircraft)": "加固机堡（6 个中型飞机）",
+            "AvGas (780k Liter Underground Tank)": "航空汽油（780k 升地下油罐）",
+            "Underground Tank": "地下油罐",
+        }
+        wrong = {k: _compose44(k, _terms44, _exact44) for k, v in fixtures.items() if _compose44(k, _terms44, _exact44) != v}
+        r44["结构规则"] = not wrong
+        # 生词必须整体放弃：宁可英文，也不能拼出中英夹生串
+        r44["生词放弃"] = all(_compose44(x, _terms44, _exact44) is None
+                              for x in ("Domain Kill", "Foo Bar Baz", "Some Unknown Kit (3x Thing)"))
+        r44["术语入产物"] = len(_words44) >= 120 and _words44.get("Airfield") == "机场"
+        unapplied = {}
+        for en, zh in _exact44.items():
+            if len(en) > 60 or "http" in en or '"' in en or ";" in en:
+                continue
+            if not _residue44(en, zh, _terms44):
+                continue
+            better = _compose44(en, _terms44, _exact44)
+            if better and better != zh:
+                unapplied[en] = better
+        r44["半译已修"] = not unapplied
+        _d44 = (f"术语={len(_terms44)} words={len(_words44)} "
+                f"规则不符={len(wrong)} 可修未修={len(unapplied)}"
+                + (f" 例:{list(unapplied)[:2]}" if unapplied else ""))
+    except Exception as exc:  # noqa: BLE001
+        r44["异常"] = False
+        _d44 = f"异常: {type(exc).__name__}: {exc}"
+    r.record("R44-static-compose-rules",
+             "R44 组合翻译：结构规则成句 + 生词一律放弃 + 半译条目已自动化修复",
+             all(r44.values()), _d44,
+             "scripts/compose_terms.py + dict/src/terms.json + dict/CMOLocalizer.json")
+
     r.record("R42-static-mixed-prefix-wiring",
              "R42 混合串修正的接线：先修前缀再走「含中文就跳过」守卫",
              all(r42.values()), _d42,
@@ -784,6 +833,7 @@ def run_live(r: Runner) -> None:
     # L6：条令下拉项全中文 + 无新增写拉锯熔断（R28）
     _doctrine_probe(H, r, pid)
     _mixed_prefix_probe(H, r, pid)
+    _panel_flicker_probe(H, r, pid)
 
     # L7：构建号适配哨兵（R31——游戏更新导致注入静默失效那次事故）
     _build_adaptation_probe(H, r, pid)
@@ -1145,6 +1195,84 @@ def _mixed_prefix_probe(H, r: Runner, pid: int | None) -> None:
              f"下拉框 {len(combos)} 个/条目 {len(items)} 条；英文前缀+中文尾 {len(mixed)} 条"
              + (f"（例：{mixed[:3]}）" if mixed else "（无）")
              + ("" if items else "；❌ 未采集到任何下拉项，判据无效"),
+             "evidence/live/scan")
+
+
+def _panel_flicker_probe(H, r: Runner, pid: int | None) -> None:
+    """R44 实机探针：**运行时**的单位/编队状态面板不得中英频闪。
+
+    用户两次报同一个症状，且强调「不运行不闪」——因为游戏每个脉冲都会重建侧边栏元素
+    并把英文写回去。历史上这里靠 `AllowWrite` 的「同一目标值重复 6 次即永久拉黑」兜底，
+    结果先是频闪、然后熔断生效、面板**永久停在英文**（日志 27 条 WRITE LOOP BLOCKED）。
+    现在改为令牌桶＋每帧补扫 ElementHost 子树，这条用例就是它的判据：
+    连续采多帧，同一元素不得在「中文/英文」之间跳，且本次进程不得新增熔断事件。
+    """
+    name, title = "L-panel-flicker", "R44 运行时单位状态面板不中英频闪（令牌桶 + 每帧补扫）"
+    log = H.GAME / "CMOLocalizer.log"
+
+    def _blocked_count() -> int:
+        try:
+            txt = log.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            return 0
+        tail = txt.split("=== CMOLocalizer v4.0 Engine Starting ===")[-1]
+        return tail.count("WRITE LOOP BLOCKED")
+
+    before = _blocked_count()
+    H.send("CLOSE_FORM ALL", timeout=20)
+    time.sleep(1.0)
+    H.send("CLICK_MENU TSMI_LoadScenario", timeout=20)
+    time.sleep(8.0)
+    H.send("SCEN_EXPAND_ALL", timeout=25)
+    time.sleep(2.0)
+    H.send("SCEN_SELECT Shamal", timeout=25)
+    time.sleep(2.0)
+    H.send("SCEN_LOAD", timeout=25)
+    time.sleep(18.0)
+    H.send("CLICK_BUTTON 进入想定", timeout=25)
+    time.sleep(25.0)
+    H.send("CLOSE_FORM ALL", timeout=20)
+    H.send("CLICK_MENU TSMI_SelectNextUnit", timeout=20)
+    time.sleep(2.5)
+    # 必须让推演真正跑起来：暂停时面板不重建，测不出频闪（用户原话「不运行不闪」）
+    H.send("CLICK_MENU StartResumeGameToolStripMenuItem", timeout=20)
+    time.sleep(3.5)
+
+    def _cjk(t: str) -> bool:
+        return any("一" <= c <= "鿿" for c in t)
+
+    def _panel() -> set:
+        w = H.send("WPF_DUMP", timeout=60)
+        out = set()
+        for win in w.get("windows") or []:
+            if "ElementHost" not in (win.get("title") or ""):
+                continue
+            for n in win.get("nodes") or []:
+                t = (n.get("text") or "").strip()
+                if t:
+                    out.add((n.get("type"), n.get("name") or "", t))
+        return out
+
+    frames = []
+    for _ in range(14):
+        frames.append(_panel())
+        time.sleep(0.3)
+
+    flips = []
+    for a, b in zip(frames, frames[1:]):
+        for ty, nm, t in a - b:
+            for ty2, nm2, t2 in b - a:
+                if (ty, nm) == (ty2, nm2) and _cjk(t) != _cjk(t2):
+                    flips.append((nm or ty, t, t2))
+    after = _blocked_count()
+    H.send("CLOSE_FORM ALL", timeout=20)
+
+    ok = len(frames) >= 10 and not flips and after <= before
+    r.record(name, title, ok,
+             f"采样 {len(frames)} 帧；中英翻转 {len(flips)} 处"
+             + (f"（例 {flips[:2]}）" if flips else "（无）")
+             + f"；写拉锯熔断 {before}→{after}"
+             + ("" if after <= before else "（新增熔断 = 永久停英文回归）"),
              "evidence/live/scan")
 
 
