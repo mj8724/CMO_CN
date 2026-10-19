@@ -2,8 +2,10 @@
 """Full-review gates and isolated Cities/Synoptic translation fixtures."""
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
+import struct
 import subprocess
 import sys
 import tempfile
@@ -29,6 +31,10 @@ class GlobalPlacenameTests(unittest.TestCase):
         self.write_json(self.dictionary, {})
         self.scopes = self.base / "scopes.json"
         self.write_reviews(self.records)
+        self.metadata = self.base / "metadata.json"
+        wire = struct.pack("<i", len(self.records)) + b"".join(
+            struct.pack("<ffI", r["lat"], r["lon"], i) for i, r in enumerate(self.records))
+        self.write_json(self.metadata, {"Synoptic": hashlib.sha256(wire).hexdigest()})
 
     def write_json(self, path, value):
         path.write_text(json.dumps(value, ensure_ascii=False) + "\n",
@@ -54,7 +60,7 @@ class GlobalPlacenameTests(unittest.TestCase):
     def gate(self, asset, *extra):
         return self.run_script("verify_placenames.py", "--set", "Synoptic",
                                "--asset", asset, "--review-dir", self.reviews,
-                               "--scopes", self.scopes, *extra)
+                               "--scopes", self.scopes, "--metadata-baseline", self.metadata, *extra)
 
     def build(self, source, output):
         return self.run_script("build_cities_placenames.py", "--set", "Synoptic",

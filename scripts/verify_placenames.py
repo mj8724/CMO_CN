@@ -7,8 +7,10 @@ The CLI requires every label to be reviewed, including unchanged translations.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
+import struct
 from pathlib import Path
 
 from placename_translation import (COORDINATE_TOLERANCE, PLACENAME_SETS,
@@ -16,6 +18,13 @@ from placename_translation import (COORDINATE_TOLERANCE, PLACENAME_SETS,
 from wwp import load
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def load_metadata_sha256(path: Path, placename_set: str) -> str:
+    value = json.loads(path.read_text(encoding="utf-8"))[placename_set]
+    if not isinstance(value, str):
+        raise ValueError(f"{placename_set}: metadata fingerprint must be a string")
+    return value
 
 
 def matches(item: dict, record: dict) -> bool:
@@ -40,7 +49,8 @@ def verify_coverage(directory: Path, scopes: dict[str, int]) -> list[str]:
 
 def verify_asset(items: list[dict], reviewed: list[dict],
                  baseline: list[dict] | None = None,
-                 expected_count: int = 4287, *, require_complete: bool = False) -> dict:
+                 expected_count: int = 4287, *, require_complete: bool = False,
+                 expected_metadata_sha256: str | None = None) -> dict:
     errors = []
     resolver = PlacenameResolver({}, reviewed)
     if len(items) != expected_count:
@@ -51,6 +61,12 @@ def verify_asset(items: list[dict], reviewed: list[dict],
         if not (math.isfinite(item["lat"]) and -90 <= item["lat"] <= 90
                 and math.isfinite(item["lon"]) and -180 <= item["lon"] <= 180):
             errors.append(f"record {index}: invalid coordinates")
+
+    if expected_metadata_sha256 is not None:
+        metadata = struct.pack("<i", len(items)) + b"".join(
+            struct.pack("<ffI", item["lat"], item["lon"], item["flags"]) for item in items)
+        if hashlib.sha256(metadata).hexdigest() != expected_metadata_sha256:
+            errors.append("coordinates/flags/order differ from canonical metadata baseline")
 
     by_name = {}
     for index, item in enumerate(items):
@@ -104,6 +120,9 @@ def main() -> int:
     parser.add_argument("--scopes", type=Path,
                         default=ROOT / "dict/placenames_reviewed_scopes.json")
     parser.add_argument("--baseline", type=Path, help="previous or original WWP to compare")
+    parser.add_argument("--metadata-baseline", type=Path,
+                        default=ROOT / "dict/placenames_metadata.json",
+                        help="fixed metadata fingerprints; custom fixtures must provide their own")
     parser.add_argument("--report", type=Path, help="write the complete JSON check result")
     args = parser.parse_args()
     config = PLACENAME_SETS[args.placename_set]
@@ -111,7 +130,9 @@ def main() -> int:
     review_dir = args.review_dir or ROOT / "dict" / config["review_dir"]
     result = verify_asset(load(asset), load_reviewed(review_dir),
                           load(args.baseline) if args.baseline else None,
-                          expected_count=config["count"], require_complete=True)
+                          expected_count=config["count"], require_complete=True,
+                          expected_metadata_sha256=load_metadata_sha256(
+                              args.metadata_baseline, args.placename_set))
     scopes = json.loads(args.scopes.read_text(encoding="utf-8"))[config["scope_key"]]
     result["errors"].extend(verify_coverage(review_dir, scopes))
     if args.report:

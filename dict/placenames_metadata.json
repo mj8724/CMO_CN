@@ -1,0 +1,6 @@
+{
+  "_format": "SHA-256 of little-endian int32 count, followed in record order by float32 lat, float32 lon, uint32 flags (<ffI>); names excluded.",
+  "source_commit": "69322c27b3eafea65a285e2723698201336ab89f",
+  "Cities": "09e74738e127f10a72f97947d2e0ad47e2263bcb11a864febedc26877d6fdfee",
+  "Synoptic": "a40f1e6308167d53d6ce85dfb9066fc760feed6d9eb44063afe6eab12b202aaf"
+}
