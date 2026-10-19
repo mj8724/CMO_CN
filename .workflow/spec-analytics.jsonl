@@ -12,3 +12,4 @@
 {"type":"cli","id":"CLI-1792241514278-1","timestamp":"2026-10-17T12:51:54.278Z","command":"load","args":{"type":"issue","list":true}}
 {"type":"cli","id":"CLI-1792324989947-1","timestamp":"2026-10-18T12:03:09.947Z","command":"load","args":{"type":"knowhow","id":"knowhow-TIP-20261018-c1f17e6455a064d3-001"}}
 {"type":"cli","id":"CLI-1792387173569-1","timestamp":"2026-10-19T05:19:33.569Z","command":"load","args":{"type":"knowhow","id":"knowhow-tip-20261015-b3e6c7fed2efa60d"}}
+{"type":"cli","id":"CLI-1792394440918-1","timestamp":"2026-10-19T07:20:40.918Z","command":"load","args":{"type":"knowhow","id":"knowhow-tip-20261015-b3e6c7fed2efa60d"}}

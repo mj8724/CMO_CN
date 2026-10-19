@@ -1881,6 +1881,7 @@ namespace CMOLocalizer
                 TranslateKnownEnumCombo(cb);
             }
             catch { }
+            finally { ExitMutation(); }
         }
 
         /// <summary>
@@ -1924,6 +1925,7 @@ namespace CMOLocalizer
                 }
             }
             catch { }
+            finally { ExitMutation(); }
         }
 
         /// <summary>

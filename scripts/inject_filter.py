@@ -23,13 +23,15 @@ BAD_PATTERNS = re.compile(
     r"(://|::|&&|\|\||%\d|\{\d|Get-|e\.Message|SOFTWARE|HKEY_|SELECT |INSERT |UPDATE |"
     r"DELETE |DROP |DBID|\.exe\b|\.dll\b|\.html\b|\.scen\b|\.db3\b|\.xml\b|<[a-zA-Z/]|"
     r"\bSystem\.|\bConvert\.|\bFile\.|\bDirectory\.|\bProcess\.|\bRegex\.)")
-# SQL 片段：ORDER BY 项（`LongName ASC`）、子句头、尾部的 LIKE 条件
+# SQL 片段：ORDER BY 项（`LongName ASC`）、子句头、尾部的 LIKE 条件、逗号开头的列投影
 SQL_FRAGMENT = re.compile(
-    r"(^|\s)(ASC|DESC)$"
-    r"|^(ORDER|GROUP|HAVING|LIMIT|OFFSET|WHERE|SELECT|FROM|JOIN|UNION|INSERT|UPDATE|"
+    r"^\s*,"
+    r"|(^|\s)(ASC|DESC)$"
+    r"|^\s*(ORDER|GROUP|HAVING|LIMIT|OFFSET|WHERE|SELECT|FROM|JOIN|UNION|INSERT|UPDATE|"
     r"DELETE|CREATE|DROP|ALTER|PRAGMA|VACUUM)\b"
-    r"|\b(LIKE|NOT LIKE)\s*'?%?$"
-    r"|(=|<>|>=|<=)\s*'?%?$", re.I)
+    r"|\b(LIKE|NOT LIKE)\s*['%]?"
+    r"|\bAS\s+[A-Z][A-Za-z0-9_]+"
+    r"|(=|<>|>=|<=|<|>)\s*'?%?$", re.I)
 # 尾部标点只挡「像代码/格式串」的；`:`/`,` 是常见界面标签结尾，不能挡
 # （`Max Distance (NM):` 就是被这条误杀的，2026-10-19 实测）
 TRAILING_CODE = ('"', "'", "=", "(", "%", ";")
@@ -45,10 +47,13 @@ HARMFUL_SHAPE = re.compile(
     r"(://|::|&&|\|\||%\d|\{\d|Get-|e\.Message|SOFTWARE|HKEY_|SELECT |INSERT |UPDATE |"
     r"DELETE |DROP |DBID|\.exe\b|\.dll\b|\.html\b|\.scen\b|\.db3\b|<[a-zA-Z/]|"
     r"\bSystem\.|\bConvert\.|\bFile\.|\bDirectory\.|\bProcess\.|\bRegex\.)"
+    r"|^\s*,"
     r"|(^|\s)(ASC|DESC)$"
-    r"|^(ORDER|GROUP|HAVING|LIMIT|OFFSET|WHERE|SELECT|FROM|JOIN|UNION|INSERT|UPDATE|"
+    r"|^\s*(ORDER|GROUP|HAVING|LIMIT|OFFSET|WHERE|SELECT|FROM|JOIN|UNION|INSERT|UPDATE|"
     r"DELETE|CREATE|DROP|ALTER|PRAGMA|VACUUM)\b"
-    r"|\b(LIKE|NOT LIKE)\s*'?%?$"
+    r"|\b(LIKE|NOT LIKE)\s*['%]?"
+    r"|\bAS\s+[A-Z][A-Za-z0-9_]+"
+    r"|(=|<>|>=|<=|<|>)\s*'?%?$"
     r"|\bBuild\s+\d+|1900\.\d+", re.I)
 
 
