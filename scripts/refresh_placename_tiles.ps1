@@ -32,13 +32,17 @@ foreach ($relative in @('WW', 'WW\Cache', 'WW\Cache\Stamen Terrain - Labels',
     Assert-PlainPath (Join-Path $game $relative)
 }
 $pngs = New-Object 'Collections.Generic.List[string]'
+$files = New-Object 'Collections.Generic.List[string]'
 $pending = New-Object 'Collections.Generic.Stack[string]'
 $pending.Push($cache)
 while ($pending.Count) {
     foreach ($item in Get-ChildItem -LiteralPath $pending.Pop() -Force) {
         Assert-PlainPath $item.FullName
         if ($item.PSIsContainer) { $pending.Push($item.FullName) }
-        elseif ($item.Extension -ieq '.png') { $pngs.Add($item.FullName) }
+        else {
+            $files.Add($item.FullName)
+            if ($item.Extension -ieq '.png') { $pngs.Add($item.FullName) }
+        }
     }
 }
 if (-not $pngs.Count) {
@@ -107,6 +111,35 @@ try {
     $core = [Reflection.Assembly]::LoadFrom($library).GetType('CMOLocalizerInstaller.InstallerCore', $true)
     $method = $core.GetMethod('LocalizeMapLabelTiles', [Reflection.BindingFlags]'Static,NonPublic')
     if (-not $method -or $method.ReturnType -ne [int]) { throw 'Missing counted label renderer' }
+    $backup = $cache + '.orig'
+    if (-not [IO.Directory]::Exists($backup)) {
+        # Only publish a complete backup. Failed copies must never become trusted .orig directories.
+        $staging = $backup + '.tmp-' + [Guid]::NewGuid().ToString('N')
+        [IO.Directory]::CreateDirectory($staging) | Out-Null
+        try {
+            foreach ($file in $files) {
+                $relative = $file.Substring($cache.Length).TrimStart('\', '/')
+                $destination = Join-Path $staging $relative
+                [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($destination)) | Out-Null
+                [IO.File]::Copy($file, $destination, $false)
+            }
+            [IO.Directory]::Move($staging, $backup)
+        }
+        finally {
+            if ([IO.Directory]::Exists($staging)) {
+                $cleanup = [IO.Path]::GetFullPath($staging)
+                if ([IO.Path]::GetDirectoryName($cleanup) -ne [IO.Path]::GetDirectoryName($cache) -or
+                    [IO.Path]::GetFileName($cleanup) -notmatch '^Stamen Terrain - Labels\.orig\.tmp-[0-9a-f]{32}$') {
+                    throw 'Invalid backup staging cleanup path'
+                }
+                Assert-PlainPath $cleanup
+                foreach ($file in [IO.Directory]::GetFiles($cleanup, '*', [IO.SearchOption]::AllDirectories)) {
+                    [IO.File]::SetAttributes($file, [IO.FileAttributes]::Normal)
+                }
+                [IO.Directory]::Delete($cleanup, $true)
+            }
+        }
+    }
     $saved = $method.Invoke($null, @($game))
     if ($saved -ne $pngs.Count) { throw "Label render incomplete: saved $saved of $($pngs.Count) PNGs" }
     foreach ($png in $pngs) {

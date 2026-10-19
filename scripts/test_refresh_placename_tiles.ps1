@@ -145,6 +145,28 @@ try { $counted = $method.Invoke($null, @([string]$locked.Game)) }
 finally { $handle.Dispose() }
 Check ($counted -is [int] -and $counted -eq 0) 'failed Save returns zero instead of false success'
 
+$copyFailure = Fixture 'backup-copy-failure'
+$note = Join-Path $copyFailure.Cache 'notes.txt'
+[IO.File]::WriteAllText($note, 'original label metadata')
+$handle = [IO.File]::Open($note, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+try { $result = Refresh $copyFailure }
+finally { $handle.Dispose() }
+Check ($result.Code -ne 0) 'locked non-PNG backup source fails refresh'
+Check ([Convert]::ToBase64String([IO.File]::ReadAllBytes($copyFailure.Tile)) -eq [Convert]::ToBase64String($pngBytes)) 'backup failure leaves current PNG unchanged'
+Check (-not [IO.Directory]::Exists($copyFailure.Cache + '.orig')) 'failed first backup is never published as orig'
+$result = Refresh $copyFailure
+Check ($result.Code -eq 0) 'retry after releasing backup source refreshes successfully'
+Check ([IO.File]::Exists($copyFailure.Backup) -and
+    [Convert]::ToBase64String([IO.File]::ReadAllBytes($copyFailure.Backup)) -eq [Convert]::ToBase64String($pngBytes)) 'retry publishes original pre-refresh PNG in complete backup'
+$backupNote = Join-Path ($copyFailure.Cache + '.orig') 'notes.txt'
+Check ([IO.File]::Exists($backupNote) -and [IO.File]::ReadAllText($backupNote) -eq 'original label metadata') 'retry backs up non-PNG metadata too'
+$handle = [IO.File]::Open($copyFailure.Tile, [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+try { $counted = $method.Invoke($null, @([string]$copyFailure.Game)) }
+finally { $handle.Dispose() }
+Check ($counted -is [int] -and $counted -eq 0 -and [IO.File]::Exists($copyFailure.Backup) -and
+    [Convert]::ToBase64String([IO.File]::ReadAllBytes($copyFailure.Backup)) -eq [Convert]::ToBase64String($pngBytes)) 'later render failure preserves the already complete original backup'
+Check ([IO.File]::ReadAllText($copyFailure.Terrain) -eq 'terrain sentinel') 'failure and retry never change terrain'
+
 $summary = "Placename tile checks=$script:checks failures=$script:failures"
 $script:log.Add($summary)
 [IO.File]::WriteAllText((Join-Path $output 'refresh_tiles.log'), ($script:log -join "`n") + "`n", [Text.UTF8Encoding]::new($false))
