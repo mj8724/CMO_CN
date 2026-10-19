@@ -11,7 +11,7 @@ Gates
   3. engine parse  the engine's own scanner can load every entry
   4. scenario meta 100% of <ScenTitle> / <ScenSetting> translated
   5. briefings     HTML briefings carry Chinese prose, structure intact
-  6. placenames    Synoptic + Cities .wwp translated or explicitly pending
+  6. placenames    reviewed Cities labels + optional installed WWP report
   7. db templates  8 DB HTML templates localized
   8. version       VERSION consistent across VERSION / engine / installer
   9. repository    git worktree clean
@@ -135,20 +135,15 @@ def gate_briefings() -> None:
 
 
 def gate_placenames() -> None:
-    ok, msg = run("apply_placenames.py", ["--verify"])
-    detail = msg
-    syn = cite = None
-    for line in detail.splitlines():
-        pass
-    text = subprocess.run(
-        [sys.executable, str(ROOT / "scripts/apply_placenames.py"), "--verify"],
-        capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
-    for line in text.splitlines():
-        if "Synoptic" in line:
-            syn = line.strip()
-        if "Cities" in line:
-            cite = line.strip()
-    record("placenames", ok, f"{syn} ;; {cite}")
+    ok, detail = run("verify_placenames.py")
+    if GAME.is_dir():
+        installed_ok, installed = run("apply_placenames.py",
+                                      ["--game-dir", str(GAME), "--verify"])
+        ok = ok and installed_ok
+        detail += f" | installed report: {installed}"
+    else:
+        detail += " | installed report skipped (game directory unavailable)"
+    record("placenames", ok, detail)
 
 
 def gate_db_templates() -> None:
