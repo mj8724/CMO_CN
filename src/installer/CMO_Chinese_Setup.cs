@@ -1311,6 +1311,24 @@ namespace CMOLocalizerInstaller
         private static readonly System.Text.RegularExpressions.Regex HanRegex =
             new System.Text.RegularExpressions.Regex("[\u4e00-\u9fff]");
 
+        private static bool HasTranslatedScenarioHtml(string path)
+        {
+            byte[] bytes = File.ReadAllBytes(path);
+            string header = Encoding.ASCII.GetString(bytes, 0, Math.Min(bytes.Length, 4096));
+            System.Text.RegularExpressions.Match charset = System.Text.RegularExpressions.Regex.Match(
+                header, @"charset\s*=\s*[""']?\s*([\w-]+)",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            Encoding encoding = Encoding.UTF8;
+            if (charset.Success)
+            {
+                try { encoding = Encoding.GetEncoding(charset.Groups[1].Value); }
+                catch (ArgumentException) { } // 未知声明保持原有 UTF-8 回退。
+            }
+            using (MemoryStream stream = new MemoryStream(bytes, false))
+            using (StreamReader reader = new StreamReader(stream, encoding, true))
+                return HanRegex.IsMatch(System.Net.WebUtility.HtmlDecode(reader.ReadToEnd()));
+        }
+
         private static void LocalizeScenarioBriefings(string scenDir)
         {
             if (!Directory.Exists(scenDir)) return;
@@ -1321,8 +1339,8 @@ namespace CMOLocalizerInstaller
                 {
                     if (h.EndsWith(".orig", StringComparison.OrdinalIgnoreCase)) continue;
                     // 已由 zip 全量汉化的文件不得再用标题级替换覆盖（否则会降级成中英混排）
-                    // 旧编码载荷可能使用数字实体存储汉字，必须先解码再判断。
-                    if (HanRegex.IsMatch(System.Net.WebUtility.HtmlDecode(File.ReadAllText(h, Encoding.UTF8)))) continue;
+                    // 先按声明编码读取（BOM 优先），兼容原生汉字及数字实体载荷。
+                    if (HasTranslatedScenarioHtml(h)) continue;
                     string orig = h + ".orig";
                     if (!File.Exists(orig))
                     {

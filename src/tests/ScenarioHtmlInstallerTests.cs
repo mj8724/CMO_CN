@@ -16,6 +16,9 @@ internal static class ScenarioHtmlInstallerTests
         internal byte[] Source;
         internal byte[] Payload;
         internal bool HeaderFallback;
+        internal string Charset = "windows-1252";
+        internal string Body = "任务内容保持译文。";
+        internal bool LegacyApostrophe = true;
     }
 
     private static int checks;
@@ -62,10 +65,33 @@ internal static class ScenarioHtmlInstallerTests
         string utf8 = "<meta charset=\"utf-8\"><h2>Briefing</h2><p>Mission details stay translated.</p>";
         fixtures.Add(new Fixture { Name = "utf8.html", Source = Encoding.UTF8.GetBytes(utf8),
             Payload = Encoding.UTF8.GetBytes(utf8.Replace(">Briefing<", ">完整简报<")
-                .Replace("Mission details stay translated.", "任务内容保持译文。")) });
+                .Replace("Mission details stay translated.", "任务内容保持译文。")),
+            Charset = "utf-8", LegacyApostrophe = false });
+        string conflicting = utf8.Replace("utf-8", "gbk");
+        fixtures.Add(new Fixture { Name = "bom-priority.html", Source = Encoding.UTF8.GetPreamble()
+                .Concat(Encoding.UTF8.GetBytes(conflicting)).ToArray(),
+            Payload = Encoding.UTF8.GetPreamble().Concat(Encoding.UTF8.GetBytes(conflicting
+                .Replace(">Briefing<", ">完整简报<")
+                .Replace("Mission details stay translated.", "任务内容保持译文。"))).ToArray(),
+            Charset = "utf-8", LegacyApostrophe = false });
+        foreach (string charset in new string[] { "gbk", "big5" })
+        {
+            Encoding encoding = Encoding.GetEncoding(charset);
+            string title = charset == "gbk" ? "完整简报" : "完整簡報";
+            string body = charset == "gbk" ? "中文正文" : "任務翻譯";
+            string source = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset="
+                + charset + "\"><h2>Briefing</h2><p>Mission details stay translated.</p>";
+            fixtures.Add(new Fixture { Name = charset + ".html", Source = encoding.GetBytes(source),
+                Payload = encoding.GetBytes(source.Replace(">Briefing<", ">" + title + "<")
+                    .Replace("Mission details stay translated.", body)), Charset = charset,
+                Body = body, LegacyApostrophe = false });
+        }
         string english = "<meta charset=\"utf-8\"><h2>Briefing</h2><p>Untranslated fixture body.</p><p>Copyright &#169;.</p>";
         fixtures.Add(new Fixture { Name = "english.html", Source = Encoding.UTF8.GetBytes(english),
             Payload = Encoding.UTF8.GetBytes(english), HeaderFallback = true });
+        string unknown = english.Replace("utf-8", "unknown-encoding");
+        fixtures.Add(new Fixture { Name = "unknown-charset.html", Source = Encoding.UTF8.GetBytes(unknown),
+            Payload = Encoding.UTF8.GetBytes(unknown), HeaderFallback = true });
         return fixtures;
     }
 
@@ -116,9 +142,9 @@ internal static class ScenarioHtmlInstallerTests
             if (!fixture.HeaderFallback)
             {
                 Check(bytes.SequenceEqual(fixture.Payload), fixture.Name + " full translation survives heading fallback");
-                string text = fixture.Name == "utf8.html" ? Encoding.UTF8.GetString(bytes) : Encoding.GetEncoding(1252).GetString(bytes);
-                Check(WebUtility.HtmlDecode(text).Contains("任务内容保持译文。"), fixture.Name + " rendered translated body preserved");
-                if (fixture.Name != "utf8.html")
+                string text = Encoding.GetEncoding(fixture.Charset).GetString(bytes);
+                Check(WebUtility.HtmlDecode(text).Contains(fixture.Body), fixture.Name + " rendered translated body preserved");
+                if (fixture.LegacyApostrophe)
                     Check(bytes.Contains((byte)0x92), fixture.Name + " original cp1252 apostrophe preserved");
             }
             else
@@ -133,6 +159,29 @@ internal static class ScenarioHtmlInstallerTests
         localize.Invoke(null, new object[] { scenarios });
         foreach (Fixture fixture in Fixtures())
             Check(File.ReadAllBytes(Path.Combine(scenarios, fixture.Name)).SequenceEqual(firstPass[fixture.Name]), fixture.Name + " second pass is idempotent");
+        string standalone = Path.Combine(game, "standalone");
+        Directory.CreateDirectory(standalone);
+        foreach (Fixture fixture in Fixtures().Where(f => f.Name == "gbk.html" || f.Name == "big5.html" || f.HeaderFallback))
+            File.WriteAllBytes(Path.Combine(standalone, fixture.Name), fixture.Payload);
+        // No DeployScenarioHtml call: fallback must also work without packaged output.
+        localize.Invoke(null, new object[] { standalone });
+        foreach (Fixture fixture in Fixtures().Where(f => f.Name == "gbk.html" || f.Name == "big5.html" || f.HeaderFallback))
+        {
+            string path = Path.Combine(standalone, fixture.Name);
+            if (fixture.HeaderFallback)
+            {
+                Check(File.ReadAllText(path, Encoding.UTF8).Contains("<h2>作战任务简报 (Briefing)</h2>"),
+                    fixture.Name + " standalone English fallback still runs");
+                Check(File.ReadAllBytes(path + ".orig").SequenceEqual(fixture.Source),
+                    fixture.Name + " standalone original backup preserved");
+            }
+            else
+            {
+                Check(File.ReadAllBytes(path).SequenceEqual(fixture.Payload),
+                    fixture.Name + " standalone native translation remains byte-for-byte");
+                Check(!File.Exists(path + ".orig"), fixture.Name + " standalone translation needs no fallback backup");
+            }
+        }
         Console.WriteLine("Scenario HTML checks=" + checks + " failures=" + failures);
         return failures == 0 ? 0 : 1;
     }
