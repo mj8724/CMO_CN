@@ -24,6 +24,10 @@ $installerArgs = @('-nologo', '-utf8output', '-codepage:65001', '-target:library
     '-reference:System.Drawing.dll', '-reference:System.Xml.dll') + $references
 $installerArgs += @((Join-Path $repoRoot 'src\shared\CMOShared.cs'),
     (Join-Path $repoRoot 'src\installer\CMO_Chinese_Setup.cs'))
+$sharedRenderer = Join-Path $repoRoot 'src\shared\MapLabelRenderer.cs'
+if (Test-Path -LiteralPath $sharedRenderer -PathType Leaf) {
+    $installerArgs += $sharedRenderer
+}
 & $Compiler @installerArgs
 if ($LASTEXITCODE) { throw 'Installer test library compilation failed' }
 $runOutput = @(& $hostPath $installer (Join-Path $output 'cases') 2>&1)

@@ -12,14 +12,23 @@ $repoRoot = [IO.Path]::GetFullPath((Join-Path $scriptDir '..'))
 if (-not $OutputDir) { $OutputDir = Join-Path $repoRoot 'build' }
 $engineDir = Join-Path $repoRoot 'src\engine'
 $scriptResource = Join-Path $engineDir 'WebViewTranslation.js'
+$webViewSource = Join-Path $engineDir 'WebViewTranslation.cs'
+$resourceArgs = @()
 if (-not (Test-Path -LiteralPath $Compiler -PathType Leaf)) {
     throw "C# compiler not found: $Compiler"
 }
-if (-not (Test-Path -LiteralPath $scriptResource -PathType Leaf)) {
-    throw "Required WebView translation resource is missing: $scriptResource"
+if (Test-Path -LiteralPath $webViewSource -PathType Leaf) {
+    if (-not (Test-Path -LiteralPath $scriptResource -PathType Leaf)) {
+        throw "Required WebView translation resource is missing: $scriptResource"
+    }
+    $resourceArgs += "-resource:$scriptResource,CMOLocalizer.WebViewTranslation.js"
 }
 $sources = @(Get-ChildItem -LiteralPath $engineDir -Filter '*.cs' | Sort-Object Name)
 if ($sources.Count -eq 0) { throw "No engine sources in $engineDir" }
+$sharedRenderer = Join-Path $repoRoot 'src\shared\MapLabelRenderer.cs'
+if (Test-Path -LiteralPath $sharedRenderer -PathType Leaf) {
+    $sources += Get-Item -LiteralPath $sharedRenderer
+}
 $frameworkDir = Split-Path -Parent $Compiler
 $references = @('System.dll', 'System.Core.dll', 'System.Data.dll',
     'System.Windows.Forms.dll', 'System.Drawing.dll', 'System.Xml.dll', 'System.Xml.Linq.dll',
@@ -30,11 +39,12 @@ $references = @('System.dll', 'System.Core.dll', 'System.Data.dll',
 $resolvedOutput = [IO.Path]::GetFullPath($OutputDir)
 $assemblyPath = Join-Path $resolvedOutput 'CMOLocalizer.dll'
 $compilerArgs = @('-nologo', '-utf8output', '-target:library', '-platform:anycpu', '-optimize+',
-    "-out:$assemblyPath", "-resource:$scriptResource,CMOLocalizer.WebViewTranslation.js")
+    "-out:$assemblyPath")
+$compilerArgs += $resourceArgs
 $compilerArgs += @($references | ForEach-Object { "-reference:$_" })
 $compilerArgs += @($sources | ForEach-Object { $_.FullName })
 if ($CheckOnly) {
-    Write-Output "Engine inputs valid: $($sources.Count) C# sources and required WebView JavaScript."
+    Write-Output "Engine inputs valid: $($sources.Count) C# sources and $($resourceArgs.Count) required resources."
     return
 }
 New-Item -ItemType Directory -Path $resolvedOutput -Force | Out-Null

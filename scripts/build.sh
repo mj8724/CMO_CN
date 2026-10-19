@@ -17,10 +17,10 @@ echo "==> building CMOLocalizer.dll"
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$(W "$ROOT/scripts/build.ps1")"
 if [[ "${1:-}" == "--engine-only" ]]; then exit 0; fi
 
+echo "==> building CMO_Updater.exe"
 # A full build must explicitly account for its static HTML; engine-only is offline.
 "$PY" "$ROOT/scripts/localize_html_files.py" --output-dir "$OUT" --verify
 
-echo "==> building CMO_Updater.exe"
 "$CSC" -nologo -target:winexe -platform:anycpu -optimize+ \
   -out:"$(W "$OUT/CMO_Updater.exe")" \
   -reference:System.dll -reference:System.Core.dll \
@@ -49,6 +49,12 @@ print(f"symbols menu zip: {dest.stat().st_size} bytes")
 PYEOF
 fi
 
+# The independent map-label feature supplies this shared source when present.
+INSTALLER_SHARED_SOURCES=()
+if [ -f "$ROOT/src/shared/MapLabelRenderer.cs" ]; then
+  INSTALLER_SHARED_SOURCES+=("$(W "$ROOT/src/shared/MapLabelRenderer.cs")")
+fi
+
 echo "==> building $SETUP_EXE"
 RES=()
 RES+=(-resource:"$(W "$OUT/CMOLocalizer.dll")",CMOLocalizer.dll)
@@ -74,6 +80,7 @@ RES+=(-resource:"$(W "$OUT/Scenarios_HTML.zip")",SCEN_HTML_ZIP)
   -reference:System.IO.Compression.dll -reference:System.IO.Compression.FileSystem.dll \
   "${RES[@]}" \
   "$(W "$ROOT/src/shared/CMOShared.cs")" \
+  "${INSTALLER_SHARED_SOURCES[@]}" \
   "$(W "$ROOT/src/installer/CMO_Chinese_Setup.cs")"
 
 # Keep standard CMO_Chinese_Setup.exe as compatibility copy

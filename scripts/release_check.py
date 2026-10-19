@@ -43,11 +43,13 @@ REPORT = BUILD / "regression_report.json"
 REQUIRED_SOURCES = [
     "src/engine/CMOLocalizer.cs",
     "src/engine/Reflect.cs",
+    "src/engine/WebViewTranslation.js",
     "src/installer/CMO_Chinese_Setup.cs",
     "src/updater/CMO_Updater.cs",
     "src/shared/CMOShared.cs",
     "src/shared/CMOSharedTest.cs",
     "scripts/build.sh",
+    "scripts/build.ps1",
     "scripts/deploy.sh",
     "scripts/package.sh",
     "scripts/publish_release.py",
