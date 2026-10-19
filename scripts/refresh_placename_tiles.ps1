@@ -64,7 +64,6 @@ foreach ($png in $pngs) {
 
 $sources = New-Object 'Collections.Generic.List[IDisposable]'
 try {
-    $places = 0
     foreach ($set in @('Synoptic', 'Cities')) {
         $path = Join-Path $game "WW\PlacenameSets\$set\0000_0000.wwp"
         Assert-PlainPath $path
@@ -74,7 +73,7 @@ try {
         $reader = [IO.BinaryReader]::new($stream, [Text.UTF8Encoding]::new($false, $true), $true)
         try {
             $count = $reader.ReadInt32()
-            if ($count -lt 0 -or $count -gt ($stream.Length - 4) / 13) { throw "Invalid WWP count: $set" }
+            if ($count -le 0 -or $count -gt ($stream.Length - 4) / 13) { throw "Empty or invalid WWP count: $set" }
             for ($i = 0; $i -lt $count; $i++) {
                 $name = $reader.ReadString()
                 $lat = $reader.ReadSingle()
@@ -87,11 +86,9 @@ try {
                 }
             }
             if ($stream.Position -ne $stream.Length) { throw "Trailing WWP data: $set" }
-            $places += $count
         }
         finally { $reader.Dispose() }
     }
-    if (-not $places) { throw 'Both placename sets are empty; refusing to erase labels' }
     if (-not $Compiler) {
         $Compiler = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
         if (-not [IO.File]::Exists($Compiler)) {

@@ -28,7 +28,8 @@ class PlacenameCacheTests(unittest.TestCase):
         self.game = self.base / "game"
         self.cities = self.game / "WW/PlacenameSets/Cities/0000_0000.wwp"
         self.original = write_fixture(self.cities, [("Yichun", 47.721432, 128.875290, 1)])
-        write_fixture(self.game / "WW/PlacenameSets/Synoptic/0000_0000.wwp", [])
+        write_fixture(self.game / "WW/PlacenameSets/Synoptic/0000_0000.wwp",
+                      [("Country fixture", 0.0, 0.0, 1)])
         self.dictionary = self.base / "cities.json"
         self.dictionary.write_text(json.dumps({"Yichun": "宜春"}), encoding="utf-8")
         self.reviews = self.base / "reviewed"

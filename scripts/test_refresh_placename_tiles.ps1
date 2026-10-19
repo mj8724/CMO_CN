@@ -28,11 +28,10 @@ function Fixture([string]$Name, [string]$Relative = '7\109\44.png', [switch]$NoC
         New-Item -ItemType Directory -Force -Path (Split-Path -Parent $path) | Out-Null
         $writer = [IO.BinaryWriter]::new([IO.File]::Create($path), [Text.Encoding]::UTF8)
         try {
-            if ($set -eq 'Synoptic') { $writer.Write([int]0) }
-            else {
-                $writer.Write([int]1); $writer.Write('Fixture')
-                $writer.Write([float]47.721432); $writer.Write([float]128.875290); $writer.Write([uint32]1)
-            }
+            $writer.Write([int]1); $writer.Write($set + 'Fixture')
+            $writer.Write([float]$(if ($set -eq 'Synoptic') { 0 } else { 47.721432 }))
+            $writer.Write([float]$(if ($set -eq 'Synoptic') { 0 } else { 128.875290 }))
+            $writer.Write([uint32]1)
         }
         finally { $writer.Dispose() }
     }
@@ -126,6 +125,14 @@ foreach ($set in @('Synoptic', 'Cities')) {
 $result = Refresh $emptySources
 Check ($result.Code -ne 0) 'empty WWP sources cannot blank the label cache'
 Check (-not [IO.Directory]::Exists($emptySources.Cache + '.orig')) 'empty sources rejected before cache changes'
+foreach ($set in @('Synoptic', 'Cities')) {
+    $emptySet = Fixture ('empty-' + $set)
+    [IO.File]::WriteAllBytes((Join-Path $emptySet.Game "WW\PlacenameSets\$set\0000_0000.wwp"), [byte[]](0, 0, 0, 0))
+    $result = Refresh $emptySet
+    Check ($result.Code -ne 0) "empty $set rejected while other source is nonempty"
+    Check (-not [IO.Directory]::Exists($emptySet.Cache + '.orig')) "empty $set rejected before backup"
+    Check ([Convert]::ToBase64String([IO.File]::ReadAllBytes($emptySet.Tile)) -eq [Convert]::ToBase64String($pngBytes)) "empty $set leaves label PNG unchanged"
+}
 
 # Exercise the actual Save counter even when the renderer's internal catch swallows a locked-file error.
 $core = [Reflection.Assembly]::LoadFrom([IO.Path]::GetFullPath($CounterLibrary)).GetType('CMOLocalizerInstaller.InstallerCore', $true)
