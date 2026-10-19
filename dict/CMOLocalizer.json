@@ -4,7 +4,7 @@
   "version": "4.2.2",
   "counts": {
    "n_offsets": 8756,
-   "n_exact": 61131,
+   "n_exact": 61132,
    "n_partial": 0,
    "n_words": 0
   }
@@ -37169,6 +37169,7 @@
   "Inherit from parent": "继承自上级",
   "Inherited": "继承上级条令",
   "Inherited,": "已继承上级,",
+  "Inherited, ": "继承自上级， ",
   "Inherited, Always Continue Guidance": "继承自上级，始终持续制导",
   "Inherited, Always Except Tankers Refuelling Tankers": "继承自上级，始终开火（加油机为加油机加油除外）",
   "Inherited, Automatic for search and localization": "继承自上级，自动（用于搜索与定位）",

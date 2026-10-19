@@ -517,6 +517,68 @@ def run_static(r: Runner) -> None:
     r.record("R39-static-mixed-prefix", "R39 混合串前缀修复（真引擎行为）",
              all(r39.values()), _d39, "build/test_db_translation.cs + src/engine/CMOLocalizer.cs")
 
+    # R42：「英文前缀 + 已汉化尾」的**接线**。R39 只门禁了 TranslateString 函数本身，
+    # 而条目循环在调翻译之前就 `ContainsChinese(raw)) continue`，函数再好也到不了；
+    # 用户 2026-10-19 看到的就是这个空门：条令/任务编辑器里仍是 `Inherited, <中文>`。
+    r42 = {}
+    _d42 = ""
+    try:
+        def _order(fn_marker: str, fix_marker: str, guard_marker: str) -> bool:
+            """函数体内 fix 必须先于 guard 出现（即先修混合前缀再走「含中文就跳过」）。"""
+            start = _eng_src.find(fn_marker)
+            if start < 0:
+                return False
+            end = _eng_src.find("\n        }", start)   # 函数体结束（同一缩进层）
+            body = _eng_src[start:end if end > start else start + 4000]
+            i_fix, i_guard = body.find(fix_marker), body.find(guard_marker)
+            return i_fix >= 0 and i_guard >= 0 and i_fix < i_guard
+
+        r42["下拉项先修后跳"] = _order("private static void TranslateComboItems",
+                                     "TryFixMixedBeforeChineseGuard", "ContainsChinese(raw)) continue")
+        r42["列表项先修后跳"] = _order("private static void LocalizeListBoxSafe",
+                                     "TryFixMixedBeforeChineseGuard", "ContainsChinese(raw)) continue")
+        r42["助手存在"] = "private static string TryFixMixedBeforeChineseGuard" in _eng_src
+
+        import tempfile as _tempfile42  # noqa: PLC0415
+        _w42 = Path(_tempfile42.mkdtemp(prefix="cmo-r42-"))
+        try:
+            _dll42, _exe42 = _w42 / "CMOLocalizer.dll", _w42 / "mixed.exe"
+            _refs42 = [f"-reference:{x}" for x in ("System.dll", "System.Core.dll", "System.Data.dll",
+                                                    "System.Windows.Forms.dll", "System.Drawing.dll",
+                                                    "System.Xml.dll", "System.Xml.Linq.dll")]
+            _refs42 += [f"-reference:{p}" for p in (TILE_WPF / "WindowsBase.dll",
+                                                    TILE_WPF / "PresentationCore.dll",
+                                                    TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
+            _b42a = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
+                                    "-optimize+", f"-out:{_dll42}", *_refs42, str(ENGINE),
+                                    str(ROOT / "src/shared/MapLabelRenderer.cs"),
+                                    str(ROOT / "src/engine/Reflect.cs")],
+                                   capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
+            _b42b = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
+                                    f"-out:{_exe42}", f"-reference:{_dll42}",
+                                    str(ROOT / "src/tests/MixedPrefixTests.cs")],
+                                   capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
+            if _b42a.returncode or _b42b.returncode:
+                r42["编译"] = False
+                _d42 = "编译失败: " + (_b42a.stderr or _b42b.stderr or "")[:120].replace("\n", " ")
+            else:
+                r42["编译"] = True
+                _run42 = subprocess.run([str(_exe42), str(ROOT), str(_dll42)], capture_output=True,
+                                        timeout=180, cwd=str(_w42))
+                _out42 = _decode(_run42.stdout or b"") + _decode(_run42.stderr or b"")
+                r42["行为"] = _run42.returncode == 0 and "ALL PASS" in _out42
+                _d42 = (f"rc={_run42.returncode} OK={_out42.count('--> OK')} "
+                        f"FAIL={_out42.count('--> FAIL')} {r42}")
+        finally:
+            shutil.rmtree(_w42, ignore_errors=True)
+    except Exception as exc:  # noqa: BLE001
+        r42["异常"] = False
+        _d42 = f"异常: {type(exc).__name__}: {exc}"
+    r.record("R42-static-mixed-prefix-wiring",
+             "R42 混合串修正的接线：先修前缀再走「含中文就跳过」守卫",
+             all(r42.values()), _d42,
+             "src/tests/MixedPrefixTests.cs + src/engine/CMOLocalizer.cs")
+
     # R34：地图瓦片服务（并发契约 + 真跑的 7 模式回归）
     tile_contract = {
         "脱离共享池": "ThreadPool.QueueUserWorkItem(_ => HandleTileClient" not in src,
@@ -721,6 +783,7 @@ def run_live(r: Runner) -> None:
 
     # L6：条令下拉项全中文 + 无新增写拉锯熔断（R28）
     _doctrine_probe(H, r, pid)
+    _mixed_prefix_probe(H, r, pid)
 
     # L7：构建号适配哨兵（R31——游戏更新导致注入静默失效那次事故）
     _build_adaptation_probe(H, r, pid)
@@ -1051,6 +1114,37 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
              + (f"；已知盲区跳过富文本 {rich_skipped} 处" if rich_skipped else "")
              + f"；WPF 想定特性 {wpf_rows} 条（仍显英文 {len(wpf_en_left)}、缺译文 {len(wpf_missing)}）"
              + (f"；缺失: {missing + wpf_missing}" if (missing or wpf_missing) else ""),
+             "evidence/live/scan")
+
+
+def _mixed_prefix_probe(H, r: Runner, pid: int | None) -> None:
+    """R42 实机探针：全进程下拉项不得出现「英文 Inherited 前缀 + 中文字尾」。
+
+    这是用户 2026-10-19 报的那个形状（任务编辑器 辐射控制/武器使用授权、条令窗口）：
+    值被池注入成中文后，游戏把它与英文前缀拼成 `Inherited, <中文>`，旧守卫因「整串含中文」
+    整体放过，英文前缀永远留在界面上。这里不看窗口位置，直接扫全进程所有下拉项，
+    因为任务编辑器/条令窗口走的是同一条 TranslateComboItems 通道。
+    """
+    name, title = "L-mixed-prefix", "R42 全进程下拉项没有『英文 Inherited 前缀 + 中文尾』"
+    H.send("CLOSE_FORM ALL", timeout=20)
+    time.sleep(1.0)
+    # 任务编辑器与条令窗口都开起来，尽量让动态创建的下拉框也进入扫描范围
+    H.send("CLICK_BUTTON TSB_MissionEditor", timeout=25)
+    time.sleep(6.0)
+    H.send("CLICK_BUTTON TSB_Doctrine", timeout=25)
+    time.sleep(6.0)
+    combos = H.send("DUMP_COMBOS", timeout=30).get("combos") or []
+    items = [str(i) for c in combos for i in (c.get("items") or [])]
+    def _mixed(s: str) -> bool:
+        return (re.match(r"(?i)^\s*inherited\b", s) is not None
+                and any("\u4e00" <= ch <= "\u9fff" for ch in s))
+    mixed = [i for i in items if _mixed(i)]
+    H.send("CLOSE_FORM ALL", timeout=20)
+    ok = len(items) > 0 and not mixed
+    r.record(name, title, ok,
+             f"下拉框 {len(combos)} 个/条目 {len(items)} 条；英文前缀+中文尾 {len(mixed)} 条"
+             + (f"（例：{mixed[:3]}）" if mixed else "（无）")
+             + ("" if items else "；❌ 未采集到任何下拉项，判据无效"),
              "evidence/live/scan")
 
 

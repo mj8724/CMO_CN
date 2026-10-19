@@ -1826,8 +1826,13 @@ namespace CMOLocalizer
                 for (int i = 0; i < lb.Items.Count; i++)
                 {
                     string raw = lb.GetItemText(lb.Items[i]);
-                    if (string.IsNullOrEmpty(raw) || ContainsChinese(raw)) continue;
-                    string tr = TranslateComboItemText(raw);
+                    if (string.IsNullOrEmpty(raw)) continue;
+                    string tr = TryFixMixedBeforeChineseGuard(raw);
+                    if (tr == null)
+                    {
+                        if (ContainsChinese(raw)) continue;
+                        tr = TranslateComboItemText(raw);
+                    }
                     if (string.IsNullOrEmpty(tr) || tr == raw) continue;
                     try { lb.Items[i] = tr; } catch { }
                 }
@@ -3081,8 +3086,15 @@ namespace CMOLocalizer
             for (int i = 0; i < cb.Items.Count; i++)
             {
                 string raw = cb.GetItemText(cb.Items[i]);
-                if (string.IsNullOrEmpty(raw) || ContainsChinese(raw)) continue;
-                string tr = dbViewer ? TranslateDBComboItem(raw) : TranslateComboItemText(raw);
+                if (string.IsNullOrEmpty(raw)) continue;
+                // 先修“英文前缀 + 已汉化尾”，再走“含中文就跳过”的旧守卫。
+                // 顺序反了就等于把 R39 的修正彻底绕开（条目一旦含中文就永远不修）。
+                string tr = TryFixMixedBeforeChineseGuard(raw);
+                if (tr == null)
+                {
+                    if (ContainsChinese(raw)) continue;
+                    tr = dbViewer ? TranslateDBComboItem(raw) : TranslateComboItemText(raw);
+                }
                 if (string.IsNullOrEmpty(tr) || tr == raw) continue;
                 plan.Add(new KeyValuePair<int, string>(i, tr));
             }
@@ -4148,18 +4160,29 @@ namespace CMOLocalizer
         private static string FixMixedEnglishPrefix(string s)
         {
             if (string.IsNullOrEmpty(s)) return null;
-            const string PREFIX = "Inherited, ";
-            if (s.StartsWith(PREFIX, StringComparison.Ordinal))
-            {
-                string tail = s.Substring(PREFIX.Length).Trim();
-                if (tail.Length > 0 && ContainsChinese(tail)) return "继承自上级，" + tail;
-            }
-            if (s.StartsWith("Inherited,", StringComparison.Ordinal))
-            {
-                string tail = s.Substring("Inherited,".Length).Trim();
-                if (tail.Length > 0 && ContainsChinese(tail)) return "继承自上级，" + tail;
-            }
-            return null;
+            // 游戏把 “Inherited, ” 与**已汉化的值**拼起来（值来自偏移池注入，早就是中文）。
+            // 拼法有两种：“Inherited, 值”与“Inherited,值”，也见过无逗号的“Inherited 值”，
+            // 所以这里只认词边界 + 逗号/空白分隔，不写死单一拼法。
+            string t = s.TrimStart();
+            const string WORD = "Inherited";
+            if (t.Length <= WORD.Length || !t.StartsWith(WORD, StringComparison.Ordinal)) return null;
+            int i = WORD.Length;
+            if (char.IsLetterOrDigit(t[i]) || t[i] == '_') return null;   // InheritedFrom 之类不算
+            while (i < t.Length && (t[i] == ' ' || t[i] == '\t' || t[i] == ',')) i++;
+            string tail = t.Substring(i).Trim();
+            if (tail.Length == 0 || !ContainsChinese(tail)) return null;
+            return "继承自上级，" + tail;
+        }
+
+        /// <summary>
+        /// “已含中文就跳过”的守卫生效之前先尝试修混合前缀。返回 null 表示不是混合串，
+        /// 调用方继续走原有「含中文就跳过」的旧逻辑。条令值 “Inherited, &lt;已汉化值&gt;” 就是
+        /// 这种形状：整串含中文，旧守卫会把英文前缀原样留在界面上（用户 2026-10-19 实测）。
+        /// </summary>
+        private static string TryFixMixedBeforeChineseGuard(string s)
+        {
+            if (string.IsNullOrEmpty(s) || !ContainsChinese(s)) return null;
+            return FixMixedEnglishPrefix(s);
         }
 
         public static string TranslateString(string raw)

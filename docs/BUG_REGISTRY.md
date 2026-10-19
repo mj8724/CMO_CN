@@ -975,3 +975,37 @@
 - **回归测试点**：新增 `static` 用例 `R41-static-tile-layer-ids` ——
   ① 7 条图层标识符必须在 `identifiers.json` 里；② 必须**不在** `dict/CMOLocalizer.json` 的 `offsets` 中。
 - **状态**：已修并验证（2026-10-19）。
+
+---
+
+## R42 「Inherited, 中文」中英混排：修正逻辑被「含中文就跳过」守卫挡在门外（v4.2.2）
+
+- **来源**：用户 2026-10-19 截图反馈——任务编辑器「辐射控制 / 武器使用授权」表里大量单元格显示
+  `Inherited, 持续制导至命中`、`Inherited, 自动在 150 英尺悬停`、`Inherited, 装载设置` 这类
+  英文前缀 + 中文尾的混排，且**比上一轮 R39 更多**。
+- **根因（两层）**：
+  1. **接线断了**：R39 把 `FixMixedEnglishPrefix` 接进了 `TranslateString` 与
+     `TranslateComboItemText`，但组合框/列表框的**条目循环**在调用翻译之前就先
+     `if (ContainsChinese(raw)) continue;`。而混排串恰恰「整串含中文」，于是永远到不了修正逻辑
+     —— 函数是好的、门禁是绿的、界面还是英文。门禁只测函数、没测接线，所以拦不住。
+  2. **越修越多**：池级注入不断把更多**值**变成中文（R38 扩充后尤甚），游戏把值拼到英文前缀后面，
+     混排串的数量就随词库增长而增长。这就是「又出现、而且更严重」的机制——不是代码退化，
+     是修复覆盖率跟不上注入覆盖率的增长。
+- **反证过的错解**：曾在池里强制注入前缀 `Inherited, `（偏移 599936）→ `继承自上级，`。
+  实测反而更差：原本能整串命中的 `Inherited, Tight` 被改写成 `继承自上级，Tight`（即
+  「中文前缀 + 英文尾」，因为值 `Tight` 自己没有池注入）。**前缀是显示片段、不是翻译单元**，
+  正确解在控制层，不在池层。该注入已撤销。
+- **修复**：
+  - 新增 `TryFixMixedBeforeChineseGuard(s)`：整串含中文时先尝试修英文前缀，返回 `null` 才交回
+    旧的「含中文就跳过」逻辑；`TranslateComboItems` 与 `LocalizeListBoxSafe` 改为该顺序。
+  - `FixMixedEnglishPrefix` 泛化为「词边界 + 可选逗号/空白」，同时覆盖
+    `Inherited, X`（实测主形状）、`Inherited,X`、`Inherited X`，并且不误伤 `InheritedFrom…`。
+- **用户可见验收**：条令窗口与任务编辑器的下拉项不再出现英文 `Inherited` 前缀；
+  实测 `继承自上级，悲观估计 / 限制开火 / 始终开火 / 持续制导至命中` 齐全。
+- **回归测试点**：
+  - `static`：`R42-static-mixed-prefix-wiring` —— ①源码顺序断言（两个条目循环里修正逻辑必须先于
+    `ContainsChinese(...) continue`）②编译并真跑 `src/tests/MixedPrefixTests.cs`（12 个断言）。
+  - `live`：`L-mixed-prefix` —— 扫全进程所有下拉项，断言**不存在**「英文 Inherited 前缀 + 中文尾」
+    （实测 202 个下拉框 / 653 条目 / 0 条违规）。比逐窗口截图可靠，因为任务编辑器与条令窗口
+    共用同一条条目翻译通道。
+- **状态**：已修并验证（2026-10-19）。
