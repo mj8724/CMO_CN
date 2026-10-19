@@ -8,6 +8,12 @@ from pathlib import Path
 # Covers decimal rounding and float32 storage, without matching another city.
 COORDINATE_TOLERANCE = 0.0001
 
+PLACENAME_SETS = {
+    "Cities": dict(count=4287, review_dir="placenames_reviewed", scope_key="files"),
+    "Synoptic": dict(count=321, review_dir="placenames_synoptic_reviewed",
+                     scope_key="synoptic_files"),
+}
+
 
 def load_dictionary(path: str | Path) -> dict[str, str]:
     data = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -51,6 +57,9 @@ class PlacenameResolver:
         for key in ("name", "previous", "zh", "source"):
             if not isinstance(record.get(key), str) or not record[key].strip():
                 raise ValueError(f"reviewed record requires nonempty {key}")
+        for key in ("status", "review_status"):
+            if key in record and record[key] not in ("approved", "reviewed"):
+                raise ValueError(f"unapproved {key}={record[key]!r}: {record['name']!r}")
         for key, limit, label in (("lat", 90, "latitude"), ("lon", 180, "longitude")):
             value = record.get(key)
             if (isinstance(value, bool) or not isinstance(value, (int, float))
@@ -73,12 +82,15 @@ class PlacenameResolver:
         return (abs(left["lat"] - right["lat"]) <= tolerance
                 and abs(left["lon"] - right["lon"]) <= tolerance)
 
-    def resolve(self, item: dict) -> str:
-        name = item["name"]
-        for record in self.by_alias.get(name, ()):
+    def reviewed_match(self, item: dict) -> dict | None:
+        for record in self.by_alias.get(item["name"], ()):
             if self._near(item, record, COORDINATE_TOLERANCE):
-                return record["zh"]
-        return self.mapping.get(name, name)
+                return record
+        return None
+
+    def resolve(self, item: dict) -> str:
+        record = self.reviewed_match(item)
+        return record["zh"] if record else self.mapping.get(item["name"], item["name"])
 
 
 def translate_items(items: list[dict], resolver: PlacenameResolver) -> int:

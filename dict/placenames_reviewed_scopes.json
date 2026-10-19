@@ -4,6 +4,15 @@
     "japan.json": 204,
     "korea.json": 59,
     "vietnam.json": 6,
-    "world.json": 49
+    "world.json": 49,
+    "global_europe.json": 907,
+    "global_americas.json": 1001,
+    "global_indonesia.json": 131,
+    "global_philippines.json": 85,
+    "global_asia_oceania.json": 1357,
+    "global_africa.json": 488
+  },
+  "synoptic_files": {
+    "global.json": 321
   }
 }

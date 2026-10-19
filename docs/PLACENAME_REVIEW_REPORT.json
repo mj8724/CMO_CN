@@ -1,0 +1,97 @@
+{
+  "Cities": {
+    "baseline_verification": {
+      "placename_records": 4287,
+      "reviewed_records": 4287,
+      "verified_records": 4287,
+      "unreviewed_records": 0,
+      "errors": [],
+      "changed_records": 3073
+    },
+    "original_verification": {
+      "placename_records": 4287,
+      "reviewed_records": 4287,
+      "verified_records": 4287,
+      "unreviewed_records": 0,
+      "errors": [],
+      "changed_records": 4287
+    },
+    "original_baseline_generation_identical": true,
+    "idempotent": true,
+    "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a",
+    "source_types": {
+      "GeoNames实体证据；人工中文名称整理（非官方中文整名出处）": 123,
+      "GeoNames明确中文别名；逐项实体核对与简体字形整理": 543,
+      "Wikidata P1566 SPARQL label；逐项实体核对与简体字形整理": 111,
+      "Wikidata label；逐项实体核对与简体字形整理": 111,
+      "community_chinese": 3,
+      "community_encyclopedia": 1,
+      "corporate_primary": 1,
+      "curated_chinese": 1,
+      "editorial": 408,
+      "existing_PR3": 318,
+      "gazetteer": 312,
+      "geonames_chinese": 762,
+      "geonames_zh": 768,
+      "government_media_zh": 2,
+      "government_zh": 153,
+      "industry_chinese": 2,
+      "institutional_chinese": 4,
+      "primary_chinese": 13,
+      "reference_zh": 2,
+      "travel_reference": 1,
+      "un_zh": 2,
+      "wikidata_chinese": 388,
+      "wikidata_zh": 239,
+      "中文机构公开用例；GeoNames实体和坐标交叉核对": 8,
+      "人工原名/坐标/实体消歧；来源支持地理实体，中文整理身份见备注": 11
+    },
+    "identity_notes": [
+      {
+        "name": "Bahawalnagar",
+        "lat": 30.550830841064453,
+        "lon": 73.39083099365234,
+        "zh": "巴哈瓦尔那加",
+        "identity_status": "source_anchor_conflict",
+        "note": "原点30.55083/73.39083对应GeoNames1332083同名居民点；其英文百科跨链到Q1249932/GeoNames1183883，而后者城市坐标29.99444/73.25361相距约63公里，不能声称同一实体。中文参考同名专名巴哈瓦尔那加作人工整理，来源仅核对本点原名及坐标，保留原锚点、不合并两个同名点。"
+      },
+      {
+        "name": "Batang",
+        "lat": -6.484600067138672,
+        "lon": 110.70829772949219,
+        "zh": "巴唐",
+        "identity_status": "source_anchor_conflict",
+        "note": "原始点#1661，原名Batang，原坐标-6.484600,110.708298。来源仅支持原名和地理实体；中文为逐条语言/通行译名人工整理，非该来源直接提供的官方中文，不是字母串机械拼接。GeoNames 1649881 Batang(PPL)，原点差距0.0公里。保留原WWP与GeoNames1649881共同锚定的Batang及坐标-6.484600,110.708298；其维基跨链Q3670469指通常巴唐市(-6.906944,109.727778)，相差118.03公里，不能据此证明两个实体相同。中文巴唐是原标签的人工译写，拒绝套用该远处城市身份；此原始来源坐标矛盾需单列报告，本次仅改名，不擅自修坐标或移到另城。"
+      }
+    ]
+  },
+  "Synoptic": {
+    "baseline_verification": {
+      "placename_records": 321,
+      "reviewed_records": 321,
+      "verified_records": 321,
+      "unreviewed_records": 0,
+      "errors": [],
+      "changed_records": 4
+    },
+    "original_verification": {
+      "placename_records": 321,
+      "reviewed_records": 321,
+      "verified_records": 321,
+      "unreviewed_records": 0,
+      "errors": [],
+      "changed_records": 321
+    },
+    "original_baseline_generation_identical": true,
+    "idempotent": true,
+    "sha256": "3dfa0cc94649684dadadaee84f00c758b7d6bca10fa25175f0fb88aa32a41f53",
+    "source_types": {
+      "editorial": 7,
+      "government_chinese": 193,
+      "primary_chinese": 121
+    },
+    "identity_notes": []
+  },
+  "existing_PR3_records_preserved": 318,
+  "baseline_commit": "979c1d3ef240cebc18137f638e47603a4eeebd5f"
+}

@@ -45,6 +45,8 @@ class PlacenameTests(unittest.TestCase):
                                    encoding="utf-8")
         self.review_dir = self.base / "reviewed"
         self.review_dir.mkdir()
+        self.synoptic_reviews = self.base / "synoptic-reviewed"
+        self.synoptic_reviews.mkdir()
         self.record = dict(name="Yichun", lat=47.721432, lon=128.875290,
                            zh="伊春", previous="宜春", source="https://www.yc.gov.cn/")
         self.write_review([self.record])
@@ -61,6 +63,7 @@ class PlacenameTests(unittest.TestCase):
 
     def build(self, source: Path | None = None, output: Path | None = None):
         return self.run_script("build_cities_placenames.py",
+                               "--allow-partial",
                                "--source", source or self.source,
                                "--output", output or self.output,
                                "--dictionary", self.dictionary,
@@ -69,7 +72,8 @@ class PlacenameTests(unittest.TestCase):
     def apply(self, *extra: str):
         return self.run_script("apply_placenames.py", "--game-dir", self.base / "game",
                                "--dictionary", self.dictionary,
-                               "--review-dir", self.review_dir, *extra)
+                               "--review-dir", self.review_dir,
+                               "--synoptic-review-dir", self.synoptic_reviews, *extra)
 
     def assert_success(self, process) -> None:
         self.assertEqual(0, process.returncode, process.stdout + process.stderr)

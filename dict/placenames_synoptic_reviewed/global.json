@@ -1,0 +1,3212 @@
+[
+  {
+    "name": "Andorra",
+    "lat": 42.54999923706055,
+    "lon": 1.5833300352096558,
+    "previous": "安道尔",
+    "zh": "安道尔",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为安道尔国家或地区标签；外交部领事服务网全洲目的地名单直接使用安道尔。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "United Arab Emirates",
+    "lat": 23.75,
+    "lon": 54.5,
+    "previous": "阿联酋",
+    "zh": "阿联酋",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为阿联酋国家或地区标签；外交部领事服务网全洲目的地名单直接使用阿联酋。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Afghanistan",
+    "lat": 33.0,
+    "lon": 66.0,
+    "previous": "阿富汗",
+    "zh": "阿富汗",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为阿富汗国家或地区标签；外交部领事服务网全洲目的地名单直接使用阿富汗。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Antigua and Barbuda",
+    "lat": 17.049999237060547,
+    "lon": -61.79999923706055,
+    "previous": "安提瓜和巴布达",
+    "zh": "安提瓜和巴布达",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为安提瓜和巴布达国家或地区标签；外交部领事服务网全洲目的地名单直接使用安提瓜和巴布达。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Albania",
+    "lat": 41.0,
+    "lon": 20.0,
+    "previous": "阿尔巴尼亚",
+    "zh": "阿尔巴尼亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为阿尔巴尼亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用阿尔巴尼亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Armenia",
+    "lat": 40.25,
+    "lon": 45.0,
+    "previous": "亚美尼亚",
+    "zh": "亚美尼亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为亚美尼亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用亚美尼亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Angola",
+    "lat": -12.5,
+    "lon": 18.5,
+    "previous": "安哥拉",
+    "zh": "安哥拉",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为安哥拉国家或地区标签；外交部领事服务网全洲目的地名单直接使用安哥拉。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Argentina",
+    "lat": -34.0,
+    "lon": -64.0,
+    "previous": "阿根廷",
+    "zh": "阿根廷",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为阿根廷国家或地区标签；外交部领事服务网全洲目的地名单直接使用阿根廷。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Austria",
+    "lat": 47.33332824707031,
+    "lon": 13.333330154418945,
+    "previous": "奥地利",
+    "zh": "奥地利",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为奥地利国家或地区标签；外交部领事服务网全洲目的地名单直接使用奥地利。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Joseph Bonaparte Gulf",
+    "lat": -14.25,
+    "lon": 128.5,
+    "previous": "约瑟夫·波拿巴湾",
+    "zh": "约瑟夫·波拿巴湾",
+    "source": "https://www.ga.gov.au/bigobj/GA19729.pdf",
+    "note": "坐标核对：澳大利亚北岸，西澳与北领地之间的帝汶海南缘海湾。澳大利亚地球科学局英文实地调查证实该湾位置；中文保留以Joseph Bonaparte人名组成的既有译名，英文来源本身不审定中文。",
+    "source_type": "editorial"
+  },
+  {
+    "name": "Australia",
+    "lat": -25.0,
+    "lon": 135.0,
+    "previous": "澳大利亚",
+    "zh": "澳大利亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为澳大利亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用澳大利亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Tasman Sea",
+    "lat": -40.0,
+    "lon": 160.0,
+    "previous": "塔斯曼海",
+    "zh": "塔斯曼海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：澳大利亚东南部与新西兰之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Great Barrier Reef",
+    "lat": -17.987220764160156,
+    "lon": 146.76979064941406,
+    "previous": "大堡礁",
+    "zh": "大堡礁",
+    "source": "https://www.australia.com/zh-tw/places/cairns-and-surrounds/guide-to-the-great-barrier-reef.html",
+    "note": "坐标核对：澳大利亚昆士兰东北岸外礁区。澳大利亚旅游局中文页面给出Great Barrier Reef与大堡礁对照；按昆士兰外海坐标保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Bass Strait",
+    "lat": -39.81782913208008,
+    "lon": 146.06529235839844,
+    "previous": "巴斯海峡",
+    "zh": "巴斯海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：澳大利亚大陆与塔斯马尼亚之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Azerbaijan",
+    "lat": 40.5,
+    "lon": 47.5,
+    "previous": "阿塞拜疆",
+    "zh": "阿塞拜疆",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为阿塞拜疆国家或地区标签；外交部领事服务网全洲目的地名单直接使用阿塞拜疆。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Bosnia ne-Herzegovina",
+    "lat": 44.25,
+    "lon": 17.833330154418945,
+    "previous": "波黑",
+    "zh": "波黑",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为波黑国家或地区标签；外交部领事服务网全洲目的地名单直接使用波黑。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。 原英文中的ne/kanye ne是连接词混杂或旧数据写法，按实体规范译名处理，不能音译连接词。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Barbados",
+    "lat": 13.166669845581055,
+    "lon": -59.533329010009766,
+    "previous": "巴巴多斯",
+    "zh": "巴巴多斯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为巴巴多斯国家或地区标签；外交部领事服务网全洲目的地名单直接使用巴巴多斯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Bangladesh",
+    "lat": 24.0,
+    "lon": 90.0,
+    "previous": "孟加拉国",
+    "zh": "孟加拉国",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为孟加拉国国家或地区标签；外交部领事服务网全洲目的地名单直接使用孟加拉国。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Belgium",
+    "lat": 50.75,
+    "lon": 4.5,
+    "previous": "比利时",
+    "zh": "比利时",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为比利时国家或地区标签；外交部领事服务网全洲目的地名单直接使用比利时。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Burkina Faso",
+    "lat": 12.5,
+    "lon": -1.6666699647903442,
+    "previous": "布基纳法索",
+    "zh": "布基纳法索",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为布基纳法索国家或地区标签；外交部领事服务网全洲目的地名单直接使用布基纳法索。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Bulgaria",
+    "lat": 42.66667175292969,
+    "lon": 25.25,
+    "previous": "保加利亚",
+    "zh": "保加利亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为保加利亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用保加利亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Bahrain",
+    "lat": 26.0333309173584,
+    "lon": 50.54999923706055,
+    "previous": "巴林",
+    "zh": "巴林",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为巴林国家或地区标签；外交部领事服务网全洲目的地名单直接使用巴林。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Burundi",
+    "lat": -3.5,
+    "lon": 30.0,
+    "previous": "布隆迪",
+    "zh": "布隆迪",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为布隆迪国家或地区标签；外交部领事服务网全洲目的地名单直接使用布隆迪。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Benin",
+    "lat": 9.5,
+    "lon": 2.25,
+    "previous": "贝宁",
+    "zh": "贝宁",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为贝宁国家或地区标签；外交部领事服务网全洲目的地名单直接使用贝宁。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Brunei",
+    "lat": 4.5,
+    "lon": 114.66667175292969,
+    "previous": "文莱",
+    "zh": "文莱",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为文莱国家或地区标签；外交部领事服务网全洲目的地名单直接使用文莱。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Bolivia",
+    "lat": -17.0,
+    "lon": -65.0,
+    "previous": "玻利维亚",
+    "zh": "玻利维亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为玻利维亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用玻利维亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Brazil",
+    "lat": -10.0,
+    "lon": -55.0,
+    "previous": "巴西",
+    "zh": "巴西",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为巴西国家或地区标签；外交部领事服务网全洲目的地名单直接使用巴西。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Bahamas",
+    "lat": 25.04081916809082,
+    "lon": -77.37122344970703,
+    "previous": "巴哈马",
+    "zh": "巴哈马",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为巴哈马国家或地区标签；外交部领事服务网全洲目的地名单直接使用巴哈马。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Bhutan",
+    "lat": 27.5,
+    "lon": 90.5,
+    "previous": "不丹",
+    "zh": "不丹",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为不丹国家或地区标签；外交部领事服务网全洲目的地名单直接使用不丹。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Botswana",
+    "lat": -22.0,
+    "lon": 24.0,
+    "previous": "博茨瓦纳",
+    "zh": "博茨瓦纳",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为博茨瓦纳国家或地区标签；外交部领事服务网全洲目的地名单直接使用博茨瓦纳。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Belarus",
+    "lat": 53.0,
+    "lon": 28.0,
+    "previous": "白俄罗斯",
+    "zh": "白俄罗斯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为白俄罗斯国家或地区标签；外交部领事服务网全洲目的地名单直接使用白俄罗斯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Belize",
+    "lat": 17.25,
+    "lon": -88.75,
+    "previous": "伯利兹",
+    "zh": "伯利兹",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为伯利兹国家或地区标签；外交部领事服务网全洲目的地名单直接使用伯利兹。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Baie de Fundy",
+    "lat": 45.00014877319336,
+    "lon": -65.49883270263672,
+    "previous": "芬迪湾",
+    "zh": "芬迪湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：加拿大新不伦瑞克与新斯科舍之间；Baie de是法语通名。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Georgian Bay",
+    "lat": 45.2501106262207,
+    "lon": -80.7497329711914,
+    "previous": "乔治亚湾",
+    "zh": "乔治亚湾",
+    "source": "https://parcs.canada.ca/pn-np/on/bruce/~/media/df5292cc6e6141d7896b911f269c6379.ashx",
+    "note": "坐标核对：加拿大休伦湖东北部湖湾，非佐治亚州或格鲁吉亚。加拿大公园管理局中文游客安全指引直接使用乔治亚湾，并提到布鲁斯半岛岸边；与休伦湖东北部原点一致。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Green Bay",
+    "lat": 49.69995880126953,
+    "lon": -55.9981803894043,
+    "previous": "绿湾",
+    "zh": "格林湾",
+    "source": "https://travel.destinationcanada.cn/things-to-do/best-camping-in-canada",
+    "note": "坐标核对：加拿大纽芬兰岛东北岸；不是美国威斯康星格林贝市或密歇根湖绿湾。加拿大旅游局以纽芬兰伯灵顿露营地的海景明确给出格林湾(Green Bay)。结合加拿大政府地名目录49°39′N、55°58′W定位，修正字面意译绿湾；不混用美国同名城市。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Lake Erie",
+    "lat": 42.250099182128906,
+    "lon": -80.9997329711914,
+    "previous": "伊利湖",
+    "zh": "伊利湖",
+    "source": "https://geodoi.ac.cn/DOIPaper/HTML/2018139403/201803139407.html",
+    "note": "坐标核对：北美五大湖伊利湖。《全球变化数据学报》湖泊水位数据论文表列伊利湖、休伦湖、安大略湖、苏必利尔湖和密歇根湖；原点核对北美五大湖具体水体，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Lake Huron",
+    "lat": 44.640830993652344,
+    "lon": -81.76805877685547,
+    "previous": "休伦湖",
+    "zh": "休伦湖",
+    "source": "https://geodoi.ac.cn/DOIPaper/HTML/2018139403/201803139407.html",
+    "note": "坐标核对：北美五大湖休伦湖。《全球变化数据学报》原始湖泊水位数据论文列名；按北美五大湖具体湖体核对，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Lake Ontario",
+    "lat": 43.750118255615234,
+    "lon": -77.99951171875,
+    "previous": "安大略湖",
+    "zh": "安大略湖",
+    "source": "https://geodoi.ac.cn/DOIPaper/HTML/2018139403/201803139407.html",
+    "note": "坐标核对：北美五大湖安大略湖。《全球变化数据学报》原始湖泊水位数据论文列名；按北美五大湖具体湖体核对，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Lake Superior",
+    "lat": 48.332218170166016,
+    "lon": -87.0986099243164,
+    "previous": "苏必利尔湖",
+    "zh": "苏必利尔湖",
+    "source": "https://noda.ac.cn/geoarc/2012/lbsymjfbzk.pdf",
+    "note": "坐标核对：北美五大湖苏必利尔湖。国家对地观测科学数据中心湖泊监测报告列苏必利尔湖等五大湖中文名称；按湖体位置核对，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Canada",
+    "lat": 60.10866928100586,
+    "lon": -113.642578125,
+    "previous": "加拿大",
+    "zh": "加拿大",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为加拿大国家或地区标签；外交部领事服务网全洲目的地名单直接使用加拿大。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Democratic Republic of the Congo",
+    "lat": -2.5,
+    "lon": 23.5,
+    "previous": "刚果民主共和国",
+    "zh": "刚果民主共和国",
+    "source": "https://cs.mfa.gov.cn/ljmdd/fz_648564/ggj_649497/",
+    "note": "国家概况国名栏明确刚果民主共和国(Democratic Republic of the Congo)。原点2.5S、23.5E在刚果(金)，保留全称并与刚果(布)区别。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Central African Republic",
+    "lat": 7.0,
+    "lon": 21.0,
+    "previous": "中非共和国",
+    "zh": "中非共和国",
+    "source": "https://cs.mfa.gov.cn/ljmdd/fz_648564/zf_652225/",
+    "note": "外交部中非国家概况国名栏支持中非共和国；原点7N、21E在中非境内，保留全称，不与非洲中部区域混淆。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Republic of the Congo",
+    "lat": -1.0,
+    "lon": 15.5,
+    "previous": "刚果共和国",
+    "zh": "刚果共和国",
+    "source": "https://cs.mfa.gov.cn/ljmdd/fz_648564/ggb_649434/",
+    "note": "国家概况国名栏明确刚果共和国(The Republic of the Congo)。原点1S、15.5E在刚果(布)，保留全称并与刚果(金)区别。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Switzerland",
+    "lat": 47.000160217285156,
+    "lon": 8.014269828796387,
+    "previous": "瑞士",
+    "zh": "瑞士",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为瑞士国家或地区标签；外交部领事服务网全洲目的地名单直接使用瑞士。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Ivory Coast",
+    "lat": 8.0,
+    "lon": -5.5,
+    "previous": "科特迪瓦",
+    "zh": "科特迪瓦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为科特迪瓦国家或地区标签；外交部领事服务网全洲目的地名单直接使用科特迪瓦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Chile",
+    "lat": -30.0,
+    "lon": -71.0,
+    "previous": "智利",
+    "zh": "智利",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为智利国家或地区标签；外交部领事服务网全洲目的地名单直接使用智利。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Cameroon",
+    "lat": 6.0,
+    "lon": 12.5,
+    "previous": "喀麦隆",
+    "zh": "喀麦隆",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为喀麦隆国家或地区标签；外交部领事服务网全洲目的地名单直接使用喀麦隆。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "China",
+    "lat": 35.0,
+    "lon": 105.0,
+    "previous": "中国",
+    "zh": "中国",
+    "source": "https://www.mfa.gov.cn/",
+    "note": "中国国家标签，原点35N、105E在中国大陆中部；外交部官网直接使用中国，保留现译。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Bohai Wan",
+    "lat": 38.873931884765625,
+    "lon": 119.805908203125,
+    "previous": "渤海湾",
+    "zh": "渤海",
+    "source": "https://igsnrr.cas.cn/cbkx/kpyd/zgdl/cnh/202009/t20200910_5692443.html",
+    "note": "原点38.87393/119.80591与GeoNames1816290的Bohai Sea坐标转float32一致；该条目将Bohai Wan、Po-hai Wan列为别名。中科院地理所资料明确区分渤海湾与整个渤海，并使用现成中文渤海。2026-10-19用户确认本点采用渤海；保留原英文Bohai Wan和旧译渤海湾用于匹配，不移动坐标，不再仅解释为狭义渤海湾标签偏东。目录实体证据：https://sws.geonames.org/1816290/about.rdf；本次只订正标签名称，不改海域边界。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Liaodong Wan",
+    "lat": 40.5,
+    "lon": 121.5,
+    "previous": "辽东湾",
+    "zh": "辽东湾",
+    "source": "https://sthjj.panjin.gov.cn/2026_04/22_14/content-562300.html",
+    "note": "坐标核对：中国渤海北部辽东湾。盘锦市生态环境局公告给辽东湾南部项目坐标121°44′40″E、40°32′21″N，与原点40.5N、121.5E邻近，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Colombia",
+    "lat": 4.0,
+    "lon": -73.25,
+    "previous": "哥伦比亚",
+    "zh": "哥伦比亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为哥伦比亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用哥伦比亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Costa Rica",
+    "lat": 10.0,
+    "lon": -84.0,
+    "previous": "哥斯达黎加",
+    "zh": "哥斯达黎加",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为哥斯达黎加国家或地区标签；外交部领事服务网全洲目的地名单直接使用哥斯达黎加。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Guantanamo Bay",
+    "lat": 20.007709503173828,
+    "lon": -75.1227798461914,
+    "previous": "关塔那摩湾",
+    "zh": "关塔那摩湾",
+    "source": "https://www.mfa.gov.cn/wjbxw_new/202303/t20230329_11050810.shtml",
+    "note": "坐标核对：古巴东南部关塔那摩湾，不是同名城市。外交部官方文中直接使用关塔那摩湾，并说明在古巴；原点位于该湾，保留湾名。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Cuba",
+    "lat": 22.0,
+    "lon": -79.5,
+    "previous": "古巴",
+    "zh": "古巴",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为古巴国家或地区标签；外交部领事服务网全洲目的地名单直接使用古巴。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Cape Verde",
+    "lat": 16.0,
+    "lon": -24.0,
+    "previous": "佛得角",
+    "zh": "佛得角",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为佛得角国家或地区标签；外交部领事服务网全洲目的地名单直接使用佛得角。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Cyprus",
+    "lat": 35.0,
+    "lon": 33.0,
+    "previous": "塞浦路斯",
+    "zh": "塞浦路斯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为塞浦路斯国家或地区标签；外交部领事服务网全洲目的地名单直接使用塞浦路斯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Czech Republic",
+    "lat": 49.75,
+    "lon": 15.0,
+    "previous": "捷克",
+    "zh": "捷克",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为捷克国家或地区标签；外交部领事服务网全洲目的地名单直接使用捷克。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Germany",
+    "lat": 51.5,
+    "lon": 10.5,
+    "previous": "德国",
+    "zh": "德国",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为德国国家或地区标签；外交部领事服务网全洲目的地名单直接使用德国。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Djibouti",
+    "lat": 11.833330154418945,
+    "lon": 42.5,
+    "previous": "吉布提",
+    "zh": "吉布提",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为吉布提国家或地区标签；外交部领事服务网全洲目的地名单直接使用吉布提。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Storebaelt",
+    "lat": 55.5,
+    "lon": 11.0,
+    "previous": "大贝尔特海峡",
+    "zh": "大贝尔特海峡",
+    "source": "https://data.scsio.ac.cn/api/web/v1/file/load/event/1710857825757319168.pdf",
+    "note": "坐标核对：丹麦西兰岛与菲英岛之间；Storebælt的无变音拼写。中科院南海海洋研究所数据平台《中國壮丽而绵长的海岸带》列大贝尔特海峡、小贝尔特海峡、厄勒海峡；按丹麦两岛间坐标区别三峡，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "The Sound",
+    "lat": 55.83332824707031,
+    "lon": 12.666669845581055,
+    "previous": "厄勒海峡",
+    "zh": "厄勒海峡",
+    "source": "https://data.scsio.ac.cn/api/web/v1/file/load/event/1710857825757319168.pdf",
+    "note": "坐标核对：丹麦西兰岛与瑞典斯科讷之间；The Sound即Øresund。中科院南海海洋研究所平台中文海岸带资料列厄勒海峡。The Sound为通名式旧英文，原点在丹麦与瑞典之间，故特指Øresund而非其他Sound。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Lillebaelt",
+    "lat": 55.33332824707031,
+    "lon": 9.75,
+    "previous": "小贝尔特海峡",
+    "zh": "小贝尔特海峡",
+    "source": "https://data.scsio.ac.cn/api/web/v1/file/load/event/1710857825757319168.pdf",
+    "note": "坐标核对：丹麦日德兰半岛与菲英岛之间；Lillebælt的无变音拼写。中科院南海海洋研究所平台中文海岸带资料列小贝尔特海峡。原点在日德兰与菲英岛之间，与大贝尔特海峡区别，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Denmark",
+    "lat": 56.0,
+    "lon": 10.0,
+    "previous": "丹麦",
+    "zh": "丹麦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为丹麦国家或地区标签；外交部领事服务网全洲目的地名单直接使用丹麦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Dominica",
+    "lat": 15.5,
+    "lon": -61.33332824707031,
+    "previous": "多米尼克",
+    "zh": "多米尼克",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为多米尼克国家或地区标签；外交部领事服务网全洲目的地名单直接使用多米尼克。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Dominican Republic",
+    "lat": 19.0,
+    "lon": -70.66667175292969,
+    "previous": "多米尼加",
+    "zh": "多米尼加",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为多米尼加国家或地区标签；外交部领事服务网全洲目的地名单直接使用多米尼加。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Algeria",
+    "lat": 28.0,
+    "lon": 3.0,
+    "previous": "阿尔及利亚",
+    "zh": "阿尔及利亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为阿尔及利亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用阿尔及利亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Ecuador",
+    "lat": -1.25,
+    "lon": -78.25,
+    "previous": "厄瓜多尔",
+    "zh": "厄瓜多尔",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为厄瓜多尔国家或地区标签；外交部领事服务网全洲目的地名单直接使用厄瓜多尔。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Estonia",
+    "lat": 59.0,
+    "lon": 26.0,
+    "previous": "爱沙尼亚",
+    "zh": "爱沙尼亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为爱沙尼亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用爱沙尼亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Egypt",
+    "lat": 27.0,
+    "lon": 30.0,
+    "previous": "埃及",
+    "zh": "埃及",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为埃及国家或地区标签；外交部领事服务网全洲目的地名单直接使用埃及。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Eritrea",
+    "lat": 15.0,
+    "lon": 39.0,
+    "previous": "厄立特里亚",
+    "zh": "厄立特里亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为厄立特里亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用厄立特里亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Spain",
+    "lat": 40.0,
+    "lon": -4.0,
+    "previous": "西班牙",
+    "zh": "西班牙",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为西班牙国家或地区标签；外交部领事服务网全洲目的地名单直接使用西班牙。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Ethiopia",
+    "lat": 9.0,
+    "lon": 39.5,
+    "previous": "埃塞俄比亚",
+    "zh": "埃塞俄比亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为埃塞俄比亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用埃塞俄比亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Finland",
+    "lat": 64.0,
+    "lon": 26.0,
+    "previous": "芬兰",
+    "zh": "芬兰",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为芬兰国家或地区标签；外交部领事服务网全洲目的地名单直接使用芬兰。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Fiji",
+    "lat": -18.0,
+    "lon": 178.0,
+    "previous": "斐济",
+    "zh": "斐济",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为斐济国家或地区标签；外交部领事服务网全洲目的地名单直接使用斐济。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "France",
+    "lat": 46.0,
+    "lon": 2.0,
+    "previous": "法国",
+    "zh": "法国",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为法国国家或地区标签；外交部领事服务网全洲目的地名单直接使用法国。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Gabon",
+    "lat": -1.0,
+    "lon": 11.75,
+    "previous": "加蓬",
+    "zh": "加蓬",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为加蓬国家或地区标签；外交部领事服务网全洲目的地名单直接使用加蓬。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "United Kingdom",
+    "lat": 54.75843811035156,
+    "lon": -2.695310115814209,
+    "previous": "英国",
+    "zh": "英国",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为英国国家或地区标签；外交部领事服务网全洲目的地名单直接使用英国。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "English Channel",
+    "lat": 50.0,
+    "lon": -1.0,
+    "previous": "英吉利海峡",
+    "zh": "英吉利海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：英国南岸与法国北岸之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Grenada",
+    "lat": 12.116669654846191,
+    "lon": -61.66667175292969,
+    "previous": "格林纳达",
+    "zh": "格林纳达",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为格林纳达国家或地区标签；外交部领事服务网全洲目的地名单直接使用格林纳达。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Georgia",
+    "lat": 41.99998092651367,
+    "lon": 43.499900817871094,
+    "previous": "格鲁吉亚",
+    "zh": "格鲁吉亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为格鲁吉亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用格鲁吉亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Ghana",
+    "lat": 8.100000381469727,
+    "lon": -1.2000000476837158,
+    "previous": "加纳",
+    "zh": "加纳",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为加纳国家或地区标签；外交部领事服务网全洲目的地名单直接使用加纳。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Lincoln Sea",
+    "lat": 83.0,
+    "lon": -58.0,
+    "previous": "林肯海",
+    "zh": "林肯海",
+    "source": "https://castjournals.cast.org.cn/joweb/hyxb/CN/1233907186427023478",
+    "note": "坐标核对：加拿大埃尔斯米尔岛与格陵兰岛以北。《海洋学报》海冰运动研究使用林肯海，说明其位于内尔斯海峡北端；原点83N、58W与该水体相符，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gambia",
+    "lat": 13.5,
+    "lon": -15.5,
+    "previous": "冈比亚",
+    "zh": "冈比亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为冈比亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用冈比亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Guinea",
+    "lat": 10.833330154418945,
+    "lon": -10.666669845581055,
+    "previous": "几内亚",
+    "zh": "几内亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为几内亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用几内亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Equatorial Guinea",
+    "lat": 1.7000000476837158,
+    "lon": 10.5,
+    "previous": "赤道几内亚",
+    "zh": "赤道几内亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为赤道几内亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用赤道几内亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Greece",
+    "lat": 39.0,
+    "lon": 22.0,
+    "previous": "希腊",
+    "zh": "希腊",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为希腊国家或地区标签；外交部领事服务网全洲目的地名单直接使用希腊。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Guatemala",
+    "lat": 15.5,
+    "lon": -90.25,
+    "previous": "危地马拉",
+    "zh": "危地马拉",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为危地马拉国家或地区标签；外交部领事服务网全洲目的地名单直接使用危地马拉。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Guinea-Bissau",
+    "lat": 12.0,
+    "lon": -15.0,
+    "previous": "几内亚比绍",
+    "zh": "几内亚比绍",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为几内亚比绍国家或地区标签；外交部领事服务网全洲目的地名单直接使用几内亚比绍。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Guyana",
+    "lat": 5.0,
+    "lon": -59.0,
+    "previous": "圭亚那",
+    "zh": "圭亚那",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为圭亚那国家或地区标签；外交部领事服务网全洲目的地名单直接使用圭亚那。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Honduras",
+    "lat": 15.0,
+    "lon": -86.5,
+    "previous": "洪都拉斯",
+    "zh": "洪都拉斯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为洪都拉斯国家或地区标签；外交部领事服务网全洲目的地名单直接使用洪都拉斯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Croatia",
+    "lat": 45.16667175292969,
+    "lon": 15.5,
+    "previous": "克罗地亚",
+    "zh": "克罗地亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为克罗地亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用克罗地亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Haiti",
+    "lat": 19.0,
+    "lon": -72.41667175292969,
+    "previous": "海地",
+    "zh": "海地",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为海地国家或地区标签；外交部领事服务网全洲目的地名单直接使用海地。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Hungary",
+    "lat": 47.0,
+    "lon": 20.0,
+    "previous": "匈牙利",
+    "zh": "匈牙利",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为匈牙利国家或地区标签；外交部领事服务网全洲目的地名单直接使用匈牙利。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Selat Sumba",
+    "lat": -9.083330154418945,
+    "lon": 120.0,
+    "previous": "松巴海峡",
+    "zh": "松巴海峡",
+    "source": "https://www.qdio.cas.cn/2019Ver/News/kyjz/202008/t20200803_5649182.html",
+    "note": "坐标核对：印尼松巴岛与弗洛勒斯岛之间；Selat为印尼语海峡。中科院海洋所实测研究明确使用松巴海峡，并说明与萨武海环流关系；原点在松巴与弗洛勒斯之间，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Molucca Sea",
+    "lat": 0.20473000407218933,
+    "lon": 125.61038970947266,
+    "previous": "马鲁古海",
+    "zh": "马鲁古海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印尼苏拉威西岛以东、哈马黑拉岛以西。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Makassar Strait",
+    "lat": -2.0,
+    "lon": 117.5,
+    "previous": "望加锡海峡",
+    "zh": "望加锡海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印尼加里曼丹岛与苏拉威西岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Indonesia",
+    "lat": -5.0,
+    "lon": 120.0,
+    "previous": "印度尼西亚",
+    "zh": "印度尼西亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为印度尼西亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用印度尼西亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Gulf of Boni",
+    "lat": -3.4636099338531494,
+    "lon": 120.6402816772461,
+    "previous": "波尼湾",
+    "zh": "波尼湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印尼苏拉威西岛南半岛与东南半岛之间；Boni/Bone同一海湾。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Ireland",
+    "lat": 53.0,
+    "lon": -8.0,
+    "previous": "爱尔兰",
+    "zh": "爱尔兰",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为爱尔兰国家或地区标签；外交部领事服务网全洲目的地名单直接使用爱尔兰。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Israel",
+    "lat": 31.5,
+    "lon": 34.75,
+    "previous": "以色列",
+    "zh": "以色列",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为以色列国家或地区标签；外交部领事服务网全洲目的地名单直接使用以色列。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "India",
+    "lat": 22.0,
+    "lon": 79.0,
+    "previous": "印度",
+    "zh": "印度",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为印度国家或地区标签；外交部领事服务网全洲目的地名单直接使用印度。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Iraq",
+    "lat": 33.0,
+    "lon": 44.0,
+    "previous": "伊拉克",
+    "zh": "伊拉克",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为伊拉克国家或地区标签；外交部领事服务网全洲目的地名单直接使用伊拉克。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Darya-ye `Oman",
+    "lat": 25.0,
+    "lon": 58.0,
+    "previous": "阿曼湾",
+    "zh": "阿曼湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：伊朗东南岸与阿曼之间；Darya-ye Oman为波斯语名称。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Iran",
+    "lat": 32.0,
+    "lon": 53.0,
+    "previous": "伊朗",
+    "zh": "伊朗",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为伊朗国家或地区标签；外交部领事服务网全洲目的地名单直接使用伊朗。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Iceland",
+    "lat": 65.0,
+    "lon": -18.0,
+    "previous": "冰岛",
+    "zh": "冰岛",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为冰岛国家或地区标签；外交部领事服务网全洲目的地名单直接使用冰岛。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Italy",
+    "lat": 42.83332824707031,
+    "lon": 12.833330154418945,
+    "previous": "意大利",
+    "zh": "意大利",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为意大利国家或地区标签；外交部领事服务网全洲目的地名单直接使用意大利。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Jamaica",
+    "lat": 18.166669845581055,
+    "lon": -77.25,
+    "previous": "牙买加",
+    "zh": "牙买加",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为牙买加国家或地区标签；外交部领事服务网全洲目的地名单直接使用牙买加。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Jordan",
+    "lat": 31.0,
+    "lon": 36.0,
+    "previous": "约旦",
+    "zh": "约旦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为约旦国家或地区标签；外交部领事服务网全洲目的地名单直接使用约旦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Japan",
+    "lat": 35.685359954833984,
+    "lon": 139.7530975341797,
+    "previous": "日本",
+    "zh": "日本",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为日本国家或地区标签；外交部领事服务网全洲目的地名单直接使用日本。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。 原点落东京附近，但英文Japan在本Synoptic层是全国标签，不能据首都坐标改成东京。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Kenya",
+    "lat": 1.0,
+    "lon": 38.0,
+    "previous": "肯尼亚",
+    "zh": "肯尼亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为肯尼亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用肯尼亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Kyrgyzstan",
+    "lat": 41.5,
+    "lon": 75.0,
+    "previous": "吉尔吉斯斯坦",
+    "zh": "吉尔吉斯斯坦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为吉尔吉斯斯坦国家或地区标签；外交部领事服务网全洲目的地名单直接使用吉尔吉斯斯坦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Cambodia",
+    "lat": 13.0,
+    "lon": 105.0,
+    "previous": "柬埔寨",
+    "zh": "柬埔寨",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为柬埔寨国家或地区标签；外交部领事服务网全洲目的地名单直接使用柬埔寨。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Kiribati",
+    "lat": 1.4210000038146973,
+    "lon": 172.98399353027344,
+    "previous": "基里巴斯",
+    "zh": "基里巴斯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为基里巴斯国家或地区标签；外交部领事服务网全洲目的地名单直接使用基里巴斯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Comoros",
+    "lat": -12.233329772949219,
+    "lon": 44.44552993774414,
+    "previous": "科摩罗",
+    "zh": "科摩罗",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为科摩罗国家或地区标签；外交部领事服务网全洲目的地名单直接使用科摩罗。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Saint Kitts ne-Nevis",
+    "lat": 17.333330154418945,
+    "lon": -62.75,
+    "previous": "圣基茨和尼维斯",
+    "zh": "圣基茨和尼维斯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为圣基茨和尼维斯国家或地区标签；外交部领事服务网全洲目的地名单直接使用圣基茨和尼维斯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。 原英文中的ne/kanye ne是连接词混杂或旧数据写法，按实体规范译名处理，不能音译连接词。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "North Korea",
+    "lat": 40.0,
+    "lon": 127.0,
+    "previous": "朝鲜",
+    "zh": "朝鲜",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为朝鲜国家或地区标签；外交部领事服务网全洲目的地名单直接使用朝鲜。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "South Korea",
+    "lat": 36.5,
+    "lon": 127.75,
+    "previous": "韩国",
+    "zh": "韩国",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为韩国国家或地区标签；外交部领事服务网全洲目的地名单直接使用韩国。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Kuwait",
+    "lat": 29.5,
+    "lon": 47.75,
+    "previous": "科威特",
+    "zh": "科威特",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为科威特国家或地区标签；外交部领事服务网全洲目的地名单直接使用科威特。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Kazakhstan",
+    "lat": 48.0,
+    "lon": 68.0,
+    "previous": "哈萨克斯坦",
+    "zh": "哈萨克斯坦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为哈萨克斯坦国家或地区标签；外交部领事服务网全洲目的地名单直接使用哈萨克斯坦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Aral Sea",
+    "lat": 45.0,
+    "lon": 60.0,
+    "previous": "咸海",
+    "zh": "咸海",
+    "source": "https://www.mfa.gov.cn/web/gjhdq_676201/gj_676203/yz_676205/1206_677052/1206x2_677072/200702/t20070201_9305325.shtml",
+    "note": "坐标核对：中亚哈萨克斯坦与乌兹别克斯坦之间的内陆湖；不因水域萎缩改成其他实体。驻乌使馆关于咸海生态研讨会的一手报道确认通行中文。原点为中亚咸海历史标签，保留水体名称，不因退缩后陆化而另译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Laos",
+    "lat": 18.0,
+    "lon": 105.0,
+    "previous": "老挝",
+    "zh": "老挝",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为老挝国家或地区标签；外交部领事服务网全洲目的地名单直接使用老挝。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Lebanon",
+    "lat": 33.83332824707031,
+    "lon": 35.83332824707031,
+    "previous": "黎巴嫩",
+    "zh": "黎巴嫩",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为黎巴嫩国家或地区标签；外交部领事服务网全洲目的地名单直接使用黎巴嫩。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Saint Lucia",
+    "lat": 13.883330345153809,
+    "lon": -60.966670989990234,
+    "previous": "圣卢西亚",
+    "zh": "圣卢西亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为圣卢西亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用圣卢西亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Liechtenstein",
+    "lat": 47.16667175292969,
+    "lon": 9.533329963684082,
+    "previous": "列支敦士登",
+    "zh": "列支敦士登",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为列支敦士登国家或地区标签；外交部领事服务网全洲目的地名单直接使用列支敦士登。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Sri Lanka",
+    "lat": 7.75,
+    "lon": 80.75,
+    "previous": "斯里兰卡",
+    "zh": "斯里兰卡",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为斯里兰卡国家或地区标签；外交部领事服务网全洲目的地名单直接使用斯里兰卡。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Laccadive Sea",
+    "lat": 8.0,
+    "lon": 75.0,
+    "previous": "拉克代夫海",
+    "zh": "拉克代夫海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印度西南岸与拉克沙群岛、斯里兰卡之间的海域。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Liberia",
+    "lat": 6.5,
+    "lon": -9.5,
+    "previous": "利比里亚",
+    "zh": "利比里亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为利比里亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用利比里亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Lesotho",
+    "lat": -29.5,
+    "lon": 28.25,
+    "previous": "莱索托",
+    "zh": "莱索托",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为莱索托国家或地区标签；外交部领事服务网全洲目的地名单直接使用莱索托。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Lithuania",
+    "lat": 55.41667175292969,
+    "lon": 24.0,
+    "previous": "立陶宛",
+    "zh": "立陶宛",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为立陶宛国家或地区标签；外交部领事服务网全洲目的地名单直接使用立陶宛。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Luxembourg",
+    "lat": 49.75,
+    "lon": 6.166669845581055,
+    "previous": "卢森堡",
+    "zh": "卢森堡",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为卢森堡国家或地区标签；外交部领事服务网全洲目的地名单直接使用卢森堡。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Latvia",
+    "lat": 57.0,
+    "lon": 25.0,
+    "previous": "拉脱维亚",
+    "zh": "拉脱维亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为拉脱维亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用拉脱维亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Libya",
+    "lat": 28.0,
+    "lon": 17.0,
+    "previous": "利比亚",
+    "zh": "利比亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为利比亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用利比亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Morocco",
+    "lat": 32.0,
+    "lon": -6.0,
+    "previous": "摩洛哥",
+    "zh": "摩洛哥",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为摩洛哥国家或地区标签；外交部领事服务网全洲目的地名单直接使用摩洛哥。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Monaco",
+    "lat": 43.73141098022461,
+    "lon": 7.41903018951416,
+    "previous": "摩纳哥",
+    "zh": "摩纳哥",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为摩纳哥国家或地区标签；外交部领事服务网全洲目的地名单直接使用摩纳哥。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Moldova",
+    "lat": 47.25,
+    "lon": 28.583330154418945,
+    "previous": "摩尔多瓦",
+    "zh": "摩尔多瓦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为摩尔多瓦国家或地区标签；外交部领事服务网全洲目的地名单直接使用摩尔多瓦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Montenegro",
+    "lat": 42.75,
+    "lon": 19.25,
+    "previous": "黑山",
+    "zh": "黑山",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为黑山国家或地区标签；外交部领事服务网全洲目的地名单直接使用黑山。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Madagascar",
+    "lat": -20.0,
+    "lon": 47.0,
+    "previous": "马达加斯加",
+    "zh": "马达加斯加",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为马达加斯加国家或地区标签；外交部领事服务网全洲目的地名单直接使用马达加斯加。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Republic of Macedonia",
+    "lat": 41.66667175292969,
+    "lon": 21.75,
+    "previous": "北马其顿",
+    "zh": "北马其顿",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为北马其顿国家或地区标签；外交部领事服务网全洲目的地名单直接使用北马其顿。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。 英文Republic of Macedonia为旧国名，坐标所指国家与现北马其顿为同一实体；baseline已经更新，保留既有北马其顿。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Mali",
+    "lat": 18.0,
+    "lon": -2.0,
+    "previous": "马里",
+    "zh": "马里",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为马里国家或地区标签；外交部领事服务网全洲目的地名单直接使用马里。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Union of Burma",
+    "lat": 21.0,
+    "lon": 96.0,
+    "previous": "缅甸",
+    "zh": "缅甸",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为缅甸国家或地区标签；外交部领事服务网全洲目的地名单直接使用缅甸。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。 Union of Burma是缅甸旧英文国名，保留通行简称缅甸，不把Union和Burma机械音译。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Mongolia",
+    "lat": 46.0,
+    "lon": 105.0,
+    "previous": "蒙古",
+    "zh": "蒙古",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为蒙古国家或地区标签；外交部领事服务网全洲目的地名单直接使用蒙古。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Mauritania",
+    "lat": 20.25,
+    "lon": -10.5,
+    "previous": "毛里塔尼亚",
+    "zh": "毛里塔尼亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为毛里塔尼亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用毛里塔尼亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Malta",
+    "lat": 35.91667175292969,
+    "lon": 14.433329582214355,
+    "previous": "马耳他",
+    "zh": "马耳他",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为马耳他国家或地区标签；外交部领事服务网全洲目的地名单直接使用马耳他。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Mauritius",
+    "lat": -20.299999237060547,
+    "lon": 57.58332824707031,
+    "previous": "毛里求斯",
+    "zh": "毛里求斯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为毛里求斯国家或地区标签；外交部领事服务网全洲目的地名单直接使用毛里求斯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Maldives",
+    "lat": 3.200000047683716,
+    "lon": 73.0,
+    "previous": "马尔代夫",
+    "zh": "马尔代夫",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为马尔代夫国家或地区标签；外交部领事服务网全洲目的地名单直接使用马尔代夫。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Malawi",
+    "lat": -13.5,
+    "lon": 34.0,
+    "previous": "马拉维",
+    "zh": "马拉维",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为马拉维国家或地区标签；外交部领事服务网全洲目的地名单直接使用马拉维。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Gulf of Mexico",
+    "lat": 25.0,
+    "lon": -90.0,
+    "previous": "墨西哥湾",
+    "zh": "墨西哥湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：北美墨西哥与美国之间；依原库英文实体保留通行中文。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Mexico",
+    "lat": 23.0,
+    "lon": -102.0,
+    "previous": "墨西哥",
+    "zh": "墨西哥",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为墨西哥国家或地区标签；外交部领事服务网全洲目的地名单直接使用墨西哥。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Malaysia",
+    "lat": 2.5,
+    "lon": 112.5,
+    "previous": "马来西亚",
+    "zh": "马来西亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为马来西亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用马来西亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Mozambique",
+    "lat": -18.25,
+    "lon": 35.0,
+    "previous": "莫桑比克",
+    "zh": "莫桑比克",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为莫桑比克国家或地区标签；外交部领事服务网全洲目的地名单直接使用莫桑比克。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Namibia",
+    "lat": -22.0,
+    "lon": 17.0,
+    "previous": "纳米比亚",
+    "zh": "纳米比亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为纳米比亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用纳米比亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Niger",
+    "lat": 18.0,
+    "lon": 9.0,
+    "previous": "尼日尔",
+    "zh": "尼日尔",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为尼日尔国家或地区标签；外交部领事服务网全洲目的地名单直接使用尼日尔。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Nigeria",
+    "lat": 10.0,
+    "lon": 8.0,
+    "previous": "尼日利亚",
+    "zh": "尼日利亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为尼日利亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用尼日利亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Nicaragua",
+    "lat": 13.0,
+    "lon": -85.0,
+    "previous": "尼加拉瓜",
+    "zh": "尼加拉瓜",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为尼加拉瓜国家或地区标签；外交部领事服务网全洲目的地名单直接使用尼加拉瓜。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Netherlands",
+    "lat": 52.25,
+    "lon": 5.75,
+    "previous": "荷兰",
+    "zh": "荷兰",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为荷兰国家或地区标签；外交部领事服务网全洲目的地名单直接使用荷兰。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Norway",
+    "lat": 62.0,
+    "lon": 10.0,
+    "previous": "挪威",
+    "zh": "挪威",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为挪威国家或地区标签；外交部领事服务网全洲目的地名单直接使用挪威。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Nepal",
+    "lat": 28.0,
+    "lon": 84.0,
+    "previous": "尼泊尔",
+    "zh": "尼泊尔",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为尼泊尔国家或地区标签；外交部领事服务网全洲目的地名单直接使用尼泊尔。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Nauru",
+    "lat": -0.5170000195503235,
+    "lon": 166.93299865722656,
+    "previous": "瑙鲁",
+    "zh": "瑙鲁",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为瑙鲁国家或地区标签；外交部领事服务网全洲目的地名单直接使用瑙鲁。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "New Zealand",
+    "lat": -42.0,
+    "lon": 174.0,
+    "previous": "新西兰",
+    "zh": "新西兰",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为新西兰国家或地区标签；外交部领事服务网全洲目的地名单直接使用新西兰。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Oman",
+    "lat": 21.0,
+    "lon": 57.0,
+    "previous": "阿曼",
+    "zh": "阿曼",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为阿曼国家或地区标签；外交部领事服务网全洲目的地名单直接使用阿曼。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Panama",
+    "lat": 9.0,
+    "lon": -80.0,
+    "previous": "巴拿马",
+    "zh": "巴拿马",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为巴拿马国家或地区标签；外交部领事服务网全洲目的地名单直接使用巴拿马。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Golfo de Panama",
+    "lat": 8.0,
+    "lon": -79.5,
+    "previous": "巴拿马湾",
+    "zh": "巴拿马湾",
+    "source": "https://www.mfa.gov.cn/web/gjhdq_676201/gj_676203/bmz_679954/1206_680080/1206x2_680100/201110/t20111019_9356573.shtml",
+    "note": "坐标核对：巴拿马太平洋岸海湾；Golfo de为西班牙语通名。中国驻巴拿马贸易发展办事处关于和平方舟抵达巴拿马湾的一手报道使用该中文，原点位于巴拿马太平洋岸，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Peru",
+    "lat": -10.0,
+    "lon": -75.25,
+    "previous": "秘鲁",
+    "zh": "秘鲁",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为秘鲁国家或地区标签；外交部领事服务网全洲目的地名单直接使用秘鲁。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Papua New Guinea",
+    "lat": -6.0,
+    "lon": 147.0,
+    "previous": "巴布亚新几内亚",
+    "zh": "巴布亚新几内亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为巴布亚新几内亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用巴布亚新几内亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Torres Strait",
+    "lat": -10.282139778137207,
+    "lon": 142.15887451171875,
+    "previous": "托雷斯海峡",
+    "zh": "托雷斯海峡",
+    "source": "https://cs.mfa.gov.cn/zggmcg/ljmdd/dyz_658636/bbyxjny_658700/",
+    "note": "坐标核对：澳大利亚约克角与新几内亚岛之间。外交部巴布亚新几内亚概况明确南隔托雷斯海峡与澳大利亚相望；原点匹配，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Philippines",
+    "lat": 13.0,
+    "lon": 122.0,
+    "previous": "菲律宾",
+    "zh": "菲律宾",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为菲律宾国家或地区标签；外交部领事服务网全洲目的地名单直接使用菲律宾。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Mindanao Sea",
+    "lat": 8.594900131225586,
+    "lon": 123.90350341796875,
+    "previous": "棉兰老海",
+    "zh": "棉兰老海",
+    "source": "https://wb.fj.gov.cn/zwgk/ztzl/ychnz/yz/202201/t20220111_5813110.htm",
+    "note": "坐标核对：菲律宾棉兰老岛以北、宿务岛以南；也称保和海。福建省外办宿务省友城资料说明宿务省南临棉兰老海，原点在该水域；沿用棉兰老海，不改成同水体别称保和海。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Pakistan",
+    "lat": 30.0,
+    "lon": 70.0,
+    "previous": "巴基斯坦",
+    "zh": "巴基斯坦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为巴基斯坦国家或地区标签；外交部领事服务网全洲目的地名单直接使用巴基斯坦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Poland",
+    "lat": 52.0,
+    "lon": 20.0,
+    "previous": "波兰",
+    "zh": "波兰",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为波兰国家或地区标签；外交部领事服务网全洲目的地名单直接使用波兰。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Caribbean Sea",
+    "lat": 15.000280380249023,
+    "lon": -75.00028228759766,
+    "previous": "加勒比海",
+    "zh": "加勒比海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：中美洲与安的列斯群岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Portugal",
+    "lat": 39.69449996948242,
+    "lon": -8.130570411682129,
+    "previous": "葡萄牙",
+    "zh": "葡萄牙",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为葡萄牙国家或地区标签；外交部领事服务网全洲目的地名单直接使用葡萄牙。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Paraguay",
+    "lat": -23.333330154418945,
+    "lon": -58.0,
+    "previous": "巴拉圭",
+    "zh": "巴拉圭",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为巴拉圭国家或地区标签；外交部领事服务网全洲目的地名单直接使用巴拉圭。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Qatar",
+    "lat": 25.5,
+    "lon": 51.25,
+    "previous": "卡塔尔",
+    "zh": "卡塔尔",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为卡塔尔国家或地区标签；外交部领事服务网全洲目的地名单直接使用卡塔尔。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Romania",
+    "lat": 46.0,
+    "lon": 25.0,
+    "previous": "罗马尼亚",
+    "zh": "罗马尼亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为罗马尼亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用罗马尼亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Serbia",
+    "lat": 44.81892013549805,
+    "lon": 20.459980010986328,
+    "previous": "塞尔维亚",
+    "zh": "塞尔维亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为塞尔维亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用塞尔维亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "White Sea",
+    "lat": 65.5,
+    "lon": 38.0,
+    "previous": "白海",
+    "zh": "白海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：俄罗斯西北部白海，非白令海。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Russia",
+    "lat": 60.0,
+    "lon": 100.0,
+    "previous": "俄罗斯",
+    "zh": "俄罗斯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为俄罗斯国家或地区标签；外交部领事服务网全洲目的地名单直接使用俄罗斯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Tatar Strait",
+    "lat": 50.0,
+    "lon": 141.0,
+    "previous": "鞑靼海峡",
+    "zh": "鞑靼海峡",
+    "source": "https://khabarovsk.china-consulate.gov.cn/lqjs/201212/t20121210_3679101.htm",
+    "note": "坐标核对：俄罗斯大陆与萨哈林岛之间。驻哈巴罗夫斯克总领馆领区资料说明哈巴罗夫斯克边疆区隔鞑靼海峡与萨哈林州相望；与原点匹配，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Anadyrskiy Zaliv",
+    "lat": 64.0,
+    "lon": -178.0,
+    "previous": "阿纳德尔湾",
+    "zh": "阿纳德尔湾",
+    "source": "https://journal.chinare.org.cn/CN/volumn/volumn_1608.shtml",
+    "note": "坐标核对：白令海西北部俄罗斯楚科奇沿岸；俄语Zaliv意为湾。《极地研究》2018年30卷1期白令海峡及邻近海域潮汐研究直接使用阿纳德尔湾；原点位于白令海西北湾口附近，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Rwanda",
+    "lat": -2.0,
+    "lon": 30.0,
+    "previous": "卢旺达",
+    "zh": "卢旺达",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为卢旺达国家或地区标签；外交部领事服务网全洲目的地名单直接使用卢旺达。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Saudi Arabia",
+    "lat": 25.0,
+    "lon": 45.0,
+    "previous": "沙特阿拉伯",
+    "zh": "沙特阿拉伯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为沙特阿拉伯国家或地区标签；外交部领事服务网全洲目的地名单直接使用沙特阿拉伯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Solomon Islands",
+    "lat": -8.0,
+    "lon": 159.0,
+    "previous": "所罗门群岛",
+    "zh": "所罗门群岛",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为所罗门群岛国家或地区标签；外交部领事服务网全洲目的地名单直接使用所罗门群岛。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Seychelles",
+    "lat": -4.583330154418945,
+    "lon": 55.66667175292969,
+    "previous": "塞舌尔",
+    "zh": "塞舌尔",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为塞舌尔国家或地区标签；外交部领事服务网全洲目的地名单直接使用塞舌尔。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Sudan",
+    "lat": 16.0,
+    "lon": 30.0,
+    "previous": "苏丹",
+    "zh": "苏丹",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为苏丹国家或地区标签；外交部领事服务网全洲目的地名单直接使用苏丹。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Sweden",
+    "lat": 62.0,
+    "lon": 15.0,
+    "previous": "瑞典",
+    "zh": "瑞典",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为瑞典国家或地区标签；外交部领事服务网全洲目的地名单直接使用瑞典。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Singapore",
+    "lat": 1.36667001247406,
+    "lon": 103.80000305175781,
+    "previous": "新加坡",
+    "zh": "新加坡",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为新加坡国家或地区标签；外交部领事服务网全洲目的地名单直接使用新加坡。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Slovenia",
+    "lat": 46.08332824707031,
+    "lon": 15.0,
+    "previous": "斯洛文尼亚",
+    "zh": "斯洛文尼亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为斯洛文尼亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用斯洛文尼亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Slovakia",
+    "lat": 48.66667175292969,
+    "lon": 19.5,
+    "previous": "斯洛伐克",
+    "zh": "斯洛伐克",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为斯洛伐克国家或地区标签；外交部领事服务网全洲目的地名单直接使用斯洛伐克。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Sierra Leone",
+    "lat": 8.5,
+    "lon": -11.5,
+    "previous": "塞拉利昂",
+    "zh": "塞拉利昂",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为塞拉利昂国家或地区标签；外交部领事服务网全洲目的地名单直接使用塞拉利昂。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "San Marino",
+    "lat": 43.93669891357422,
+    "lon": 12.44629955291748,
+    "previous": "圣马力诺",
+    "zh": "圣马力诺",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为圣马力诺国家或地区标签；外交部领事服务网全洲目的地名单直接使用圣马力诺。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Senegal",
+    "lat": 14.5,
+    "lon": -14.25,
+    "previous": "塞内加尔",
+    "zh": "塞内加尔",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为塞内加尔国家或地区标签；外交部领事服务网全洲目的地名单直接使用塞内加尔。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Somalia",
+    "lat": 6.0,
+    "lon": 48.0,
+    "previous": "索马里",
+    "zh": "索马里",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为索马里国家或地区标签；外交部领事服务网全洲目的地名单直接使用索马里。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Suriname",
+    "lat": 4.0,
+    "lon": -56.0,
+    "previous": "苏里南",
+    "zh": "苏里南",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为苏里南国家或地区标签；外交部领事服务网全洲目的地名单直接使用苏里南。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "South Sudan",
+    "lat": 7.5,
+    "lon": 30.0,
+    "previous": "南苏丹",
+    "zh": "南苏丹",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为南苏丹国家或地区标签；外交部领事服务网全洲目的地名单直接使用南苏丹。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Sao Tome kanye ne-Principe",
+    "lat": 1.0,
+    "lon": 7.0,
+    "previous": "圣多美和普林西比",
+    "zh": "圣多美和普林西比",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为圣多美和普林西比国家或地区标签；外交部领事服务网全洲目的地名单直接使用圣多美和普林西比。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。 原英文中的ne/kanye ne是连接词混杂或旧数据写法，按实体规范译名处理，不能音译连接词。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "El Salvador",
+    "lat": 13.833330154418945,
+    "lon": -88.91667175292969,
+    "previous": "萨尔瓦多",
+    "zh": "萨尔瓦多",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为萨尔瓦多国家或地区标签；外交部领事服务网全洲目的地名单直接使用萨尔瓦多。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Syria",
+    "lat": 35.0,
+    "lon": 38.0,
+    "previous": "叙利亚",
+    "zh": "叙利亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为叙利亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用叙利亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Swaziland",
+    "lat": -26.5,
+    "lon": 31.5,
+    "previous": "斯威士兰",
+    "zh": "斯威士兰",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为斯威士兰国家或地区标签；外交部领事服务网全洲目的地名单直接使用斯威士兰。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。 虽英文Swaziland后来改为Eswatini，外交部中文名单仍用斯威士兰；不因英文改名自动更换中文。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Chad",
+    "lat": 15.0,
+    "lon": 19.0,
+    "previous": "乍得",
+    "zh": "乍得",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为乍得国家或地区标签；外交部领事服务网全洲目的地名单直接使用乍得。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Togo",
+    "lat": 8.666669845581055,
+    "lon": 1.0833300352096558,
+    "previous": "多哥",
+    "zh": "多哥",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为多哥国家或地区标签；外交部领事服务网全洲目的地名单直接使用多哥。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Andaman Sea",
+    "lat": 10.0,
+    "lon": 95.0,
+    "previous": "安达曼海",
+    "zh": "安达曼海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：孟加拉湾东南、缅甸泰国以西。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Thailand",
+    "lat": 15.5,
+    "lon": 101.0,
+    "previous": "泰国",
+    "zh": "泰国",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为泰国国家或地区标签；外交部领事服务网全洲目的地名单直接使用泰国。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Tajikistan",
+    "lat": 39.0,
+    "lon": 71.0,
+    "previous": "塔吉克斯坦",
+    "zh": "塔吉克斯坦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为塔吉克斯坦国家或地区标签；外交部领事服务网全洲目的地名单直接使用塔吉克斯坦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "East Timor",
+    "lat": -8.833330154418945,
+    "lon": 125.75,
+    "previous": "东帝汶",
+    "zh": "东帝汶",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为东帝汶国家或地区标签；外交部领事服务网全洲目的地名单直接使用东帝汶。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Turkmenistan",
+    "lat": 39.75,
+    "lon": 59.66667175292969,
+    "previous": "土库曼斯坦",
+    "zh": "土库曼斯坦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为土库曼斯坦国家或地区标签；外交部领事服务网全洲目的地名单直接使用土库曼斯坦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Tunisia",
+    "lat": 34.0,
+    "lon": 9.0,
+    "previous": "突尼斯",
+    "zh": "突尼斯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为突尼斯国家或地区标签；外交部领事服务网全洲目的地名单直接使用突尼斯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Tonga",
+    "lat": -20.0,
+    "lon": -175.0,
+    "previous": "汤加",
+    "zh": "汤加",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为汤加国家或地区标签；外交部领事服务网全洲目的地名单直接使用汤加。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Turkey",
+    "lat": 39.0,
+    "lon": 35.0,
+    "previous": "土耳其",
+    "zh": "土耳其",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为土耳其国家或地区标签；外交部领事服务网全洲目的地名单直接使用土耳其。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Trinidad ne-Tobago",
+    "lat": 11.0,
+    "lon": -61.0,
+    "previous": "特立尼达和多巴哥",
+    "zh": "特立尼达和多巴哥",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为特立尼达和多巴哥国家或地区标签；外交部领事服务网全洲目的地名单直接使用特立尼达和多巴哥。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。 原英文中的ne/kanye ne是连接词混杂或旧数据写法，按实体规范译名处理，不能音译连接词。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Tuvalu",
+    "lat": -8.517189979553223,
+    "lon": 179.144775390625,
+    "previous": "图瓦卢",
+    "zh": "图瓦卢",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为图瓦卢国家或地区标签；外交部领事服务网全洲目的地名单直接使用图瓦卢。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Taiwan Strait",
+    "lat": 24.0,
+    "lon": 119.0,
+    "previous": "台湾海峡",
+    "zh": "台湾海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：中国福建与台湾岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Taiwan",
+    "lat": 24.0,
+    "lon": 121.0,
+    "previous": "台湾",
+    "zh": "台湾",
+    "source": "https://www.mfa.gov.cn/web/gjhdq_676201/gj_676203/yz_676205/1206_676788/fyrygth_676796/200802/t20080219_7989471.shtml",
+    "note": "原点24N、121E在台湾岛。外交部官方文中直接使用台湾；仅保留地名台湾，不因原库Synoptic层与国家同列而增添国家性质称谓。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "East China Sea",
+    "lat": 29.0,
+    "lon": 125.0,
+    "previous": "东海",
+    "zh": "东海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：中国长江口以东海域。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Tanzania",
+    "lat": -6.0,
+    "lon": 35.0,
+    "previous": "坦桑尼亚",
+    "zh": "坦桑尼亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为坦桑尼亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用坦桑尼亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Ukraine",
+    "lat": 49.0,
+    "lon": 32.0,
+    "previous": "乌克兰",
+    "zh": "乌克兰",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为乌克兰国家或地区标签；外交部领事服务网全洲目的地名单直接使用乌克兰。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Uganda",
+    "lat": 1.25,
+    "lon": 32.5,
+    "previous": "乌干达",
+    "zh": "乌干达",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为乌干达国家或地区标签；外交部领事服务网全洲目的地名单直接使用乌干达。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Lake Michigan",
+    "lat": 44.00777816772461,
+    "lon": -86.7569808959961,
+    "previous": "密歇根湖",
+    "zh": "密歇根湖",
+    "source": "https://noda.ac.cn/geoarc/2012/lbsymjfbzk.pdf",
+    "note": "坐标核对：北美五大湖密歇根湖；本湖完全位于美国境内。国家对地观测科学数据中心湖泊监测报告使用密歇根湖；原点44.0078N、86.7570W位于该湖，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "United States",
+    "lat": 39.7599983215332,
+    "lon": -98.5,
+    "previous": "美国",
+    "zh": "美国",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为美国国家或地区标签；外交部领事服务网全洲目的地名单直接使用美国。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Uruguay",
+    "lat": -33.0,
+    "lon": -56.0,
+    "previous": "乌拉圭",
+    "zh": "乌拉圭",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为乌拉圭国家或地区标签；外交部领事服务网全洲目的地名单直接使用乌拉圭。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Uzbekistan",
+    "lat": 41.66667175292969,
+    "lon": 63.83332824707031,
+    "previous": "乌兹别克斯坦",
+    "zh": "乌兹别克斯坦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为乌兹别克斯坦国家或地区标签；外交部领事服务网全洲目的地名单直接使用乌兹别克斯坦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Vatican City",
+    "lat": 41.90224838256836,
+    "lon": 12.453300476074219,
+    "previous": "梵蒂冈",
+    "zh": "梵蒂冈",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为梵蒂冈国家或地区标签；外交部领事服务网全洲目的地名单直接使用梵蒂冈。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Saint Vincent ne-Grenadines",
+    "lat": 13.083330154418945,
+    "lon": -61.20000076293945,
+    "previous": "圣文森特和格林纳丁斯",
+    "zh": "圣文森特和格林纳丁斯",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为圣文森特和格林纳丁斯国家或地区标签；外交部领事服务网全洲目的地名单直接使用圣文森特和格林纳丁斯。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。 原英文中的ne/kanye ne是连接词混杂或旧数据写法，按实体规范译名处理，不能音译连接词。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Venezuela",
+    "lat": 8.0,
+    "lon": -66.0,
+    "previous": "委内瑞拉",
+    "zh": "委内瑞拉",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为委内瑞拉国家或地区标签；外交部领事服务网全洲目的地名单直接使用委内瑞拉。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Vietnam",
+    "lat": 16.166669845581055,
+    "lon": 107.83332824707031,
+    "previous": "越南",
+    "zh": "越南",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为越南国家或地区标签；外交部领事服务网全洲目的地名单直接使用越南。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "South China Sea",
+    "lat": 15.0,
+    "lon": 115.0,
+    "previous": "南海",
+    "zh": "南海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：中国大陆以南、东南亚之间海域。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Vanuatu",
+    "lat": -16.0,
+    "lon": 167.0,
+    "previous": "瓦努阿图",
+    "zh": "瓦努阿图",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为瓦努阿图国家或地区标签；外交部领事服务网全洲目的地名单直接使用瓦努阿图。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Samoa",
+    "lat": -13.800000190734863,
+    "lon": -172.13333129882812,
+    "previous": "萨摩亚",
+    "zh": "萨摩亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为萨摩亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用萨摩亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Republic of Kosovo",
+    "lat": 42.58332824707031,
+    "lon": 20.916669845581055,
+    "previous": "科索沃",
+    "zh": "科索沃",
+    "source": "https://www.mfa.gov.cn/web/wjdt_674879/zcjd/202409/t20240916_11491613.shtml",
+    "note": "原点在科索沃地区；外交部官方文使用科索沃。保留地名本体，不把原英文Republic of Kosovo的争议政治全称直接照译，也不改变游戏坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Yemen",
+    "lat": 15.5,
+    "lon": 47.5,
+    "previous": "也门",
+    "zh": "也门",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为也门国家或地区标签；外交部领事服务网全洲目的地名单直接使用也门。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Republic of South Africa",
+    "lat": -29.0,
+    "lon": 24.0,
+    "previous": "南非",
+    "zh": "南非",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为南非国家或地区标签；外交部领事服务网全洲目的地名单直接使用南非。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Zambia",
+    "lat": -14.333330154418945,
+    "lon": 28.5,
+    "previous": "赞比亚",
+    "zh": "赞比亚",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为赞比亚国家或地区标签；外交部领事服务网全洲目的地名单直接使用赞比亚。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Zimbabwe",
+    "lat": -19.0,
+    "lon": 29.75,
+    "previous": "津巴布韦",
+    "zh": "津巴布韦",
+    "source": "https://cs.mfa.gov.cn/ljmdd/yz_645708/",
+    "note": "原点核对为津巴布韦国家或地区标签；外交部领事服务网全洲目的地名单直接使用津巴布韦。保留已有通行中文名称，不依据英文拼写重新音译；名单作为中文名称证据，不冒称提供此WWP锚点坐标。",
+    "source_type": "government_chinese"
+  },
+  {
+    "name": "Gulf of Aden",
+    "lat": 12.0,
+    "lon": 48.0,
+    "previous": "亚丁湾",
+    "zh": "亚丁湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：也门与非洲之角之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Suez",
+    "lat": 28.166669845581055,
+    "lon": 33.45000076293945,
+    "previous": "苏伊士湾",
+    "zh": "苏伊士湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：西奈半岛以西、红海西北端。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Persian Gulf",
+    "lat": 27.0,
+    "lon": 51.0,
+    "previous": "波斯湾",
+    "zh": "波斯湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：阿拉伯半岛与伊朗之间；不将原库Persian Gulf替换为另一政治称谓。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Aqaba",
+    "lat": 29.0,
+    "lon": 34.66667175292969,
+    "previous": "亚喀巴湾",
+    "zh": "亚喀巴湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：西奈半岛以东、红海东北端。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Aegean Sea",
+    "lat": 39.0,
+    "lon": 25.0,
+    "previous": "爱琴海",
+    "zh": "爱琴海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：希腊与土耳其之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Red Sea",
+    "lat": 20.267349243164062,
+    "lon": 38.534549713134766,
+    "previous": "红海",
+    "zh": "红海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：非洲东北部与阿拉伯半岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Riga",
+    "lat": 57.5,
+    "lon": 23.583330154418945,
+    "previous": "里加湾",
+    "zh": "里加湾",
+    "source": "https://www.ccpit.org/image/1473840398441926657/ad3b17e2facc448883656e300c71cfe8.pdf",
+    "note": "坐标核对：拉脱维亚与爱沙尼亚之间，波罗的海东部海湾。中国贸促会拉脱维亚营商环境指南说明里加湾深入拉脱维亚内陆；原点在该湾，保留里加湾，避免沿用联合国图表的里加海异写。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Finland",
+    "lat": 60.0,
+    "lon": 27.0,
+    "previous": "芬兰湾",
+    "zh": "芬兰湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：芬兰与爱沙尼亚之间、圣彼得堡以西。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Sea of Marmara",
+    "lat": 40.66667175292969,
+    "lon": 28.25,
+    "previous": "马尔马拉海",
+    "zh": "马尔马拉海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：土耳其西北部、黑海与爱琴海之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Caspian Sea",
+    "lat": 42.0,
+    "lon": 50.0,
+    "previous": "里海",
+    "zh": "里海",
+    "source": "https://www.mfa.gov.cn/zyxw/202407/t20240703_11446438.shtml",
+    "note": "坐标核对：欧亚大陆中部的内陆咸水湖。外交部中欧跨里海直达快运开通仪式一手报道使用里海，并说明沿岸运输；原点在该内陆水体，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Bothnia",
+    "lat": 63.0,
+    "lon": 20.0,
+    "previous": "波的尼亚湾",
+    "zh": "波的尼亚湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：瑞典与芬兰之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Black Sea",
+    "lat": 43.0,
+    "lon": 35.0,
+    "previous": "黑海",
+    "zh": "黑海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：土耳其以北、乌克兰以南。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Barents Sea",
+    "lat": 74.0,
+    "lon": 36.0,
+    "previous": "巴伦支海",
+    "zh": "巴伦支海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：俄罗斯与挪威以北。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Sea of Azov",
+    "lat": 46.0,
+    "lon": 36.0,
+    "previous": "亚速海",
+    "zh": "亚速海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：黑海东北部、刻赤海峡以北。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Arabian Sea",
+    "lat": 12.211179733276367,
+    "lon": 64.3359375,
+    "previous": "阿拉伯海",
+    "zh": "阿拉伯海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：阿拉伯半岛与印度次大陆之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Mannar",
+    "lat": 8.5,
+    "lon": 79.0,
+    "previous": "马纳尔湾",
+    "zh": "马纳尔湾",
+    "source": "https://www.cbd.int/doc/meetings/sbstta/sbstta-18/official/sbstta-18-04-add1-zh.pdf",
+    "note": "坐标核对：印度南端与斯里兰卡西岸之间。联合国生物多样性公约秘书处中文附件第14页列斯里兰卡一侧的马纳尔湾并说明沿岸位置，原点匹配，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Bay of Bengal",
+    "lat": 13.539199829101562,
+    "lon": 87.6708984375,
+    "previous": "孟加拉湾",
+    "zh": "孟加拉湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印度次大陆以东、缅甸以西。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Kara Sea",
+    "lat": 76.0,
+    "lon": 80.0,
+    "previous": "喀拉海",
+    "zh": "喀拉海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：新地岛以东、俄罗斯西伯利亚以北。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Indian Ocean",
+    "lat": -10.0,
+    "lon": 70.0,
+    "previous": "印度洋",
+    "zh": "印度洋",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：赤道以南的印度洋标签点。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Yellow Sea",
+    "lat": 36.0,
+    "lon": 124.0,
+    "previous": "黄海",
+    "zh": "黄海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：中国山东半岛与朝鲜半岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Tonkin",
+    "lat": 20.0,
+    "lon": 108.0,
+    "previous": "北部湾",
+    "zh": "北部湾",
+    "source": "https://www.nea.gov.cn/2017-06/30/c_136406297.htm",
+    "note": "坐标核对：中国广西与越南东北岸之间。原环境保护部中国近岸海域环境质量公报答记者问使用北部湾；原点在中国广西与越南之间，保留中国通行北部湾，不逐词音译Tonkin。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Thailand",
+    "lat": 10.0,
+    "lon": 102.0,
+    "previous": "泰国湾",
+    "zh": "泰国湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：泰国南部与柬埔寨、越南之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Sulu Sea",
+    "lat": 9.0,
+    "lon": 120.0,
+    "previous": "苏禄海",
+    "zh": "苏禄海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：菲律宾西南部苏禄海。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Savu Sea",
+    "lat": -9.666669845581055,
+    "lon": 122.0,
+    "previous": "萨武海",
+    "zh": "萨武海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印尼小巽他群岛南侧萨武海。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Philippine Sea",
+    "lat": 20.0,
+    "lon": 135.0,
+    "previous": "菲律宾海",
+    "zh": "菲律宾海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：菲律宾群岛以东的西太平洋边缘海。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Strait of Malacca",
+    "lat": 5.021860122680664,
+    "lon": 99.16465759277344,
+    "previous": "马六甲海峡",
+    "zh": "马六甲海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：马来半岛与苏门答腊岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Java Sea",
+    "lat": -5.0,
+    "lon": 110.0,
+    "previous": "爪哇海",
+    "zh": "爪哇海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印尼爪哇岛以北、加里曼丹岛以南。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Halmahera Sea",
+    "lat": -1.0,
+    "lon": 129.0,
+    "previous": "哈马黑拉海",
+    "zh": "哈马黑拉海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印尼哈马黑拉岛以南、新几内亚西端以西。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Teluk Tomini",
+    "lat": -0.5975000262260437,
+    "lon": 121.09471893310547,
+    "previous": "托米尼湾",
+    "zh": "托米尼湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：苏拉威西岛米纳哈萨半岛与东半岛之间；Teluk为印尼语湾。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Flores Sea",
+    "lat": -8.0,
+    "lon": 121.0,
+    "previous": "弗洛勒斯海",
+    "zh": "弗洛勒斯海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印尼弗洛勒斯岛北侧海域；原标签紧邻该岛北岸。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Ceram Sea",
+    "lat": -2.5,
+    "lon": 128.0,
+    "previous": "斯兰海",
+    "zh": "塞兰海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印尼塞兰岛附近海域；Ceram是Seram旧式拼写。联合国《第二次世界海洋评估》第一卷第121页列塞兰海；以有直接一手中文用例的塞兰海替换原斯兰海，保留Ceram所指水体。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Celebes Sea",
+    "lat": 3.0,
+    "lon": 122.0,
+    "previous": "苏拉威西海",
+    "zh": "苏拉威西海",
+    "source": "https://www.igg.cas.cn/hejl/jldt/202003/t20200316_5516022.html",
+    "note": "坐标核对：苏拉威西岛以北、棉兰老岛以南；Celebes为苏拉威西旧外名。中科院地质与地球物理研究所苏拉威西海科考项目一手报道明确苏拉威西海也称Celebes海；保留现行苏拉威西海，不把旧英文机械音译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Bali Sea",
+    "lat": -7.75,
+    "lon": 115.5,
+    "previous": "巴厘海",
+    "zh": "巴厘海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印尼巴厘岛以北。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Arafura Sea",
+    "lat": -9.0,
+    "lon": 133.0,
+    "previous": "阿拉弗拉海",
+    "zh": "阿拉弗拉海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：澳大利亚北岸与新几内亚岛南岸之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Inland Sea",
+    "lat": 34.33332824707031,
+    "lon": 133.5,
+    "previous": "濑户内海",
+    "zh": "濑户内海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：日本本州、四国、九州之间；Inland Sea依坐标特指濑户内海。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Singapore Strait",
+    "lat": 1.25,
+    "lon": 104.0,
+    "previous": "新加坡海峡",
+    "zh": "新加坡海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：新加坡岛以南、廖内群岛以北。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Laptev Sea",
+    "lat": 76.0,
+    "lon": 126.0,
+    "previous": "拉普捷夫海",
+    "zh": "拉普捷夫海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：俄罗斯西伯利亚北岸的拉普捷夫海。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Sea of Japan",
+    "lat": 43.5,
+    "lon": 135.75,
+    "previous": "日本海",
+    "zh": "日本海",
+    "source": "https://www.mfa.gov.cn/web/gjhdq_676201/gj_676203/yz_676205/1206_676836/",
+    "note": "坐标核对：日本列岛与俄罗斯远东、朝鲜半岛之间。外交部日本国家概况明确列日本海，原点位于日本与俄罗斯远东之间，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Carpentaria",
+    "lat": -14.0,
+    "lon": 139.0,
+    "previous": "卡奔塔利亚湾",
+    "zh": "卡奔塔利亚湾",
+    "source": "https://www.msa.gov.cn/public/documents/document/mdiw/mzu1/~edisp/20240816020355886.pdf",
+    "note": "坐标核对：澳大利亚北部约克角半岛西侧。中国海事局《渔业船舶法定检验规则(远洋渔船2015)》载重线篇使用卡奔塔利亚湾并以南纬11°以南定义相关区域；原点14S、139E相符，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Timor Sea",
+    "lat": -10.5,
+    "lon": 126.0,
+    "previous": "帝汶海",
+    "zh": "帝汶海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：帝汶岛以南、澳大利亚以北。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Great Australian Bight",
+    "lat": -39.0,
+    "lon": 130.0,
+    "previous": "大澳大利亚湾",
+    "zh": "大澳大利亚湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：澳大利亚南岸外大澳大利亚湾标签点；原纬度39S较海湾主体偏南。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Solomon Sea",
+    "lat": -8.863360404968262,
+    "lon": 154.51171875,
+    "previous": "所罗门海",
+    "zh": "所罗门海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：新几内亚岛东南与所罗门群岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Bismarck Sea",
+    "lat": -4.0,
+    "lon": 148.0,
+    "previous": "俾斯麦海",
+    "zh": "俾斯麦海",
+    "source": "https://documents.un.org/access.nsf/get?DS=ISBA%2F16%2FA%2F2&Lang=C&Open=",
+    "note": "坐标核对：新几内亚岛东北、俾斯麦群岛之间。国际海底管理局ISBA/16/A/2第78段以俾斯麦海指巴布亚新几内亚北部矿区海域；保留常用俾斯麦海，不追随另一报告图中的俾斯曼异写。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Sea of Okhotsk",
+    "lat": 55.0,
+    "lon": 150.0,
+    "previous": "鄂霍次克海",
+    "zh": "鄂霍次克海",
+    "source": "https://www.mfa.gov.cn/gjhdq_676201/gj_676203/oz_678770/1206_679110/xgxw_679116/201504/t20150403_9336591.shtml",
+    "note": "坐标核对：俄罗斯远东、堪察加半岛以西。外交部俄罗斯渔船沉没慰问电明确使用鄂霍次克海；原点位于俄罗斯远东该海盆，保留次字写法。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "East Siberian Sea",
+    "lat": 74.0,
+    "lon": 166.0,
+    "previous": "东西伯利亚海",
+    "zh": "东西伯利亚海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：俄罗斯东西伯利亚北岸。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Coral Sea",
+    "lat": -20.0,
+    "lon": 155.0,
+    "previous": "珊瑚海",
+    "zh": "珊瑚海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：澳大利亚东北部、新喀里多尼亚以西。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Guinea",
+    "lat": 2.0,
+    "lon": 2.5,
+    "previous": "几内亚湾",
+    "zh": "几内亚湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：西非南岸的几内亚湾。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Strait of Gibraltar",
+    "lat": 35.95000076293945,
+    "lon": -5.599999904632568,
+    "previous": "直布罗陀海峡",
+    "zh": "直布罗陀海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：伊比利亚半岛与摩洛哥之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Balearic Sea",
+    "lat": 40.0,
+    "lon": 2.0,
+    "previous": "巴利阿里海",
+    "zh": "巴利阿里海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：伊比利亚半岛以东、巴利阿里群岛附近。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Ionian Sea",
+    "lat": 39.0,
+    "lon": 19.0,
+    "previous": "爱奥尼亚海",
+    "zh": "爱奥尼亚海",
+    "source": "https://it.china-embassy.gov.cn/zjydl/201510/t20151014_3200800.htm",
+    "note": "坐标核对：希腊西岸与意大利南部之间。驻意大利使馆国家概况列爱奥尼亚海、第勒尼安海、亚得里亚海；按意大利与希腊间原点区分，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Tyrrhenian Sea",
+    "lat": 40.0,
+    "lon": 12.0,
+    "previous": "第勒尼安海",
+    "zh": "第勒尼安海",
+    "source": "https://it.china-embassy.gov.cn/zjydl/201510/t20151014_3200800.htm",
+    "note": "坐标核对：意大利半岛西岸与撒丁岛之间。驻意大利使馆国家概况列第勒尼安海；原点在意大利半岛西侧，保留第勒尼安海，不误用另一图表的蒂勒尼安湾。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Strait of Sicily",
+    "lat": 37.33332824707031,
+    "lon": 11.333330154418945,
+    "previous": "西西里海峡",
+    "zh": "西西里海峡",
+    "source": "https://digitallibrary.un.org/record/4039096/files/UNEP_CBD_COP_12_29-ZH.pdf",
+    "note": "坐标核对：西西里岛与突尼斯之间。联合国生物多样性公约缔约方大会中文附件列西西里海峡，并说明位于西西里岛与突尼斯之间；原点匹配，现译保留。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Baltic Sea",
+    "lat": 56.0,
+    "lon": 18.0,
+    "previous": "波罗的海",
+    "zh": "波罗的海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：北欧与欧洲大陆之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Skagerrak",
+    "lat": 57.75,
+    "lon": 9.0,
+    "previous": "斯卡格拉克海峡",
+    "zh": "斯卡格拉克海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：丹麦日德兰半岛北端与挪威、瑞典之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Norwegian Sea",
+    "lat": 70.0,
+    "lon": 5.0,
+    "previous": "挪威海",
+    "zh": "挪威海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：挪威西北岸外。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "North Sea",
+    "lat": 55.33332824707031,
+    "lon": 3.0,
+    "previous": "北海",
+    "zh": "北海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：英国东岸与挪威、丹麦、荷兰之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Greenland Sea",
+    "lat": 75.0,
+    "lon": -10.0,
+    "previous": "格陵兰海",
+    "zh": "格陵兰海",
+    "source": "https://www.cas.cn/syky/202512/t20251212_5092219.shtml",
+    "note": "坐标核对：格陵兰岛以东、斯瓦尔巴群岛以西。中科院海洋研究所格陵兰海冰边缘区研究使用格陵兰海；原点75N、10W位于格陵兰东侧，保留现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Celtic Sea",
+    "lat": 50.0,
+    "lon": -9.0,
+    "previous": "凯尔特海",
+    "zh": "凯尔特海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：爱尔兰以南、英国西南以西。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Bay of Biscay",
+    "lat": 44.0,
+    "lon": -4.0,
+    "previous": "比斯开湾",
+    "zh": "比斯开湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：法国西岸与西班牙北岸之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Arctic Ocean",
+    "lat": 85.0,
+    "lon": 0.0,
+    "previous": "北冰洋",
+    "zh": "北冰洋",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：北极附近大洋标签点。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Ligurian Sea",
+    "lat": 43.5,
+    "lon": 9.0,
+    "previous": "利古里亚海",
+    "zh": "利古里亚海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：法国东南岸、意大利西北岸与科西嘉岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Adriatic Sea",
+    "lat": 43.0,
+    "lon": 16.0,
+    "previous": "亚得里亚海",
+    "zh": "亚得里亚海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：意大利半岛与巴尔干半岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "South Atlantic Ocean",
+    "lat": -45.0,
+    "lon": -15.0,
+    "previous": "南大西洋",
+    "zh": "南大西洋",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：赤道以南大西洋。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "North Atlantic Ocean",
+    "lat": 40.0,
+    "lon": -40.0,
+    "previous": "北大西洋",
+    "zh": "北大西洋",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：赤道以北大西洋。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Labrador Sea",
+    "lat": 57.0,
+    "lon": -55.0,
+    "previous": "拉布拉多海",
+    "zh": "拉布拉多海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：加拿大拉布拉多半岛与格陵兰岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Davis Strait",
+    "lat": 64.0,
+    "lon": -57.0,
+    "previous": "戴维斯海峡",
+    "zh": "戴维斯海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：巴芬岛与格陵兰岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Rio de la Plata",
+    "lat": -35.0,
+    "lon": -57.0,
+    "previous": "拉普拉塔河口",
+    "zh": "拉普拉塔河口",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：阿根廷与乌拉圭之间、拉普拉塔河宽阔河口。联合国海洋评估第121页列拉普拉塔河；原点在该河宽阔河口，保留拉普拉塔河口以明确原库海域标签含义，不改成内陆城市。",
+    "source_type": "editorial"
+  },
+  {
+    "name": "Gulf of Saint Lawrence",
+    "lat": 47.0,
+    "lon": -62.0,
+    "previous": "圣劳伦斯湾",
+    "zh": "圣劳伦斯湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：加拿大圣劳伦斯河外海湾。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Northwest Passage",
+    "lat": 75.0,
+    "lon": -100.0,
+    "previous": "西北航道",
+    "zh": "西北航道",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：加拿大北极群岛间西北航道，非东北航道。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Baffin Bay",
+    "lat": 74.0,
+    "lon": -68.0,
+    "previous": "巴芬湾",
+    "zh": "巴芬湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：加拿大巴芬岛与格陵兰岛西北岸之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of California",
+    "lat": 26.775039672851562,
+    "lon": -110.56640625,
+    "previous": "加利福尼亚湾",
+    "zh": "加利福尼亚湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：墨西哥下加利福尼亚半岛与大陆之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Beaufort Sea",
+    "lat": 70.0,
+    "lon": -135.0,
+    "previous": "波弗特海",
+    "zh": "波弗特海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：加拿大西北岸与阿拉斯加北岸外。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "South Pacific Ocean",
+    "lat": -45.0,
+    "lon": -130.0,
+    "previous": "南太平洋",
+    "zh": "南太平洋",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：赤道以南太平洋。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "North Pacific Ocean",
+    "lat": 30.0,
+    "lon": -170.0,
+    "previous": "北太平洋",
+    "zh": "北太平洋",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：赤道以北太平洋。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Chukchi Sea",
+    "lat": 69.0,
+    "lon": -174.0,
+    "previous": "楚科奇海",
+    "zh": "楚科奇海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：白令海峡以北、楚科奇半岛与阿拉斯加之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Bering Sea",
+    "lat": 60.0,
+    "lon": -175.0,
+    "previous": "白令海",
+    "zh": "白令海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：白令海峡以南。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Gulf of Alaska",
+    "lat": 59.0,
+    "lon": -145.0,
+    "previous": "阿拉斯加湾",
+    "zh": "阿拉斯加湾",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：北太平洋阿拉斯加南岸。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Irish Sea",
+    "lat": 53.66667175292969,
+    "lon": -5.0,
+    "previous": "爱尔兰海",
+    "zh": "爱尔兰海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：爱尔兰岛与大不列颠岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Hudson Strait",
+    "lat": 62.0,
+    "lon": -70.0,
+    "previous": "哈德逊海峡",
+    "zh": "哈德逊海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：加拿大巴芬岛与拉布拉多半岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Bristol Channel",
+    "lat": 51.33332824707031,
+    "lon": -4.5,
+    "previous": "布里斯托尔湾",
+    "zh": "布里斯托尔海峡",
+    "source": "https://files.sciengine.com/gridfs/1707245742109753344/edit_N072022-0305%E9%99%84%E5%BD%95.pdf",
+    "note": "坐标核对：英国威尔士南岸与英格兰西南岸之间，非阿拉斯加Bristol Bay。研究论文附图S4直接给出布里斯托尔海峡(Bristol Channel)中英对照。原点51.333N、4.5W在英国威尔士与英格兰间，原译湾混淆通名，应改海峡；不是阿拉斯加Bristol Bay。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Banda Sea",
+    "lat": -3.453890085220337,
+    "lon": 122.72471618652344,
+    "previous": "班达海",
+    "zh": "班达海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：印尼苏拉威西东南岸外的班达海西缘标签点；不能因海盆中心在更东便替换实体。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Alboran Sea",
+    "lat": 35.66667175292969,
+    "lon": -3.0,
+    "previous": "阿尔沃兰海",
+    "zh": "阿尔沃兰海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：西地中海直布罗陀海峡以东。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Western Mediterranean",
+    "lat": 40.24599075317383,
+    "lon": 5.976560115814209,
+    "previous": "西地中海",
+    "zh": "西地中海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：地中海西部盆地。联合国海洋评估第121页分列地中海西部盆地与东部盆地；游戏标签采用常用简写西地中海，不把方向词误作专名音译。",
+    "source_type": "editorial"
+  },
+  {
+    "name": "Eastern Mediterranean",
+    "lat": 34.885929107666016,
+    "lon": 22.368160247802734,
+    "previous": "东地中海",
+    "zh": "东地中海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：地中海东部盆地。联合国海洋评估第121页分列地中海西部盆地与东部盆地；游戏标签采用常用简写东地中海，不把方向词误作专名音译。",
+    "source_type": "editorial"
+  },
+  {
+    "name": "Mozambique Channel",
+    "lat": -20.0,
+    "lon": 43.0,
+    "previous": "莫桑比克海峡",
+    "zh": "莫桑比克海峡",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：非洲大陆与马达加斯加岛之间。联合国《第二次世界海洋评估》中文第一卷第6B章第121页海域图表提供该水体中文用名；保留通行现译。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Inner Seas off the West Coast of Scotland",
+    "lat": 56.71657180786133,
+    "lon": -10.458979606628418,
+    "previous": "苏格兰西海岸内海",
+    "zh": "苏格兰西海岸内海",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：IHO苏格兰西海岸附近内海；原点10.459W在该区以西，标签锚点疑偏移。联合国《第二次世界海洋评估》第一卷第121页海域图表分别列苏格兰西海岸附近内海、阿拉斯加东南部和不列颠哥伦比亚水域。保留现译地理含义；该类区域名采用描述性译法，不机械逐词音译。",
+    "source_type": "editorial"
+  },
+  {
+    "name": "Coastal Waters Of Southeast Alaska And British Columbia",
+    "lat": 52.82931900024414,
+    "lon": -130.9130859375,
+    "previous": "阿拉斯加东南与不列颠哥伦比亚沿海水域",
+    "zh": "阿拉斯加东南与不列颠哥伦比亚沿海水域",
+    "source": "https://digitallibrary.un.org/record/3978757/files/2011859CWOAIIVolIWEB.pdf",
+    "note": "坐标核对：北美太平洋岸阿拉斯加东南部与加拿大不列颠哥伦比亚沿海水域。联合国《第二次世界海洋评估》第一卷第121页海域图表分别列苏格兰西海岸附近内海、阿拉斯加东南部和不列颠哥伦比亚水域。保留现译地理含义；该类区域名采用描述性译法，不机械逐词音译。",
+    "source_type": "editorial"
+  },
+  {
+    "name": "Natuna Sea",
+    "lat": 5.222249984741211,
+    "lon": 108.23729705810547,
+    "previous": "纳土纳海",
+    "zh": "纳土纳海",
+    "source": "https://journals.openedition.org/archipel/pdf/3927",
+    "note": "坐标核对：原英文Natuna Sea；原点5.222N在SeaVoX所列北界4.7993N以北，须保留实体与坐标疑点。2024年Archipel原始研究第139页直接给Natuna hai 纳土纳海与Natuna Sea对照，系学术用名证据，不冒称中国官方中文审定。SeaVoX(MRGID24138)北界4.7993N，而原点5.22225N偏北；保留原英文实体及坐标，不擅改为2017年北纳土纳海。",
+    "source_type": "primary_chinese"
+  },
+  {
+    "name": "Aru Sea",
+    "lat": -6.042240142822266,
+    "lon": 135.230712890625,
+    "previous": "阿鲁海",
+    "zh": "阿鲁海",
+    "source": "https://www.ncei.noaa.gov/archive/archive-management-system/OAS/bin/prd/jquery/seaname/details/37",
+    "note": "SeaVoX/MarineRegions MRGID4348的Aru Sea范围覆盖原点，NOAA海域资料单列Aru Sea，与Arafura Sea区别。中国地震局科技快报使用阿鲁海槽，官方地震通报使用阿鲁群岛，支持专名阿鲁；海为Sea通名整理，故保留阿鲁海。此为有实体与中文专名依据的编辑性译名复核，不冒称找到政府完整海名审定。中文专名来源：https://file.ahdzj.gov.cn/59c076e97f8b9ad83dc97f1e/202411/2024110410080047_pZXSqUzA.pdf；英文定位：https://marineregions.org/gazetteer.php?id=4348&p=details。",
+    "source_type": "editorial"
+  }
+]

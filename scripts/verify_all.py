@@ -11,7 +11,7 @@ Gates
   3. engine parse  the engine's own scanner can load every entry
   4. scenario meta 100% of <ScenTitle> / <ScenSetting> translated
   5. briefings     HTML briefings carry Chinese prose, structure intact
-  6. placenames    Synoptic + Cities .wwp translated or explicitly pending
+  6. placenames    all Synoptic + Cities labels uniquely match approved reviews
   7. db templates  8 DB HTML templates localized
   8. version       VERSION consistent across VERSION / engine / installer
   9. repository    git worktree clean
@@ -135,20 +135,22 @@ def gate_briefings() -> None:
 
 
 def gate_placenames() -> None:
-    ok, msg = run("apply_placenames.py", ["--verify"])
-    detail = msg
-    syn = cite = None
-    for line in detail.splitlines():
-        pass
-    text = subprocess.run(
-        [sys.executable, str(ROOT / "scripts/apply_placenames.py"), "--verify"],
-        capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
-    for line in text.splitlines():
-        if "Synoptic" in line:
-            syn = line.strip()
-        if "Cities" in line:
-            cite = line.strip()
-    record("placenames", ok, f"{syn} ;; {cite}")
+    from placename_translation import PLACENAME_SETS, load_reviewed
+    from verify_placenames import verify_asset, verify_coverage
+    from wwp import load
+
+    scopes = json.loads((DICT / "placenames_reviewed_scopes.json").read_text(encoding="utf-8"))
+    summaries = []
+    errors = []
+    for name, config in PLACENAME_SETS.items():
+        review_dir = DICT / config["review_dir"]
+        result = verify_asset(load(ROOT / "assets/placenames" / f"{name}.wwp"),
+                              load_reviewed(review_dir), expected_count=config["count"],
+                              require_complete=True)
+        result["errors"].extend(verify_coverage(review_dir, scopes[config["scope_key"]]))
+        summaries.append(f"{name} {result['verified_records']}/{config['count']} reviewed")
+        errors.extend(f"{name}: {error}" for error in result["errors"])
+    record("placenames", not errors, "; ".join(summaries + errors[:6]))
 
 
 def gate_db_templates() -> None:
