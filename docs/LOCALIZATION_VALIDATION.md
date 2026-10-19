@@ -20,6 +20,12 @@ DarkTree 首轮 24/25 通过，唯一失败是测试反射了未公开的诊断�
 
 以上是行为回归结果，不是所有机器上的性能保证。没有将此前开发二进制的计时当作本轮候选成绩，也未做本轮真实游戏的新旧性能对照或完整安装包验证。
 
+## 自动审查追加回归
+
+Codex bot 的 [P1 编码兼容意见](https://github.com/mj8724/CMO_CN/pull/2#discussion_r4309995341)经复现成立：`windows-1252` 载荷中的中文用十进制或十六进制数字实体存储，安装器只检查字面汉字，会在 `.orig` 含匹配标题时用标题级回退覆盖完整译文。安装器现在先解码实体再判断是否已有中文，保留原始载荷编码、markup 和备份。
+
+新增 `test_scenario_html.ps1` 编译完整安装器为测试 DLL，仅嵌入合成 HTML ZIP，并反射调用真实 `DeployScenarioHtml` / `LocalizeScenarioBriefings` 方法；不运行安装入口、窗体、注册表操作或游戏。旧代码 33 条断言中 6 条失败；最终 34 条全部通过，覆盖十/十六进制实体译文、原始 cp1252 标点及备份保留、UTF-8 汉字、无匹配标题、纯英文回退、非汉字实体和重复执行。静态导出 14 测试再次通过。这不是完整发行安装器验证，前述缺失发布输入的限制仍然存在。
+
 ## 问题与改后行为
 
 窗口打开、组合框重填或网页导航时，原有周期扫描可能使英文等到下一轮才更新；批量重译又可能反复触发业务事件、布局和绘制。本次改动在生命周期与内容事件处登记增量工作，合并重复请求，并保留周期入口用于无通知变化的对账。
@@ -47,6 +53,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test_ui_scheduli
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test_ui_idle.ps1
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test_wpf_safety.ps1
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test_upstream_compatibility.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test_scenario_html.ps1
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/test_bulk_translation.ps1 -Mode contracts
 python scripts/test_static_html.py
 ```

@@ -1321,7 +1321,8 @@ namespace CMOLocalizerInstaller
                 {
                     if (h.EndsWith(".orig", StringComparison.OrdinalIgnoreCase)) continue;
                     // 已由 zip 全量汉化的文件不得再用标题级替换覆盖（否则会降级成中英混排）
-                    if (HanRegex.IsMatch(File.ReadAllText(h, Encoding.UTF8))) continue;
+                    // 旧编码载荷可能使用数字实体存储汉字，必须先解码再判断。
+                    if (HanRegex.IsMatch(System.Net.WebUtility.HtmlDecode(File.ReadAllText(h, Encoding.UTF8)))) continue;
                     string orig = h + ".orig";
                     if (!File.Exists(orig))
                     {
