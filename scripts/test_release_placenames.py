@@ -24,26 +24,22 @@ class ReleasePlacenameTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         self.dictionary = self.root / "dict"
-        self.scopes = {}
         self.reviews = {}
         metadata = {}
         for name, config in PLACENAME_SETS.items():
             records = [dict(name=f"{name}{i}", previous=f"旧{name}{i}", zh=f"核准{name}{i}",
                             lat=(i // 100) / 10, lon=(i % 100) / 10,
                             source="https://example.com/review") for i in range(config["count"])]
-            review_dir = self.dictionary / config["review_dir"]
-            review_dir.mkdir(parents=True)
+            review_file = self.dictionary / config["review_file"]
             self.reviews[name] = records
-            self.write_json(review_dir / "all.json", records)
-            self.scopes[config["scope_key"]] = {"all.json": config["count"]}
+            self.write_json(review_file, records)
             write_fixture(self.asset(name), [(r["zh"], r["lat"], r["lon"], i)
                                              for i, r in enumerate(records)])
             wire = struct.pack("<i", len(records)) + b"".join(
                 struct.pack("<ffI", r["lat"], r["lon"], i) for i, r in enumerate(records))
             metadata[name] = hashlib.sha256(wire).hexdigest()
-        self.metadata = self.dictionary / "placenames_metadata.json"
+        self.metadata = self.dictionary / "placenames/metadata.json"
         self.write_json(self.metadata, metadata)
-        self.write_scopes()
         self.root_patch = patch.object(verify_all, "ROOT", self.root)
         self.dict_patch = patch.object(verify_all, "DICT", self.dictionary)
         self.root_patch.start()
@@ -52,11 +48,9 @@ class ReleasePlacenameTests(unittest.TestCase):
         self.addCleanup(self.dict_patch.stop)
 
     def write_json(self, path, value):
+        path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(value, ensure_ascii=False) + "\n",
                         encoding="utf-8", newline="\n")
-
-    def write_scopes(self):
-        self.write_json(self.dictionary / "placenames_reviewed_scopes.json", self.scopes)
 
     def asset(self, name):
         return self.root / "assets/placenames" / f"{name}.wwp"
@@ -74,8 +68,7 @@ class ReleasePlacenameTests(unittest.TestCase):
         script = Path(__file__).with_name("verify_placenames.py")
         return subprocess.run([sys.executable, "-X", "utf8", "-B", str(script),
                                "--set", name, "--asset", str(self.asset(name)),
-                               "--review-dir", str(self.dictionary / config["review_dir"]),
-                               "--scopes", str(self.dictionary / "placenames_reviewed_scopes.json"),
+                               "--review-file", str(self.dictionary / config["review_file"]),
                                "--metadata-baseline", str(self.metadata)],
                               capture_output=True, text=True, encoding="utf-8")
 
@@ -106,19 +99,24 @@ class ReleasePlacenameTests(unittest.TestCase):
     def test_removed_review_cannot_pass_even_when_asset_is_all_chinese(self):
         for name, config in PLACENAME_SETS.items():
             with self.subTest(name=name):
-                path = self.dictionary / config["review_dir"] / "all.json"
+                path = self.dictionary / config["review_file"]
                 self.write_json(path, self.reviews[name][1:])
                 ok, detail = self.check_gate()
                 self.assertFalse(ok, detail)
                 self.assertIn("unreviewed", detail)
                 self.write_json(path, self.reviews[name])
 
-    def test_scope_counts_are_checked_even_with_complete_review_coverage(self):
-        self.scopes["synoptic_files"]["all.json"] = 322
-        self.write_scopes()
-        ok, detail = self.check_gate()
-        self.assertFalse(ok, detail)
-        self.assertIn("expected 322 reviewed records, found 321", detail)
+    def test_missing_review_file_fails_the_release_gates(self):
+        for name, config in PLACENAME_SETS.items():
+            with self.subTest(name=name):
+                path = self.dictionary / config["review_file"]
+                path.unlink()
+                with self.assertRaises(FileNotFoundError):
+                    self.check_gate()
+                result = self.check_cli(name)
+                self.assertNotEqual(0, result.returncode)
+                self.assertIn("FileNotFoundError", result.stderr)
+                self.write_json(path, self.reviews[name])
 
     def test_changed_flags_fail_the_release_gate(self):
         for name in PLACENAME_SETS:

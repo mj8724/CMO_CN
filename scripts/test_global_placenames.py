@@ -21,29 +21,26 @@ class GlobalPlacenameTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(prefix="global-placenames-")
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name)
-        self.reviews = self.base / "reviewed"
-        self.reviews.mkdir()
+        self.review_file = self.base / "reviewed/synoptic.json"
         self.records = [dict(name="Shared" if i < 2 else f"English{i}",
                              previous=f"旧译{i}", zh=f"核准{i}",
                              lat=i / 10, lon=80 + i / 10,
                              source="https://example.com/review") for i in range(321)]
         self.dictionary = self.base / "dictionary.json"
         self.write_json(self.dictionary, {})
-        self.scopes = self.base / "scopes.json"
         self.write_reviews(self.records)
-        self.metadata = self.base / "metadata.json"
+        self.metadata = self.base / "dict/placenames/metadata.json"
         wire = struct.pack("<i", len(self.records)) + b"".join(
             struct.pack("<ffI", r["lat"], r["lon"], i) for i, r in enumerate(self.records))
         self.write_json(self.metadata, {"Synoptic": hashlib.sha256(wire).hexdigest()})
 
     def write_json(self, path, value):
+        path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(value, ensure_ascii=False) + "\n",
                         encoding="utf-8", newline="\n")
 
     def write_reviews(self, records):
-        self.write_json(self.reviews / "global.json", records)
-        self.write_json(self.scopes, {"files": {"other.json": 1},
-                                     "synoptic_files": {"global.json": len(records)}})
+        self.write_json(self.review_file, records)
 
     def run_script(self, script, *args):
         return subprocess.run([sys.executable, "-X", "utf8", "-B",
@@ -59,13 +56,13 @@ class GlobalPlacenameTests(unittest.TestCase):
 
     def gate(self, asset, *extra):
         return self.run_script("verify_placenames.py", "--set", "Synoptic",
-                               "--asset", asset, "--review-dir", self.reviews,
-                               "--scopes", self.scopes, "--metadata-baseline", self.metadata, *extra)
+                               "--asset", asset, "--review-file", self.review_file,
+                               "--metadata-baseline", self.metadata, *extra)
 
     def build(self, source, output):
         return self.run_script("build_cities_placenames.py", "--set", "Synoptic",
                                "--source", source, "--output", output,
-                               "--review-dir", self.reviews)
+                               "--review-file", self.review_file)
 
     def test_synoptic_complete_generation_accepts_all_aliases_and_is_idempotent(self):
         canonical = None
@@ -104,7 +101,7 @@ class GlobalPlacenameTests(unittest.TestCase):
         original = write_fixture(source, [("Tokyo", 10.0, 20.0, 7)])
         result = self.run_script("build_cities_placenames.py", "--allow-partial",
                                  "--source", source, "--output", output,
-                                 "--review-dir", self.reviews)
+                                 "--review-file", self.review_file)
         self.success(result)
         self.assertEqual(original, output.read_bytes())
 
@@ -115,7 +112,7 @@ class GlobalPlacenameTests(unittest.TestCase):
                 write_fixture(source, [("旧译0", 0.0, 80.0, 7)])
                 result = self.run_script("build_cities_placenames.py", "--set", kind,
                                          "--source", source, "--output", output,
-                                         "--review-dir", self.reviews)
+                                         "--review-file", self.review_file)
                 self.assertNotEqual(0, result.returncode)
                 self.assertIn(f"placename count: expected {count}, found 1", result.stderr)
                 self.assertFalse(output.exists())
@@ -127,7 +124,7 @@ class GlobalPlacenameTests(unittest.TestCase):
         self.write_json(self.dictionary, {"English320": "核准320"})
         result = self.run_script("build_cities_placenames.py", "--set", "Synoptic",
                                  "--require-complete", "--source", source, "--output", output,
-                                 "--review-dir", self.reviews, "--dictionary", self.dictionary)
+                                 "--review-file", self.review_file, "--dictionary", self.dictionary)
         self.assertNotEqual(0, result.returncode)
         self.assertIn("unreviewed", result.stderr)
         self.assertFalse(output.exists())
@@ -138,7 +135,7 @@ class GlobalPlacenameTests(unittest.TestCase):
         self.write_json(self.dictionary, {"Tokyo": "自定义东京"})
         result = self.run_script("build_cities_placenames.py", "--allow-partial",
                                  "--source", source, "--output", output,
-                                 "--review-dir", self.reviews, "--dictionary", self.dictionary)
+                                 "--review-file", self.review_file, "--dictionary", self.dictionary)
         self.success(result)
         self.assertEqual("自定义东京", load(output)[0]["name"])
 
@@ -148,8 +145,8 @@ class GlobalPlacenameTests(unittest.TestCase):
         synoptic = game / "WW/PlacenameSets/Synoptic/0000_0000.wwp"
         original_city = write_fixture(city, [("Tokyo", 10.0, 20.0, 7)])
         original_synoptic = write_fixture(synoptic, [("Japan", 10.0, 20.0, 7)])
-        args = ("--game-dir", game, "--review-dir", self.reviews,
-                "--synoptic-review-dir", self.reviews)
+        args = ("--game-dir", game, "--review-file", self.review_file,
+                "--synoptic-review-file", self.review_file)
         self.success(self.run_script("apply_placenames.py", *args))
         self.assertEqual(original_city, city.read_bytes())
         self.assertEqual(original_synoptic, synoptic.read_bytes())
@@ -208,11 +205,10 @@ class GlobalPlacenameTests(unittest.TestCase):
         self.assertTrue(any("order changed" in e for e in result["errors"]))
 
     def test_apply_does_not_mix_same_alias_and_coordinate_between_sets(self):
-        city_reviews = self.base / "city-reviews"
-        city_reviews.mkdir()
+        city_review_file = self.base / "reviewed/cities.json"
         city = dict(self.records[0], previous="城市旧译", zh="城市新译")
         synoptic = dict(self.records[0], previous="区域旧译", zh="区域新译")
-        self.write_json(city_reviews / "city.json", [city])
+        self.write_json(city_review_file, [city])
         self.write_reviews([synoptic])
         game = self.base / "game"
         for alias in ("name", "previous", "zh"):
@@ -223,7 +219,7 @@ class GlobalPlacenameTests(unittest.TestCase):
                     write_fixture(target, [(record[alias], record["lat"], record["lon"], 7)])
                     targets.append((target, record))
                 args = ("--game-dir", game, "--dictionary", self.dictionary,
-                        "--review-dir", city_reviews, "--synoptic-review-dir", self.reviews)
+                        "--review-file", city_review_file, "--synoptic-review-file", self.review_file)
                 self.success(self.run_script("apply_placenames.py", *args))
                 first = [p.read_bytes() for p, _ in targets]
                 for target, record in targets:

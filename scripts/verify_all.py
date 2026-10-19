@@ -136,19 +136,17 @@ def gate_briefings() -> None:
 
 def gate_placenames() -> None:
     from placename_translation import PLACENAME_SETS, load_reviewed
-    from verify_placenames import load_metadata_sha256, verify_asset, verify_coverage
+    from verify_placenames import load_metadata_sha256, verify_asset
     from wwp import load
 
-    scopes = json.loads((DICT / "placenames_reviewed_scopes.json").read_text(encoding="utf-8"))
     summaries = []
     errors = []
     for name, config in PLACENAME_SETS.items():
-        review_dir = DICT / config["review_dir"]
+        review_file = DICT / config["review_file"]
         result = verify_asset(load(ROOT / "assets/placenames" / f"{name}.wwp"),
-                              load_reviewed(review_dir), expected_count=config["count"],
+                              load_reviewed(review_file), expected_count=config["count"],
                               require_complete=True, expected_metadata_sha256=load_metadata_sha256(
-                                  DICT / "placenames_metadata.json", name))
-        result["errors"].extend(verify_coverage(review_dir, scopes[config["scope_key"]]))
+                                  DICT / "placenames/metadata.json", name))
         summaries.append(f"{name} {result['verified_records']}/{config['count']} reviewed")
         errors.extend(f"{name}: {error}" for error in result["errors"])
     record("placenames", not errors, "; ".join(summaries + errors[:6]))

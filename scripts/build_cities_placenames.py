@@ -29,7 +29,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--dictionary", type=Path,
                         help="explicit custom name mapping for points outside the review registry")
-    parser.add_argument("--review-dir", type=Path)
+    parser.add_argument("--review-file", type=Path)
     coverage = parser.add_mutually_exclusive_group()
     coverage.add_argument("--require-complete", dest="allow_partial", action="store_false",
                           help="require complete approved review coverage (default)")
@@ -41,8 +41,8 @@ def main() -> int:
     config = PLACENAME_SETS[args.placename_set]
     source = args.source or ROOT / f"assets/placenames/{args.placename_set}.wwp"
     mapping = load_dictionary(args.dictionary) if args.dictionary else {}
-    review_dir = args.review_dir or ROOT / "dict" / config["review_dir"]
-    reviewed = load_reviewed(review_dir)
+    review_file = args.review_file or ROOT / "dict" / config["review_file"]
+    reviewed = load_reviewed(review_file)
     resolver = PlacenameResolver(mapping, reviewed)
     baseline = load(source)
     items = [dict(item) for item in baseline]

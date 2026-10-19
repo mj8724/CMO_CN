@@ -1,6 +1,6 @@
 # 国家、海域标签全量复核
 
-`dict/placenames_synoptic_reviewed/global.json` 覆盖原始 Synoptic 的全部321点：193个国家/地区标签，128个海域、海峡、海湾、湖泊和礁标签。每条保留原文、原坐标、旧译、核准译名、来源和裁决说明。城市与区域标签分开解析，避免同名、同坐标相互覆盖。
+`dict/placenames/synoptic.json` 覆盖原始 Synoptic 的全部321点：193个国家/地区标签，128个海域、海峡、海湾、湖泊和礁标签。数组按原 WWP 顺序保存，每条原文、原坐标、旧译、核准译名、来源、裁决说明及其他字段均原样保留。城市与区域标签分开解析，避免同名、同坐标相互覆盖。
 
 此次修正4处：纽芬兰 Green Bay 的“绿湾”改为“格林湾”；Ceram Sea 的“斯兰海”改为“塞兰海”；Bristol Channel 的“布里斯托尔湾”改为“布里斯托尔海峡”；Bohai Wan 经实体核查及用户确认，由“渤海湾”改为“渤海”。其余317项经过复核保留，坐标、顺序和 flags 不变。
 
@@ -13,8 +13,8 @@ Bohai Wan 与 GeoNames1816290的 Bohai Sea 同坐标，Bohai Wan、Po-hai Wan �
 离线构建与发布核验：
 
 ```powershell
-python scripts/build_cities_placenames.py --set Synoptic --require-complete --output assets/placenames/Synoptic.wwp
-python scripts/verify_placenames.py --set Synoptic --baseline <原始英文Synoptic文件>
+python scripts/build_cities_placenames.py --set Synoptic --review-file dict/placenames/synoptic.json --require-complete --output build/Synoptic.wwp
+python scripts/verify_placenames.py --set Synoptic --asset build/Synoptic.wwp --baseline <原始英文Synoptic文件>
 ```
 
-核验要求321/321覆盖，拒绝只因含中文便视为审核完成；同时检查名称变更属于核准记录，坐标、flags、顺序与原始文件一致。
+核验固定要求321/321点唯一命中审核，拒绝只因含中文便视为审核完成；同时检查名称变更属于核准记录，并对照 `dict/placenames/metadata.json` 的固定指纹检查点数、坐标、flags、顺序。该指纹文件原字节迁移，不能随待验资产动态更新。

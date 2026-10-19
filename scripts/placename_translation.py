@@ -9,9 +9,8 @@ from pathlib import Path
 COORDINATE_TOLERANCE = 0.0001
 
 PLACENAME_SETS = {
-    "Cities": dict(count=4287, review_dir="placenames_reviewed", scope_key="files"),
-    "Synoptic": dict(count=321, review_dir="placenames_synoptic_reviewed",
-                     scope_key="synoptic_files"),
+    "Cities": dict(count=4287, review_file="placenames/cities.json"),
+    "Synoptic": dict(count=321, review_file="placenames/synoptic.json"),
 }
 
 
@@ -29,17 +28,12 @@ def load_dictionary(path: str | Path) -> dict[str, str]:
     return table
 
 
-def load_reviewed(directory: str | Path) -> list[dict]:
-    """Read and validate every reviewed record, including cross-file conflicts."""
-    directory = Path(directory)
-    if not directory.is_dir():
-        raise FileNotFoundError(f"review directory does not exist: {directory}")
-    records = []
-    for path in sorted(directory.glob("*.json")):
-        data = json.loads(path.read_text(encoding="utf-8"))
-        if not isinstance(data, list):
-            raise ValueError(f"{path}: reviewed records must be an array")
-        records.extend(data)
+def load_reviewed(path: str | Path) -> list[dict]:
+    """Read one complete placename set and validate its reviewed records."""
+    path = Path(path)
+    records = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(records, list):
+        raise ValueError(f"{path}: reviewed records must be an array")
     PlacenameResolver({}, records)
     return records
 

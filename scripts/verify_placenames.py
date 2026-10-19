@@ -33,20 +33,6 @@ def matches(item: dict, record: dict) -> bool:
             and abs(item["lon"] - record["lon"]) <= COORDINATE_TOLERANCE)
 
 
-def verify_coverage(directory: Path, scopes: dict[str, int]) -> list[str]:
-    errors = []
-    actual = {path.name: len(json.loads(path.read_text(encoding="utf-8")))
-              for path in directory.glob("*.json")}
-    if actual.keys() != scopes.keys():
-        errors.append(f"review files differ: expected {sorted(scopes)}, found {sorted(actual)}")
-    for name, expected in scopes.items():
-        if isinstance(expected, bool) or not isinstance(expected, int) or expected <= 0:
-            raise ValueError(f"invalid review scope count for {name}")
-        if name in actual and actual[name] != expected:
-            errors.append(f"{name}: expected {expected} reviewed records, found {actual[name]}")
-    return errors
-
-
 def verify_asset(items: list[dict], reviewed: list[dict],
                  baseline: list[dict] | None = None,
                  expected_count: int = 4287, *, require_complete: bool = False,
@@ -116,25 +102,21 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--set", choices=PLACENAME_SETS, default="Cities", dest="placename_set")
     parser.add_argument("--asset", type=Path)
-    parser.add_argument("--review-dir", type=Path)
-    parser.add_argument("--scopes", type=Path,
-                        default=ROOT / "dict/placenames_reviewed_scopes.json")
+    parser.add_argument("--review-file", type=Path)
     parser.add_argument("--baseline", type=Path, help="previous or original WWP to compare")
     parser.add_argument("--metadata-baseline", type=Path,
-                        default=ROOT / "dict/placenames_metadata.json",
+                        default=ROOT / "dict/placenames/metadata.json",
                         help="fixed metadata fingerprints; custom fixtures must provide their own")
     parser.add_argument("--report", type=Path, help="write the complete JSON check result")
     args = parser.parse_args()
     config = PLACENAME_SETS[args.placename_set]
     asset = args.asset or ROOT / f"assets/placenames/{args.placename_set}.wwp"
-    review_dir = args.review_dir or ROOT / "dict" / config["review_dir"]
-    result = verify_asset(load(asset), load_reviewed(review_dir),
+    review_file = args.review_file or ROOT / "dict" / config["review_file"]
+    result = verify_asset(load(asset), load_reviewed(review_file),
                           load(args.baseline) if args.baseline else None,
                           expected_count=config["count"], require_complete=True,
                           expected_metadata_sha256=load_metadata_sha256(
                               args.metadata_baseline, args.placename_set))
-    scopes = json.loads(args.scopes.read_text(encoding="utf-8"))[config["scope_key"]]
-    result["errors"].extend(verify_coverage(review_dir, scopes))
     if args.report:
         args.report.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n",
                                encoding="utf-8", newline="\n")

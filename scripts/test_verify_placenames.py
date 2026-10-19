@@ -7,7 +7,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from verify_placenames import verify_asset, verify_coverage
+from placename_translation import load_reviewed
+from verify_placenames import verify_asset
 
 
 class PlacenameGateTests(unittest.TestCase):
@@ -22,6 +23,13 @@ class PlacenameGateTests(unittest.TestCase):
     def verify(self, items, baseline=None, review=None):
         return verify_asset(items, self.review if review is None else review,
                             baseline, expected_count=2)
+
+    def test_review_file_preserves_all_record_fields(self):
+        records = [dict(self.review[0], region="中国", note="保留来源和实体说明")]
+        with tempfile.TemporaryDirectory() as temp:
+            path = Path(temp) / "cities.json"
+            path.write_text(json.dumps(records), encoding="utf-8")
+            self.assertEqual(records, load_reviewed(path))
 
     def test_correct_target_and_unreviewed_homonym_pass(self):
         result = self.verify(self.fixed, self.baseline)
@@ -54,18 +62,6 @@ class PlacenameGateTests(unittest.TestCase):
         bad = [self.fixed[0], dict(self.fixed[1], lat=float("nan"))]
         result = self.verify(bad)
         self.assertTrue(any("invalid coordinates" in e for e in result["errors"]))
-
-    def test_deleted_review_record_cannot_silently_shrink_scope(self):
-        with tempfile.TemporaryDirectory() as temp:
-            directory = Path(temp)
-            path = directory / "korea.json"
-            path.write_text(json.dumps(self.review), encoding="utf-8")
-            scopes = {"korea.json": 1}
-            self.assertEqual([], verify_coverage(directory, scopes))
-            path.write_text("[]", encoding="utf-8")
-            self.assertTrue(verify_coverage(directory, scopes))
-            path.unlink()
-            self.assertTrue(verify_coverage(directory, scopes))
 
 
 if __name__ == "__main__":

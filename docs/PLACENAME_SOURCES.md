@@ -1,6 +1,6 @@
 # 全量地名复核的资料和授权
 
-2026-10-19 对上游 `979c1d3` 的原始4,287个城市点和321个区域点开展复核。保留 PR #3 已有318条坐标审核记录；新审核记录按区域保存于 `dict/placenames_reviewed/global_*.json`，区域标签另存 `dict/placenames_synoptic_reviewed/global.json`。
+2026-10-19 对上游 `979c1d3` 的原始4,287个城市点和321个区域点开展复核。全部城市审核记录集中于 `dict/placenames/cities.json`，区域标签集中于 `dict/placenames/synoptic.json`；两份数组按对应 WWP 顺序保存，合并时所有字段和值原样保留，包括 PR #3 已有318条坐标审核记录。原批次文件及旧平面词典可通过 Git 历史追溯；记录 note 中的旧表路径和行号继续指向当时的历史资料。
 
 ## 集中资料
 

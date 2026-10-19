@@ -1,6 +1,6 @@
 # 全量地名复核实施计划
 
-日期：2026-10-19。基础：上游 master `979c1d3`，已包含 PR #3 的地名解析和 14px 绘制。
+日期：2026-10-19。复核起点为上游 `979c1d3`，已包含 PR #3 的地名解析和 14px 绘制；PR #4 已整合至上游 `69322c2`，保留 R43/R44 改动，用户已授权提交和更新该 PR。
 
 ## 目标与约束
 
@@ -13,9 +13,9 @@ GeoNames、Wikidata 等现成地名资源用于名称、坐标和中文异名候
 ## 有序增量
 
 - [x] 检查 PR #3 与最新上游，建立独立 master 工作副本。
-- [x] 独立提交上游文本 LF/最终 LF 归一化，配置后续文本保持 LF。
+- [x] 按用户要求撤回全仓 LF 归一化及 `.gitattributes` 改动；未涉业务文件保留上游原字节，已有业务文件沿用原换行。
 - [x] 建立完整原始点清单、可追溯来源候选及区域复核任务；下载的原始资源仅留在工作目录。
-- [x] 沿用 `dict/placenames_reviewed/` 完成城市复核，另建 `dict/placenames_synoptic_reviewed/`；同步两份审核范围清单。
+- [x] 完成两套原始点集的全量审核；按用户要求将国家、区域和审核批次文件合并为 Cities、Synoptic 两份数组，所有字段值原样保留，取消批次范围清单。
 - [x] 扩展现有生成、应用和验证入口支持两种集合，发行验证必须每个点唯一命中已审核记录；自定义用户点保持原样。
 - [x] 分地区完成语义复核与交叉检查，逐个完整增量验证并提交；未确认项不得用旧机翻凑足审核数。
 - [x] 从原英文和当前中文各生成两份资产，检查结果一致、重复生成一致、仅批准名称变化。
@@ -23,9 +23,9 @@ GeoNames、Wikidata 等现成地名资源用于名称、坐标和中文异名候
 
 ## 文件与分工
 
-- `dict/placenames_reviewed/*.json`：Cities 的坐标复核记录。
-- `dict/placenames_synoptic_reviewed/*.json`：Synoptic 的坐标复核记录。
-- `dict/placenames_reviewed_scopes.json`：分别列出 `files` 与 `synoptic_files` 的审核文件及条数。
+- `dict/placenames/cities.json`：Cities 全部4,287条坐标复核记录，按 WWP 顺序保存。
+- `dict/placenames/synoptic.json`：Synoptic 全部321条坐标复核记录，按 WWP 顺序保存。
+- `dict/placenames/metadata.json`：原字节迁移的固定元数据指纹，约束点数、顺序、float32 坐标和 flags。
 - `scripts/placename_translation.py`：共享集合配置和坐标解析。
 - `scripts/build_cities_placenames.py`：复用已有离线生成入口，显式选择集合和完整覆盖要求。
 - `scripts/apply_placenames.py`：两份集合独立解析，继续保护自定义名称与既有备份。
@@ -33,12 +33,12 @@ GeoNames、Wikidata 等现成地名资源用于名称、坐标和中文异名候
 - `assets/placenames/{Cities,Synoptic}.wwp`：经验证的最终名称资产。
 - `docs/PLACENAME_LOCALIZATION.md`：来源、覆盖范围、复现命令和实际限制。
 
-不改标签绘制、运行时调度或其他词库。本任务不发布远端 PR，也不部署或替换本地游戏文件。
+用户已授权发布并更新 PR #4。本次结构整理仅合并审核源数据并更新加载、校验入口和说明，保持两份 WWP 字节一致；标签绘制、运行时调度和其他词库沿用上游。旧平面地名字典和审核批次文件通过 Git 历史追溯，不保留另一份可编辑真源。
 
 ## 验收命令与判定
 
-使用现有 `test_placenames.py`、`test_verify_placenames.py`、`test_placename_cache.py` 及 PowerShell 缓存专项检查；新增完整覆盖和 Synoptic 反例。分别对 Cities、Synoptic 运行带 baseline 的 `verify_placenames.py`，要求 4,287/4,287 和 321/321 复核记录唯一命中，未审核点为零，未批准改名、坐标/flags/顺序变化均为零。
+使用现有 `test_placenames.py`、`test_verify_placenames.py`、`test_placename_cache.py`、`test_global_placenames.py`、`test_release_placenames.py` 及 PowerShell 缓存专项检查；覆盖单文件数组加载、完整覆盖和 Synoptic 反例。生成、验证入口用 `--review-file` 选择审核表，应用入口另用 `--synoptic-review-file` 指定 Synoptic 表。分别对 Cities、Synoptic 运行带 baseline 的 `verify_placenames.py`，要求 4,287/4,287 和 321/321 复核记录唯一命中，未审核点为零，未批准改名、坐标/flags/顺序变化均为零。
 
-语义结论依据逐条复核资料和交叉审阅，程序只能证明资产符合审核表，不能自动证明来源或译名正确。提交前检查 Git 追踪文本为 LF、非空文本有最终 LF。
+固定点数、逐点唯一审核覆盖和固定元数据指纹共同防止覆盖缩水或改动坐标、flags、顺序，不再维护批次清单。语义结论依据逐条复核资料和交叉审阅，程序只能证明资产符合审核表，不能自动证明来源或译名正确。新增文本使用 LF 并保留最终 LF；已有文件沿用原换行，不再做全仓归一化。
 
 已完成4,608点全量审核及独立终审；相对上游修订3,073城市名、4区域名。长直、渤海经补充实体证据与用户确认采用，保留原点；另两处城市来源跨链冲突明确标注。验证、原图标签遗漏和离线编译范围，以及缺少上游二维码资源导致无法生成完整正式安装器的限制，见[复核说明](PLACENAME_LOCALIZATION.md)及[结构核验报告](PLACENAME_REVIEW_REPORT.json)。

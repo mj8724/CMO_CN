@@ -87,9 +87,8 @@ def main() -> int:
     ap.add_argument("--dictionary", type=Path, help="explicit custom Cities name mapping")
     ap.add_argument("--synoptic-dictionary", type=Path,
                     help="explicit custom Synoptic name mapping")
-    ap.add_argument("--review-dir", type=Path, default=ROOT / "dict/placenames_reviewed")
-    ap.add_argument("--synoptic-review-dir", type=Path,
-                    default=ROOT / "dict/placenames_synoptic_reviewed")
+    ap.add_argument("--review-file", type=Path, help="reviewed Cities JSON")
+    ap.add_argument("--synoptic-review-file", type=Path, help="reviewed Synoptic JSON")
     args = ap.parse_args()
     sets = args.game_dir / "WW/PlacenameSets"
 
@@ -99,11 +98,12 @@ def main() -> int:
         return 0
 
     resolvers = {}
-    for name in PLACENAME_SETS:
+    for name, config in PLACENAME_SETS.items():
         dictionary = args.dictionary if name == "Cities" else args.synoptic_dictionary
         mapping = load_dictionary(dictionary) if dictionary else {}
-        review_dir = args.review_dir if name == "Cities" else args.synoptic_review_dir
-        resolvers[name] = PlacenameResolver(mapping, load_reviewed(review_dir))
+        review_file = args.review_file if name == "Cities" else args.synoptic_review_file
+        review_file = review_file or ROOT / "dict" / config["review_file"]
+        resolvers[name] = PlacenameResolver(mapping, load_reviewed(review_file))
     renamed = sum(process(sets, f"{name}/0000_0000.wwp", resolver, args.verify)
                   for name, resolver in resolvers.items())
     if args.verify:
