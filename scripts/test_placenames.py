@@ -118,6 +118,12 @@ class PlacenameTests(unittest.TestCase):
         self.assert_success(self.build(self.output, self.output))
         self.assertEqual(first, self.output.read_bytes())
 
+    def test_build_creates_explicit_output_parent_directory(self):
+        write_fixture(self.source, self.example_rows())
+        target = self.base / "new-build/placenames/Cities.wwp"
+        self.assert_success(self.build(output=target))
+        self.assertEqual("伊春", wwp.load(target)[0]["name"])
+
     def test_coordinate_match_is_small_and_float32_tolerant(self):
         write_fixture(self.source, [("宜春", 47.721432 + 0.00005, 128.875290, 0),
                                     ("宜春", 47.721432 + 0.001, 128.875290, 0)])

@@ -29,6 +29,7 @@ def main() -> int:
     resolver = PlacenameResolver(load_dictionary(args.dictionary), load_reviewed(args.review_dir))
     items = load(args.source)
     renamed = translate_items(items, resolver)
+    args.output.parent.mkdir(parents=True, exist_ok=True)
     save(args.output, items)
     print(f"Built {args.output}: {len(items)} cities, {renamed} renamed")
     return 0
