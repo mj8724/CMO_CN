@@ -51,7 +51,13 @@ public sealed class FakeCore : FakeExecuteCore
 
 public sealed class FakeSettings
 {
-    public bool IsWebMessageEnabled { get; set; }
+    private bool enabled;
+    public Action BeforeRead;
+    public bool IsWebMessageEnabled
+    {
+        get { if (BeforeRead != null) BeforeRead(); return enabled; }
+        set { enabled = value; }
+    }
     public FakeSettings() { IsWebMessageEnabled = true; }
 }
 
@@ -472,6 +478,24 @@ public static class WebViewTranslationHostTests
                 PumpUntil(() => core.Executed.Count == 1);
                 Check(oldCore.Executed.Count == 1 && core.Executed[0] == core.Bootstrap,
                     "reentrant replacement still waits for its own registration and bootstraps once");
+            }
+            if (args.Length < 2 || args[1] == "registration-settings") using (var reentrant = new FakeWebView())
+            {
+                reentrant.CreateControl();
+                var oldCore = new FakeCore();
+                reentrant.CoreWebView2 = oldCore;
+                translate.Invoke(null, new object[] { reentrant });
+                var core = new FakeCore();
+                oldCore.Settings.BeforeRead = () =>
+                {
+                    oldCore.Settings.BeforeRead = null;
+                    reentrant.CoreWebView2 = core;
+                    translate.Invoke(null, new object[] { reentrant });
+                };
+                oldCore.Registration.SetResult("original-settings");
+                PumpUntil(() => oldCore.Executed.Count + core.Executed.Count > 0);
+                Check(core.Executed.Count == 0 && oldCore.Executed.Count == 1,
+                    "registration completion uses its captured mode without a reentrant settings read executing the old bootstrap on a new Core");
             }
             return 0;
         }

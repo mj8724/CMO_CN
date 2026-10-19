@@ -204,7 +204,8 @@ namespace CMOLocalizer
             else
             {
                 state.ScriptId = registration.Result;
-                if (state.RegistrationMessagesEnabled && !state.Fallback && WebMessagesEnabled(core))
+                // Preserve the registered mode; Attach reconciles subsequent settings changes.
+                if (state.RegistrationMessagesEnabled && !state.Fallback)
                     ExecuteWebTranslation(state, script);
                 else EnableWebFallback(state);
             }
