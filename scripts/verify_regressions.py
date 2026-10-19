@@ -446,6 +446,31 @@ def run_static(r: Runner) -> None:
              all(r38.values()), _d38,
              "scripts/{build_dict,inject_filter}.py + build/gen_pool_display_inject.py")
 
+    # R41：地图瓦片图层的引擎标识符绝不得池级注入。
+    # 2026-10-19 实机事故：R38 把 `Stamen Terrain - Labels ` / `Stamen Labels` 这类
+    # **图层名/缓存目录查找键**当显示串注入后，标签图层解析失败，整张地图无任何文字；
+    # 日志特征是从此只有 `LocalTile rejected GET /MapTiles/Labels/g`、再无 `LocalTile z=…` 渲染行。
+    r41 = {}
+    try:
+        _ids = json.loads((ROOT / "dict/src/identifiers.json").read_text(encoding="utf-8"))
+        _idlist = set(_ids.get("identifiers", [])) if isinstance(_ids, dict) else set()
+        _tile_keys = ["Stamen Terrain", "Stamen Terrain ", "Stamen Terrain - Labels ",
+                      "Stamen Terrain - Lines ", "Stamen Lines", "Stamen Labels",
+                      "Unsupported layer for tile loading: "]
+        _built41 = json.loads(DICT.read_text(encoding="utf-8"))["offsets"]
+        _pool41 = json.loads((ROOT / "dict/strings_pool.json").read_text(encoding="utf-8"))
+        _off41 = {v: int(k) for k, v in _pool41.items() if isinstance(v, str)}
+        r41["已列入 identifiers"] = all(s in _idlist for s in _tile_keys)
+        _leak41 = [s for s in _tile_keys
+                   if _off41.get(s) is not None and str(_off41[s]) in _built41]
+        r41["未注入 offsets"] = not _leak41
+        _d41 = (f"identifiers={len(_idlist)} 图层键={len(_tile_keys)} 泄漏={_leak41}")
+    except Exception as exc:  # noqa: BLE001
+        r41["异常"] = False
+        _d41 = f"异常: {type(exc).__name__}: {exc}"
+    r.record("R41-static-tile-layer-ids", "R41 地图瓦片图层标识符不得池级注入（否则地图无文字）",
+             all(r41.values()), _d41, "dict/src/identifiers.json")
+
     # R39：引擎翻译行为（混合前缀 + 库枚举值），用真引擎 DLL 跑 C# 宿主。
     # 背景：游戏把 "Inherited, " 与**已汉化**的值拼在一起，旧实现因「整串含中文」
     # 跳过整串，英文前缀就留在条令下拉框里（用户 2026-10-18 实测）。

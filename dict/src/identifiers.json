@@ -1,5 +1,5 @@
 {
- "_note": "引擎标识符禁译表：INI 段名/键名、磁盘目录与文件名。翻译它们会导致配置读取失败（启动 NRE）或路径解析失败。",
+ "_note": "引擎标识符禁译表：INI 段名/键名、磁盘目录与文件名。翻译它们会导致配置读取失败（启动 NRE）或路径解析失败。 2026-10-19：追加地图瓦片图层的引擎标识符（Stamen * 层名与 'Unsupported layer for tile loading: '）。这些串同时是瓦片层/缓存目录的查找键，池级注入后标签图层解析失败、地图整体无文字（用户实测），故只保留在 exact、禁止 offsets。",
  "identifiers": [
   "AD",
   "AddSide",
@@ -178,6 +178,13 @@
   "attachments",
   "shaders.hlsl",
   "shaders3D.hlsl",
-  "temp"
+  "temp",
+  "Stamen Terrain",
+  "Stamen Terrain ",
+  "Stamen Terrain - Labels ",
+  "Stamen Terrain - Lines ",
+  "Stamen Lines",
+  "Stamen Labels",
+  "Unsupported layer for tile loading: "
  ]
 }

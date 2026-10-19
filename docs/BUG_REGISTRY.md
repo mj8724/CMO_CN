@@ -953,3 +953,25 @@
   - `static`：`R38-static-pool-inject` 硬断言 `, Hypothetical`、`, Deprecated`、`Name LIKE '%`、`Description LIKE '%` 绝不进入 `offsets` 注入表；
   - `live`：`verify_regressions.py --live` L0 与 R1 用例（八类对象全部切换、点击行生成详情 HTML、无频闪、真机 16/16 全绿）。
 - **状态**：已修并验证（2026-10-19）。
+
+---
+
+## R41 地图完全没有文字：瓦片图层标识符被池级注入（v4.2.2）
+
+- **来源**：用户 2026-10-19 反馈「怎么地图都不显示文字了」——地图底图正常，但国名/城市名/海域名一个都不显示。
+- **根因**：R38 扩大池级注入时，把**地图瓦片图层的引擎标识符**当成显示串注入了游戏内存：
+  `Stamen Terrain - Labels ` / `Stamen Terrain - Lines ` / `Stamen Lines` / `Stamen Labels` /
+  `Stamen Terrain ` / `Stamen Terrain` / `Unsupported layer for tile loading: `。
+  这些串同时是**图层查找与缓存目录的键**（缓存路径由 `/WW/Cache/{0}/{1}/{2}/{3}.png` 拼出），
+  被翻译后标签图层解析失败：既找不到缓存目录、也不再请求瓦片 → 整张地图没有任何地名。
+- **可观测特征（很强的定位口径）**：`CMOLocalizer.log` 里从此只有
+  `LocalTile rejected GET /MapTiles/Labels/g`（非法探测请求，把 16 条诊断配额全占掉），
+  再没有 `LocalTile z=… x=… y=… candidates=… rendered=…` 的渲染行；
+  池里能直接看到 `1789768: 'Stamen 标注'` 这类被译掉的层名。
+- **修复**：`dict/src/identifiers.json` 追加上述 7 条（该文件的语义正是「可以显示、但**绝不**做池级注入」），
+  重建词典后 `offsets` 8756 条、这些串全部只留在 `exact`。
+- **用户可见验收**：载入想定后地图显示「中国 / 越南 / 南海 / 阿拉伯海 / 孟加拉湾 / 马尔代夫 / 印度洋…」等中文地名；
+  日志重新出现真实瓦片请求与渲染行。
+- **回归测试点**：新增 `static` 用例 `R41-static-tile-layer-ids` ——
+  ① 7 条图层标识符必须在 `identifiers.json` 里；② 必须**不在** `dict/CMOLocalizer.json` 的 `offsets` 中。
+- **状态**：已修并验证（2026-10-19）。
