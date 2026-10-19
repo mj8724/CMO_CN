@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,11 +20,13 @@ public class FakeExecuteCore
     public FakeSettings Settings { get; private set; }
     public readonly List<string> Executed = new List<string>();
     public readonly Queue<Task<string>> Results = new Queue<Task<string>>();
+    public Action BeforeExecute;
     public string Source { get; set; }
     public FakeExecuteCore() { Source = "about:blank"; Settings = new FakeSettings(); }
     public Task<string> ExecuteScriptAsync(string script)
     {
         Executed.Add(script);
+        if (BeforeExecute != null) BeforeExecute();
         return Results.Count > 0 ? Results.Dequeue() : Task.FromResult("null");
     }
 }
@@ -60,10 +63,27 @@ public sealed class FakeWebView : Control
     {
         if (CoreWebView2InitializationCompleted != null) CoreWebView2InitializationCompleted(this, EventArgs.Empty);
     }
+    public void RemoveHandle() { DestroyHandle(); }
+    public void RestoreHandle() { CreateHandle(); }
+    public void RebuildHandle() { RecreateHandle(); }
 }
 
 public static class WebViewTranslationHostTests
 {
+    [StructLayout(LayoutKind.Sequential)]
+    private struct NativeMessage
+    {
+        public IntPtr Window;
+        public uint Message;
+        public UIntPtr WParam;
+        public IntPtr LParam;
+        public uint Time;
+        public int X, Y;
+        public uint Private;
+    }
+    [DllImport("user32.dll")]
+    private static extern bool PeekMessage(out NativeMessage message, IntPtr window, uint first, uint last, uint flags);
+
     private static void Check(bool ok, string message)
     {
         if (!ok) throw new Exception(message);
@@ -83,6 +103,74 @@ public static class WebViewTranslationHostTests
     {
         string message = "CMO_WEB_V1\t" + nonce + "\n1\t" + Uri.EscapeDataString(source);
         return "\"" + Uri.EscapeDataString(message) + "\"";
+    }
+    private static object State(Type engine, Control control)
+    {
+        object table = engine.GetField("webTranslations", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
+        object[] lookup = { control, null };
+        table.GetType().GetMethod("TryGetValue").Invoke(table, lookup);
+        return lookup[1];
+    }
+    private static object StateField(object state, string name)
+    {
+        return state.GetType().GetField(name).GetValue(state);
+    }
+    private static void PumpFor(int milliseconds)
+    {
+        DateTime end = DateTime.UtcNow.AddMilliseconds(milliseconds);
+        while (DateTime.UtcNow < end) { Application.DoEvents(); Thread.Sleep(1); }
+    }
+    private static void WaitForPostedCallback(Control control)
+    {
+        // Wait without dispatching: the completion must really be queued to the old HWND.
+        DateTime end = DateTime.UtcNow.AddSeconds(5);
+        NativeMessage message;
+        while (!PeekMessage(out message, control.Handle, 0xc000, 0xffff, 0))
+        {
+            if (DateTime.UtcNow > end) throw new Exception("Registration callback was not posted");
+            Thread.Sleep(1);
+        }
+    }
+    private static void RegistrationAcrossHandle(Type engine, MethodInfo translate, bool failed, bool queued)
+    {
+        using (var control = new FakeWebView())
+        {
+            control.CreateControl();
+            var core = new FakeCore();
+            control.CoreWebView2 = core;
+            translate.Invoke(null, new object[] { control });
+            if (!queued) control.RemoveHandle();
+            if (failed)
+            {
+                core.Results.Enqueue(Task.FromResult(ScriptMessage("handle-failure", "Detailed description.")));
+                core.Registration.SetException(new Exception("registration completed without a usable handle"));
+            }
+            else core.Registration.SetResult("script-recreated");
+            if (queued)
+            {
+                WaitForPostedCallback(control);
+                control.RemoveHandle();
+            }
+            else Thread.Sleep(100); // Let the worker completion run while no HWND exists.
+            Check(!control.IsHandleCreated && core.Executed.Count == 0,
+                "registration completion cannot execute script while the handle is absent (" + failed + ", " + queued + ")");
+            translate.Invoke(null, new object[] { control });
+            control.RestoreHandle();
+            PumpUntil(() => failed
+                ? core.Executed.Exists(s => s.Contains("handle-failure") && s.Contains("详细说明。"))
+                : core.Executed.Count == 1);
+            object state = State(engine, control);
+            Check(core.Registrations == 1 && (failed ? (bool)StateField(state, "Fallback")
+                : (string)StateField(state, "ScriptId") == "script-recreated" && core.Executed[0] == core.Bootstrap),
+                "recreated handle consumes the completed registration exactly once (" + failed + ", " + queued + ")");
+            object timer = StateField(state, "FallbackTimer");
+            for (int i = 0; i < 10; i++) translate.Invoke(null, new object[] { control });
+            if (!failed) { control.RemoveHandle(); control.RestoreHandle(); }
+            PumpFor(40);
+            Check(core.Registrations == 1 && (failed ? ReferenceEquals(timer, StateField(state, "FallbackTimer"))
+                : core.Executed.Count == 1),
+                "rediscovery and later handle recreation do not repeat registration or bootstrap (" + failed + ", " + queued + ")");
+        }
     }
     [STAThread]
     public static int Main(string[] args)
@@ -231,6 +319,159 @@ public static class WebViewTranslationHostTests
                 for (int i = 0; i < 30; i++) { Application.DoEvents(); Thread.Sleep(1); }
                 Check(!core.Executed.Exists(s => s.Contains("stale-fallback") && s.Contains("receive(")),
                     "navigation rejects late fallback extraction before translating or writing it");
+            }
+            if (args.Length < 2 || args[1] == "handle-success") RegistrationAcrossHandle(engine, translate, false, false);
+            if (args.Length < 2 || args[1] == "handle-failure") RegistrationAcrossHandle(engine, translate, true, false);
+            if (args.Length < 2 || args[1] == "handle-queued") RegistrationAcrossHandle(engine, translate, false, true);
+            if (args.Length < 2 || args[1] == "handle-queued-failure") RegistrationAcrossHandle(engine, translate, true, true);
+            if (args.Length < 2 || args[1] == "handle-replaced") using (var replaced = new FakeWebView())
+            {
+                replaced.CreateControl();
+                var oldCore = new FakeCore();
+                replaced.CoreWebView2 = oldCore;
+                translate.Invoke(null, new object[] { replaced });
+                replaced.RemoveHandle();
+                var core = new FakeCore();
+                replaced.CoreWebView2 = core;
+                replaced.RestoreHandle();
+                Check(core.Registrations == 1, "handle recreation attaches the actual replacement Core");
+                oldCore.Registration.SetException(new Exception("obsolete Core registration"));
+                PumpFor(60);
+                Check(core.Executed.Count == 0 && !(bool)StateField(State(engine, replaced), "Fallback"),
+                    "obsolete Core registration failure cannot enable fallback on the new Core");
+                core.Registration.SetResult("new-core");
+                PumpUntil(() => core.Executed.Count == 1);
+                Check(oldCore.Executed.Count == 0 && core.Registrations == 1,
+                    "only the current Core registration bootstraps after handle recreation");
+                var third = new FakeCore();
+                replaced.CoreWebView2 = third;
+                translate.Invoke(null, new object[] { replaced });
+                third.Registration.SetResult("third-core");
+                WaitForPostedCallback(replaced);
+                var fourth = new FakeCore();
+                replaced.CoreWebView2 = fourth;
+                translate.Invoke(null, new object[] { replaced });
+                fourth.Registration.SetResult("fourth-core");
+                PumpUntil(() => fourth.Executed.Count == 1);
+                Check(third.Executed.Count == 0 && fourth.Registrations == 1,
+                    "a queued obsolete registration success does not bootstrap the replacement Core");
+            }
+            if (args.Length < 2 || args[1] == "handle-dispose")
+            {
+                var disposed = new FakeWebView();
+                disposed.CreateControl();
+                var core = new FakeCore();
+                disposed.CoreWebView2 = core;
+                translate.Invoke(null, new object[] { disposed });
+                disposed.RemoveHandle();
+                disposed.Dispose();
+                core.Registration.SetException(new Exception("disposed registration"));
+                PumpFor(60);
+                Check(core.Executed.Count == 0 && State(engine, disposed) == null,
+                    "registration completion after disposal leaves no scripts or tracked state");
+            }
+            if (args.Length < 2 || args[1] == "handle-null")
+            {
+                foreach (bool failed in new bool[] { false, true }) using (var empty = new FakeWebView())
+                {
+                    empty.CreateControl();
+                    var oldCore = new FakeCore();
+                    empty.CoreWebView2 = oldCore;
+                    translate.Invoke(null, new object[] { empty });
+                    empty.RemoveHandle();
+                    empty.CoreWebView2 = null;
+                    if (failed) oldCore.Registration.SetException(new Exception("removed Core registration"));
+                    else oldCore.Registration.SetResult("removed-core");
+                    Thread.Sleep(100);
+                    empty.RestoreHandle();
+                    PumpFor(60);
+                    object state = State(engine, empty);
+                    Check(oldCore.Executed.Count == 0 && StateField(state, "Core") == null
+                        && !(bool)StateField(state, "Fallback"),
+                        "a missing actual Core cannot consume obsolete registration or start fallback (" + failed + ")");
+                    var core = new FakeCore();
+                    empty.CoreWebView2 = core;
+                    empty.CompleteInitialization();
+                    core.Registration.SetResult("later-core");
+                    PumpUntil(() => core.Executed.Count == 1);
+                    Check(core.Registrations == 1 && oldCore.Executed.Count == 0,
+                        "initialization after a null Core attaches only the current registration (" + failed + ")");
+                }
+                using (var empty = new FakeWebView())
+                {
+                    empty.CreateControl();
+                    var oldCore = new FakeExecuteCore();
+                    empty.CoreWebView2 = oldCore;
+                    translate.Invoke(null, new object[] { empty });
+                    empty.RemoveHandle();
+                    empty.CoreWebView2 = null;
+                    empty.RestoreHandle();
+                    PumpFor(60);
+                    object state = State(engine, empty);
+                    Check(oldCore.Executed.Count == 1 && !(bool)StateField(state, "Fallback")
+                        && !((System.Windows.Forms.Timer)StateField(state, "FallbackTimer")).Enabled,
+                        "a null Core on handle recreation cannot restart the old Core fallback timer");
+                }
+            }
+            if (args.Length < 2 || args[1] == "handle-recreate") using (var recreated = new FakeWebView())
+            {
+                recreated.CreateControl();
+                var core = new FakeCore();
+                recreated.CoreWebView2 = core;
+                translate.Invoke(null, new object[] { recreated });
+                core.Registration.SetResult("winforms-recreated");
+                WaitForPostedCallback(recreated);
+                recreated.RebuildHandle();
+                PumpUntil(() => core.Executed.Count == 1);
+                PumpFor(40);
+                Check(core.Registrations == 1 && core.Executed.Count == 1,
+                    "WinForms RecreateHandle and its reposted old callback consume registration only once");
+            }
+            if (args.Length < 2 || args[1] == "handle-fallback") using (var fallback = new FakeWebView())
+            {
+                var core = new FakeExecuteCore();
+                fallback.CoreWebView2 = core;
+                translate.Invoke(null, new object[] { fallback });
+                Check(!fallback.IsHandleCreated && core.Executed.Count == 0,
+                    "legacy fallback can attach before a handle exists without executing");
+                var delayed = new TaskCompletionSource<string>();
+                core.Results.Enqueue(delayed.Task);
+                fallback.RestoreHandle();
+                Check(core.Executed.Count == 1, "first handle creation starts the waiting legacy fallback");
+                object state = State(engine, fallback);
+                object timer = StateField(state, "FallbackTimer");
+                fallback.RemoveHandle();
+                fallback.RestoreHandle();
+                delayed.SetResult(ScriptMessage("old-handle-result", "Detailed description."));
+                PumpFor(60);
+                Check(core.Executed.Count == 2 && ReferenceEquals(timer, StateField(state, "FallbackTimer"))
+                    && !core.Executed.Exists(s => s.Contains("old-handle-result") && s.Contains("receive(")),
+                    "fallback handle recreation retains one timer and rejects the previous handle's extraction");
+            }
+            if (args.Length < 2 || args[1] == "handle-reentrant") using (var reentrant = new FakeWebView())
+            {
+                reentrant.CreateControl();
+                var oldCore = new FakeCore();
+                reentrant.CoreWebView2 = oldCore;
+                translate.Invoke(null, new object[] { reentrant });
+                reentrant.RemoveHandle();
+                oldCore.Registration.SetResult("reentrant-old");
+                Thread.Sleep(100);
+                var core = new FakeCore();
+                oldCore.BeforeExecute = () =>
+                {
+                    oldCore.Settings.IsWebMessageEnabled = false;
+                    reentrant.CoreWebView2 = core;
+                    translate.Invoke(null, new object[] { reentrant });
+                };
+                reentrant.RestoreHandle();
+                Check(core.Registrations == 1 && core.Executed.Count == 0
+                    && !(bool)StateField(State(engine, reentrant), "Fallback"),
+                    "reentrant bootstrap replacing Core cannot apply the old Core messaging settings to the new one");
+                core.Registration.SetResult("reentrant-new");
+                PumpUntil(() => core.Executed.Count == 1);
+                Check(oldCore.Executed.Count == 1 && core.Executed[0] == core.Bootstrap,
+                    "reentrant replacement still waits for its own registration and bootstraps once");
             }
             return 0;
         }

@@ -23,6 +23,9 @@ namespace CMOLocalizer
             public Delegate InitializationHandler;
             public Delegate MessageHandler;
             public Task<string> Registration;
+            public string RegistrationScript;
+            public bool RegistrationMessagesEnabled;
+            public bool RegistrationHandled;
             public string ScriptId;
             public bool Disposed;
             public bool SourceWarningLogged;
@@ -39,7 +42,7 @@ namespace CMOLocalizer
         private static readonly object webScriptLock = new object();
         private static string webTranslationScript;
 
-        // Called by discovery, but does no DOM work after this particular control is attached.
+        // Ordinary rediscovery does no DOM work; it can recover a registration missed during HWND replacement.
         private static void TranslateWebViewEarly(Control ctrl)
         {
             if (ctrl == null || ctrl.IsDisposed) return;
@@ -79,7 +82,8 @@ namespace CMOLocalizer
             };
             owner.HandleCreated += (sender, args) =>
             {
-                if (state.Fallback) { state.FallbackTimer.Start(); PollWebFallback(state, true); }
+                AttachWebTranslation(state);
+                if (!state.Disposed && state.Fallback) { state.FallbackTimer.Start(); PollWebFallback(state, true); }
             };
             return state;
         }
@@ -113,10 +117,15 @@ namespace CMOLocalizer
             {
                 PropertyInfo property = state.Owner.GetType().GetProperty("CoreWebView2");
                 object core = property == null ? null : property.GetValue(state.Owner, null);
-                if (core == null) return;
                 if (ReferenceEquals(state.Core, core))
                 {
-                    if (!state.Fallback && !WebMessagesEnabled(core)) EnableWebFallback(state);
+                    if (core == null) return;
+                    CompleteWebRegistration(state, core, state.Registration);
+                    if (ReferenceEquals(state.Core, core) && !state.Fallback)
+                    {
+                        bool enabled = WebMessagesEnabled(core);
+                        if (!enabled && ReferenceEquals(state.Core, core)) EnableWebFallback(state);
+                    }
                     return;
                 }
                 DetachWebMessages(state);
@@ -125,9 +134,13 @@ namespace CMOLocalizer
                 state.FallbackInFlight = false;
                 state.FallbackVersion++;
                 state.Registration = null;
+                state.RegistrationScript = null;
+                state.RegistrationHandled = false;
                 state.ScriptId = null;
                 state.CapabilityWarningLogged = false;
                 state.Core = core;
+                state.Execute = null;
+                if (core == null) return;
                 state.Execute = core.GetType().GetMethod("ExecuteScriptAsync", new Type[] { typeof(string) });
                 MethodInfo register = core.GetType().GetMethod("AddScriptToExecuteOnDocumentCreatedAsync", new Type[] { typeof(string) });
                 state.Messages = core.GetType().GetEvent("WebMessageReceived");
@@ -151,32 +164,49 @@ namespace CMOLocalizer
                 }
                 Task<string> registration = (Task<string>)register.Invoke(core, new object[] { script });
                 state.Registration = registration;
+                state.RegistrationScript = script;
+                state.RegistrationMessagesEnabled = messagesEnabled;
                 registration.ContinueWith(task =>
                 {
-                    string failure = task.IsFaulted ? task.Exception.GetBaseException().Message : task.IsCanceled ? "canceled" : null;
+                    // Observe failures even if disposal or a missing HWND prevents dispatch.
+                    if (task.IsFaulted) task.Exception.GetBaseException();
                     // Registration covers future navigations only. Catch up the current document
-                    // after it completes, without waiting on the WebView's UI message pump.
-                    PostWebTranslation(state, () =>
-                    {
-                        if (!ReferenceEquals(state.Core, core)) return;
-                        if (failure != null)
-                        {
-                            WarnWebCapability(state, "registration failed; using incremental script fallback: " + failure);
-                            EnableWebFallback(state);
-                        }
-                        else
-                        {
-                            state.ScriptId = task.Result;
-                            if (messagesEnabled && !state.Fallback) ExecuteWebTranslation(state, script);
-                            else EnableWebFallback(state);
-                        }
-                    });
+                    // after it completes. Handle creation/discovery also consume this same task
+                    // if the callback cannot reach the UI while its HWND is being replaced.
+                    PostWebTranslation(state, () => CompleteWebRegistration(state, core, task));
                 }, TaskScheduler.Default);
             }
             catch (Exception ex)
             {
                 WarnWebCapability(state, "attach failed; using incremental script fallback: " + ex.GetBaseException().Message);
                 if (state.Execute != null) EnableWebFallback(state);
+            }
+        }
+
+        private static void CompleteWebRegistration(WebTranslationState state, object core, Task<string> registration)
+        {
+            if (state.Disposed || state.Owner.IsDisposed || !state.Owner.IsHandleCreated || state.RegistrationHandled
+                || registration == null || !registration.IsCompleted || !ReferenceEquals(state.Core, core)
+                || !ReferenceEquals(state.Registration, registration)) return;
+            PropertyInfo property = state.Owner.GetType().GetProperty("CoreWebView2");
+            if (property == null || !ReferenceEquals(property.GetValue(state.Owner, null), core)) return;
+            string script = state.RegistrationScript;
+            state.RegistrationScript = null;
+            // Mark only when actually consumed on the UI thread, before executing reentrant APIs.
+            state.RegistrationHandled = true;
+            string failure = registration.IsFaulted ? registration.Exception.GetBaseException().Message
+                : registration.IsCanceled ? "canceled" : null;
+            if (failure != null)
+            {
+                WarnWebCapability(state, "registration failed; using incremental script fallback: " + failure);
+                EnableWebFallback(state);
+            }
+            else
+            {
+                state.ScriptId = registration.Result;
+                if (state.RegistrationMessagesEnabled && !state.Fallback && WebMessagesEnabled(core))
+                    ExecuteWebTranslation(state, script);
+                else EnableWebFallback(state);
             }
         }
 
