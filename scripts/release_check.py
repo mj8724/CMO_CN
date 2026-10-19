@@ -47,6 +47,7 @@ REQUIRED_SOURCES = [
     "src/updater/CMO_Updater.cs",
     "src/shared/CMOShared.cs",
     "src/shared/CMOSharedTest.cs",
+    "src/shared/MapLabelRenderer.cs",
     "scripts/build.sh",
     "scripts/deploy.sh",
     "scripts/package.sh",

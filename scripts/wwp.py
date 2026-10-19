@@ -5,8 +5,8 @@ Layout (little-endian):
     int32  count
     repeat count times:
         <name>  length-prefixed string
-        float32 lon
         float32 lat
+        float32 lon
         uint32 flags
 
 The length prefix is .NET `BinaryReader.ReadString` style: a 7-bit encoded
@@ -16,7 +16,7 @@ full 7-bit form keeps translated names correct even when a Chinese name exceeds
 127 bytes (Chinese is 3 bytes per character in UTF-8).
 
 Usage:
-    python wwp.py dump  <file.wwp>            # print every entry
+    python wwp.py dump  <file.wwp>            # name, latitude, longitude, flags
     python wwp.py list  <file.wwp>            # print names only
     python wwp.py apply <file.wwp> <map.json> # rewrite names from a mapping
 """
@@ -64,9 +64,9 @@ def load(path: str | Path) -> list[dict]:
         nlen, off = _read_7bit_length(raw, off)
         name = raw[off:off + nlen].decode("utf-8")
         off += nlen
-        lon, lat, flags = struct.unpack_from("<ffI", raw, off)
+        lat, lon, flags = struct.unpack_from("<ffI", raw, off)
         off += 12
-        items.append({"name": name, "lon": lon, "lat": lat, "flags": flags})
+        items.append({"name": name, "lat": lat, "lon": lon, "flags": flags})
     if off != len(raw):
         raise ValueError(f"{path}: consumed {off} of {len(raw)} bytes")
     return items
@@ -78,7 +78,7 @@ def save(path: str | Path, items: list[dict]) -> None:
         data = it["name"].encode("utf-8")
         out += _write_7bit_length(len(data))
         out += data
-        out += struct.pack("<ffI", it["lon"], it["lat"], it["flags"])
+        out += struct.pack("<ffI", it["lat"], it["lon"], it["flags"])
     Path(path).write_bytes(bytes(out))
 
 
@@ -102,7 +102,7 @@ def main() -> int:
     mode, target = sys.argv[1], sys.argv[2]
     if mode == "dump":
         for it in load(target):
-            print(f"{it['name']}\t{it['lon']:.4f}\t{it['lat']:.4f}\t{it['flags']}")
+            print(f"{it['name']}\t{it['lat']:.4f}\t{it['lon']:.4f}\t{it['flags']}")
     elif mode == "list":
         for it in load(target):
             print(it["name"])

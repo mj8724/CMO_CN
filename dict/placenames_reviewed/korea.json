@@ -1,0 +1,575 @@
+[
+  {
+    "name": "Wonsan",
+    "lat": 39.152779,
+    "lon": 127.443611,
+    "zh": "元山",
+    "previous": "元山",
+    "source": "https://kp.china-embassy.gov.cn/chn/lsyw/lqfw/lvytx/201104/t20110414_1342836.htm",
+    "region": "朝鲜",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "Songnim",
+    "lat": 38.754169,
+    "lon": 125.644997,
+    "zh": "松林",
+    "previous": "索恩格尼姆",
+    "source": "https://www.icrc.org/zh/article/dprk-north-korea-physical-rehabilitation-2004",
+    "region": "朝鲜",
+    "note": "原库Songnim与Songrim均为송림的拉丁转写；红十字国际委员会官网中文使用松林，图注Songrim并明确平壤以南约30公里，匹配原点。来源为该国际组织一手在地项目资料，不冒称政府地名表。"
+  },
+  {
+    "name": "Sariwon",
+    "lat": 38.507221,
+    "lon": 125.755829,
+    "zh": "沙里院",
+    "previous": "萨里沃恩",
+    "source": "https://kp.china-embassy.gov.cn/chn/zxxx/202312/t20231213_11201810.htm",
+    "region": "朝鲜"
+  },
+  {
+    "name": "Pyongyang",
+    "lat": 39.033852,
+    "lon": 125.754318,
+    "zh": "平壤",
+    "previous": "平壤",
+    "source": "https://kp.china-embassy.gov.cn/sgxx/sgbgsjjdz/",
+    "region": "朝鲜",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "P'yongsong",
+    "lat": 39.246391,
+    "lon": 125.871941,
+    "zh": "平城",
+    "previous": "普·约恩格索恩格",
+    "source": "https://kp.china-embassy.gov.cn/dssghd/202309/t20230928_11152282.htm",
+    "region": "朝鲜",
+    "note": "平安南道首府平城；与原库另列的首都平壤Pyongyang区分。"
+  },
+  {
+    "name": "Namp'o",
+    "lat": 38.737499,
+    "lon": 125.407784,
+    "zh": "南浦",
+    "previous": "纳姆普·奥",
+    "source": "https://wb.weihai.gov.cn/art/2021/8/25/art_13548_423452.html",
+    "region": "朝鲜"
+  },
+  {
+    "name": "Kaesong",
+    "lat": 37.970829,
+    "lon": 126.554443,
+    "zh": "开城",
+    "previous": "开城",
+    "source": "https://kp.china-embassy.gov.cn/chn/lsyw/lqfw/lvytx/201104/t20110414_1342836.htm",
+    "region": "朝鲜",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "Hungnam",
+    "lat": 39.831669,
+    "lon": 127.618607,
+    "zh": "兴南",
+    "previous": "胡恩格纳姆",
+    "source": "https://www.gfbzb.gov.cn/zbbm/gfzs/201403/20140314/819925728.html",
+    "region": "朝鲜",
+    "note": "保留原库39.831669N、127.618607E独立兴南地图点。全国征兵网战史使用兴南地区、兴南港，并与咸兴分别列出；不因当代行政隶属将本点覆盖为咸兴或删除。"
+  },
+  {
+    "name": "Hamhung",
+    "lat": 39.918331,
+    "lon": 127.536392,
+    "zh": "咸兴",
+    "previous": "咸兴",
+    "source": "https://kp.china-embassy.gov.cn/zxxx/201210/t20121022_1066320.htm",
+    "region": "朝鲜",
+    "note": "咸兴，原译正确，保留；与原库另列兴南Hungnam点分别保留。"
+  },
+  {
+    "name": "Haeju",
+    "lat": 38.040562,
+    "lon": 125.714722,
+    "zh": "海州",
+    "previous": "哈埃乌",
+    "source": "https://kp.china-embassy.gov.cn/zxxx/202508/t20250819_11692579.htm",
+    "region": "朝鲜"
+  },
+  {
+    "name": "Sinuiju",
+    "lat": 40.100559,
+    "lon": 124.398064,
+    "zh": "新义州",
+    "previous": "新义州",
+    "source": "https://kp.china-embassy.gov.cn/chn/lsyw/lqfw/lvytx/201104/t20110414_1342836.htm",
+    "region": "朝鲜",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "Kanggye-si",
+    "lat": 40.96946,
+    "lon": 126.585228,
+    "zh": "江界",
+    "previous": "卡恩格格叶·斯",
+    "source": "https://kp.china-embassy.gov.cn/chn/sgxx/sghd/201107/t20110722_1341170.htm",
+    "region": "朝鲜",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Hyesan-si",
+    "lat": 41.401669,
+    "lon": 128.17778,
+    "zh": "惠山",
+    "previous": "赫叶萨恩·斯",
+    "source": "https://kp.china-embassy.gov.cn/zxxx/202506/t20250607_11642870.htm",
+    "region": "朝鲜",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Chongjin",
+    "lat": 41.795559,
+    "lon": 129.775833,
+    "zh": "清津",
+    "previous": "清津",
+    "source": "https://kp.china-embassy.gov.cn/chn/lsyw/lqfw/lvytx/201104/t20110414_1342836.htm",
+    "region": "朝鲜",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "Yangju",
+    "lat": 37.833111,
+    "lon": 127.061691,
+    "zh": "杨州",
+    "previous": "亚恩格乌",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国"
+  },
+  {
+    "name": "Wonju",
+    "lat": 37.351391,
+    "lon": 127.945282,
+    "zh": "原州",
+    "previous": "沃恩乌",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国"
+  },
+  {
+    "name": "Ulsan",
+    "lat": 35.53722,
+    "lon": 129.316666,
+    "zh": "蔚山",
+    "previous": "蔚山",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "Uijeongbu-si",
+    "lat": 37.741501,
+    "lon": 127.047401,
+    "zh": "议政府",
+    "previous": "乌伊埃昂格布·斯",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Daejeon",
+    "lat": 36.321388,
+    "lon": 127.419724,
+    "zh": "大田",
+    "previous": "大田",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "Daegu",
+    "lat": 35.870281,
+    "lon": 128.59111,
+    "zh": "大邱",
+    "previous": "大邱",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "Suwon-si",
+    "lat": 37.291111,
+    "lon": 127.008888,
+    "zh": "水原",
+    "previous": "苏沃恩·斯",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Suncheon",
+    "lat": 34.948078,
+    "lon": 127.489471,
+    "zh": "顺天",
+    "previous": "苏恩切昂",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "原点位于韩国全罗南道顺天市（순천），不是朝鲜平安南道顺川。"
+  },
+  {
+    "name": "Seoul",
+    "lat": 37.566002,
+    "lon": 126.978401,
+    "zh": "首尔",
+    "previous": "首尔",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "Busan",
+    "lat": 35.102779,
+    "lon": 129.040283,
+    "zh": "釜山",
+    "previous": "釜山",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "Bucheon-si",
+    "lat": 37.49889,
+    "lon": 126.783058,
+    "zh": "富川",
+    "previous": "布切昂·斯",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Pohang",
+    "lat": 36.032219,
+    "lon": 129.365005,
+    "zh": "浦项",
+    "previous": "浦项",
+    "source": "https://chinese.visitkorea.or.kr/svc/whereToGo/allRgn/allRegionList.do?menuSn=216",
+    "region": "韩国",
+    "note": "官方中文名称核对一致；原译正确，保留。"
+  },
+  {
+    "name": "Osan",
+    "lat": 37.152222,
+    "lon": 127.070557,
+    "zh": "乌山",
+    "previous": "奥萨恩",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国"
+  },
+  {
+    "name": "Moppo",
+    "lat": 34.79361,
+    "lon": 126.388611,
+    "zh": "木浦",
+    "previous": "莫普珀",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "原库旧式拼写Moppo；按34.793610N、126.388611E确认木浦市，对应今Mokpo。"
+  },
+  {
+    "name": "Gyeongsan-si",
+    "lat": 35.82333,
+    "lon": 128.737778,
+    "zh": "庆山",
+    "previous": "格叶昂格萨恩·斯",
+    "source": "https://www.gbgsc.go.kr/council/cn/main.do",
+    "region": "韩国",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Kyonju",
+    "lat": 35.842781,
+    "lon": 129.21167,
+    "zh": "庆州",
+    "previous": "克约恩乌",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "原库旧式罗马字Kyonju；按35.842781N、129.211670E确认庆州市，对应今Gyeongju。"
+  },
+  {
+    "name": "Gwangju",
+    "lat": 35.15472,
+    "lon": 126.915558,
+    "zh": "光州",
+    "previous": "光州",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "原点35.154720N、126.915558E为光州广域市；与京畿道广州市（同为Gwangju，约37.4N、127.3E）区分。原译正确，保留。"
+  },
+  {
+    "name": "Guri-si",
+    "lat": 37.598598,
+    "lon": 127.139397,
+    "zh": "九里",
+    "previous": "古里·斯",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Kunsan",
+    "lat": 35.978611,
+    "lon": 126.711388,
+    "zh": "群山",
+    "previous": "库恩萨恩",
+    "source": "https://chinese.visitkorea.or.kr/svc/whereToGo/allRgn/allRegionList.do?menuSn=216",
+    "region": "韩国",
+    "note": "原库旧式罗马字Kunsan，对应今Gunsan；点位于全北群山市。"
+  },
+  {
+    "name": "Gumi",
+    "lat": 36.113602,
+    "lon": 128.335999,
+    "zh": "龟尾",
+    "previous": "古米",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国"
+  },
+  {
+    "name": "Goyang-si",
+    "lat": 37.656391,
+    "lon": 126.834999,
+    "zh": "高阳",
+    "previous": "戈亚恩格·斯",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Kimhae",
+    "lat": 35.234169,
+    "lon": 128.881104,
+    "zh": "金海",
+    "previous": "基姆哈埃",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "原库旧式罗马字Kimhae，对应今Gimhae；点位于庆尚南道金海市。"
+  },
+  {
+    "name": "Gimcheon",
+    "lat": 36.121761,
+    "lon": 128.119812,
+    "zh": "金泉",
+    "previous": "吉姆切昂",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国"
+  },
+  {
+    "name": "Kang-neung",
+    "lat": 37.755562,
+    "lon": 128.896103,
+    "zh": "江陵",
+    "previous": "卡恩格·内温格",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "原库旧式拼写Kang-neung，对应今Gangneung；点位于江陵市。"
+  },
+  {
+    "name": "Iksan",
+    "lat": 35.94389,
+    "lon": 126.954437,
+    "zh": "益山",
+    "previous": "伊克萨恩",
+    "source": "https://www.jeonbuk.go.kr/chn/index.jeonbuk",
+    "region": "韩国"
+  },
+  {
+    "name": "Incheon",
+    "lat": 37.456459,
+    "lon": 126.705147,
+    "zh": "仁川",
+    "previous": "仁川",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "仁川（인천，Incheon），与京畿道利川（Icheon）区分；原译正确，保留。"
+  },
+  {
+    "name": "Icheon-si",
+    "lat": 37.279171,
+    "lon": 127.442497,
+    "zh": "利川",
+    "previous": "伊切昂·斯",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "京畿道利川（이천，Icheon），与西侧仁川（인천，Incheon）区分；原坐标保留。 原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Hwaseong-si",
+    "lat": 37.206821,
+    "lon": 126.816902,
+    "zh": "华城",
+    "previous": "赫瓦塞昂格·斯",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Chuncheon",
+    "lat": 37.874722,
+    "lon": 127.734169,
+    "zh": "春川",
+    "previous": "楚恩切昂",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国"
+  },
+  {
+    "name": "Jeonju",
+    "lat": 35.821941,
+    "lon": 127.148888,
+    "zh": "全州",
+    "previous": "埃昂乌",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国"
+  },
+  {
+    "name": "Cheongju-si",
+    "lat": 36.637218,
+    "lon": 127.489723,
+    "zh": "清州",
+    "previous": "切昂格乌·斯",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "采用韩国访问委员会及地方市名的清州；KTO区域筛选网页曾出现青州异写，不以该处为本记录依据。 原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Cheonan",
+    "lat": 36.806499,
+    "lon": 127.152199,
+    "zh": "天安",
+    "previous": "切昂安",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国"
+  },
+  {
+    "name": "Chinju",
+    "lat": 35.19278,
+    "lon": 128.084717,
+    "zh": "晋州",
+    "previous": "奇恩乌",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "原库旧式罗马字Chinju，对应今Jinju；点位于庆尚南道晋州市。"
+  },
+  {
+    "name": "Jeju-si",
+    "lat": 33.50972,
+    "lon": 126.521942,
+    "zh": "济州",
+    "previous": "埃乌·斯",
+    "source": "https://chinese.visitkorea.or.kr/svc/whereToGo/allRgn/allRegionList.do?menuSn=216",
+    "region": "韩国",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Changwon",
+    "lat": 35.228062,
+    "lon": 128.681107,
+    "zh": "昌原",
+    "previous": "查恩格沃恩",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国"
+  },
+  {
+    "name": "Anyang-si",
+    "lat": 37.392502,
+    "lon": 126.926941,
+    "zh": "安养",
+    "previous": "安亚恩格·斯",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "官方汉字为安養，采用简体安养；不改为中国城市常用的安阳。 原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Ansan-si",
+    "lat": 37.323608,
+    "lon": 126.821938,
+    "zh": "安山",
+    "previous": "安萨恩·斯",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Andong",
+    "lat": 36.565559,
+    "lon": 128.725006,
+    "zh": "安东",
+    "previous": "安多恩格",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国"
+  },
+  {
+    "name": "Yeosu",
+    "lat": 34.762779,
+    "lon": 127.665283,
+    "zh": "丽水",
+    "previous": "叶奥苏",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国"
+  },
+  {
+    "name": "Tonghae",
+    "lat": 37.543892,
+    "lon": 129.106934,
+    "zh": "东海",
+    "previous": "顿格哈埃",
+    "source": "https://vkc.or.kr/sc/pr-center/tour-site/culture-tour/",
+    "region": "韩国",
+    "note": "原库旧式罗马字Tonghae，对应今Donghae；点位于江原东海市。"
+  },
+  {
+    "name": "Seongnam-si",
+    "lat": 37.43861,
+    "lon": 127.137779,
+    "zh": "城南",
+    "previous": "塞昂格纳姆·斯",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "原英文-si为韩语市的后缀；中文地图标注省略通名。"
+  },
+  {
+    "name": "Hanam",
+    "lat": 37.540001,
+    "lon": 127.205559,
+    "zh": "河南",
+    "previous": "哈纳姆",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国"
+  },
+  {
+    "name": "Hwado",
+    "lat": 37.6525,
+    "lon": 127.307503,
+    "zh": "和道",
+    "previous": "赫瓦多",
+    "source": "https://www.nyj.go.kr/chi/contents.do?key=3962",
+    "region": "韩国",
+    "note": "原点37.652500N、127.307503E位于南杨州市和道邑（화도읍，Hwado-eup），不是江华郡华道面。南杨州市政府中文页载1991年和道面升为邑，并列现6邑中的和道邑；韩国行政区划表（国会图书馆收录）亦列화도읍（和道邑），故不用部分机器译文的华道。不改变原地图点或将邑升为市。"
+  },
+  {
+    "name": "Kwangmyong",
+    "lat": 37.477219,
+    "lon": 126.866386,
+    "zh": "光明",
+    "previous": "克瓦恩格姆约恩格",
+    "source": "https://chinese.gg.go.kr/31-si-gun-shortcut/",
+    "region": "韩国",
+    "note": "原库旧式罗马字Kwangmyong，对应今Gwangmyeong；点位于京畿道光明市。"
+  },
+  {
+    "name": "Seogwipo",
+    "lat": 33.25333,
+    "lon": 126.561813,
+    "zh": "西归浦",
+    "previous": "塞奥格伊珀",
+    "source": "https://chinese.visitkorea.or.kr/svc/whereToGo/allRgn/allRegionList.do?menuSn=216",
+    "region": "韩国"
+  }
+]

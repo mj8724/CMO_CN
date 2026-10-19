@@ -1368,21 +1368,19 @@ namespace CMOLocalizerInstaller
             catch { }
         }
 
-        private class TilePlace
-        {
-            public string Name;
-            public double Lat;
-            public double Lon;
-            public int Level;
-        }
 
-        private static void LocalizeMapLabelTiles(string gamePath)
+        /// <summary>
+        /// 重绘缓存的地名标签瓦片（与运行时共用 CMOShared.MapLabelRenderer，
+        /// 保证离线缓存与运行时像素一致）。返回实际成功保存的瓦片数。
+        /// </summary>
+        private static int LocalizeMapLabelTiles(string gamePath)
         {
+            int saved = 0;
             try
             {
                 string cacheDir = Path.Combine(gamePath, @"WW\Cache\Stamen Terrain - Labels");
                 string backupDir = Path.Combine(gamePath, @"WW\Cache\Stamen Terrain - Labels.orig");
-                if (!Directory.Exists(cacheDir)) return;
+                if (!Directory.Exists(cacheDir)) return 0;
 
                 if (!Directory.Exists(backupDir))
                 {
@@ -1396,7 +1394,7 @@ namespace CMOLocalizerInstaller
                     }
                 }
 
-                List<TilePlace> list = new List<TilePlace>();
+                List<MapLabelPlace> list = new List<MapLabelPlace>();
                 string synWwp = Path.Combine(gamePath, @"WW\PlacenameSets\Synoptic\0000_0000.wwp");
                 string citWwp = Path.Combine(gamePath, @"WW\PlacenameSets\Cities\0000_0000.wwp");
 
@@ -1414,7 +1412,7 @@ namespace CMOLocalizerInstaller
                                 float lat = br.ReadSingle();
                                 float lon = br.ReadSingle();
                                 br.ReadUInt32();
-                                list.Add(new TilePlace { Name = name, Lat = lat, Lon = lon, Level = lvl });
+                                list.Add(new MapLabelPlace { Name = name, Lat = lat, Lon = lon, Level = lvl });
                             }
                         }
                     }
@@ -1423,13 +1421,9 @@ namespace CMOLocalizerInstaller
 
                 loadWwp(synWwp, 0);
                 loadWwp(citWwp, 1);
-                if (list.Count == 0) return;
+                if (list.Count == 0) return 0;
 
                 string[] pngs = Directory.GetFiles(cacheDir, "*.png", SearchOption.AllDirectories);
-                StringFormat sf = new StringFormat();
-                sf.Alignment = StringAlignment.Center;
-                sf.LineAlignment = StringAlignment.Center;
-
                 Parallel.ForEach(pngs, pngPath =>
                 {
                     try
@@ -1441,91 +1435,21 @@ namespace CMOLocalizerInstaller
                         string fName = parts[parts.Length - 1];
                         int y = int.Parse(fName.Substring(0, fName.IndexOf('.')));
 
-                        double n = Math.Pow(2.0, z);
-                        double minLon = x / n * 360.0 - 180.0;
-                        double maxLon = (x + 1) / n * 360.0 - 180.0;
-                        double maxLat = Math.Atan(Math.Sinh(Math.PI * (1.0 - 2.0 * y / n))) * 180.0 / Math.PI;
-                        double minLat = Math.Atan(Math.Sinh(Math.PI * (1.0 - 2.0 * (y + 1) / n))) * 180.0 / Math.PI;
-
-                        List<TilePlace> inTile = new List<TilePlace>();
-                        foreach (var p in list)
+                        int candidates;
+                        int rendered;
+                        using (Bitmap bmp = MapLabelRenderer.RenderTile(list, z, x, y, out candidates, out rendered))
                         {
-                            if (p.Lon >= minLon && p.Lon <= maxLon && p.Lat >= minLat && p.Lat <= maxLat)
-                            {
-                                if (z <= 5) { if (p.Level == 0) inTile.Add(p); }
-                                else if (z <= 7) { inTile.Add(p); }
-                                else { if (p.Level == 1) inTile.Add(p); }
-                            }
-                        }
-
-                        using (Bitmap bmp = new Bitmap(256, 256, PixelFormat.Format32bppArgb))
-                        {
-                            using (Graphics g = Graphics.FromImage(bmp))
-                            {
-                                g.Clear(Color.Transparent);
-                                if (inTile.Count > 0)
-                                {
-                                    g.SmoothingMode = SmoothingMode.AntiAlias;
-                                    g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
-                                    inTile.Sort((a, b) => a.Level.CompareTo(b.Level));
-
-                                    List<RectangleF> occupied = new List<RectangleF>();
-                                    foreach (var p in inTile)
-                                    {
-                                        double xExact = (p.Lon + 180.0) / 360.0 * n;
-                                        double latRad = p.Lat * Math.PI / 180.0;
-                                        double yExact = (1.0 - Math.Log(Math.Tan(latRad) + 1.0 / Math.Cos(latRad)) / Math.PI) / 2.0 * n;
-                                        float rawPx = (float)((xExact - x) * 256.0);
-                                        float rawPy = (float)((yExact - y) * 256.0);
-
-                                        float fontSize = (p.Level == 0) ? (z <= 3 ? 9.5f : (z <= 4 ? 10.5f : 11.5f)) : (z <= 7 ? 9.0f : 8.5f);
-                                        FontStyle fStyle = (p.Level == 0) ? FontStyle.Bold : FontStyle.Regular;
-
-                                        using (Font f = new Font("Microsoft YaHei", fontSize, fStyle))
-                                        {
-                                            SizeF sz = g.MeasureString(p.Name, f);
-                                            float halfW = sz.Width * 0.5f;
-                                            float halfH = sz.Height * 0.5f;
-                                            float px = Math.Max(halfW + 3f, Math.Min(256f - halfW - 3f, rawPx));
-                                            float py = Math.Max(halfH + 3f, Math.Min(256f - halfH - 3f, rawPy));
-
-                                            RectangleF bbox = new RectangleF(px - halfW - 2f, py - halfH - 2f, sz.Width + 4f, sz.Height + 4f);
-                                            bool collides = false;
-                                            foreach (var occ in occupied)
-                                            {
-                                                if (bbox.IntersectsWith(occ)) { collides = true; break; }
-                                            }
-                                            if (collides) continue;
-                                            occupied.Add(bbox);
-
-                                            using (GraphicsPath gp = new GraphicsPath())
-                                            {
-                                                gp.AddString(p.Name, new FontFamily("Microsoft YaHei"), (int)fStyle, fontSize, new PointF(px, py), sf);
-                                                Color penC = (p.Level == 0) ? Color.FromArgb(220, 15, 15, 15) : Color.FromArgb(200, 25, 25, 25);
-                                                float penW = (p.Level == 0) ? 3.0f : 2.2f;
-                                                using (Pen pen = new Pen(penC, penW))
-                                                {
-                                                    pen.LineJoin = LineJoin.Round;
-                                                    g.DrawPath(pen, gp);
-                                                }
-                                                Color txtC = (p.Level == 0) ? Color.FromArgb(255, 255, 255) : Color.FromArgb(240, 240, 240);
-                                                using (SolidBrush br = new SolidBrush(txtC))
-                                                {
-                                                    g.FillPath(br, gp);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
                             bmp.Save(pngPath, ImageFormat.Png);
+                            System.Threading.Interlocked.Increment(ref saved);
                         }
                     }
                     catch { }
                 });
+                return saved;
             }
-            catch { }
+            catch { return 0; }
         }
+
 
         private static void RestoreMapLabelTiles(string gamePath)
         {

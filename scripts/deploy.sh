@@ -21,6 +21,8 @@ deploy_file() {
 deploy_file "$ROOT/build/CMOLocalizer.dll" "$GAME/CMOLocalizer.dll"
 deploy_file "$ROOT/dict/CMOLocalizer.json" "$GAME/CMOLocalizer.json"
 cp "$ROOT/assets/db_templates/"*.html "$GAME/DB/Templates/"
+cp "$ROOT/assets/placenames/Synoptic.wwp" "$GAME/WW/PlacenameSets/Synoptic/0000_0000.wwp"
+cp "$ROOT/assets/placenames/Cities.wwp" "$GAME/WW/PlacenameSets/Cities/0000_0000.wwp"
 
 "$PY" - "$ROOT" "$GAME" <<'PYEOF'
 import json, pathlib, sys

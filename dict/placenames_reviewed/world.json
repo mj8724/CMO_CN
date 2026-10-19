@@ -1,0 +1,492 @@
+[
+  {
+    "name": "Yulin",
+    "lat": 22.633329,
+    "lon": 110.150002,
+    "zh": "玉林",
+    "previous": "榆林",
+    "source": "https://www.yulin.gov.cn/gkzl/fadingzhudonggongkaineirong/shgysyjslygk/hjbhly/huanjingyingxiangpingjiashenpi/P020250703374694361816.pdf",
+    "region": "中国大陆/广西",
+    "note": "坐标在广西玉林，不是陕西榆林；来自MAJOR_CITIES错误映射，并非fallback。官方玉林项目坐标110°11′44.771″E、22°35′36.095″N可作附近对照。"
+  },
+  {
+    "name": "Taizhou",
+    "lat": 32.490688,
+    "lon": 119.908119,
+    "zh": "泰州",
+    "previous": "台州",
+    "source": "https://yjj.taizhou.gov.cn/zfxxgk/fdzdgknr/zcwj/bmwj/art/2020/art_0135304f72f444bbbb3ee49f4392bc87.html",
+    "region": "中国大陆/江苏",
+    "note": "坐标在江苏泰州，不是浙江台州；来自MAJOR_CITIES错误映射，并非fallback。官方泰州经纬度范围覆盖此点。"
+  },
+  {
+    "name": "Yichun",
+    "lat": 47.721432,
+    "lon": 128.87529,
+    "zh": "伊春",
+    "previous": "宜春",
+    "source": "https://www.ycym.gov.cn/ymqrmzf/c101571/202605/427256.shtml",
+    "region": "中国大陆/黑龙江",
+    "note": "同一个英文key对应两地：本条是黑龙江伊春；原始WWP另有27.833330N、114.400002E的江西宜春，后者现译宜春正确。仅按English建dict导致无法区分，不能全局把Yichun改为伊春。"
+  },
+  {
+    "name": "Jining",
+    "lat": 41.0275,
+    "lon": 113.105827,
+    "zh": "集宁",
+    "previous": "济宁",
+    "source": "https://www.mva.gov.cn/xinwen/dfdt/202405/t20240523_420953.html",
+    "region": "中国大陆/内蒙古",
+    "note": "本条位于乌兰察布集宁区；原始WWP另有35.404999N、116.581390E的山东济宁，后者现译济宁正确。仅按English建dict导致无法区分，不能全局把Jining改为集宁。"
+  },
+  {
+    "name": "New Delhi",
+    "lat": 28.635759,
+    "lon": 77.224449,
+    "zh": "新德里",
+    "previous": "新德尔希",
+    "source": "https://www.fmprc.gov.cn/web//gjhdq_676201/gj_676203/yz_676205/1206_677220/1206x0_677222/",
+    "region": "印度",
+    "note": "外交部印度国家概况直接列 New Delhi=新德里。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Mumbai",
+    "lat": 19.07283,
+    "lon": 72.882607,
+    "zh": "孟买",
+    "previous": "穆姆巴伊",
+    "source": "https://cs.mfa.gov.cn/zggmcg/ljmdd/yz_645708/yd_648314/cyxx_648360/",
+    "region": "印度",
+    "note": "中国领事服务网印度页面双语紧急电话表列 Mumbai=孟买。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Kolkata",
+    "lat": 22.56263,
+    "lon": 88.363037,
+    "zh": "加尔各答",
+    "previous": "科尔卡塔",
+    "source": "https://kolkata.china-consulate.gov.cn/lqgk/201601/t20160129_5041076.htm",
+    "region": "印度",
+    "note": "驻加尔各答总领馆直接列 加尔各答市（Kolkata，旧称Calcutta）；现名属于机械转写，未采用通行中文名。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Chennai",
+    "lat": 13.08784,
+    "lon": 80.278473,
+    "zh": "金奈",
+    "previous": "切恩纳伊",
+    "source": "https://cs.mfa.gov.cn/zggmcg/ljmdd/yz_645708/yd_648314/cyxx_648360/",
+    "region": "印度",
+    "note": "中国领事服务网印度页面双语紧急电话表列 金奈 Chennai。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Bangalore",
+    "lat": 12.97194,
+    "lon": 77.593689,
+    "zh": "班加罗尔",
+    "previous": "巴恩加洛雷",
+    "source": "https://in.china-embassy.gov.cn/chn/ssygd/yd/ydjdjs/200505/t20050525_2363642.htm",
+    "region": "印度",
+    "note": "驻印度使馆文章标题直接列 班加罗尔（Bangalore）。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Jaipur",
+    "lat": 26.919621,
+    "lon": 75.787811,
+    "zh": "斋浦尔",
+    "previous": "阿伊普尔",
+    "source": "https://cs.mfa.gov.cn/zggmcg/ljmdd/yz_645708/yd_648314/cyxx_648360/",
+    "region": "印度",
+    "note": "中国领事服务网印度双语紧急电话表采用 斋浦尔 Jaipur；亦有斋普尔写法，现阿伊普尔明确丢失首辅音。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Dhaka",
+    "lat": 23.7104,
+    "lon": 90.40744,
+    "zh": "达卡",
+    "previous": "德哈卡",
+    "source": "https://bd.china-embassy.gov.cn/mgxx/gk/201104/t20110401_1781000.htm",
+    "region": "孟加拉国",
+    "note": "驻孟加拉国使馆国家概况直接列 达卡（Dhaka）。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Colombo",
+    "lat": 6.93194,
+    "lon": 79.847778,
+    "zh": "科伦坡",
+    "previous": "奥尔奥姆博",
+    "source": "https://lk.china-embassy.gov.cn/chn/lsfw/lshbxx/202506/t20250609_11643461.htm",
+    "region": "斯里兰卡",
+    "note": "仅指本记录6.9319N/79.8478E。原始WWP还存在巴西同名Colombo（-25.2917,-49.2242）；不能不分坐标将全局英文键统一改科伦坡。使馆联系地址中英并列 Colombo 07=科伦坡七区。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Kathmandu",
+    "lat": 27.701691,
+    "lon": 85.320602,
+    "zh": "加德满都",
+    "previous": "卡特赫马恩杜",
+    "source": "https://np.china-embassy.gov.cn/lsfw/zytz/lstz/202401/t20240108_11220096.htm",
+    "region": "尼泊尔",
+    "note": "驻尼泊尔使馆签证中心开业通知使用 加德满都 并列地址 Kathmandu, Nepal。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Chiang Mai",
+    "lat": 18.79038,
+    "lon": 98.98468,
+    "zh": "清迈",
+    "previous": "奇安格·马伊",
+    "source": "https://chiangmai.china-consulate.gov.cn/lqgk/tbjj/201510/t20151013_5571077.htm",
+    "region": "泰国",
+    "note": "驻清迈总领馆泰北简介含清迈城市简介和中英文馆址 Chiang Mai。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Phnom Penh",
+    "lat": 11.56245,
+    "lon": 104.916008,
+    "zh": "金边",
+    "previous": "普赫诺姆·佩恩赫",
+    "source": "https://kh.china-embassy.gov.cn/lxwm/",
+    "region": "柬埔寨",
+    "note": "驻柬埔寨使馆联系地址中英并列 金边市 / Phnom Penh。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Siem Reap",
+    "lat": 13.36179,
+    "lon": 103.860558,
+    "zh": "暹粒",
+    "previous": "斯埃姆·雷阿普",
+    "source": "https://kh.china-embassy.gov.cn/lsfws/2w/",
+    "region": "柬埔寨",
+    "note": "驻柬埔寨使馆领区划分列 暹粒省暹粒市 / Siem Reap District, Siem Reap Province。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Medan",
+    "lat": 3.58333,
+    "lon": 98.666672,
+    "zh": "棉兰",
+    "previous": "梅达恩",
+    "source": "https://medan.china-consulate.gov.cn/lqgk/BSMDL/201111/t20111110_5568850.htm",
+    "region": "印度尼西亚",
+    "note": "驻棉兰总领馆北苏门答腊省概况直接列 省会为棉兰市（Medan）。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Semarang",
+    "lat": -6.9932,
+    "lon": 110.420303,
+    "zh": "三宝垄",
+    "previous": "塞马拉恩格",
+    "source": "https://surabaya.china-consulate.gov.cn/chn/zggmfw/lqgk/201607/t20160720_4934348.htm",
+    "region": "印度尼西亚",
+    "note": "驻印尼使馆介绍中爪哇省省会三宝垄市；原始WWP坐标位于该市。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Johor Bahru",
+    "lat": 1.4655,
+    "lon": 103.757797,
+    "zh": "新山",
+    "previous": "奥霍尔·巴赫鲁",
+    "source": "https://my.china-embassy.gov.cn/sgxw/201904/t20190426_1717424.htm",
+    "region": "马来西亚",
+    "note": "驻马来西亚使馆文章直接列 柔佛新山（Johor Bahru）；现奥霍尔丢失首辅音。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Malacca",
+    "lat": 2.196,
+    "lon": 102.240501,
+    "zh": "马六甲",
+    "previous": "马拉阿",
+    "source": "https://fao.sz.gov.cn/xxgk/zyxw/content/post_1543572.html",
+    "region": "马来西亚",
+    "note": "政府外事办刊载国家主席署名文章中英并列 马六甲 / Malacca；原始WWP坐标位于马六甲市。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Ipoh",
+    "lat": 4.5841,
+    "lon": 101.082901,
+    "zh": "怡保",
+    "previous": "伊珀赫",
+    "source": "https://penang.china-consulate.gov.cn/lqfq/201510/t20151005_4743823.htm",
+    "region": "马来西亚",
+    "note": "驻槟城总领馆霹雳州简介直接列 首府是怡保（Ipoh）。 dict中的现名与生成脚本transliterate输出完全一致，未命中MAJOR_CITIES人工表。"
+  },
+  {
+    "name": "Florence",
+    "lat": 43.77925,
+    "lon": 11.24626,
+    "zh": "佛罗伦萨",
+    "previous": "夫洛雷恩埃",
+    "source": "https://cs.mfa.gov.cn/zggmcg/ljmdd/oz_652287/ydl_655141/jtcx_655169/",
+    "region": "欧洲/意大利",
+    "note": "dict/placenames_cities.json:2228；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Genoa",
+    "lat": 44.4264,
+    "lon": 8.91519,
+    "zh": "热那亚",
+    "previous": "格诺阿",
+    "source": "https://cs.mfa.gov.cn/zggmcg/ljmdd/oz_652287/ydl_655141/jtcx_655169/",
+    "region": "欧洲/意大利",
+    "note": "dict/placenames_cities.json:2226；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Milano",
+    "lat": 45.46427,
+    "lon": 9.18951,
+    "zh": "米兰",
+    "previous": "米拉诺",
+    "source": "https://cs.mfa.gov.cn/zggmcg/ljmdd/oz_652287/ydl_655141/jtcx_655169/",
+    "region": "欧洲/意大利",
+    "note": "dict/placenames_cities.json:2223；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Vienna",
+    "lat": 48.20849,
+    "lon": 16.37208,
+    "zh": "维也纳",
+    "previous": "伊恩纳",
+    "source": "https://cs.mfa.gov.cn/zggmcg/ljmdd/oz_652287/adl_652537/",
+    "region": "欧洲/奥地利",
+    "note": "dict/placenames_cities.json:63；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Brussels",
+    "lat": 50.85045,
+    "lon": 4.34878,
+    "zh": "布鲁塞尔",
+    "previous": "布鲁斯塞尔斯",
+    "source": "https://cs.mfa.gov.cn/zggmcg/ljmdd/oz_652287/bls_652723/",
+    "region": "欧洲/比利时",
+    "note": "dict/placenames_cities.json:130；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Prague",
+    "lat": 50.08804,
+    "lon": 14.42076,
+    "zh": "布拉格",
+    "previous": "普拉古埃",
+    "source": "https://prague.eu/en/china/",
+    "region": "欧洲/捷克",
+    "note": "dict/placenames_cities.json:1017；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Munich",
+    "lat": 48.13743,
+    "lon": 11.57549,
+    "zh": "慕尼黑",
+    "previous": "穆尼赫",
+    "source": "https://www.muenchen.de/zh-hans/zh",
+    "region": "欧洲/德国",
+    "note": "dict/placenames_cities.json:1052；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Marseille",
+    "lat": 43.29695,
+    "lon": 5.38107,
+    "zh": "马赛",
+    "previous": "马尔塞伊尔勒",
+    "source": "https://marseille.china-consulate.gov.cn/chn/lqgk/202008/t20200824_3893780.htm",
+    "region": "欧洲/法国",
+    "note": "dict/placenames_cities.json:1357；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Vancouver",
+    "lat": 49.24966,
+    "lon": -123.11934,
+    "zh": "温哥华",
+    "previous": "安奥乌尔",
+    "source": "https://vancouver.china-consulate.gov.cn/chn/lxwm_0/202309/t20230912_11141357.htm",
+    "region": "美洲/加拿大",
+    "note": "dict/placenames_cities.json:443；国家/城市以仓库Cities.wwp实际坐标定位。同名另有美国华盛顿州45.63873,-122.66149记录；本项只确认加拿大城市，不能不分地点做全局rename。"
+  },
+  {
+    "name": "Montreal",
+    "lat": 45.50884,
+    "lon": -73.58781,
+    "zh": "蒙特利尔",
+    "previous": "莫恩特雷阿尔",
+    "source": "https://montreal.china-consulate.gov.cn/chn//zlgjj/lxfs/",
+    "region": "美洲/加拿大",
+    "note": "dict/placenames_cities.json:428；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "New York City",
+    "lat": 40.71427,
+    "lon": -74.00597,
+    "zh": "纽约市",
+    "previous": "新约尔克·伊特",
+    "source": "https://www.nyc.gov/assets/hra/downloads/pdf/news/notices/2020/notice-of-remote-public-hearing-and-opportunity-to-comment-on-proposed-amendments-to-fair-fares-nyc-rule-sc.pdf",
+    "region": "美洲/美国",
+    "note": "dict/placenames_cities.json:3910；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Chicago",
+    "lat": 41.85003,
+    "lon": -87.65005,
+    "zh": "芝加哥",
+    "previous": "奇阿戈",
+    "source": "https://chicago.china-consulate.gov.cn/zlgxx/lxwm_144975/202508/t20250807_11684216.htm",
+    "region": "美洲/美国",
+    "note": "dict/placenames_cities.json:3873；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "San Francisco",
+    "lat": 37.77493,
+    "lon": -122.41942,
+    "zh": "旧金山",
+    "previous": "圣夫拉恩伊斯奥",
+    "source": "https://sanfrancisco.china-consulate.gov.cn/chn/lsfw/LSBH1/lblxfs/",
+    "region": "美洲/美国",
+    "note": "dict/placenames_cities.json:3984；国家/城市以仓库Cities.wwp实际坐标定位。中国领事来源使用“旧金山”；“三藩市”也是通行别称，当前词条两者皆非。"
+  },
+  {
+    "name": "Buenos Aires",
+    "lat": -34.61315,
+    "lon": -58.37723,
+    "zh": "布宜诺斯艾利斯",
+    "previous": "布恩奥斯·阿伊尔埃斯",
+    "source": "https://www.mfa.gov.cn/web/gjhdq_676201/gj_676203/nmz_680924/1206_680926/1206x0_680928/",
+    "region": "美洲/阿根廷",
+    "note": "dict/placenames_cities.json:42；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Sao Paulo",
+    "lat": -23.5475,
+    "lon": -46.63611,
+    "zh": "圣保罗",
+    "previous": "萨奥·帕乌尔奥",
+    "source": "https://saopaulo.china-consulate.gov.cn/zlgxx/jgsz/",
+    "region": "美洲/巴西",
+    "note": "dict/placenames_cities.json:216；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Rio de Janeiro",
+    "lat": -22.90278,
+    "lon": -43.2075,
+    "zh": "里约热内卢",
+    "previous": "里奥·德·安埃伊尔奥",
+    "source": "https://riodejaneiro.china-consulate.gov.cn/chn/zlgxx_0/zlgjj/201501/t20150121_5008932.htm",
+    "region": "美洲/巴西",
+    "note": "dict/placenames_cities.json:235；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Mexico City",
+    "lat": 19.42847,
+    "lon": -99.12766,
+    "zh": "墨西哥城",
+    "previous": "梅伊奥·伊特",
+    "source": "https://cs.mfa.gov.cn/zggmcg/ljmdd/bmz_655327/mxg_657021/",
+    "region": "美洲/墨西哥",
+    "note": "dict/placenames_cities.json:2715；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Havana",
+    "lat": 23.13302,
+    "lon": -82.38304,
+    "zh": "哈瓦那",
+    "previous": "哈安阿",
+    "source": "https://www.mfa.gov.cn/gjhdq_676201/gj_676203/bmz_679954/1206_680302/1206x0_680304/",
+    "region": "美洲/古巴",
+    "note": "dict/placenames_cities.json:998；国家/城市以仓库Cities.wwp实际坐标定位。"
+  },
+  {
+    "name": "Nairobi",
+    "lat": -1.28333,
+    "lon": 36.816669,
+    "zh": "内罗毕",
+    "previous": "纳伊尔奥比",
+    "source": "https://ke.china-embassy.gov.cn/lsfw/zytz/202512/P020251224786842903084.pdf",
+    "region": "肯尼亚",
+    "note": "已有通行中文地名，当前机械转写不规范。"
+  },
+  {
+    "name": "Accra",
+    "lat": 5.55602,
+    "lon": -0.1969,
+    "zh": "阿克拉",
+    "previous": "阿拉",
+    "source": "https://www.mfa.gov.cn/web/gjhdq_676201/gj_676203/fz_677316/1206_677776/1206x0_677778/",
+    "region": "加纳",
+    "note": "已有通行中文地名，当前机械转写不规范。"
+  },
+  {
+    "name": "Abuja",
+    "lat": 9.05785,
+    "lon": 7.49508,
+    "zh": "阿布贾",
+    "previous": "阿布阿",
+    "source": "https://ng.china-embassy.gov.cn/eng/lsfw/cd/",
+    "region": "尼日利亚",
+    "note": "已有通行中文地名，当前机械转写不规范。"
+  },
+  {
+    "name": "Kinshasa",
+    "lat": -4.32758,
+    "lon": 15.31357,
+    "zh": "金沙萨",
+    "previous": "基恩沙萨",
+    "source": "https://cd.china-embassy.gov.cn/zjsg/201709/t20170904_5578430.htm",
+    "region": "刚果（金）",
+    "note": "已有通行中文地名，当前机械转写不规范。"
+  },
+  {
+    "name": "Cape Town",
+    "lat": -33.925838,
+    "lon": 18.42322,
+    "zh": "开普敦",
+    "previous": "阿佩·托恩",
+    "source": "https://capetown.china-consulate.gov.cn/lqjs/201612/t20161230_7015388.htm",
+    "region": "南非",
+    "note": "已有通行中文地名，当前机械转写不规范。"
+  },
+  {
+    "name": "Pretoria",
+    "lat": -25.74486,
+    "lon": 28.18783,
+    "zh": "比勒陀利亚",
+    "previous": "普雷托里阿",
+    "source": "https://www.mfa.gov.cn/gjhdq_676201/gj_676203/fz_677316/1206_678284/1206x0_678286/",
+    "region": "南非",
+    "note": "已有通行中文地名，当前机械转写不规范。"
+  },
+  {
+    "name": "Bloemfontein",
+    "lat": -29.121071,
+    "lon": 26.214001,
+    "zh": "布隆方丹",
+    "previous": "布洛埃姆福恩特因",
+    "source": "https://www.mfa.gov.cn/gjhdq_676201/gj_676203/fz_677316/1206_678284/1206x0_678286/",
+    "region": "南非",
+    "note": "已有通行中文地名，当前机械转写不规范。"
+  },
+  {
+    "name": "Khartoum",
+    "lat": 15.55177,
+    "lon": 32.53241,
+    "zh": "喀土穆",
+    "previous": "克哈尔托乌姆",
+    "source": "https://www.mfa.gov.cn/web/gjhdq_676201/gj_676203/fz_677316/1206_678526/1206x0_678528/",
+    "region": "苏丹",
+    "note": "已有通行中文地名，当前机械转写不规范。"
+  },
+  {
+    "name": "Sharjah",
+    "lat": 25.33737,
+    "lon": 55.41206,
+    "zh": "沙迦",
+    "previous": "沙尔阿赫",
+    "source": "https://dubai.mofcom.gov.cn/gywm/zyzn/art/2025/art_aab71bf926be464abf49da892656539c.html",
+    "region": "阿联酋",
+    "note": "已有通行中文地名，当前机械转写不规范。"
+  },
+  {
+    "name": "Brest",
+    "lat": 52.097549,
+    "lon": 23.68775,
+    "zh": "布列斯特",
+    "previous": "布雷斯特",
+    "source": "https://by.mofcom.gov.cn/",
+    "region": "白俄罗斯",
+    "note": "该坐标位于白俄罗斯；与法国48.40N、4.48333W的Brest共用英文键，不能全局替换。"
+  }
+]
