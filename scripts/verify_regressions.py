@@ -86,6 +86,20 @@ TILE_XAML = Path("C:/Windows/Microsoft.NET/Framework64/v4.0.30319/System.Xaml.dl
 TILE_MODES = ["starvation", "protocol", "idle", "batch", "multi-idle", "trickle", "pressure"]
 
 
+def _engine_source_args() -> list[str]:
+    engine_dir = ROOT / "src/engine"
+    args = list(map(str, sorted(engine_dir.glob("*.cs"))))
+    shared = ROOT / "src/shared/MapLabelRenderer.cs"
+    if shared.is_file():
+        args.append(str(shared))
+    if (engine_dir / "WebViewTranslation.cs").is_file():
+        script = engine_dir / "WebViewTranslation.js"
+        if not script.is_file():
+            raise FileNotFoundError(f"Required WebView translation resource is missing: {script}")
+        args.insert(0, f"-resource:{script},CMOLocalizer.WebViewTranslation.js")
+    return args
+
+
 def _tile_harness(r: Runner, work: Path) -> None:
     """编译引擎与测试宿主，对当前源码跑 7 模式并发回归。"""
     dll, exe = work / "CMOLocalizer.dll", work / "MapTileServerTests.exe"
@@ -98,8 +112,7 @@ def _tile_harness(r: Runner, work: Path) -> None:
     builds = [
         subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
                         "-optimize+", f"-out:{dll}", *refs,
-                        str(ROOT / "src/shared/MapLabelRenderer.cs"), str(ENGINE),
-                        str(ROOT / "src/engine/Reflect.cs")],
+                        *_engine_source_args()],
                        capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180),
         subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
                         f"-out:{exe}", "-reference:System.dll", "-reference:System.Drawing.dll",
@@ -466,8 +479,7 @@ def run_static(r: Runner) -> None:
                                                 TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
         _b1 = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
                               "-optimize+", f"-out:{_dll39}", *_refs39,
-                              str(ROOT / "src/shared/MapLabelRenderer.cs"), str(ENGINE),
-                              str(ROOT / "src/engine/Reflect.cs")],
+                              *_engine_source_args()],
                              capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
         _b2 = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
                               f"-out:{_exe39}", str(ROOT / "build/test_db_translation.cs")],

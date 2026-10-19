@@ -14,20 +14,8 @@ W() { cygpath -w "$1"; }
 PY="C:/Users/admin/Desktop/ga-admin-portable-windows-amd64-v0.2.29/python/python.exe"
 
 echo "==> building CMOLocalizer.dll"
-WPF="/c/Windows/Microsoft.NET/Framework64/v4.0.30319/WPF"
-"$CSC" -nologo -target:library -platform:anycpu -optimize+ \
-  -out:"$(W "$OUT/CMOLocalizer.dll")" \
-  -reference:System.dll -reference:System.Core.dll \
-  -reference:System.Data.dll \
-  -reference:System.Windows.Forms.dll -reference:System.Drawing.dll \
-  -reference:System.Xml.dll -reference:System.Xml.Linq.dll \
-  -reference:"$(W "$WPF/WindowsBase.dll")" \
-  -reference:"$(W "$WPF/PresentationCore.dll")" \
-  -reference:"$(W "$WPF/PresentationFramework.dll")" \
-  -reference:"$(W "/c/Windows/Microsoft.NET/Framework64/v4.0.30319/System.Xaml.dll")" \
-  "$(W "$ROOT/src/shared/MapLabelRenderer.cs")" \
-  "$(W "$ROOT/src/engine/CMOLocalizer.cs")" \
-  "$(W "$ROOT/src/engine/Reflect.cs")"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$(W "$ROOT/scripts/build.ps1")"
+if [[ "${1:-}" == "--engine-only" ]]; then exit 0; fi
 
 echo "==> building CMO_Updater.exe"
 "$CSC" -nologo -target:winexe -platform:anycpu -optimize+ \
@@ -56,6 +44,12 @@ with zipfile.ZipFile(dest, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
             z.write(f, f.relative_to(src))
 print(f"symbols menu zip: {dest.stat().st_size} bytes")
 PYEOF
+fi
+
+# The independent map-label feature supplies this shared source when present.
+INSTALLER_SHARED_SOURCES=()
+if [ -f "$ROOT/src/shared/MapLabelRenderer.cs" ]; then
+  INSTALLER_SHARED_SOURCES+=("$(W "$ROOT/src/shared/MapLabelRenderer.cs")")
 fi
 
 echo "==> building $SETUP_EXE"
@@ -88,7 +82,7 @@ fi
   -reference:System.IO.Compression.dll -reference:System.IO.Compression.FileSystem.dll \
   "${RES[@]}" \
   "$(W "$ROOT/src/shared/CMOShared.cs")" \
-  "$(W "$ROOT/src/shared/MapLabelRenderer.cs")" \
+  "${INSTALLER_SHARED_SOURCES[@]}" \
   "$(W "$ROOT/src/installer/CMO_Chinese_Setup.cs")"
 
 # Keep standard CMO_Chinese_Setup.exe as compatibility copy
