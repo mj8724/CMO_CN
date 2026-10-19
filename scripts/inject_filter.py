@@ -48,7 +48,8 @@ HARMFUL_SHAPE = re.compile(
     r"|(^|\s)(ASC|DESC)$"
     r"|^(ORDER|GROUP|HAVING|LIMIT|OFFSET|WHERE|SELECT|FROM|JOIN|UNION|INSERT|UPDATE|"
     r"DELETE|CREATE|DROP|ALTER|PRAGMA|VACUUM)\b"
-    r"|\b(LIKE|NOT LIKE)\s*'?%?$", re.I)
+    r"|\b(LIKE|NOT LIKE)\s*'?%?$"
+    r"|\bBuild\s+\d+|1900\.\d+", re.I)
 
 
 def harmful_shape(en: str) -> bool:
@@ -64,6 +65,10 @@ def injection_safe(en: str, valid: set[str] | None = None) -> tuple[bool, str]:
         return False, "空串/内部标记"
     if en in DISPATCH_TOKENS:
         return False, "派发 token"
+    # 版本与构建号必须交由引擎动态正则处理，绝不能注入池偏移（否则游戏更新后
+    # 标题栏/大厅会把新版本的构建号覆盖成旧版，例如 1900.23 显示成 1900.20）
+    if re.search(r"\bBuild\s+\d+|1900\.\d+", en, re.I):
+        return False, "含构建号版本串（由引擎动态规则处理，禁止池注入）"
     if valid is not None and en not in valid:
         return False, "池里不存在"
     if any("\u4e00" <= c <= "\u9fff" for c in en):
