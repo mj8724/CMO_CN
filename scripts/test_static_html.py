@@ -2,6 +2,7 @@
 """Offline regression checks; fixtures never read or write the installed game."""
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 import tempfile
@@ -101,6 +102,50 @@ class StaticHtmlTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             with self.assertRaisesRegex(FileNotFoundError, "Scenarios"):
                 tool.build_payload(Path(tmp) / "missing", Path(tmp) / "out", Path(tmp) / "dict.json")
+
+    def test_refreshed_live_html_wins_over_unmanaged_original_backup(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            scenarios = root / "game/Scenarios"
+            scenarios.mkdir(parents=True)
+            path = scenarios / "updated.html"
+            original = path.with_name(path.name + ".orig")
+            old = b'<h2>Briefing</h2><p>Old instructions</p>'
+            current = b'<h2>Briefing</h2><p>Updated instructions</p><!-- revision 2 -->'
+            original.write_bytes(old)
+            path.write_bytes(current)
+            dictionary = root / "dict.json"
+            dictionary.write_text(json.dumps({"exact": {
+                "Briefing": "简报", "Old instructions": "旧指令", "Updated instructions": "新指令"
+            }}), encoding="utf-8")
+            manifest = tool.build_payload(root / "game", root / "out", dictionary)
+            with zipfile.ZipFile(root / "out/Scenarios_HTML.zip") as archive:
+                self.assertEqual(archive.read("Scenarios/updated.html").decode("utf-8"),
+                                 '<h2>简报</h2><p>新指令</p><!-- revision 2 -->')
+                self.assertEqual(current, archive.read("Scenarios/updated.html.orig"))
+            self.assertEqual(hashlib.sha256(current).hexdigest(),
+                             manifest["files"][0]["source_sha256"])
+            self.assertEqual(current, path.read_bytes())
+            self.assertEqual(old, original.read_bytes())
+
+    def test_localized_live_html_is_not_rolled_back_to_backup_version(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            scenarios = root / "game/Scenarios"
+            scenarios.mkdir(parents=True)
+            current = '<h2>简报</h2><p>新指令</p><!-- revision 2 -->'.encode("utf-8")
+            path = scenarios / "localized.html"
+            path.write_bytes(current)
+            (scenarios / "localized.html.orig").write_bytes(b'<p>Old instructions</p>')
+            dictionary = root / "dict.json"
+            dictionary.write_text(json.dumps({"exact": {"Old instructions": "旧指令"}}),
+                                  encoding="utf-8")
+            output = root / "out"
+            tool.build_payload(root / "game", output, dictionary)
+            self.assertEqual(current, (output / "static_html/Scenarios/localized.html").read_bytes())
+            first_zip = (output / "Scenarios_HTML.zip").read_bytes()
+            tool.build_payload(root / "game", output, dictionary)
+            self.assertEqual(first_zip, (output / "Scenarios_HTML.zip").read_bytes())
 
     def test_manifest_verification_rejects_tampered_output(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

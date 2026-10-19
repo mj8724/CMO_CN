@@ -141,8 +141,9 @@ def build_payload(game: Path, output: Path, dictionary: Path,
                 "translated_segments": 0, "untranslated_segments": 0}
     payload_files = {}
     for path in sources:
-        original = path.with_name(path.name + ".orig")
-        source = (original if original.is_file() else path).read_bytes()
+        # Backups are unversioned and may predate a game update. The explicitly
+        # selected current file is authoritative; existing Chinese is preserved.
+        source = path.read_bytes()
         document, encoding = decode_html(source)
         translated, stats = localize_html(document, table, normalized)
         result = translated.encode(encoding, errors="xmlcharrefreplace")
