@@ -10,30 +10,17 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 VER="$(tr -d '[:space:]' < "$ROOT/VERSION")"
 OUT="$ROOT/build"
 PACK="$OUT/pack"
-PY="${PY:-C:/Users/admin/Desktop/ga-admin-portable-windows-amd64-v0.2.29/python/python.exe}"
+PY="${PY:-python}"
+GAME_DIR="${GAME_DIR:?Set GAME_DIR to the read-only game source directory}"
 
 echo "==> version $VER"
 
-# Bundle the localized Scenarios HTML (plus the pristine .orig backups) so a
-# fresh install reproduces the on-disk translation without runtime injection.
-GAME_SCEN="G:/soft/steam/steamapps/common/Command - Modern Operations/Scenarios"
-if [ -d "$GAME_SCEN" ]; then
-  "$PY" - "$GAME_SCEN" "$OUT/Scenarios_HTML.zip" <<'PYEOF'
-import pathlib, sys, zipfile
-src, dest = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
-game = src.parent
-files = sorted(list(src.rglob("*.html")) + list(src.rglob("*.html.orig")))
-with zipfile.ZipFile(dest, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-    for f in files:
-        z.write(f, f.relative_to(game).as_posix())
-print(f"wrote {dest} ({len(files)} files, {dest.stat().st_size} bytes)")
-PYEOF
-else
-  echo "==> warning: game Scenarios directory not found; skipping HTML bundle"
-fi
+# Export text-only translations into ignored staging output; never rewrite GAME_DIR.
+"$PY" "$ROOT/scripts/localize_html_files.py" --game-dir "$GAME_DIR" --output-dir "$OUT"
 
 # ── 明文凭据硬门禁（工作区 + 全历史）：不通过则中止打包 ────────────────
-"$PY" "$ROOT/scripts/verify_no_secrets.py" --history \n  || { echo "==> 密钥门禁未通过，中止打包"; exit 1; }
+"$PY" "$ROOT/scripts/verify_no_secrets.py" --history \
+  || { echo "==> 密钥门禁未通过，中止打包"; exit 1; }
 
 bash "$ROOT/scripts/build.sh"
 
@@ -61,31 +48,17 @@ cp -f "$ROOT/assets/symbols_menu/"* "$PACK/Symbols/Menu/" 2>/dev/null || true
 cp -f "$ROOT/assets/launcher/stringsChinese.resx" "$PACK/Launcher/Localization/"
 cp "$ROOT/assets/db_templates/"*.html "$PACK/DB/Templates/"
 
-# Green pack parity: ship the localized Scenarios HTML so unpacking over the game
-# root gives the same result as the installer.
-if [ -d "$GAME_SCEN" ]; then
-  mkdir -p "$PACK/Scenarios"
-  "$PY" - "$GAME_SCEN" "$PACK" <<'PYEOF'
-import pathlib, shutil, sys
-src, pack = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
-game = src.parent
-n = 0
-for f in sorted(list(src.rglob("*.html")) + list(src.rglob("*.html.orig"))):
-    dst = pack / f.relative_to(game)
-    dst.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(f, dst)
-    n += 1
-print(f"pack: {n} Scenarios HTML files")
-PYEOF
-fi
+# Installer and green pack consume exactly the same manifest-covered payload.
+"$PY" "$ROOT/scripts/localize_html_files.py" --output-dir "$OUT" --copy-to "$PACK"
+cp "$OUT/static_html_manifest.json" "$PACK/"
 cp "$ROOT/README.md" "$PACK/汉化说明.md"
 
 # Command.exe.config patch that wires the AppDomainManager, without clobbering
 # any binding redirects already present in the user's config.
-"$PY" - "$PACK" <<'PYEOF'
+"$PY" - "$PACK" "$GAME_DIR" <<'PYEOF'
 import pathlib, re, sys
 pack = pathlib.Path(sys.argv[1])
-src = pathlib.Path("G:/soft/steam/steamapps/common/Command - Modern Operations/Command.exe.config")
+src = pathlib.Path(sys.argv[2]) / "Command.exe.config"
 text = src.read_text(encoding="utf-8-sig")
 snippet = """    <appDomainManagerType value="CMOLocalizer.LocalizerDomainManager" />
     <appDomainManagerAssembly value="CMOLocalizer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />

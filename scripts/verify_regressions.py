@@ -28,7 +28,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
-GAME = Path("G:/soft/steam/steamapps/common/Command - Modern Operations")
+GAME = Path(os.environ.get("GAME_DIR", "G:/soft/steam/steamapps/common/Command - Modern Operations"))
 ENGINE = ROOT / "src/engine/CMOLocalizer.cs"
 DICT = ROOT / "dict/CMOLocalizer.json"
 REPORT = ROOT / "build/regression_report.json"
@@ -97,8 +97,9 @@ def _tile_harness(r: Runner, work: Path) -> None:
                                          TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
     builds = [
         subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
-                        "-optimize+", f"-out:{dll}", *refs, str(ENGINE),
-                        str(ROOT / "src/engine/Reflect.cs")],
+                        "-optimize+", f"-out:{dll}", *refs,
+                        f"-resource:{ROOT / 'src/engine/WebViewTranslation.js'},CMOLocalizer.WebViewTranslation.js",
+                        *map(str, sorted((ROOT / "src/engine").glob("*.cs")))],
                        capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180),
         subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
                         f"-out:{exe}", "-reference:System.dll", "-reference:System.Drawing.dll",
@@ -464,8 +465,9 @@ def run_static(r: Runner) -> None:
                                                 TILE_WPF / "PresentationCore.dll",
                                                 TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
         _b1 = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
-                              "-optimize+", f"-out:{_dll39}", *_refs39, str(ENGINE),
-                              str(ROOT / "src/engine/Reflect.cs")],
+                              "-optimize+", f"-out:{_dll39}", *_refs39,
+                              f"-resource:{ROOT / 'src/engine/WebViewTranslation.js'},CMOLocalizer.WebViewTranslation.js",
+                              *map(str, sorted((ROOT / "src/engine").glob("*.cs")))],
                              capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
         _b2 = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
                               f"-out:{_exe39}", str(ROOT / "build/test_db_translation.cs")],

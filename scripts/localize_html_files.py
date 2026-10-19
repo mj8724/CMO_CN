@@ -1,156 +1,229 @@
 #!/usr/bin/env python3
-"""Translate the tutorial / campaign HTML files on disk.
+"""Export static Chinese HTML without modifying the installed game.
 
-Runtime DOM injection into WebView2 leaves the on-disk files English: it races
-the document load (flicker), can miss nodes, and rewrites paragraph structure.
-This script renders the same text segments through the localization engine's own
-``XLATE_BATCH`` command - so the file content matches exactly what the engine
-would inject - and writes the result back to disk with a ``.orig`` backup.
-
-Usage:  python scripts/localize_html_files.py [--dry-run] [--limit N]
+GAME_DIR selects read-only input. Commercial text stays in ignored build output.
+static_html_manifest.json records per-file hashes and actual translation coverage.
 """
 from __future__ import annotations
 
+import argparse
+import codecs
+from collections import Counter
+import hashlib
 import html
 import json
-import re
-import sys
-import time
+import os
 from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import live_harness as H  # noqa: E402
+import re
+import shutil
+import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
-GAME = H.GAME
-SCEN = GAME / "Scenarios"
-REPORT = ROOT / "build" / "html_localization_report.json"
-BATCH = GAME / "CMOLocalizer_XlateBatch.json"
-
-TEXT_NODE = re.compile(r">([^<>]+)<", re.S)
+TOKEN = re.compile(r'<!--.*?-->|<%.*?%>|<(?:(?:[^>"\']|"[^"]*"|\'[^\']*\'))*>', re.S)
+TAG = re.compile(r"<\s*(/?)\s*([a-zA-Z][\w:-]*)")
+ATTRIBUTE = re.compile(r'''([^\s=/>]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?''')
+PLACEHOLDER = re.compile(r"\{[^{}]*\}|%(?:\d+\$)?[-+#0]*\d*(?:\.\d+)?[sdifouxXeEgGc]")
 HAN = re.compile(r"[\u4e00-\u9fff]")
-SKIP_TAGS = re.compile(r"<(style|script)\b.*?</\1>", re.S | re.I)
-# Short label-ish fragments ("<p>OK</p>") are not worth a round trip.
-MIN_ASCII = 2
+WORD = re.compile(r"[A-Za-z]{2}")
+PROTECTED = {"script", "style", "code", "pre", "kbd", "textarea", "select", "option"}
+VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
+RAW_TEXT = {"script", "style", "textarea"}
 
 
-def harvest(path: Path) -> list[str]:
-    raw = path.read_text(encoding="utf-8", errors="replace")
-    stripped = SKIP_TAGS.sub(" ", raw)
-    segments: list[str] = []
-    seen: set[str] = set()
-    for m in TEXT_NODE.finditer(stripped):
-        text = html.unescape(m.group(1))
-        for line in text.split("\n"):
-            seg = line.strip()
-            if len(seg) < 4 or seg in seen:
-                continue
-            if HAN.search(seg):
-                continue
-            if len(re.findall(r"[A-Za-z]", seg)) < MIN_ASCII:
-                continue
-            seen.add(seg)
-            segments.append(seg)
-    return segments
+def key_of(text: str) -> str:
+    return re.sub(r"\s+", " ", html.unescape(text)).strip()
 
 
-def translate_batch(segments: list[str]) -> dict[str, str]:
-    BATCH.write_text(json.dumps(segments, ensure_ascii=False), encoding="utf-8")
-    for _ in range(3):
-        res = H.send("XLATE_BATCH " + str(BATCH), timeout=180)
-        if res.get("status") == "ok" and res.get("items"):
-            out = {}
-            for item in res["items"]:
-                src = item.get("in", "")
-                dst = item.get("briefing") or item.get("string") or ""
-                if src and dst and dst != src:
-                    out[src] = dst
-            return out
-        time.sleep(2.0)
-    return {}
+def localize_html(document: str, table: dict[str, str],
+                  normalized: dict[str, str] | None = None) -> tuple[str, dict]:
+    """Translate display text only; unknown strings are kept and reported."""
+    stats = {"translated": 0, "missing": []}
+    if normalized is None:
+        normalized = normalized_table(table)
+
+    def translate(text: str) -> str:
+        key = key_of(text)
+        if not WORD.search(key) or HAN.search(key):
+            return text
+        translated = table.get(html.unescape(text).strip())
+        if translated is None:
+            translated = normalized.get(key.casefold())
+        if not translated or translated == key:
+            stats["missing"].append(key)
+            return text
+        if Counter(PLACEHOLDER.findall(key)) != Counter(PLACEHOLDER.findall(translated)):
+            raise ValueError(f"translation changes a placeholder: {key!r}")
+        lead = re.match(r"^(?:\s|&nbsp;|&#160;)*", text).group()
+        trail = re.search(r"(?:\s|&nbsp;|&#160;)*$", text).group()
+        stats["translated"] += 1
+        return lead + html.escape(translated.strip(), quote=False) + trail
+
+    parts = []
+    position = 0
+    stack = []
+    for token in TOKEN.finditer(document):
+        protected = stack and stack[-1][1]
+        text = document[position:token.start()]
+        parts.append(text if protected else translate(text))
+        markup = token.group()
+        parts.append(markup)
+        tag = TAG.match(markup)
+        if tag:
+            closing, name = tag.groups()
+            name = name.lower()
+            if stack and stack[-1][0] in RAW_TEXT:
+                if closing and name == stack[-1][0]:
+                    stack.pop()
+            elif closing:
+                for index in range(len(stack) - 1, -1, -1):
+                    if stack[index][0] == name:
+                        del stack[index:]
+                        break
+            elif name not in VOID and not markup.rstrip().endswith("/>"):
+                attributes = {match[1].lower(): next((v for v in match.groups()[1:] if v is not None), "")
+                              for match in ATTRIBUTE.finditer(markup[tag.end():])}
+                editable = ("contenteditable" in attributes
+                            and html.unescape(attributes["contenteditable"]).strip().lower() != "false")
+                stack.append((name, bool(protected or name in PROTECTED or editable)))
+        position = token.end()
+    tail = document[position:]
+    parts.append(tail if stack and stack[-1][1] else translate(tail))
+    return "".join(parts), stats
+
+
+def digest(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def normalized_table(table: dict[str, str]) -> dict[str, str]:
+    normalized = {}
+    for key, value in table.items():
+        normalized.setdefault(re.sub(r"\s+", " ", key.strip()).casefold(), value)
+    return normalized
+
+
+def decode_html(source: bytes) -> tuple[str, str]:
+    if source.startswith(codecs.BOM_UTF8):
+        return source.decode("utf-8-sig"), "utf-8-sig"
+    if source.startswith((codecs.BOM_UTF16_LE, codecs.BOM_UTF16_BE)):
+        return source.decode("utf-16"), "utf-16"
+    charset = re.search(rb'charset\s*=\s*["\']?\s*([\w-]+)', source[:4096], re.I)
+    if charset:
+        encoding = charset.group(1).decode("ascii")
+        return source.decode(encoding), encoding
+    try:
+        return source.decode("utf-8"), "utf-8"
+    except UnicodeDecodeError:
+        return source.decode("cp1252"), "cp1252"
+
+
+def build_payload(game: Path, output: Path, dictionary: Path,
+                  translations: Path | None = None, dry_run: bool = False) -> dict:
+    scenarios = game / "Scenarios"
+    if not scenarios.is_dir():
+        raise FileNotFoundError(f"Scenarios source directory is missing: {scenarios}")
+    sources = sorted(p for p in scenarios.rglob("*")
+                     if p.is_file() and p.suffix.lower() in {".html", ".htm"})
+    if not sources:
+        raise FileNotFoundError(f"No HTML source files in Scenarios: {scenarios}")
+    if output.resolve().is_relative_to(game.resolve()):
+        raise ValueError("output must be outside the read-only game directory")
+    dictionary_bytes = dictionary.read_bytes()
+    exact = json.loads(dictionary_bytes)["exact"]
+    table = {k: v for k, v in exact.items() if isinstance(v, str)}
+    extra_bytes = translations.read_bytes() if translations else b""
+    if extra_bytes:
+        table.update({k: v for k, v in json.loads(extra_bytes).items()
+                      if isinstance(v, str) and not k.startswith("_")})
+    normalized = normalized_table(table)
+    manifest = {"schema": 1, "dictionary_sha256": digest(dictionary_bytes),
+                "translations_sha256": digest(extra_bytes), "files": [],
+                "translated_segments": 0, "untranslated_segments": 0}
+    payload_files = {}
+    for path in sources:
+        original = path.with_name(path.name + ".orig")
+        source = (original if original.is_file() else path).read_bytes()
+        document, encoding = decode_html(source)
+        translated, stats = localize_html(document, table, normalized)
+        result = translated.encode(encoding, errors="xmlcharrefreplace")
+        relative = path.relative_to(game).as_posix()
+        payload_files[relative] = result
+        payload_files[relative + ".orig"] = source
+        manifest["files"].append({"path": relative, "source_sha256": digest(source),
+                                  "output_sha256": digest(result),
+                                  "encoding": encoding,
+                                  "translated_segments": stats["translated"],
+                                  "untranslated_segments": len(stats["missing"]),
+                                  "untranslated_samples": stats["missing"][:3]})
+        manifest["translated_segments"] += stats["translated"]
+        manifest["untranslated_segments"] += len(stats["missing"])
+    manifest["coverage"] = "partial" if manifest["untranslated_segments"] else "complete"
+    if dry_run:
+        return manifest
+    output.mkdir(parents=True, exist_ok=True)
+    payload_root = output / "static_html"
+    payload_root.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(output / "Scenarios_HTML.zip", "w", zipfile.ZIP_DEFLATED,
+                         compresslevel=9) as archive:
+        for name, data in sorted(payload_files.items()):
+            dest = payload_root / name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_bytes(data)
+            info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            archive.writestr(info, data, compresslevel=9)
+    manifest["archive_sha256"] = digest((output / "Scenarios_HTML.zip").read_bytes())
+    (output / "static_html_manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    return manifest
+
+
+def verify_payload(output: Path, dictionary: Path, copy_to: Path | None = None) -> dict:
+    manifest = json.loads((output / "static_html_manifest.json").read_text(encoding="utf-8"))
+    if not manifest.get("files"):
+        raise ValueError("static HTML coverage manifest is empty")
+    if manifest["dictionary_sha256"] != digest(dictionary.read_bytes()):
+        raise ValueError("static HTML payload uses a different dictionary; rebuild it")
+    if manifest["archive_sha256"] != digest((output / "Scenarios_HTML.zip").read_bytes()):
+        raise ValueError("static HTML archive does not match its coverage manifest")
+    payload_root = (output / "static_html").resolve()
+    for entry in manifest["files"]:
+        for name, expected in ((entry["path"], entry["output_sha256"]),
+                               (entry["path"] + ".orig", entry["source_sha256"])):
+            source = (payload_root / name).resolve()
+            if not source.is_relative_to(payload_root):
+                raise ValueError("static HTML manifest contains an escaping path")
+            if digest(source.read_bytes()) != expected:
+                raise ValueError(f"static HTML file differs from coverage manifest: {name}")
+            if copy_to:
+                target = copy_to / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(source, target)
+    return manifest
 
 
 def main() -> int:
-    dry = "--dry-run" in sys.argv
-    limit = 0
-    for i, a in enumerate(sys.argv):
-        if a == "--limit" and i + 1 < len(sys.argv):
-            limit = int(sys.argv[i + 1])
-
-    files = sorted(SCEN.rglob("*.html"))
-    if limit:
-        files = files[:limit]
-    print(f"html files: {len(files)}", flush=True)
-
-    per_file: dict[str, list[str]] = {}
-    all_segments: list[str] = []
-    for f in files:
-        segs = harvest(f)
-        if segs:
-            per_file[str(f)] = segs
-            all_segments.extend(segs)
-    uniq = sorted(set(all_segments))
-    print(f"segments: {len(all_segments)} total, {len(uniq)} unique", flush=True)
-    if dry:
-        print(json.dumps(uniq[:20], ensure_ascii=False, indent=1))
-        return 0
-
-    table: dict[str, str] = {}
-    CHUNK = 4000
-    for i in range(0, len(uniq), CHUNK):
-        part = uniq[i:i + CHUNK]
-        table.update(translate_batch(part))
-        print(f"  translated {min(i + CHUNK, len(uniq))}/{len(uniq)} "
-              f"({len(table)} hits)", flush=True)
-
-    report = {"files": [], "translated_segments": len(table), "missing": []}
-    changed = 0
-    for f, segs in per_file.items():
-        p = Path(f)
-        raw = p.read_text(encoding="utf-8", errors="replace")
-        missing = [s for s in segs if s not in table]
-        out = raw
-        hits = 0
-        for seg in segs:
-            tr = table.get(seg)
-            if not tr:
-                continue
-            # The text node is padded ("<p>Text </p>") and long paragraphs wrap
-            # onto several source lines, so the segment is bounded by whitespace
-            # or a tag edge rather than by '>' and '<' alone.
-            pattern = re.compile(r"(?<=[\s>])" + re.escape(seg) + r"(?=[\s<])")
-            new_out, n = pattern.subn(lambda m: tr, out)
-            # Some files escape only &lt;/&gt;, some leave '&' raw: try both forms.
-            for esc in (seg.replace("<", "&lt;").replace(">", "&gt;"),
-                        html.escape(seg, quote=False)):
-                if n or esc == seg:
-                    break
-                pattern = re.compile(r"(?<=[\s>])" + re.escape(esc) + r"(?=[\s<])")
-                new_out, n = pattern.subn(lambda m: tr, out)
-            if n:
-                out = new_out
-                hits += 1
-        if hits:
-            if not dry:
-                orig = Path(str(p) + ".orig")
-                if not orig.exists():
-                    orig.write_text(raw, encoding="utf-8")
-                p.write_text(out, encoding="utf-8")
-            changed += 1
-        report["files"].append({"file": str(p.relative_to(GAME)), "hits": hits,
-                                "missing": len(missing)})
-        report["missing"].extend(missing[:3])
-
-    has_cjk = 0
-    for f in files:
-        if HAN.search(f.read_text(encoding="utf-8", errors="replace")):
-            has_cjk += 1
-    report["files_with_chinese"] = has_cjk
-    report["files_total"] = len(files)
-    report["files_changed"] = changed
-    REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"changed {changed}/{len(files)} files; files with Chinese now {has_cjk}/{len(files)}")
-    print(f"report: {REPORT}")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--game-dir", type=Path, default=os.environ.get("GAME_DIR"))
+    parser.add_argument("--output-dir", type=Path, default=ROOT / "build")
+    parser.add_argument("--dictionary", type=Path, default=ROOT / "dict/CMOLocalizer.json")
+    parser.add_argument("--translations", type=Path, help="optional offline text-to-text translation JSON")
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--verify", action="store_true")
+    parser.add_argument("--copy-to", type=Path, help="copy manifest-covered files into a staging pack")
+    args = parser.parse_args()
+    if args.verify or args.copy_to:
+        manifest = verify_payload(args.output_dir, args.dictionary, args.copy_to)
+    else:
+        if not args.game_dir:
+            parser.error("set GAME_DIR or pass --game-dir; installed game is read-only input")
+        manifest = build_payload(args.game_dir, args.output_dir, args.dictionary,
+                                 args.translations, args.dry_run)
+    print(f"Static HTML coverage: {len(manifest['files'])} files; "
+          f"{manifest['translated_segments']} translated segments; "
+          f"{manifest['untranslated_segments']} untranslated segments ({manifest['coverage']}).")
+    if not args.dry_run:
+        print(f"Coverage manifest: {args.output_dir / 'static_html_manifest.json'}")
     return 0
 
 

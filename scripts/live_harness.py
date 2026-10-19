@@ -8,6 +8,7 @@ windows and capture screenshots through build/GuiDriver.exe.
 from __future__ import annotations
 
 import json
+import os
 import re
 import subprocess
 import sys
@@ -18,7 +19,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = Path(__file__).resolve().parent.parent
-GAME = Path("G:/soft/steam/steamapps/common/Command - Modern Operations")
+GAME = Path(os.environ.get("GAME_DIR", "G:/soft/steam/steamapps/common/Command - Modern Operations"))
 DRIVER = ROOT / "build/GuiDriver.exe"
 CMD_FILE = GAME / "CMOLocalizer_Cmd.txt"
 RES_FILE = GAME / "CMOLocalizer_CmdResult.json"

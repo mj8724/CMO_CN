@@ -22,7 +22,7 @@ namespace CMOLocalizer
     {
     }
 
-    public class CustomAppDomainManager : AppDomainManager
+    public partial class CustomAppDomainManager : AppDomainManager
     {
         private static string logPath = "";
         private static Dictionary<int, string> offsetMap = new Dictionary<int, string>();
@@ -157,26 +157,42 @@ namespace CMOLocalizer
         private static readonly Dictionary<int, string> lastWriteTarget = new Dictionary<int, string>();
         private static readonly Dictionary<int, int> writeRepeatCount = new Dictionary<int, int>();
         private static readonly HashSet<int> writeBlocked = new HashSet<int>();
+        private static readonly Dictionary<int, long> writeWindowStarted = new Dictionary<int, long>();
+        private static readonly Dictionary<int, long> writeBlockedUntil = new Dictionary<int, long>();
         private static readonly object writeBurstLock = new object();
         private const int WRITE_REPEAT_LIMIT = 6;
 
         private static bool IsWriteBlocked(int key)
         {
-            lock (writeBurstLock) { return writeBlocked.Contains(key); }
+            lock (writeBurstLock)
+            {
+                if (!writeBlocked.Contains(key)) return false;
+                if (System.Diagnostics.Stopwatch.GetTimestamp() < writeBlockedUntil[key]) return true;
+                writeBlocked.Remove(key);
+                writeBlockedUntil.Remove(key);
+                writeWindowStarted.Remove(key);
+                writeRepeatCount.Remove(key);
+                lastWriteTarget.Remove(key);
+                return false;
+            }
         }
 
         /// <summary>
         /// 回写前调用。target = 本次要写入的目标文本。
-        /// 同一个目标值在同一个控件上被重复写入超过 WRITE_REPEAT_LIMIT 次，
-        /// 判定为与游戏拉锯，永久放弃该控件并记录一次堆栈。
+        /// 只限制 25ms 窗口内的同值回写；正常按帧或按秒刷新不累计为永久故障。
+        /// 超限冷却 250ms 后允许恢复，深度闸门仍阻止同步递归。
         /// </summary>
         private static bool AllowWrite(int key, string target, string what)
         {
             lock (writeBurstLock)
             {
-                if (writeBlocked.Contains(key)) return false;
+                if (IsWriteBlocked(key)) return false;
+                long now = System.Diagnostics.Stopwatch.GetTimestamp();
+                long started;
                 string prev;
-                if (lastWriteTarget.TryGetValue(key, out prev) && prev == target)
+                if (lastWriteTarget.TryGetValue(key, out prev) && prev == target
+                    && writeWindowStarted.TryGetValue(key, out started)
+                    && now - started < System.Diagnostics.Stopwatch.Frequency / 40)
                 {
                     int n;
                     writeRepeatCount.TryGetValue(key, out n);
@@ -185,6 +201,7 @@ namespace CMOLocalizer
                     if (n > WRITE_REPEAT_LIMIT)
                     {
                         writeBlocked.Add(key);
+                        writeBlockedUntil[key] = now + System.Diagnostics.Stopwatch.Frequency / 4;
                         Log("WRITE LOOP BLOCKED " + what + " after " + n + " identical writes; stack:\r\n"
                             + Environment.StackTrace);
                         return false;
@@ -194,6 +211,7 @@ namespace CMOLocalizer
                 {
                     lastWriteTarget[key] = target;
                     writeRepeatCount[key] = 0;
+                    writeWindowStarted[key] = now;
                 }
                 return true;
             }
@@ -560,13 +578,13 @@ namespace CMOLocalizer
                     Log("Warning: CMOLocalizer.json not found at " + dictPath);
                 }
 
-                // 启动本地毫秒级中文瓦片动态渲染服务器，接管在线英文瓦片请求
-                StartLocalTileServer(baseDir);
-
                 // Start UI watcher loop in a background thread to translate WinForms controls
                 Thread uiThread = new Thread(StartUIWatcher);
                 uiThread.IsBackground = true;
                 uiThread.Start();
+
+                // 地图端点仍须先写入 URL 偏移；其数据准备不再阻塞界面发现。
+                StartLocalTileServer(baseDir);
 
                 // Wait for target assembly and types to load
                 int tries = 0;
@@ -574,7 +592,6 @@ namespace CMOLocalizer
                 while (tries < 120)
                 {
                     tries++;
-                    Thread.Sleep(500);
 
                     if (!injectedEngine)
                     {
@@ -585,6 +602,7 @@ namespace CMOLocalizer
                     {
                         break;
                     }
+                    Thread.Sleep(500);
                 }
             }
             catch (Exception ex)
@@ -858,6 +876,7 @@ namespace CMOLocalizer
         private static void StartUIWatcher()
         {
             Log("Starting UI Watcher loop (Adaptive interval)...");
+            StartUiLifecycleWatcher();
             int loopCount = 0;
             while (true)
             {
@@ -865,7 +884,7 @@ namespace CMOLocalizer
                 {
                     // Scan faster during startup (first 30s), then settle to 1500ms
                     int interval = (loopCount < 40) ? 600 : 1500;
-                    Thread.Sleep(interval);
+                    if (loopCount > 0) Thread.Sleep(interval);
                     loopCount++;
 
                     // Process external automated test commands (if any)
@@ -893,7 +912,7 @@ namespace CMOLocalizer
                                                 uiCultureConfigured = true;
                                                 SetupChineseDateTimeCulture();
                                             }
-                                            TranslateControlTree(frm);
+                                            QueueUiTranslation(frm, false);
                                         }
                                         catch { }
                                     });
@@ -901,7 +920,7 @@ namespace CMOLocalizer
                                 else
                                 {
                                     PatchMainFormFonts(frm);
-                                    TranslateControlTree(frm);
+                                    QueueUiTranslation(frm, false);
                                 }
                             }
                         }
@@ -964,7 +983,7 @@ namespace CMOLocalizer
                         {
                             try
                             {
-                                TranslateControlTree(frm);
+                                QueueUiTranslation(frm, false);
                             }
                             catch { }
                         });
@@ -1078,7 +1097,6 @@ namespace CMOLocalizer
 
         private static void TranslateWpfWindows()
         {
-            InstallWpfRenderHook();
             try
             {
                 if (currentPid == 0)
@@ -1107,6 +1125,7 @@ namespace CMOLocalizer
                                     {
                                         try
                                         {
+                                            InstallWpfRenderHook();
                                             if (src.RootVisual != null)
                                             {
                                                 System.Windows.DependencyObject rootDep = src.RootVisual as System.Windows.DependencyObject;
@@ -1144,13 +1163,14 @@ namespace CMOLocalizer
 
         private static int wpfTranslatedCount = 0;
 
-        private static readonly HashSet<int> hookedWpfElements = new HashSet<int>();
         [ThreadStatic]
         private static bool _inWpfTextChanged;
 
-        private static readonly List<System.Windows.DependencyObject> liveWpfTargets = new List<System.Windows.DependencyObject>();
-        private static bool _renderHookInstalled;
-        private static int _renderFrame;
+        [ThreadStatic] private static List<WeakReference> liveWpfTargets;
+        [ThreadStatic] private static bool _renderHookInstalled;
+        [ThreadStatic] private static int _renderFrame;
+        private static readonly object wpfLoadedLock = new object();
+        private static bool wpfLoadedHookInstalled;
         [ThreadStatic] private static bool _inRenderPass;
         private static readonly object _wpfLogLock = new object();
         private static readonly List<string> _wpfLog = new List<string>();
@@ -1218,15 +1238,14 @@ namespace CMOLocalizer
             if (dep == null) return;
             try
             {
-                lock (liveWpfTargets)
+                if (liveWpfTargets == null) liveWpfTargets = new List<WeakReference>();
+                for (int i = liveWpfTargets.Count - 1; i >= 0; i--)
                 {
-                    if (liveWpfTargets.Count >= 400) return;
-                    for (int i = 0; i < liveWpfTargets.Count; i++)
-                    {
-                        if (object.ReferenceEquals(liveWpfTargets[i], dep)) return;
-                    }
-                    liveWpfTargets.Add(dep);
+                    object target = liveWpfTargets[i].Target;
+                    if (target == null) liveWpfTargets.RemoveAt(i);
+                    else if (object.ReferenceEquals(target, dep)) return;
                 }
+                if (liveWpfTargets.Count < 400) liveWpfTargets.Add(new WeakReference(dep));
             }
             catch { }
         }
@@ -1240,10 +1259,27 @@ namespace CMOLocalizer
         private static void InstallWpfRenderHook()
         {
             if (_renderHookInstalled) return;
-            _renderHookInstalled = true;
             try
             {
+                lock (wpfLoadedLock)
+                {
+                    if (!wpfLoadedHookInstalled)
+                    {
+                        // Loaded is Direct, so a handler on Window misses child loads.
+                        System.Windows.EventManager.RegisterClassHandler(typeof(System.Windows.FrameworkElement),
+                            System.Windows.FrameworkElement.LoadedEvent,
+                            new System.Windows.RoutedEventHandler(OnWpfElementLoaded));
+                        wpfLoadedHookInstalled = true;
+                    }
+                }
                 System.Windows.Media.CompositionTarget.Rendering += new EventHandler(OnWpfRenderTick);
+                _renderHookInstalled = true;
+                System.Windows.Threading.Dispatcher.CurrentDispatcher.ShutdownStarted += delegate
+                {
+                    System.Windows.Media.CompositionTarget.Rendering -= new EventHandler(OnWpfRenderTick);
+                    _renderHookInstalled = false;
+                    liveWpfTargets = null;
+                };
                 Log("WPF render hook installed (per-frame retranslate of live text)");
             }
             catch (Exception ex)
@@ -1252,35 +1288,49 @@ namespace CMOLocalizer
             }
         }
 
+        private static void OnWpfElementLoaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            System.Windows.DependencyObject target = sender as System.Windows.DependencyObject;
+            if (target is System.Windows.Controls.TextBlock || target is System.Windows.Controls.ContentControl
+                || target is System.Windows.Controls.RichTextBox)
+                TranslateWpfElement(target);
+        }
+
+        private static bool IsEditableWpfTarget(System.Windows.DependencyObject target)
+        {
+            for (System.Windows.DependencyObject current = target; current != null; )
+            {
+                System.Windows.Controls.Primitives.TextBoxBase input = current as System.Windows.Controls.Primitives.TextBoxBase;
+                if (input != null && (!input.IsReadOnly || input.IsKeyboardFocusWithin)) return true;
+                System.Windows.DependencyObject parent = System.Windows.LogicalTreeHelper.GetParent(current);
+                if (parent == null && current is System.Windows.Media.Visual)
+                    parent = System.Windows.Media.VisualTreeHelper.GetParent(current);
+                current = parent;
+            }
+            return false;
+        }
+
         private static void OnWpfRenderTick(object sender, EventArgs e)
         {
             if (_inRenderPass) return;
             _inRenderPass = true;
             try
             {
-                // 每 8 帧（约 130ms）做一次全量补扫：换单位/换面板时会新建 WPF 元素，
-                // 新元素尚未进入 liveWpfTargets，全量扫描保证它首帧后立刻变中文。
+                // 新内容由 Loaded 与生命周期通知处理；绘制阶段只看本 Dispatcher 的弱引用目标。
                 _renderFrame++;
-                if ((_renderFrame & 7) == 0)
-                {
-                    try { TranslateWpfWindows(); } catch { }
-                }
-
-                System.Windows.DependencyObject[] snapshot;
-                lock (liveWpfTargets)
-                {
-                    if (liveWpfTargets.Count == 0) return;
-                    snapshot = liveWpfTargets.ToArray();
-                }
+                if (liveWpfTargets == null || liveWpfTargets.Count == 0) return;
+                WeakReference[] snapshot = liveWpfTargets.ToArray();
                 for (int i = 0; i < snapshot.Length; i++)
                 {
                     try
                     {
-                        System.Windows.DependencyObject dep = snapshot[i];
-                        if (dep == null) continue;
+                        System.Windows.DependencyObject dep = snapshot[i].Target as System.Windows.DependencyObject;
+                        if (dep == null || IsEditableWpfTarget(dep)) continue;
                         string cur = ReadWpfText(dep);
                         if (string.IsNullOrEmpty(cur) || ContainsChinese(cur)) continue;
-                        TranslateWpfElement(dep);
+                        System.Windows.Documents.Run run = dep as System.Windows.Documents.Run;
+                        if (run != null) TranslateFlowInline(run);
+                        else TranslateWpfElement(dep);
                     }
                     catch { }
                 }
@@ -1342,7 +1392,7 @@ namespace CMOLocalizer
 
         private static void TranslateWpfElement(System.Windows.DependencyObject dep)
         {
-            if (dep == null) return;
+            if (dep == null || IsEditableWpfTarget(dep)) return;
             TranslateWpfElementInner(dep);
         }
 
@@ -1359,7 +1409,7 @@ namespace CMOLocalizer
                         if (!string.IsNullOrEmpty(s))
                         {
                             string trans = TranslateString(s);
-                            if (trans != s) hc.Header = trans;
+                            if (trans != s) hc.SetCurrentValue(System.Windows.Controls.HeaderedContentControl.HeaderProperty, trans);
                         }
                     }
                     else if (hc.Header is System.Windows.DependencyObject)
@@ -1376,7 +1426,7 @@ namespace CMOLocalizer
                         if (!string.IsNullOrEmpty(s))
                         {
                             string trans = TranslateString(s);
-                            if (trans != s) hic.Header = trans;
+                            if (trans != s) hic.SetCurrentValue(System.Windows.Controls.HeaderedItemsControl.HeaderProperty, trans);
                         }
                     }
                     else if (hic.Header is System.Windows.DependencyObject)
@@ -1387,60 +1437,7 @@ namespace CMOLocalizer
                 if (dep is System.Windows.Controls.TextBlock)
                 {
                     System.Windows.Controls.TextBlock tb = (System.Windows.Controls.TextBlock)dep;
-                    int tbHash = tb.GetHashCode();
-                    if (!hookedWpfElements.Contains(tbHash))
-                    {
-                        hookedWpfElements.Add(tbHash);
-                        try
-                        {
-                            var desc = System.ComponentModel.DependencyPropertyDescriptor.FromProperty(
-                                System.Windows.Controls.TextBlock.TextProperty, typeof(System.Windows.Controls.TextBlock));
-                            if (desc != null)
-                            {
-                                desc.AddValueChanged(tb, (s, e) =>
-                                {
-                                    if (_inWpfTextChanged) return;
-                                    if (!EnterMutation("WpfTextBlockHook")) return;
-                                    try
-                                    {
-                                        _inWpfTextChanged = true;
-                                        System.Windows.Controls.TextBlock targetTb = s as System.Windows.Controls.TextBlock;
-                                        if (targetTb != null && !string.IsNullOrEmpty(targetTb.Text))
-                                        {
-                                            string cur = targetTb.Text;
-                                            string mixedTb = FixMixedEnglishPrefix(cur);
-                                            if (mixedTb != null)
-                                            {
-                                                SetTextKeepBinding(targetTb, mixedTb);
-                                                return;
-                                            }
-                                            if (cur.Contains("kg") && (cur.Contains("fuel") || cur.Contains("燃油") || cur.Contains("Tank") || cur.Contains("坦克") || cur.Contains("reserve")))
-                                            {
-                                                string trF = TranslateFuelPanelText(cur);
-                                                if (trF != cur)
-                                                {
-                                                    SetTextKeepBinding(targetTb, trF);
-                                                    return;
-                                                }
-                                            }
-                                            if (!ContainsChinese(cur))
-                                            {
-                                                string tr = TranslateString(cur);
-                                                if (string.IsNullOrEmpty(tr) || tr == cur)
-                                                {
-                                                    tr = TranslateMilitaryUnitName(cur);
-                                                }
-                                                if (tr != cur) SetTextKeepBinding(targetTb, tr);
-                                            }
-                                        }
-                                    }
-                                    catch { }
-                                    finally { _inWpfTextChanged = false; ExitMutation(); }
-                                });
-                            }
-                        }
-                        catch { }
-                    }
+                    AttachWpfValueTranslation(tb);
 
                     // 递归处理 Inlines (如包含 Hyperlink 的 Loadout 链接)
                     // 消息日志条目是 Run/Span 混合结构，必须递归下沉，否则正文
@@ -1480,7 +1477,7 @@ namespace CMOLocalizer
                             string trF = TranslateFuelPanelText(cur);
                             if (trF != cur)
                             {
-                                tb.Text = trF;
+                                SetTextKeepBinding(tb, trF);
                                 return;
                             }
                         }
@@ -1503,47 +1500,7 @@ namespace CMOLocalizer
                 else if (dep is System.Windows.Controls.ContentControl)
                 {
                     System.Windows.Controls.ContentControl cc = (System.Windows.Controls.ContentControl)dep;
-                    int ccHash = cc.GetHashCode();
-                    if (!hookedWpfElements.Contains(ccHash))
-                    {
-                        hookedWpfElements.Add(ccHash);
-                        try
-                        {
-                            var desc = System.ComponentModel.DependencyPropertyDescriptor.FromProperty(
-                                System.Windows.Controls.ContentControl.ContentProperty, typeof(System.Windows.Controls.ContentControl));
-                            if (desc != null)
-                            {
-                                desc.AddValueChanged(cc, (s, e) =>
-                                {
-                                    if (_inWpfTextChanged) return;
-                                    if (!EnterMutation("WpfContentHook")) return;
-                                    try
-                                    {
-                                        _inWpfTextChanged = true;
-                                        var targetCc = s as System.Windows.Controls.ContentControl;
-                                        if (targetCc != null && targetCc.Content is string)
-                                        {
-                                            string str = (string)targetCc.Content;
-                                            string mixedCc = FixMixedEnglishPrefix(str);
-                                            if (mixedCc != null)
-                                            {
-                                                SetContentKeepBinding(targetCc, mixedCc);
-                                                return;
-                                            }
-                                            if (!string.IsNullOrEmpty(str) && !ContainsChinese(str))
-                                            {
-                                                string tr = TranslateString(str);
-                                                if (tr != str) SetContentKeepBinding(targetCc, tr);
-                                            }
-                                        }
-                                    }
-                                    catch { }
-                                    finally { _inWpfTextChanged = false; ExitMutation(); }
-                                });
-                            }
-                        }
-                        catch { }
-                    }
+                    AttachWpfValueTranslation(cc);
 
                     if (cc.Content is string)
                     {
@@ -1578,9 +1535,10 @@ namespace CMOLocalizer
                     // 用户正在该富文本里输入时绝不碰其文档（与输入框同一类拉锯风险）
                     bool focusedRtb = false;
                     try { focusedRtb = rtb.IsKeyboardFocusWithin; } catch { }
-                    if (!focusedRtb) flowDoc = rtb.Document;
+                    if (focusedRtb || !rtb.IsReadOnly) return;
+                    flowDoc = rtb.Document;
                 }
-                if (flowDoc == null)
+                else if (flowDoc == null)
                 {
                     Type dt = dep.GetType();
                     // 同族反射点收敛到带缓存的 Reflect.Prop（评审 O-02 / PRF-003）：
@@ -1773,6 +1731,7 @@ namespace CMOLocalizer
             ComboBox cb = ctrl as ComboBox;
             if (cb != null)
             {
+                AttachComboTranslation(cb);
                 EventHandler refill = (s, e) =>
                 {
                     try { LocalizeComboBoxSafe(cb); }
@@ -1850,10 +1809,9 @@ namespace CMOLocalizer
         }
 
         /// <summary>
-        /// Item-level localization for combo boxes.  Only the item strings change:
-        /// SelectedIndex, DataSource/ValueMember bindings and the game's
-        /// `switch (cb.Text)` lookups keep working because the engine reads the
-        /// same index as before.
+        /// Item-level localization preserves selection and binding keys. Game
+        /// event handlers still run and can observe translated display strings;
+        /// selectors whose text is a dispatch token need explicit protection.
         /// </summary>
         private static void LocalizeComboBoxSafe(ComboBox cb)
         {
@@ -1867,20 +1825,28 @@ namespace CMOLocalizer
             try { focused = cb.Focused; } catch { }
             try { dropped = cb.DroppedDown; } catch { }
             if (focused || dropped) return;
-            if (!EnterMutation("LocalizeComboBoxSafe")) return;
+            LocalizeComboBoxCore(cb);
+        }
+
+        private static void LocalizeComboBoxCore(ComboBox cb)
+        {
+            if (cb == null || cb.IsDisposed || IsProtectedDBViewerCombo(cb)) return;
+            if (!TryBeginComboTranslation(cb)) return;
+            if (!EnterMutation("LocalizeComboBoxSafe"))
+            {
+                EndComboTranslation(cb);
+                return;
+            }
             try
             {
-                if (cb.DataSource != null)
-                {
-                    TranslateComboDisplayColumn(cb);
-                }
-                else
-                {
-                    TranslateComboItems(cb);
-                }
-                TranslateKnownEnumCombo(cb);
+                LocalizeDBViewerComboBox(cb);
             }
             catch { }
+            finally
+            {
+                ExitMutation();
+                EndComboTranslation(cb);
+            }
         }
 
         /// <summary>
@@ -1888,23 +1854,18 @@ namespace CMOLocalizer
         /// an alert level and a side colour), so they cannot live in the global
         /// dictionary.  Matched by control name instead.
         /// </summary>
-        private static void TranslateKnownEnumCombo(ComboBox cb)
+        private static string TranslateKnownEnumComboItem(ComboBox cb, string raw)
         {
             string n = cb.Name ?? "";
-            if (n.IndexOf("AlertLevel", StringComparison.OrdinalIgnoreCase) < 0) return;
-            for (int i = 0; i < cb.Items.Count; i++)
-            {
-                string raw = cb.GetItemText(cb.Items[i]).Trim();
-                string tr = null;
-                if (raw == "Blue") tr = "蓝色警戒";
-                else if (raw == "Yellow") tr = "黄色警戒";
-                else if (raw == "Orange") tr = "橙色警戒";
-                else if (raw == "Red") tr = "红色警戒";
-                else if (raw == "Green") tr = "绿色警戒";
-                else if (raw == "White") tr = "白色警戒";
-                if (tr == null) continue;
-                try { cb.Items[i] = tr; } catch { }
-            }
+            if (n.IndexOf("AlertLevel", StringComparison.OrdinalIgnoreCase) < 0) return null;
+            raw = raw.Trim();
+            if (raw == "Blue") return "蓝色警戒";
+            if (raw == "Yellow") return "黄色警戒";
+            if (raw == "Orange") return "橙色警戒";
+            if (raw == "Red") return "红色警戒";
+            if (raw == "Green") return "绿色警戒";
+            if (raw == "White") return "白色警戒";
+            return null;
         }
 
         private static void LocalizeListBoxSafe(ListBox lb)
@@ -1924,6 +1885,7 @@ namespace CMOLocalizer
                 }
             }
             catch { }
+            finally { ExitMutation(); }
         }
 
         /// <summary>
@@ -2076,6 +2038,16 @@ namespace CMOLocalizer
 
         private static void TranslateControlTreeInner(Control ctrl)
         {
+            TranslateControlNode(ctrl);
+            if (ctrl.HasChildren)
+            {
+                foreach (Control child in ctrl.Controls) TranslateControlTree(child);
+            }
+        }
+
+        private static void TranslateControlNode(Control ctrl)
+        {
+            AttachUiLifecycle(ctrl);
             HookControlTextChanged(ctrl);
 
             // Combo/item surfaces are localized at the item layer, never through
@@ -2128,16 +2100,6 @@ namespace CMOLocalizer
                 foreach (ToolStripItem item in ss.Items)
                 {
                     TranslateToolStripItem(item);
-                }
-            }
-            else if (ctrl is TabControl)
-            {
-                TabControl tc = (TabControl)ctrl;
-                foreach (TabPage tp in tc.TabPages)
-                {
-                    string trans = TranslateString(tp.Text);
-                    if (trans != tp.Text) tp.Text = trans;
-                    TranslateControlTree(tp);
                 }
             }
             else if (ctrl is DataGridView)
@@ -2235,10 +2197,6 @@ namespace CMOLocalizer
             {
                 TranslateDarkListView(ctrl);
             }
-            else if (ctrl is ComboBox)
-            {
-                LocalizeDBViewerComboBox((ComboBox)ctrl);
-            }
             else if (ctrl is WebBrowser)
             {
                 WebBrowser wb = (WebBrowser)ctrl;
@@ -2277,144 +2235,13 @@ namespace CMOLocalizer
                 }
             }
 
-            if (ctrl.HasChildren)
-            {
-                foreach (Control child in ctrl.Controls)
-                {
-                    TranslateControlTree(child);
-                }
-            }
         }
 
 
         private static readonly HashSet<int> hookedBrowsers = new HashSet<int>();
         private static void TranslateWebView2(Control ctrl)
         {
-            if (ctrl == null) return;
-            try
-            {
-                PropertyInfo propCore = ctrl.GetType().GetProperty("CoreWebView2");
-                if (propCore == null) return;
-                object core = propCore.GetValue(ctrl, null);
-                if (core == null) return;
-
-                MethodInfo miExec = ctrl.GetType().GetMethod("ExecuteScriptAsync", new Type[] { typeof(string) });
-                if (miExec == null) miExec = core.GetType().GetMethod("ExecuteScriptAsync", new Type[] { typeof(string) });
-                if (miExec == null) return;
-
-                object target = (miExec.DeclaringType.IsAssignableFrom(ctrl.GetType())) ? (object)ctrl : core;
-
-                string jsExtract = @"(function(){
-                    try {
-                        if (!document || !document.body || document.readyState === 'loading') return '';
-                        if (!window.__cmo_nodes) window.__cmo_nodes = [];
-                        var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-                        var node;
-                        var items = [];
-                        while ((node = walker.nextNode())) {
-                            if (node.__cmo_zh) continue;
-                            var p = node.parentNode ? node.parentNode.tagName : '';
-                            if (p === 'SCRIPT' || p === 'STYLE') continue;
-                            var val = node.nodeValue;
-                            if (val && val.trim().length > 0) {
-                                var idx = window.__cmo_nodes.length;
-                                window.__cmo_nodes.push(node);
-                                items.push(idx + '\t' + val);
-                            }
-                        }
-                        if (items.length === 0) return '';
-                        return encodeURIComponent(items.join('\n===CMO_SEP===\n'));
-                    } catch(e) { return ''; }
-                })()";
-
-                System.Threading.Tasks.Task<string> task = miExec.Invoke(target, new object[] { jsExtract }) as System.Threading.Tasks.Task<string>;
-                if (task == null) return;
-
-                task.ContinueWith((t) =>
-                {
-                    try
-                    {
-                        if (t.IsFaulted || t.IsCanceled) return;
-                        string rawJson = t.Result;
-                        if (string.IsNullOrEmpty(rawJson) || rawJson == "\"\"" || rawJson == "null") return;
-
-                        string encoded = rawJson.Trim('\"');
-                        if (string.IsNullOrEmpty(encoded)) return;
-                        string payload = Uri.UnescapeDataString(encoded);
-                        if (string.IsNullOrEmpty(payload)) return;
-
-                        string[] parts = payload.Split(new string[] { "\n===CMO_SEP===\n" }, StringSplitOptions.RemoveEmptyEntries);
-                        List<string> updates = new List<string>();
-
-                        for (int i = 0; i < parts.Length; i++)
-                        {
-                            string item = parts[i];
-                            int tabPos = item.IndexOf('\t');
-                            if (tabPos <= 0) continue;
-
-                            string idxStr = item.Substring(0, tabPos);
-                            string origText = item.Substring(tabPos + 1);
-                            if (string.IsNullOrEmpty(origText.Trim())) continue;
-
-                            int startIdx = 0;
-                            while (startIdx < origText.Length && char.IsWhiteSpace(origText[startIdx])) startIdx++;
-                            string leadSpace = origText.Substring(0, startIdx);
-
-                            int endIdx = origText.Length - 1;
-                            while (endIdx >= startIdx && char.IsWhiteSpace(origText[endIdx])) endIdx--;
-                            string trailSpace = origText.Substring(endIdx + 1);
-
-                            string coreText = origText.Substring(startIdx, endIdx - startIdx + 1);
-                            string translated = TranslateBriefingText(coreText);
-
-                            if (!string.IsNullOrEmpty(translated) && translated != coreText)
-                            {
-                                string finalText = leadSpace + translated + trailSpace;
-                                updates.Add(idxStr + "\t" + finalText);
-                            }
-                        }
-
-                        if (updates.Count > 0)
-                        {
-                            string updatePayload = Uri.EscapeDataString(string.Join("\n===CMO_SEP===\n", updates.ToArray())).Replace("'", "%27");
-                            string jsApply = @"(function(){
-                                try {
-                                    if (!window.__cmo_nodes) return;
-                                    var raw = decodeURIComponent('" + updatePayload + @"');
-                                    var parts = raw.split('\n===CMO_SEP===\n');
-                                    for (var i = 0; i < parts.length; i++) {
-                                        var p = parts[i];
-                                        var tab = p.indexOf('\t');
-                                        if (tab > 0) {
-                                            var idx = parseInt(p.substring(0, tab), 10);
-                                            var txt = p.substring(tab + 1);
-                                            var n = window.__cmo_nodes[idx];
-                                            if (n) {
-                                                n.nodeValue = txt;
-                                                n.__cmo_zh = true;
-                                            }
-                                        }
-                                    }
-                                } catch(e) {}
-                            })()";
-
-                            if (!ctrl.IsDisposed && ctrl.IsHandleCreated)
-                            {
-                                ctrl.BeginInvoke(new Action(() =>
-                                {
-                                    try
-                                    {
-                                        miExec.Invoke(target, new object[] { jsApply });
-                                    }
-                                    catch { }
-                                }));
-                            }
-                        }
-                    }
-                    catch { }
-                });
-            }
-            catch { }
+            TranslateWebViewEarly(ctrl);
         }
 
         /// <summary>数据库描述段落标记的中文标签，与 TranslateDatabaseDescriptionText 保持一致。</summary>
@@ -2910,9 +2737,6 @@ namespace CMOLocalizer
             }
         }
 
-        private static PropertyInfo _dtvNodesProp;
-        private static PropertyInfo _dtnTextProp;
-        private static PropertyInfo _dtnNodesProp;
 
         private static string TranslateDBComboItem(string rawText)
         {
@@ -3115,11 +2939,11 @@ namespace CMOLocalizer
             try
             {
                 string formName;
-                if (!IsInTargetLocalizableForm(cb, out formName)) return;
+                bool hasForm = IsInTargetLocalizableForm(cb, out formName);
                 // DO NOT touch CB_ObjectType in InternalDBViewer!
                 if (IsProtectedDBViewerCombo(cb)) return;
 
-                if (!hookedDBCombos.Contains(cb.GetHashCode()))
+                if (hasForm && !hookedDBCombos.Contains(cb.GetHashCode()))
                 {
                     hookedDBCombos.Add(cb.GetHashCode());
                     Log("LocalizeTargetFormComboBox: " + cb.Name + " form=" + formName + " type=" + cb.GetType().FullName
@@ -3156,6 +2980,13 @@ namespace CMOLocalizer
             return rawText;
         }
 
+        private struct ComboItemTranslation
+        {
+            public int Index;
+            public string Source;
+            public string Target;
+        }
+
         private static void TranslateComboItems(ComboBox cb)
         {
             string formName;
@@ -3167,36 +2998,75 @@ namespace CMOLocalizer
             // 就会被永久静音。日志里 269 次「WRITE LOOP BLOCKED ComboBoxItems」
             // （CB_ScenOrder 28 次、Combo_AlertLevel、Combo_StateSelection 等）即由此产生，
             // 表现为下拉项大面积英文（条令/交战规则窗口的 Inherited, … 就是其中一例）。
-            List<KeyValuePair<int, string>> plan = new List<KeyValuePair<int, string>>();
+            List<ComboItemTranslation> plan = new List<ComboItemTranslation>();
+            int originalCount = cb.Items.Count;
             for (int i = 0; i < cb.Items.Count; i++)
             {
-                string raw = cb.GetItemText(cb.Items[i]);
-                if (string.IsNullOrEmpty(raw) || ContainsChinese(raw)) continue;
-                string tr = dbViewer ? TranslateDBComboItem(raw) : TranslateComboItemText(raw);
+                // DisplayMember/ToString can expose business objects in an
+                // unbound selector. Replacing them with strings destroys identity.
+                string sourceItem = cb.Items[i] as string;
+                if (sourceItem == null) continue;
+                string raw = cb.GetItemText(sourceItem);
+                // An existing Format handler may map a business token to a
+                // label. Keep that raw token and let the game's formatter own it.
+                if (raw != sourceItem) continue;
+                if (string.IsNullOrEmpty(raw)) continue;
+                string tr = FixMixedEnglishPrefix(raw);
+                if (tr == null)
+                {
+                    if (ContainsChinese(raw)) continue;
+                    tr = TranslateKnownEnumComboItem(cb, raw)
+                        ?? (dbViewer ? TranslateDBComboItem(raw) : TranslateComboItemText(raw));
+                }
                 if (string.IsNullOrEmpty(tr) || tr == raw) continue;
-                plan.Add(new KeyValuePair<int, string>(i, tr));
+                plan.Add(new ComboItemTranslation { Index = i, Source = raw, Target = tr });
             }
             if (plan.Count == 0) return;   // 无需写入 → 不计数、不熔断
             // 指纹改为「本次待写入的翻译」：写成功后下次访问计划为空（不再计数）；
             // 若游戏把条目改回去（真拉锯），同一计划重现才会累加并触发熔断。
             StringBuilder fp = new StringBuilder();
             fp.Append(cb.Items.Count).Append(':');
-            foreach (KeyValuePair<int, string> kv in plan)
+            foreach (ComboItemTranslation item in plan)
             {
-                fp.Append(kv.Key).Append('=').Append(kv.Value).Append('|');
+                fp.Append(item.Index).Append('=').Append(item.Target).Append('|');
             }
             if (!AllowWrite(cb.GetHashCode() * 31 + 7, fp.ToString(), "ComboBoxItems '" + cb.Name + "'")) return;
-            bool changed = false;
-            foreach (KeyValuePair<int, string> kv in plan)
+            bool updating = false;
+            try
             {
-                try
+                foreach (ComboItemTranslation item in plan)
                 {
-                    cb.Items[kv.Key] = kv.Value;
-                    changed = true;
+                    // A game selection handler may replace the collection after
+                    // any write. Never apply an old translation to new content.
+                    if (cb.IsDisposed) break;
+                    if (cb.DataSource != null || item.Index >= cb.Items.Count)
+                    {
+                        QueueComboTranslation(cb);
+                        continue;
+                    }
+                    object sourceItem = cb.Items[item.Index];
+                    if (!(sourceItem is string) || cb.GetItemText(sourceItem) != item.Source)
+                    {
+                        QueueComboTranslation(cb);
+                        continue;
+                    }
+                    // GetItemText can run a business Format callback. Recheck
+                    // after it returns before replacing the actual item.
+                    if (cb.IsDisposed) break;
+                    if (cb.DataSource != null || item.Index >= cb.Items.Count
+                        || !object.ReferenceEquals(cb.Items[item.Index], sourceItem))
+                    {
+                        QueueComboTranslation(cb);
+                        continue;
+                    }
+                    if (!updating) { cb.BeginUpdate(); updating = true; }
+                    BeginComboItemWrite(cb, item.Index);
+                    try { cb.Items[item.Index] = item.Target; }
+                    finally { EndComboItemWrite(cb); }
                 }
-                catch { }
             }
-            if (changed) cb.Invalidate();
+            finally { if (updating && !cb.IsDisposed) cb.EndUpdate(); }
+            if (!cb.IsDisposed && cb.Items.Count != originalCount) QueueComboTranslation(cb);
         }
 
         /// <summary>
@@ -3207,44 +3077,70 @@ namespace CMOLocalizer
         private static void TranslateComboDisplayColumn(ComboBox cb)
         {
             string col = cb.DisplayMember;
-            if (string.IsNullOrEmpty(col)) return;
+            if (string.IsNullOrEmpty(col) || string.Equals(col, cb.ValueMember, StringComparison.OrdinalIgnoreCase)) return;
 
-            DataTable dt = null;
             object src = cb.DataSource;
-            DataView dv = src as DataView;
-            if (dv != null) dt = dv.Table;
-            if (dt == null) dt = src as DataTable;
-            if (dt == null)
-            {
-                BindingSource bs = src as BindingSource;
-                if (bs != null)
-                {
-                    dv = bs.DataSource as DataView;
-                    if (dv != null) dt = dv.Table;
-                    if (dt == null) dt = bs.DataSource as DataTable;
-                }
-            }
+            DataTable dt = ResolveComboDataTable(src);
             if (dt == null) return;
 
             DataColumn dc = dt.Columns.Contains(col) ? dt.Columns[col] : null;
             if (dc == null || dc.DataType != typeof(string) || dc.ReadOnly) return;
 
-            bool changed = false;
+            List<ComboRowTranslation> plan = new List<ComboRowTranslation>();
+            foreach (DataRow row in dt.Rows)
+            {
+                if (row.RowState == DataRowState.Deleted || row.RowState == DataRowState.Detached) continue;
+                string raw = row[dc] as string;
+                if (string.IsNullOrEmpty(raw)) continue;
+                string tr = FixMixedEnglishPrefix(raw);
+                if (tr == null)
+                {
+                    if (ContainsChinese(raw)) continue;
+                    tr = TranslateDBComboItem(raw);
+                }
+                if (!string.IsNullOrEmpty(tr) && tr != raw)
+                    plan.Add(new ComboRowTranslation { Row = row, Source = raw, Target = tr });
+            }
+            if (plan.Count == 0) return;
+            bool updating = false;
             try
             {
-                foreach (DataRow row in dt.Rows)
+                foreach (ComboRowTranslation item in plan)
                 {
-                    if (row.RowState == DataRowState.Deleted || row.RowState == DataRowState.Detached) continue;
-                    string raw = row[dc] as string;
-                    if (string.IsNullOrEmpty(raw) || ContainsChinese(raw)) continue;
-                    string tr = TranslateDBComboItem(raw);
-                    if (string.IsNullOrEmpty(tr) || tr == raw) continue;
-                    row[dc] = tr;
-                    changed = true;
+                    if (cb.IsDisposed) break;
+                    if (!object.ReferenceEquals(cb.DataSource, src) || !object.ReferenceEquals(ResolveComboDataTable(cb.DataSource), dt)
+                        || cb.DisplayMember != col
+                        || string.Equals(cb.ValueMember, col, StringComparison.OrdinalIgnoreCase))
+                    {
+                        QueueComboTranslation(cb);
+                        break;
+                    }
+                    if (item.Row.RowState == DataRowState.Deleted || item.Row.RowState == DataRowState.Detached) continue;
+                    if (item.Row[dc] as string != item.Source)
+                    {
+                        QueueComboTranslation(cb);
+                        continue;
+                    }
+                    if (!updating) { cb.BeginUpdate(); updating = true; }
+                    item.Row[dc] = item.Target;
                 }
             }
-            catch { }
-            if (changed) cb.Invalidate();
+            finally { if (updating && !cb.IsDisposed) cb.EndUpdate(); }
+        }
+
+        private struct ComboRowTranslation
+        {
+            public DataRow Row;
+            public string Source;
+            public string Target;
+        }
+
+        private static DataTable ResolveComboDataTable(object source)
+        {
+            BindingSource binding = source as BindingSource;
+            if (binding != null) source = binding.DataSource;
+            DataView view = source as DataView;
+            return view != null ? view.Table : source as DataTable;
         }
 
         private static string TranslateDBListEntry(string t)
@@ -3353,89 +3249,7 @@ namespace CMOLocalizer
         private static void TranslateDarkTreeView(Control ctrl)
         {
             if (ctrl == null) return;
-            TranslateDarkTreeViewInner(ctrl);
-        }
-
-        private static void TranslateDarkTreeViewInner(Control ctrl)
-        {
-            try
-            {
-                if (_dtvNodesProp == null)
-                {
-                    _dtvNodesProp = ctrl.GetType().GetProperty("Nodes", BindingFlags.Public | BindingFlags.Instance);
-                }
-                if (_dtvNodesProp == null) return;
-
-                System.Collections.IEnumerable nodes = _dtvNodesProp.GetValue(ctrl, null) as System.Collections.IEnumerable;
-                if (nodes == null) return;
-
-                bool anyChanged = false;
-                foreach (object node in nodes)
-                {
-                    if (TranslateDarkTreeNode(node))
-                    {
-                        anyChanged = true;
-                    }
-                }
-                if (anyChanged)
-                {
-                    ctrl.Invalidate();
-                }
-            }
-            catch { }
-        }
-
-        private static bool TranslateDarkTreeNode(object node)
-        {
-            if (node == null) return false;
-            bool changed = false;
-            try
-            {
-                Type t = node.GetType();
-                if (_dtnTextProp == null)
-                {
-                    _dtnTextProp = t.GetProperty("Text", BindingFlags.Public | BindingFlags.Instance);
-                }
-                if (_dtnNodesProp == null)
-                {
-                    _dtnNodesProp = t.GetProperty("Nodes", BindingFlags.Public | BindingFlags.Instance);
-                }
-
-                if (_dtnTextProp != null)
-                {
-                    string raw = _dtnTextProp.GetValue(node, null) as string;
-                    if (!string.IsNullOrEmpty(raw))
-                    {
-                        string trans = TranslateString(raw);
-                        if (string.IsNullOrEmpty(trans) || trans == raw)
-                        {
-                            trans = TranslateMilitaryUnitName(raw);
-                        }
-                        if (!string.IsNullOrEmpty(trans) && trans != raw)
-                        {
-                            _dtnTextProp.SetValue(node, trans, null);
-                            changed = true;
-                        }
-                    }
-                }
-
-                if (_dtnNodesProp != null)
-                {
-                    System.Collections.IEnumerable children = _dtnNodesProp.GetValue(node, null) as System.Collections.IEnumerable;
-                    if (children != null)
-                    {
-                        foreach (object child in children)
-                        {
-                            if (TranslateDarkTreeNode(child))
-                            {
-                                changed = true;
-                            }
-                        }
-                    }
-                }
-            }
-            catch { }
-            return changed;
+            TranslateDarkTreeIncremental(ctrl);
         }
 
         private static readonly Dictionary<int, string> buttonIndexToImageName = new Dictionary<int, string>()

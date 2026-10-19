@@ -71,23 +71,52 @@
 
 ## 从源码构建
 
-需要 Windows 环境，并安装 .NET Framework 4.8 与 Python 3.10+。
+### 只构建引擎（离线）
 
-```bash
-# 1. 生成词库
-python scripts/build_db_enums.py
-python scripts/build_dict.py
+在 Windows 上安装 .NET Framework 4.8 后，从仓库根目录运行：
 
-# 2. 编译引擎与安装器
-bash scripts/build.sh
-
-# 3. 运行校验门禁
-python scripts/verify_all.py
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/build.ps1
 ```
 
-编译产物位于 `build/` 目录下：
-- `build/CMOLocalizer.dll`
-- `build/CMO_Chinese_Setup.exe`
+产出 `build/CMOLocalizer.dll`，无需游戏目录或发布图片、HTML 资源。脚本编译全部 `src/engine/*.cs`，并嵌入必需的
+`src/engine/WebViewTranslation.js`。可用 `-OutputDir <目录>` 指定输出位置；`-CheckOnly` 只检查构建输入，
+不会编译。在 Windows Git Bash 中也可运行 `bash scripts/build.sh --engine-only`。
+
+### 构建完整安装器与发布包
+
+除上述环境外，还需要 Python 3.10+、带 `cygpath` 的 Windows Git Bash、完整的 `assets/` 发布资源，
+以及适配版本的正版游戏目录作为静态 HTML 的只读输入。以下命令均在仓库根目录的 Git Bash 中运行；
+将 `GAME_DIR` 替换为实际路径，`PY` 可改为 Python 可执行文件的路径：
+
+```bash
+export GAME_DIR='C:/Games/Command - Modern Operations'
+export PY=python
+
+# 1. 生成词库
+"$PY" scripts/build_db_enums.py
+"$PY" scripts/build_dict.py
+
+# 2. 从只读游戏目录导出并校验静态 HTML
+"$PY" scripts/localize_html_files.py --game-dir "$GAME_DIR" --output-dir build
+"$PY" scripts/localize_html_files.py --output-dir build --verify
+
+# 3. 编译引擎、更新助手与安装器
+bash scripts/build.sh
+
+# 4. 按发版 SOP 完成环境、代码、安装器与实机回归后打包
+# package.sh 会重新导出静态 HTML 并运行打包门禁
+bash scripts/package.sh
+```
+
+完整构建会校验 `build/static_html_manifest.json`、词库与静态载荷是否一致；缺失或过期时直接失败。
+导出会保留模板、链接与可编辑内容，并在清单中记录实际覆盖率；`partial` 表示仍有未命中的原文，
+不代表全部文本已翻译。生成的 HTML 与原文备份只留在被忽略的 `build/` 中，不应提交到仓库。
+
+完整产物包括 `build/CMOLocalizer.dll`、`build/CMO_Chinese_Setup_v<版本>.exe`（另有兼容文件名
+`CMO_Chinese_Setup.exe`）、`build/CMO_Chinese_Pack_<版本>.zip` 及摘要。缺少按钮图、捐赠图片等发布资源时，
+完整构建或打包会失败；仅构建引擎不受影响。离线引擎构建通过不能代替发版验证，完整门禁与运行顺序见
+[发版前测试 SOP](docs/RELEASE_TEST_SOP.md)。
 
 ---
 

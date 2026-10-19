@@ -7,3 +7,6 @@
 #          但其首个提交把 src/engine/CMOLocalizer.cs（6752 行）从 CRLF 归一化为 LF，
 #          在 diff 上表现为整文件重写，故整条记录在此忽略。
 371d98c7b0e4c41bd841ad4cd947931ac0eda13f
+
+# Mechanical LF normalization; functional changes follow separately.
+1acf0ec46f6d05f1f52ccf567afe36bbd9e98bf2
