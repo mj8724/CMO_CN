@@ -932,3 +932,24 @@
   的 11 个用例（含 `Inherited, 始终开火 → 继承自上级，始终开火`）。
 - **实测**：实机 `XLATE Inherited, 始终开火` → `继承自上级，始终开火`；`Inherited, 战斗机与反潜战(ASW)` 同理。
 - **状态**：已修并验证（2026-10-19）。
+
+---
+
+## R40 数据库查看器类型无法选择、筛选失效且装备列表空白（v4.2.2）
+
+- **来源**：用户 2026-10-19 截图反馈「数据库查看器又炸了，类型无法选择 aircraft，筛选条件也用不了了，装备列表全部空白」。
+- **根因**：
+  1. **SQL 投影列与条件片段被误注入字符串池**：R38 为覆盖自绘面板引入了池级注入表 `pool_display_inject.json`，其中误收录了 `, Hypothetical`（offset 1431010）、`, Deprecated`（offset 1429924）、`Name LIKE '%`（offset 152724）等底层 SQL 片段，分别被注入为 `, 假设型号`、`, 已废弃`、`名称 LIKE '%`；
+  2. 游戏打开数据库查看器（`InternalDBViewer`）加载平台时执行 SQL 查询：`SELECT ..., Deprecated, Hypothetical FROM DataAircraft WHERE ...`，因池中被篡改变成 `SELECT ..., 已废弃, 假设型号 FROM ...`，SQLite 底层抛出 `no such column: 假设型号`，窗体初始化与加载流程在填充 `CB_SubType` 后抛出未捕获异常中断；
+  3. 后续的 `CB_Hypothetical`、`CB_Country` 和 `ListBox1` 被跳过，全部未初始化（项数恒为 0）；且切换任何装备类型都会因 SQL 语法错误而无法加载列表；
+  4. 此外，`LocalizeComboBoxSafe` 与 `LocalizeListBoxSafe` 调用了 `EnterMutation` 递归守卫，但在 `finally` 块中缺少 `ExitMutation()`，导致多控件轮询时守卫深度打满（`MUTATION DEPTH CAP(8)`）。
+- **修复**：
+  1. `scripts/inject_filter.py` 增加铁律：严格拦截以逗号开头的列投影（`^\s*,`）、含 SQL 条件（`\b(LIKE|NOT LIKE)\b`）、含别名（`\bAS\s+[A-Z]\w+`）、比较符结尾等代码与 SQL 片段；
+  2. `build/gen_pool_display_inject.py` 统一切换为调用 `inject_filter.injection_safe` 单一事实源，杜绝过滤规则漂移，重新生成词典；
+  3. `src/engine/CMOLocalizer.cs` 在 `LocalizeComboBoxSafe` 与 `LocalizeListBoxSafe` 补齐 `finally { ExitMutation(); }`。
+- **用户可见验收**：
+  打开数据库查看器，类型为 Aircraft 时，国家/阵营下拉框正常显示 190 个国家，假想下拉框正常显示 3 项，装备列表正常列出 712 款战机，点击条目详情 WebView2 正常生成 2.5~4.5 万字节的中文解析内容。
+- **回归测试点**：
+  - `static`：`R38-static-pool-inject` 硬断言 `, Hypothetical`、`, Deprecated`、`Name LIKE '%`、`Description LIKE '%` 绝不进入 `offsets` 注入表；
+  - `live`：`verify_regressions.py --live` L0 与 R1 用例（八类对象全部切换、点击行生成详情 HTML、无频闪、真机 16/16 全绿）。
+- **状态**：已修并验证（2026-10-19）。

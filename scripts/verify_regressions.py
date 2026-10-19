@@ -426,7 +426,8 @@ def run_static(r: Runner) -> None:
         _injected = [s for s in _need if _off_of.get(s) is not None and str(_off_of[s]) in _built]
         r38["面板串已注入"] = len(_injected) == len(_need)
         _forbidden = ["LongName ASC", "Description ASC", "FULLNAME ASC", "{0} seconds",
-                      'Get-AuthenticodeSignature "', "e.Message: {0}", "Aircraft", "Ground Unit"]
+                      'Get-AuthenticodeSignature "', "e.Message: {0}", "Aircraft", "Ground Unit",
+                      ", Hypothetical", ", Deprecated", ", Deprecated ", "Name LIKE '%", "Description LIKE '%"]
         _leaked = [s for s in _forbidden if _off_of.get(s) is not None and str(_off_of[s]) in _built]
         r38["危险串未注入"] = not _leaked
         # 反向不变量：不能把合法的界面标签（含单位缩写）误杀——窄口径剪枝的预防针
