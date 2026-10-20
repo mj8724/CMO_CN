@@ -48,7 +48,12 @@ def is_meaningful_word(text: str) -> bool:
 
 
 def collect_db(games: list[Path]) -> list[tuple[str, str, str]]:
-    """DB 里的用户可见文本：Data* 表的 Name + 枚举表的 Description。"""
+    """DB 里的用户可见文本：Data* 表的 Name + 枚举表的 Description。
+
+    91 个数据库版本里同一装备名重复上百次，必须在**收集时**就去重：
+    先攒全量再 dedupe 会直接把进程撑爆（实测 MemoryError）。
+    """
+    seen: set[str] = set()
     out: list[tuple[str, str, str]] = []
     for db in games:
         con = sqlite3.connect(db.as_uri() + "?mode=ro", uri=True)
@@ -70,7 +75,8 @@ def collect_db(games: list[Path]) -> list[tuple[str, str, str]]:
                     continue
                 tag = f"{db.stem}"
                 for (v,) in rows:
-                    if isinstance(v, str) and v.strip():
+                    if isinstance(v, str) and v.strip() and v not in seen:
+                        seen.add(v)
                         out.append(("db", f"{tag}.{t}", v))
         finally:
             con.close()

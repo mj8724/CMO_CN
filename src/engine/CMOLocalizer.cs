@@ -4489,7 +4489,6 @@ namespace CMOLocalizer
             string[] words = t.Split(' ');
             StringBuilder sb = new StringBuilder();
             int i = 0;
-            bool lastLatin = false;
             while (i < words.Length)
             {
                 int bestJ = -1;
@@ -4511,6 +4510,15 @@ namespace CMOLocalizer
                 if (bestJ < 0)
                 {
                     string token = words[i];
+                    // `Quad M55 x 2 Towed`、`20mm Cannon x 2`：数据库把数量插在名字中间。
+                    // 裸 `x` + 数字是乘号，不是单词；认它当生词会把整条名字拖回英文。
+                    if ((token == "x" || token == "X") && i + 1 < words.Length && IsAllDigits(words[i + 1]))
+                    {
+                        sb.Append(" × ");
+                        sb.Append(words[i + 1]);
+                        i += 2;
+                        continue;
+                    }
                     string core, suffix;
                     SplitTrailingPunct(token, out core, out suffix);
                     // `ASW, Search Only`：标点挂在词上导致查不到，剥掉再查一次
@@ -4520,20 +4528,19 @@ namespace CMOLocalizer
                     {
                         sb.Append(zh2);
                         sb.Append(suffix);
-                        lastLatin = false;
                         i++;
                         continue;
                     }
                     if (!IsDesignationToken(core)) return null;
-                    if (lastLatin && sb.Length > 0) sb.Append(' ');
+                    // 型号 token 之间必须留空格：`MTU 16V TB81` 拼成 `MTU16V TB81`
+                    // 会看不出是三个独立代号；中文词紧邻时则不需要空格。
+                    if (sb.Length > 0 && !EndsWithCjk(sb)) sb.Append(' ');
                     sb.Append(core);
                     sb.Append(suffix);
-                    lastLatin = true;
                     i++;
                     continue;
                 }
                 sb.Append(bestZh);
-                lastLatin = false;
                 i = bestJ + 1;
             }
             return sb.Length > 0 ? sb.ToString() : null;
@@ -4548,6 +4555,16 @@ namespace CMOLocalizer
             if (string.IsNullOrEmpty(spec)) return null;
             string s = Regex.Replace(spec.Trim(), @"\s+", " ");
             if (s.Length == 0) return null;
+
+            // `105mm/37 L118 Towed Light Gun x 6` —— 数据库里的数量写在后缀，
+            // 而下面的 QTY 规则只认前缀（`6 x Gun`）。不处理后缀就会让 `x`
+            // 当成生词把整条名字拖回英文（实测 180 条）。
+            Match qtyTail = Regex.Match(s, @"^(?<rest>.+?)\s+x\s*(?<n>\d+)$", RegexOptions.IgnoreCase);
+            if (qtyTail.Success)
+            {
+                string restZh = TranslateComposedSpec(qtyTail.Groups["rest"].Value);
+                if (restZh != null) return restZh + " × " + qtyTail.Groups["n"].Value;
+            }
 
             Match qty = Regex.Match(s, @"^(?<n>\d+)\s*x\s*(?<rest>.+)$", RegexOptions.IgnoreCase);
             if (qty.Success)
@@ -4587,12 +4604,35 @@ namespace CMOLocalizer
         {
             if (string.IsNullOrEmpty(tok)) return false;
             if (tok.IndexOf('/') >= 0) return true;
+            // 单个大写字母是舰体/机种分类前缀（`P 601`、`F 27 Lynx`、`A 32A Lansen`），
+            // 不可能是单词；实测它们卡住了近 500 条装备名。
+            if (tok.Length == 1 && tok[0] >= 'A' && tok[0] <= 'Z') return true;
             for (int i = 0; i < tok.Length; i++)
             {
                 char c = tok[i];
                 if (c >= '0' && c <= '9') return true;
             }
             return false;
+        }
+
+        /// <summary>已拼出的中文是否以汉字/中文标点结尾（决定要不要补空格）。</summary>
+        private static bool EndsWithCjk(StringBuilder sb)
+        {
+            if (sb.Length == 0) return false;
+            char c = sb[sb.Length - 1];
+            if (c >= '\u4e00' && c <= '\u9fff') return true;
+            return c == '）' || c == '】' || c == '、' || c == '，' || c == '。';
+        }
+
+        private static bool IsAllDigits(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return false;
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if (c < '0' || c > '9') return false;
+            }
+            return true;
         }
 
         /// <summary>剥掉 token 尾随标点（`ASW,` → `ASW` + `,`）；术语表里不会带标点。</summary>
