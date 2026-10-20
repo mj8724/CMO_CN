@@ -38,7 +38,7 @@ CJK = re.compile(r"[\u4e00-\u9fff]")
 PAREN = re.compile(r"^(?P<name>[^()\[\]]+?)\s*(?P<open>[\(\[])(?P<spec>[^()\[\]]*)(?P<close>[\)\]])$")
 NUM_UNIT = re.compile(r"^(?P<num>\d[\d.,]*\s*k?)\s*(?P<unit>[A-Za-z]+)$")
 QTY_PY = re.compile(r"^(?P<n>\d+)\s*x\s*(?P<rest>.+)$", re.I)
-QTY_TAIL = re.compile(r"^(?P<rest>.+?)\s+x\s*(?P<n>\d+)$", re.I)
+QTY_TAIL = re.compile(r"^(?P<rest>.+?)\s+x\s*(?P<n>\d+)(?P<tail>\s*[,;].*)?$", re.I)
 UNITS_SPEC = re.compile(r"^(?P<n>\d[\d,]*)\s*units?$", re.I)
 CAPACITY = re.compile(
     r"^(?P<num>\d[\d.,]*\s*k?)\s*(?P<unit>Liter|Liters|Gallon|Gallons|kg|lbs?)\s+(?P<rest>.+)$", re.I)
@@ -55,7 +55,10 @@ def is_designation(tok: str) -> bool:
     if "/" in tok or any(c.isdigit() for c in tok):
         return True
     # 单个大写字母是舰体/机种分类前缀（P 601 / F 27 / A 32A）
-    return len(tok) == 1 and tok.isupper()
+    if len(tok) == 1 and tok.isupper():
+        return True
+    # 型号里的罗马数字序数（Phantom II、Corsair II）
+    return tok in ("II", "III", "IV", "VI")
 
 
 def norm(s: str) -> str:
@@ -118,7 +121,11 @@ class Composer:
         m = QTY_TAIL.match(s)
         if m:
             rest = self.spec(m.group("rest"), blockers)
-            return (rest + " × " + m.group("n")) if rest else None
+            tail = (m.group("tail") or "").strip()
+            tail_zh = self.spec(tail[1:], blockers) if tail else None
+            if rest and (tail_zh or not tail):
+                return rest + " × " + m.group("n") + ("，" + tail_zh if tail_zh else "")
+            return None
         m = QTY_PY.match(s)
         if m:
             rest = self.spec(m.group("rest"), blockers)

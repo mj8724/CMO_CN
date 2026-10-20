@@ -4556,14 +4556,24 @@ namespace CMOLocalizer
             string s = Regex.Replace(spec.Trim(), @"\s+", " ");
             if (s.Length == 0) return null;
 
-            // `105mm/37 L118 Towed Light Gun x 6` —— 数据库里的数量写在后缀，
+            // `105mm/37 L118 Towed Light Gun x 6`、`100mm KS-19 x 4, Fire Can FCR`
+            // —— 数据库里的数量写在后缀（有时后面还有逗号续接的内容），
             // 而下面的 QTY 规则只认前缀（`6 x Gun`）。不处理后缀就会让 `x`
-            // 当成生词把整条名字拖回英文（实测 180 条）。
-            Match qtyTail = Regex.Match(s, @"^(?<rest>.+?)\s+x\s*(?<n>\d+)$", RegexOptions.IgnoreCase);
+            // 当成生词把整条名字拖回英文（实测近 200 条）。
+            Match qtyTail = Regex.Match(s,
+                @"^(?<rest>.+?)\s+x\s*(?<n>\d+)(?<tail>\s*[,;].*)?$", RegexOptions.IgnoreCase);
             if (qtyTail.Success)
             {
                 string restZh = TranslateComposedSpec(qtyTail.Groups["rest"].Value);
-                if (restZh != null) return restZh + " × " + qtyTail.Groups["n"].Value;
+                string tailZh = null;
+                string tail = qtyTail.Groups["tail"].Value;
+                if (tail.Length > 0)
+                    tailZh = TranslateComposedSpec(tail.Substring(1));
+                if (restZh != null && (tailZh != null || tail.Length == 0))
+                {
+                    string joined = restZh + " × " + qtyTail.Groups["n"].Value;
+                    return tailZh != null ? joined + "，" + tailZh : joined;
+                }
             }
 
             Match qty = Regex.Match(s, @"^(?<n>\d+)\s*x\s*(?<rest>.+)$", RegexOptions.IgnoreCase);
@@ -4607,6 +4617,10 @@ namespace CMOLocalizer
             // 单个大写字母是舰体/机种分类前缀（`P 601`、`F 27 Lynx`、`A 32A Lansen`），
             // 不可能是单词；实测它们卡住了近 500 条装备名。
             if (tok.Length == 1 && tok[0] >= 'A' && tok[0] <= 'Z') return true;
+            // 型号里的罗马数字序数：`Phantom II`、`Corsair II`、`Shilka III`。
+            // 它们不是单词，译不出中文，但删掉就丢型号，必须原样直通。
+            if (tok == "II" || tok == "III" || tok == "IV" || tok == "VI")
+                return true;
             for (int i = 0; i < tok.Length; i++)
             {
                 char c = tok[i];
