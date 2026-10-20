@@ -49,6 +49,8 @@ REQUIRED_SOURCES = [
     "src/shared/CMOSharedTest.cs",
     "src/shared/MapLabelRenderer.cs",
     "scripts/build.sh",
+    "scripts/build.ps1",
+    "scripts/localize_html_files.py",
     "scripts/deploy.sh",
     "scripts/package.sh",
     "scripts/publish_release.py",
