@@ -618,6 +618,56 @@ def run_static(r: Runner) -> None:
     except Exception as exc:  # noqa: BLE001
         r44["异常"] = False
         _d44 = f"异常: {type(exc).__name__}: {exc}"
+    # R45：翻译幂等 + 混合串整条汉化。用户实测的"频闪"另一半是译文自我嵌套
+    # （'主动 (Active)' → '主动 (主动 (Active))' 每刷一次多一层），所以必须门禁幂等性，
+    # 而不只是"翻译函数能用"。同时锁死「中文标签 + 英文值」必须整条变中文。
+    r45 = {}
+    _d45 = ""
+    try:
+        import tempfile as _tempfile45  # noqa: PLC0415
+        _w45 = Path(_tempfile45.mkdtemp(prefix="cmo-r45-"))
+        try:
+            _dll45, _exe45 = _w45 / "CMOLocalizer.dll", _w45 / "idem.exe"
+            _refs45 = [f"-reference:{x}" for x in ("System.dll", "System.Core.dll", "System.Data.dll",
+                                                  "System.Windows.Forms.dll", "System.Drawing.dll",
+                                                  "System.Xml.dll", "System.Xml.Linq.dll")]
+            _refs45 += [f"-reference:{p}" for p in (TILE_WPF / "WindowsBase.dll",
+                                                   TILE_WPF / "PresentationCore.dll",
+                                                   TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
+            _b45a = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
+                                    "-optimize+", f"-out:{_dll45}", *_refs45, str(ENGINE),
+                                    str(ROOT / "src/shared/MapLabelRenderer.cs"),
+                                    str(ROOT / "src/engine/Reflect.cs")],
+                                   capture_output=True, text=True, encoding="utf-8",
+                                   errors="replace", timeout=180)
+            _b45b = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
+                                    f"-out:{_exe45}", f"-reference:{_dll45}",
+                                    str(ROOT / "src/tests/IdempotencyTests.cs")],
+                                   capture_output=True, text=True, encoding="utf-8",
+                                   errors="replace", timeout=180)
+            if _b45a.returncode or _b45b.returncode:
+                r45["编译"] = False
+                _d45 = "compile failed: " + (_b45a.stderr or _b45b.stderr or "")[:160].replace(chr(10), " ")
+            else:
+                r45["编译"] = True
+                _run45 = subprocess.run([str(_exe45), str(ROOT), str(_dll45)],
+                                        capture_output=True, timeout=180, cwd=str(_w45))
+                _out45 = _decode(_run45.stdout or b"") + _decode(_run45.stderr or b"")
+                r45["行为"] = _run45.returncode == 0 and "ALL PASS" in _out45
+                _d45 = (f"rc={_run45.returncode} OK={_out45.count('--> OK')} "
+                        f"FAIL={_out45.count('--> FAIL')}")
+                if not r45["行为"]:
+                    _bad = [ln.strip() for ln in _out45.splitlines() if "FAIL" in ln][:3]
+                    _d45 += " " + " | ".join(_bad)
+        finally:
+            shutil.rmtree(_w45, ignore_errors=True)
+    except Exception as exc:  # noqa: BLE001
+        r45["异常"] = False
+        _d45 = f"异常: {type(exc).__name__}: {exc}"
+    r.record("R45-static-translate-idempotent",
+             "R45 翻译幂等（不自我嵌套）+ 中文标签带英文值必须整条汉化",
+             all(r45.values()), _d45, "src/tests/IdempotencyTests.cs")
+
     r.record("R44-static-compose-rules",
              "R44 组合翻译：结构规则成句 + 生词一律放弃 + 半译条目已自动化修复",
              all(r44.values()), _d44,

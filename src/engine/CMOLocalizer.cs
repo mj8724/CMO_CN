@@ -1164,6 +1164,23 @@ namespace CMOLocalizer
         /// 记住“确实需要翻译”的少量 WPF 元素（单位状态面板、状态栏、消息日志等实时文本）。
         /// 游戏每帧/每秒把绑定源刷成英文时，这些元素就是频闪的来源。
         /// </summary>
+        /// <summary>
+        /// 输入串里是否还有 ASCII 字母。控件级同步一律用这个判据代替「含中文就跳过」：
+        /// 池注入/上游常常只把标签汉化，值是英文（`状态: Unassigned`），
+        /// 只看「含中文」就整块跳过，这类混合串会永远停在半译状态（R45 用户实测）。
+        /// 真正的幂等性由 TranslateString 保证，这里不再重复判断。
+        /// </summary>
+        private static bool HasAsciiLetter(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return false;
+            for (int i = 0; i < s.Length; i++)
+            {
+                char c = s[i];
+                if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) return true;
+            }
+            return false;
+        }
+
         private static void TrackLiveWpfTarget(System.Windows.DependencyObject dep)
         {
             if (dep == null) return;
@@ -1273,7 +1290,7 @@ namespace CMOLocalizer
                         System.Windows.DependencyObject dep = snapshot[i];
                         if (dep == null) continue;
                         string cur = ReadWpfText(dep);
-                        if (string.IsNullOrEmpty(cur) || ContainsChinese(cur)) continue;
+                        if (string.IsNullOrEmpty(cur) || !HasAsciiLetter(cur)) continue;
                         TranslateWpfElement(dep);
                     }
                     catch { }
@@ -1417,7 +1434,7 @@ namespace CMOLocalizer
                                                     return;
                                                 }
                                             }
-                                            if (!ContainsChinese(cur))
+                                            if (HasAsciiLetter(cur))
                                             {
                                                 string tr = TranslateString(cur);
                                                 if (string.IsNullOrEmpty(tr) || tr == cur)
@@ -1524,7 +1541,7 @@ namespace CMOLocalizer
                                                 SetContentKeepBinding(targetCc, mixedCc);
                                                 return;
                                             }
-                                            if (!string.IsNullOrEmpty(str) && !ContainsChinese(str))
+                                            if (HasAsciiLetter(str))
                                             {
                                                 string tr = TranslateString(str);
                                                 if (tr != str) SetContentKeepBinding(targetCc, tr);
@@ -4365,10 +4382,14 @@ namespace CMOLocalizer
             if (mixedPrefix != null) return mixedPrefix;
 
             // 如果文本中已经含有中文，说明已经被翻译过或者是中文字符串，坚决避免重复翻译与递归替换！
+            // 但「含中文」不等于「已经翻完」：池注入/上游往往只把**标签**翻成中文，值还是英文，
+            // 于是 `状态: Unassigned`、`所属阵营: Israel` 这类混合串整块早退、永远漏翻。
+            // 这里在早退前补两步低频操作：括号片段 + 「中文标签: 英文值」的右值翻译。
             if (ContainsChinese(raw))
             {
                 string bracketOnly = TranslateBracketSegments(raw);
-                return bracketOnly;
+                if (bracketOnly != raw) return bracketOnly;
+                return TranslateMixedValueTail(bracketOnly);
             }
 
             // Check cache first
@@ -4382,6 +4403,16 @@ namespace CMOLocalizer
             }
 
             string result = DoTranslate(raw);
+
+            // 幂等护栏（R45）：译文若只是「把原文又包一层」，一律拒绝。
+            // 游戏周期性把界面文本刷回，而翻译是每次刷新都跑的；只要某条规则不幂等，
+            // 屏幕上就会出现「主动 (主动 (Active))」这种每次多裹一层的串——肉眼就是频闪/字变长。
+            if (result != null && result != raw && ContainsChinese(raw)
+                && result.Length > raw.Length
+                && result.IndexOf(raw, StringComparison.Ordinal) >= 0)
+            {
+                result = raw;
+            }
 
             // Cache successes only.  A failure cached forever would freeze an
             // English string even after the dictionary learns the phrase.
@@ -4585,6 +4616,32 @@ namespace CMOLocalizer
         }
 
         /// <summary>
+        /// 「中文标签: 英文值」的右值翻译（R45）。
+        /// 池注入与上游汉化只覆盖标签，值来自数据库/运行时仍是英文，而 TranslateString
+        /// 一看到串里含中文就整体早退——这类混合串因此长期漏翻（用户实测 `状态: Unassigned`）。
+        /// 只处理「左半含中文、右半纯英文、且右半能整串查到译法」的窄形状，其余原样返回。
+        /// </summary>
+        private static string TranslateMixedValueTail(string raw)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(raw)) return raw;
+                int colon = raw.IndexOf(':');
+                if (colon <= 0 || colon >= raw.Length - 1 || colon > 40) return raw;
+                string left = raw.Substring(0, colon);
+                string right = raw.Substring(colon + 1).Trim();
+                if (!ContainsChinese(left)) return raw;
+                if (right.Length == 0 || right.Length > 64) return raw;
+                if (ContainsChinese(right)) return raw;
+                if (!Regex.IsMatch(right, "^[A-Za-z][A-Za-z0-9 ,./()&+%-]*$")) return raw;
+                string trRight = TranslateString(right);
+                if (string.IsNullOrEmpty(trRight) || trRight == right) return raw;
+                return left.TrimEnd() + "：" + trRight;
+            }
+            catch { return raw; }
+        }
+
+        /// <summary>
         /// 中文串里的英文括号片段（任务编辑器「可用」列表、单位名称拼装等）：
         /// 「苏法/风暴 #1 (Air Superiority BVR) (拉马特戴维)」这类整串查表必然落空，
         /// 按标点切分又因含中文被跳过，于是英文载荷名会一直显示。
@@ -4604,6 +4661,10 @@ namespace CMOLocalizer
                         if (ContainsChinese(inner)) return m.Value;
                         string trInner = TranslateInnerSegment(inner);
                         if (trInner == inner) return m.Value;
+                        // 幂等：`Active` 的译法本身就是「主动 (Active)」这种带原文括号提示的形式，
+                        // 再嵌进括号就成了「主动 (主动 (Active))」，且每刷新一次多裹一层。
+                        // 译文里若已经包含原文，说明这个括号已经是「中文 + 英文提示」，原样保留。
+                        if (trInner.IndexOf(inner, StringComparison.Ordinal) >= 0) return m.Value;
                         return m.Groups[1].Value + trInner + m.Groups[3].Value;
                     });
             }
@@ -5119,6 +5180,12 @@ namespace CMOLocalizer
                     {
                         return transLeft + "：" + right;
                     }
+                    // 左半已经是中文（池注入/上游已汉化）、右半还是英文：`状态: Unassigned`。
+                    // 旧实现只认「左半被翻过」，于是这种最常见的混合形状一直漏翻。
+                    if (ContainsChinese(left) && transRight != right)
+                    {
+                        return left + "：" + transRight;
+                    }
                 }
             }
 
@@ -5140,7 +5207,7 @@ namespace CMOLocalizer
                 }
             }
 
-            // 8. 组合翻译（R44）：只处理「整串不含中文 + 每个词都在术语表里」的显示名。
+            // 9. 组合翻译（R44）：只处理「整串不含中文 + 每个词都在术语表里」的显示名。
             //
             // 历史教训（R8）：早期做过按词猜译，生词被硬拼成中英夹生串，最后整块删掉并写下
             // 「No word-level composition」。这里不是猜译——术语表是封闭词表，**任何一个词

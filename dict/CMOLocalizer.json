@@ -4,7 +4,7 @@
   "version": "4.2.2",
   "counts": {
    "n_offsets": 8756,
-   "n_exact": 61132,
+   "n_exact": 61133,
    "n_partial": 0,
    "n_words": 127
   }
@@ -44361,6 +44361,7 @@
   "Note: When the ship is going fast and thus propellers turn quickly, areas of low pressure are created in the water surrounding the propeller blades. The lowering of pressure causes the water to boil without heating up, and produces bubbles of steam that then implode with a loud noise.": "注：当舰艇高速航行、螺旋桨快速旋转时，桨叶周围的水体中会形成低压区。压力降低会使海水在未受热的情况下沸腾，产生蒸汽气泡，随后这些气泡向内溃灭并释放出巨大的噪音。",
   "Notes": "备注",
   "Notes:": "注意事项：",
+  "Nothing": "无",
   "Nothing else to touch but note that the aircraft will fly in flights of 2 and will not take off until there are 2 ready to go.": "无需改动其他设置，但注意飞机将以2机编队起飞，须待2架均准备好后才会起飞。",
   "Nothing in this warning is intended to impede or otherwise interfere with the freedom of navigation or overflight of any vessel or aircraft, or to limit or expand the right of self-defense of United Kingdom and Coalition Forces. This warning is published solely to advise of the heightened state of readiness of United Kingdom and Coalition Forces and to request that radio contact be maintained as outlined above.": "本警告无意妨碍航行飞越自由，不增减United Kingdom及Coalition Forces自卫权，仅告示高度戒备并请保持无线电联系，知悉。",
   "Nothing is going to happen for an hour or two. Take a minute to practice using the time controls, speeding time up and slowing it down, and using the Start/Resume command to pause things. Also, while you're paused or at the \"1 sec (real-time)\" compression level, play around with the controls for zooming in and out, panning the map in different directions, and selecting specific units. You probably know how to use these already, but the more you practice, the more easily you will be able to use them if you have to use them quickly. Like when someone is shooting at that nice beautiful destroyer you're commanding.": "接下来这一两个小时内不会发生敌情接触。请花一分钟练习使用时间流速控制：加速、减速，以及使用“开始/继续（Start/Resume）”快捷指令暂停游戏。此外，在暂停状态或“1秒（实时，Real-Time）”压缩等级下，熟练运用滚轮缩放、向各个方向平移地图以及点选特定单位。你可能已经知晓这些操作，但练习越充分，在突发危机时就能越快反应——比如当敌人的反舰导弹正朝着你心爱的漂亮驱逐舰呼啸而来时！",
