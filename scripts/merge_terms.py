@@ -27,6 +27,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "dict" / "src"
+BUILD = ROOT / "build"
 CJK = re.compile(r"[\u4e00-\u9fff]")
 LATIN_WORD = re.compile(r"[A-Za-z]{3,}")
 SENTENCE = re.compile(r"[。，；！？]")
@@ -81,6 +82,7 @@ def acceptable(en: str, zh: str) -> str | None:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--merge", required=True)
+    ap.add_argument("--batches", help="批次清单目录（默认 build/term_batches）")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
@@ -89,6 +91,25 @@ def main() -> int:
     if not files:
         print(f"{srcdir} 下没有 batch_*.json")
         return 1
+
+    # 批次文件会被 `term_gap_analysis.py --emit-batches` 重新生成（词表随缺口变化）。
+    # 若某个输出文件是在批次被覆盖之前产出的，它的键已不在当前批次里 ——
+    # 这种「串味」输出必须整批丢弃，否则会把 A 批的译文贴到 B 批的词上。
+    batchdir = Path(args.batches) if args.batches else BUILD / "term_batches"
+    stale: list[str] = []
+    if batchdir.is_dir():
+        for f in files:
+            bf = batchdir / f.name
+            if not bf.is_file():
+                continue
+            cur = {t.get("en") for t in json.loads(bf.read_text(encoding="utf-8")).get("terms", [])}
+            got = set(json.loads(f.read_text(encoding="utf-8")))
+            if cur and len(cur & got) < len(got) * 0.5:
+                stale.append(f.name)
+        if stale:
+            print(f"!! 跳过 {len(stale)} 个与当前批次不匹配的输出（批次被重新生成过）: "
+                  f"{stale[:6]}")
+            files = [f for f in files if f.name not in stale]
 
     target = SRC / "terms.json"
     raw = target.read_bytes().decode("utf-8")
