@@ -68,9 +68,12 @@ def main() -> int:
     for k in sorted(unique_s):
         print(f"  {k!r}  ({len(settings[k])} scenarios)")
 
+    # 键必须排序后输出：字典保留插入顺序，而插入顺序取决于 rglob 的遍历顺序。
+    # 玩家存档/加载不同想定会改变这一顺序（历史 bug：每跑一次实机验证，
+    # 文件就有几行"只是顺序不同"的差异，让发版门禁 repository 反复报未提交）。
     out = {
-        "titles": unique_t,
-        "settings": unique_s,
+        "titles": {k: unique_t[k] for k in sorted(unique_t)},
+        "settings": {k: unique_s[k] for k in sorted(unique_s)},
         "campaigns": campaigns,
     }
     dest = Path("dict/scenario_meta.json")
