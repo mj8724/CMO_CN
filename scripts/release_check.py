@@ -203,6 +203,7 @@ def main(argv: list[str] | None = None) -> int:
     VA.gate_db_templates()
     VA.gate_no_secrets()
     VA.gate_readme_downloads()
+    VA.gate_routing()
     if args.allow_dirty:
         print("  [SKIP] repository   (--allow-dirty)")
     else:

@@ -269,11 +269,30 @@ def gate_no_secrets() -> None:
            "no plaintext credentials" if ok else f"PLAINTEXT CREDENTIALS: {tail}")
 
 
+SCRIPTS = ROOT / "scripts"
+
+
+def gate_routing() -> None:
+    """每个受版本控制的文件都必须在 docs/ROUTING.md 登记职责。
+
+    路由表靠自觉维护必然腐烂：新加脚本忘了登记，半年后没人知道它干什么、
+    能不能删。所以"新增文件要登记"必须是机械可检查的。
+    """
+    r = subprocess.run([sys.executable, str(SCRIPTS / "verify_routing.py")],
+                       capture_output=True, text=True, encoding="utf-8", timeout=300)
+    lines = (r.stdout or "").strip().splitlines()
+    summary = next((ln.strip() for ln in lines if "[PASS]" in ln or "[FAIL]" in ln), "")
+    gaps = [ln.strip() for ln in lines if ln.startswith("   ") and "/" in ln]
+    record("routing", r.returncode == 0,
+           (summary or (r.stderr or "").strip()[:140])
+           + (f"（未登记: {', '.join(gaps[:5])}）" if gaps else ""))
+
+
 def main() -> int:
     for g in (gate_dictionary, gate_menu, gate_engine_parse,
               gate_scenario_meta, gate_briefings, gate_placenames,
               gate_db_templates, gate_version, gate_no_secrets,
-              gate_repository):
+              gate_routing, gate_repository):
         try:
             g()
         except Exception as exc:  # noqa: BLE001
