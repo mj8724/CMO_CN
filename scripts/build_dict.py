@@ -461,6 +461,18 @@ def build() -> dict:
                     fixed += 1
             if fixed:
                 print(f"[compose] 组合翻译修复 {fixed} 条半译条目")
+                # 同步池偏移：同一英文在 offsets 与 exact 里必须是**同一个**中文，
+                # 否则池注入的界面串与 exact 查找会读出两种译文
+                # （实测踩过：` kg (Current), ` 在 offsets 里是「kg (当前),」、
+                #   在 exact 里是「千克(当前),」）。
+                _synced = 0
+                for _off in list(offsets):
+                    _en2 = pool.get(str(_off))
+                    if _en2 is not None and _en2 in exact and offsets[_off] != exact[_en2]:
+                        offsets[_off] = exact[_en2]
+                        _synced += 1
+                if _synced:
+                    print(f"[compose] 同步 {_synced} 个池偏移译文")
     except Exception as _exc:  # noqa: BLE001
         print(f"[compose] 跳过组合修复: {_exc}")
 
