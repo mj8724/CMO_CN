@@ -71,12 +71,96 @@ def check_regression_report(version: str, force: bool) -> None:
         print("==> 回归报告校验通过（版本匹配 / static+installer+live 全通过 / 24h 内）")
 
 
+def verify_release(tag_name: str) -> int:
+    """只读校验已发布的 Release：资产齐全、哈希与本地构建一致、latest 指向该 tag。
+
+    严格只发 GET 请求，绝不创建/删除/上传任何东西——这是 `--verify-only` 存在的意义。
+    """
+    token = get_github_token()
+    if not token:
+        print("ERROR: 需要 GitHub token 才能读 Release（私有?）或提升速率限制。", file=sys.stderr)
+        return 2
+    opener = get_opener()
+    api_base = "https://api.github.com/repos/mj8724/CMO_CN"
+    headers = {"Authorization": f"token {token}", "Accept": "application/vnd.github.v3+json"}
+
+    def _get(url: str) -> dict | None:
+        try:
+            with opener.open(urllib.request.Request(url, headers=headers), timeout=60) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return None
+            raise
+
+    rel = _get(f"{api_base}/releases/tags/{tag_name}")
+    if not rel:
+        print(f"FAIL: Release {tag_name} 不存在", file=sys.stderr)
+        return 1
+
+    problems: list[str] = []
+    if rel.get("draft"):
+        problems.append("仍是 draft（草稿）")
+    if rel.get("prerelease"):
+        problems.append("被标记为 prerelease")
+
+    assets = {a["name"]: a for a in rel.get("assets", [])}
+    version = tag_name.lstrip("v")
+    need = [f"CMO_Chinese_Setup_v{version}.exe", f"CMO_Chinese_Pack_{version}.zip",
+            f"CMO_Chinese_Setup_v{version}.exe.sha256", f"CMO_Chinese_Pack_{version}.zip.sha256"]
+    for n in need:
+        if n not in assets:
+            problems.append(f"缺少资产 {n}")
+    print(f"资产: {len(assets)} 个" + ("" if not problems else f"，问题: {problems}"))
+
+    # 哈希核对：GitHub 的 digest 字段 vs 本地构建产物
+    import hashlib  # noqa: PLC0415
+    for n in (need[0], need[1]):
+        local = BUILD_DIR / n
+        if n not in assets or not local.is_file():
+            continue
+        want = hashlib.sha256(local.read_bytes()).hexdigest()
+        got = (assets[n].get("digest") or "").replace("sha256:", "")
+        if got and got != want:
+            problems.append(f"{n} 哈希不一致（远端 {got[:16]}… vs 本地 {want[:16]}…）")
+        else:
+            print(f"  {n}: 哈希一致")
+
+    latest = _get(f"{api_base}/releases/latest")
+    latest_tag = (latest or {}).get("tag_name")
+    if latest_tag != tag_name:
+        problems.append(f"latest 指向 {latest_tag}，不是 {tag_name}")
+    else:
+        print(f"  latest 指向 {latest_tag}")
+
+    if problems:
+        print("FAIL: " + "；".join(problems), file=sys.stderr)
+        return 1
+    print(f"PASS: {tag_name} 资产齐全、哈希一致、latest 正确（本次未做任何写入）")
+    return 0
+
+
 def main():
     version = VERSION_FILE.read_text(encoding="utf-8").strip()
     tag_name = f"v{version}"
     print(f"==> Target Release: {tag_name}")
 
-    check_regression_report(version, "--force" in sys.argv[1:])
+    argv = sys.argv[1:]
+    # --verify-only 必须是**纯只读**校验：历史 bug（2026-10-20 实测）——该参数从未被实现，
+    # 而脚本也不校验未知参数，于是 `publish_release.py --verify-only` 会照常执行发布，
+    # 把已上传的资产删除重传。做"发布后自检"时意外触发了写操作。
+    # 现在：真正实现只读校验并**提前返回**，绝不进入上传分支。
+    verify_only = "--verify-only" in argv
+    known = {"--force", "--verify-only"}
+    unknown = [a for a in argv if a not in known]
+    if unknown:
+        print(f"ERROR: 未知参数 {unknown}；可用参数：--force / --verify-only", file=sys.stderr)
+        return 2
+
+    check_regression_report(version, "--force" in argv)
+
+    if verify_only:
+        return verify_release(tag_name)
 
     # README 下载区：测试版走 releases/latest 通道（地址不含版本号），发版后自动指向新版本；
     # 但它的**显示版本号**仍要随发版更新，所以这里同步一次并校验。
@@ -238,4 +322,6 @@ def main():
     print(f"\n==> All release assets published successfully to {release_info['html_url']} !")
 
 if __name__ == "__main__":
-    main()
+    # 必须把返回值交给 sys.exit：否则脚本永远以 0 退出，
+    # main() 里 return 1/2 的错误分支在 CI 或 && 链里会被当成成功（历史 bug）。
+    sys.exit(main())

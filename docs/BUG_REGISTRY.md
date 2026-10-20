@@ -1200,3 +1200,29 @@ PASS
 ```bash
 python scripts/perf_probe.py          # 游戏已在想定里
 ```
+
+---
+
+## R50 `publish_release.py --verify-only` 不是只读：参数从未实现，且退出码被吞（v4.2.2 发版时暴露）
+
+- **发现方式**：v4.2.2 发布后按 `docs/RELEASE_MANIFEST.md` §5「发布后自检」跑
+  `python scripts/publish_release.py --verify-only`，它却**重新上传了全部资产**
+  （日志里出现 `Deleting existing asset … / Deleted / Uploaded`）。
+- **根因（三个叠加）**：
+  1. `--verify-only` **从未被实现**：脚本里没有任何 `verify-only` 字样，只解析 `--force`。
+  2. **不校验收到的参数**：任何未知参数都被静默忽略，于是照样走完整发布流程。
+  3. 脚本末尾是裸 `main()`，**没有 `sys.exit(main())`** ⇒ 即使走到 `return 1/2` 的错误分支，
+     进程仍以 0 退出。在 CI 或 `cmd1 && cmd2` 链里这类失败会被当成成功。
+- **危害**：把"只读自检"做成写操作。本次因本地 `build/` 产物与已发布资产是同一份构建，
+  重传后哈希未变、资产完好；但若本地产物已被重新构建过，`--verify-only` 会**覆盖已发布资产**，
+  而 `RELEASE_MANIFEST` §4 明确要求「已发布资产只增不改」。
+- **修复**：
+  1. 真正实现 `verify_release()`：只发 GET 请求，核对资产齐全、`digest` 与本地构建哈希一致、
+     `latest` 指向该 tag；**校验通过后立即 return，绝不进入上传分支**。
+  2. 显式白名单参数（`--force` / `--verify-only`），未知参数直接 `return 2` 并提示可用参数。
+  3. 末尾改为 `sys.exit(main())`，错误码不再被吞。
+- **验收**：跑 `--verify-only` 前后比对资产 ID 与 `updatedAt`，**完全未变**（确认纯只读）；
+  拼错参数 `--verifyonly` 返回退出码 2；正常校验返回 0。
+- **教训**：以 `--xxx-only` 命名的开关必须**先断言它真的只读**（跑前后对比远端状态），
+  不能只看帮助文本或参数名。同类风险：任何"检查类"脚本都应显式拒绝未知参数，
+  否则拼错一个字母就从"检查"变成"执行"。
