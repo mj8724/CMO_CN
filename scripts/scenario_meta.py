@@ -44,8 +44,22 @@ def main() -> int:
             "names": CAMPAIGN_NAME.findall(head),
         })
 
-    unique_t = {k: v[0] for k, v in titles.items()}
-    unique_s = {k: v[0] for k, v in settings.items()}
+    # 同一想定常有多份副本：根目录的 Autosave.scen、Autosaves/<名字>/Autosave_*.scen
+    # 都是**运行时存档**，会随玩家保存而变化；正式想定才是稳定来源。
+    # 旧实现直接取排序后的第一个，于是"今天自动存档了 Shamal"就会把 Shamal 的路径
+    # 从 Autosaves\Shamal, 1991\Autosave.scen 改成 Autosave.scen，
+    # 让 dict/scenario_meta.json 每次跑测试都变脏（发版门禁因此报 repository 未提交）。
+    def _prefer(paths: list[str]) -> str:
+        def rank(rel: str) -> tuple:
+            base = rel.rsplit("\\", 1)[-1].lower()
+            is_autosave = base.startswith("autosave")
+            in_autosaves = rel.lower().startswith("autosaves")
+            # 排序优先级：正式想定 > Autosaves/ 下的存档 > 根目录 Autosave.scen
+            return (is_autosave and not in_autosaves, is_autosave, rel)
+        return sorted(paths, key=rank)[0]
+
+    unique_t = {k: _prefer(v) for k, v in titles.items()}
+    unique_s = {k: _prefer(v) for k, v in settings.items()}
     print(f"scen files      : {sum(len(v) for v in titles.values())}")
     print(f"unique titles   : {len(unique_t)}")
     print(f"unique settings : {len(unique_s)}")
