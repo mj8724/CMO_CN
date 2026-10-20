@@ -10,6 +10,8 @@ out/
 evidence/
 *.png
 *.jpg
+# 例外：需要随仓库发布的图片（README 里直接引用的社区/捐赠图）
+!assets/community/*.png
 
 # 运行时日志与临时文件
 *.log

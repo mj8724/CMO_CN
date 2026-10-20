@@ -321,6 +321,7 @@
 | `assets/placenames/Cities.wwp` | 译好的城市地名集（同上，`Cities/`） |
 | `assets/launcher/stringsChinese.resx` | 启动器的中文字符串表 |
 | `assets/db_templates/*.html` | 数据库查看器 HTML 模板（Aircraft/Facility/GroundUnit/Platform/Satellite/Ship/Submarine/Weapon 8 个） |
+| `assets/community/*.png` | README「社区交流」段引用的图片。当前为 `wechat_group.png`（微信群二维码）。**微信群二维码 7 天过期**：本张有效至 2026-10-27；续期只需用新图 **同名覆盖** 此文件（README 无需改），`.gitignore` 对 `assets/community/*.png` 开了例外才能入库 |
 
 **运行时目录（不入库，`.gitignore`）**
 
