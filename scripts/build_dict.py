@@ -336,6 +336,26 @@ def build() -> dict:
         bad_off = text_to_offset.get(bad)
         if bad_off is not None:
             offsets.pop(bad_off, None)
+
+    # --- 污染自愈 -------------------------------------------------------
+    # 构建以**上一版词典为底座**（下面 `base = load(MAIN)`），所以从源批次里
+    # 删掉的条目并不会消失：它们会一直留在 exact 里。历史批量生成器曾把短标签
+    # 拼成电报体句子（`PLAN Changsha [Type 052D DDG]: Z-9C ASW` →
+    # `PLAN Changsha[...]辖Z-9C ASW如令查收。`），这类值比不翻译更糟。
+    # 这里按形状主动清掉，不依赖人记得去改底座。
+    TELEGRAPH = ("如令查收", "收悉", "如令办理", "所部须", "兹令", "电悉", "奉此")
+    _purged = 0
+    for en in list(exact):
+        zh = exact[en]
+        if not isinstance(zh, str) or not any(t in zh for t in TELEGRAPH):
+            continue
+        # 只清「短标签被拼成句子」；真正的散文段落（原句带句末标点且较长）保留
+        if len(en) > 60 or re.search(r"[.。!?！？]\s*$", en):
+            continue
+        del exact[en]
+        _purged += 1
+    if _purged:
+        print(f"[purge] 清掉 {_purged} 条电报体污染条目")
     # --- safety invariant: offsets may only hold display prose -----------
     # Injecting a translation over a schema identifier, script statement, control
     # name or path/config key corrupts the engine (this is exactly what broke the

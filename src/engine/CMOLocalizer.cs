@@ -4442,15 +4442,20 @@ namespace CMOLocalizer
             string s = Regex.Replace(raw.Trim(), @"\s+", " ");
             if (s.Length == 0 || ContainsChinese(s)) return false;
 
-            // 规则 1：`<名称> (<规格>)` —— 设施/装备名最主流的形状
-            Match paren = Regex.Match(s, @"^(?<name>[^()\[\]]+?)\s*\((?<spec>[^()]*)\)$");
+            // 规则 1：`<名称> (<规格>)` / `<名称> [<规格>]` —— 设施/装备名最主流的两种形状。
+            // 实测数据库里方括号形态比圆括号还多（10,362 条 vs 3,252 条），此前只认圆括号，
+            // 于是 `R 21 Melbourne [Majestic]`、`Radar [AN/TPS-43]` 整条留在英文。
+            Match paren = Regex.Match(s,
+                @"^(?<name>[^()\[\]]+?)\s*(?<open>[\(\[])(?<spec>[^()\[\]]*)(?<close>[\)\]])$");
             if (paren.Success)
             {
+                bool square = paren.Groups["open"].Value[0] == '[';
+                if (square != (paren.Groups["close"].Value[0] == ']')) return false;
                 string nameZh = TranslateComposedName(paren.Groups["name"].Value);
                 string specZh = TranslateComposedSpec(paren.Groups["spec"].Value);
                 if (nameZh != null && specZh != null)
                 {
-                    result = nameZh + "（" + specZh + "）";
+                    result = nameZh + (square ? "[" : "（") + specZh + (square ? "]" : "）");
                     return true;
                 }
                 return false;
@@ -4467,8 +4472,9 @@ namespace CMOLocalizer
         }
 
         /// <summary>
-        /// 按词边界做「最长术语优先」匹配。任何一段生词都返回 null，
-        /// 因为半截翻译（`AvGas (200k Liter 地下 Tank)`）比不翻译更糟。
+        /// 按词边界做「最长术语优先」匹配。生词一律返回 null（半截翻译比不翻译更糟），
+        /// 例外是**型号/编号 token**：它们在中文军事文献里本来就保留原样，
+        /// 不能因为它们认识不了就把整条名字拖成英文（实测 3,157 条缺口只差这一步）。
         /// </summary>
         private static string TranslateComposedName(string text)
         {
@@ -4483,6 +4489,7 @@ namespace CMOLocalizer
             string[] words = t.Split(' ');
             StringBuilder sb = new StringBuilder();
             int i = 0;
+            bool lastLatin = false;
             while (i < words.Length)
             {
                 int bestJ = -1;
@@ -4501,8 +4508,32 @@ namespace CMOLocalizer
                     // 术语表让位于词典：已有的人工译法是唯一事实源，不再另造一种写法
                     if (exactMap.TryGetValue(candStr, out zh)) { bestJ = j; bestZh = zh; break; }
                 }
-                if (bestJ < 0) return null;
+                if (bestJ < 0)
+                {
+                    string token = words[i];
+                    string core, suffix;
+                    SplitTrailingPunct(token, out core, out suffix);
+                    // `ASW, Search Only`：标点挂在词上导致查不到，剥掉再查一次
+                    string zh2;
+                    if (suffix.Length > 0 &&
+                        (wordsMap.TryGetValue(core, out zh2) || exactMap.TryGetValue(core, out zh2)))
+                    {
+                        sb.Append(zh2);
+                        sb.Append(suffix);
+                        lastLatin = false;
+                        i++;
+                        continue;
+                    }
+                    if (!IsDesignationToken(core)) return null;
+                    if (lastLatin && sb.Length > 0) sb.Append(' ');
+                    sb.Append(core);
+                    sb.Append(suffix);
+                    lastLatin = true;
+                    i++;
+                    continue;
+                }
                 sb.Append(bestZh);
+                lastLatin = false;
                 i = bestJ + 1;
             }
             return sb.Length > 0 ? sb.ToString() : null;
@@ -4544,6 +4575,41 @@ namespace CMOLocalizer
             if (numUnit != null) return numUnit;
 
             return TranslateComposedName(s);
+        }
+
+        /// <summary>
+        /// 型号/编号判定。只有「含数字」或「含斜杠」的 token 算——
+        /// `B-66B`、`AN/TPS-43`、`150mm`、`AS.11/12` 这类装备代号在中文文献里本来就保留原样。
+        /// 纯字母缩写（`HQ`、`ASW`）**不**算：那些是词，必须进术语表，
+        /// 否则就会产出 `HQ连` 这种半译。
+        /// </summary>
+        private static bool IsDesignationToken(string tok)
+        {
+            if (string.IsNullOrEmpty(tok)) return false;
+            if (tok.IndexOf('/') >= 0) return true;
+            for (int i = 0; i < tok.Length; i++)
+            {
+                char c = tok[i];
+                if (c >= '0' && c <= '9') return true;
+            }
+            return false;
+        }
+
+        /// <summary>剥掉 token 尾随标点（`ASW,` → `ASW` + `,`）；术语表里不会带标点。</summary>
+        private static void SplitTrailingPunct(string token, out string core, out string suffix)
+        {
+            core = token;
+            suffix = "";
+            int end = token.Length;
+            while (end > 0)
+            {
+                char c = token[end - 1];
+                if (c == ',' || c == ';' || c == ':') end--;
+                else break;
+            }
+            if (end <= 0 || end == token.Length) return;
+            core = token.Substring(0, end);
+            suffix = token.Substring(end);
         }
 
         private static string TranslateNumberWithUnit(string text)

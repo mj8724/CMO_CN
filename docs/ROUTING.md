@@ -286,6 +286,8 @@
 | `scripts/test_web_translation.cjs` | WebView2 译文脚本的 Node 侧契约测试 |
 | `scripts/test_webview2.ps1` | 真实 Edge/WebView2 DOM 回归 |
 | `scripts/test_ui.ps1` | UI 模式回归（控件/下拉/设置抽查），需要游戏在跑 |
+| `scripts/scan_english_residue.py` | **英文残留扫描（R52）**：拿游戏数据本身（DB 各表 Name、枚举 Description、想定源）当语料喂给引擎 `TranslateString`，判据是「翻完还剩多少真英文词」。这是唯一能发现「没进词典的字符串」的机制——`L-ui-residuals` 只能查已入词典的条目 |
+| `scripts/build_translation_batches.py` | 缺口翻译流水线（R52）：`--source db/corrupt` 生成批次清单 → 交 LLM 逐条精修 → `--merge` 按**原归属**写回并跑守卫（拒收句子碎片、结构性内容、长度异常） |
 | `scripts/verify_placenames.py` | 地名发布门禁 |
 | `scripts/test_placenames.py` | 地名离线回归（写操作只落在 `build/` 临时目录） |
 | `scripts/test_placename_cache.py` | 用合成 WWP/PNG 做 Windows 集成测试 |
@@ -418,6 +420,7 @@
 | `src/tests/README_WebViewTranslation.md` | 上面 WebView 系列测试的说明 | — |
 | `src/tests/search_methods.cs`、`src/tests/test_db_load.cs` | 方法搜索 / DB 加载试验（历史） | — |
 | `src/tests/README_MapTileServer.md` | 瓦片服务测试说明 | — |
+| `src/tests/ResidueScan.cs` | R52 扫描器的 C# 宿主：加载引擎 DLL、反射调 `TranslateString`，把 TSV 语料逐条翻译并标注 `ok/none/partial` |
 
 > **注意**：`MixedPrefixTests` / `IdempotencyTests` 接受第 2 个 CLI 参数为引擎 DLL 路径，
 > 目的是防止读到过期的 `build/CMOLocalizer.dll` 造成假绿。

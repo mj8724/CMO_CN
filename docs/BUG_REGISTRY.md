@@ -1226,3 +1226,60 @@ python scripts/perf_probe.py          # 游戏已在想定里
 - **教训**：以 `--xxx-only` 命名的开关必须**先断言它真的只读**（跑前后对比远端状态），
   不能只看帮助文本或参数名。同类风险：任何"检查类"脚本都应显式拒绝未知参数，
   否则拼错一个字母就从"检查"变成"执行"。
+
+## R52 部队/装备名未翻译 + 历史译文污染（电报体句子、句子碎片）
+
+**现象**（用户报告）：军队名称没翻译，例如数据库查看器里出现
+`People's Liberation Army Air Force`；数据库整屏英文；部分条目显示成
+`PLAN Changsha [Type 052D DDG]辖Z-9C ASW如令查收。` 这种中英混杂的垃圾串。
+
+**根因**（三个独立缺陷叠加）
+
+1. **军种/国家枚举缺失**：`EnumOperatorService` / `EnumOperatorCountry` 跨 91 个
+   DB 版本的并集 279 条里，31 条没进词典（`People's Liberation Army Air Force`、
+   `PLAGF`、`PAP`、`PAFMM`、`PLAASF / PLASSF`、`Second Artillery Corps` 等）。
+   这类字符串只在数据库弹窗里出现，`L-ui-residuals` 只查「已入词典却仍显英文」，
+   所以永远不会被发现。
+
+2. **构建以旧词典为底座**：`build_dict.build()` 是 `exact = dict(base["exact"])`
+   的增量构建。从源批次里删掉的条目不会消失，历史垃圾会永久存活。
+
+3. **历史批量生成器把短标签拼成电报体句子**：源批次里存在
+   `'PLAN Changsha [Type 052D DDG]: Z-9C ASW' -> 'PLAN Changsha[...]辖Z-9C ASW如令查收。'`、
+   `'Enemy Forces:' -> '敌情通报Enemy Forces如令查收。'` 这类条目。
+   其中 **165 条的键是真实 DB 记录名**（`KA-6D Intruder`、`SH-2F Seasprite`、
+   `Sang-O`、`Nampo`…），命中时界面就会显示整句。
+   另有 1,746 条「值 = 键 + 一句译文」的句子碎片，键根本不在游戏字符串池里
+   （实测仅 2 条在池内），所以它们**永远只会污染 `exact` 查找**。
+
+**改动位置**
+
+- 引擎 `TryComposeTranslate` 规则 1：支持 `[规格]` 方括号形态（实测比圆括号多
+  3 倍：10,362 条 vs 3,252 条）。
+- 引擎 `TranslateComposedName`：型号/编号 token（含数字或斜杠，如 `B-66B`、
+  `AN/TPS-43`）不再否决整条名字，原样直通；并剥掉词尾标点再查术语表。
+  纯字母缩写（`HQ`、`ASW`）仍必须进术语表，避免产出 `HQ连`。
+- `scripts/build_dict.py`：新增污染自愈，按形状清掉长时间标签被拼成电报体句子的
+  条目（真正的散文段落带句末标点，保留）。
+- 数据：补 33 条军种/国家枚举；删除 1,746 条句子碎片与 93 条电报体污染；
+  1,690 条经逐条 LLM 精修后按原归属写回。
+- 新增 `scripts/scan_english_residue.py` + `src/tests/ResidueScan.cs`：
+  用游戏数据本身当语料、用引擎真实产出判定缺口。
+- 新增 `scripts/build_translation_batches.py`：缺口→批次→合并，合并守卫拒收
+  句子碎片、结构性内容和长度异常译文。
+
+**用户可见验收**
+
+- 数据库查看器里军种显示中文：`People's Liberation Army Air Force` → 中国人民解放军空军。
+- 上面列的垃圾串消失（`KA-6D Intruder` → `KA-6D 入侵者加油机`）。
+- `verify_terminology.py` PASS；`verify_regressions --static` 26/26；
+  `--live` 19/19（含 L-repaint-tick 补扫 37191→37617 增长）。
+
+**回归测试点**
+
+- `R52-static-residue-scan`：扫描器可运行并给出非零语料。
+- `R7-static-terms`：`verify_terminology.py` 的 key-embedded 规则会抓这类污染
+  （本轮它正是抓到 `'Nampo' -> '舰名Nampo如令查收。'` 的那道闸）。
+- 后续门禁待补：把「已入词典却仍显英文」的循环论证换成
+  `scan_english_residue` 的缺口统计。
+
