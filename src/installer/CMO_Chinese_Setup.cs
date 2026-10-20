@@ -1311,6 +1311,57 @@ namespace CMOLocalizerInstaller
         private static readonly System.Text.RegularExpressions.Regex HanRegex =
             new System.Text.RegularExpressions.Regex("[\u4e00-\u9fff]");
 
+        private static string ReadScenarioHtml(string path, out Encoding encoding, out byte[] preamble)
+        {
+            byte[] bytes = File.ReadAllBytes(path);
+            string header = Encoding.ASCII.GetString(bytes, 0, Math.Min(bytes.Length, 4096));
+            System.Text.RegularExpressions.Match charset = System.Text.RegularExpressions.Regex.Match(
+                header, @"charset\s*=\s*[""']?\s*([\w-]+)",
+                System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            encoding = Encoding.UTF8;
+            if (charset.Success)
+            {
+                try { encoding = Encoding.GetEncoding(charset.Groups[1].Value); }
+                catch (ArgumentException) { } // 未知声明保持原有 UTF-8 回退。
+            }
+            using (MemoryStream stream = new MemoryStream(bytes, false))
+            using (StreamReader reader = new StreamReader(stream, encoding, true))
+            {
+                string text = reader.ReadToEnd();
+                encoding = reader.CurrentEncoding;
+                preamble = encoding.GetPreamble();
+                bool hasPreamble = preamble.Length <= bytes.Length;
+                for (int i = 0; hasPreamble && i < preamble.Length; i++)
+                    hasPreamble = bytes[i] == preamble[i];
+                if (!hasPreamble) preamble = new byte[0];
+                return text;
+            }
+        }
+
+        private static string EncodeScenarioReplacement(string value, Encoding encoding)
+        {
+            Encoding strict = (Encoding)encoding.Clone();
+            strict.EncoderFallback = EncoderFallback.ExceptionFallback;
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < value.Length; i++)
+            {
+                int length = char.IsSurrogatePair(value, i) ? 2 : 1;
+                string character = value.Substring(i, length);
+                try
+                {
+                    strict.GetByteCount(character);
+                    result.Append(character);
+                }
+                catch (EncoderFallbackException)
+                {
+                    int codepoint = length == 2 ? char.ConvertToUtf32(value, i) : value[i];
+                    result.Append("&#").Append(codepoint).Append(';');
+                }
+                i += length - 1;
+            }
+            return result.ToString();
+        }
+
         private static void LocalizeScenarioBriefings(string scenDir)
         {
             if (!Directory.Exists(scenDir)) return;
@@ -1320,32 +1371,42 @@ namespace CMOLocalizerInstaller
                 foreach (string h in htmls)
                 {
                     if (h.EndsWith(".orig", StringComparison.OrdinalIgnoreCase)) continue;
+                    Encoding encoding;
+                    byte[] preamble;
+                    string text = ReadScenarioHtml(h, out encoding, out preamble);
                     // 已由 zip 全量汉化的文件不得再用标题级替换覆盖（否则会降级成中英混排）
-                    if (HanRegex.IsMatch(File.ReadAllText(h, Encoding.UTF8))) continue;
+                    // 先按声明编码读取（BOM 优先），兼容原生汉字及数字实体载荷。
+                    if (HanRegex.IsMatch(System.Net.WebUtility.HtmlDecode(text))) continue;
                     string orig = h + ".orig";
                     if (!File.Exists(orig))
                     {
                         File.Copy(h, orig, true);
                     }
-                    string text = File.ReadAllText(orig, Encoding.UTF8);
+                    // .orig 只用于卸载还原；补译必须基于当前版本，不能回退更新后的正文。
+                    Func<string, string> replacement = value => EncodeScenarioReplacement(value, encoding);
                     string trans = text
-                        .Replace("<h2>Briefing</h2>", "<h2>作战任务简报 (Briefing)</h2>")
-                        .Replace("<h1>Introduction</h1>", "<h1>战役背景导言 (Introduction)</h1>")
-                        .Replace("<h3>Situation</h3>", "<h3>战场态势 (Situation)</h3>")
-                        .Replace("<h3>Timeline:</h3>", "<h3>行动时间线:</h3>")
-                        .Replace("<h3>Threat:</h3>", "<h3>敌情威胁评估:</h3>")
-                        .Replace("<h3>Assets:</h3>", "<h3>我方兵力配属:</h3>")
-                        .Replace("<h3>Task:</h3>", "<h3>作战任务指标:</h3>")
-                        .Replace("<h3>Execution</h3>", "<h3>作战实施决心 (Execution)</h3>")
-                        .Replace("<h3>Friendly Forces</h3>", "<h3>我方友邻部队 (Friendly Forces)</h3>")
-                        .Replace("<h3>Scenario Notes:</h3>", "<h3>想定设计说明:</h3>")
-                        .Replace("<B>Original Author:</B>", "<B>想定原作者:</B>")
-                        .Replace("<B>Location:</B>", "<B>战区位置:</B>")
-                        .Replace("<B>Playable Sides:</B>", "<B>可扮演参战方:</B>")
-                        .Replace("You are NOT, REPEAT NOT authorized to use nuclear weapons.", "你严禁（重复：严禁）动用任何核武器。");
+                        .Replace("<h2>Briefing</h2>", replacement("<h2>作战任务简报 (Briefing)</h2>"))
+                        .Replace("<h1>Introduction</h1>", replacement("<h1>战役背景导言 (Introduction)</h1>"))
+                        .Replace("<h3>Situation</h3>", replacement("<h3>战场态势 (Situation)</h3>"))
+                        .Replace("<h3>Timeline:</h3>", replacement("<h3>行动时间线:</h3>"))
+                        .Replace("<h3>Threat:</h3>", replacement("<h3>敌情威胁评估:</h3>"))
+                        .Replace("<h3>Assets:</h3>", replacement("<h3>我方兵力配属:</h3>"))
+                        .Replace("<h3>Task:</h3>", replacement("<h3>作战任务指标:</h3>"))
+                        .Replace("<h3>Execution</h3>", replacement("<h3>作战实施决心 (Execution)</h3>"))
+                        .Replace("<h3>Friendly Forces</h3>", replacement("<h3>我方友邻部队 (Friendly Forces)</h3>"))
+                        .Replace("<h3>Scenario Notes:</h3>", replacement("<h3>想定设计说明:</h3>"))
+                        .Replace("<B>Original Author:</B>", replacement("<B>想定原作者:</B>"))
+                        .Replace("<B>Location:</B>", replacement("<B>战区位置:</B>"))
+                        .Replace("<B>Playable Sides:</B>", replacement("<B>可扮演参战方:</B>"))
+                        .Replace("You are NOT, REPEAT NOT authorized to use nuclear weapons.", replacement("你严禁（重复：严禁）动用任何核武器。"));
                     if (trans != text)
                     {
-                        File.WriteAllText(h, trans, Encoding.UTF8);
+                        byte[] content = encoding.GetBytes(trans);
+                        using (FileStream stream = File.Create(h))
+                        {
+                            stream.Write(preamble, 0, preamble.Length);
+                            stream.Write(content, 0, content.Length);
+                        }
                     }
                 }
             }

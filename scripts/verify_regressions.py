@@ -14,13 +14,16 @@ from __future__ import annotations
 import argparse
 import ast
 import hashlib
+import html
 import json
 import os
 import re
 import shutil
+import sqlite3
 import subprocess
 import sys
 import time
+import uuid
 import warnings
 from datetime import datetime, timezone
 from pathlib import Path
@@ -28,7 +31,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
-GAME = Path("G:/soft/steam/steamapps/common/Command - Modern Operations")
+GAME = Path(os.environ.get("GAME_DIR", "G:/soft/steam/steamapps/common/Command - Modern Operations"))
 ENGINE = ROOT / "src/engine/CMOLocalizer.cs"
 DICT = ROOT / "dict/CMOLocalizer.json"
 REPORT = ROOT / "build/regression_report.json"
@@ -36,6 +39,9 @@ SHOTS = ROOT / "evidence/live/regression"
 
 OBJECT_TYPE_TOKENS = ["Aircraft", "Ship", "Submarine", "Facility",
                       "Ground Unit", "Satellite", "Weapon", "Sensor"]
+DB_TYPE_TABLES = dict(zip(OBJECT_TYPE_TOKENS, (
+    "DataAircraft", "DataShip", "DataSubmarine", "DataFacility",
+    "DataGroundUnit", "DataSatellite", "DataWeapon", "DataSensor")))
 # 游戏真实渲染出的详情页字节数下限（Aircraft 页面含大量小节，阈值更高）
 MIN_HTML_LEN = {"Aircraft": 20000}
 DEFAULT_MIN_HTML_LEN = 3000   # 空壳页（未生成详情）实测 1541B，真实最小详情页 4194B
@@ -86,6 +92,20 @@ TILE_XAML = Path("C:/Windows/Microsoft.NET/Framework64/v4.0.30319/System.Xaml.dl
 TILE_MODES = ["starvation", "protocol", "idle", "batch", "multi-idle", "trickle", "pressure"]
 
 
+def _engine_source_args() -> list[str]:
+    engine_dir = ROOT / "src/engine"
+    args = list(map(str, sorted(engine_dir.glob("*.cs"))))
+    shared = ROOT / "src/shared/MapLabelRenderer.cs"
+    if shared.is_file():
+        args.append(str(shared))
+    if (engine_dir / "WebViewTranslation.cs").is_file():
+        script = engine_dir / "WebViewTranslation.js"
+        if not script.is_file():
+            raise FileNotFoundError(f"Required WebView translation resource is missing: {script}")
+        args.insert(0, f"-resource:{script},CMOLocalizer.WebViewTranslation.js")
+    return args
+
+
 def _tile_harness(r: Runner, work: Path) -> None:
     """编译引擎与测试宿主，对当前源码跑 7 模式并发回归。"""
     dll, exe = work / "CMOLocalizer.dll", work / "MapTileServerTests.exe"
@@ -97,9 +117,7 @@ def _tile_harness(r: Runner, work: Path) -> None:
                                          TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
     builds = [
         subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
-                        "-optimize+", f"-out:{dll}", *refs, str(ENGINE),
-                        str(ROOT / "src/shared/MapLabelRenderer.cs"),
-                        str(ROOT / "src/engine/Reflect.cs")],
+                        "-optimize+", f"-out:{dll}", *refs, *_engine_source_args()],
                        capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180),
         subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
                         f"-out:{exe}", "-reference:System.dll", "-reference:System.Drawing.dll",
@@ -108,7 +126,8 @@ def _tile_harness(r: Runner, work: Path) -> None:
     ]
     if any(b.returncode for b in builds):
         r.record("R34-static-tile-harness", "R34 瓦片服务 7 模式并发回归", False,
-                 "编译失败: " + (builds[0].stderr or builds[1].stderr or "").strip()[:160].replace("\n", " "),
+                 "编译失败: " + " ".join((b.stdout + b.stderr).strip() for b in builds
+                                        if b.returncode)[:800].replace("\n", " "),
                  "src/tests/MapTileServerTests.cs")
         return
 
@@ -434,17 +453,19 @@ def run_static(r: Runner) -> None:
         # 反向不变量：不能把合法的界面标签（含单位缩写）误杀——窄口径剪枝的预防针
         r38["合法标签未被误杀"] = (_off_of.get("Acoustic (1-10 kHz)") is not None
                               and str(_off_of["Acoustic (1-10 kHz)"]) in _built)
-        _chk = subprocess.run([sys.executable, str(ROOT / "build/gen_pool_display_inject.py"), "--check"],
+        _chk = subprocess.run([sys.executable, str(ROOT / "src/tests/PoolDisplayInjectionTests.py")],
                               capture_output=True, text=True, encoding="utf-8", errors="replace")
-        r38["生成器与池一致"] = _chk.returncode == 0
+        r38["注入源与池/构建词典一致"] = _chk.returncode == 0
+        _source_check = (_chk.stdout or _chk.stderr).strip().splitlines()[-1:] or [""]
         _d38 = (f"放行={r38['新源已放行']} 面板串={len(_injected)}/{len(_need)} "
-                f"泄漏={_leaked} 误杀={not r38['合法标签未被误杀']} 生成器={(_chk.stdout or '').strip()[:40]}")
+                f"泄漏={_leaked} 误杀={not r38['合法标签未被误杀']} "
+                f"源校验={_source_check[0][:240]}")
     except Exception as exc:  # noqa: BLE001
         r38["异常"] = False
         _d38 = f"异常: {type(exc).__name__}: {exc}"
     r.record("R38-static-pool-inject", "R38 池级注入：自绘面板串已注入且无危险形状",
              all(r38.values()), _d38,
-             "scripts/{build_dict,inject_filter}.py + build/gen_pool_display_inject.py")
+             "scripts/{build_dict,inject_filter}.py + src/tests/PoolDisplayInjectionTests.py")
 
     # R41：地图瓦片图层的引擎标识符绝不得池级注入。
     # 2026-10-19 实机事故：R38 把 `Stamen Terrain - Labels ` / `Stamen Labels` 这类
@@ -491,31 +512,34 @@ def run_static(r: Runner) -> None:
                                                 TILE_WPF / "PresentationCore.dll",
                                                 TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
         _b1 = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
-                              "-optimize+", f"-out:{_dll39}", *_refs39, str(ENGINE),
-                              str(ROOT / "src/shared/MapLabelRenderer.cs"),
-                              str(ROOT / "src/engine/Reflect.cs")],
+                              "-optimize+", f"-out:{_dll39}", *_refs39, *_engine_source_args()],
                              capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
         _b2 = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
-                              f"-out:{_exe39}", str(ROOT / "build/test_db_translation.cs")],
+                              f"-out:{_exe39}", str(ROOT / "src/tests/DBTranslationTests.cs")],
                              capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
         if _b1.returncode or _b2.returncode:
             r39["编译"] = False
-            _d39 = "编译失败: " + (_b1.stderr or _b2.stderr or "")[:120].replace("\n", " ")
+            _d39 = "编译失败: " + " ".join((b.stdout + b.stderr).strip() for b in (_b1, _b2)
+                                         if b.returncode)[:800].replace("\n", " ")
         else:
             r39["编译"] = True
             # 宿主输出是控制台编码（中文 Windows 为 GBK），按 _decode 回落链解码，
             # 否则会拿到 U+FFFD 并污染报告。
-            _run39 = subprocess.run([str(_exe39), str(ROOT)], capture_output=True, timeout=180)
+            _run39 = subprocess.run([str(_exe39), str(ROOT), str(_dll39)],
+                                    capture_output=True, timeout=180)
             _out39 = _decode(_run39.stdout or b"") + _decode(_run39.stderr or b"")
             r39["行为"] = _run39.returncode == 0
             _d39 = f"rc={_run39.returncode} 用例通过={_out39.count('--> OK')} {r39}"
+            if _run39.returncode:
+                _d39 += " " + " | ".join(line for line in _out39.splitlines()
+                                         if "FAIL" in line)[:800]
     except Exception as exc:  # noqa: BLE001
         r39["异常"] = False
         _d39 = f"异常: {type(exc).__name__}: {exc}"
     finally:
         shutil.rmtree(_w39, ignore_errors=True)
     r.record("R39-static-mixed-prefix", "R39 混合串前缀修复（真引擎行为）",
-             all(r39.values()), _d39, "build/test_db_translation.cs + src/engine/CMOLocalizer.cs")
+             all(r39.values()), _d39, "src/tests/DBTranslationTests.cs + src/engine/CMOLocalizer.cs")
 
     # R42：「英文前缀 + 已汉化尾」的**接线**。R39 只门禁了 TranslateString 函数本身，
     # 而条目循环在调翻译之前就 `ContainsChinese(raw)) continue`，函数再好也到不了；
@@ -534,7 +558,9 @@ def run_static(r: Runner) -> None:
             return i_fix >= 0 and i_guard >= 0 and i_fix < i_guard
 
         r42["下拉项先修后跳"] = _order("private static void TranslateComboItems",
-                                     "TryFixMixedBeforeChineseGuard", "ContainsChinese(raw)) continue")
+                                     "FixMixedEnglishPrefix(raw)", "ContainsChinese(raw)) continue")
+        r42["绑定显示列先修后跳"] = _order("private static void TranslateComboDisplayColumn",
+                                         "FixMixedEnglishPrefix(raw)", "ContainsChinese(raw)) continue")
         r42["列表项先修后跳"] = _order("private static void LocalizeListBoxSafe",
                                      "TryFixMixedBeforeChineseGuard", "ContainsChinese(raw)) continue")
         r42["助手存在"] = "private static string TryFixMixedBeforeChineseGuard" in _eng_src
@@ -550,9 +576,7 @@ def run_static(r: Runner) -> None:
                                                     TILE_WPF / "PresentationCore.dll",
                                                     TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
             _b42a = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
-                                    "-optimize+", f"-out:{_dll42}", *_refs42, str(ENGINE),
-                                    str(ROOT / "src/shared/MapLabelRenderer.cs"),
-                                    str(ROOT / "src/engine/Reflect.cs")],
+                                    "-optimize+", f"-out:{_dll42}", *_refs42, *_engine_source_args()],
                                    capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
             _b42b = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
                                     f"-out:{_exe42}", f"-reference:{_dll42}",
@@ -560,7 +584,9 @@ def run_static(r: Runner) -> None:
                                    capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
             if _b42a.returncode or _b42b.returncode:
                 r42["编译"] = False
-                _d42 = "编译失败: " + (_b42a.stderr or _b42b.stderr or "")[:120].replace("\n", " ")
+                _d42 = "编译失败: " + " ".join((b.stdout + b.stderr).strip()
+                                             for b in (_b42a, _b42b)
+                                             if b.returncode)[:800].replace("\n", " ")
             else:
                 r42["编译"] = True
                 _run42 = subprocess.run([str(_exe42), str(ROOT), str(_dll42)], capture_output=True,
@@ -635,9 +661,7 @@ def run_static(r: Runner) -> None:
                                                    TILE_WPF / "PresentationCore.dll",
                                                    TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
             _b45a = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
-                                    "-optimize+", f"-out:{_dll45}", *_refs45, str(ENGINE),
-                                    str(ROOT / "src/shared/MapLabelRenderer.cs"),
-                                    str(ROOT / "src/engine/Reflect.cs")],
+                                    "-optimize+", f"-out:{_dll45}", *_refs45, *_engine_source_args()],
                                    capture_output=True, text=True, encoding="utf-8",
                                    errors="replace", timeout=180)
             _b45b = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
@@ -647,7 +671,7 @@ def run_static(r: Runner) -> None:
                                    errors="replace", timeout=180)
             if _b45a.returncode or _b45b.returncode:
                 r45["编译"] = False
-                _d45 = "compile failed: " + (_b45a.stderr or _b45b.stderr or "")[:160].replace(chr(10), " ")
+                _d45 = "compile failed: " + (_b45a.stdout + _b45a.stderr + _b45b.stdout + _b45b.stderr)[:160].replace(chr(10), " ")
             else:
                 r45["编译"] = True
                 _run45 = subprocess.run([str(_exe45), str(ROOT), str(_dll45)],
@@ -751,28 +775,164 @@ def _viewer_list_items(H) -> int:
     return -1
 
 
-def _wait_viewer_ready(H, r: Runner, timeout: float = 180.0) -> int:
-    """等数据库查看器真正就绪再驱动它 —— 用**功能性探针**而不是控件计数。
+def _active_viewer_database(tree: dict, window_titles: list[str]) -> str:
+    texts = [str(node.get("text") or "") for node in tree.values()] + window_titles
+    names = {name.upper() for text in texts
+             for name in re.findall(r"\b((?:DB3K|CWDB)_\d+)\b", text, re.I)}
+    if len(names) != 1:
+        raise ValueError(f"无法唯一确定查看器当前数据库: {sorted(names)}")
+    return names.pop()
 
-    为何不用 ListBox1.Items.Count：那个列表是 DarkListView，可能是虚拟列表，
-    行能正常绘制但 Items.Count 恒为 0（2026-10-19 实测：列表已可见、计数仍为 0）。
-    改用 DB_NAVIGATE_ID：能直接取到某条库记录的详情 HTML，就证明“库读 + 详情管线”
-    已就绪，之后再用坐标点行才靠谱。
-    背景：冷启动时查看器的筛选框/列表是异步填充的，旧实现固定 sleep 就点行，
-    于是八个 R1 用例假红（而 DB_NAVIGATE_ID 当时已经正常）。
-    """
-    t0 = time.time()
-    last = 0
-    while time.time() - t0 < timeout:
-        H.send("DB_NAVIGATE_ID 1", timeout=20)
+
+def _database_probes(game: Path, database: str) -> dict[str, dict]:
+    if not re.fullmatch(r"(?:DB3K|CWDB)_\d+", database):
+        raise ValueError(f"非法数据库名: {database!r}")
+    path = (game / "DB" / (database + ".db3")).resolve(strict=True)
+    connection = sqlite3.connect(path.as_uri() + "?mode=ro", uri=True)
+    try:
+        connection.execute("PRAGMA query_only=ON")
+        probes = {}
+        skipped = []
+        for token, table in DB_TYPE_TABLES.items():
+            row = connection.execute(
+                f'SELECT ID, Name FROM "{table}" WHERE Name IS NOT NULL AND Name <> \'\' ORDER BY ID LIMIT 1'
+            ).fetchone()
+            if row is None:
+                # 某些游戏版本的库确实没有该表记录（实测 CWDB_514.DataGroundUnit
+                # 为 0 行）。这是数据的客观状态，不是缺陷：跳过并显式报出，
+                # 否则整个实机回归会因为一张空表直接崩掉。
+                skipped.append(table)
+                continue
+            probes[token] = {"type": token, "id": int(row[0]), "name": row[1], "database": database}
+        if not probes:
+            raise ValueError(f"{database} 所有详情表均为空，无法探测")
+        if skipped:
+            print(f"    （跳过空表：{', '.join(skipped)} —— 该库中确实无记录）", flush=True)
+        return probes
+    finally:
+        connection.close()
+
+
+def _db_probe_errors(ins: dict, html_text: str, probe: dict, exact: dict,
+                     previous_html: str | None = None) -> list[str]:
+    errors = []
+    for field, expected in (("sot", probe["type"]), ("id", probe["id"])):
+        if str(ins.get(field)) != str(expected):
+            errors.append(f"{field}={ins.get(field)!r}, expected={expected!r}")
+    # Some game builds omit SelectedObjectName. The complete fresh page's
+    # heading remains mandatory; available metadata must also agree with it.
+    if ins.get("name") and ins["name"] != probe["name"]:
+        errors.append(f"name={ins['name']!r}, expected={probe['name']!r}")
+    minimum = MIN_HTML_LEN.get(probe["type"], DEFAULT_MIN_HTML_LEN)
+    if int(ins.get("html_len") or 0) < minimum or len(html_text) < minimum:
+        errors.append(f"HTML 长度不足: inspect={ins.get('html_len')}, actual={len(html_text)}, minimum={minimum}")
+    normalize = lambda text: " ".join(html.unescape(text).split())
+    titles = [normalize(re.sub(r"<[^>]+>", "", match[1]))
+              for match in re.findall(r"<(h[1-6])\b[^>]*>(.*?)</\1\s*>", html_text, re.I | re.S)]
+    names = {normalize(probe["name"]), normalize(exact.get(probe["name"], probe["name"]))}
+    if not any(name and name in title for name in names for title in titles):
+        errors.append(f"详情标题不是当前记录: {titles[:2]!r}")
+    if previous_html is not None and html_text == previous_html:
+        errors.append("详情 HTML 与上一类型相同，拒绝旧页")
+    return errors
+
+
+def _read_viewer_html(H, probe: dict) -> tuple[str, Path]:
+    evidence = ROOT / "build/db-live-probes" / f"{probe['database']}-{probe['type'].replace(' ', '')}-{probe['id']}.html"
+    dump = H.GAME / "CMOLocalizer_DBHTML.html"
+    dump.unlink(missing_ok=True)
+    result = H.send("DB_HTML_DUMP", timeout=20)
+    if result.get("status") != "ok" or result.get("action") != "DB_HTML_DUMP" or not result.get("len") or not dump.is_file():
+        return "", evidence
+    # The command swallows file-write failures, so its success response alone
+    # cannot establish freshness. Only the newly generated file is evidence.
+    text = dump.read_text(encoding="utf-8-sig")
+    evidence.parent.mkdir(parents=True, exist_ok=True)
+    evidence.write_text(text, encoding="utf-8", newline="\n")
+    return text, evidence
+
+
+def _ground_list_probe(H, probe: dict, exact: dict, previous_html: str | None) -> dict:
+    """Ground's ID-search button is ineffective in this build; use its native list."""
+    result = {"ok": False, "inspection": {}, "html": "", "errors": [], "evidence": "", "probe": probe}
+    viewers = [window for window in H.list_windows(H.game_pid())
+               if window.get("visible") and re.search(rf"\b{re.escape(probe['database'])}\b", window.get("title", ""), re.I)]
+    if len(viewers) != 1:
+        result["errors"] = [f"Ground 需要唯一可见的当前库查看器，实际 {len(viewers)} 个"]
+        return result
+    viewer = viewers[0]
+    x, y = viewer["rect"]["X"], viewer["rect"]["Y"]
+    if H.focus(viewer["hwnd"]) is not True:
+        result["errors"] = ["Ground 当前库查看器聚焦失败，拒绝发送全局键鼠输入"]
+        return result
+    H.click(x + 100, y + 55)
+    H.keys("{HOME}{DOWN 4}{ENTER}")
+    time.sleep(1.5)
+    H.click(x + FIRST_ROW_OFFSET[0], y + FIRST_ROW_OFFSET[1])
+    time.sleep(1.5)
+    ins = H.send("DB_INSPECT", timeout=20)
+    selected_id = int(ins.get("id") or -1)
+    result["inspection"] = ins
+    path = (H.GAME / "DB" / (probe["database"] + ".db3")).resolve(strict=True)
+    connection = sqlite3.connect(path.as_uri() + "?mode=ro", uri=True)
+    try:
+        connection.execute("PRAGMA query_only=ON")
+        row = connection.execute("SELECT ID, Name FROM DataGroundUnit WHERE ID = ?", (selected_id,)).fetchone()
+    finally:
+        connection.close()
+    if row is None or not row[1]:
+        result["errors"] = [f"当前库 DataGroundUnit 不存在选中的 ID={selected_id}"]
+        return result
+    selected = {**probe, "id": int(row[0]), "name": row[1]}
+    text, evidence = _read_viewer_html(H, selected)
+    errors = _db_probe_errors(ins, text, selected, exact, previous_html)
+    result.update(ok=not errors, html=text, errors=errors, evidence=str(evidence), probe=selected)
+    return result
+
+
+def _wait_viewer_ready(H, r: Runner, probe: dict, exact: dict, timeout: float = 180.0,
+                       previous_html: str | None = None) -> dict:
+    """Only accept the requested existing record and its current complete page."""
+    if probe["type"] == "Ground Unit":
+        return _ground_list_probe(H, probe, exact, previous_html)
+    deadline = time.monotonic() + timeout
+    last = {"ok": False, "inspection": {}, "html": "", "errors": ["就绪探针超时"], "evidence": ""}
+    while time.monotonic() < deadline:
+        # Both fields are required; a missing type can leave the previous page.
+        H.send(f"DB_NAVIGATE_ID {probe['type']} {probe['id']}", timeout=20)
         time.sleep(1.5)
         ins = H.send("DB_INSPECT", timeout=20)
-        last = int(ins.get("html_len") or 0)
-        if last > 0:
+        text, evidence = _read_viewer_html(H, probe)
+        errors = _db_probe_errors(ins, text, probe, exact, previous_html)
+        last = {"ok": not errors, "inspection": ins, "html": text, "errors": errors, "evidence": str(evidence)}
+        if not errors:
             return last
         _close_cpe_banner(H)
         time.sleep(2)
     return last
+
+
+def _database_live_probes(H, r: Runner, tree: dict | None = None, timeout: float = 120.0) -> None:
+    tree = _ctrl_tree(H) if tree is None else tree
+    titles = [window["title"] for window in H.list_windows(H.game_pid())
+              if "database" in window["title"].lower() or "数据库" in window["title"]]
+    database = _active_viewer_database(tree, titles)
+    probes = _database_probes(H.GAME, database)
+    exact = json.loads(DICT.read_text(encoding="utf-8-sig"))["exact"]
+    previous_html = None
+    for token, probe in probes.items():
+        result = _wait_viewer_ready(H, r, probe, exact, timeout=timeout, previous_html=previous_html)
+        probe = result.get("probe", probe)
+        ins = result["inspection"]
+        detail = (f"db={database} type={token} id={probe['id']} name={probe['name']!r} "
+                  f"html_len={ins.get('html_len', 0)} name_source={'metadata+HTML标题' if ins.get('name') else 'HTML标题(元数据未提供)'}; "
+                  + ("身份/标题/新页一致" if result["ok"] else "; ".join(result["errors"])))
+        if token == "Aircraft":
+            r.record("L0-viewer", "L0 打开数据库查看器", result["ok"], detail)
+        r.record(f"R1-live-{token.replace(' ', '')}", f"R1 {token} 详情页渲染",
+                 result["ok"], detail, result["evidence"])
+        if result["ok"]:
+            previous_html = result["html"]
 
 
 def run_live(r: Runner) -> None:
@@ -787,10 +947,6 @@ def run_live(r: Runner) -> None:
         r.record("L0-viewer", "L0 打开数据库查看器", False, "CLICK_MENU 数据库查看器 失败")
         return
     _close_cpe_banner(H)
-    ready = _wait_viewer_ready(H, r)
-    r.record("L0-viewer", "L0 打开数据库查看器", ready > 0,
-             f"DB_CTRL_TREE 可解析；就绪探针 html_len={ready}")
-
     tree = _ctrl_tree(H)
     form = tree.get("InternalDBViewer")
     if not form:
@@ -803,28 +959,8 @@ def run_live(r: Runner) -> None:
             hwnd = w["hwnd"]
             break
 
-    # L1：八类对象逐个切换 + 真实点击首行 → 详情页必须生成
-    for t in OBJECT_TYPE_TOKENS:
-        probe = t.split()[0]              # "Ground Unit" 含空格，DB_SET_FILTER 按空格切分
-        got = 0
-        # 允许一次重试：冷启动时筛选框/列表是异步填充的，坐标点击会落空
-        # （2026-10-19 实测八个用例假红，DB_NAVIGATE_ID 却正常）。真实破坏两次都失败。
-        for attempt in (1, 2):
-            H.send("DB_SET_FILTER CB_ObjectType " + probe, timeout=15)
-            time.sleep(2.0)
-            _wait_viewer_ready(H, r, timeout=120)
-            if hwnd:
-                subprocess.run([str(ROOT / "build/GuiDriver.exe"), "focus", str(hwnd)], capture_output=True)
-            H.click(x + FIRST_ROW_OFFSET[0], y + FIRST_ROW_OFFSET[1])
-            time.sleep(2.5)
-            ins = H.send("DB_INSPECT", timeout=15)
-            got = int(ins.get("html_len") or 0)
-            if got > 0:
-                break
-            _close_cpe_banner(H)
-        need = MIN_HTML_LEN.get(t, DEFAULT_MIN_HTML_LEN)
-        r.record(f"R1-live-{t.replace(' ', '')}", f"R1 {t} 详情页渲染",
-                 got >= need, f"html_len={got} (>= {need})")
+    # L1: use known existing records; asynchronous list refill cannot select an old row.
+    _database_live_probes(H, r, tree)
 
     # L2：类型下拉必须是游戏原生 token
     tree = _ctrl_tree(H)
@@ -1249,6 +1385,98 @@ def _mixed_prefix_probe(H, r: Runner, pid: int | None) -> None:
              "evidence/live/scan")
 
 
+def _panel_frame_sample(response: dict) -> dict:
+    """Parse one WPF_DUMP without issuing commands or accepting an empty sidebar."""
+    node_texts = {}
+    window_counts = {}
+    selected_texts = []
+    for window in response.get("windows") or []:
+        title = window.get("title") or ""
+        nodes = window.get("nodes") or []
+        if "ElementHost" in title:
+            window_id = window.get("hwnd") or title
+            occurrence = window_counts.get(window_id, 0)
+            window_counts[window_id] = occurrence + 1
+            ancestors = []
+            siblings = {}
+            for node in nodes:
+                depth = node.get("d", 0)
+                while ancestors and ancestors[-1][0] >= depth:
+                    ancestors.pop()
+                parent = ancestors[-1][1] if ancestors else ()
+                kind, name = node.get("type") or "", node.get("name") or ""
+                sibling = (parent, kind, name)
+                ordinal = siblings.get(sibling, 0)
+                siblings[sibling] = ordinal + 1
+                path = parent + ((kind, name, ordinal),)
+                ancestors.append((depth, path))
+                text = (node.get("text") or "").strip()
+                if text:
+                    # Text is a value, never part of identity. Keep duplicate
+                    # anonymous labels distinct across hosts, parents and siblings.
+                    key = json.dumps((window_id, occurrence, path), ensure_ascii=False)
+                    node_texts[key] = text
+        if title != "ElementHost:ElementHost_RightColumnWPF":
+            continue
+        for index, node in enumerate(nodes):
+            if not (node.get("type") or "").startswith(("UnitStatus", "GroupStatus")):
+                continue
+            # WPF_DUMP is a flat DFS tree. Require text inside the selected-status
+            # subtree, so unrelated sidebar labels cannot make an empty unit pass.
+            subtree = [node]
+            for child in nodes[index + 1:]:
+                if child.get("d", 0) <= node.get("d", 0):
+                    break
+                subtree.append(child)
+            selected_texts.extend((child.get("text") or "").strip() for child in subtree
+                                  if (child.get("text") or "").strip())
+    errors = []
+    if response.get("status") != "ok":
+        errors.append("WPF_DUMP status is not ok")
+    if not selected_texts:
+        errors.append("selected unit/group status subtree is empty or missing")
+    return {"valid": not errors, "errors": errors,
+            "node_texts": node_texts}
+
+
+def _read_simulation_time(H) -> int | None:
+    """Read this request's scenario UTC timestamp from the game's Lua history."""
+    tag = "CMO_TEST_TIME_" + uuid.uuid4().hex + "_"
+    result = H.send(f'RUN_LUA print("{tag}" .. ScenEdit_CurrentTime())', timeout=20)
+    if result.get("status") != "ok":
+        return None
+    pattern = re.compile(re.escape(tag) + r"(-?\d+)(?![\w.])")
+    histories = sorted((H.GAME / "Logs").glob("LuaHistory*.txt"),
+                       key=lambda path: path.stat().st_mtime, reverse=True)[:2]
+    for history in histories:
+        matches = pattern.findall(_log_tail(history))
+        if matches:
+            return int(matches[-1])
+    return None
+
+
+def _analyze_panel_samples(responses: list[dict], simulation_before: int | None,
+                           simulation_after: int | None) -> dict:
+    """Validate sampling prerequisites and retain the original language-flip test."""
+    parsed = [_panel_frame_sample(response) for response in responses]
+    frames = [sample["node_texts"] for sample in parsed]
+    flips = []
+    for a, b in zip(frames, frames[1:]):
+        for key in a.keys() & b.keys():
+            if (any("一" <= ch <= "鿿" for ch in a[key])
+                    != any("一" <= ch <= "鿿" for ch in b[key])):
+                flips.append((key, a[key], b[key]))
+    invalid = [{"index": index, "errors": sample["errors"]}
+               for index, sample in enumerate(parsed) if not sample["valid"]]
+    advanced = (simulation_before is not None and simulation_after is not None
+                and simulation_after > simulation_before)
+    return {"ok": len(parsed) >= 10 and not invalid and advanced and not flips,
+            "valid_frames": len(parsed) - len(invalid), "invalid_frames": invalid,
+            "simulation_time_before": simulation_before, "simulation_time_after": simulation_after,
+            "simulation_advanced": advanced,
+            "flips": flips, "parsed_frames": parsed}
+
+
 def _panel_flicker_probe(H, r: Runner, pid: int | None) -> None:
     """R44 实机探针：**运行时**的单位/编队状态面板不得中英频闪。
 
@@ -1289,42 +1517,35 @@ def _panel_flicker_probe(H, r: Runner, pid: int | None) -> None:
     H.send("CLICK_MENU StartResumeGameToolStripMenuItem", timeout=20)
     time.sleep(3.5)
 
-    def _cjk(t: str) -> bool:
-        return any("一" <= c <= "鿿" for c in t)
-
-    def _panel() -> set:
-        w = H.send("WPF_DUMP", timeout=60)
-        out = set()
-        for win in w.get("windows") or []:
-            if "ElementHost" not in (win.get("title") or ""):
-                continue
-            for n in win.get("nodes") or []:
-                t = (n.get("text") or "").strip()
-                if t:
-                    out.add((n.get("type"), n.get("name") or "", t))
-        return out
-
-    frames = []
+    simulation_before = _read_simulation_time(H)
+    samples = []
     for _ in range(14):
-        frames.append(_panel())
+        samples.append(H.send("WPF_DUMP", timeout=60))
         time.sleep(0.3)
-
-    flips = []
-    for a, b in zip(frames, frames[1:]):
-        for ty, nm, t in a - b:
-            for ty2, nm2, t2 in b - a:
-                if (ty, nm) == (ty2, nm2) and _cjk(t) != _cjk(t2):
-                    flips.append((nm or ty, t, t2))
+    simulation_after = _read_simulation_time(H)
+    analysis = _analyze_panel_samples(samples, simulation_before, simulation_after)
+    flips = analysis["flips"]
     after = _blocked_count()
+    SHOTS.mkdir(parents=True, exist_ok=True)
+    evidence = SHOTS / "panel_flicker_samples.json"
+    evidence.write_text(json.dumps({"pid": pid, "samples": samples, "analysis": analysis,
+                                    "simulation_time_before": simulation_before,
+                                    "simulation_time_after": simulation_after,
+                                    "blocked_before": before, "blocked_after": after},
+                                   ensure_ascii=False, indent=1) + "\n",
+                        encoding="utf-8", newline="\n")
     H.send("CLOSE_FORM ALL", timeout=20)
 
-    ok = len(frames) >= 10 and not flips and after <= before
+    ok = analysis["ok"] and after <= before
     r.record(name, title, ok,
-             f"采样 {len(frames)} 帧；中英翻转 {len(flips)} 处"
+             f"有效采样 {analysis['valid_frames']}/{len(samples)} 帧；中英翻转 {len(flips)} 处"
              + (f"（例 {flips[:2]}）" if flips else "（无）")
+             + f"；推演时间 {simulation_before}→{simulation_after}"
+             + f"（前进={analysis['simulation_advanced']}）"
+             + (f"；无效帧 {analysis['invalid_frames'][:2]}" if analysis["invalid_frames"] else "")
              + f"；写拉锯熔断 {before}→{after}"
              + ("" if after <= before else "（新增熔断 = 永久停英文回归）"),
-             "evidence/live/scan")
+             str(evidence.relative_to(ROOT)))
 
 
 def _repaint_tick_probe(H, r: Runner, pid: int | None) -> None:

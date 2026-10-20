@@ -8,6 +8,7 @@ windows and capture screenshots through build/GuiDriver.exe.
 from __future__ import annotations
 
 import json
+import os
 import re
 import subprocess
 import sys
@@ -18,7 +19,7 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = Path(__file__).resolve().parent.parent
-GAME = Path("G:/soft/steam/steamapps/common/Command - Modern Operations")
+GAME = Path(os.environ.get("GAME_DIR", "G:/soft/steam/steamapps/common/Command - Modern Operations"))
 DRIVER = ROOT / "build/GuiDriver.exe"
 CMD_FILE = GAME / "CMOLocalizer_Cmd.txt"
 RES_FILE = GAME / "CMOLocalizer_CmdResult.json"
@@ -131,9 +132,11 @@ def click(x: int, y: int, how: str | None = None) -> None:
     subprocess.run(args, capture_output=True, text=True)
 
 
-def focus(hwnd: int) -> None:
+def focus(hwnd: int) -> bool:
     """把目标窗口拉到前台（否则后续鼠标点击会落到盖在上面的窗口上）。"""
-    subprocess.run([str(DRIVER), "focus", str(hwnd)], capture_output=True, text=True)
+    result = subprocess.run([str(DRIVER), "focus", str(hwnd)], capture_output=True, text=True)
+    return result.returncode == 0 and any(line.strip() == "Focus result: True"
+                                         for line in (result.stdout or "").splitlines())
 
 
 def pixel_change_count(x: int, y: int, w: int, h: int,

@@ -59,6 +59,7 @@
 | 路径 | 职责 | 何时改它 |
 |---|---|---|
 | `scripts/build.sh` | 编译引擎 DLL、更新器、共享测试、安装器；顺带跑 `build_dict.py` | 增删编译目标、改编译参数 |
+| `scripts/build.ps1` | **仅引擎构建**（不碰游戏、不写安装包）：自动收集 `src/engine/*.cs` + `src/shared/MapLabelRenderer.cs`，并把 `WebViewTranslation.js` 作为嵌入资源编进 DLL。新增引擎源文件无需改脚本 |
 | `scripts/deploy.sh` | 把 `build/` 产物装进游戏目录 + 写 `Command.exe.config` | 部署清单变了 |
 | `scripts/package.sh` | 打绿色包 zip（含 `--no-report` 防覆盖 live 报告） | 包内文件清单变了 |
 | `scripts/publish_release.py` | 建 GitHub Release + 上传 4 个资产。**`--verify-only` 是纯只读校验** | 发布流程变了 |
@@ -76,7 +77,14 @@
 |---|---|
 | `src/engine/CMOLocalizer.cs` | **整个汉化引擎**（约 7600 行，C# 5）。一轮改动的主战场，见下方内部地图 |
 | `src/engine/Reflect.cs` | 反射辅助（私有字段/方法访问），引擎的地基 |
-
+| `src/engine/ComboBoxTranslation.cs` | 下拉项增量翻译：动态回填排队，保留业务键/选中值/原生类型 token |
+| `src/engine/DarkTreeTranslation.cs` | 深色树分片遍历：核对实时集合归属，分片避免长阻塞 |
+| `src/engine/UiLifecycle.cs` | UI 生命周期挂钩（控件创建/重挂载），替代纯周期扫描来发现新控件 |
+| `src/engine/UiIdleContinuation.cs` | 空闲续做：`Application.Idle` + 1ms 兜底 Timer 的单次续接器（只在 UI 线程创建/取消） |
+| `src/engine/UiTranslationQueue.cs` | 有界增量翻译队列：按 UI 线程派发，执行前复核控件归属与输入保护 |
+| `src/engine/WebViewTranslation.cs` | WebView2 译文注入宿主：注册文档脚本、限制来源/nonce/容量、拒绝旧回包与编辑区写入 |
+| `src/engine/WebViewTranslation.js` | 上面宿主注入页面的脚本。**以嵌入资源 `CMOLocalizer.WebViewTranslation.js` 打进 DLL**（`scripts/build.ps1` 负责 `-resource:`），改名或移动会运行期抛 `Missing WebViewTranslation.js embedded resource` |
+| `src/engine/WpfValueTranslation.cs` | WPF 值翻译（`Content`/`Text`/绑定安全写回），从 `CMOLocalizer.cs` 抽出的 partial 分片 |
 ### `CMOLocalizer.cs` 内部地图（按子系统找，不要按行号找）
 
 | 子系统 | 关键字（grep 这些） | 干什么 |
@@ -273,6 +281,11 @@
 | `scripts/build_cities_placenames.py` | 离线构建译好的 Cities.wwp（优先用已评审坐标） |
 | `scripts/test_global_placenames.py` | 全量地名审核的一致性测试（4,287+321 逐点唯一命中、译名一致） |
 | `scripts/test_release_placenames.py` | 发布侧地名门禁测试（元数据指纹、flags/顺序/坐标篡改必须失败） |
+| `scripts/test_static_html.py` | 静态 HTML 汉化断言（编码/完整译文/`.orig` 备份保留） |
+| `scripts/test_scenario_html.ps1` | 想定 HTML 导出的 PowerShell 回归 |
+| `scripts/test_web_translation.cjs` | WebView2 译文脚本的 Node 侧契约测试 |
+| `scripts/test_webview2.ps1` | 真实 Edge/WebView2 DOM 回归 |
+| `scripts/test_ui.ps1` | UI 模式回归（控件/下拉/设置抽查），需要游戏在跑 |
 | `scripts/verify_placenames.py` | 地名发布门禁 |
 | `scripts/test_placenames.py` | 地名离线回归（写操作只落在 `build/` 临时目录） |
 | `scripts/test_placename_cache.py` | 用合成 WWP/PNG 做 Windows 集成测试 |
@@ -348,6 +361,7 @@
 | `docs/AUTO_UPDATE_DESIGN.md` | 更新助手设计 |
 | `docs/GITHUB_AUTO_UPDATE_DESIGN.md` | GitHub 自动更新设计 |
 | `docs/PLACENAME_LOCALIZATION.md` | 地名汉化方案 |
+| `docs/LOCALIZATION_VALIDATION.md` | 汉化验证说明（各门禁与实机检查的边界、计时口径、已知限制）。PR#5 引入，是「哪些通过了、哪些没验」的权威说明 |
 | `docs/PLACENAME_SOURCES.md` | 地名译名的资料来源说明（哪些是中文通行名、哪些来自当地名称、哪些人工整理） |
 | `docs/PLACENAME_SYNOPTIC_REVIEW.md` | 321 个区域标签的专项审核记录 |
 | `docs/PLACENAME_REVIEW_REPORT.json` | 地名审核报告（机读，供复核与回溯） |
@@ -386,6 +400,22 @@
 | `src/tests/CMOLocalizerTest.cs`、`src/tests/CMOLocalizerTestV2.cs` | 引擎早期冒烟测试 | — |
 | `src/tests/TestV3.cs`、`src/tests/TestHijack.cs`、`src/tests/TestDarkReflection.cs` | 挂钩/反射验证（历史） | — |
 | `src/tests/DummyHost.cs` | 测试用宿主桩 | — |
+| `src/tests/BulkTranslationTests.cs` | 批量译文契约（34 条） | — |
+| `src/tests/ComboBoxTranslationTests.cs` | 下拉项增量翻译：业务键/选中值/token 保持 | — |
+| `src/tests/DarkTreeTranslationTests.cs` | 深色树分片遍历与集合归属核对 | — |
+| `src/tests/UiIdleContinuationTests.cs` | 空闲续接器的模态/DoEvents 宿主行为 | — |
+| `src/tests/UiLifecycleTests.cs` | UI 生命周期挂钩 | — |
+| `src/tests/UiSchedulingTests.cs` | UI 调度顺序（不吞掉新投递的回调） | — |
+| `src/tests/WpfSafetyTests.cs` | WPF 写回安全（不重入属性系统、编辑区不写） | — |
+| `src/tests/FirstPaintTests.cs` | 首帧中文（不等下一轮慢扫） | — |
+| `src/tests/UpstreamCompatibilityTests.cs` | 与上游 master 修复的兼容性 | — |
+| `src/tests/WebViewTranslationHostTests.cs` | 注入宿主：来源/nonce/容量/回退预算 | — |
+| `src/tests/WebView2LatencyTests.cs` | WebView2 中文可见延迟 | — |
+| `src/tests/ScenarioHtmlInstallerTests.cs` | 想定 HTML 的安装/绿色包覆盖语义 | — |
+| `src/tests/DBTranslationTests.cs`、`src/tests/DBLiveProbeTests.py` | 数据库翻译与实机探针 | — |
+| `src/tests/PanelFlickerProbeTests.py` | 面板中英翻转探针的自测 | `L-panel-flicker` |
+| `src/tests/PoolDisplayInjectionTests.py` | 池级注入白名单回归 | `R38-static-pool-inject` |
+| `src/tests/README_WebViewTranslation.md` | 上面 WebView 系列测试的说明 | — |
 | `src/tests/search_methods.cs`、`src/tests/test_db_load.cs` | 方法搜索 / DB 加载试验（历史） | — |
 | `src/tests/README_MapTileServer.md` | 瓦片服务测试说明 | — |
 

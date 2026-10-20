@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import html as htmlmod
 import json
+import os
 import re
 import subprocess
 import sys
@@ -31,7 +32,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DICT = ROOT / "dict"
-GAME = Path("G:/soft/steam/steamapps/common/Command - Modern Operations")
+GAME = Path(os.environ.get("GAME_DIR", "G:/soft/steam/steamapps/common/Command - Modern Operations"))
 SCEN = GAME / "Scenarios"
 HAN = re.compile(r"[\u4e00-\u9fff]")
 
