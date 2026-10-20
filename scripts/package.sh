@@ -33,7 +33,13 @@ else
 fi
 
 # ── 明文凭据硬门禁（工作区 + 全历史）：不通过则中止打包 ────────────────
-"$PY" "$ROOT/scripts/verify_no_secrets.py" --history \n  || { echo "==> 密钥门禁未通过，中止打包"; exit 1; }
+"$PY" "$ROOT/scripts/verify_no_secrets.py" --history \
+  || { echo "==> 密钥门禁未通过，中止打包"; exit 1; }
+
+# 在安装器嵌入和绿色包复制前，必须逐点通过两套地名的完整审核门禁。
+echo "==> 地名审核语义门禁"
+"$PY" "$ROOT/scripts/verify_placenames.py" --set Cities
+"$PY" "$ROOT/scripts/verify_placenames.py" --set Synoptic
 
 bash "$ROOT/scripts/build.sh"
 

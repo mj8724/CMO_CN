@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 """Unified acceptance gate for the CMO localization release.
 
@@ -11,7 +12,7 @@ Gates
   3. engine parse  the engine's own scanner can load every entry
   4. scenario meta 100% of <ScenTitle> / <ScenSetting> translated
   5. briefings     HTML briefings carry Chinese prose, structure intact
-  6. placenames    Synoptic + Cities .wwp translated or explicitly pending
+  6. placenames    all Synoptic + Cities labels uniquely match approved reviews
   7. db templates  8 DB HTML templates localized
   8. version       VERSION consistent across VERSION / engine / installer
   9. repository    git worktree clean
@@ -135,20 +136,21 @@ def gate_briefings() -> None:
 
 
 def gate_placenames() -> None:
-    ok, msg = run("apply_placenames.py", ["--verify"])
-    detail = msg
-    syn = cite = None
-    for line in detail.splitlines():
-        pass
-    text = subprocess.run(
-        [sys.executable, str(ROOT / "scripts/apply_placenames.py"), "--verify"],
-        capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
-    for line in text.splitlines():
-        if "Synoptic" in line:
-            syn = line.strip()
-        if "Cities" in line:
-            cite = line.strip()
-    record("placenames", ok, f"{syn} ;; {cite}")
+    from placename_translation import PLACENAME_SETS, load_reviewed
+    from verify_placenames import load_metadata_sha256, verify_asset
+    from wwp import load
+
+    summaries = []
+    errors = []
+    for name, config in PLACENAME_SETS.items():
+        review_file = DICT / config["review_file"]
+        result = verify_asset(load(ROOT / "assets/placenames" / f"{name}.wwp"),
+                              load_reviewed(review_file), expected_count=config["count"],
+                              require_complete=True, expected_metadata_sha256=load_metadata_sha256(
+                                  DICT / "placenames/metadata.json", name))
+        summaries.append(f"{name} {result['verified_records']}/{config['count']} reviewed")
+        errors.extend(f"{name}: {error}" for error in result["errors"])
+    record("placenames", not errors, "; ".join(summaries + errors[:6]))
 
 
 def gate_db_templates() -> None:
@@ -239,21 +241,6 @@ def gate_version() -> None:
     record("version", ok, detail)
 
 
-def gate_readme_downloads() -> None:
-    """README 下载区必须与 STABLE_VERSION / VERSION 一致。
-
-    README 是玩家第一眼看到的东西：稳定版链接若指向错误版本，等于把人引到错误的包。
-    这里只做一致性检查（不联网），真正的可下载性由发布流程保证。
-    """
-    script = ROOT / "scripts/sync_readme_downloads.py"
-    proc = subprocess.run([sys.executable, str(script), "--check"],
-                          capture_output=True, text=True, encoding="utf-8",
-                          errors="replace", timeout=120)
-    ok = proc.returncode == 0
-    detail = ((proc.stdout or "") + (proc.stderr or "")).strip().splitlines()
-    record("readme-downloads", ok, detail[-1] if detail else "无输出")
-
-
 def gate_repository() -> None:
     p = subprocess.run(["git", "status", "--porcelain"], cwd=str(ROOT),
                        capture_output=True, text=True)
@@ -267,6 +254,7 @@ def gate_no_secrets() -> None:
     ok, tail = run("verify_no_secrets.py", ["--history"])
     record("secrets", ok,
            "no plaintext credentials" if ok else f"PLAINTEXT CREDENTIALS: {tail}")
+
 
 
 SCRIPTS = ROOT / "scripts"

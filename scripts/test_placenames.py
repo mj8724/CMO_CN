@@ -43,14 +43,17 @@ class PlacenameTests(unittest.TestCase):
         self.dictionary = self.base / "cities.json"
         self.dictionary.write_text(json.dumps({"Yichun": "宜春", "Tokyo": "东京"}),
                                    encoding="utf-8")
-        self.review_dir = self.base / "reviewed"
-        self.review_dir.mkdir()
+        self.review_file = self.base / "reviewed/cities.json"
+        self.synoptic_review_file = self.base / "reviewed/synoptic.json"
+        self.synoptic_review_file.parent.mkdir(parents=True)
+        self.synoptic_review_file.write_text("[]", encoding="utf-8")
         self.record = dict(name="Yichun", lat=47.721432, lon=128.875290,
                            zh="伊春", previous="宜春", source="https://www.yc.gov.cn/")
         self.write_review([self.record])
 
     def write_review(self, records: list[dict]) -> None:
-        (self.review_dir / "review.json").write_text(
+        self.review_file.parent.mkdir(parents=True, exist_ok=True)
+        self.review_file.write_text(
             json.dumps(records, ensure_ascii=False), encoding="utf-8")
 
     def run_script(self, script: str, *args: object) -> subprocess.CompletedProcess:
@@ -61,15 +64,17 @@ class PlacenameTests(unittest.TestCase):
 
     def build(self, source: Path | None = None, output: Path | None = None):
         return self.run_script("build_cities_placenames.py",
+                               "--allow-partial",
                                "--source", source or self.source,
                                "--output", output or self.output,
                                "--dictionary", self.dictionary,
-                               "--review-dir", self.review_dir)
+                               "--review-file", self.review_file)
 
     def apply(self, *extra: str):
         return self.run_script("apply_placenames.py", "--game-dir", self.base / "game",
                                "--dictionary", self.dictionary,
-                               "--review-dir", self.review_dir, *extra)
+                               "--review-file", self.review_file,
+                               "--synoptic-review-file", self.synoptic_review_file, *extra)
 
     def assert_success(self, process) -> None:
         self.assertEqual(0, process.returncode, process.stdout + process.stderr)

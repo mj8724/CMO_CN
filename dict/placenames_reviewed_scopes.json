@@ -1,9 +1,0 @@
-{
-  "_note": "审核覆盖清单。新增或有意调整审核范围时同步更新；防止删除审核记录后静默降为未审核旧译。",
-  "files": {
-    "japan.json": 204,
-    "korea.json": 59,
-    "vietnam.json": 6,
-    "world.json": 49
-  }
-}

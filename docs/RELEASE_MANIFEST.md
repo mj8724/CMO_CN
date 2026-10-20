@@ -27,7 +27,7 @@
 | 共享状态层 | `src/shared/CMOShared.cs`、`src/shared/CMOSharedTest.cs` | `build/CMOSharedTest.exe` 全 PASS（R18-static-selftest） |
 | 词库 | `dict/CMOLocalizer.json` + `dict/src/*.json`（含 `campaign_ui.json`） | `verify_all.py` 的 dictionary / scenario meta（标题+设置+**战役剧本名**） |
 | DB 模板 | `assets/db_templates/*.html`（8 个） | `verify_all.py` db templates（Platform.html 为纯字体壳） |
-| 地名集 | `assets/placenames/Synoptic.wwp`、`Cities.wwp` | `verify_all.py` placenames（条数与中文覆盖） |
+| 地名集 | `assets/placenames/Synoptic.wwp`、`Cities.wwp` + 两套坐标审核表及范围清单 | `verify_all.py` placenames（4,287城市+321区域逐点唯一命中审核、译名一致、文件集合与条数完整）；`package.sh` 编译前再验两套资产 |
 | 菜单按钮图 | `assets/symbols_menu/*`（≥28 文件） | 打包含入 + 实机菜单按钮为中文 |
 | 启动器 | `assets/launcher/stringsChinese.resx` | 打包含入 |
 | 说明 | `README.md`（随包为 `汉化说明.md`） | R17-static-pack-readme（含「登记安装状态/--adopt」说明） |

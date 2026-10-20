@@ -32,9 +32,11 @@ class PlacenameCacheTests(unittest.TestCase):
                       [("Country fixture", 0.0, 0.0, 1)])
         self.dictionary = self.base / "cities.json"
         self.dictionary.write_text(json.dumps({"Yichun": "宜春"}), encoding="utf-8")
-        self.reviews = self.base / "reviewed"
-        self.reviews.mkdir()
-        (self.reviews / "test.json").write_text(json.dumps([
+        self.review_file = self.base / "reviewed/cities.json"
+        self.synoptic_review_file = self.base / "reviewed/synoptic.json"
+        self.review_file.parent.mkdir(parents=True)
+        self.synoptic_review_file.write_text("[]", encoding="utf-8")
+        self.review_file.write_text(json.dumps([
             dict(name="Yichun", lat=47.721432, lon=128.875290, previous="宜春", zh="伊春",
                  source="https://www.yc.gov.cn/")]), encoding="utf-8")
         self.cache = self.game / "WW/Cache/Stamen Terrain - Labels"
@@ -51,7 +53,8 @@ class PlacenameCacheTests(unittest.TestCase):
         return subprocess.run([sys.executable, "-X", "utf8", "-B",
                                str(ROOT / "scripts/apply_placenames.py"),
                                "--game-dir", str(self.game), "--dictionary", str(self.dictionary),
-                               "--review-dir", str(self.reviews), *args],
+                               "--review-file", str(self.review_file),
+                               "--synoptic-review-file", str(self.synoptic_review_file), *args],
                               capture_output=True, text=True, encoding="utf-8", check=False)
 
     def success(self, process):

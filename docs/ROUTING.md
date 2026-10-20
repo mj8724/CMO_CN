@@ -173,11 +173,9 @@
 | `dict/all_scen_items.json`、`dict/extracted_campaigns_scens.json`、`dict/scen_tree_dict.json` | 想定/战役结构抽取结果 |
 | `dict/briefing_dict.json` | 简报词典 |
 | `dict/brief_work.json`、`dict/brief_translations.json`、`dict/brief_after.json` | 简报翻译工作队列/结果中间态 |
-| `dict/placenames_cities.json`、`dict/placenames_countries.json` | 地名译名表 |
-| `dict/placenames_reviewed_scopes.json` | 已评审地名范围（发布门禁依据） |
-| `dict/placenames_reviewed/*` | 已评审地名明细 |
-| `dict/placenames_cities.json` | 城市地名译名表（`apply_placenames.py` 的输入之一） |
-| `dict/placenames_countries.json` | 国家/地区译名表 |
+| `dict/placenames/cities.json` | **城市地名审核源**（4,287 条，按 WWP 顺序）。逐项含原名/坐标/中文/来源/说明，是 Cities.wwp 的唯一事实源 |
+| `dict/placenames/synoptic.json` | **区域标签审核源**（321 条）。同上结构，对应 Synoptic.wwp |
+| `dict/placenames/metadata.json` | 地名审核的固定元数据指纹。`verify_all` / `verify_placenames.py` / `package.sh` 都用它判断「记录集合是否被改过」（改 flags、换顺序、容差内挪坐标都会失败） |
 | `dict/all_scen_items.json` | 从所有想定抽出的可译条目快照 |
 | `dict/extracted_campaigns_scens.json` | 战役内想定清单抽取结果 |
 | `dict/scen_tree_dict.json` | 想定树结构词典（加载对话框用） |
@@ -273,6 +271,8 @@
 | `scripts/apply_placenames.py` | 把译文写回游戏的 `.wwp` |
 | `scripts/placename_translation.py` | 坐标感知的译名映射（原版/本地化一对） |
 | `scripts/build_cities_placenames.py` | 离线构建译好的 Cities.wwp（优先用已评审坐标） |
+| `scripts/test_global_placenames.py` | 全量地名审核的一致性测试（4,287+321 逐点唯一命中、译名一致） |
+| `scripts/test_release_placenames.py` | 发布侧地名门禁测试（元数据指纹、flags/顺序/坐标篡改必须失败） |
 | `scripts/verify_placenames.py` | 地名发布门禁 |
 | `scripts/test_placenames.py` | 地名离线回归（写操作只落在 `build/` 临时目录） |
 | `scripts/test_placename_cache.py` | 用合成 WWP/PNG 做 Windows 集成测试 |
@@ -348,6 +348,10 @@
 | `docs/AUTO_UPDATE_DESIGN.md` | 更新助手设计 |
 | `docs/GITHUB_AUTO_UPDATE_DESIGN.md` | GitHub 自动更新设计 |
 | `docs/PLACENAME_LOCALIZATION.md` | 地名汉化方案 |
+| `docs/PLACENAME_SOURCES.md` | 地名译名的资料来源说明（哪些是中文通行名、哪些来自当地名称、哪些人工整理） |
+| `docs/PLACENAME_SYNOPTIC_REVIEW.md` | 321 个区域标签的专项审核记录 |
+| `docs/PLACENAME_REVIEW_REPORT.json` | 地名审核报告（机读，供复核与回溯） |
+| `docs/PLACENAME_GLOBAL_REVIEW_PLAN.md` | 全量核对 4,287+321 个点的执行方案（历史计划，已完成使命，保留备查） |
 | `docs/PLACENAME_LABEL_RENDERING.md` | 地名标签渲染方案 |
 | `docs/MENU_TERMINOLOGY.md` | 菜单术语对照 |
 | `docs/MAP_TILE_SERVER_VALIDATION.md` | 地图瓦片服务验证 |
@@ -436,7 +440,7 @@
 | 加一个门禁用例 | `scripts/verify_regressions.py`（static/live 各自列表）；live 用例写在 `--live` 段 |
 | 改安装器 | `src/installer/CMO_Chinese_Setup.cs` → `build.sh` → `verify_regressions --static --installer` |
 | 改更新助手 | `src/updater/CMO_Updater.cs` + `docs/AUTO_UPDATE_DESIGN.md` → `test_updater_live.py` |
-| 改地名译名 | `dict/placenames_cities.json` + `scripts/placename_translation.py` → `apply_placenames.py` / `build_cities_placenames.py` → `verify_placenames.py` |
+| 改地名译名 | `dict/placenames/cities.json` / `synoptic.json`（审核源）+ `scripts/placename_translation.py` → `apply_placenames.py` / `build_cities_placenames.py` → `verify_placenames.py` |
 | 改数据库描述 | `dict/src/db_descriptions.json`（或走 `db_desc_work.py` 抽取 → 译 → `db_desc_merge.py` 合回） |
 | 游戏更新适配 | `GAME_BUILD` → 结构探测 → 偏移复核 → `verify_all.gate_version` + `L-build-adaptation` |
 | 发版 | `docs/RELEASE_MANIFEST.md` → `docs/RELEASE_TEST_SOP.md`（**先拿用户授权**） |
