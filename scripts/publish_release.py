@@ -78,6 +78,18 @@ def main():
 
     check_regression_report(version, "--force" in sys.argv[1:])
 
+    # README 下载区：测试版走 releases/latest 通道（地址不含版本号），发版后自动指向新版本；
+    # 但它的**显示版本号**仍要随发版更新，所以这里同步一次并校验。
+    # 稳定版链接是显式 tag，日常发版**不动**它——只有维护者人工提升 STABLE_VERSION 才变。
+    sync = ROOT / "scripts/sync_readme_downloads.py"
+    if sync.is_file():
+        r = subprocess.run([sys.executable, str(sync)], capture_output=True, text=True,
+                           encoding="utf-8", errors="replace", timeout=120)
+        print(((r.stdout or "") + (r.stderr or "")).strip())
+        if r.returncode != 0:
+            print("ERROR: README 下载区同步失败，请先修复再发布。")
+            sys.exit(1)
+
     token = get_github_token()
     if not token:
         print("ERROR: No GitHub token found. Please configure git credential or set GITHUB_TOKEN.")

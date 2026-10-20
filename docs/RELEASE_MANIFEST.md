@@ -61,6 +61,16 @@
   历史事故（R31）：Steam 把游戏从 1900.20 升到 1900.23，注入点被重命名导致汉化整批失效，
   而发布物里根本没有记录适配的构建号，用户与我们都无法一眼判断是否匹配。
 - 游戏目录引擎必须含本轮 `DEPLOY_MARKERS`，防止「装回旧引擎后回归假绿」。
+- **双通道（稳定版 / 测试版）**：`STABLE_VERSION` 是稳定版的唯一事实源，由维护者人工确认后写入；
+  `README.md` 的下载区由 `scripts/sync_readme_downloads.py` 按 `STABLE_VERSION` + `VERSION` 生成，
+  `verify_all.gate_readme_downloads` 与 `release_check.py` 都会 `--check`，不一致即红。
+  语义区别：
+  - **稳定版**用显式 tag 链接（`releases/download/v<STABLE_VERSION>/…`），**固定不变**；
+    只有在人工确认新版本稳定后才提升 `STABLE_VERSION`。
+  - **测试版**用 `releases/latest/download/…`，**不含版本号**，每次发布后自动指向最新；
+    因此日常发版**不需要**改 README。
+  历史风险：README 是玩家第一眼看到的东西，稳定版链接写错等于把人引到错误的包，
+  所以版本号不允许手工维护，必须由脚本生成并被门禁校验。
 - 已发布资产只增不改：不覆盖、不删除历史 `build/CMO_Chinese_Setup_v*.exe` 与 GitHub Release 资产；本机重新打包得到的 `*.sha256` 与已发布资产不再对应，禁止混用。
 
 ## 5. 发布后自检

@@ -6,6 +6,24 @@
 
 ---
 
+<!-- downloads:begin -->
+## 下载
+
+| 通道 | 适合谁 | 版本 | 下载 |
+|---|---|---|---|
+| **稳定版** | 想安稳玩、不想折腾 | **`4.2.1`**（维护者人工确认） | [安装器](https://github.com/mj8724/CMO_CN/releases/download/v4.2.1/CMO_Chinese_Setup_v4.2.1.exe) · [绿色包](https://github.com/mj8724/CMO_CN/releases/download/v4.2.1/CMO_Chinese_Pack_4.2.1.zip) |
+| **测试版** | 想第一时间拿到最新修复 | **`4.2.2`**（每次发布的最新版） | [安装器](https://github.com/mj8724/CMO_CN/releases/latest/download/CMO_Chinese_Setup_v4.2.2.exe) · [绿色包](https://github.com/mj8724/CMO_CN/releases/latest/download/CMO_Chinese_Pack_4.2.2.zip) |
+
+> **稳定版**链接固定指向 `v4.2.1`，只有维护者确认新版本稳定后才会提升。
+> **测试版**始终指向最近一次发布，可能包含尚未充分验证的修复。
+>
+> 不确定选哪个？**选稳定版**。想帮忙验证修复，再用测试版。
+
+全部历史版本见 [Releases](https://github.com/mj8724/CMO_CN/releases)。
+<!-- downloads:end -->
+
+---
+
 ## 版本与适配
 
 - **适配的游戏内部版本：`1900.23`** —— 即游戏标题里的 `Command: Modern Operations v1.10 - Build 1900.23`
