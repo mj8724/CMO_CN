@@ -1312,6 +1312,10 @@ namespace CMOLocalizer
 
         private static System.Threading.Timer wpfRepaintTimer;
         private static int _repaintBusy;
+        private static int _repaintChanged;   // 本拍实际改写了多少处文本
+        private static int _idleTicks;        // 连续空转拍数（用于退避）
+        private static long _repaintPeriod = 40;   // 当前补扫周期（ms），空闲时退避到 200
+        private static long _lastRepaintMs;       // 上次真正补扫的时刻（ms）
 
         /// <summary>
         /// 与 WPF 渲染无关的固定节拍：每 40ms 主动补扫一次 ElementHost 子树。
@@ -1323,30 +1327,61 @@ namespace CMOLocalizer
             if (wpfRepaintTimer != null) return;
             try
             {
+                // 历史 bug（R47，2026-10-20 实测两处）：
+                // ① 原来对**每个窗体**各投递一次补扫，而补扫本身又遍历全部窗体——
+                //    打开任务编辑器后窗体变多，投递数被放大到 67 次/秒（设计 25 次/秒），
+                //    每次走完整棵 WPF 视觉树 ⇒ 明显卡顿。
+                // ② 第一版修复用 Timer.Change 动态改周期来退避，结果把节拍整个停掉了
+                //    （实测补扫 0 次）。所以周期固定，退避改成"到点才做"的自限流，
+                //    并且 busy 标志一律在 finally 里释放，绝不跨线程持有。
                 wpfRepaintTimer = new System.Threading.Timer(delegate(object st)
                 {
-                    if (System.Threading.Interlocked.CompareExchange(ref _repaintBusy, 1, 0) != 0) return;
                     try
                     {
+                        // 自限流：空闲时不必每 40ms 都扫整棵树
+                        long period = Interlocked.Read(ref _repaintPeriod);
+                        long now = DateTime.UtcNow.Ticks / 10000;   // ms
+                        long last = Interlocked.Read(ref _lastRepaintMs);
+                        if (last != 0 && now - last < period) return;
+
+                        if (System.Threading.Interlocked.CompareExchange(ref _repaintBusy, 1, 0) != 0) return;
+                        Interlocked.Exchange(ref _lastRepaintMs, now);
+
                         FormCollection forms = Application.OpenForms;
-                        if (forms == null) return;
+                        if (forms == null) { Interlocked.Exchange(ref _repaintBusy, 0); return; }
+                        Control anchor = null;
                         for (int i = 0; i < forms.Count; i++)
                         {
                             Form f = forms[i];
                             if (f == null || f.IsDisposed) continue;
-                            Control form = f;
+                            try { if (!f.IsHandleCreated) continue; } catch { continue; }
+                            anchor = f;
+                            break;   // 只用一个锚点，避免按窗体数放大
+                        }
+                        if (anchor == null) { Interlocked.Exchange(ref _repaintBusy, 0); return; }
+
+                        anchor.BeginInvoke((MethodInvoker)delegate
+                        {
                             try
                             {
-                                form.BeginInvoke((MethodInvoker)delegate
+                                int before = Interlocked.CompareExchange(ref _repaintChanged, 0, 0);
+                                TranslateWpfElementHostsNow();
+                                int after = Interlocked.CompareExchange(ref _repaintChanged, 0, 0);
+                                if (after > before)
                                 {
-                                    try { TranslateWpfElementHostsNow(); } catch { }
-                                });
+                                    Interlocked.Exchange(ref _idleTicks, 0);
+                                    Interlocked.Exchange(ref _repaintPeriod, 40);
+                                }
+                                else if (Interlocked.Increment(ref _idleTicks) >= 5)
+                                {
+                                    Interlocked.Exchange(ref _repaintPeriod, 200);
+                                }
                             }
                             catch { }
-                        }
+                            finally { System.Threading.Interlocked.Exchange(ref _repaintBusy, 0); }
+                        });
                     }
-                    catch { }
-                    finally { System.Threading.Interlocked.Exchange(ref _repaintBusy, 0); }
+                    catch { System.Threading.Interlocked.Exchange(ref _repaintBusy, 0); }
                 }, null, 40, 40);
                 Log("WPF repaint tick started (40ms, timer-driven)");
             }
@@ -1743,6 +1778,7 @@ namespace CMOLocalizer
             {
                 if (!AllowWrite(tb.GetHashCode(), text, "WPF TextBlock")) return;
                 TraceEvent("WRITE", GetWpfElementName(tb) + " | " + text);
+                System.Threading.Interlocked.Increment(ref _repaintChanged);
                 tb.SetCurrentValue(System.Windows.Controls.TextBlock.TextProperty, text);
             }
             catch
