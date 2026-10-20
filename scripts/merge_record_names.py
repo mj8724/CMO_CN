@@ -35,7 +35,10 @@ LATIN_WORD = re.compile(r"(?<![A-Za-z])([A-Za-z]{4,})(?![A-Za-z])")
 STRUCTURAL = re.compile(r"\\n|\{%.*?%\}|\{\d+\}|"
                         r"\b(?:UPDATE\s+\w+\s+SET|DELETE\s+FROM|INSERT\s+INTO|SELECT\s+.+?\s+FROM)\b|"
                         r"\.(?:dll|exe|json|html|csv)\b|[A-Za-z]:\\")
-CHOICE = re.compile(r"[\u4e00-\u9fff]\s*/\s*[\u4e00-\u9fff]")
+# 「中文/中文」在正文里是合法写法（`定时/触发` 引信、`对海/对陆` 雷达），
+# 但在装备名里长短语并列会读起来像两个名字。只拦「两边各 >= 3 个汉字」的并列，
+# `定时/触发`（各 2 字）这类术语照常放行。
+CHOICE = re.compile(r"[\u4e00-\u9fff]{3,}\s*/\s*[\u4e00-\u9fff]{3,}")
 
 # 允许保留的英文片段：型号/编号（含数字）、全大写缩写、常见单位
 UNIT_OK = {"mm", "km", "kg", "nm", "kt", "kts", "lb", "lbs", "ft",
@@ -96,6 +99,8 @@ def acceptable(en: str, zh: str) -> str | None:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--merge", required=True)
+    ap.add_argument("--target", default="db_record_names.json",
+                    help="目标源文件（默认 db_record_names.json）")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
@@ -105,7 +110,8 @@ def main() -> int:
         print(f"{srcdir} 下没有 batch_*.json")
         return 1
 
-    raw = TARGET.read_bytes().decode("utf-8")
+    target = SRC / args.target
+    raw = target.read_bytes().decode("utf-8")
     crlf = "\r\n" in raw
     data = json.loads(raw)
 
@@ -129,13 +135,21 @@ def main() -> int:
                 continue
             accepted[en] = zh.strip()
 
+    # 防呆：如果绝大多数待写键原本不在目标文件里，几乎一定是 --target 选错了
+    # （本轮真实踩过：舰名批被写进了 db_record_names.json，覆盖掉 5,608 条）。
+    unknown = [k for k in accepted if k not in data]
+    if accepted and len(unknown) > len(accepted) * 0.5:
+        print(f"!! 中止：{len(unknown)}/{len(accepted)} 个键不在 {args.target} 中，"
+              f"目标文件可能选错了")
+        return 2
+
     merged = dict(data)
     merged.update(accepted)
     ordered = {k: merged[k] for k in sorted(merged)}
 
     print(f"读入 {total} 条：接受 {len(accepted)}，拒收 {len(rejected)}，"
           f"与旧值相同 {unchanged}")
-    print(f"db_record_names.json：{len(data)} → {len(ordered)} 条")
+    print(f"{args.target}：{len(data)} → {len(ordered)} 条")
     if rejected:
         print("\n=== 拒收样例（前 20）===")
         for en, zh, why in rejected[:20]:
@@ -148,8 +162,8 @@ def main() -> int:
     text = json.dumps(ordered, ensure_ascii=False, indent=1) + "\n"
     if crlf:
         text = text.replace("\n", "\r\n")
-    TARGET.write_bytes(text.encode("utf-8"))
-    print(f"\n已写入 {TARGET.relative_to(ROOT)}")
+    target.write_bytes(text.encode("utf-8"))
+    print(f"\n已写入 {target.relative_to(ROOT)}")
     return 0
 
 

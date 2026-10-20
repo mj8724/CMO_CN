@@ -288,6 +288,10 @@
 | `scripts/test_ui.ps1` | UI 模式回归（控件/下拉/设置抽查），需要游戏在跑 |
 | `scripts/scan_english_residue.py` | **英文残留扫描（R52）**：拿游戏数据本身（DB 各表 Name、枚举 Description、想定源）当语料喂给引擎 `TranslateString`，判据是「翻完还剩多少真英文词」。这是唯一能发现「没进词典的字符串」的机制——`L-ui-residuals` 只能查已入词典的条目 |
 | `scripts/build_translation_batches.py` | 缺口翻译流水线（R52）：`--source db/corrupt` 生成批次清单 → 交 LLM 逐条精修 → `--merge` 按**原归属**写回并跑守卫（拒收句子碎片、结构性内容、长度异常） |
+| `scripts/term_gap_analysis.py` | 术语缺口分析（R52）：逐字复现引擎匹配规则，报出每条缺口卡在哪个词上，算出「加哪个词解锁最多条目」。输出收益排行 + 可生成术语批次 |
+| `scripts/merge_terms.py` | 术语合并（R52）：把 LLM 精修的术语写进 `dict/src/terms.json`。守卫拒收未翻译/半译/句子/过长；术语表是组合翻译的词汇层，一个坏词会污染上千条名字 |
+| `scripts/merge_record_names.py` | 数据库装备名合并（R52）：写回 `db_record_names.json`。守卫拒收残留英文词、二选一写法、结构性内容；型号/编号/`Type 63A` 这类正确放行 |
+| `scripts/merge_scenario_texts.py` | 想定文本合并（R52）：按批次清单的 `src` 写回**原归属** side/message 文件（全塞一个池会被字母序覆盖），DTG 时间码放行 |
 | `scripts/verify_placenames.py` | 地名发布门禁 |
 | `scripts/test_placenames.py` | 地名离线回归（写操作只落在 `build/` 临时目录） |
 | `scripts/test_placename_cache.py` | 用合成 WWP/PNG 做 Windows 集成测试 |
