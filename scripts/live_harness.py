@@ -136,6 +136,55 @@ def focus(hwnd: int) -> None:
     subprocess.run([str(DRIVER), "focus", str(hwnd)], capture_output=True, text=True)
 
 
+def pixel_change_count(x: int, y: int, w: int, h: int,
+                       frames: int = 40, gap_ms: int = 60) -> int:
+    """在屏幕指定矩形上连续截图，返回与上一帧不同的次数。
+
+    频闪本质是"同一块区域在肉眼里反复变化"，读控件属性只能证明属性变了，
+    证明不了用户看到什么；像素比对是唯一贴近用户感受的判据。
+    用 PowerShell + System.Drawing（本机 Python 无 PIL）。
+    """
+    import hashlib  # noqa: PLC0415
+    import tempfile  # noqa: PLC0415
+
+    script = f"""
+Add-Type -AssemblyName System.Drawing
+$bmp = New-Object System.Drawing.Bitmap {w}, {h}
+$g = [System.Drawing.Graphics]::FromImage($bmp)
+$out = @()
+for ($i = 0; $i -lt {frames}; $i++) {{
+    $g.CopyFromScreen({x}, {y}, 0, 0, (New-Object System.Drawing.Size {w}, {h}))
+    $ms = New-Object System.IO.MemoryStream
+    $bmp.Save($ms, [System.Drawing.Imaging.ImageFormat]::Png)
+    $md5 = ([BitConverter]::ToString(([System.Security.Cryptography.MD5]::Create().ComputeHash($ms.ToArray()))) -replace '-', '').Substring(0, 8)
+    $out += $md5
+    $ms.Dispose()
+    Start-Sleep -Milliseconds {gap_ms}
+}}
+Write-Output ($out -join ',')
+$g.Dispose(); $bmp.Dispose()
+"""
+    with tempfile.NamedTemporaryFile("w", suffix=".ps1", delete=False, encoding="utf-8") as fh:
+        fh.write(script)
+        path = fh.name
+    try:
+        proc = subprocess.run(
+            ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", path],
+            capture_output=True, text=True, timeout=180,
+        )
+        line = (proc.stdout or "").strip().splitlines()[-1] if proc.stdout else ""
+        seq = [x for x in line.split(",") if x]
+        return sum(1 for a, b in zip(seq, seq[1:]) if a != b)
+    except Exception:  # noqa: BLE001
+        return -1
+    finally:
+        pathlib_ = Path(path)
+        try:
+            pathlib_.unlink()
+        except OSError:
+            pass
+
+
 def keys(combo: str) -> None:
     subprocess.run([str(DRIVER), "key", combo], capture_output=True, text=True)
 

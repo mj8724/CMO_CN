@@ -253,6 +253,11 @@ namespace CMOLocalizer
 
                 SetupChineseDateTimeCulture();
 
+                // 补扫节拍必须在引擎启动时就起来，不能等 TranslateWpfWindows() 惰性安装：
+                // 那条路径依赖 WinForms 轮询先跑到，实测在部分会话里根本没触发，
+                // 于是"每帧补扫"整块不生效（门禁实测 elementHostScans=0）。
+                StartWpfRepaintTick();
+
                 // Start hook thread
                 Thread hookThread = new Thread(HookWorker);
                 hookThread.IsBackground = true;
@@ -1211,8 +1216,17 @@ namespace CMOLocalizer
             _renderHookInstalled = true;
             try
             {
-                System.Windows.Media.CompositionTarget.Rendering += new EventHandler(OnWpfRenderTick);
-                Log("WPF render hook installed (per-frame retranslate of live text)");
+                // 历史 bug（R46，2026-10-20 实测）：CompositionTarget.Rendering 只在 WPF
+                // **真正绘制**时才触发。单位状态侧边栏是静止的，于是这个钩子在整个会话里
+                // 一次都没跑过（探针实测 renderTicks=0），R43/R44 里"每帧补扫"等于没装。
+                // 改成独立节拍：不依赖 WPF 是否渲染，按固定间隔主动补扫 ElementHost 子树。
+                StartWpfRepaintTick();
+                try
+                {
+                    System.Windows.Media.CompositionTarget.Rendering += new EventHandler(OnWpfRenderTick);
+                }
+                catch { }
+                Log("WPF live retranslate tick started (timer-driven; render hook is opportunistic)");
             }
             catch (Exception ex)
             {
@@ -1226,6 +1240,7 @@ namespace CMOLocalizer
         /// </summary>
         private static void TranslateWpfElementHostsNow()
         {
+            lock (traceLock) { elementHostScanCount++; }
             FormCollection forms = Application.OpenForms;
             if (forms == null) return;
             for (int i = 0; i < forms.Count; i++)
@@ -1235,6 +1250,41 @@ namespace CMOLocalizer
                 TranslateElementHostsInControl(f, 0);
             }
         }
+
+        private static readonly HashSet<int> layoutHooked = new HashSet<int>();
+
+        /// <summary>
+        /// 给 ElementHost 的 WPF 根挂 LayoutUpdated（R46）。
+        ///
+        /// 单位状态面板的元素是**被游戏周期性重建**的：旧元素作废、新元素带着英文出现。
+        /// 依赖属性钩子对"新建即带初值"的元素不会触发，定时补扫又要等下一拍（几十毫秒），
+        /// 于是英文总有机会被画到屏幕上——这就是用户反复看到的"蓝字雷达在闪"。
+        /// LayoutUpdated 在布局完成后、绘制之前同步触发，此时改写仍在同一帧内完成，
+        /// 英文不会上屏。重入保护避免翻译自身引起的布局再次进入。
+        /// </summary>
+        private static void HookElementHostLayout(System.Windows.DependencyObject root)
+        {
+            if (root == null) return;
+            try
+            {
+                System.Windows.FrameworkElement fe = root as System.Windows.FrameworkElement;
+                if (fe == null) return;
+                int h = fe.GetHashCode();
+                if (layoutHooked.Contains(h)) return;
+                layoutHooked.Add(h);
+                fe.LayoutUpdated += delegate
+                {
+                    if (_inLayoutPass) return;
+                    _inLayoutPass = true;
+                    try { TranslateWpfElement(root); }
+                    catch { }
+                    finally { _inLayoutPass = false; }
+                };
+            }
+            catch { }
+        }
+
+        private static bool _inLayoutPass;
 
         private static void TranslateElementHostsInControl(Control c, int depth)
         {
@@ -1246,7 +1296,11 @@ namespace CMOLocalizer
                     PropertyInfo piChild = c.GetType().GetProperty("Child");
                     object childObj = piChild != null ? piChild.GetValue(c, null) : null;
                     System.Windows.DependencyObject depChild = childObj as System.Windows.DependencyObject;
-                    if (depChild != null) TranslateWpfElement(depChild);
+                    if (depChild != null)
+                    {
+                        HookElementHostLayout(depChild);
+                        TranslateWpfElement(depChild);
+                    }
                 }
                 foreach (Control sub in c.Controls)
                 {
@@ -1254,6 +1308,49 @@ namespace CMOLocalizer
                 }
             }
             catch { }
+        }
+
+        private static System.Threading.Timer wpfRepaintTimer;
+        private static int _repaintBusy;
+
+        /// <summary>
+        /// 与 WPF 渲染无关的固定节拍：每 40ms 主动补扫一次 ElementHost 子树。
+        /// 用 Timer 而不是 CompositionTarget.Rendering，因为后者在面板静止时根本不触发。
+        /// 重入保护：上一拍还没跑完就跳过本拍，避免刷新期间堆积。
+        /// </summary>
+        private static void StartWpfRepaintTick()
+        {
+            if (wpfRepaintTimer != null) return;
+            try
+            {
+                wpfRepaintTimer = new System.Threading.Timer(delegate(object st)
+                {
+                    if (System.Threading.Interlocked.CompareExchange(ref _repaintBusy, 1, 0) != 0) return;
+                    try
+                    {
+                        FormCollection forms = Application.OpenForms;
+                        if (forms == null) return;
+                        for (int i = 0; i < forms.Count; i++)
+                        {
+                            Form f = forms[i];
+                            if (f == null || f.IsDisposed) continue;
+                            Control form = f;
+                            try
+                            {
+                                form.BeginInvoke((MethodInvoker)delegate
+                                {
+                                    try { TranslateWpfElementHostsNow(); } catch { }
+                                });
+                            }
+                            catch { }
+                        }
+                    }
+                    catch { }
+                    finally { System.Threading.Interlocked.Exchange(ref _repaintBusy, 0); }
+                }, null, 40, 40);
+                Log("WPF repaint tick started (40ms, timer-driven)");
+            }
+            catch (Exception ex) { Log("WPF repaint tick failed: " + ex.Message); }
         }
 
         private static void OnWpfRenderTick(object sender, EventArgs e)
@@ -1265,6 +1362,7 @@ namespace CMOLocalizer
                 // 每 8 帧（约 130ms）做一次全量补扫：换单位/换面板时会新建 WPF 元素，
                 // 新元素尚未进入 liveWpfTargets，全量扫描保证它首帧后立刻变中文。
                 _renderFrame++;
+                lock (traceLock) { renderTickCount++; }
                 if ((_renderFrame & 7) == 0)
                 {
                     try { TranslateWpfWindows(); } catch { }
@@ -1535,6 +1633,7 @@ namespace CMOLocalizer
                                         if (targetCc != null && targetCc.Content is string)
                                         {
                                             string str = (string)targetCc.Content;
+                                            TraceEvent("SET", GetWpfElementName(targetCc) + " | " + str);
                                             string mixedCc = FixMixedEnglishPrefix(str);
                                             if (mixedCc != null)
                                             {
@@ -1635,10 +1734,15 @@ namespace CMOLocalizer
         private static void SetTextKeepBinding(System.Windows.Controls.TextBlock tb, string text)
         {
             if (tb == null || string.IsNullOrEmpty(text)) return;
+            // 幂等短路（R46）：反复把同一个值写回控件会不断触发重绘与绑定更新。
+            // 40ms 高频补扫下这会让静止面板持续重画——用户看到的就是"闪"。
+            // 值没变就什么都不做，这是消除频闪最关键的一步。
+            try { if (tb.Text == text) return; } catch { }
             if (!EnterMutation("SetTextKeepBinding")) return;
             try
             {
                 if (!AllowWrite(tb.GetHashCode(), text, "WPF TextBlock")) return;
+                TraceEvent("WRITE", GetWpfElementName(tb) + " | " + text);
                 tb.SetCurrentValue(System.Windows.Controls.TextBlock.TextProperty, text);
             }
             catch
@@ -1652,6 +1756,7 @@ namespace CMOLocalizer
         {
             try
             {
+                if (cc.Content is string && (string)cc.Content == text) return;
                 cc.SetCurrentValue(System.Windows.Controls.ContentControl.ContentProperty, text);
             }
             catch
@@ -5856,6 +5961,143 @@ namespace CMOLocalizer
                 return sb.ToString();
             }
 
+            // FLICKER_PROBE <毫秒>：必须在**后台节拍**上采样，不能在本线程 Sleep——
+            // 命令本身跑在 UI 线程，Sleep 会卡住消息循环，游戏定时器不跑，面板自然"零变化"，
+            // 于是永远测不出频闪（第一次实现就踩了这个坑：ticks=231 但变化 0）。
+            // 现在后台线程只负责按节拍把一次极短的读值动作 BeginInvoke 到 UI 线程，立即返回。
+            if (cmd == "FLICKER_PROBE")
+            {
+                int probeMs = 4000;
+                int.TryParse(arg, out probeMs);
+                if (probeMs < 300) probeMs = 300;
+                if (probeMs > 30000) probeMs = 30000;
+                lock (flickerLock)
+                {
+                    flickerTraced.Clear();
+                    flickerLastSeen.Clear();
+                    flickerTicks = 0;
+                    flickerRunning = true;
+                }
+                int captured = probeMs;
+                Thread th = new Thread(delegate()
+                {
+                    int startTick = Environment.TickCount;
+                    while (Environment.TickCount - startTick < captured)
+                    {
+                        try
+                        {
+                            FormCollection forms = Application.OpenForms;
+                            if (forms != null)
+                            {
+                                for (int i = 0; i < forms.Count; i++)
+                                {
+                                    Form f = forms[i];
+                                    if (f == null || f.IsDisposed) continue;
+                                    Control snap = f;
+                                    Control[] kids = null;
+                                    try { kids = CollectElementHosts(snap); } catch { }
+                                    if (kids == null) continue;
+                                    for (int k = 0; k < kids.Length; k++)
+                                    {
+                                        Control eh = kids[k];
+                                        if (eh == null) continue;
+                                        try
+                                        {
+                                            eh.BeginInvoke((MethodInvoker)delegate
+                                            {
+                                                try
+                                                {
+                                                    lock (flickerLock) { flickerTicks++; }
+                                                    ProbeElementHostOnce(eh);
+                                                }
+                                                catch { }
+                                            });
+                                        }
+                                        catch { }
+                                    }
+                                }
+                            }
+                        }
+                        catch { }
+                        Thread.Sleep(8);
+                    }
+                    lock (flickerLock) { flickerRunning = false; }
+                });
+                th.IsBackground = true;
+                th.Start();
+                return "{\"status\":\"ok\",\"action\":\"FLICKER_PROBE\",\"ms\":" + captured
+                       + ",\"hint\":\"wait then run FLICKER_RESULT\"}";
+            }
+
+            if (cmd == "TRACE_START")
+            {
+                lock (traceLock) { traceLog.Clear(); traceEnabled = true; }
+                return "{\"status\":\"ok\",\"action\":\"TRACE_START\"}";
+            }
+
+            if (cmd == "TRACE_STOP")
+            {
+                traceEnabled = false;
+                return "{\"status\":\"ok\",\"action\":\"TRACE_STOP\"}";
+            }
+
+            if (cmd == "TRACE_DUMP")
+            {
+                StringBuilder tb = new StringBuilder();
+                string[] arr;
+                lock (traceLock) { arr = traceLog.ToArray(); }
+                long rt; long eh;
+                lock (traceLock) { rt = renderTickCount; eh = elementHostScanCount; }
+                tb.Append("{\"status\":\"ok\",\"n\":").Append(arr.Length)
+                  .Append(",\"renderTicks\":").Append(rt)
+                  .Append(",\"elementHostScans\":").Append(eh)
+                  .Append(",\"lines\":[");
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (i > 0) tb.Append(",");
+                    tb.Append("\"").Append(JsonEsc(arr[i])).Append("\"");
+                }
+                tb.Append("]}");
+                return tb.ToString();
+            }
+
+            if (cmd == "FLICKER_RESULT")
+            {
+                StringBuilder fp = new StringBuilder();
+                int ticks; bool running;
+                Dictionary<string, List<string>> snapshot = new Dictionary<string, List<string>>();
+                lock (flickerLock)
+                {
+                    ticks = flickerTicks;
+                    running = flickerRunning;
+                    foreach (KeyValuePair<string, List<string>> kv in flickerTraced)
+                    {
+                        if (kv.Value.Count >= 2) snapshot[kv.Key] = new List<string>(kv.Value);
+                    }
+                }
+                fp.Append("{\"status\":\"ok\",\"ticks\":").Append(ticks)
+                  .Append(",\"running\":").Append(running ? "true" : "false")
+                  .Append(",\"changedCount\":").Append(snapshot.Count)
+                  .Append(",\"changed\":[");
+                bool firstFp = true;
+                foreach (KeyValuePair<string, List<string>> kv in snapshot)
+                {
+                    if (!firstFp) fp.Append(",");
+                    firstFp = false;
+                    fp.Append("{\"key\":\"").Append(JsonEsc(kv.Key)).Append("\",\"n\":")
+                      .Append(kv.Value.Count).Append(",\"seq\":[");
+                    int lim = kv.Value.Count > 20 ? 20 : kv.Value.Count;
+                    for (int i = 0; i < lim; i++)
+                    {
+                        if (i > 0) fp.Append(",");
+                        fp.Append("\"").Append(JsonEsc(kv.Value[i])).Append("\"");
+                    }
+                    fp.Append("]}");
+                }
+                fp.Append("]}");
+                return fp.ToString();
+            }
+
             if (cmd == "WPF_TEXTLOG")
             {
                 return DumpWpfLog();
@@ -6893,6 +7135,153 @@ namespace CMOLocalizer
                 if (f == null || f.IsDisposed) continue;
                 DumpElementHostInControls(f, ref json, ref first, 0);
             }
+        }
+
+        /// <summary>
+        /// FLICKER_PROBE 的采样器：把 ElementHost 子树里每个有文本的元素的当前值记入 lastSeen，
+        /// 变化时把「时间戳|文本」压入 traced。key = 元素名或类型。
+        /// </summary>
+        private static void ProbeElementHosts(Control c, int depth,
+                                              Dictionary<string, List<string>> traced,
+                                              Dictionary<string, string> lastSeen)
+        {
+            if (c == null || depth > 12) return;
+            try
+            {
+                if (c.GetType().Name.IndexOf("ElementHost", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    PropertyInfo piChild = c.GetType().GetProperty("Child");
+                    object childObj = piChild != null ? piChild.GetValue(c, null) : null;
+                    System.Windows.DependencyObject dep = childObj as System.Windows.DependencyObject;
+                    if (dep != null) ProbeWpfNode(dep, 0, traced, lastSeen, "", 0);
+                }
+                foreach (Control sub in c.Controls) ProbeElementHosts(sub, depth + 1, traced, lastSeen);
+            }
+            catch { }
+        }
+
+        // 事件级追踪：轮询（哪怕 12ms）会漏掉只在单帧存在的英文——游戏把英文写进去、
+        // 我们在同一帧改成中文，中间那个英文值可能从未被任何一次轮询看到。
+        // 要判定"到底是不是反复写入英文"，只能记录每一次写入事件本身。
+        private static readonly object traceLock = new object();
+        private static readonly List<string> traceLog = new List<string>();
+        private static bool traceEnabled;
+        private static long renderTickCount;
+        private static long elementHostScanCount;
+
+        private static void TraceEvent(string kind, string detail)
+        {
+            if (!traceEnabled) return;
+            try
+            {
+                lock (traceLock)
+                {
+                    if (traceLog.Count >= 2000) return;
+                    string t = DateTime.Now.ToString("HH:mm:ss.fff") + " " + kind + " " +
+                               (detail != null && detail.Length > 80 ? detail.Substring(0, 80) : detail);
+                    traceLog.Add(t);
+                }
+            }
+            catch { }
+        }
+
+        private static readonly object flickerLock = new object();
+        private static Dictionary<string, List<string>> flickerTraced = new Dictionary<string, List<string>>();
+        private static Dictionary<string, string> flickerLastSeen = new Dictionary<string, string>();
+        private static int flickerTicks;
+        private static bool flickerRunning;
+
+        /// <summary>收集某个窗体下所有 ElementHost 控件（供后台节拍逐个体检）。</summary>
+        private static Control[] CollectElementHosts(Control root)
+        {
+            List<Control> list = new List<Control>();
+            CollectElementHostsInto(root, list, 0);
+            return list.ToArray();
+        }
+
+        private static void CollectElementHostsInto(Control c, List<Control> list, int depth)
+        {
+            if (c == null || depth > 12) return;
+            try
+            {
+                if (c.GetType().Name.IndexOf("ElementHost", StringComparison.OrdinalIgnoreCase) >= 0) list.Add(c);
+                foreach (Control sub in c.Controls) CollectElementHostsInto(sub, list, depth + 1);
+            }
+            catch { }
+        }
+
+        /// <summary>在 UI 线程上做一次极短采样：只读当前值并与上一拍比较。</summary>
+        private static void ProbeElementHostOnce(Control eh)
+        {
+            try
+            {
+                PropertyInfo piChild = eh.GetType().GetProperty("Child");
+                object childObj = piChild != null ? piChild.GetValue(eh, null) : null;
+                System.Windows.DependencyObject dep = childObj as System.Windows.DependencyObject;
+                if (dep == null) return;
+                lock (flickerLock)
+                {
+                    ProbeWpfNode(dep, 0, flickerTraced, flickerLastSeen, "", 0);
+                }
+            }
+            catch { }
+        }
+
+        private static void ProbeWpfNode(System.Windows.DependencyObject dep, int depth,
+                                         Dictionary<string, List<string>> traced,
+                                         Dictionary<string, string> lastSeen,
+                                         string parentPath, int index)
+        {
+            if (dep == null || depth > 26) return;
+            string path = (parentPath ?? "") + "/" + index.ToString();
+            try
+            {
+                string text = null;
+                System.Windows.Controls.TextBlock tb = dep as System.Windows.Controls.TextBlock;
+                if (tb != null) text = tb.Text;
+                if (text == null)
+                {
+                    System.Windows.Controls.ContentControl cc = dep as System.Windows.Controls.ContentControl;
+                    if (cc != null && cc.Content is string) text = (string)cc.Content;
+                }
+                if (text == null)
+                {
+                    System.Windows.Documents.Run run = dep as System.Windows.Documents.Run;
+                    if (run != null) text = run.Text;
+                }
+                if (!string.IsNullOrEmpty(text) && text.Trim().Length > 0)
+                {
+                    // 身份用「树内位置路径」而不是对象哈希：游戏刷新面板时会**重建**元素，
+                    // 对象哈希随之变化，探针就会把它当成"新元素"而不是"同一处文本变了"，
+                    // 于是永远测不出频闪（真踩过这个坑）。位置路径在重建后保持稳定。
+                    // 有 Name 的优先用 Name（语义最稳），否则用路径。
+                    string name = GetWpfElementName(dep);
+                    string key = (string.IsNullOrEmpty(name) ? "path:" + path : name + "@" + path);
+                    string prev;
+                    if (!lastSeen.TryGetValue(key, out prev) || prev != text)
+                    {
+                        lastSeen[key] = text;
+                        List<string> seq;
+                        if (!traced.TryGetValue(key, out seq))
+                        {
+                            seq = new List<string>();
+                            traced[key] = seq;
+                        }
+                        if (seq.Count < 400)
+                        {
+                            seq.Add(DateTime.Now.ToString("ss.fff") + "|" + (text.Length > 60 ? text.Substring(0, 60) : text));
+                        }
+                    }
+                }
+                int n = 0;
+                try { n = System.Windows.Media.VisualTreeHelper.GetChildrenCount(dep); } catch { n = 0; }
+                for (int i = 0; i < n; i++)
+                {
+                    ProbeWpfNode(System.Windows.Media.VisualTreeHelper.GetChild(dep, i), depth + 1,
+                                 traced, lastSeen, path, i);
+                }
+            }
+            catch { }
         }
 
         private static void DumpElementHostInControls(Control c, ref StringBuilder json, ref bool first, int depth)

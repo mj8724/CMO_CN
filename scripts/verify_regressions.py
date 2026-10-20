@@ -884,6 +884,7 @@ def run_live(r: Runner) -> None:
     _doctrine_probe(H, r, pid)
     _mixed_prefix_probe(H, r, pid)
     _panel_flicker_probe(H, r, pid)
+    _repaint_tick_probe(H, r, pid)
 
     # L7：构建号适配哨兵（R31——游戏更新导致注入静默失效那次事故）
     _build_adaptation_probe(H, r, pid)
@@ -1323,6 +1324,51 @@ def _panel_flicker_probe(H, r: Runner, pid: int | None) -> None:
              + (f"（例 {flips[:2]}）" if flips else "（无）")
              + f"；写拉锯熔断 {before}→{after}"
              + ("" if after <= before else "（新增熔断 = 永久停英文回归）"),
+             "evidence/live/scan")
+
+
+def _repaint_tick_probe(H, r: Runner, pid: int | None) -> None:
+    """R46 实机探针：补扫节拍必须真的在跑，且像素层面不得闪烁。
+
+    这一轮最贵的教训不是"某处翻译错了"，而是**修好的代码根本没被执行**：
+    原先靠 `CompositionTarget.Rendering` 做"每帧补扫"，而它只在 WPF 真正绘制时触发；
+    单位状态侧边栏是静止的，于是整个会话里一次都没跑过（实测 renderTicks=0），
+    R43/R44 的修复等于没装。所以这条用例先断言 elementHostScans 在增长
+    （证明节拍活着），再用屏幕像素判定"肉眼是否真的不闪"。
+    """
+    name, title = "L-repaint-tick", "R46 补扫节拍真在跑且屏幕像素不闪（renderTicks 盲区）"
+    H.send("CLOSE_FORM ALL", timeout=20)
+    time.sleep(1.0)
+    H.send("CLICK_MENU TSMI_LoadScenario", timeout=20)
+    time.sleep(8.0)
+    H.send("SCEN_EXPAND_ALL", timeout=25)
+    time.sleep(2.0)
+    H.send("SCEN_SELECT 飞行教程 1", timeout=25)
+    time.sleep(2.0)
+    H.send("SCEN_LOAD", timeout=25)
+    time.sleep(18.0)
+    H.send("CLICK_BUTTON 进入想定", timeout=25)
+    time.sleep(25.0)
+    H.send("CLOSE_FORM ALL", timeout=20)
+    H.send("CLICK_MENU TSMI_SelectNextUnit", timeout=20)
+    time.sleep(2.5)
+    H.send("CLICK_MENU StartResumeGameToolStripMenuItem", timeout=20)
+    time.sleep(4.0)
+
+    a = H.send("TRACE_DUMP", timeout=60)
+    scans_a = a.get("elementHostScans") or 0
+    time.sleep(3.0)
+    b = H.send("TRACE_DUMP", timeout=60)
+    scans_b = b.get("elementHostScans") or 0
+    ticks_grew = scans_b > scans_a
+
+    # 屏幕像素：直接判定肉眼是否看到闪烁（比读控件属性更接近用户感受）
+    changes = H.pixel_change_count(1620, 250, 300, 120, frames=40, gap_ms=60)
+    H.send("CLOSE_FORM ALL", timeout=20)
+    ok = ticks_grew and changes == 0
+    r.record(name, title, ok,
+             f"补扫次数 {scans_a}→{scans_b}（需增长）；像素采样 40 帧变化 {changes} 次（需 0）"
+             + ("" if ticks_grew else "；❌ 节拍没跑 = 修复未生效"),
              "evidence/live/scan")
 
 
