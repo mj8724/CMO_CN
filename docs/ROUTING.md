@@ -292,6 +292,7 @@
 | `scripts/merge_terms.py` | 术语合并（R52）：把 LLM 精修的术语写进 `dict/src/terms.json`。守卫拒收未翻译/半译/句子/过长；术语表是组合翻译的词汇层，一个坏词会污染上千条名字 |
 | `scripts/merge_record_names.py` | 数据库装备名合并（R52）：写回 `db_record_names.json`。守卫拒收残留英文词、二选一写法、结构性内容；型号/编号/`Type 63A` 这类正确放行 |
 | `scripts/merge_scenario_texts.py` | 想定文本合并（R52）：按批次清单的 `src` 写回**原归属** side/message 文件（全塞一个池会被字母序覆盖），DTG 时间码放行 |
+| `scripts/gen_v3_batches.py` | 按 `build/residue_gaps.json` 的当前真实剩余缺口，按表族生成 v3 精修批次（每类一套专用 instructions：传感器北约绰号、挂载弹种、设施编制、飞机绰号、卫星代号、武器弹头、基座形式、推进装置、舰艇舰级）。批次写入 `build/v3_batches/`，供 teammate 逐条精修 |
 | `scripts/verify_placenames.py` | 地名发布门禁 |
 | `scripts/test_placenames.py` | 地名离线回归（写操作只落在 `build/` 临时目录） |
 | `scripts/test_placename_cache.py` | 用合成 WWP/PNG 做 Windows 集成测试 |
