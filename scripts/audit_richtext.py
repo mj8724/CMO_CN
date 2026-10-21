@@ -96,12 +96,18 @@ def check_layout(source: str, translated: str, label: str, errors: list[str]) ->
             errors.append(f"{label}: translated description has no Chinese")
 
 
-def resource_texts(inventory: dict, pool: dict, resources: dict) -> tuple[dict, list[str]]:
-    texts, unknown = {}, []
+def resource_texts(inventory: dict, reviewed: dict, pool: dict, resources: dict) -> tuple[dict, list[str]]:
+    selected_filter = resources.get("resourceFilter", "Hotkeys").lower()
     expected = {name for name, row in inventory["controls"].items()
-                if row["source"]["kind"] == "manifest-resource"}
+                if row["source"]["kind"] == "manifest-resource"
+                and selected_filter in row["source"]["resource"].lower()}
+    texts = {name: reviewed[name] for name, row in inventory["controls"].items()
+             if row["source"]["kind"] == "manifest-resource" and name not in expected}
+    unknown = []
     for row in resources.get("rows", []):
-        if "hotkeys" not in row.get("resource", "").lower() or not row.get("key", "").endswith(".Text"):
+        resource = row.get("resource", "").lower()
+        if (selected_filter not in resource or "hotkeys" not in resource
+                or not row.get("key", "").endswith(".Text")):
             continue
         name = row["key"][:-5]
         if name not in expected:
@@ -193,7 +199,8 @@ def audit(inventory: dict, source: dict, exact: dict, pool: dict,
           resources: dict | None = None) -> dict:
     reviewed, prose = recover_texts(inventory, source)
     extra = recover_records(inventory["resourceHelp"], source)
-    texts, unknown = resource_texts(inventory, pool, resources) if resources is not None else (reviewed, [])
+    texts, unknown = (resource_texts(inventory, reviewed, pool, resources)
+                      if resources is not None else (reviewed, []))
     outside_scope = 0
     if resources is not None:
         extra, extra_unknown = extra_resource_texts(inventory, extra, resources)
@@ -227,8 +234,12 @@ def audit(inventory: dict, source: dict, exact: dict, pool: dict,
                      and row.get("resource") == record["source"].get("resource")
                      and row.get("isRtf", False)
                      for row in resources.get("rows", [])) if resources is not None else False
-        input_source = "reviewed-source" if resources is None else (
-            "resource-report" if record["source"]["kind"] == "manifest-resource" else "string-pool-snapshot")
+        input_source = "reviewed-source"
+        if resources is not None:
+            if record["source"]["kind"] == "string-pool":
+                input_source = "string-pool-snapshot"
+            elif resources.get("resourceFilter", "Hotkeys").lower() in record["source"]["resource"].lower():
+                input_source = "resource-report"
         controls.append({"controlName": name, "rawText": raw, "source": record["source"],
                          "inputSource": input_source,
                          "isRtf": is_rtf, "lines": lines, "lineCount": len(lines),

@@ -41,6 +41,13 @@ class RichTextAuditTests(unittest.TestCase):
                               for name, record in self.inventory["resourceHelp"].items())
         return report
 
+    def filtered_resource_report(self, resource_filter: str) -> dict:
+        report = self.full_resource_report()
+        report["resourceFilter"] = resource_filter
+        report["rows"] = [row for row in report["rows"]
+                          if resource_filter.lower() in row["resource"].lower()]
+        return report
+
     def test_reviewed_sources_are_complete_without_game_or_build_evidence(self) -> None:
         result = self.run_audit()
         self.assertTrue(result["ok"], result["errors"] + result["unknown"])
@@ -54,15 +61,47 @@ class RichTextAuditTests(unittest.TestCase):
         self.assertTrue(result["ok"], result["errors"] + result["unknown"])
         self.assertEqual(result["lineCount"], 89)
 
+    def test_debugtool_filter_uses_reviewed_hotkeys_and_reports_correct_provenance(self) -> None:
+        report = self.filtered_resource_report("dEbUgToOl")
+        self.assertEqual(len(report["rows"]), 1)
+        result = self.run_audit(resources=report)
+        self.assertTrue(result["ok"], result["errors"] + result["unknown"])
+        self.assertEqual((result["controlCount"], result["lineCount"]), (9, 89))
+        for control in result["controls"]:
+            expected = ("reviewed-source" if control["source"]["kind"] == "manifest-resource"
+                        else "string-pool-snapshot")
+            self.assertEqual(control["inputSource"], expected)
+        for help_row in result["resourceHelp"]:
+            expected = ("resource-report" if "debugtool" in help_row["source"]["resource"].lower()
+                        else "reviewed-source")
+            self.assertEqual(help_row["inputSource"], expected)
+
+    def test_filter_without_reviewed_resources_uses_reviewed_hotkeys(self) -> None:
+        result = self.run_audit(resources=self.filtered_resource_report("NoReviewedResource"))
+        self.assertTrue(result["ok"], result["errors"] + result["unknown"])
+        self.assertEqual(result["lineCount"], 89)
+        self.assertNotIn("resource-report", [row["inputSource"] for row in result["controls"]])
+
     def test_missing_resource_is_unknown_and_fails(self) -> None:
-        report = self.resource_report()
-        report["rows"].pop()
+        for resource_filter in (None, "hOtKeYs", ""):
+            with self.subTest(resource_filter=resource_filter):
+                report = (self.resource_report() if resource_filter is None
+                          else self.filtered_resource_report(resource_filter))
+                missing = report["rows"].pop(0)["key"][:-5]
+                result = self.run_audit(resources=report)
+                self.assertFalse(result["ok"])
+                self.assertIn("Missing resource control: " + missing, result["unknown"])
+
+    def test_debugtool_filter_still_requires_its_selected_help(self) -> None:
+        report = self.filtered_resource_report("DebugTool")
+        missing = report["rows"].pop()
         result = self.run_audit(resources=report)
         self.assertFalse(result["ok"])
-        self.assertTrue(any("Missing resource control" in item for item in result["unknown"]))
+        self.assertIn("Missing help resource: " + missing["resource"] + ":" + missing["key"],
+                      result["unknown"])
 
     def test_new_or_unparsed_resources_are_unknown(self) -> None:
-        for change in ("new", "unparsed", "unresolved"):
+        for change in ("new", "unparsed", "drift", "unresolved"):
             with self.subTest(change=change):
                 report = self.resource_report()
                 if change == "new":
@@ -70,6 +109,8 @@ class RichTextAuditTests(unittest.TestCase):
                                            "key": "RichTextBox9.Text", "text": "X\tNew help"})
                 elif change == "unparsed":
                     report["rows"][0]["text"] = None
+                elif change == "drift":
+                    report["rows"][0]["text"] += "\r\nX\tNew help"
                 else:
                     report["unknownResources"].append({"resource": "encrypted", "reason": "resource-read-failed"})
                 self.assertFalse(self.run_audit(resources=report)["ok"])
