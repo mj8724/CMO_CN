@@ -632,6 +632,8 @@ def run_static(r: Runner) -> None:
         for en, zh in _exact44.items():
             if len(en) > 60 or "http" in en or '"' in en or ";" in en:
                 continue
+            if any(c in en for c in ("\r", "\n", "\t")):
+                continue
             if not _residue44(en, zh, _terms44):
                 continue
             better = _compose44(en, _terms44, _exact44)

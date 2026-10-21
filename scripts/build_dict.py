@@ -449,7 +449,11 @@ def build() -> dict:
                 _zh = exact[_en]
                 if len(_en) > 60 or "http" in _en or '"' in _en or ";" in _en:
                     continue
+                # 含换行符的键绝不能交给 compose（它会正则压成单行，掉门禁）
+                if any(c in _en for c in (chr(13), chr(10), chr(9))):
+                    continue
                 if not CJK_ANY.search(_zh):
+                    continue
                     continue
                 # 只修「中文里还留着英文术语」的条目。已全中文的（哪怕是 `Tank`→`坦克`
                 # 这种语境专义）一律不动——否则术语表会覆盖人工裁定的正确译法。
