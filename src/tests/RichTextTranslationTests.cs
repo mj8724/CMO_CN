@@ -59,6 +59,22 @@ class RichTextTranslationTests
         public void Dispose() { Form.Dispose(); }
     }
 
+    private sealed class RedrawTrackingRichTextBox : RichTextBox
+    {
+        internal int RedrawSuspensions;
+        internal int RedrawRestorations;
+
+        protected override void WndProc(ref Message message)
+        {
+            if (message.Msg == 0x000B) // WM_SETREDRAW
+            {
+                if (message.WParam == IntPtr.Zero) RedrawSuspensions++;
+                else RedrawRestorations++;
+            }
+            base.WndProc(ref message);
+        }
+    }
+
     private static object Call(string name, params object[] arguments)
     {
         MethodInfo method = engine.GetMethod(name, PrivateStatic | BindingFlags.Public);
@@ -497,6 +513,82 @@ class RichTextTranslationTests
         finally { if (existed) exact[example] = previous; else exact.Remove(example); }
     }
 
+    private static void ExceptionCleanup(string callback, bool nested)
+    {
+        FieldInfo depthField = engine.GetField("_mutationDepth", PrivateStatic);
+        FieldInfo hookField = engine.GetField("_inControlTextChanged", PrivateStatic);
+        int savedDepth = (int)depthField.GetValue(null);
+        bool savedHook = (bool)hookField.GetValue(null);
+        int previousDepth = nested ? 2 : 0;
+        bool previousHook = nested;
+        string scenario = callback + (nested ? "/nested" : "/outermost");
+        try
+        {
+            using (Host host = new Host(false))
+            using (RedrawTrackingRichTextBox box = new RedrawTrackingRichTextBox {
+                Name = "ReadOnlyHelp", ReadOnly = true, Text = Help, DetectUrls = false
+            })
+            using (Label following = new Label { Text = "before", Top = 170 })
+            {
+                host.Form.Controls.Add(following);
+                host.Show(box);
+                box.Select(2, 0);
+                bool fired = false;
+                InvalidOperationException injected = new InvalidOperationException("Fixture callback: " + scenario);
+                Action fail = delegate {
+                    if (fired) return;
+                    fired = true;
+                    throw injected;
+                };
+                if (callback == "restore-selection") box.SelectionChanged += delegate {
+                    if (box.Text == HelpChinese && box.SelectionStart == 2 && box.SelectionLength == 0) fail();
+                };
+                else if (callback == "invalidate") box.Invalidated += delegate {
+                    if (box.RedrawRestorations > 0) fail();
+                };
+                else box.TextChanged += delegate { if (box.Text == HelpChinese) fail(); };
+                depthField.SetValue(null, previousDepth);
+                hookField.SetValue(null, previousHook);
+                Exception actual = null;
+                try { Call("TranslateRichTextBox", box); }
+                catch (TargetInvocationException error) { actual = error.InnerException; }
+                int afterDepth = (int)depthField.GetValue(null);
+                bool afterHook = (bool)hookField.GetValue(null);
+                Console.WriteLine("CLEANUP " + scenario + " fired=" + fired
+                    + " sameException=" + object.ReferenceEquals(actual, injected)
+                    + " depth=" + previousDepth + "->" + afterDepth
+                    + " hook=" + previousHook + "->" + afterHook
+                    + " redraw=" + box.RedrawSuspensions + "/" + box.RedrawRestorations);
+                Require(fired, "Exception fixture did not reach the intended callback: " + scenario);
+                Require(object.ReferenceEquals(actual, injected), "Rich text translation swallowed or replaced the callback exception: " + scenario);
+                Require(afterDepth == previousDepth, "Rich text callback exception leaked mutation depth: " + scenario);
+                Require(afterHook == previousHook, "Rich text callback exception changed the enclosing TextChanged guard: " + scenario);
+                Require(box.RedrawSuspensions > 0 && box.RedrawSuspensions == box.RedrawRestorations,
+                    "Rich text callback exception left native redraw suspended: " + scenario);
+                Call("HookControlTextChanged", following);
+                if (nested)
+                {
+                    following.Text = "Ready";
+                    Require(following.Text == "Ready", "Nested exception cleanup released the enclosing TextChanged guard");
+                    // Complete the simulated enclosing scope only after checking
+                    // that the rich text operation restored its exact state.
+                    hookField.SetValue(null, false);
+                    for (int i = 0; i < previousDepth; i++) Call("ExitMutation");
+                    following.Text = "before";
+                }
+                following.Text = "Ready";
+                Require(following.Text == "就绪", "A later TextChanged hook stopped translating after the rich text exception: " + scenario);
+                Require((int)depthField.GetValue(null) == 0 && !(bool)hookField.GetValue(null),
+                    "The following TextChanged hook leaked its mutation state: " + scenario);
+            }
+        }
+        finally
+        {
+            depthField.SetValue(null, savedDepth);
+            hookField.SetValue(null, savedHook);
+        }
+    }
+
     private static void Corpus(string path)
     {
         Dictionary<string, object> corpus = (Dictionary<string, object>)new JavaScriptSerializer().DeserializeObject(File.ReadAllText(path));
@@ -550,6 +642,9 @@ class RichTextTranslationTests
     {
         try
         {
+            // Native WinForms callbacks otherwise route exceptions to
+            // ThreadException, hiding failures in translation's cleanup path.
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
             if (args.Length < 2 || args.Length > 4) throw new ArgumentException("Expected engine DLL, dictionary path, optional mode and corpus path");
             engine = Assembly.LoadFrom(Path.GetFullPath(args[0])).GetType("CMOLocalizer.CustomAppDomainManager", true);
             Call("LoadDictionaries", Path.GetFullPath(args[1]));
@@ -573,11 +668,20 @@ class RichTextTranslationTests
             if (mode == "mixed-style" || mode == "all") MixedStyle();
             if (mode == "reentrant-body" || mode == "all") ReentrantBodyProtection();
             if (mode == "code-example" || mode == "all") CodeExampleProtection();
+            if (mode == "cleanup-restore" || mode == "all") ExceptionCleanup("restore-selection", false);
+            if (mode == "cleanup-restore-nested" || mode == "all") ExceptionCleanup("restore-selection", true);
+            if (mode == "cleanup-write" || mode == "all") ExceptionCleanup("text-write", false);
+            if (mode == "cleanup-write-nested" || mode == "all") ExceptionCleanup("text-write", true);
+            if (mode == "cleanup-invalidate" || mode == "all") ExceptionCleanup("invalidate", false);
+            if (mode == "cleanup-invalidate-nested" || mode == "all") ExceptionCleanup("invalidate", true);
             if (mode != "all" && mode != "readonly" && mode != "hotkeys" && mode != "editable"
                 && mode != "focused" && mode != "formatting" && mode != "colon-format" && mode != "state"
                 && mode != "hook" && mode != "idempotent" && mode != "corpus" && mode != "dump"
                 && mode != "mixed-baseline" && mode != "plain-readonly" && mode != "known-static"
-                && mode != "mixed-style" && mode != "reentrant-body" && mode != "code-example") throw new ArgumentException("Unknown mode " + mode);
+                && mode != "mixed-style" && mode != "reentrant-body" && mode != "code-example"
+                && mode != "cleanup-restore" && mode != "cleanup-restore-nested"
+                && mode != "cleanup-write" && mode != "cleanup-write-nested"
+                && mode != "cleanup-invalidate" && mode != "cleanup-invalidate-nested") throw new ArgumentException("Unknown mode " + mode);
             Console.WriteLine("PASS richtext/" + mode + " checks=" + checks);
             return 0;
         }

@@ -129,68 +129,81 @@ namespace CMOLocalizer
             string expectedText = box.Text;
             List<RichTextEdit> edits = FindRichTextEdits(expectedText, IsHotkeysHelp(box));
             if (edits.Count == 0 || !EnterMutation("RichTextBody")) return;
-            int selectionStart = box.SelectionStart;
-            int selectionEnd = selectionStart + box.SelectionLength;
-            bool modified = box.Modified;
             bool previousHook = _inControlTextChanged;
-            bool redraw = box.Visible;
-            IntPtr handle = box.Handle;
-            RichTextNative.ScrollPoint scroll = new RichTextNative.ScrollPoint();
-            RichTextNative.SendMessage(handle, 0x04DD, IntPtr.Zero, ref scroll); // EM_GETSCROLLPOS
-            _inControlTextChanged = true;
-            if (redraw) SendMessage(handle, 0x000B, IntPtr.Zero, IntPtr.Zero); // WM_SETREDRAW
             try
             {
-                for (int i = edits.Count - 1; i >= 0; i--)
+                int selectionStart = box.SelectionStart;
+                int selectionEnd = selectionStart + box.SelectionLength;
+                bool modified = box.Modified;
+                bool redraw = box.Visible;
+                IntPtr handle = box.Handle;
+                RichTextNative.ScrollPoint scroll = new RichTextNative.ScrollPoint();
+                RichTextNative.SendMessage(handle, 0x04DD, IntPtr.Zero, ref scroll); // EM_GETSCROLLPOS
+                _inControlTextChanged = true;
+                try
                 {
-                    RichTextEdit edit = edits[i];
-                    if (!SelectCurrentRichText(box, edit.Start, edit.Length, expectedText, staticHelpHash))
-                    { expectedText = null; break; }
-                    RichTextNative.CharFormat format = new RichTextNative.CharFormat();
-                    format.Size = (uint)Marshal.SizeOf(typeof(RichTextNative.CharFormat));
-                    RichTextNative.SendMessage(handle, 0x043A, new IntPtr(1), ref format); // EM_GETCHARFORMAT
-                    // EM_REPLACESEL inherits the first character's format. A
-                    // mixed-style cell must not be flattened by that operation.
-                    // RichTextBox.SelectionFont/BackColor do not reliably signal
-                    // mixed values; native masks expose every supported attribute.
-                    if (!SelectCurrentRichText(box, edit.Start, 1, expectedText, staticHelpHash))
-                    { expectedText = null; break; }
-                    RichTextNative.CharFormat firstCharacter = format;
-                    RichTextNative.SendMessage(handle, 0x043A, new IntPtr(1), ref firstCharacter);
-                    if ((format.Mask & firstCharacter.Mask) != firstCharacter.Mask) continue;
-                    if (!SelectCurrentRichText(box, edit.Start, edit.Length, expectedText, staticHelpHash))
-                    { expectedText = null; break; }
-                    expectedText = expectedText.Remove(edit.Start, edit.Length).Insert(edit.Start, edit.Text);
-                    box.SelectedText = edit.Text;
-                    if (!SelectCurrentRichText(box, edit.Start, edit.Text.Length, expectedText, staticHelpHash))
-                    { expectedText = null; break; }
-                    RichTextNative.SendMessage(handle, 0x0444, new IntPtr(1), ref format); // EM_SETCHARFORMAT
-                    if (!IsCurrentRichTextBody(box, expectedText, staticHelpHash))
-                    { expectedText = null; break; }
-                    selectionStart = MapRichTextSelection(selectionStart, edit);
-                    selectionEnd = MapRichTextSelection(selectionEnd, edit);
+                    if (redraw) SendMessage(handle, 0x000B, IntPtr.Zero, IntPtr.Zero); // WM_SETREDRAW
+                    for (int i = edits.Count - 1; i >= 0; i--)
+                    {
+                        RichTextEdit edit = edits[i];
+                        if (!SelectCurrentRichText(box, edit.Start, edit.Length, expectedText, staticHelpHash))
+                        { expectedText = null; break; }
+                        RichTextNative.CharFormat format = new RichTextNative.CharFormat();
+                        format.Size = (uint)Marshal.SizeOf(typeof(RichTextNative.CharFormat));
+                        RichTextNative.SendMessage(handle, 0x043A, new IntPtr(1), ref format); // EM_GETCHARFORMAT
+                        // EM_REPLACESEL inherits the first character's format. A
+                        // mixed-style cell must not be flattened by that operation.
+                        // RichTextBox.SelectionFont/BackColor do not reliably signal
+                        // mixed values; native masks expose every supported attribute.
+                        if (!SelectCurrentRichText(box, edit.Start, 1, expectedText, staticHelpHash))
+                        { expectedText = null; break; }
+                        RichTextNative.CharFormat firstCharacter = format;
+                        RichTextNative.SendMessage(handle, 0x043A, new IntPtr(1), ref firstCharacter);
+                        if ((format.Mask & firstCharacter.Mask) != firstCharacter.Mask) continue;
+                        if (!SelectCurrentRichText(box, edit.Start, edit.Length, expectedText, staticHelpHash))
+                        { expectedText = null; break; }
+                        expectedText = expectedText.Remove(edit.Start, edit.Length).Insert(edit.Start, edit.Text);
+                        box.SelectedText = edit.Text;
+                        if (!SelectCurrentRichText(box, edit.Start, edit.Text.Length, expectedText, staticHelpHash))
+                        { expectedText = null; break; }
+                        RichTextNative.SendMessage(handle, 0x0444, new IntPtr(1), ref format); // EM_SETCHARFORMAT
+                        if (!IsCurrentRichTextBody(box, expectedText, staticHelpHash))
+                        { expectedText = null; break; }
+                        selectionStart = MapRichTextSelection(selectionStart, edit);
+                        selectionEnd = MapRichTextSelection(selectionEnd, edit);
+                    }
+                }
+                finally
+                {
+                    try
+                    {
+                        // If a game callback took ownership of the body, its selection,
+                        // formatting, Modified flag and viewport must remain intact too.
+                        if (expectedText != null && !box.IsDisposed)
+                        {
+                            selectionStart = Math.Min(selectionStart, box.TextLength);
+                            selectionEnd = Math.Min(selectionEnd, box.TextLength);
+                            if (SelectCurrentRichText(box, selectionStart, Math.Max(0, selectionEnd - selectionStart), expectedText, staticHelpHash))
+                            {
+                                box.Modified = modified;
+                                RichTextNative.SendMessage(handle, 0x04DE, IntPtr.Zero, ref scroll); // EM_SETSCROLLPOS
+                            }
+                            else expectedText = null;
+                        }
+                    }
+                    finally
+                    {
+                        if (redraw && !box.IsDisposed && box.IsHandleCreated && box.Handle == handle)
+                        {
+                            SendMessage(handle, 0x000B, new IntPtr(1), IntPtr.Zero);
+                            box.Invalidate();
+                        }
+                    }
                 }
             }
             finally
             {
-                // If a game callback took ownership of the body, its selection,
-                // formatting, Modified flag and viewport must remain intact too.
-                if (expectedText != null && !box.IsDisposed)
-                {
-                    selectionStart = Math.Min(selectionStart, box.TextLength);
-                    selectionEnd = Math.Min(selectionEnd, box.TextLength);
-                    if (SelectCurrentRichText(box, selectionStart, Math.Max(0, selectionEnd - selectionStart), expectedText, staticHelpHash))
-                    {
-                        box.Modified = modified;
-                        RichTextNative.SendMessage(handle, 0x04DE, IntPtr.Zero, ref scroll); // EM_SETSCROLLPOS
-                    }
-                    else expectedText = null;
-                }
-                if (redraw)
-                {
-                    SendMessage(handle, 0x000B, new IntPtr(1), IntPtr.Zero);
-                    box.Invalidate();
-                }
+                // UI callbacks may throw even while restoring selection or redraw.
                 _inControlTextChanged = previousHook;
                 ExitMutation();
             }
