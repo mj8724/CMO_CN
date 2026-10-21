@@ -4510,13 +4510,25 @@ namespace CMOLocalizer
                 if (bestJ < 0)
                 {
                     string token = words[i];
-                    // `Quad M55 x 2 Towed`、`20mm Cannon x 2`：数据库把数量插在名字中间。
-                    // 裸 `x` + 数字是乘号，不是单词；认它当生词会把整条名字拖回英文。
+                    // 纯分隔符：`+`、`-`、裸 `x` + 数字（乘号）。
+                    // 数据库常把它们插在名字中间（`Type 60 + Type 61`、`Pipeline - Overhead`、
+                    // `Gun x 6`），把它们认成生词会让整条名字回退英文。
                     if ((token == "x" || token == "X") && i + 1 < words.Length && IsAllDigits(words[i + 1]))
                     {
                         sb.Append(" × ");
                         sb.Append(words[i + 1]);
                         i += 2;
+                        continue;
+                    }
+                    if (token == "+" || token == "-" || token == "--")
+                    {
+                        sb.Append(" " + token + " ");
+                        i++;
+                        continue;
+                    }
+                    if (string.IsNullOrEmpty(token))
+                    {
+                        i++;
                         continue;
                     }
                     string core, suffix;
