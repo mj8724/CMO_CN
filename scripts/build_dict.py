@@ -540,7 +540,20 @@ def write(doc: dict, path: Path) -> None:
             raise ValueError(
                 f"refusing to install {path.name}: top-level sections "
                 f"{sorted(probe)} != {sorted(TOP_LEVEL_SECTIONS)}")
-        os.replace(tmp, path)
+        # Windows 下若有杀毒软件、索引器或游戏刚读完持有瞬时句柄，
+        # os.replace 会抛 WinError 5（拒绝访问）。重试 5 次并带退避，
+        # 仍被锁定时退避到截断覆盖写（truncate write）。
+        replaced = False
+        for attempt in range(6):
+            try:
+                os.replace(tmp, path)
+                replaced = True
+                break
+            except PermissionError:
+                time.sleep(0.25)
+        if not replaced:
+            path.write_bytes(tmp.read_bytes())
+            tmp.unlink(missing_ok=True)
     except BaseException:
         # Never leave a partial staging file behind, even on Ctrl+C / SIGTERM.
         tmp.unlink(missing_ok=True)
