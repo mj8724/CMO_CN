@@ -4648,18 +4648,32 @@ namespace CMOLocalizer
             // —— 数据库里的数量写在后缀（有时后面还有逗号续接的内容），
             // 而下面的 QTY 规则只认前缀（`6 x Gun`）。不处理后缀就会让 `x`
             // 当成生词把整条名字拖回英文（实测近 200 条）。
+            // `105mm/37 L118 Towed Light Gun x 6`、`10 MIRV x 550kT Nuclear`，
+            // 以及「数量之后还有内容」的形态：`100mm KS-19 x 4, Fire Can FCR`、
+            // `3 MIRV x W58 200kT Nuclear] RV`（尾部续接再跟一个名字片段）。
+            // 这里不再要求右侧是纯数字——`x 550kT`、`x W58`、`x BLU-92/B` 都是
+            // 「<数量/代号> x <代号>」的弹头计数写法。tail 允许任意非空续接。
+            // 若不认这种形态，`x` 会被当成生词把整条弹头描述拖回英文（实测 78 条）。
             Match qtyTail = Regex.Match(s,
-                @"^(?<rest>.+?)\s+x\s*(?<n>\d+)(?<tail>\s*[,;].*)?$", RegexOptions.IgnoreCase);
+                @"^(?<rest>.+?)\s+x\s+(?<n>[A-Za-z0-9][A-Za-z0-9\-/.\[\]]*)(?<tail>\s*[\s,;].*)?$",
+                RegexOptions.IgnoreCase);
             if (qtyTail.Success)
             {
                 string restZh = TranslateComposedSpec(qtyTail.Groups["rest"].Value);
+                string rightZh = TranslateComposedSpec(qtyTail.Groups["n"].Value);
                 string tailZh = null;
-                string tail = qtyTail.Groups["tail"].Value;
+                string tail = qtyTail.Groups["tail"].Value.Trim();
                 if (tail.Length > 0)
-                    tailZh = TranslateComposedSpec(tail.Substring(1));
-                if (restZh != null && (tailZh != null || tail.Length == 0))
                 {
-                    string joined = restZh + " × " + qtyTail.Groups["n"].Value;
+                    string tailBody = tail;
+                    if (tailBody.Length > 0 && (tailBody[0] == ',' || tailBody[0] == ';'))
+                        tailBody = tailBody.Substring(1).Trim();
+                    if (tailBody.Length > 0)
+                        tailZh = TranslateComposedSpec(tailBody);
+                }
+                if (restZh != null && rightZh != null && (tailZh != null || tail.Length == 0))
+                {
+                    string joined = restZh + " × " + rightZh;
                     return tailZh != null ? joined + "，" + tailZh : joined;
                 }
             }
