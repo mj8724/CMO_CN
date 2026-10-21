@@ -128,11 +128,12 @@ def check_quality(entries: dict[str, str], label: str, pool_vals: set[str]) -> N
         # 形态的虚词才说明这句没翻干净。
         # `Be` 是意大利奥托·梅莱拉舰炮的型号前缀（234mm/50 Be、76mm/62 Be），
         # 不是英语虚词 be；`AT`/`IS`/`CVW` 等全大写是代号，同样不算。
+        # 必须**整词小写**才算漏译：`Rotax 915 iS`、`eSeries` 这类混合大小写
+        # 是发动机/型号后缀（实测 `iS` 被当成 is 而误报），不是英语虚词。
+        FUNCTION_WORDS = {"the", "of", "and", "for", "with", "from",
+                          "to", "in", "on", "at", "by", "is", "are", "will"}
         residual = [w for w in re.findall(r"[A-Za-z]{2,}", scanned)
-                    if w.isupper() is False and w.lower() in {
-                        "the", "of", "and", "for", "with", "from",
-                        "to", "in", "on", "at", "by", "is", "are",
-                        "will"} and w.lower() != "be"]
+                    if w == w.lower() and w in FUNCTION_WORDS]
         if residual:
             fail(f"{label}[{src!r}]={dst!r} keeps English function word {residual}")
         if sorted(PLACEHOLDER.findall(src)) != sorted(PLACEHOLDER.findall(dst)):
