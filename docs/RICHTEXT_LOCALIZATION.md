@@ -94,3 +94,27 @@ python scripts/audit_richtext.py --resources build/all-resource-report.json
 字符串池正文仍单独标为 `string-pool-snapshot`。范围内缺失、原文漂移、
 未解析或出现新的 UI 帮助仍使审计失败。空过滤器代表全部资源，未指定时
 沿用 Hotkeys。审计器反例测试现为 17 项（已验证新增用例先红后绿）。
+
+## 上游同步与复审（2026-10-21）
+
+本次合并的上游 master 为 `aa795c45d4fb7295f180790e7c2a037d6bfdba60`。
+生成词典冲突以最新上游产物为起点，再从合并后的源文件运行 `build_dict.py`，
+未使用旧版整份词典覆盖。上游全部 62,753 个 exact 键和 8,756 个 offsets 键
+均保留，数据库源文件及合并/质量检查脚本与该上游版本一致。仅 6 个 exact
+与 3 个 offsets 的已有值采用已审阅帮助源的最终裁定；246 条帮助源译文
+全部匹配。最终词典 exact 为 62,939，连续两次构建字节一致。
+
+复审结果：审计器 17 项、独立反例矩阵 18 项、相关 UI 的 21 个模式均通过。
+真实提取数据中的 DebugTool 部分报告可通过审计，删除所选正文后正确失败；
+范围外的已审阅快照不会掩盖范围内缺失。完整资源报告仍可通过。
+
+静态依赖使用官方 v4.2.2 绿色包中的 28 张中文按钮 PNG（覆盖 R5 所需 13 张）
+及官方 `CMO_Chinese_Setup_v4.2.2.exe`。安装包仅供 R18 读取版本信息，未执行。
+文件经发布摘要和逐文件哈希核对，分别存放于忽略的 `assets/symbols_menu/`
+与 `build/`；干净检出仍需补齐这些依赖并编译 `CMOSharedTest.exe`。
+共享状态单测需要访问独立的 `HKCU\Software\CMOChinese__selftest` 测试键，
+测试后清理，不使用真实设置键。
+
+补齐上述真实依赖后，完整 `verify_regressions.py --static` 为 27/27 通过，
+其中 R18 的共享状态自测为 33 项 PASS。路由、发布质量与术语检查均通过。
+本次复审未 push、打 tag、修改版本、发布或重新部署游戏。

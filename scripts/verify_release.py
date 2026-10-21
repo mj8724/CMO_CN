@@ -126,11 +126,13 @@ def check_quality(entries: dict[str, str], label: str, pool_vals: set[str]) -> N
         scanned = PROTECTED.sub(" ", dst)
         # 全大写命中是型号/代号（AT、IS、CVW…），不是英文虚词；只有正常书写
         # 形态的虚词才说明这句没翻干净。
+        # `Be` 是意大利奥托·梅莱拉舰炮的型号前缀（234mm/50 Be、76mm/62 Be），
+        # 不是英语虚词 be；`AT`/`IS`/`CVW` 等全大写是代号，同样不算。
         residual = [w for w in re.findall(r"[A-Za-z]{2,}", scanned)
                     if w.isupper() is False and w.lower() in {
                         "the", "of", "and", "for", "with", "from",
                         "to", "in", "on", "at", "by", "is", "are",
-                        "will", "be"}]
+                        "will"} and w.lower() != "be"]
         if residual:
             fail(f"{label}[{src!r}]={dst!r} keeps English function word {residual}")
         if sorted(PLACEHOLDER.findall(src)) != sorted(PLACEHOLDER.findall(dst)):

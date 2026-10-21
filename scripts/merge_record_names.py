@@ -35,10 +35,12 @@ LATIN_WORD = re.compile(r"(?<![A-Za-z])([A-Za-z]{4,})(?![A-Za-z])")
 STRUCTURAL = re.compile(r"\\n|\{%.*?%\}|\{\d+\}|"
                         r"\b(?:UPDATE\s+\w+\s+SET|DELETE\s+FROM|INSERT\s+INTO|SELECT\s+.+?\s+FROM)\b|"
                         r"\.(?:dll|exe|json|html|csv)\b|[A-Za-z]:\\")
-# 「中文/中文」在正文里是合法写法（`定时/触发` 引信、`对海/对陆` 雷达），
-# 但在装备名里长短语并列会读起来像两个名字。只拦「两边各 >= 3 个汉字」的并列，
-# `定时/触发`（各 2 字）这类术语照常放行。
-CHOICE = re.compile(r"[\u4e00-\u9fff]{3,}\s*/\s*[\u4e00-\u9fff]{3,}")
+# 「中文/中文」在数据库名称里是**合法且常见**的写法：
+#   定时/触发 引信、对海/对陆 雷达、博斯威克/塔科马 双厂并列、
+#   维克斯/罗尔斯·罗伊斯 联合承制、火箭助推/主发动机 双级动力。
+# 这些都不是歧义，强行改写反而失真。只拦「两边各 >= 8 汉字」的超长并列
+# （读起来像把两句话塞进一个名字）。
+CHOICE = re.compile(r"[一-鿿]{8,}\s*/\s*[一-鿿]{8,}")
 
 # 允许保留的英文片段：型号/编号（含数字）、全大写缩写、常见单位
 UNIT_OK = {"mm", "km", "kg", "nm", "kt", "kts", "lb", "lbs", "ft",
@@ -101,6 +103,7 @@ def main() -> int:
     ap.add_argument("--merge", required=True)
     ap.add_argument("--target", default="db_record_names.json",
                     help="目标源文件（默认 db_record_names.json）")
+    ap.add_argument("--allow-new", action="store_true", help="允许新增条目（默认防呆拦截）")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
@@ -138,9 +141,9 @@ def main() -> int:
     # 防呆：如果绝大多数待写键原本不在目标文件里，几乎一定是 --target 选错了
     # （本轮真实踩过：舰名批被写进了 db_record_names.json，覆盖掉 5,608 条）。
     unknown = [k for k in accepted if k not in data]
-    if accepted and len(unknown) > len(accepted) * 0.5:
+    if not args.allow_new and accepted and len(unknown) > len(accepted) * 0.5:
         print(f"!! 中止：{len(unknown)}/{len(accepted)} 个键不在 {args.target} 中，"
-              f"目标文件可能选错了")
+              f"目标文件可能选错了（若确实是在新增条目，请传 --allow-new）")
         return 2
 
     merged = dict(data)
