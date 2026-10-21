@@ -20,6 +20,7 @@ deploy_file() {
 
 deploy_file "$ROOT/build/CMOLocalizer.dll" "$GAME/CMOLocalizer.dll"
 deploy_file "$ROOT/dict/CMOLocalizer.json" "$GAME/CMOLocalizer.json"
+deploy_file "$ROOT/assets/placenames/ChineseMapTiles.dat" "$GAME/ChineseMapTiles.dat"
 cp "$ROOT/assets/db_templates/"*.html "$GAME/DB/Templates/"
 cp "$ROOT/assets/placenames/Synoptic.wwp" "$GAME/WW/PlacenameSets/Synoptic/0000_0000.wwp"
 cp "$ROOT/assets/placenames/Cities.wwp" "$GAME/WW/PlacenameSets/Cities/0000_0000.wwp"
@@ -36,13 +37,14 @@ print(f"deployed: offsets={len(d['offsets'])} exact={len(d['exact'])} "
 # （R0 门禁会红，但那时已经白跑一整套回归）。
 stale = []
 for src, dst in ((root / "build/CMOLocalizer.dll", game / "CMOLocalizer.dll"),
-                 (root / "dict/CMOLocalizer.json", game / "CMOLocalizer.json")):
+                 (root / "dict/CMOLocalizer.json", game / "CMOLocalizer.json"),
+                 (root / "assets/placenames/ChineseMapTiles.dat", game / "ChineseMapTiles.dat")):
     if src.read_bytes() != dst.read_bytes():
         stale.append(dst.name)
 if stale:
     print("deploy FAIL: 与仓库产物不一致: " + ", ".join(stale))
     raise SystemExit(1)
-print("deployed: dll/json 与仓库产物逐字节一致")
+print("deployed: dll/json/map tiles 与仓库产物逐字节一致")
 PYEOF
 
 if [ "${1:-}" = "--verify" ]; then

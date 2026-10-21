@@ -321,6 +321,7 @@ namespace CMOLocalizer
         }
 
         private static readonly List<CMOShared.MapLabelPlace> mapPlaces = new List<CMOShared.MapLabelPlace>();
+        private static CMOShared.MapLabelTilePack mapTilePack;
         private sealed class TileClient
         {
             public readonly TcpClient Client;
@@ -345,6 +346,20 @@ namespace CMOLocalizer
         {
             try
             {
+                string tilePackPath = Path.Combine(baseDir, "ChineseMapTiles.dat");
+                mapTilePack = null;
+                if (File.Exists(tilePackPath))
+                {
+                    try
+                    {
+                        mapTilePack = CMOShared.MapLabelTilePack.Load(tilePackPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new InvalidDataException("ChineseMapTiles.dat initialization failed: " + ex.Message, ex);
+                    }
+                }
+                mapPlaces.Clear();
                 string synWwp = Path.Combine(baseDir, @"WW\PlacenameSets\Synoptic\0000_0000.wwp");
                 string citWwp = Path.Combine(baseDir, @"WW\PlacenameSets\Cities\0000_0000.wwp");
                 Action<string, int> loadWwp = (path, lvl) =>
@@ -368,8 +383,23 @@ namespace CMOLocalizer
                     catch { }
                 };
 
-                loadWwp(synWwp, 0);
-                loadWwp(citWwp, 1);
+                string catalogPath = Path.Combine(baseDir, "ChineseMapLabels.dat");
+                if (File.Exists(catalogPath))
+                    mapPlaces.AddRange(CMOShared.MapLabelCatalog.Load(catalogPath).Places);
+                else
+                {
+                    loadWwp(synWwp, 0);
+                    loadWwp(citWwp, 1);
+                }
+
+                if (mapTilePack != null)
+                {
+                    try { mapTilePack.ApplyToCacheWithLegacy(baseDir, mapPlaces); }
+                    catch (Exception ex)
+                    {
+                        throw new InvalidDataException("ChineseMapTiles.dat initialization failed: " + ex.Message, ex);
+                    }
+                }
 
                 tileListener = new TcpListener(IPAddress.Loopback, 0);
                 tileListener.Start();
@@ -491,12 +521,8 @@ namespace CMOLocalizer
 
         private static byte[] RenderChineseTileBytes(int z, int x, int y, out int candidates, out int rendered)
         {
-            using (Bitmap bitmap = CMOShared.MapLabelRenderer.RenderTile(mapPlaces, z, x, y, out candidates, out rendered))
-            using (var stream = new MemoryStream())
-            {
-                bitmap.Save(stream, ImageFormat.Png);
-                return stream.ToArray();
-            }
+            return CMOShared.MapLabelRenderer.RenderTileBytes(mapPlaces, mapTilePack,
+                z, x, y, out candidates, out rendered);
         }
 
         private static void HookWorker()

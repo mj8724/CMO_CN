@@ -55,6 +55,7 @@ mkdir -p "$PACK/DB/Templates"
 cp "$OUT/CMOLocalizer.dll" "$PACK/"
 cp "$ROOT/dict/CMOLocalizer.json" "$PACK/"
 cp "$OUT/CMO_Updater.exe" "$PACK/"
+cp "$ROOT/assets/placenames/ChineseMapTiles.dat" "$PACK/"
 
 # 地图地名集：地图矢量地名层与 Stamen 标签瓦片重绘的数据源
 mkdir -p "$PACK/WW/PlacenameSets/Synoptic" "$PACK/WW/PlacenameSets/Cities"
@@ -134,6 +135,7 @@ import pathlib, sys
 pack = pathlib.Path(sys.argv[1])
 required = [
     "CMOLocalizer.dll", "CMOLocalizer.json", "CMO_Updater.exe",
+    "ChineseMapTiles.dat",
     "Command.exe.config.patch", "汉化说明.md",
     "DB/Templates/Ship.html",
     "WW/PlacenameSets/Synoptic/0000_0000.wwp",

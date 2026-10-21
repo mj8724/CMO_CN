@@ -59,6 +59,7 @@ RES+=(-resource:"$(W "$ROOT/dict/CMOLocalizer.json")",CMOLocalizer.json)
 RES+=(-resource:"$(W "$OUT/CMO_Updater.exe")",UPDATER_EXE)
 RES+=(-resource:"$(W "$ROOT/assets/placenames/Synoptic.wwp")",PLACE_SYNOPTIC)
 RES+=(-resource:"$(W "$ROOT/assets/placenames/Cities.wwp")",PLACE_CITIES)
+RES+=(-resource:"$(W "$ROOT/assets/placenames/ChineseMapTiles.dat")",MAP_TILES)
 RES+=(-resource:"$(W "$ROOT/assets/launcher/stringsChinese.resx")",LAUNCHER_ZH)
 if [ -f "$SYM_ZIP" ]; then
   RES+=(-resource:"$(W "$SYM_ZIP")",SYMBOLS_MENU_ZIP)

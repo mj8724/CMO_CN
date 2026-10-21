@@ -257,6 +257,45 @@ Check ($counted -is [int] -and $counted -eq 0 -and [IO.File]::Exists($copyFailur
     [Convert]::ToBase64String([IO.File]::ReadAllBytes($copyFailure.Backup)) -eq [Convert]::ToBase64String($pngBytes)) 'later render failure preserves the already complete original backup'
 Check ([IO.File]::ReadAllText($copyFailure.Terrain) -eq 'terrain sentinel') 'failure and retry never change terrain'
 
+# A verified pack may add paths absent from the previous cache, including an entirely missing cache.
+function Add-TilePack($Fixture) {
+    $tileBytes = [IO.File]::ReadAllBytes($normal.Tile)
+    $payload = [IO.MemoryStream]::new()
+    $writer = [IO.BinaryWriter]::new($payload)
+    $writer.Write([int]1); $writer.Write([int]3); $writer.Write([int]4); $writer.Write([int]4)
+    $writer.Write([int]2); $writer.Write([int]$tileBytes.Length); $writer.Write($tileBytes); $writer.Flush()
+    $sha = [Security.Cryptography.SHA256]::Create()
+    try { $fingerprint = [BitConverter]::ToString($sha.ComputeHash($payload.ToArray())).Replace('-', '').ToLowerInvariant() }
+    finally { $sha.Dispose() }
+    $packWriter = [IO.BinaryWriter]::new([IO.File]::Create((Join-Path $Fixture.Game 'ChineseMapTiles.dat')))
+    try { $packWriter.Write([Text.Encoding]::ASCII.GetBytes('CMOTIL01')); $packWriter.Write($fingerprint); $packWriter.Write($payload.ToArray()) }
+    finally { $packWriter.Dispose(); $writer.Dispose(); $payload.Dispose() }
+}
+$packMissing = Fixture 'pack-missing-cache' -NoCache
+Add-TilePack $packMissing
+$result = Refresh $packMissing
+Check ($result.Code -eq 0 -and $result.Text.Contains('refreshed 1 PNG') -and
+    [IO.File]::Exists((Join-Path $packMissing.Cache '3\4\4.png'))) 'pack creates previously missing cache coverage'
+$packExtra = Fixture 'pack-extra-tile'
+Add-TilePack $packExtra
+[IO.Directory]::CreateDirectory((Join-Path $packExtra.Cache 'empty-original-directory')) | Out-Null
+$result = Refresh $packExtra
+Check ($result.Code -eq 0 -and $result.Text.Contains('refreshed 2 PNG')) 'pack adds new tile and preserves counted legacy redraw'
+$result = Refresh $packExtra
+Check ($result.Code -eq 0 -and $result.Text.Contains('refreshed 1 PNG')) 'repeat pack refresh counts only legacy redraw'
+Check ([Convert]::ToBase64String([IO.File]::ReadAllBytes($packExtra.Backup)) -eq [Convert]::ToBase64String($pngBytes)) 'pack refresh retains pre-pack original backup'
+Check ([IO.Directory]::Exists((Join-Path ($packExtra.Cache + '.orig') 'empty-original-directory'))) 'pack backup includes empty original directories'
+Check ([IO.File]::ReadAllText($packExtra.Terrain) -eq 'terrain sentinel') 'pack refresh never changes terrain'
+$packOnly = Fixture 'pack-only' -NoCache
+Add-TilePack $packOnly
+foreach ($set in @('Synoptic', 'Cities')) { [IO.File]::Delete((Join-Path $packOnly.Game "WW\PlacenameSets\$set\0000_0000.wwp")) }
+$result = Refresh $packOnly
+Check ($result.Code -eq 0 -and $result.Text.Contains('refreshed 1 PNG')) 'pack-only refresh works without legacy WWP'
+$badPack = Fixture 'corrupt-pack' -NoCache
+[IO.File]::WriteAllBytes((Join-Path $badPack.Game 'ChineseMapTiles.dat'), [byte[]](1,2,3))
+$result = Refresh $badPack
+Check ($result.Code -ne 0 -and -not [IO.Directory]::Exists($badPack.Cache + '.orig')) 'corrupt pack fails before publishing a backup'
+
 $summary = "Placename tile checks=$script:checks failures=$script:failures"
 $script:log.Add($summary)
 [IO.File]::WriteAllText((Join-Path $output 'refresh_tiles.log'), ($script:log -join "`n") + "`n", [Text.UTF8Encoding]::new($false))

@@ -13,7 +13,11 @@ if (-not [IO.Path]::IsPathRooted($GameDir)) { throw 'GameDir must be an absolute
 $game = [IO.Path]::GetFullPath($GameDir)
 if (-not [IO.Directory]::Exists($game)) { throw 'GameDir does not exist' }
 $cache = Join-Path $game 'WW\Cache\Stamen Terrain - Labels'
-if (-not [IO.Directory]::Exists($cache)) {
+$packPath = Join-Path $game 'ChineseMapTiles.dat'
+$catalogPath = Join-Path $game 'ChineseMapLabels.dat'
+$hasPack = [IO.File]::Exists($packPath)
+$hasCatalog = [IO.File]::Exists($catalogPath)
+if (-not [IO.Directory]::Exists($cache) -and -not $hasPack) {
     Write-Output 'label cache: absent, nothing to refresh'
     return
 }
@@ -32,20 +36,18 @@ foreach ($relative in @('WW', 'WW\Cache', 'WW\Cache\Stamen Terrain - Labels',
     Assert-PlainPath (Join-Path $game $relative)
 }
 $pngs = New-Object 'Collections.Generic.List[string]'
-$files = New-Object 'Collections.Generic.List[string]'
 $pending = New-Object 'Collections.Generic.Stack[string]'
-$pending.Push($cache)
+if ([IO.Directory]::Exists($cache)) { $pending.Push($cache) }
 while ($pending.Count) {
     foreach ($item in Get-ChildItem -LiteralPath $pending.Pop() -Force) {
         Assert-PlainPath $item.FullName
         if ($item.PSIsContainer) { $pending.Push($item.FullName) }
         else {
-            $files.Add($item.FullName)
             if ($item.Extension -ieq '.png') { $pngs.Add($item.FullName) }
         }
     }
 }
-if (-not $pngs.Count) {
+if (-not $pngs.Count -and -not $hasPack) {
     Write-Output 'label cache: empty, nothing to refresh'
     return
 }
@@ -66,11 +68,18 @@ foreach ($png in $pngs) {
     $probe.Dispose()
 }
 
+$before = @{}
+if ($hasPack) {
+    foreach ($png in $pngs) { $before[$png] = [Convert]::ToBase64String([IO.File]::ReadAllBytes($png)) }
+}
 $sources = New-Object 'Collections.Generic.List[IDisposable]'
+$hasPlaces = $hasCatalog
 try {
     foreach ($set in @('Synoptic', 'Cities')) {
         $path = Join-Path $game "WW\PlacenameSets\$set\0000_0000.wwp"
         Assert-PlainPath $path
+        if ($hasCatalog -or ($hasPack -and -not [IO.File]::Exists($path))) { continue }
+        $hasPlaces = $true
         # Keep a read lock through rendering so validated sources cannot be replaced or truncated.
         $stream = [IO.File]::Open($path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
         $sources.Add($stream)
@@ -93,6 +102,12 @@ try {
         }
         finally { $reader.Dispose() }
     }
+    foreach ($optional in @($packPath, $catalogPath)) {
+        Assert-PlainPath $optional
+        if ([IO.File]::Exists($optional)) {
+            $sources.Add([IO.File]::Open($optional, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read))
+        }
+    }
     if (-not $Compiler) {
         $Compiler = Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
         if (-not [IO.File]::Exists($Compiler)) {
@@ -109,40 +124,41 @@ try {
         (Join-Path $repoRoot 'src\shared\CMOShared.cs') (Join-Path $repoRoot 'src\shared\MapLabelRenderer.cs') `
         (Join-Path $repoRoot 'src\installer\CMO_Chinese_Setup.cs')
     if ($LASTEXITCODE) { throw 'Placename tile renderer compilation failed' }
-    $core = [Reflection.Assembly]::LoadFrom($library).GetType('CMOLocalizerInstaller.InstallerCore', $true)
+    $assembly = [Reflection.Assembly]::LoadFrom($library)
+    $pack = $null
+    if ($hasPack) {
+        $packType = $assembly.GetType('CMOShared.MapLabelTilePack', $true)
+        $pack = $packType.GetMethod('Load').Invoke($null, [object[]]@([string]$packPath))
+        $lookup = $packType.GetMethod('TryGetTile')
+    }
+    if ($hasCatalog) {
+        $null = $assembly.GetType('CMOShared.MapLabelCatalog', $true).GetMethod('Load').Invoke($null, [object[]]@([string]$catalogPath))
+    }
+    $core = $assembly.GetType('CMOLocalizerInstaller.InstallerCore', $true)
     $method = $core.GetMethod('LocalizeMapLabelTiles', [Reflection.BindingFlags]'Static,NonPublic')
     if (-not $method -or $method.ReturnType -ne [int]) { throw 'Missing counted label renderer' }
-    $backup = $cache + '.orig'
-    if (-not [IO.Directory]::Exists($backup)) {
-        # Only publish a complete backup. Failed copies must never become trusted .orig directories.
-        $staging = $backup + '.tmp-' + [Guid]::NewGuid().ToString('N')
-        [IO.Directory]::CreateDirectory($staging) | Out-Null
-        try {
-            foreach ($file in $files) {
-                $relative = $file.Substring($cache.Length).TrimStart('\', '/')
-                $destination = Join-Path $staging $relative
-                [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($destination)) | Out-Null
-                [IO.File]::Copy($file, $destination, $false)
+    # Reuse the same staging/atomic-publication backup as runtime and installer, including empty directories.
+    $backupMethod = $assembly.GetType('CMOShared.MapLabelTilePack', $true).GetMethod(
+        'EnsureCacheBackup', [Reflection.BindingFlags]'Static,NonPublic')
+    $null = $backupMethod.Invoke($null, [object[]]@([string]$game))
+    $saved = $method.Invoke($null, @($game))
+    $expected = $pngs.Count
+    if ($hasPack) {
+        $expected = 0
+        foreach ($png in [IO.Directory]::GetFiles($cache, '*.png', [IO.SearchOption]::AllDirectories)) {
+            Assert-PlainPath $png
+            $relative = $png.Substring($cache.Length).TrimStart('\', '/')
+            if ($relative -notmatch '^([0-9]+)[\\/]([0-9]+)[\\/]([0-9]+)\.png$') { throw "Invalid output tile: $relative" }
+            $arguments = [object[]]@([int]$Matches[1], [int]$Matches[2], [int]$Matches[3], $null, 0)
+            if ($lookup.Invoke($pack, $arguments)) {
+                $bytes = [Convert]::ToBase64String([IO.File]::ReadAllBytes($png))
+                if ($bytes -ne [Convert]::ToBase64String($arguments[3])) { throw "Pack tile bytes differ: $relative" }
+                if (-not $before.ContainsKey($png) -or $before[$png] -ne $bytes) { $expected++ }
             }
-            [IO.Directory]::Move($staging, $backup)
-        }
-        finally {
-            if ([IO.Directory]::Exists($staging)) {
-                $cleanup = [IO.Path]::GetFullPath($staging)
-                if ([IO.Path]::GetDirectoryName($cleanup) -ne [IO.Path]::GetDirectoryName($cache) -or
-                    [IO.Path]::GetFileName($cleanup) -notmatch '^Stamen Terrain - Labels\.orig\.tmp-[0-9a-f]{32}$') {
-                    throw 'Invalid backup staging cleanup path'
-                }
-                Assert-PlainPath $cleanup
-                foreach ($file in [IO.Directory]::GetFiles($cleanup, '*', [IO.SearchOption]::AllDirectories)) {
-                    [IO.File]::SetAttributes($file, [IO.FileAttributes]::Normal)
-                }
-                [IO.Directory]::Delete($cleanup, $true)
-            }
+            elseif ($hasPlaces -and $before.ContainsKey($png)) { $expected++ }
         }
     }
-    $saved = $method.Invoke($null, @($game))
-    if ($saved -ne $pngs.Count) { throw "Label render incomplete: saved $saved of $($pngs.Count) PNGs" }
+    if ($saved -ne $expected) { throw "Label render incomplete: saved $saved of $expected PNGs" }
     foreach ($png in $pngs) {
         if (-not [IO.File]::Exists($png)) { throw "Rendered PNG is missing: $png" }
     }
