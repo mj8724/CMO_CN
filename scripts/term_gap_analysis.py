@@ -36,7 +36,7 @@ BUILD = ROOT / "build"
 
 CJK = re.compile(r"[\u4e00-\u9fff]")
 PAREN = re.compile(r"^(?P<name>[^()\[\]]+?)\s*(?P<open>[\(\[])(?P<spec>[^()\[\]]*)(?P<close>[\)\]])$")
-NUM_UNIT = re.compile(r"^(?P<num>\d[\d.,]*\s*k?)\s*(?P<unit>[A-Za-z]+)$")
+NUM_UNIT = re.compile(r"^(?P<num>\d[\d.,]*\s*(?:-\s*\d[\d.,]*)?\s*k?)\s*(?P<unit>[A-Za-z]+)$")
 QTY_PY = re.compile(r"^(?P<n>\d+)\s*x\s*(?P<rest>.+)$", re.I)
 QTY_TAIL = re.compile(r"^(?P<rest>.+?)\s+x\s*(?P<n>\d+)(?P<tail>\s*[,;].*)?$", re.I)
 UNITS_SPEC = re.compile(r"^(?P<n>\d[\d,]*)\s*units?$", re.I)
@@ -63,6 +63,32 @@ def is_designation(tok: str) -> bool:
 
 def norm(s: str) -> str:
     return re.sub(r"\s+", " ", (s or "").strip())
+
+
+def parse_balanced_paren(s: str) -> tuple[str, str, str, str, str] | None:
+    first_p = s.find("(")
+    first_sq = s.find("[")
+    if first_p < 0 and first_sq < 0:
+        return None
+    open_idx = min(first_p, first_sq) if first_p >= 0 and first_sq >= 0 else (first_p if first_p >= 0 else first_sq)
+    o_c = s[open_idx]
+    c_c = ")" if o_c == "(" else "]"
+    name = s[:open_idx].strip()
+    if not name:
+        return None
+    depth = 1
+    close_idx = -1
+    for i in range(open_idx + 1, len(s)):
+        if s[i] == o_c:
+            depth += 1
+        elif s[i] == c_c:
+            depth -= 1
+            if depth == 0:
+                close_idx = i
+                break
+    if close_idx < 0:
+        return None
+    return name, o_c, s[open_idx + 1:close_idx].strip(), c_c, s[close_idx + 1:].strip()
 
 
 class Composer:
@@ -179,25 +205,54 @@ class Composer:
         m = NUM_UNIT.match(s)
         if m and m.group("unit").lower() in UNITS:
             return m.group("num").strip() + " " + UNITS[m.group("unit").lower()]
+
+        # 嵌套二级括号（只有能解析出平衡括号才递归，避免死循环）
+        if ("(" in s or "[" in s) and parse_balanced_paren(s):
+            inner = self.compose(s, blockers)
+            if inner:
+                return inner
+
+        # 规格内逗号列表
+        if "," in s:
+            parts = [cl.strip() for cl in s.split(",") if cl.strip()]
+            part_zh = [self.spec(cl, blockers) for cl in parts]
+            if all(part_zh):
+                return "，".join(part_zh)
+
         return self.name(s, blockers)
 
     def compose(self, raw: str, blockers: list[str]) -> str | None:
         s = norm(raw)
         if not s or CJK.search(s):
             return None
-        m = PAREN.match(s)
-        if m:
-            if (m.group("open") == "[") != (m.group("close") == "]"):
-                return None
-            n = self.name(m.group("name"), blockers)
-            sp = self.spec(m.group("spec"), blockers)
-            if n and sp:
-                return n + ("[" if m.group("open") == "[" else "（") + sp + (
-                    "]" if m.group("open") == "[" else "）")
+        bp = parse_balanced_paren(s)
+        if bp:
+            name, o_c, spec, c_c, tail = bp
+            n = self.name(name, blockers)
+            sp = self.spec(spec, blockers)
+            t_zh = self.name(tail, blockers) if tail else ""
+            if n and sp and (t_zh or not tail):
+                b_c = "[" if o_c == "[" else "（"
+                e_c = "]" if c_c == "]" else "）"
+                return f"{n}{b_c}{sp}{e_c}" + (f" {t_zh}" if t_zh else "")
             return None
         m = NUM_UNIT.match(s)
         if m and m.group("unit").lower() in UNITS:
             return m.group("num").strip() + " " + UNITS[m.group("unit").lower()]
+
+        # 嵌套二级括号（只有能解析出平衡括号才递归，避免死循环）
+        if ("(" in s or "[" in s) and parse_balanced_paren(s):
+            inner = self.compose(s, blockers)
+            if inner:
+                return inner
+
+        # 规格内逗号列表
+        if "," in s:
+            parts = [cl.strip() for cl in s.split(",") if cl.strip()]
+            part_zh = [self.spec(cl, blockers) for cl in parts]
+            if all(part_zh):
+                return "，".join(part_zh)
+
         return self.name(s, blockers)
 
 

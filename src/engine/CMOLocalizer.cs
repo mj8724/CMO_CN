@@ -4435,6 +4435,56 @@ namespace CMOLocalizer
         /// 结构规则 + 术语表组合翻译。只处理「整串不含中文」的显示串，
         /// 且必须**全部词**都在术语表里才成句（有任何生词就放弃，绝不半截翻译）。
         /// </summary>
+        private struct BalancedParen
+        {
+            public string Name;
+            public char OpenChar;
+            public string Spec;
+            public char CloseChar;
+            public string Tail;
+        }
+
+        private static bool TryParseBalancedParen(string s, out BalancedParen result)
+        {
+            result = default(BalancedParen);
+            if (string.IsNullOrEmpty(s)) return false;
+            int firstParen = s.IndexOf('(');
+            int firstSquare = s.IndexOf('[');
+            if (firstParen < 0 && firstSquare < 0) return false;
+            int openIdx;
+            if (firstParen >= 0 && firstSquare >= 0)
+                openIdx = Math.Min(firstParen, firstSquare);
+            else if (firstParen >= 0)
+                openIdx = firstParen;
+            else
+                openIdx = firstSquare;
+
+            char openChar = s[openIdx];
+            char closeChar = openChar == '(' ? ')' : ']';
+            string name = s.Substring(0, openIdx).Trim();
+            if (name.Length == 0) return false;
+
+            int depth = 1;
+            int closeIdx = -1;
+            for (int i = openIdx + 1; i < s.Length; i++)
+            {
+                if (s[i] == openChar) depth++;
+                else if (s[i] == closeChar)
+                {
+                    depth--;
+                    if (depth == 0) { closeIdx = i; break; }
+                }
+            }
+            if (closeIdx < 0) return false;
+
+            result.Name = name;
+            result.OpenChar = openChar;
+            result.Spec = s.Substring(openIdx + 1, closeIdx - openIdx - 1).Trim();
+            result.CloseChar = closeChar;
+            result.Tail = s.Substring(closeIdx + 1).Trim();
+            return true;
+        }
+
         private static bool TryComposeTranslate(string raw, out string result)
         {
             result = null;
@@ -4442,27 +4492,25 @@ namespace CMOLocalizer
             string s = Regex.Replace(raw.Trim(), @"\s+", " ");
             if (s.Length == 0 || ContainsChinese(s)) return false;
 
-            // 规则 1：`<名称> (<规格>)` / `<名称> [<规格>]`，及带中置括号（`<名称> [<规格>] <后置名>`）。
-            // 实测数据库里方括号形态比圆括号还多（10,362 条 vs 3,252 条）；且大量鱼雷/子母弹/
-            // 火炮带有中置规格（如 `Mk48 [650lb/295kg HE] Torpedo`、`CBU-52/B (217 x BLU-61/B) 1.2kg Frag`）。
-            Match paren = Regex.Match(s,
-                @"^(?<name>[^()\[\]]+?)\s*(?<open>[\(\[])(?<spec>[^()\[\]]*)(?<close>[\)\]])(?<tail>\s+.+)?$");
-            if (paren.Success)
+            // 规则 1：平衡括号 `<名称> (<规格>) [后置名]` 或 `<名称> [<规格>] [后置名]`。
+            // 采用平衡括号计数（而不是脆弱的正则 [^()\[\]]*），天然支持：
+            // ① 括号在中间（`CH-37C (HR2S-1) Mojave`、`F-4E Phantom II [Kurnass]`、`Mk48 [650lb/295kg HE] Torpedo`）；
+            // ② 规格内嵌二级括号（`SAM Section (SH-04 Galosh [ABM-1B] x 8)`、`Radar (Spoon Rest A [P-12])`）；
+            // ③ 方括号与圆括号对称配对。
+            BalancedParen bp;
+            if (TryParseBalancedParen(s, out bp))
             {
-                bool square = paren.Groups["open"].Value[0] == '[';
-                if (square != (paren.Groups["close"].Value[0] == ']')) return false;
-                string nameZh = TranslateComposedName(paren.Groups["name"].Value);
-                string specZh = TranslateComposedSpec(paren.Groups["spec"].Value);
-                string tail = paren.Groups["tail"].Value;
+                string nameZh = TranslateComposedName(bp.Name);
+                string specZh = TranslateComposedSpec(bp.Spec);
                 string tailZh = null;
-                if (tail.Length > 0)
+                if (bp.Tail.Length > 0)
                 {
-                    tailZh = TranslateComposedName(tail.Trim());
+                    tailZh = TranslateComposedName(bp.Tail);
                     if (tailZh == null) return false;
                 }
                 if (nameZh != null && specZh != null)
                 {
-                    string bracketed = (square ? "[" : "（") + specZh + (square ? "]" : "）");
+                    string bracketed = (bp.OpenChar == '[' ? "[" : "（") + specZh + (bp.CloseChar == ']' ? "]" : "）");
                     result = tailZh != null
                         ? nameZh + bracketed + " " + tailZh
                         : nameZh + bracketed;
@@ -4641,6 +4689,33 @@ namespace CMOLocalizer
             string numUnit = TranslateNumberWithUnit(s);
             if (numUnit != null) return numUnit;
 
+            // 内嵌二级括号的递归组合（`SA-4 Ganef [2K11 Krug]`、`Spoon Rest A [P-12]`）
+            if (s.IndexOf('(') >= 0 || s.IndexOf('[') >= 0)
+            {
+                string innerComposed;
+                if (TryComposeTranslate(s, out innerComposed))
+                    return innerComposed;
+            }
+
+            // 规格内的逗号列表（`Extra Large, 200-500m`、`Air Search, 3D, Long-Range`）
+            if (s.IndexOf(',') >= 0)
+            {
+                string[] clauses = s.Split(',');
+                StringBuilder sbList = new StringBuilder();
+                bool allClausesOk = true;
+                for (int ci = 0; ci < clauses.Length; ci++)
+                {
+                    string cl = clauses[ci].Trim();
+                    if (cl.Length == 0) continue;
+                    string clZh = TranslateComposedSpec(cl);
+                    if (clZh == null) { allClausesOk = false; break; }
+                    if (sbList.Length > 0) sbList.Append("，");
+                    sbList.Append(clZh);
+                }
+                if (allClausesOk && sbList.Length > 0)
+                    return sbList.ToString();
+            }
+
             return TranslateComposedName(s);
         }
 
@@ -4728,7 +4803,7 @@ namespace CMOLocalizer
 
         private static string TranslateNumberWithUnit(string text)
         {
-            Match m = Regex.Match((text ?? "").Trim(), @"^(?<num>\d[\d.,]*\s*k?)\s*(?<unit>[A-Za-z]+)$");
+            Match m = Regex.Match((text ?? "").Trim(), @"^(?<num>\d[\d.,]*\s*(?:-\s*\d[\d.,]*)?\s*k?)\s*(?<unit>[A-Za-z]+)$");
             if (!m.Success) return null;
             string unit;
             if (!composeUnits.TryGetValue(m.Groups["unit"].Value, out unit)) return null;
