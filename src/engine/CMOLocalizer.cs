@@ -4442,20 +4442,30 @@ namespace CMOLocalizer
             string s = Regex.Replace(raw.Trim(), @"\s+", " ");
             if (s.Length == 0 || ContainsChinese(s)) return false;
 
-            // 规则 1：`<名称> (<规格>)` / `<名称> [<规格>]` —— 设施/装备名最主流的两种形状。
-            // 实测数据库里方括号形态比圆括号还多（10,362 条 vs 3,252 条），此前只认圆括号，
-            // 于是 `R 21 Melbourne [Majestic]`、`Radar [AN/TPS-43]` 整条留在英文。
+            // 规则 1：`<名称> (<规格>)` / `<名称> [<规格>]`，及带中置括号（`<名称> [<规格>] <后置名>`）。
+            // 实测数据库里方括号形态比圆括号还多（10,362 条 vs 3,252 条）；且大量鱼雷/子母弹/
+            // 火炮带有中置规格（如 `Mk48 [650lb/295kg HE] Torpedo`、`CBU-52/B (217 x BLU-61/B) 1.2kg Frag`）。
             Match paren = Regex.Match(s,
-                @"^(?<name>[^()\[\]]+?)\s*(?<open>[\(\[])(?<spec>[^()\[\]]*)(?<close>[\)\]])$");
+                @"^(?<name>[^()\[\]]+?)\s*(?<open>[\(\[])(?<spec>[^()\[\]]*)(?<close>[\)\]])(?<tail>\s+.+)?$");
             if (paren.Success)
             {
                 bool square = paren.Groups["open"].Value[0] == '[';
                 if (square != (paren.Groups["close"].Value[0] == ']')) return false;
                 string nameZh = TranslateComposedName(paren.Groups["name"].Value);
                 string specZh = TranslateComposedSpec(paren.Groups["spec"].Value);
+                string tail = paren.Groups["tail"].Value;
+                string tailZh = null;
+                if (tail.Length > 0)
+                {
+                    tailZh = TranslateComposedName(tail.Trim());
+                    if (tailZh == null) return false;
+                }
                 if (nameZh != null && specZh != null)
                 {
-                    result = nameZh + (square ? "[" : "（") + specZh + (square ? "]" : "）");
+                    string bracketed = (square ? "[" : "（") + specZh + (square ? "]" : "）");
+                    result = tailZh != null
+                        ? nameZh + bracketed + " " + tailZh
+                        : nameZh + bracketed;
                     return true;
                 }
                 return false;
@@ -4531,15 +4541,23 @@ namespace CMOLocalizer
                         i++;
                         continue;
                     }
-                    string core, suffix;
-                    SplitTrailingPunct(token, out core, out suffix);
-                    // `ASW, Search Only`：标点挂在词上导致查不到，剥掉再查一次
+                    string prefix, core, suffix;
+                    SplitPunct(token, out prefix, out core, out suffix);
+                    // `ASW, Search Only`、`[P-12]`、`[FLIR]`：标点/括号挂在词上导致查不到，剥掉再查
                     string zh2;
-                    if (suffix.Length > 0 &&
+                    if ((prefix.Length > 0 || suffix.Length > 0) &&
                         (wordsMap.TryGetValue(core, out zh2) || exactMap.TryGetValue(core, out zh2)))
                     {
+                        sb.Append(prefix);
                         sb.Append(zh2);
                         sb.Append(suffix);
+                        i++;
+                        continue;
+                    }
+                    if (string.IsNullOrEmpty(core))
+                    {
+                        // 纯标点 token（如独立的 `]`、`)`）
+                        sb.Append(token);
                         i++;
                         continue;
                     }
@@ -4547,8 +4565,7 @@ namespace CMOLocalizer
                     // 型号 token 之间必须留空格：`MTU 16V TB81` 拼成 `MTU16V TB81`
                     // 会看不出是三个独立代号；中文词紧邻时则不需要空格。
                     if (sb.Length > 0 && !EndsWithCjk(sb)) sb.Append(' ');
-                    sb.Append(core);
-                    sb.Append(suffix);
+                    sb.Append(token);
                     i++;
                     continue;
                 }
@@ -4661,20 +4678,24 @@ namespace CMOLocalizer
             return true;
         }
 
-        /// <summary>剥掉 token 尾随标点（`ASW,` → `ASW` + `,`）；术语表里不会带标点。</summary>
-        private static void SplitTrailingPunct(string token, out string core, out string suffix)
+        private static bool IsPunctChar(char c)
         {
+            return c == ',' || c == ';' || c == ':' || c == '(' || c == ')' || c == '[' || c == ']' || c == '"' || c == '\'';
+        }
+
+        /// <summary>剥掉 token 前导/尾随标点（`[P-12]` → `[` + `P-12` + `]`、`ASW,` → `ASW` + `,`）；术语表里不会带标点。</summary>
+        private static void SplitPunct(string token, out string prefix, out string core, out string suffix)
+        {
+            prefix = "";
             core = token;
             suffix = "";
+            if (string.IsNullOrEmpty(token)) return;
+            int start = 0;
+            while (start < token.Length && IsPunctChar(token[start])) start++;
             int end = token.Length;
-            while (end > 0)
-            {
-                char c = token[end - 1];
-                if (c == ',' || c == ';' || c == ':') end--;
-                else break;
-            }
-            if (end <= 0 || end == token.Length) return;
-            core = token.Substring(0, end);
+            while (end > start && IsPunctChar(token[end - 1])) end--;
+            prefix = token.Substring(0, start);
+            core = token.Substring(start, end - start);
             suffix = token.Substring(end);
         }
 
