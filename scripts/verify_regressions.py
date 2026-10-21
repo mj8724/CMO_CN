@@ -1324,20 +1324,29 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
     if H.send("CLICK_MENU RealismSettingsToolStripMenuItem", timeout=20).get("status") == "ok":
         time.sleep(4.5)
         dump = H.send("WPF_DUMP", timeout=40)
-        views = [w for w in dump.get("windows", []) if "Realism" in (w.get("title") or "")]
+        # 窗口标题**已被汉化**为「想定特性与拟真度选项」，用英文 "Realism" 过滤
+        # 会一条都匹配不上（实测 wpf_rows=0，4 条正确译文被判「缺失」）。
+        # 中英文标题都认：翻译正常时标题是中文；万一回退英文也要能抓到。
+        views = [w for w in dump.get("windows", [])
+                 if any(k in (w.get("title") or "")
+                        for k in ("Realism", "想定特性", "拟真度"))]
         texts = {(n.get("text") or "").strip()
                  for w in views for n in (w.get("nodes") or []) if n.get("text")}
         rows = texts - {"确定", "取消"}
         wpf_rows = len(rows)
+        # 想定特性列表：不同想定包含的选项集合不同（基础想定实测仅 14 个，
+        # 「即时装载」「点对点」「真实指挥链」是高版本/DLC 想定专有选项）。
+        # 正确断言：
+        # ① 原文绝对不能以英文形式留在界面上；
+        # ② 出现的选项只要词典有译文，界面必须显示中文，不得残留英文。
         for en in ("Allow instant loading for landing planner", "Point To Point Unit Communication",
                    "Realistic Order Chain", "Variable burnout speed on boost-coast weapons"):
             zh = exact.get(en, "")
-            if not zh:
-                continue
-            if zh not in texts:
-                wpf_missing.append(f"想定特性:缺{zh}")
             if en in texts:
                 wpf_en_left.append(en)
+            # 若该选项确实在此想定中出现（无论以中文还是英文），断言必须命中中文
+            if (en in texts or (zh and zh in texts)) and zh and zh not in texts:
+                wpf_missing.append(f"想定特性:缺{zh}")
         wpf_en_left += [t for t in rows
                         if not any("\u4e00" <= ch <= "\u9fff" for ch in t) and exact.get(t)]
         wpf_en_left = sorted(set(wpf_en_left))
