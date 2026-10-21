@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "scope": "reviewed-corpus",
+  "sourceAssembly": {
+    "sha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+    "fileVersion": "1.0.0.0",
+    "productVersion": "1.0.0.0",
+    "assembly": "Command, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "resourceAssembly": "fcedd9ef-627f-4388-8742-91eea1446d9e, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "sourceFileName": "Command.exe"
+  },
+  "controlCount": 9,
+  "lineCount": 89,
+  "controls": {
+    "RichTextBox1": {
+      "sha256": "55b50e9d4ba5a3d456006caca551616016d7c27ff33ddaf5c7fc9f46a1f447f3",
+      "lineCount": 16,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.Hotkeys.resources",
+        "key": "RichTextBox1.Text"
+      }
+    },
+    "RichTextBox2": {
+      "sha256": "d973300f66ade796d0b9ecd919d6b806e0a2cfc04ef5276117589fb3f10842fd",
+      "lineCount": 25,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.Hotkeys.resources",
+        "key": "RichTextBox2.Text"
+      }
+    },
+    "RichTextBox3": {
+      "sha256": "2ada8c0315b2f48dc0c001f441f0ef9c2a24fee817e44c517f6b7918337c6ea7",
+      "lineCount": 5,
+      "source": {
+        "kind": "string-pool",
+        "offset": "754752"
+      }
+    },
+    "RichTextBox4": {
+      "sha256": "86dc5098c19404c58a59c16c40efdfbf7d47ceef9326eda56987429fb20103f5",
+      "lineCount": 18,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.Hotkeys.resources",
+        "key": "RichTextBox4.Text"
+      }
+    },
+    "RichTextBox5": {
+      "sha256": "8d39a0331f9489c208685929b928d2898a2beadc929d0e8eafa7a4ea65d182a4",
+      "lineCount": 6,
+      "source": {
+        "kind": "string-pool",
+        "offset": "755152"
+      }
+    },
+    "RichTextBox6": {
+      "sha256": "16717b849f9d5a94ac20604927faa2732cc720b30f18b957ac0043ce8724e0f8",
+      "lineCount": 12,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.Hotkeys.resources",
+        "key": "RichTextBox6.Text"
+      }
+    },
+    "RichTextBox7": {
+      "sha256": "243071d39163b8aab049bf7721b707d76aa872c60fcc531134b8258a3b539e23",
+      "lineCount": 3,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.Hotkeys.resources",
+        "key": "RichTextBox7.Text"
+      }
+    },
+    "RichTextBox8": {
+      "sha256": "344aec59d2ffa3653397295655bdf70e830f7ec320c174798fe3ea7bbd6c3008",
+      "lineCount": 3,
+      "source": {
+        "kind": "string-pool",
+        "offset": "755620"
+      }
+    },
+    "RichTextBoxL_AMP": {
+      "sha256": "dde540dd2b8b9d732a2b349e4a8d3ebcc6df1d589af39e623045c4a56ceedca5",
+      "lineCount": 1,
+      "source": {
+        "kind": "string-pool",
+        "offset": "756048"
+      }
+    }
+  },
+  "prose": {
+    "1103600": {
+      "sha256": "33574ce0d5683c1273b94b280179aa879518f75a835df831e07334aff395aeb9",
+      "sourceKind": "string-pool"
+    },
+    "1364560": {
+      "sha256": "ad5e8fc271e5a215dd69c64ac31a7aed0d988aca354952f57ee6934b0735a9c0",
+      "sourceKind": "string-pool"
+    },
+    "946834": {
+      "sha256": "89799b750bf5cd25599419c5db0739db0750c271ef8a3c06817a6dd5d2c48193",
+      "sourceKind": "string-pool"
+    },
+    "947132": {
+      "sha256": "76769aae3526c54ea8fc7ede3cef136dc462f8a63751fe0672e4fd0a4dc671e8",
+      "sourceKind": "string-pool"
+    },
+    "948570": {
+      "sha256": "b81673a40c33477ba9b39c35df11e55f59d46a1a4590251280210b6651dd4fba",
+      "sourceKind": "string-pool"
+    },
+    "601496": {
+      "sha256": "97265db45707a1082b7d7d60c37e50a90b7f69ad86cf618e37ed9f0fbff57e02",
+      "sourceKind": "string-pool"
+    },
+    "809922": {
+      "sha256": "a6678968c814be8a8a12b3abe46ea1b30520aab0d4c95d9916cb041315f25b05",
+      "sourceKind": "string-pool"
+    }
+  },
+  "limitations": [
+    "Offline reviewed corpus: no live UI visibility or translation was inspected.",
+    "Five control bodies came from the identified assembly resources; four came from the committed string-pool snapshot.",
+    "FileVersion and ProductVersion do not establish the internal game build.",
+    "Thirteen additional reviewed help bodies came from manifest string resources; designer placeholder text is explicitly excluded."
+  ],
+  "resourceHelp": {
+    "Command.DebugTool.resources:TB_DetailedSensorReport.Text": {
+      "sha256": "4e98369e3523c0f3504371bf33696e3cefaff5322ddd393340f1c9c5675e221d",
+      "lineCount": 1,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.DebugTool.resources",
+        "key": "TB_DetailedSensorReport.Text"
+      }
+    },
+    "Command.CopyOverSimilarityPrompt.resources:TB_InfoUseSelected.Text": {
+      "sha256": "4ca413fd193f51fcaed23d6b16751b77ab7f78f8d64af098b82b55bbbab2d41c",
+      "lineCount": 1,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.CopyOverSimilarityPrompt.resources",
+        "key": "TB_InfoUseSelected.Text"
+      }
+    },
+    "Command.PE_LicensingForm.resources:LinkLabel2.Text": {
+      "sha256": "7b8fc6f2271714cb411cbd46c87ee25aa0c9869ce4bfa26d225d0ffb62874877",
+      "lineCount": 1,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.PE_LicensingForm.resources",
+        "key": "LinkLabel2.Text"
+      }
+    },
+    "Command.LuaEditorOperationPlanner.resources:RichTextBox1.Text": {
+      "sha256": "86ab1d4d3438fda9cee29ae6dc9de35d3778a2b126904b8edab2d71ccce0dabe",
+      "lineCount": 5,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.LuaEditorOperationPlanner.resources",
+        "key": "RichTextBox1.Text"
+      }
+    },
+    "Command.MissionEditor.resources:Combo_MissionPhase.ToolTip": {
+      "sha256": "74be056aeaaff7d808a501a8d925802a459d7b26039e6c983706495bef004bb3",
+      "lineCount": 7,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.MissionEditor.resources",
+        "key": "Combo_MissionPhase.ToolTip"
+      }
+    },
+    "Command.Migration.resources:Label1.Text": {
+      "sha256": "4f4e9a7ece7be0cab8ad839ac4a5c516593fecf60e46f92b9bd1f1bdbe138014",
+      "lineCount": 1,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.Migration.resources",
+        "key": "Label1.Text"
+      }
+    },
+    "Command.Migration.resources:Label2.Text": {
+      "sha256": "b83e6a90b6d483babcb930d539813c7fa94a04c0daafc064591525b62c8c7586",
+      "lineCount": 1,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.Migration.resources",
+        "key": "Label2.Text"
+      }
+    },
+    "Command.Migration.resources:Label5.Text": {
+      "sha256": "128fa23d7f8ddbb30096d89d8ee19245f981402324833cfc115defc31141927a",
+      "lineCount": 1,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.Migration.resources",
+        "key": "Label5.Text"
+      }
+    },
+    "Command.Migration.resources:DarkLabel2.Text": {
+      "sha256": "2d88a920c4c54d5556476dd523c5a138678f1e26ef0566b06c7d20344555bfeb",
+      "lineCount": 1,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.Migration.resources",
+        "key": "DarkLabel2.Text"
+      }
+    },
+    "Command.Migration.resources:DarkLabel1.Text": {
+      "sha256": "f756be0a87e3e5ebbe86a323271f6b634ea213cbfba4fbf1c8881004e3cc3fe8",
+      "lineCount": 1,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.Migration.resources",
+        "key": "DarkLabel1.Text"
+      }
+    },
+    "Command.IconeCustomizer.resources:TB_Synthax.Text": {
+      "sha256": "e25480910c8f25b5c5955bfc6680d57d2f33fc91fd8f138910f266616bbc0d86",
+      "lineCount": 3,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.IconeCustomizer.resources",
+        "key": "TB_Synthax.Text"
+      }
+    },
+    "Command.IconeCustomizer.resources:TB_Structure.Text": {
+      "sha256": "a307d1c4c9ab6d2b94cd8c2c1ee83b1569e7b7b6d854ad884e0e9a037b8d563a",
+      "lineCount": 6,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.IconeCustomizer.resources",
+        "key": "TB_Structure.Text"
+      }
+    },
+    "Command.IconeCustomizer.resources:TB_Examples.Text": {
+      "sha256": "d4d46715f89209bfd0dcd250577a2888d17b503beeffe69628470792f46cc302",
+      "lineCount": 10,
+      "source": {
+        "kind": "manifest-resource",
+        "assemblySha256": "dfae2a76a5a2c44c750b31240ea6da36c1ec412454107f36d62b5f7229670da0",
+        "resource": "Command.IconeCustomizer.resources",
+        "key": "TB_Examples.Text"
+      }
+    }
+  },
+  "resourceHelpCount": 13,
+  "resourceHelpLineCount": 39,
+  "excludedResources": [
+    {
+      "resource": "Command.FloatingLicenseErrorForm.resources",
+      "key": "Label1.Text",
+      "sha256": "d268e255a1fcc2685d14e957f97f99781981a5ff4878c20a38ef211bf8fc25c4",
+      "reason": "designer-placeholder"
+    }
+  ]
+}

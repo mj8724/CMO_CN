@@ -76,6 +76,7 @@
 | 路径 | 职责 |
 |---|---|
 | `src/engine/CMOLocalizer.cs` | **整个汉化引擎**（约 7600 行，C# 5）。一轮改动的主战场，见下方内部地图 |
+| `src/engine/RichTextTranslation.cs` | R53 只读/快捷键帮助正文翻译、富文本格式保护和完整正文诊断 |
 | `src/engine/Reflect.cs` | 反射辅助（私有字段/方法访问），引擎的地基 |
 | `src/engine/ComboBoxTranslation.cs` | 下拉项增量翻译：动态回填排队，保留业务键/选中值/原生类型 token |
 | `src/engine/DarkTreeTranslation.cs` | 深色树分片遍历：核对实时集合归属，分片避免长阻塞 |
@@ -131,6 +132,7 @@
 
 | 路径 | 职责 |
 |---|---|
+| `dict/src/richtext_help.json` | R53 帮助正文整段、布局行和独立说明的人工翻译源；由 build_dict 最后裁定显示译文 |
 | `dict/src/terms.json` | 组合翻译术语表（127+ 条），镜像实现在 `scripts/compose_terms.py` |
 | `dict/src/force_offsets.json` | 按池索引强制改写的条目（**谨慎**：形状铁律见 §11） |
 | `dict/src/pool_display_inject.json` | 池级注入表（6000+ 条），形状由 `scripts/inject_filter.py` 判定 |
@@ -218,6 +220,9 @@
 
 | 路径 | 职责 |
 |---|---|
+| `scripts/audit_richtext.py` | 核查已审阅帮助语料、布局、资源来源及缺口，输出 corpus 供隔离测试 |
+| `scripts/test_richtext_audit.py` | 审计器反例：新增/丢失资源、原文漂移、独立译文、Tab 和受保护 token |
+| `src/tests/RichTextTranslationTests.cs` | 真实 WinForms 帮助翻译、输入保护、排版、选区/滚动与语料回归；test_ui richtext 入口 |
 | `scripts/verify_engine_parse.py` | 按引擎的方式解析 `dict/CMOLocalizer.json`（防"字典合法但引擎读不了"） |
 | `scripts/verify_terminology.py` | 术语一致性 |
 | `scripts/verify_menu.py` | 菜单串全译 + 输出术语表 |
@@ -442,6 +447,7 @@
 
 | 路径 | 族 | 用途（历史） |
 |---|---|---|
+| `src/tools/ExtractRichTextResources.cs` | 在役 | 只读提取程序集字符串资源；混淆解码入口必须显式指定，不启动游戏窗体 |
 | `src/tools/GuiDriver.cs` | — | **在役**：GUI 自动化驱动 |
 | `src/tools/*.cs` | 全部 | 兜底覆盖（上面已逐族说明；新增工具请加具体行） |
 | `src/tools/Inspect*.cs` | Inspect 族 | 反射探查游戏 DLL/窗体/方法 |
@@ -497,3 +503,10 @@
 
 > 门禁的匹配规则：表格首列反引号内的内容，`*` 匹配任意字符（**含 `/`**），
 > `?` 匹配单字符，其余字面量。所以 `src/tools/*.cs` 能覆盖整个目录。
+
+### R53 帮助语料证据
+
+| 路径 | 职责 |
+|---|---|
+| `docs/RICHTEXT_INVENTORY.json` | 已审阅帮助正文哈希、资源键及来源限制；audit_richtext 的独立完整性清单 |
+| `docs/RICHTEXT_LOCALIZATION.md` | R53 范围、缺口、实现与可重复验证方法，明确资源提取和实机验收的区别 |
