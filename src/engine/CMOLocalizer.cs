@@ -1915,9 +1915,7 @@ namespace CMOLocalizer
                     if (_inControlTextChanged) return;
                     TextBoxBase box = s as TextBoxBase;
                     if (box == null || box.IsDisposed || box.Focused) return;
-                    TextBox tb2 = box as TextBox;
-                    bool readOnlyBox = tb2 != null && tb2.ReadOnly;
-                    if (!readOnlyBox && box.GetType().Name.IndexOf("RichText", StringComparison.OrdinalIgnoreCase) < 0) return;
+                    if (!CanTranslateTextBoxBody(box)) return;
                     // 同一个源文本被反复回写 = 与游戏拉锯（用户实测：输入一个字符后闪退），
                     // 计数超限即放弃该控件，不再参与翻译。
                     string curText = "";
@@ -3952,8 +3950,35 @@ namespace CMOLocalizer
             return false;
         }
 
+        private static readonly string[] MissionEditorToolTipProperties = {
+            "GlobalTooltip", "TransitAGLTooltip", "StationAGLTooltip", "AttackAGLTooltip"
+        };
+
+        private static void TranslateMissionPhaseToolTip(Control ctrl)
+        {
+            if (!(ctrl is ComboBox) || ctrl.Name != "Combo_MissionPhase") return;
+            Form form = ctrl.FindForm();
+            if (form == null || form.GetType().FullName != "Command.MissionEditor") return;
+
+            // This resource is an extender property owned by a ToolTip component,
+            // not the ComboBox's input text. Component property names survive obfuscation.
+            foreach (string name in MissionEditorToolTipProperties)
+            {
+                PropertyInfo property = Reflect.Prop(form.GetType(), name,
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (property == null || !property.CanRead || !typeof(ToolTip).IsAssignableFrom(property.PropertyType)) continue;
+                ToolTip tooltip = property.GetValue(form, null) as ToolTip;
+                if (tooltip == null) continue;
+                string text = tooltip.GetToolTip(ctrl);
+                if (string.IsNullOrEmpty(text)) continue;
+                string translated = TranslateString(text);
+                if (translated != text) tooltip.SetToolTip(ctrl, translated);
+            }
+        }
+
         private static void TranslateControlTextInner(Control ctrl)
         {
+            TranslateMissionPhaseToolTip(ctrl);
             if (ctrl is Form)
             {
                 string fText = ctrl.Text;
@@ -4029,6 +4054,13 @@ namespace CMOLocalizer
                 TranslateWatermark(ctrl);
             }
 
+            RichTextBox richText = ctrl as RichTextBox;
+            if (richText != null)
+            {
+                TranslateRichTextBox(richText);
+                return;
+            }
+
             if (ctrl is TextBoxBase)
             {
                 TextBoxBase tb = (TextBoxBase)ctrl;
@@ -4037,9 +4069,10 @@ namespace CMOLocalizer
                     tb.Text = "输入该型装备的数据库 ID...";
                     return;
                 }
-                if (tb.ReadOnly && !string.IsNullOrEmpty(tb.Text))
+                if (CanTranslateTextBoxBody(tb) && !string.IsNullOrEmpty(tb.Text))
                 {
-                    string trTb = TranslateLoadoutDetailText(tb.Text);
+                    string trTb = TranslateString(tb.Text);
+                    if (trTb == tb.Text) trTb = TranslateLoadoutDetailText(tb.Text);
                     if (trTb != tb.Text)
                     {
                         tb.Text = trTb;
@@ -6192,6 +6225,8 @@ namespace CMOLocalizer
             {
                 return DumpWpfLog();
             }
+
+            if (cmd == "RICH_TEXT_DUMP") return HandleRichTextDump(rawCmd);
 
             if (cmd.StartsWith("CTRL_TREE"))
             {

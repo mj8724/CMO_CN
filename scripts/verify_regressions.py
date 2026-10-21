@@ -156,6 +156,40 @@ def _tile_harness(r: Runner, work: Path) -> None:
              " || ".join(evidence) or "无输出")
 
 
+def _richtext_harness(r: Runner, work: Path) -> None:
+    """R53: real WinForms help controls plus the reviewed resource corpus."""
+    corpus = work / "hotkeys-corpus.json"
+    powershell = shutil.which("pwsh.exe") or "powershell.exe"
+    commands = [
+        [sys.executable, str(ROOT / "scripts/audit_richtext.py"), "--output", str(corpus)],
+        [sys.executable, str(ROOT / "scripts/test_richtext_audit.py")],
+        [powershell, "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+         str(ROOT / "scripts/test_ui.ps1"), "-Suite", "richtext", "-Engine",
+         str(work / "CMOLocalizer.dll"), "-Dictionary", str(DICT), "-Python", sys.executable,
+         "-OutputDir", str(work / "richtext-tests")],
+    ]
+    commands.append([
+        powershell, "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
+        str(ROOT / "scripts/test_ui.ps1"), "-Suite", "help-tooltip", "-Engine",
+        str(work / "CMOLocalizer.dll"), "-Dictionary", str(DICT),
+        "-OutputDir", str(work / "tooltip-tests"),
+    ])
+    evidence = []
+    for command in commands:
+        result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True,
+                                encoding="utf-8", errors="replace", timeout=180)
+        output = (result.stdout + result.stderr).strip()
+        evidence.append(output[-1000:])
+        if result.returncode:
+            r.record("R53-static-richtext", "R53 help corpus and input/format protection", False,
+                     f"exit={result.returncode}: {output[-900:]}", " || ".join(evidence))
+            return
+    report = json.loads(corpus.read_text(encoding="utf-8"))
+    r.record("R53-static-richtext", "R53 help corpus and input/format protection", True,
+             f"controls={report['controlCount']} lines={report['lineCount']}; WinForms all/corpus pass",
+             " || ".join(evidence))
+
+
 def run_static(r: Runner) -> None:
     print("== static 用例 ==", flush=True)
     src = ENGINE.read_text(encoding="utf-8")
@@ -725,6 +759,11 @@ def run_static(r: Runner) -> None:
         r.record("R34-static-tile-harness", "R34 瓦片服务 7 模式并发回归", False,
                  f"异常: {type(exc).__name__}: {exc}", "src/tests/MapTileServerTests.cs")
     finally:
+        try:
+            _richtext_harness(r, _tile_work)
+        except Exception as exc:  # noqa: BLE001
+            r.record("R53-static-richtext", "R53 help corpus and input/format protection", False,
+                     f"{type(exc).__name__}: {exc}")
         shutil.rmtree(_tile_work, ignore_errors=True)
 
 
@@ -1245,8 +1284,8 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
 
     历史：天气编辑器的 Calm/Hurricane/Level 0、快捷键窗口的 Own Units、Lua 控制台的
     Insert/RUN 都是「用户看得见的英文」——而那 6 条当时根本不在词典里。
-    已知盲区：快捷键窗口的正文在 DarkRichTextBox 里（富文本，直接改 Text 会丢格式且
-    碰 R19 的输入保护不变量），本用例显式跳过并报告条数，不算它失败。
+    R53：快捷键正文由 RICH_TEXT_DUMP 完整读取，逐控件核对快捷键列和全部说明；
+    CTRL_TREE 的 120 字符截断结果不用于帮助正文验收。
     R29：「想定特性与设置」是 WPF 窗口（CTRL_TREE 看不见），必须改用 WPF_DUMP 断言——
     实测该列表无 ScrollViewer/ItemsControl，17 条特性全部 realize 且同屏可见，
     所以那 4 条英文是真缺词条，不是「WPF 虚拟化离屏项」（旧判断已纠正）。
@@ -1271,7 +1310,7 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
         exact = {}
     missing: list[str] = []
     residual: list[str] = []
-    rich_skipped = 0
+    rich_checked = 0
     checked_forms = 0
     for menu, label in windows:
         H.send("CLOSE_FORM ALL", timeout=20)
@@ -1304,13 +1343,36 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
                     missing.append(f"{label}:{cname} 缺{zh}")
                 elif en in items:
                     missing.append(f"{label}:{cname} 仍显{en!r}")
+        if menu == "HotkeysToolStripMenuItem":
+            from audit_richtext import load_json, recover_texts, parse_lines  # noqa: PLC0415
+            inventory = load_json(ROOT / "docs/RICHTEXT_INVENTORY.json")
+            sources, _ = recover_texts(inventory, load_json(ROOT / "dict/src/richtext_help.json"))
+            dump = H.send("RICH_TEXT_DUMP Hotkeys", timeout=30)
+            documents = {node.get("n"): node.get("text", "") for node in dump.get("nodes", [])}
+            if dump.get("status") != "ok" or set(documents) != set(sources):
+                missing.append("快捷键:帮助控件清单不完整或出现未审阅控件")
+            for control, source in sources.items():
+                expected = exact.get(source)
+                actual = documents.get(control)
+                if expected is None or actual is None:
+                    missing.append(f"快捷键:{control} 缺正文")
+                    continue
+                try:
+                    expected_rows = parse_lines(expected)
+                    actual_rows = parse_lines(actual)
+                    fields = lambda rows: [(row["prefix"], row["description"], row["suffix"]) for row in rows]
+                    if fields(expected_rows) != fields(actual_rows):
+                        residual.append(f"快捷键:{control} 正文或快捷键布局不符")
+                    else:
+                        rich_checked += len(actual_rows)
+                except ValueError as exc:
+                    missing.append(f"快捷键:{control} {exc}")
         for c in nodes:
             t = (c.get("text") or "").strip()
             if not t or t in base or len(t) > 40 or not c.get("v"):
                 continue
             if "RichTextBox" in (c.get("t") or ""):
-                rich_skipped += 1
-                continue
+                continue  # Help is checked from the complete document above.
             if any("\u4e00" <= ch <= "\u9fff" for ch in t):
                 continue
             if exact.get(t):
@@ -1359,7 +1421,7 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
     r.record(name, title, ok,
              f"抽查 {checked_forms}/{len(windows)} 个窗口；已入词典却仍显英文 {len(residual)} 条"
              + (f"（{residual[:4]}）" if residual else "")
-             + (f"；已知盲区跳过富文本 {rich_skipped} 处" if rich_skipped else "")
+             + f"；完整核对快捷键说明 {rich_checked} 行"
              + f"；WPF 想定特性 {wpf_rows} 条（仍显英文 {len(wpf_en_left)}、缺译文 {len(wpf_missing)}）"
              + (f"；缺失: {missing + wpf_missing}" if (missing or wpf_missing) else ""),
              "evidence/live/scan")

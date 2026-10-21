@@ -1,12 +1,13 @@
 # Isolated fixtures only. Never builds the engine, runs CMO or writes installed files.
 [CmdletBinding()]
 param(
-    [ValidateSet('first-paint', 'combobox', 'dark-tree', 'queue', 'idle', 'wpf', 'upstream', 'lifecycle', 'webview', 'bulk')]
-    [string[]]$Suite = @('first-paint', 'combobox', 'dark-tree', 'queue', 'idle', 'wpf', 'upstream', 'lifecycle', 'webview', 'bulk'),
+    [ValidateSet('first-paint', 'combobox', 'dark-tree', 'queue', 'idle', 'wpf', 'upstream', 'lifecycle', 'webview', 'bulk', 'richtext', 'help-tooltip')]
+    [string[]]$Suite = @('first-paint', 'combobox', 'dark-tree', 'queue', 'idle', 'wpf', 'upstream', 'lifecycle', 'webview', 'bulk', 'richtext', 'help-tooltip'),
     [string[]]$Mode,
     [string]$Engine,
     [string]$Dictionary,
-    [string]$OutputDir
+    [string]$OutputDir,
+    [string]$Python = 'python'
 )
 $ErrorActionPreference = 'Stop'
 $repo = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
@@ -43,6 +44,10 @@ $plans = [ordered]@{
     'lifecycle' = @{ Source = 'UiLifecycleTests'; References = $winforms + $wpf; Options = @('-platform:anycpu'); Dictionary = $true
         Modes = @('control', 'window', 'existing', 'inputs', 'secondary', 'wpf', 'dispose', 'benchmark', 'polling-benchmark') }
     'webview' = @{ Source = 'WebViewTranslationHostTests'; References = @('System.Windows.Forms.dll'); NoMode = $true; Modes = @('all') }
+    'richtext' = @{ Source = 'RichTextTranslationTests'; References = $winforms + @('System.Web.Extensions.dll')
+        Options = @('-platform:anycpu'); Dictionary = $true; Modes = @('all', 'corpus') }
+    'help-tooltip' = @{ Source = 'HelpTooltipTests'; References = $winforms + @('System.Web.Extensions.dll'); NoMode = $true
+        Options = @('-platform:anycpu'); Dictionary = $true; Modes = @('all') }
     'bulk' = @{ Source = 'BulkTranslationTests'; References = $winforms + @('System.Data.dll', 'System.Web.Extensions.dll')
         Options = @('-optimize+', '-platform:anycpu'); Dictionary = $true; Modes = @('contracts') }
 }
@@ -92,9 +97,18 @@ try {
         $fixtures[-1] | Add-Member NoteProperty FixtureSha256 (Get-FileHash -Algorithm SHA256 -LiteralPath $fixture).Hash.ToLowerInvariant()
         $modes = if ($Mode) { $Mode } else { $plan.Modes }
         foreach ($testMode in $modes) {
+            $corpus = $null
+            if ($name -eq 'richtext' -and $testMode -eq 'corpus') {
+                $corpus = Join-Path $OutputDir 'hotkeys-corpus.json'
+                $auditLog = Join-Path $OutputDir 'richtext-corpus-audit.log'
+                $auditArgs = @((Join-Path $repo 'scripts\audit_richtext.py'), '--dictionary', $Dictionary, '--output', $corpus)
+                $code = Invoke-Logged $Python $auditArgs $auditLog
+                if ($code) { throw "Rich text corpus audit failed; see $auditLog" }
+            }
             $arguments = @($Engine)
             if ($plan.Dictionary) { $arguments += $Dictionary }
             if (-not $plan.NoMode) { $arguments += $testMode }
+            if ($corpus) { $arguments += $corpus }
             $log = Join-Path $OutputDir "$name-$testMode.log"
             $watch = [Diagnostics.Stopwatch]::StartNew()
             $code = Invoke-Logged $fixture $arguments $log

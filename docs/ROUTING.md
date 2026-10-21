@@ -222,6 +222,7 @@
 |---|---|
 | `scripts/audit_richtext.py` | 核查已审阅帮助语料、布局、资源来源及缺口，输出 corpus 供隔离测试 |
 | `scripts/test_richtext_audit.py` | 审计器反例：新增/丢失资源、原文漂移、独立译文、Tab 和受保护 token |
+| `src/tests/HelpTooltipTests.cs` | R53 真实 ToolTip 帮助组件翻译与下拉项/文本保护；test_ui help-tooltip 入口 |
 | `src/tests/RichTextTranslationTests.cs` | 真实 WinForms 帮助翻译、输入保护、排版、选区/滚动与语料回归；test_ui richtext 入口 |
 | `scripts/verify_engine_parse.py` | 按引擎的方式解析 `dict/CMOLocalizer.json`（防"字典合法但引擎读不了"） |
 | `scripts/verify_terminology.py` | 术语一致性 |
