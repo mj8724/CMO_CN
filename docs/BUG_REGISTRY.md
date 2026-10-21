@@ -1346,3 +1346,14 @@ python scripts/perf_probe.py          # 游戏已在想定里
 | 降幅 | −94.2% | −92.6% | — | **−93.9%** |
 
 **验收**：`verify_all` 11/11、`verify_regressions --static` 26/26、`--live` 19/19 全绿。
+
+**补充（2026-10-22 凌晨收尾）**
+- 剩余 1,979 条缺口的性质已抽样定型：绝大多数是**纯型号/代号与保留性战术代号**——
+  `SPO-3 Sirena-3`、`Kurs`、`Avtomat 2/3`、`SPS-4M Klyukva`、`Stan Patrol 5009`、
+  `SA-`/`AIM-`/`MR-`/`MGK-`/`BetAB-` 等系列前缀，以及 `Shotgun`/`Winchester`
+  这类在中文军语里**刻意保留原文**的战术状态代号。
+  这些不属于漏译，继续「精修」只会制造臆造译名，因此停止对该批的机械替换。
+- 对可译部分仍做了收尾：`Stan Patrol=斯坦巡逻艇级`、`Patroller=巡逻者`、
+  `NCPV=新型近海巡逻艇`，并清理了残留普通词。
+- 最终：`verify_all` 11/11、`--static` 26/26、`--live` 19/19、`routing` PASS，
+  工作区 clean，全部提交已推送。
