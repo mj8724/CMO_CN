@@ -203,6 +203,9 @@ def audit(inventory: dict, source: dict, exact: dict, pool: dict,
                       if resources is not None else (reviewed, []))
     outside_scope = 0
     if resources is not None:
+        selected_count = resources.get("selectedResourceCount")
+        if type(selected_count) is not int or selected_count <= 0:
+            unknown.append("Resource report selectedResourceCount must be a positive integer")
         extra, extra_unknown = extra_resource_texts(inventory, extra, resources)
         scoped_unknown, outside_scope = resource_scope(inventory, resources)
         unknown.extend(extra_unknown + scoped_unknown)

@@ -27,11 +27,12 @@ class RichTextAuditTests(unittest.TestCase):
                           self.pool, resources)
 
     def resource_report(self) -> dict:
+        rows = [{"resource": record["source"]["resource"],
+                 "key": record["source"]["key"], "text": self.texts[name]}
+                for name, record in self.inventory["controls"].items()
+                if record["source"]["kind"] == "manifest-resource"]
         return {"sha256": self.inventory["sourceAssembly"]["sha256"], "unknownResources": [],
-                "rows": [{"resource": record["source"]["resource"],
-                          "key": record["source"]["key"], "text": self.texts[name]}
-                         for name, record in self.inventory["controls"].items()
-                         if record["source"]["kind"] == "manifest-resource"]}
+                "selectedResourceCount": len({row["resource"] for row in rows}), "rows": rows}
 
     def full_resource_report(self) -> dict:
         report = self.resource_report()
@@ -39,6 +40,7 @@ class RichTextAuditTests(unittest.TestCase):
         report["rows"].extend({"resource": record["source"]["resource"],
                                "key": record["source"]["key"], "text": self.extra[name]}
                               for name, record in self.inventory["resourceHelp"].items())
+        report["selectedResourceCount"] = len({row["resource"] for row in report["rows"]})
         return report
 
     def filtered_resource_report(self, resource_filter: str) -> dict:
@@ -46,6 +48,7 @@ class RichTextAuditTests(unittest.TestCase):
         report["resourceFilter"] = resource_filter
         report["rows"] = [row for row in report["rows"]
                           if resource_filter.lower() in row["resource"].lower()]
+        report["selectedResourceCount"] = len({row["resource"] for row in report["rows"]})
         return report
 
     def test_reviewed_sources_are_complete_without_game_or_build_evidence(self) -> None:
@@ -56,7 +59,7 @@ class RichTextAuditTests(unittest.TestCase):
         self.assertEqual((result["resourceHelpCount"], result["resourceHelpLineCount"], result["reviewedBodyCount"]),
                          (13, 39, 29))
 
-    def test_resource_report_recovers_five_resources_and_four_snapshot_bodies(self) -> None:
+    def test_resource_report_recovers_five_resource_bodies_and_four_snapshot_bodies(self) -> None:
         result = self.run_audit(resources=self.resource_report())
         self.assertTrue(result["ok"], result["errors"] + result["unknown"])
         self.assertEqual(result["lineCount"], 89)
@@ -77,10 +80,35 @@ class RichTextAuditTests(unittest.TestCase):
             self.assertEqual(help_row["inputSource"], expected)
 
     def test_filter_without_reviewed_resources_uses_reviewed_hotkeys(self) -> None:
-        result = self.run_audit(resources=self.filtered_resource_report("NoReviewedResource"))
-        self.assertTrue(result["ok"], result["errors"] + result["unknown"])
-        self.assertEqual(result["lineCount"], 89)
-        self.assertNotIn("resource-report", [row["inputSource"] for row in result["controls"]])
+        for rows in ([{"resource": "Command.NoReviewedResource.resources",
+                       "key": "Button1.Text", "text": "Open"}], []):
+            with self.subTest(rows=rows):
+                report = self.filtered_resource_report("NoReviewedResource")
+                report["selectedResourceCount"] = 1
+                report["rows"] = rows
+                result = self.run_audit(resources=report)
+                self.assertTrue(result["ok"], result["errors"] + result["unknown"])
+                self.assertEqual(result["lineCount"], 89)
+                self.assertNotIn("resource-report", [row["inputSource"] for row in result["controls"]])
+
+    def test_resource_report_requires_a_positive_integer_selected_resource_count(self) -> None:
+        for count in ("missing", 0, -1, None, True, False, "1", 1.0, 1.5):
+            with self.subTest(count=count):
+                report = self.filtered_resource_report("NoMatchingManifestResource")
+                if count == "missing":
+                    del report["selectedResourceCount"]
+                else:
+                    report["selectedResourceCount"] = count
+                result = self.run_audit(resources=report)
+                self.assertFalse(result["ok"])
+                self.assertTrue(any("selectedResourceCount" in item for item in result["unknown"]))
+
+    def test_zero_selected_resource_count_fails_even_with_complete_help_rows(self) -> None:
+        report = self.full_resource_report()
+        report["selectedResourceCount"] = 0
+        result = self.run_audit(resources=report)
+        self.assertFalse(result["ok"])
+        self.assertTrue(any("selectedResourceCount" in item for item in result["unknown"]))
 
     def test_missing_resource_is_unknown_and_fails(self) -> None:
         for resource_filter in (None, "hOtKeYs", ""):
@@ -170,6 +198,7 @@ class RichTextAuditTests(unittest.TestCase):
         report = self.full_resource_report()
         report["rows"].append({"resource": "Command.NewHelp.resources", "key": "Info.Text",
                                "text": "New information\r\nMore information"})
+        report["selectedResourceCount"] += 1
         result = self.run_audit(resources=report)
         self.assertFalse(result["ok"])
         self.assertTrue(any("Unreviewed UI help" in item for item in result["unknown"]))
@@ -206,10 +235,33 @@ class RichTextAuditTests(unittest.TestCase):
         excluded = inventory["excludedResources"][0]
         excluded["sha256"] = tool.text_hash(placeholder)
         report["rows"].append({"resource": excluded["resource"], "key": excluded["key"], "text": placeholder})
+        report["selectedResourceCount"] = len({row["resource"] for row in report["rows"]})
         result = tool.audit(inventory, self.source, self.exact, self.pool, report)
         self.assertTrue(result["ok"], result["unknown"])
         report["rows"][-1]["text"] = "New real instructions\r\nMust be reviewed"
         self.assertFalse(tool.audit(inventory, self.source, self.exact, self.pool, report)["ok"])
+
+    def test_cli_rejects_missing_or_zero_selected_resource_count(self) -> None:
+        build = tool.ROOT / "build"
+        build.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(dir=build, prefix="richtext-audit-") as temporary:
+            root = Path(temporary)
+            resource_path, output = root / "resources.json", root / "corpus.json"
+            for count in (None, 0):
+                with self.subTest(count=count):
+                    report = self.filtered_resource_report("NoMatchingManifestResource")
+                    if count is None:
+                        del report["selectedResourceCount"]
+                    else:
+                        report["selectedResourceCount"] = count
+                    resource_path.write_text(json.dumps(report), encoding="utf-8")
+                    command = [sys.executable, "-X", "utf8", str(tool.ROOT / "scripts/audit_richtext.py"),
+                               "--resources", str(resource_path), "--output", str(output)]
+                    result = subprocess.run(command, capture_output=True, text=True, encoding="utf-8", timeout=10)
+                    self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                    corpus = tool.load_json(output)
+                    self.assertFalse(corpus["ok"])
+                    self.assertTrue(any("selectedResourceCount" in item for item in corpus["unknown"]))
 
     def test_dictionary_argument_audits_the_selected_file(self) -> None:
         build = tool.ROOT / "build"
