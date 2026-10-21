@@ -253,7 +253,7 @@ def build() -> dict:
             zh = normalize_ellipsis(en, zh)
             exact[en] = zh
             curated.add(en)
-            if name in ("db_viewer_html_terms.json", "db_descriptions.json"):
+            if name in ("db_viewer_html_terms.json", "db_descriptions.json", "richtext_help.json"):
                 labels_only.add(en)
             if name in offset_safe_sources:
                 if name in shape_gated_sources and not injection_safe(en)[0]:
@@ -408,7 +408,7 @@ def build() -> dict:
     # The curated glossary and menu terminology are authoritative for their
     # keys, so re-apply them after everything else has been merged.
     for name in ("glossary.json", "menu_terms.json", "sentence_fragment_fixes.json",
-                 "legacy_fixes.json", "ui_cleanup_terms.json"):
+                 "legacy_fixes.json", "ui_cleanup_terms.json", "richtext_help.json"):
         path = (DICT / name) if name == "glossary.json" else (SRC / name)
         if not path.is_file():
             continue
@@ -418,9 +418,9 @@ def build() -> dict:
                 continue
             if en in blacklist or en not in exact:
                 continue
-            # Curated short labels only: full-sentence briefing prose legitimately
-            # lives in the briefing batches and must not be overwritten here.
-            if len(en) > 40 or chr(10) in en:
+            # Short UI labels override briefing imports. Reviewed help also
+            # overrides complete paragraphs; its layout is checked by audit_richtext.
+            if name != "richtext_help.json" and (len(en) > 40 or chr(10) in en):
                 continue
             # 拼接片段依赖首尾空格，覆盖时保留原有空白形态
             prev = exact[en]
