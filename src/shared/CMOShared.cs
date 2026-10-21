@@ -433,6 +433,8 @@ namespace CMOShared
                 string p = Path.Combine(gamePath, name);
                 if (File.Exists(p)) files[name] = Sha256OfFile(p);
             }
+            string mapTiles = Path.Combine(gamePath, "ChineseMapTiles.dat");
+            if (File.Exists(mapTiles)) files["ChineseMapTiles.dat"] = Sha256OfFile(mapTiles);
             return files;
         }
 

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
 
 // Uses the actual engine DLL; the baseline path remains usable for a red/green comparison.
 public static class MapLabelRendererTests
@@ -91,6 +93,135 @@ public static class MapLabelRendererTests
         return true;
     }
 
+    private static byte[] CatalogBytes(string name, int minZoom, int maxZoom, int priority, int level)
+    {
+        byte[] payload;
+        using (var stream = new MemoryStream())
+        {
+            using (var writer = new BinaryWriter(stream, Encoding.UTF8, true))
+            {
+                writer.Write(1);
+                writer.Write(name);
+                writer.Write(-5f); writer.Write(5f);
+                writer.Write(minZoom); writer.Write(maxZoom); writer.Write(priority); writer.Write(level);
+            }
+            payload = stream.ToArray();
+        }
+        using (var stream = new MemoryStream())
+        {
+            using (var writer = new BinaryWriter(stream, Encoding.UTF8, true))
+            using (var hash = SHA256.Create())
+            {
+                writer.Write(Encoding.ASCII.GetBytes("CMOMAP01"));
+                writer.Write(BitConverter.ToString(hash.ComputeHash(payload)).Replace("-", "").ToLowerInvariant());
+                writer.Write(payload);
+            }
+            return stream.ToArray();
+        }
+    }
+
+    private static object LoadCatalog(byte[] bytes)
+    {
+        Type type = engine.GetType("CMOShared.MapLabelCatalog", true);
+        string path = Path.Combine(Path.GetDirectoryName(engine.Location), "catalog-test-" + Guid.NewGuid().ToString("N") + ".bin");
+        try
+        {
+            File.WriteAllBytes(path, bytes);
+            return type.GetMethod("Load", new[] { typeof(string) }).Invoke(null, new object[] { path });
+        }
+        finally { File.Delete(path); }
+    }
+
+    private static void RejectCatalog(byte[] bytes, string message)
+    {
+        try { LoadCatalog(bytes); }
+        catch (TargetInvocationException ex)
+        {
+            Check(ex.InnerException is InvalidDataException || ex.InnerException is EndOfStreamException,
+                message);
+            return;
+        }
+        throw new Exception("Catalog accepted: " + message);
+    }
+
+    private static Bitmap RenderPlaces(IList places, int z, out int candidates, out int rendered)
+    {
+        Type renderer = engine.GetType("CMOShared.MapLabelRenderer", true);
+        object[] parameters = { places, z, 1 << (z - 1), 1 << (z - 1), 0, 0 };
+        foreach (MethodInfo method in renderer.GetMethods())
+            if (method.Name == "RenderTile" && method.GetParameters().Length == parameters.Length)
+            {
+                Bitmap result = (Bitmap)method.Invoke(null, parameters);
+                candidates = (int)parameters[4]; rendered = (int)parameters[5];
+                return result;
+            }
+        throw new Exception("Shared renderer overload is missing");
+    }
+
+    private static void CatalogTests()
+    {
+        Type catalogType = engine.GetType("CMOShared.MapLabelCatalog");
+        Check(catalogType != null, "shared map catalog loader is available");
+        object catalog = LoadCatalog(CatalogBytes("得克萨斯州", 3, 10, 20, 0));
+        IList places = (IList)catalogType.GetProperty("Places").GetValue(catalog, null);
+        string fingerprint = (string)catalogType.GetProperty("Fingerprint").GetValue(catalog, null);
+        Check(places.Count == 1 && fingerprint.Length == 64,
+            "a supplemental name absent from WWP loads with its payload fingerprint");
+        int candidates, rendered;
+        using (Bitmap image = RenderPlaces(places, 5, out candidates, out rendered))
+            Check(candidates == 1 && rendered == 1 && !Bounds(image, false).IsEmpty,
+                "a supplemental state name renders at its declared zoom");
+        object cityCatalog = LoadCatalog(CatalogBytes("基西", 3, 5, 10, 1));
+        IList cities = (IList)catalogType.GetProperty("Places").GetValue(cityCatalog, null);
+        using (Bitmap image = RenderPlaces(cities, 5, out candidates, out rendered))
+            Check(candidates == 1 && rendered == 1, "a catalog city can render below legacy city zoom");
+        using (Bitmap image = RenderPlaces(cities, 6, out candidates, out rendered))
+            Check(candidates == 0 && rendered == 0, "catalog maximum zoom excludes a city after its range");
+        object laterCatalog = LoadCatalog(CatalogBytes("基西", 6, 10, 10, 1));
+        using (Bitmap image = RenderPlaces((IList)catalogType.GetProperty("Places").GetValue(laterCatalog, null), 5,
+            out candidates, out rendered))
+            Check(candidates == 0 && rendered == 0, "catalog minimum zoom excludes a city before its range");
+        var mixed = (IList)Activator.CreateInstance(typeof(System.Collections.Generic.List<>).MakeGenericType(places[0].GetType()));
+        mixed.Add(places[0]); mixed.Add(cities[0]);
+        using (Bitmap image = RenderPlaces(mixed, 5, out candidates, out rendered))
+        using (Bitmap winner = RenderPlaces(cities, 5, out candidates, out rendered))
+            Check(SamePixels(image, winner), "catalog priority wins collisions before label level");
+        byte[] corrupt = CatalogBytes("基西", 3, 10, 10, 1);
+        corrupt[corrupt.Length - 1] ^= 1;
+        RejectCatalog(corrupt, "corrupt payload fails its SHA256 fingerprint");
+        byte[] badHeader = CatalogBytes("基西", 3, 10, 10, 1);
+        badHeader[0] = 0;
+        RejectCatalog(badHeader, "an unknown map catalog header is rejected");
+        RejectCatalog(CatalogBytes("", 3, 10, 10, 1), "missing Chinese name is rejected");
+        RejectCatalog(CatalogBytes("Kisii", 3, 10, 10, 1), "English fallback name is rejected");
+        RejectCatalog(CatalogBytes("基西 Kisii", 3, 10, 10, 1), "mixed English fallback name is rejected");
+        RejectCatalog(CatalogBytes("第\U0001FBF0城", 3, 10, 10, 1), "an unsupported Unicode digit is rejected");
+        RejectCatalog(CatalogBytes("第\U0001E95E城", 3, 10, 10, 1), "an unsupported Unicode punctuation mark is rejected");
+        RejectCatalog(CatalogBytes("第¹城", 3, 10, 10, 1), "a number outside the fixed digit set is rejected");
+        foreach (string name in new[] { "第1城（第２城）·〇镇", "第〡城" })
+        {
+            object digits = LoadCatalog(CatalogBytes(name, 3, 10, 10, 0));
+            IList digitPlaces = (IList)catalogType.GetProperty("Places").GetValue(digits, null);
+            Check((string)digitPlaces[0].GetType().GetField("Name").GetValue(digitPlaces[0]) == name,
+                "the fixed shared digits and Chinese punctuation load: " + name);
+        }
+        // Unicode 15 is fixed by the catalog contract, independently of the CLR Unicode tables.
+        foreach (string name in new[] { "\u9FFF山", "\U00030000山", "\U00031350山", "\U0002B739山" })
+        {
+            object assigned = LoadCatalog(CatalogBytes(name, 3, 10, 10, 0));
+            IList assignedPlaces = (IList)catalogType.GetProperty("Places").GetValue(assigned, null);
+            Check((string)assignedPlaces[0].GetType().GetField("Name").GetValue(assignedPlaces[0]) == name,
+                "assigned Unicode 15 Han loads without depending on CLR category tables: " + name);
+        }
+        RejectCatalog(CatalogBytes("汉\U0002FFFE", 3, 10, 10, 1), "an unassigned supplementary code point is rejected");
+        RejectCatalog(CatalogBytes("汉\uFA6E", 3, 10, 10, 1), "an unassigned compatibility code point is rejected");
+        RejectCatalog(CatalogBytes("汉\U0002EE5E", 3, 10, 10, 1), "an unassigned extension code point is rejected");
+        RejectCatalog(CatalogBytes("基西", 6, 5, 10, 1), "an inverted catalog zoom range is rejected");
+        byte[] trailing = CatalogBytes("基西", 3, 10, 10, 1);
+        Array.Resize(ref trailing, trailing.Length + 1);
+        RejectCatalog(trailing, "trailing map catalog bytes are rejected");
+    }
+
     public static int Main(string[] args)
     {
         try
@@ -176,6 +307,21 @@ public static class MapLabelRendererTests
             using (Bitmap image = Render(new string[0], new float[0], new float[0], new int[0], 8, 14f,
                 out candidates, out rendered)) Check(candidates == 0 && rendered == 0 && Bounds(image, false).IsEmpty,
                     "empty tiles stay transparent");
+            CatalogTests();
+            if (args.Length > 1)
+            {
+                object pythonCatalog = LoadCatalog(File.ReadAllBytes(args[1]));
+                IList pythonPlaces = (IList)pythonCatalog.GetType().GetProperty("Places").GetValue(pythonCatalog, null);
+                Check(pythonPlaces.Count == 5
+                    && (string)pythonPlaces[0].GetType().GetField("Name").GetValue(pythonPlaces[0]) == "得克萨斯州"
+                    && (string)pythonPlaces[1].GetType().GetField("Name").GetValue(pythonPlaces[1]) == "基西"
+                    && (string)pythonPlaces[2].GetType().GetField("Name").GetValue(pythonPlaces[2]) == "\u9FFF山"
+                    && (string)pythonPlaces[3].GetType().GetField("Name").GetValue(pythonPlaces[3]) == "\U00030000山"
+                    && (string)pythonPlaces[4].GetType().GetField("Name").GetValue(pythonPlaces[4]) == "第1城（第２城）·〇镇",
+                    "Python compiled catalog, Unicode 15 Han and fixed digits/punctuation load in C#");
+                for (int i = 2; i < args.Length; i++)
+                    RejectCatalog(File.ReadAllBytes(args[i]), "Python negative fixture is rejected: " + Path.GetFileName(args[i]));
+            }
             Console.WriteLine("ASSERTIONS=" + assertions);
             return 0;
         }

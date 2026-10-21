@@ -108,7 +108,7 @@
 |---|---|
 | `src/shared/CMOShared.cs` | 引擎/安装器/更新器共用的工具函数（版本比较、路径、JSON 等） |
 | `src/shared/CMOSharedTest.cs` | 上面的自测入口 |
-| `src/shared/MapLabelRenderer.cs` | 地图中文标签渲染（GDI+ 绘制），配 `MapTileServerTests.cs` |
+| `src/shared/MapLabelRenderer.cs` | 地图中文标签渲染、独立全球目录读取与内容指纹校验；显式缩放/优先级与旧 WWP 像素契约，配地图测试 |
 
 ---
 
@@ -184,6 +184,7 @@
 | `dict/placenames/cities.json` | **城市地名审核源**（4,287 条，按 WWP 顺序）。逐项含原名/坐标/中文/来源/说明，是 Cities.wwp 的唯一事实源 |
 | `dict/placenames/synoptic.json` | **区域标签审核源**（321 条）。同上结构，对应 Synoptic.wwp |
 | `dict/placenames/metadata.json` | 地名审核的固定元数据指纹。`verify_all` / `verify_placenames.py` / `package.sh` 都用它判断「记录集合是否被改过」（改 flags、换顺序、容差内挪坐标都会失败） |
+| `dict/placenames/global_reviews.jsonl` | 独立全球地图目录的人工审核新增译名，绑定源记录指纹；由 global_map_catalog 的 --reviews 读取，不修改原 WWP 数量与元数据 |
 | `dict/all_scen_items.json` | 从所有想定抽出的可译条目快照 |
 | `dict/extracted_campaigns_scens.json` | 战役内想定清单抽取结果 |
 | `dict/scen_tree_dict.json` | 想定树结构词典（加载对话框用） |
@@ -280,6 +281,17 @@
 | `scripts/placename_translation.py` | 坐标感知的译名映射（原版/本地化一对） |
 | `scripts/build_cities_placenames.py` | 离线构建译好的 Cities.wwp（优先用已评审坐标） |
 | `scripts/test_global_placenames.py` | 全量地名审核的一致性测试（4,287+321 逐点唯一命中、译名一致） |
+| `scripts/global_map_catalog.py` | 独立全球地图目录的来源/逐项中文审计及确定性二进制编译；缺译或来源/显示未验证时阻断输出 |
+| `scripts/test_global_map_catalog.py` | 全球地图目录门禁负例、集合分母、全中文、确定性和旧产物保留回归 |
+| `dict/placenames/tile_regions.json` | 原版逐区辨认、中文补译、符号/海拔/布局及实际像素审核的有限覆盖清单；不是全球完整目录 |
+| `assets/placenames/ChineseMapTiles.dat` | 已核验清单确定性编译的中文标签瓦片，安装器/绿色包/运行时共用；新增覆盖必须先通过来源与像素审核 |
+| `scripts/build_map_tile_pack.py` | 有限缓存区域的原图 alpha/来源/中文/字体/审核审计与离线 PNG 标签层、CMOTIL01 构建；未核验仅允许预览 |
+| `scripts/test_build_map_tile_pack.py` | 离线地图瓦片构建门禁负例、跨 tile 拼接、海拔保留、二进制契约和失败保留旧产物测试 |
+| `scripts/requirements-map.txt` | 离线地图瓦片构建所需 Pillow/fontTools；运行时无需 Python，字体使用本机文件不复制入库 |
+| `scripts/import_stamen_map_catalog.py` | 从固定来源导出与中文候选构建独立全球目录输入；保留原图证实缩放、非连续范围及未决记录，默认阻断全量编译 |
+| `scripts/test_import_stamen_map_catalog.py` | 全球来源导入的身份审核、缩放分段、原图例外和未决分母保留回归 |
+| `docs/superpowers/plans/2026-10-21-global-map-labels.md` | 全球地图中文补回的实施步骤、接口和完成前置证据 |
+| `docs/GLOBAL_MAP_LABELS.md` | 全球标签来源、数据契约、编译/读取接口与未完成的完整性验收边界 |
 | `scripts/test_release_placenames.py` | 发布侧地名门禁测试（元数据指纹、flags/顺序/坐标篡改必须失败） |
 | `scripts/test_static_html.py` | 静态 HTML 汉化断言（编码/完整译文/`.orig` 备份保留） |
 | `scripts/test_scenario_html.ps1` | 想定 HTML 导出的 PowerShell 回归 |
@@ -298,6 +310,7 @@
 | `scripts/test_verify_placenames.py` | 地名门禁自身的回归用例 |
 | `scripts/refresh_placename_tiles.ps1` | 重建地名瓦片（PowerShell） |
 | `scripts/test_refresh_placename_tiles.ps1` | 上面脚本的测试 |
+| `scripts/test_map_tile_pack.ps1` | 有限已核验瓦片包格式、缓存安全和运行时/安装器双入口模拟测试 |
 | `scripts/test_map_label_renderer.ps1` | 地图标签渲染测试驱动 |
 
 ### 8.7 杂项
@@ -401,6 +414,10 @@
 | `src/tests/MixedPrefixTests.cs` | R42「英文前缀 + 中文尾」混排修复测试 | `R42-static-mixed-prefix-wiring` |
 | `src/tests/IdempotencyTests.cs` | R45 翻译幂等（括号层数收敛） | `R45-static-translate-idempotent` |
 | `src/tests/MapTileServerTests.cs` | 地图瓦片服务 7 模式并发回归 | `R34-static-tile-*` |
+| `src/tests/MapLabelTilePackTests.cs` | 已核验 tilepack 加载、缓存增量与双入口回归（仅模拟目录） | Task 6 |
+| `src/tests/MapTileDeliveryTests.cs` | 安装器瓦片包来源、原子部署、清单与还原的隔离测试宿主，不运行安装/卸载全流程 | Task 9 |
+| `scripts/test_map_tile_delivery.ps1` | 编译真实 C# 5 安装器资源 fixture，运行隔离交付测试；不写游戏目录 | Task 9 |
+| `scripts/test_map_tile_delivery_contract.py` | 无 Bash 环境下隔离执行部署/绿色包内嵌 Python 门禁，并检查资源和安装调用契约 | Task 9 |
 | `src/tests/MapLabelRendererTests.cs` | 地图标签渲染 | `R33`/`R38`/`R39` |
 | `src/tests/MapLabelSamples.cs` | 渲染测试用的样例数据 | — |
 | `src/tests/CMOLocalizerTest.cs`、`src/tests/CMOLocalizerTestV2.cs` | 引擎早期冒烟测试 | — |

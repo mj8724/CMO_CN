@@ -1,0 +1,3 @@
+# Offline map pack construction only; the C# runtime has no Python dependency.
+Pillow>=12.3.0,<14
+fonttools>=4.67.0,<5
