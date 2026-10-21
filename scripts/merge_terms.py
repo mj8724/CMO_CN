@@ -38,13 +38,28 @@ CODE_SHAPE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9\-/.\s]*$")
 
 
 def is_code_token(text: str) -> bool:
-    """真代号：含数字或斜杠，或全大写短串（MTU、HE、LDGP）。"""
+    """真代号/专名：含数字或斜杠、全大写短串（MTU/HE/LDGP）、
+    或首字母大写的单词型专名（Vicon/Leonides/Orenda/Monolit —— 厂商与型号名）。
+
+    这些原样保留是**正确行为**：中文军事文献里厂名/型号名本来就不译。
+    """
     t = (text or "").strip()
     if not t or " " in t:
         return False
     if "/" in t or any(c.isdigit() for c in t):
         return True
-    return t.isupper() and 2 <= len(t) <= 8
+    if t.isupper() and 2 <= len(t) <= 8:
+        return True
+    # 单词型专名：首字母大写、其余小写，且**不像英语普通词**。
+    # 判据用后缀：厂商/型号名少有 -er/-ing/-ed/-tion/-s 这类英语构词后缀
+    # （Launcher、Boilers、Booster 应被翻译；Vicon、Leonides、Monolit 是专名）。
+    if not (3 <= len(t) <= 14 and t[0].isupper() and t[1:].islower()):
+        return False
+    low = t.lower()
+    for suffix in ("er", "ers", "ing", "ed", "tion", "sions", "ous", "ful", "less", "ness", "ment"):
+        if low.endswith(suffix):
+            return False
+    return True
 
 
 def load(p: Path) -> dict:
