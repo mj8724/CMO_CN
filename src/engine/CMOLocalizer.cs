@@ -4683,7 +4683,7 @@ namespace CMOLocalizer
             return c == ',' || c == ';' || c == ':' || c == '(' || c == ')' || c == '[' || c == ']' || c == '"' || c == '\'';
         }
 
-        /// <summary>剥掉 token 前导/尾随标点（`[P-12]` → `[` + `P-12` + `]`、`ASW,` → `ASW` + `,`）；术语表里不会带标点。</summary>
+        /// <summary>剥掉 token 前导/尾随标点（`[P-12]` → `[` + `P-12` + `]`、`Mk.` → `Mk` + `.`、`ASW,` → `ASW` + `,`）；术语表里不会带标点。</summary>
         private static void SplitPunct(string token, out string prefix, out string core, out string suffix)
         {
             prefix = "";
@@ -4693,7 +4693,23 @@ namespace CMOLocalizer
             int start = 0;
             while (start < token.Length && IsPunctChar(token[start])) start++;
             int end = token.Length;
-            while (end > start && IsPunctChar(token[end - 1])) end--;
+            while (end > start)
+            {
+                char ch = token[end - 1];
+                if (IsPunctChar(ch))
+                {
+                    end--;
+                }
+                else if (ch == '.' && end >= start + 2 && (token[end - 2] < '0' || token[end - 2] > '9'))
+                {
+                    // 缩写末尾的点（如 `Mk.`、`F.`、`A.`、`Mod.`），剥除以还原核心代号；数字中间的点不碰（如 `12.7mm`）
+                    end--;
+                }
+                else
+                {
+                    break;
+                }
+            }
             prefix = token.Substring(0, start);
             core = token.Substring(start, end - start);
             suffix = token.Substring(end);

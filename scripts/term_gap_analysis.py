@@ -98,7 +98,39 @@ class Composer:
                     out.append(" × " + words[i + 1])
                     i += 2
                     continue
-                core = words[i].rstrip(",;:")
+                if words[i] in ("+", "-", "--"):
+                    out.append(" " + words[i] + " ")
+                    i += 1
+                    continue
+                if not words[i]:
+                    i += 1
+                    continue
+                # 剥掉前导/尾随标点（含 [P-12] / Mk. / ASW,）
+                tok = words[i]
+                start = 0
+                while start < len(tok) and tok[start] in ",;:()[]\"'":
+                    start += 1
+                end = len(tok)
+                while end > start:
+                    ch = tok[end - 1]
+                    if ch in ",;:()[]\"'":
+                        end -= 1
+                    elif ch == '.' and end >= start + 2 and not tok[end - 2].isdigit():
+                        end -= 1
+                    else:
+                        break
+                pfx = tok[:start]
+                core = tok[start:end]
+                sfx = tok[end:]
+                zh2 = self.lookup(core) if core else None
+                if zh2:
+                    out.append(pfx + zh2 + sfx)
+                    i += 1
+                    continue
+                if not core:
+                    out.append(tok)
+                    i += 1
+                    continue
                 zh = self.lookup(core) if core != words[i] else None
                 if zh:
                     out.append(zh + words[i][len(core):])
