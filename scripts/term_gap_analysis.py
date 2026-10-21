@@ -94,6 +94,10 @@ class Composer:
                     best_j, best_zh = j, zh
                     break
             if best_j < 0:
+                if words[i].isdigit() and i + 2 < len(words) and words[i + 1] in ("x", "X"):
+                    out.append(words[i] + " × ")
+                    i += 2
+                    continue
                 if words[i] in ("x", "X") and i + 1 < len(words) and words[i + 1].isdigit():
                     out.append(" × " + words[i + 1])
                     i += 2

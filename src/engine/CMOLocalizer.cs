@@ -4520,6 +4520,17 @@ namespace CMOLocalizer
                 if (bestJ < 0)
                 {
                     string token = words[i];
+                    // 数量前缀：`2 x Quad 7.62mm`、`8 x Yarrow Boilers`。
+                    // 与后缀 `Gun x 6` 相反，数量写在前面；两种都要认，
+                    // 否则 `x` 作为生词会把整条名字拖回英文（实测 160+ 条）。
+                    if (IsAllDigits(token) && i + 2 < words.Length
+                        && (words[i + 1] == "x" || words[i + 1] == "X"))
+                    {
+                        sb.Append(token);
+                        sb.Append(" × ");
+                        i += 2;
+                        continue;
+                    }
                     // 纯分隔符：`+`、`-`、裸 `x` + 数字（乘号）。
                     // 数据库常把它们插在名字中间（`Type 60 + Type 61`、`Pipeline - Overhead`、
                     // `Gun x 6`），把它们认成生词会让整条名字回退英文。
