@@ -1068,6 +1068,15 @@ namespace CMOLocalizer
         private static long _wpfSweepWindowCount;     // 上一拍枚举到的窗口总数
         private static int _wpfSweepMs;               // 上一拍实际耗时（诊断用）
 
+        // R53 性能诊断：累计统计，供 TRACE_DUMP 输出。
+        // 为什么需要它：补扫频率只说明「扫了多少次」，不说明「每次多贵」。
+        // 用户报卡顿时真正要看的是单次耗时是否超一帧（≈16ms）。
+        private static long _sweepCalls;
+        private static long _sweepTotalMs;
+        private static long _sweepMaxMs;
+        private static long _sweepWindowsVisited;
+        private static long _sweepFullPasses;
+
         /// <summary>
         /// 翻译单个 WPF 窗口（标题 + 视觉树）。调用方必须已确保在该窗口的 Dispatcher 上。
         /// </summary>
@@ -1203,6 +1212,16 @@ namespace CMOLocalizer
                 }
                 _wpfSweepMs = (int)((System.Diagnostics.Stopwatch.GetTimestamp() - t0) * 1000
                                     / System.Diagnostics.Stopwatch.Frequency);
+                // R53 诊断：单次补扫耗时分布 + 是否能在预算内扫完整轮。
+                // 这是判定「卡不卡」最直接的证据：单次超一帧（≈16ms）用户就能感知。
+                lock (traceLock)
+                {
+                    _sweepCalls++;
+                    _sweepTotalMs += _wpfSweepMs;
+                    if (_wpfSweepMs > _sweepMaxMs) _sweepMaxMs = _wpfSweepMs;
+                    _sweepWindowsVisited += visited;
+                    if (visited >= n) _sweepFullPasses++;
+                }
             }
             catch (Exception ex)
             {
@@ -6268,9 +6287,24 @@ namespace CMOLocalizer
                 lock (traceLock) { arr = traceLog.ToArray(); }
                 long rt; long eh;
                 lock (traceLock) { rt = renderTickCount; eh = elementHostScanCount; }
+                long sweepCalls, sweepTotal, sweepMax, sweepVisited, sweepFull;
+                lock (traceLock)
+                {
+                    sweepCalls = _sweepCalls; sweepTotal = _sweepTotalMs; sweepMax = _sweepMaxMs;
+                    sweepVisited = _sweepWindowsVisited; sweepFull = _sweepFullPasses;
+                }
                 tb.Append("{\"status\":\"ok\",\"n\":").Append(arr.Length)
                   .Append(",\"renderTicks\":").Append(rt)
                   .Append(",\"elementHostScans\":").Append(eh)
+                  // R53：单次补扫耗时（ms）。avg/max 直接回答「卡不卡」；
+                  // fullPasses 计「一轮之内把全部窗口都扫完」的次数。
+                  .Append(",\"sweepCalls\":").Append(sweepCalls)
+                  .Append(",\"sweepTotalMs\":").Append(sweepTotal)
+                  .Append(",\"sweepMaxMs\":").Append(sweepMax)
+                  .Append(",\"sweepAvgMs\":").Append(sweepCalls > 0 ? sweepTotal / sweepCalls : 0)
+                  .Append(",\"sweepWindowsVisited\":").Append(sweepVisited)
+                  .Append(",\"sweepFullPasses\":").Append(sweepFull)
+                  .Append(",\"sweepWindowsTotal\":").Append(Interlocked.Read(ref _wpfSweepWindowCount))
                   .Append(",\"lines\":[");
                 for (int i = 0; i < arr.Length; i++)
                 {

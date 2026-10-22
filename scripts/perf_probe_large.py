@@ -43,20 +43,113 @@ def _counters() -> dict:
     return {
         "renderTicks": d.get("renderTicks") or 0,
         "elementHostScans": d.get("elementHostScans") or 0,
+        "sweepCalls": d.get("sweepCalls") or 0,
+        "sweepTotalMs": d.get("sweepTotalMs") or 0,
+        "sweepMaxMs": d.get("sweepMaxMs") or 0,
+        "sweepWindowsVisited": d.get("sweepWindowsVisited") or 0,
+        "sweepFullPasses": d.get("sweepFullPasses") or 0,
+        "sweepWindowsTotal": d.get("sweepWindowsTotal") or 0,
     }
 
 
 def _rate(secs: float) -> dict:
-    """测量 renderTicks / elementHostScans 的增长速率。"""
+    """测量 renderTicks / elementHostScans 的增长速率，以及单次补扫耗时。"""
     a = _counters()
     time.sleep(secs)
     b = _counters()
+    calls = b["sweepCalls"] - a["sweepCalls"]
+    total = b["sweepTotalMs"] - a["sweepTotalMs"]
     return {
         "render_hz": (b["renderTicks"] - a["renderTicks"]) / secs,
         "scan_hz": (b["elementHostScans"] - a["elementHostScans"]) / secs,
         "d_render": b["renderTicks"] - a["renderTicks"],
         "d_scan": b["elementHostScans"] - a["elementHostScans"],
+        "sweep_calls": calls,
+        "sweep_avg_ms": round(total / calls, 2) if calls else 0.0,
+        "sweep_max_ms": b["sweepMaxMs"],
+        "sweep_full_passes": b["sweepFullPasses"] - a["sweepFullPasses"],
+        "sweep_windows": b["sweepWindowsTotal"],
     }
+
+
+def _inplace_health() -> dict:
+    """**不切换想定**的界面健康检查。
+
+    为什么必须单独做：verify_regressions --live 里有三个探针会自己加载想定
+    （L-panel-flicker → Shamal、L-repaint-tick → 飞行教程 1、L-doctrine-combo → Shamal），
+    所以跑完门禁后游戏已经不在原来那个想定里了。
+    要在大想定上验证界面健康，就只能就地把相同判据重跑一遍。
+    """
+    out: dict = {}
+
+    # ① 全进程下拉项不得出现「英文前缀 + 中文尾」（R42）
+    mixed = []
+    combos = H.send("DUMP_COMBOS", timeout=90).get("combos") or []
+    for c in combos:
+        for it in c.get("items") or []:
+            t = (it or "").strip()
+            if not t:
+                continue
+            has_cjk = any("\u4e00" <= ch <= "\u9fff" for ch in t)
+            if not has_cjk:
+                continue
+            if re.match(r"^[A-Za-z][A-Za-z \-/]{2,}\s*[\u4e00-\u9fff]", t):
+                mixed.append(t)
+    out["combo_mixed"] = sorted(set(mixed))[:8]
+    out["combo_items"] = sum(len(c.get("items") or []) for c in combos)
+
+    # ② 已入词典却仍显英文（R27 的核心判据）——就地版。
+    #    verify_regressions 里那条会在用例过程中切换想定，所以在大想定上必须重跑一遍。
+    #    做法：把屏幕上所有不含中文的文本拿去查词典 exact，命中即说明「本该翻译」。
+    residual = []
+    checked = 0
+    try:
+        exact = json.loads((H.ROOT / "dict/CMOLocalizer.json").read_text(encoding="utf-8"))["exact"]
+        texts = set()
+        for n in H.send("CTRL_TREE", timeout=120).get("nodes") or []:
+            t = (n.get("text") or "").strip()
+            if t:
+                texts.add(t)
+        for w in H.send("WPF_DUMP", timeout=300).get("windows") or []:
+            for n in w.get("nodes") or []:
+                t = (n.get("text") or "").strip()
+                if t:
+                    texts.add(t)
+        for t in texts:
+            if any("一" <= ch <= "鿿" for ch in t):
+                continue
+            checked += 1
+            if t in exact:
+                residual.append(t)
+    except Exception as ex:
+        residual = [f"<probe error: {ex}>"]
+    out["residual_en"] = sorted(set(residual))[:8]
+    out["residual_checked"] = checked
+
+    # ③ 写拉锯熔断次数（R43/R44）不得新增
+    log = H.GAME / "CMOLocalizer.log"
+    try:
+        text = log.read_text(encoding="utf-8", errors="replace")
+        at = text.rfind("=== CMOLocalizer")
+        seg = text[at:] if at >= 0 else text[-400_000:]
+        out["write_loop_blocked"] = seg.count("WRITE LOOP BLOCKED")
+        out["sweep_errors"] = seg.count("WPF sweep item error")
+    except Exception:
+        out["write_loop_blocked"] = -1
+        out["sweep_errors"] = -1
+
+    # ③ 屏幕像素稳定（不闪）
+    try:
+        wins = H.big_visible_windows(H.game_pid())
+        if wins:
+            w = wins[0]
+            out["pixel_changes"] = H.pixel_change_count(
+                w["rect"]["X"] + 40, w["rect"]["Y"] + 40, 200, 120, frames=20)
+        else:
+            out["pixel_changes"] = -1
+    except Exception:
+        out["pixel_changes"] = -1
+    return out
 
 
 def _wpf_windows() -> dict:
@@ -118,10 +211,84 @@ def _cpu(pid: int, secs: float = 3.0) -> float:
         return -1.0
 
 
+def _soak(minutes: float, secs: float) -> int:
+    """浸泡测试：让推演真跑起来，每分钟采样一次。
+
+    为什么必须做这一步：单次快照只能证明「此刻不卡」，
+    不能证明「玩半小时后不卡」。泄漏、缓存膨胀、窗口累积这类问题
+    只有在长时间运行后才暴露，而用户报的正是「玩的时候非常卡」。
+    """
+    print(f"浸泡测试 {minutes:.0f} 分钟（每分钟采样）…")
+    H.send("CLICK_TOOLBAR TSB_StartGame", timeout=30)
+    time.sleep(3.0)
+
+    rows = []
+    n = int(minutes)
+    for i in range(n + 1):
+        r = _rate(secs if i else max(3.0, secs / 2))
+        w = _wpf_windows()
+        h = _inplace_health()
+        try:
+            import psutil  # type: ignore
+            p = psutil.Process(H.game_pid())
+            rss = round(p.memory_info().rss / 1048576, 1)
+        except Exception:
+            rss = -1.0
+        rows.append({
+            "t_min": i,
+            "scan_hz": round(r["scan_hz"], 2),
+            "render_hz": round(r["render_hz"], 1),
+            "sweep_avg_ms": r["sweep_avg_ms"],
+            "sweep_max_ms": r["sweep_max_ms"],
+            "windows": w["windows"],
+            "nodes": w["total_nodes"],
+            "zombie_extra": w["zombie_extra"],
+            "write_loop": h["write_loop_blocked"],
+            "sweep_errors": h["sweep_errors"],
+            "rss_mb": rss,
+        })
+        x = rows[-1]
+        print(f"  t={x['t_min']:>2}min  补扫 {x['scan_hz']:.1f}/s  帧 {x['render_hz']:.0f}/s"
+              f"  单次 {x['sweep_avg_ms']}ms(峰 {x['sweep_max_ms']}ms)"
+              f"  窗口 {x['windows']}/{x['nodes']}  僵尸 {x['zombie_extra']}"
+              f"  RSS {x['rss_mb']}MB  拉锯 {x['write_loop']}  补扫异常 {x['sweep_errors']}")
+        if i < n:
+            time.sleep(60)
+
+    # 趋势判据
+    scans = [r["scan_hz"] for r in rows]
+    nodes = [r["nodes"] for r in rows]
+    rss = [r["rss_mb"] for r in rows if r["rss_mb"] > 0]
+    problems = []
+    if max(scans) > 15:
+        problems.append(f"补扫频率峰值 {max(scans):.1f}/s 超上限")
+    if max(r["sweep_max_ms"] for r in rows) > 16:
+        problems.append("单次补扫峰值超一帧(16ms)")
+    if nodes[-1] > nodes[0] * 1.5 + 200:
+        problems.append(f"视觉树节点持续增长 {nodes[0]} → {nodes[-1]}")
+    if rss and rss[-1] > rss[0] * 1.3 + 200:
+        problems.append(f"内存持续增长 {rss[0]}MB → {rss[-1]}MB")
+    if any(r["zombie_extra"] > 0 for r in rows):
+        problems.append("存在僵尸 WPF 窗口")
+    if any(r["write_loop"] > 0 for r in rows):
+        problems.append("出现写拉锯熔断")
+
+    print()
+    if problems:
+        print("FAIL:")
+        for x in problems:
+            print("  - " + x)
+        return 1
+    print(f"PASS: 浸泡 {n} 分钟无劣化（补扫峰值 {max(scans):.1f}/s，节点 {nodes[0]}→{nodes[-1]}）")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--load", default="", help="先加载该想定（名称子串）")
     ap.add_argument("--secs", type=float, default=10.0)
+    ap.add_argument("--soak", type=float, default=0.0,
+                    help="浸泡测试分钟数：让推演跑起来，每分钟采样，看是否随时间劣化")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args()
 
@@ -129,6 +296,9 @@ def main() -> int:
     if not pid:
         print("ERROR: 游戏未运行。", file=sys.stderr)
         return 2
+
+    if args.soak > 0:
+        return _soak(args.soak, args.secs)
 
     if args.load:
         print(f"加载想定: {args.load}", flush=True)
@@ -167,6 +337,8 @@ def main() -> int:
     lat_min, lat_med = _latency()
     cpu = _cpu(pid)
 
+    health = _inplace_health()
+
     report = {
         "title": title,
         "pid": pid,
@@ -176,6 +348,7 @@ def main() -> int:
         "win32": win32,
         "latency_ms": {"min": lat_min, "med": lat_med},
         "cpu_percent": round(cpu, 1),
+        "health": health,
     }
 
     if args.json:
@@ -191,6 +364,12 @@ def main() -> int:
                 print(f"    !! {n}x  {t[:48]}")
         print(f"HwndWrapper: {win32['hwndwrapper']} (可见 {win32['visible']}, 零尺寸 {win32['zero_size']})")
         print(f"命令延迟: 最小 {lat_min}ms / 中位 {lat_med}ms")
+        print(f"单次补扫耗时: 平均 {rate['sweep_avg_ms']}ms / 峰值 {rate['sweep_max_ms']}ms"
+              f"   窗口 {rate['sweep_windows']} 个   整轮完成 {rate['sweep_full_passes']}/{rate['sweep_calls']} 次")
+        print(f"接口健康: 下拉条目 {health['combo_items']} 条，英文前缀+中文尾 {len(health['combo_mixed'])} 条"
+              f"；已入词典却仍显英文 {len(health['residual_en'])} 条(查 {health['residual_checked']} 条)"
+              f"；写拉锯熔断 {health['write_loop_blocked']} 次；补扫异常 {health['sweep_errors']} 条"
+              f"；像素变化 {health['pixel_changes']}/20 帧")
         print(f"进程 CPU: {cpu:.1f}%")
 
     # ── 判据 ──────────────────────────────────────────────────────────
@@ -204,6 +383,10 @@ def main() -> int:
             f"渲染帧 {rate['render_hz']:.1f}/s，比值 {rate['scan_hz'] / max(1.0, rate['render_hz']):.2f}"
             " ⇒ 补扫很可能挂在渲染帧上，而非定时器")
 
+    # ② 单次补扫耗时：超一帧（≈16ms）用户就能感知为卡顿
+    if rate["sweep_max_ms"] > 16:
+        problems.append(f"单次补扫峰值 {rate['sweep_max_ms']}ms 超过一帧预算(16ms)")
+
     # ② 僵尸 WPF 窗口必须为 0：关闭后仍留在进程里的窗口会被永久翻译
     if wpf["zombie_extra"] > 0:
         problems.append(f"存在 {wpf['zombie_extra']} 个僵尸 WPF 窗口（同标题重复）")
@@ -212,12 +395,24 @@ def main() -> int:
     if wpf["total_nodes"] > 3000:
         problems.append(f"WPF 视觉树 {wpf['total_nodes']} 节点过多（上限 3000）")
 
+    # ⑤ 就地界面健康：不得有新增英文前缀混排 / 写拉锯 / 补扫异常 / 像素闪烁
+    if health["combo_mixed"]:
+        problems.append(f"下拉项英文前缀混排 {health['combo_mixed']}")
+    if health["residual_en"]:
+        problems.append(f"已入词典却仍显英文 {health['residual_en']}")
+    if health["write_loop_blocked"] > 0:
+        problems.append(f"写拉锯熔断 {health['write_loop_blocked']} 次")
+    if health["sweep_errors"] > 0:
+        problems.append(f"补扫异常 {health['sweep_errors']} 条")
+    if health["pixel_changes"] > 0:
+        problems.append(f"屏幕像素变化 {health['pixel_changes']}/20 帧（应有 0 变化）")
+
     if problems:
         print("FAIL:")
         for p in problems:
             print("  - " + p)
         return 1
-    print("PASS: 补扫由定时器主导、无僵尸窗口、视觉树规模正常")
+    print("PASS: 补扫由定时器主导且单次耗时不超帧、无僵尸窗口、就地界面健康")
     return 0
 
 

@@ -1464,3 +1464,42 @@ python scripts/perf_probe.py          # 游戏已在想定里
   在 Chains of War 卡片上点中了下面的 Tides of War，导致后面全盘误判。
 
 - **验收**：Blue Dawn 下 live 19/19、static 26/26、`perf_probe_large` PASS。
+
+### R53 补充三：补上「单次耗时」与「浸泡」两类真度量 + 记录一处既有缺口
+
+- **修正一个说法**：前文写「Blue Dawn 下 live 19/19」是不准确的。
+  `verify_regressions --live` 里有三个探针会**自己加载想定**
+  （`L-panel-flicker` → Shamal、`L-repaint-tick` → 飞行教程 1、`L-doctrine-combo` → Shamal），
+  所以跑完门禁后游戏已经不在 Blue Dawn 里了。
+  **正确表述**：19/19 是在「各探针自己加载的想定」上通过的；
+  Blue Dawn 上的结论来自 `perf_probe_large.py` 的**就地**测量。
+
+- **新增两类真度量（都已经落到 `perf_probe_large.py`）**
+  1. **单次补扫耗时**（`sweepAvgMs` / `sweepMaxMs` / `sweepFullPasses`，从引擎 `TRACE_DUMP` 输出）。
+     补扫频率只说明「扫了多少次」，不说明「每次多贵」——用户眼里的卡顿就是单次超一帧。
+     判据：峰值 > 16ms 判失败。
+  2. **浸泡测试** `--soak <分钟>`：让推演真跑起来，每分钟采样补扫频率/单次耗时/
+     窗口数/节点数/僵尸窗口/写拉锯/RSS，看趋势而非快照。
+     判据：补扫峰值 > 15/s、节点或内存持续增长、出现僵尸窗口或写拉锯，任一即失败。
+  3. **就地「已入词典却仍显英文」**：`verify_regressions` 那条会切换想定，
+     所以在大想定上就地重查一遍（屏幕上不含中文的文本去查 `exact`，命中即残留）。
+
+- **Blue Dawn 浸泡实测（8 分钟，505 活跃单位）**
+  ```
+  t=0min  补扫 5.3/s  帧 73/s  窗口 5/831  僵尸 0  拉锯 0  补扫异常 0
+  t=4min  补扫 4.8/s  帧 66/s  窗口 5/831  僵尸 0  拉锯 0  补扫异常 0
+  t=8min  补扫 4.8/s  帧 68/s  窗口 5/831  僵尸 0  拉锯 0  补扫异常 0
+  PASS: 浸泡 8 分钟无劣化（补扫峰值 5.3/s，节点 831→831）
+  ```
+  节点与窗口数全程不变 ⇒ 没有随时间累积的结构性问题。
+
+- **新发现一处既有缺口（不是本轮引入）**
+  右侧单位状态面板的 `No unit selected` 仍显英文（词典里有 `未选择单位`）。
+  定位到它是一个 `TextBlock`（ElementHost → ScrollViewer → StackPanel → TextBlock），
+  而引擎日志显示 **`WPF TextBlock Translated` 在全部 94 次启动里累计 0 条**
+  （`WPF Run Translated` 有 930 条）——即 TextBlock 直译路径从未真正执行过，
+  Run/Inline 路径才是唯一在工作的一条。
+  因此这条英文**与本次性能改动无关**，是一个长期存在的覆盖缺口，
+  已记入待修清单（下一步：查 `TranslateWpfElementInner` 的 TextBlock 分支为何不进写入）。
+
+- **验收**：Blue Dawn 上 `perf_probe_large` PASS（含浸泡 8 分钟）、static 26/26、routing PASS。
