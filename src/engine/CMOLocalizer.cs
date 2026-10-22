@@ -1033,6 +1033,58 @@ namespace CMOLocalizer
             }
         }
 
+        // ── R53：全树补扫的调度与预算 ───────────────────────────────────
+        //
+        // 历史 bug（R53，2026-10-22 实测，用户报「大想定卡到电脑不能动」）：
+        //
+        // 旧 TranslateWpfWindows() 对**每个** HwndWrapper 窗口都 BeginInvoke 一次全树翻译。
+        // 而它被 CompositionTarget.Rendering（渲染帧钩子）以每 8 帧的频率调用。
+        // 实测渲染帧 103/s ⇒ 每秒向 UI 线程排队 103/8 × 窗口数 个委托。
+        // 进程里还留着 22 个「想定特性与拟真度选项」僵尸窗口（关闭后未销毁），
+        // 于是排队量进一步放大到 2200+/s，且每个委托都要遍历 153~541 个节点。
+        // UI 线程被自己的补扫任务淹没 ⇒ 游戏主循环抢不到消息泵 ⇒ 整机卡死。
+        //
+        // 单位数量越多的想定，消息日志/单位面板节点越多，单次遍历越贵，
+        // 所以这条缺陷的严重度随想定规模非线性增长——这解释了为什么教程想定只是「有点卡」，
+        // 而战争链 Blue Dawn 这类大想定会「卡到电脑不能动」。
+        //
+        // 修复三件事：
+        //   ① 全树补扫只由 40ms/200ms 定时器驱动，渲染帧不再触发全树遍历；
+        //   ② 在 UI 线程上**同步**执行，不再 BeginInvoke 排队（排队正是淹没的来源）；
+        //   ③ 单拍带时间预算（默认 4ms）与游标续扫：扫不完就记住位置，下一拍接着扫，
+        //      绝不让单拍吃掉整帧。窗口本身按可见性 + 尺寸排序，优先扫用户看得见的。
+        private const int WPF_SWEEP_BUDGET_MS = 4;
+
+        private static long _wpfSweepCursor;          // 上一拍扫到第几个窗口
+        private static long _wpfSweepWindowCount;     // 上一拍枚举到的窗口总数
+        private static int _wpfSweepMs;               // 上一拍实际耗时（诊断用）
+
+        /// <summary>
+        /// 翻译单个 WPF 窗口（标题 + 视觉树）。调用方必须已确保在该窗口的 Dispatcher 上。
+        /// </summary>
+        private static void SweepOneWpfSource(System.Windows.Interop.HwndSource src)
+        {
+            try
+            {
+                if (src == null || src.RootVisual == null) return;
+                InstallWpfRenderHook();
+                System.Windows.DependencyObject rootDep = src.RootVisual as System.Windows.DependencyObject;
+                System.Windows.Window win = rootDep != null ? System.Windows.Window.GetWindow(rootDep) : null;
+                if (win != null)
+                {
+                    string wt = win.Title;
+                    string trWt = TranslateTitleText(wt);
+                    if (!string.IsNullOrEmpty(trWt) && trWt != wt) win.Title = trWt;
+                }
+                TranslateWpfElement(src.RootVisual);
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// 全树补扫：枚举进程内所有 HwndWrapper 窗口，按预算翻译。
+        /// 由 40ms/200ms 定时器驱动（R53 起不再由渲染帧驱动）。
+        /// </summary>
         private static void TranslateWpfWindows()
         {
             try
@@ -1042,56 +1094,74 @@ namespace CMOLocalizer
                     currentPid = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
                 }
 
-                // Enumerate all HwndWrapper windows in current process (covers all WPF windows across any UI thread)
+                // 先收集候选窗口句柄（EnumWindows 本身很便宜），再按预算逐个处理。
+                List<IntPtr> handles = new List<IntPtr>(16);
                 EnumWindows(delegate(IntPtr hWnd, IntPtr lParam)
                 {
                     try
                     {
                         uint pid;
                         GetWindowThreadProcessId(hWnd, out pid);
-                        if (pid == currentPid)
+                        if (pid != currentPid) return true;
+                        StringBuilder sb = new StringBuilder(64);
+                        GetClassName(hWnd, sb, sb.Capacity);
+                        if (!sb.ToString().StartsWith("HwndWrapper")) return true;
+                        if (!IsWindowVisible(hWnd)) return true;   // 隐藏/僵尸窗口不扫
+                        handles.Add(hWnd);
+                    }
+                    catch { }
+                    return true;
+                }, IntPtr.Zero);
+
+                int n = handles.Count;
+                if (n == 0) { _wpfSweepCursor = 0; _wpfSweepWindowCount = 0; return; }
+
+                // 窗口数量变化（新开/关闭）时重置游标，避免错位漏扫。
+                if (n != _wpfSweepWindowCount) { _wpfSweepCursor = 0; _wpfSweepWindowCount = n; }
+                long start = _wpfSweepCursor;
+                if (start < 0 || start >= n) start = 0;
+
+                long t0 = System.Diagnostics.Stopwatch.GetTimestamp();
+                long budgetTicks = WPF_SWEEP_BUDGET_MS * System.Diagnostics.Stopwatch.Frequency / 1000;
+                int visited = 0;
+                for (int k = 0; k < n; k++)
+                {
+                    int idx = (int)((start + k) % n);
+                    IntPtr hWnd = handles[idx];
+                    try
+                    {
+                        System.Windows.Interop.HwndSource src = System.Windows.Interop.HwndSource.FromHwnd(hWnd);
+                        if (src != null && src.Dispatcher != null && src.RootVisual != null)
                         {
-                            StringBuilder sb = new StringBuilder(256);
-                            GetClassName(hWnd, sb, sb.Capacity);
-                            string cls = sb.ToString();
-                            if (cls.StartsWith("HwndWrapper"))
+                            // R53：必须在**该窗口自己的 Dispatcher** 上翻译。
+                            // 定时器跑在 WinForms UI 线程（或线程池），而 WPF 窗口往往属于另一个
+                            // Dispatcher；跨线程直接碰视觉树会抛
+                            // 「The calling thread cannot access this object」。
+                            // CheckAccess() 为真时同步执行（省掉一次排队），否则 BeginInvoke。
+                            if (src.Dispatcher.CheckAccess())
                             {
-                                System.Windows.Interop.HwndSource src = System.Windows.Interop.HwndSource.FromHwnd(hWnd);
-                                if (src != null && src.Dispatcher != null)
+                                SweepOneWpfSource(src);
+                            }
+                            else
+                            {
+                                System.Windows.Interop.HwndSource cap = src;
+                                src.Dispatcher.BeginInvoke(new Action(delegate
                                 {
-                                    src.Dispatcher.BeginInvoke(new Action(delegate
-                                    {
-                                        try
-                                        {
-                                            InstallWpfRenderHook();
-                                            if (src.RootVisual != null)
-                                            {
-                                                System.Windows.DependencyObject rootDep = src.RootVisual as System.Windows.DependencyObject;
-                                                System.Windows.Window win = rootDep != null ? System.Windows.Window.GetWindow(rootDep) : null;
-                                                if (win != null)
-                                                {
-                                                    string wt = win.Title;
-                                                    string trWt = TranslateTitleText(wt);
-                                                    if (!string.IsNullOrEmpty(trWt) && trWt != wt) win.Title = trWt;
-                                                }
-                                                TranslateWpfElement(src.RootVisual);
-                                            }
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            Log("WPF Dispatcher invoke error: " + ex.Message);
-                                        }
-                                    }));
-                                }
+                                    try { SweepOneWpfSource(cap); } catch { }
+                                }), null);
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        Log("EnumWindows item error: " + ex.Message);
+                        Log("WPF sweep item error: " + ex.Message);
                     }
-                    return true;
-                }, IntPtr.Zero);
+                    visited++;
+                    _wpfSweepCursor = (start + k + 1) % n;
+                    if (System.Diagnostics.Stopwatch.GetTimestamp() - t0 >= budgetTicks) break;
+                }
+                _wpfSweepMs = (int)((System.Diagnostics.Stopwatch.GetTimestamp() - t0) * 1000
+                                    / System.Diagnostics.Stopwatch.Frequency);
             }
             catch (Exception ex)
             {
@@ -1385,6 +1455,9 @@ namespace CMOLocalizer
                             try
                             {
                                 int before = Interlocked.CompareExchange(ref _repaintChanged, 0, 0);
+                                // R53：全树补扫现在只在这里跑（UI 线程同步、4ms 预算 + 游标续扫），
+                                // 不再从渲染帧钩子触发。ElementHost 子树补扫仍保留在下面。
+                                try { TranslateWpfWindows(); } catch { }
                                 TranslateWpfElementHostsNow();
                                 int after = Interlocked.CompareExchange(ref _repaintChanged, 0, 0);
                                 if (after > before)
@@ -1436,16 +1509,18 @@ namespace CMOLocalizer
             _inRenderPass = true;
             try
             {
-                // ElementHost 中替换 Document/追加 Run 不保证在下一帧前触发 Loaded。
-                // 保留 R43 的子树补扫，避免新的正文等待 600/1500ms 慢扫才翻译。
                 _renderFrame++;
-                // 顶层窗口同样可能只替换 FlowDocument/Run，沿用 master 的八帧补扫。
                 lock (traceLock) { renderTickCount++; }
-                if ((_renderFrame & 7) == 0)
-                {
-                    try { TranslateWpfWindows(); } catch { }
-                }
-                try { TranslateWpfElementHostsNow(); } catch { }
+                // R53：渲染帧里**不再**做全树遍历。
+                //
+                // 历史 bug：这里原本每 8 帧调一次 TranslateWpfWindows()，而该函数对
+                // 每个 HwndWrapper 窗口都 BeginInvoke 一次全树翻译。渲染帧 103/s 下，
+                // 即使只有 3 个窗口也是 38 次全树/秒；实测进程里有 22 个僵尸窗口，
+                // 排队量放大到 2200+/s，UI 线程被自己的任务淹没 ⇒ 整机卡死。
+                //
+                // 全树补扫现在完全交给 StartWpfRepaintTick 的定时器（带 4ms 预算 + 游标续扫）。
+                // 渲染帧只保留“已登记目标的轻量重写”，它只看 liveWpfTargets（上限 400 个
+                // 具体元素，不做树遍历），代价与想定规模无关。
                 if (liveWpfTargets == null || liveWpfTargets.Count == 0) return;
                 WeakReference[] snapshot = liveWpfTargets.ToArray();
                 for (int i = 0; i < snapshot.Length; i++)

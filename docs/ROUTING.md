@@ -256,6 +256,7 @@
 | `scripts/test_installer_ui.py` | 安装器界面实机验证 |
 | `scripts/test_updater_live.py` | 更新助手实机验证（`--check` 四条路径） |
 | `scripts/perf_probe.py` | 卡顿探针（R49）：补扫频率 + 静止界面翻译事件 |
+| `scripts/perf_probe_large.py` | **大想定**卡顿探针（R53）：渲染帧/补扫频率比值、僵尸 WPF 窗口、视觉树节点规模；`--load "Blue Dawn"` 可直接加载指定想定 |
 
 ### 8.5 词典构建辅助
 
@@ -474,7 +475,7 @@
 | 修引擎翻译逻辑 | `src/engine/CMOLocalizer.cs`（先看 §4 内部地图）→ 加/改用例到 `src/tests/` → `verify_regressions.py` 里加 static 项 → build/deploy → 跑门禁 |
 | 修"中英混排/半译" | `compose_terms.py`（规则镜像）+ `dict/src/terms.json`（词汇）+ 引擎 `TryComposeTranslate` 族，**三处要同步** |
 | 修"面板频闪/越翻越长" | 引擎 `AllowWrite` 令牌桶 + `SetTextKeepBinding` 幂等短路；用 `FLICKER_PROBE`/`WPF_TEXTLOG` 取证 |
-| 修"卡顿" | 先跑 `scripts/perf_probe.py`（看补扫频率与翻译事件）；改 `StartWpfRepaintTick`/`_repaintPeriod` |
+| 修"卡顿" | 先跑 `scripts/perf_probe.py`（看补扫频率与翻译事件）；大想定/多单位必须跑 `scripts/perf_probe_large.py`（渲染帧与补扫是否 1:1、有无僵尸 WPF 窗口）；改 `StartWpfRepaintTick`/`_repaintPeriod`/`TranslateWpfWindows`（R53 起全树补扫有 4ms 预算与游标续扫） |
 | 加一个门禁用例 | `scripts/verify_regressions.py`（static/live 各自列表）；live 用例写在 `--live` 段 |
 | 改安装器 | `src/installer/CMO_Chinese_Setup.cs` → `build.sh` → `verify_regressions --static --installer` |
 | 改更新助手 | `src/updater/CMO_Updater.cs` + `docs/AUTO_UPDATE_DESIGN.md` → `test_updater_live.py` |

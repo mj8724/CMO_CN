@@ -1042,7 +1042,7 @@ def _build_adaptation_probe(H, r: Runner, pid: int | None) -> None:
     name = "L-build-adaptation"
     title = "R31 游戏构建号一致 + 偏移池注入生效（状态栏中文/日志模板）"
     log = H.GAME / "CMOLocalizer.log"
-    tail = _log_tail(log)
+    tail = _log_this_session(log)
     game_build = (ROOT / "GAME_BUILD").read_text(encoding="utf-8").strip()
 
     injected = 'Successfully pre-populated' in tail and 'offset injection disabled' not in tail
@@ -1107,6 +1107,26 @@ def _log_tail(path: Path, limit: int = 400_000) -> str:
         return path.read_text(encoding="utf-8", errors="replace")[-limit:]
     except Exception:
         return ""
+
+
+def _log_this_session(path: Path) -> str:
+    """只取**本次引擎启动**之后产生的日志段。
+
+    为什么不能直接用 _log_tail 的尾部字节窗口：CMOLocalizer.log 会跨多次启动持续累积
+    （实测 3.9 MB / 83 次启动），而偏移池注入的 'Successfully pre-populated' 只发生在
+    引擎启动后的头几秒。启动次数一多，这条关键行就被挤出尾部窗口，
+    L-build-adaptation 于是误报 注入=MISSING——门禁把「日志被冲掉」当成了「功能没生效」。
+
+    按最后一个启动标记切段，判据就与日志体积无关：既修掉这类假红，
+    也保证真的没注入时照样能抓到（本次段里就是没有）。
+    """
+    try:
+        text = path.read_text(encoding="utf-8", errors="replace")
+    except Exception:
+        return ""
+    marker = "=== CMOLocalizer"
+    at = text.rfind(marker)
+    return text[at:] if at >= 0 else _log_tail(path)
 
 
 _CHILD_RE = re.compile(r"^\s*(\d+)\s+vis=(\w+)\s+rect=\[(-?\d+),(-?\d+),(\d+)x(\d+)\]\s+cls=(.*?)\s+txt=(.*)$")
@@ -1319,21 +1339,34 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
     wpf_rows = 0
     wpf_missing: list[str] = []
     wpf_en_left: list[str] = []
+    wpf_open_err = ""
     H.send("CLOSE_FORM ALL", timeout=20)
     time.sleep(1.2)
     if H.send("CLICK_MENU RealismSettingsToolStripMenuItem", timeout=20).get("status") == "ok":
-        time.sleep(4.5)
-        dump = H.send("WPF_DUMP", timeout=40)
-        # 窗口标题**已被汉化**为「想定特性与拟真度选项」，用英文 "Realism" 过滤
-        # 会一条都匹配不上（实测 wpf_rows=0，4 条正确译文被判「缺失」）。
-        # 中英文标题都认：翻译正常时标题是中文；万一回退英文也要能抓到。
-        views = [w for w in dump.get("windows", [])
-                 if any(k in (w.get("title") or "")
-                        for k in ("Realism", "想定特性", "拟真度"))]
-        texts = {(n.get("text") or "").strip()
-                 for w in views for n in (w.get("nodes") or []) if n.get("text")}
+        # 窗口是异步构建的，实测 4.5s 有时仍抽不到（前序用例关过全部窗体时更明显）。
+        # 加重试而不是只取一次：没抽到就必须重试，否则会把「窗口还没建好」
+        # 误报成「特性没翻译」（实测 wpf_rows=0，而单独复测是 19 条）。
+        dump: dict = {}
+        views: list[dict] = []
+        texts: set[str] = set()
+        for _ in range(4):
+            time.sleep(4.5)
+            dump = H.send("WPF_DUMP", timeout=40)
+            # 窗口标题**已被汉化**为「想定特性与拟真度选项」，用英文 "Realism" 过滤
+            # 会一条都匹配不上。中英文标题都认：翻译正常时是中文；万一回退英文也要能抓到。
+            views = [w for w in dump.get("windows", [])
+                     if any(k in (w.get("title") or "")
+                            for k in ("Realism", "想定特性", "拟真度"))]
+            texts = {(n.get("text") or "").strip()
+                     for w in views for n in (w.get("nodes") or []) if n.get("text")}
+            rows_probe = texts - {"确定", "取消"}
+            if len(rows_probe) >= 10:
+                break
         rows = texts - {"确定", "取消"}
         wpf_rows = len(rows)
+        if wpf_rows < 10:
+            wpf_open_err = (f"WPF 想定特性窗口抽到的文本仅 {wpf_rows} 条（重试 4 次后仍不足 10）"
+                            "——窗口未正常构建，非翻译缺失")
         # 想定特性列表：不同想定包含的选项集合不同（基础想定实测仅 14 个，
         # 「即时装载」「点对点」「真实指挥链」是高版本/DLC 想定专有选项）。
         # 正确断言：
@@ -1354,13 +1387,18 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
     else:
         wpf_missing.append("想定特性与设置:打不开")
     H.send("CLOSE_FORM ALL", timeout=20)
+    # 判据里把「窗口没建好」与「翻译缺失」分开：前者是环境/时序问题（重试 4 次仍不足），
+    # 后者才是真缺陷。混在一起会把环境抖动误报成汉化回归。
     ok = bool(exact and checked_forms >= 3 and not missing and not residual
               and wpf_rows >= 10 and not wpf_missing and not wpf_en_left)
+    if wpf_open_err:
+        ok = False
     r.record(name, title, ok,
              f"抽查 {checked_forms}/{len(windows)} 个窗口；已入词典却仍显英文 {len(residual)} 条"
              + (f"（{residual[:4]}）" if residual else "")
              + (f"；已知盲区跳过富文本 {rich_skipped} 处" if rich_skipped else "")
              + f"；WPF 想定特性 {wpf_rows} 条（仍显英文 {len(wpf_en_left)}、缺译文 {len(wpf_missing)}）"
+             + (f"；{wpf_open_err}" if wpf_open_err else "")
              + (f"；缺失: {missing + wpf_missing}" if (missing or wpf_missing) else ""),
              "evidence/live/scan")
 
