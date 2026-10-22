@@ -257,6 +257,8 @@
 | `scripts/test_updater_live.py` | 更新助手实机验证（`--check` 四条路径） |
 | `scripts/perf_probe.py` | 卡顿探针（R49）：补扫频率 + 静止界面翻译事件 |
 | `scripts/perf_probe_large.py` | **大想定**卡顿探针（R53）：渲染帧/补扫频率比值、僵尸 WPF 窗口、视觉树节点规模；`--load "Blue Dawn"` 可直接加载指定想定 |
+| `scripts/live_load_blue_dawn.py` | 一键进入战争链战役第一关 Blue Dawn（战役关卡，不在想定列表，必须走 战役→系列战役→开始想定→选阵营 这条链） |
+| `scripts/zombie_window_watch.py` | 观测「想定特性与拟真度选项」僵尸 WPF 窗口是否持续增长（区分真实泄漏与一次性残留） |
 
 ### 8.5 词典构建辅助
 

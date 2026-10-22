@@ -938,6 +938,15 @@ namespace CMOLocalizer
         [DllImport("user32.dll")]
         private static extern bool IsWindowVisible(IntPtr hWnd);
 
+        [StructLayout(LayoutKind.Sequential)]
+        private struct RECT_I
+        {
+            public int Left, Top, Right, Bottom;
+        }
+
+        [DllImport("user32.dll")]
+        private static extern bool GetWindowRect(IntPtr hWnd, out RECT_I lpRect);
+
         [DllImport("user32.dll")]
         private static extern bool EnumWindows(EnumWindowsProc enumProc, IntPtr lParam);
 
@@ -1114,6 +1123,38 @@ namespace CMOLocalizer
                 }, IntPtr.Zero);
 
                 int n = handles.Count;
+                if (n == 0) { _wpfSweepCursor = 0; _wpfSweepWindowCount = 0; return; }
+
+                // 按矩形去重：游戏里的模态窗口会累积多个同大小同位置的 HwndWrapper
+                // （实测「想定特性与拟真度选项」会堆 4 个，每个 153 个节点），
+                // 它们互相完全遮挡，图上只能看到一个。逐个全树翻译纯属浪费。
+                // 注意 IsWindowVisible 在这类窗口上仍返回 true（WS_VISIBLE 置位），
+                // 所以只能按屏幕矩形重合度判断谁被完全遮挡。
+                List<IntPtr> visibleOnly = new List<IntPtr>(handles.Count);
+                List<RECT_I> seenRect = new List<RECT_I>(handles.Count);
+                for (int i = 0; i < handles.Count; i++)
+                {
+                    RECT_I r;
+                    if (!GetWindowRect(handles[i], out r)) { visibleOnly.Add(handles[i]); continue; }
+                    int w = r.Right - r.Left, h = r.Bottom - r.Top;
+                    if (w <= 0 || h <= 0) continue;           // 零尺寸不要
+                    bool covered = false;
+                    for (int j = 0; j < seenRect.Count; j++)
+                    {
+                        RECT_I s = seenRect[j];
+                        if (s.Left == r.Left && s.Top == r.Top
+                            && (s.Right - s.Left) == w && (s.Bottom - s.Top) == h)
+                        {
+                            covered = true;     // 完全重叠：先加入的那个保留即可
+                            break;
+                        }
+                    }
+                    if (covered) continue;
+                    seenRect.Add(r);
+                    visibleOnly.Add(handles[i]);
+                }
+                handles = visibleOnly;
+                n = handles.Count;
                 if (n == 0) { _wpfSweepCursor = 0; _wpfSweepWindowCount = 0; return; }
 
                 // 窗口数量变化（新开/关闭）时重置游标，避免错位漏扫。

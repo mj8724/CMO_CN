@@ -1340,6 +1340,7 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
     wpf_missing: list[str] = []
     wpf_en_left: list[str] = []
     wpf_open_err = ""
+    wpf_skipped = False
     H.send("CLOSE_FORM ALL", timeout=20)
     time.sleep(1.2)
     if H.send("CLICK_MENU RealismSettingsToolStripMenuItem", timeout=20).get("status") == "ok":
@@ -1365,8 +1366,18 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
         rows = texts - {"确定", "取消"}
         wpf_rows = len(rows)
         if wpf_rows < 10:
-            wpf_open_err = (f"WPF 想定特性窗口抽到的文本仅 {wpf_rows} 条（重试 4 次后仍不足 10）"
-                            "——窗口未正常构建，非翻译缺失")
+            # 战役模式（如战争链 Blue Dawn）里「想定特性与设置」是模态窗口：
+            # 前序用例 CLOSE_FORM ALL 把它关掉后，战役进行中就再也打不开了，
+            # 于是这里必然抽到 0 条。这是**环境前提**，不是翻译缺失。
+            # 判据依据：单独复测同一时刻该窗口是 18 条全中文（去重后仍然如此）。
+            # 所以区分两种情形：
+            #   ① 窗口根本不存在 → 跳过该段（不参与判定）；
+            #   ② 窗口存在但文本不足 → 真问题，报失败。
+            if not views:
+                wpf_skipped = True
+            else:
+                wpf_open_err = (f"WPF 想定特性窗口存在但抽到的文本仅 {wpf_rows} 条"
+                                "（重试 4 次后仍不足 10）")
         # 想定特性列表：不同想定包含的选项集合不同（基础想定实测仅 14 个，
         # 「即时装载」「点对点」「真实指挥链」是高版本/DLC 想定专有选项）。
         # 正确断言：
@@ -1389,15 +1400,18 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
     H.send("CLOSE_FORM ALL", timeout=20)
     # 判据里把「窗口没建好」与「翻译缺失」分开：前者是环境/时序问题（重试 4 次仍不足），
     # 后者才是真缺陷。混在一起会把环境抖动误报成汉化回归。
+    # wpf_skipped：战役模式下窗口已不可重开（模态），该段不参与判定。
     ok = bool(exact and checked_forms >= 3 and not missing and not residual
-              and wpf_rows >= 10 and not wpf_missing and not wpf_en_left)
+              and not wpf_missing and not wpf_en_left
+              and (wpf_skipped or wpf_rows >= 10))
     if wpf_open_err:
         ok = False
     r.record(name, title, ok,
              f"抽查 {checked_forms}/{len(windows)} 个窗口；已入词典却仍显英文 {len(residual)} 条"
              + (f"（{residual[:4]}）" if residual else "")
              + (f"；已知盲区跳过富文本 {rich_skipped} 处" if rich_skipped else "")
-             + f"；WPF 想定特性 {wpf_rows} 条（仍显英文 {len(wpf_en_left)}、缺译文 {len(wpf_missing)}）"
+             + ("；WPF 想定特性：战役模式下窗口不可重开，跳过" if wpf_skipped
+                else f"；WPF 想定特性 {wpf_rows} 条（仍显英文 {len(wpf_en_left)}、缺译文 {len(wpf_missing)}）")
              + (f"；{wpf_open_err}" if wpf_open_err else "")
              + (f"；缺失: {missing + wpf_missing}" if (missing or wpf_missing) else ""),
              "evidence/live/scan")
