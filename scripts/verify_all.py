@@ -114,14 +114,16 @@ def gate_briefings() -> None:
         cjk += n
         if n == 0 and "<img" in text.lower():
             image_only += 1
+    # Entity-encoded Chinese (&#26085;...) is still Chinese; decoding before the
+    # CJK test prevents a translated page from being counted as untranslated.
     translated = sum(1 for f in files
-                     if HAN.search(re.sub(r"<[^>]+>", " ",
+                     if HAN.search(htmlmod.unescape(re.sub(r"<[^>]+>", " ",
                                           f.read_text(encoding="utf-8",
-                                                       errors="replace"))))
+                                                       errors="replace")))))
     # 空集不得空过：无文件、或「图片型」占比过高（>10%）都判 FAIL。
     # 旧式 `translated >= len(files) - image_only` 在 files 为空时是 0>=0，永远绿。
-    image_names = [f.name for f in files if not HAN.search(re.sub(r"<[^>]+>", " ",
-                                     f.read_text(encoding="utf-8", errors="replace"))) ]
+    image_names = [f.name for f in files if not HAN.search(htmlmod.unescape(re.sub(r"<[^>]+>", " ",
+                                     f.read_text(encoding="utf-8", errors="replace")))) ]
     allowed_image_only = [f for f in files if IMAGE_ONLY_ALLOW.search(str(f))]
     unconfirmed = image_only - len(allowed_image_only)
     denom = max(1, len(files) - len(allowed_image_only))
