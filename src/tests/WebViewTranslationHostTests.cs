@@ -34,6 +34,7 @@ public class FakeExecuteCore
 public sealed class FakeCore : FakeExecuteCore
 {
     public event EventHandler<FakeMessage> WebMessageReceived;
+    public event EventHandler<EventArgs> NavigationStarting;
     public TaskCompletionSource<string> Registration = new TaskCompletionSource<string>();
     public int Registrations;
     public string Bootstrap;
@@ -42,6 +43,11 @@ public sealed class FakeCore : FakeExecuteCore
         Registrations++;
         Bootstrap = script;
         return Registration.Task;
+    }
+    public void Navigate(string source)
+    {
+        if (NavigationStarting != null) NavigationStarting(this, EventArgs.Empty);
+        Source = source;
     }
     public void Send(string message, string source = "about:blank")
     {
@@ -137,6 +143,108 @@ public static class WebViewTranslationHostTests
             Thread.Sleep(1);
         }
     }
+    private static string Message(string nonce, int id, string source)
+    {
+        return "CMO_WEB_V1\t" + nonce + "\n" + id + "\t" + Uri.EscapeDataString(source);
+    }
+    private static void HostWorkBounds(Type engine, MethodInfo translate)
+    {
+        using (var control = new FakeWebView())
+        {
+            control.CreateControl();
+            var core = new FakeCore(); core.Registration.SetResult("work-bounds");
+            control.CoreWebView2 = core;
+            translate.Invoke(null, new object[] { control });
+            PumpUntil(() => core.Executed.Count == 1);
+            object state = State(engine, control);
+            core.Send(Message("limits", 1, "Detailed description."), "about:blank?different-local-page");
+            PumpFor(20);
+            Check(core.Executed.Count == 1 && (int)StateField(state, "OutstandingItems") == 0,
+                "trusted but different native/event page URLs cannot schedule work");
+            core.Send("CMO_WEB_V1\tlimits\n1\tDetailed%20description.\n1\tDetailed%20description.");
+            PumpFor(20);
+            Check(core.Executed.Count == 1, "duplicate IDs within one native batch are rejected");
+            // No UI pump until after the burst: translated replies still count as
+            // outstanding, rather than turning the UI callback queue into an unbounded buffer.
+            for (int i = 1; i <= 2200; i++) core.Send(Message("limits", i, "Detailed description."));
+            Check((int)StateField(state, "OutstandingItems") == 2048,
+                "native translation work plus posted replies retain the 2048-item bound");
+            PumpUntil(() => (int)StateField(state, "OutstandingItems") == 0);
+            Check(core.Executed.Count == 2049, "native overload schedules only the admitted bounded replies");
+            core.Send(Message("limits", 2201, "Detailed description."));
+            PumpUntil(() => core.Executed.Count == 2050);
+            Check(true, "native work capacity recovers after replies finish");
+        }
+    }
+    private static void HostDocumentGeneration(Type engine, MethodInfo translate)
+    {
+        using (var control = new FakeWebView())
+        {
+            control.CreateControl();
+            var core = new FakeCore(); core.Registration.SetResult("document-generation");
+            control.CoreWebView2 = core;
+            translate.Invoke(null, new object[] { control });
+            PumpUntil(() => core.Executed.Count == 1);
+            core.Send(Message("old-document", 1, "Detailed description."));
+            WaitForPostedCallback(control);
+            core.Navigate("about:blank"); // Same URL, different actual document.
+            core.Send(Message("new-document", 1, "Detailed description."));
+            PumpUntil(() => core.Executed.Exists(s => s.Contains("new-document") && s.Contains("receive(")));
+            Check(!core.Executed.Exists(s => s.Contains("old-document") && s.Contains("receive(")),
+                "same-URL navigation invalidates the old worker and queued UI reply generation");
+            int count = core.Executed.Count;
+            core.Send(Message("old-document", 2, "Detailed description."));
+            PumpFor(30);
+            Check(core.Executed.Count == count,
+                "retired document nonce cannot replace the current document after navigation");
+            core.Send(Message("new-document", 3, "Detailed description."));
+            WaitForPostedCallback(control);
+            control.RemoveHandle(); control.RestoreHandle();
+            PumpFor(30);
+            Check(core.Executed.Count == count, "handle replacement drops the old generation's queued response");
+            core.Send(Message("new-document", 4, "Detailed description."));
+            PumpUntil(() => core.Executed.Count == count + 1);
+            Check(true, "same surviving document nonce is usable after handle recreation");
+            count = core.Executed.Count;
+            core.Send(Message("new-document", 5, "Detailed description."));
+            WaitForPostedCallback(control);
+            // Actual Core replacement must be checked even before rediscovery attaches it.
+            control.CoreWebView2 = new FakeCore();
+            PumpFor(30);
+            Check(core.Executed.Count == count, "actual Core replacement rejects a reply before rediscovery");
+        }
+        using (var control = new FakeWebView())
+        {
+            control.CreateControl();
+            var core = new FakeCore(); core.Registration.SetResult("canceled-navigation");
+            control.CoreWebView2 = core;
+            translate.Invoke(null, new object[] { control });
+            PumpUntil(() => core.Executed.Count == 1);
+            core.Send(Message("surviving-document", 1, "Detailed description."));
+            PumpUntil(() => core.Executed.Count == 2);
+            core.Navigate("about:blank"); // A canceled navigation keeps its JS document/nonce.
+            core.Send(Message("surviving-document", 2, "Detailed description."));
+            PumpUntil(() => core.Executed.Count == 3);
+            Check(true, "a canceled navigation does not permanently retire the surviving document nonce");
+        }
+    }
+    private static void HostMixedTranslation(Type engine, MethodInfo translate)
+    {
+        using (var control = new FakeWebView())
+        {
+            control.CreateControl();
+            var core = new FakeCore(); core.Registration.SetResult("mixed-translation");
+            control.CoreWebView2 = core;
+            translate.Invoke(null, new object[] { control });
+            PumpUntil(() => core.Executed.Count == 1);
+            core.Send(Message("mixed", 1, "状态: Unassigned"));
+            core.Send(Message("mixed", 2, "所属阵营：Israel"));
+            PumpUntil(() => core.Executed.Count == 3);
+            Check(core.Executed.Exists(s => s.Contains("状态：未分配任务")) &&
+                core.Executed.Exists(s => s.Contains("所属阵营：以色列")),
+                "real host briefing entry translates mixed right-hand values and fullwidth colon");
+        }
+    }
     private static void RegistrationAcrossHandle(Type engine, MethodInfo translate, bool failed, bool queued)
     {
         using (var control = new FakeWebView())
@@ -190,6 +298,8 @@ public static class WebViewTranslationHostTests
             var exact = (Dictionary<string, string>)engine.GetField("exactMap", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
             exact["SITUATION"] = "战场态势";
             exact["Detailed description."] = "详细说明。";
+            exact["Unassigned"] = "未分配任务";
+            exact["Israel"] = "以色列";
             MethodInfo trusted = engine.GetMethod("TrustedWebSource", BindingFlags.Static | BindingFlags.NonPublic);
             foreach (string source in new string[] { "https://127.example.invalid/", "https://127.0.0.1.example.invalid/" })
                 Check(!(bool)trusted.Invoke(null, new object[] { source }), "native source rejects a numeric-prefix external domain: " + source);
@@ -528,6 +638,11 @@ public static class WebViewTranslationHostTests
                 Check(core.Executed.Count == 0 && oldCore.Executed.Count == 1,
                     "registration completion uses its captured mode without a reentrant settings read executing the old bootstrap on a new Core");
             }
+            if (args.Length < 2 || args[1] == "work-bounds") HostWorkBounds(engine, translate);
+            if (args.Length < 2 || args[1] == "document-generation") HostDocumentGeneration(engine, translate);
+            // The sibling entry is merged in CMOLocalizer.cs by root; do not let
+            // the default host regression silently omit its mixed-value contract.
+            if (args.Length < 2 || args[1] == "mixed-values") HostMixedTranslation(engine, translate);
             return 0;
         }
         catch (Exception ex) { Console.Error.WriteLine(ex); return 1; }

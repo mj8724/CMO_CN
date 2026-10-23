@@ -58,6 +58,21 @@ foreach ($required in @($compiler, $Engine)) {
 }
 New-Item -ItemType Directory -Force -Path $OutputDir | Out-Null
 $utf8 = New-Object Text.UTF8Encoding($false)
+function Get-FileSha256([string]$Path) {
+    # Local .NET implementation: Get-FileHash lives in a module that PowerShell 7
+    # module paths can shadow, which silently broke the fixture hash binding.
+    $stream = [IO.File]::OpenRead($Path)
+    $sha = $null
+    try {
+        $sha = [Security.Cryptography.SHA256]::Create()
+        return ([BitConverter]::ToString($sha.ComputeHash($stream)) -replace '-', '').ToLowerInvariant()
+    }
+    finally {
+        if ($sha) { $sha.Dispose() }
+        $stream.Dispose()
+    }
+}
+
 function Invoke-Logged([string]$File, [string[]]$Arguments, [string]$Log) {
     # Native stderr belongs in the log; its exit code determines test failure.
     $ErrorActionPreference = 'Continue'
@@ -71,10 +86,10 @@ function Invoke-Logged([string]$File, [string[]]$Arguments, [string]$Log) {
 $fixtures = @()
 $results = @()
 $completed = $false
-$engineHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $Engine).Hash.ToLowerInvariant()
+$engineHash = Get-FileSha256 $Engine
 $usesDictionary = @($Suite | Where-Object { $plans[$_].Dictionary }).Count -gt 0
 $dictionaryHash = if ($usesDictionary -and (Test-Path -LiteralPath $Dictionary -PathType Leaf)) {
-    (Get-FileHash -Algorithm SHA256 -LiteralPath $Dictionary).Hash.ToLowerInvariant()
+    Get-FileSha256 $Dictionary
 } else { $null }
 try {
     foreach ($name in $Suite) {
@@ -87,9 +102,9 @@ try {
         $arguments += @($plan.References | ForEach-Object { "-reference:$_" })
         $code = Invoke-Logged $compiler $arguments $compileLog
         $fixtures += [pscustomobject]@{ Suite = $name; Source = $source
-            SourceSha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $source).Hash.ToLowerInvariant(); CompileExitCode = $code }
+            SourceSha256 = Get-FileSha256 $source; CompileExitCode = $code }
         if ($code) { throw "Fixture compilation failed for $name; see $compileLog" }
-        $fixtures[-1] | Add-Member NoteProperty FixtureSha256 (Get-FileHash -Algorithm SHA256 -LiteralPath $fixture).Hash.ToLowerInvariant()
+        $fixtures[-1] | Add-Member NoteProperty FixtureSha256 (Get-FileSha256 $fixture)
         $modes = if ($Mode) { $Mode } else { $plan.Modes }
         foreach ($testMode in $modes) {
             $arguments = @($Engine)

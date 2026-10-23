@@ -82,6 +82,8 @@
 | `src/engine/UiLifecycle.cs` | UI 生命周期挂钩（控件创建/重挂载），替代纯周期扫描来发现新控件 |
 | `src/engine/UiIdleContinuation.cs` | 空闲续做：`Application.Idle` + 1ms 兜底 Timer 的单次续接器（只在 UI 线程创建/取消） |
 | `src/engine/UiTranslationQueue.cs` | 有界增量翻译队列：按 UI 线程派发，执行前复核控件归属与输入保护 |
+| `src/engine/UiPerfMetrics.cs` | 实际 UI 回调耗时与待执行计量；投递、执行、完成分别计数，供性能探针识别排队与超帧 |
+| `src/engine/WpfTranslationQueue.cs` | 每 Dispatcher 一份有界合并队列，以节点/Inline 游标分片；换根或卸载取消旧工作，避免全树异线程积压 |
 | `src/engine/WebViewTranslation.cs` | WebView2 译文注入宿主：注册文档脚本、限制来源/nonce/容量、拒绝旧回包与编辑区写入 |
 | `src/engine/WebViewTranslation.js` | 上面宿主注入页面的脚本。**以嵌入资源 `CMOLocalizer.WebViewTranslation.js` 打进 DLL**（`scripts/build.ps1` 负责 `-resource:`），改名或移动会运行期抛 `Missing WebViewTranslation.js embedded resource` |
 | `src/engine/WpfValueTranslation.cs` | WPF 值翻译（`Content`/`Text`/绑定安全写回），从 `CMOLocalizer.cs` 抽出的 partial 分片 |
@@ -144,6 +146,7 @@
 | `dict/src/ui_cleanup_terms.json` | 界面清理类替换 |
 | `dict/src/term_replacements.json` | 术语级替换规则 |
 | `dict/src/legacy_fixes.json` | 历史遗留修复 |
+| `dict/src/legacy_preserved.json` | 旧产物独有 exact/安全 offsets 的显式源，最低优先级保全；构建不再读取输出作为底座 |
 | `dict/src/legacy_garbage_cleaned.json` | 早期"按词拼接"垃圾串的人工清洗结果 |
 | `dict/src/sentence_fragment_fixes.json` | 句子碎片修复 |
 | `dict/src/live_audit_fixes.json` | 实机审计发现缺口的补齐 |
@@ -287,6 +290,7 @@
 | `scripts/test_static_html.py` | 静态 HTML 汉化断言（编码/完整译文/`.orig` 备份保留） |
 | `scripts/test_scenario_html.ps1` | 想定 HTML 导出的 PowerShell 回归 |
 | `scripts/test_web_translation.cjs` | WebView2 译文脚本的 Node 侧契约测试 |
+| `scripts/test_web_translation_state.cjs` | 独立无头 Edge 验证 Web 配额续做、同节点取消、来源/nonce/编辑保护；不操作游戏 |
 | `scripts/test_webview2.ps1` | 真实 Edge/WebView2 DOM 回归 |
 | `scripts/test_ui.ps1` | UI 模式回归（控件/下拉/设置抽查），需要游戏在跑 |
 | `scripts/scan_english_residue.py` | **英文残留扫描（R52）**：拿游戏数据本身（DB 各表 Name、枚举 Description、想定源）当语料喂给引擎 `TranslateString`，判据是「翻完还剩多少真英文词」。这是唯一能发现「没进词典的字符串」的机制——`L-ui-residuals` 只能查已入词典的条目 |
@@ -416,6 +420,8 @@
 | `src/tests/UiIdleContinuationTests.cs` | 空闲续接器的模态/DoEvents 宿主行为 | — |
 | `src/tests/UiLifecycleTests.cs` | UI 生命周期挂钩 | — |
 | `src/tests/UiSchedulingTests.cs` | UI 调度顺序（不吞掉新投递的回调） | — |
+| `src/tests/UiPerfMetricsTests.cs` | UI 执行计量负向验证：排队不算执行、慢回调超帧、取消不完成、忙时拒绝重置 | `R55-static-ui-perf` |
+| `src/tests/WpfSchedulingTests.cs` | WPF 分片与归属回归：稳定同级游标续扫、跨 Dispatcher 合并、换根取消、输入让出 | `R54-static-wpf-scheduling` |
 | `src/tests/WpfSafetyTests.cs` | WPF 写回安全（不重入属性系统、编辑区不写） | — |
 | `src/tests/FirstPaintTests.cs` | 首帧中文（不等下一轮慢扫） | — |
 | `src/tests/UpstreamCompatibilityTests.cs` | 与上游 master 修复的兼容性 | — |
@@ -424,7 +430,10 @@
 | `src/tests/ScenarioHtmlInstallerTests.cs` | 想定 HTML 的安装/绿色包覆盖语义 | — |
 | `src/tests/DBTranslationTests.cs`、`src/tests/DBLiveProbeTests.py` | 数据库翻译与实机探针 | — |
 | `src/tests/PanelFlickerProbeTests.py` | 面板中英翻转探针的自测 | `L-panel-flicker` |
+| `src/tests/PerformanceProbeTests.py` | 性能探针负向自测 + 分层报告：超时、零工作、未推进、错想定、漏健康、旧绿残留必须失败 | `R56-static-perf-probe` |
+| `src/tests/ReleaseContractTests.py` | 隔离 unittest/mock 验证报告、四资产、冻结构建及绿色包安装器契约；不读凭据/写网络/操作游戏 | `R57-static-release-contract` |
 | `src/tests/PoolDisplayInjectionTests.py` | 池级注入白名单回归 | `R38-static-pool-inject` |
+| `src/tests/DictionarySourceTests.py` | 词库完整字节重建、产物独立性、源删除不回生及污染注入负向测试；只写临时目录 | `R58-static-dictionary-source` |
 | `src/tests/README_WebViewTranslation.md` | 上面 WebView 系列测试的说明 | — |
 | `src/tests/search_methods.cs`、`src/tests/test_db_load.cs` | 方法搜索 / DB 加载试验（历史） | — |
 | `src/tests/README_MapTileServer.md` | 瓦片服务测试说明 | — |

@@ -3,10 +3,14 @@
 
 Sources, merged in order (later wins):
 
-    dict/CMOLocalizer.json          base — previously shipped entries
-    dict/glossary.json              authoritative terminology seed
-    dict/src/*.json                 curated translation batches ({"en": "zh"})
+    dict/src/legacy_preserved.json  lowest-priority explicit legacy translations
+    dict/glossary.json              terminology seed (fills missing keys)
+    dict/src/*.json                 curated translation batches (sorted; later wins)
+    dict/src/labels.json            UI-only translations, never pool-injected
     dict/src/blacklist.json         English keys to purge from every section
+
+The output file is never an input. Removing the sole source of a translation
+therefore removes it from the next build, regardless of any old output bytes.
 
 Placement
 ---------
@@ -23,11 +27,11 @@ between `offsets[off]` and `exact[pool[off]]` would surface as the same English
 text rendering two different Chinese strings.  After merging, the two sections are
 therefore reconciled:
 
-    curated  entry -> the curated translation wins in both sections
-    base     entry -> the offset value is propagated into `exact`
+    curated    entry -> the curated translation wins in both sections
+    preserved  entry -> explicit pool locations use the surviving exact value
 
-`words` is intentionally empty: word-by-word composition produced garbled output
-and is no longer used by the engine.
+`partial` is intentionally empty; `words` comes only from `dict/src/terms.json`
+and retains the engine's longest-phrase composition vocabulary.
 
 Output is byte-stable: two runs over identical sources produce identical files.
 """
@@ -37,6 +41,7 @@ import json
 import os
 import re
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -78,7 +83,7 @@ def iter_source_maps():
     for p in sorted(SRC.glob("*.json")):
         if p.name in ("blacklist.json", "labels.json", "identifiers.json",
                       "force_offsets.json", "dlc_briefing_fixes.json",
-                      "term_replacements.json", "terms.json"):
+                      "term_replacements.json", "terms.json", "legacy_preserved.json"):
             continue
         data = load(p)
         if isinstance(data, dict):
@@ -174,15 +179,35 @@ def apply_naming_standard(text: str, rules: list[tuple[re.Pattern, str]]) -> str
     return text
 
 
-def build() -> dict:
-    base = load(MAIN)
-    offsets: dict[int, str] = {}
-    for k, v in base.get("offsets", {}).items():
-        try:
-            offsets[int(k)] = v
-        except (TypeError, ValueError):
+def load_preserved() -> tuple[dict[str, str], dict[int, str]]:
+    """Explicit legacy facts, not an artifact fallback or automatic migration.
+
+    Offset entries are locations -> original English, never duplicate translations.
+    Both pool identity and the surviving exact source are checked at placement.
+    Named batches remain authoritative over these lowest-priority translations.
+    """
+    path = SRC / "legacy_preserved.json"
+    if not path.is_file():
+        return {}, {}
+    data = load(path)
+    if not isinstance(data, dict) or not isinstance(data.get("exact"), dict) \
+            or not isinstance(data.get("offsets"), dict):
+        raise ValueError(f"invalid explicit legacy source: {path}")
+    exact = {k: v for k, v in data["exact"].items()
+             if k and not k.startswith("_") and isinstance(v, str)}
+    locations: dict[int, str] = {}
+    for key, en in data["offsets"].items():
+        if key.startswith("_"):
             continue
-    exact: dict[str, str] = dict(base.get("exact", {}))
+        if not isinstance(en, str) or not en or not key.isdigit():
+            raise ValueError(f"invalid legacy pool location {key!r}")
+        locations[int(key)] = en
+    return exact, locations
+
+
+def build() -> dict:
+    exact, preserved_locations = load_preserved()
+    offsets: dict[int, str] = {}
     # `partial` is retained for file-format compatibility but is intentionally
     # empty: the engine no longer performs word-level composition, and the
     # inherited entries contained split-word artifacts ("海里 到达返航油量").
@@ -272,6 +297,11 @@ def build() -> dict:
                 curated.add(en)
                 labels_only.add(en)
 
+    # --- explicit legacy locations (not a second source of translations) ---
+    for off, en in preserved_locations.items():
+        if pool.get(str(off)) == en and en not in blacklist and en in exact:
+            offsets.setdefault(off, exact[en])
+
     # --- reconcile offsets <-> exact -------------------------------------
     for off, zh in list(offsets.items()):
         en = pool.get(str(off))
@@ -338,11 +368,7 @@ def build() -> dict:
             offsets.pop(bad_off, None)
 
     # --- 污染自愈 -------------------------------------------------------
-    # 构建以**上一版词典为底座**（下面 `base = load(MAIN)`），所以从源批次里
-    # 删掉的条目并不会消失：它们会一直留在 exact 里。历史批量生成器曾把短标签
-    # 拼成电报体句子（`PLAN Changsha [Type 052D DDG]: Z-9C ASW` →
-    # `PLAN Changsha[...]辖Z-9C ASW如令查收。`），这类值比不翻译更糟。
-    # 这里按形状主动清掉，不依赖人记得去改底座。
+    # 源条目删除不会回生；仍对所有来源统一清理历史「短标签拼成电报体句子」污染。
     TELEGRAPH = ("如令查收", "收悉", "如令办理", "所部须", "兹令", "电悉", "奉此")
     _purged = 0
     for en in list(exact):
@@ -364,10 +390,10 @@ def build() -> dict:
     # other string is still served through `exact`.
     offsets = {k: v for k, v in offsets.items()
                if bucket_of.get(k) == "display"
+               and pool.get(str(k)) in exact
                and pool.get(str(k)) not in identifiers}
 
-    # 形状安全不变量（R38）：即使基座词典里已经带着危险条目（build 以上一版已发布词典为基，
-    # 累积不删），也要在这里剪掉，否则会永久地留在产物里。
+    # 形状安全不变量（R38）：所有来源（含显式 legacy）统一剪掉危险注入。
     # 真实事故：`LongName ASC` 注入后数据库查看器 ORDER BY 全废、列表 0 项。
     # force_offsets（人工实机核验的函数型注入）在这之后重新加回，不受此限。
     _unsafe = []
@@ -540,20 +566,16 @@ def write(doc: dict, path: Path) -> None:
             raise ValueError(
                 f"refusing to install {path.name}: top-level sections "
                 f"{sorted(probe)} != {sorted(TOP_LEVEL_SECTIONS)}")
-        # Windows 下若有杀毒软件、索引器或游戏刚读完持有瞬时句柄，
-        # os.replace 会抛 WinError 5（拒绝访问）。重试 5 次并带退避，
-        # 仍被锁定时退避到截断覆盖写（truncate write）。
-        replaced = False
+        # Windows 下瞬时句柄可能拒绝原子替换；有界重试，仍失败则保全旧产物。
+        # 不退回 truncate write，否则验证过的旧词典也可能被中断写入毁掉。
         for attempt in range(6):
             try:
                 os.replace(tmp, path)
-                replaced = True
                 break
             except PermissionError:
+                if attempt == 5:
+                    raise
                 time.sleep(0.25)
-        if not replaced:
-            path.write_bytes(tmp.read_bytes())
-            tmp.unlink(missing_ok=True)
     except BaseException:
         # Never leave a partial staging file behind, even on Ctrl+C / SIGTERM.
         tmp.unlink(missing_ok=True)

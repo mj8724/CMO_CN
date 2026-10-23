@@ -22,6 +22,7 @@ import shutil
 import sqlite3
 import subprocess
 import sys
+import tempfile
 import time
 import uuid
 import warnings
@@ -154,6 +155,99 @@ def _tile_harness(r: Runner, work: Path) -> None:
     r.record("R34-static-tile-harness", "R34 瓦片服务 7 模式并发回归",
              all(passed), f"{sum(passed)}/{len(TILE_MODES)} 模式通过",
              " || ".join(evidence) or "无输出")
+
+
+def _run_ui_scheduling_and_report_gates(r: Runner) -> None:
+    """R54-R58：UI 分片调度、执行计量、性能探针、发布契约、词库源可重建。
+
+    每条都必须真实存在并能被证伪：C# 用例在临时目录重新编译当前引擎源码后运行，
+    Python 用例独立进程运行；编译/运行失败或没有输出都算 FAIL，不允许空过。
+    """
+    framework = TILE_CSC.parent
+    wpf_refs = [f"-reference:{p}" for p in (TILE_WPF / "WindowsBase.dll",
+                                            TILE_WPF / "PresentationCore.dll",
+                                            TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
+    engine_refs = ["-reference:System.dll", "-reference:System.Core.dll",
+                   "-reference:System.Data.dll", "-reference:System.Windows.Forms.dll",
+                   "-reference:System.Drawing.dll", "-reference:System.Xml.dll",
+                   "-reference:System.Xml.Linq.dll"] + wpf_refs
+
+    def cs_case(cid: str, title: str, source: str, modes: list[str], source_file: str,
+                needs_dictionary: bool = True, expect_all_pass: bool = True) -> None:
+        notes: list[str] = []
+        all_ok = True
+        work = Path(tempfile.mkdtemp(prefix="cmo-cs-", dir=str(ROOT / "build")))
+        try:
+            dll, exe = work / "CMOLocalizer.dll", work / "fixture.exe"
+            build_lib = subprocess.run([str(TILE_CSC), "-nologo", "-utf8output", "-target:library",
+                                        "-platform:anycpu", "-optimize+", f"-out:{dll}",
+                                        *engine_refs, *_engine_source_args()],
+                                       capture_output=True, text=True, encoding="utf-8",
+                                       errors="replace", timeout=300)
+            build_exe = subprocess.run([str(TILE_CSC), "-nologo", "-utf8output", "-target:exe",
+                                        f"-out:{exe}", *wpf_refs, str(ROOT / source)],
+                                       capture_output=True, text=True, encoding="utf-8",
+                                       errors="replace", timeout=120)
+            if build_lib.returncode or build_exe.returncode:
+                all_ok = False
+                notes.append("compile failed: "
+                             + (build_lib.stdout + build_lib.stderr
+                                + build_exe.stdout + build_exe.stderr)[:200].replace(chr(10), " "))
+            else:
+                for mode in (modes or ["default"]):
+                    args = [str(exe), str(dll)]
+                    if needs_dictionary:
+                        args.append(str(DICT))
+                    if modes:
+                        args.append(mode)
+                    run = subprocess.run(args, capture_output=True, timeout=300, cwd=str(work))
+                    out = _decode(run.stdout or b"") + _decode(run.stderr or b"")
+                    marker = "ALL PASS" in out if expect_all_pass else ("PASS " in out and "FAIL " not in out)
+                    ok = run.returncode == 0 and marker
+                    all_ok = all_ok and ok
+                    notes.append(f"{mode} rc={run.returncode} "
+                                 f"PASS={out.count('PASS ')} FAIL={out.count('FAIL')}")
+                    if not ok:
+                        bad = [ln.strip() for ln in out.splitlines() if "FAIL" in ln][:2]
+                        notes[-1] += " " + " | ".join(bad)
+        except Exception as exc:  # noqa: BLE001
+            all_ok = False
+            notes.append(f"异常: {type(exc).__name__}: {exc}")
+        finally:
+            shutil.rmtree(work, ignore_errors=True)
+        r.record(cid, title, all_ok, ("; ".join(notes) or "no cases ran")[:400], source_file)
+
+    def py_case(cid: str, title: str, script: str, *args: str) -> None:
+        path = ROOT / script
+        try:
+            run = subprocess.run([sys.executable, "-B", str(path), *args], capture_output=True,
+                                 timeout=900, cwd=str(ROOT))
+            out = _decode(run.stdout or b"") + _decode(run.stderr or b"")
+            tail = [ln.strip() for ln in out.strip().splitlines() if ln.strip()][-2:]
+            ok = run.returncode == 0 and bool(tail)
+            r.record(cid, title, ok, f"rc={run.returncode} " + " | ".join(tail)[:300], script)
+        except Exception as exc:  # noqa: BLE001
+            r.record(cid, title, False, f"异常: {type(exc).__name__}: {exc}", script)
+
+    cs_case("R54-static-wpf-scheduling",
+            "R54 WPF 分片：稳定同级游标、续做让出、换根/跨 Dispatcher 归属",
+            "src/tests/WpfSchedulingTests.cs",
+            ["document", "mutation", "root", "remote", "input"],
+            "src/tests/WpfSchedulingTests.cs")
+    cs_case("R55-static-ui-perf",
+            "R55 UI 执行计量：投递不等于完成、慢回调超帧、取消不完成、忙时拒绝重置",
+            "src/tests/UiPerfMetricsTests.cs", [],
+            "src/tests/UiPerfMetricsTests.cs",
+            needs_dictionary=False, expect_all_pass=False)
+    py_case("R56-static-perf-probe",
+            "R56 性能探针失败关闭：超时/零工作/未推进/漏健康都必须失败",
+            "src/tests/PerformanceProbeTests.py")
+    py_case("R57-static-release-contract",
+            "R57 发布契约：缺资产/错 SHA/旧或未来报告/已有资产都必须零写入拒绝",
+            "src/tests/ReleaseContractTests.py")
+    py_case("R58-static-dictionary-source",
+            "R58 词库源可重建：两次完整构建字节一致、删源不回生、产物不再作为输入",
+            "src/tests/DictionarySourceTests.py", "--fixtures")
 
 
 def run_static(r: Runner) -> None:
@@ -698,6 +792,8 @@ def run_static(r: Runner) -> None:
              "R44 组合翻译：结构规则成句 + 生词一律放弃 + 半译条目已自动化修复",
              all(r44.values()), _d44,
              "scripts/compose_terms.py + dict/src/terms.json + dict/CMOLocalizer.json")
+
+    _run_ui_scheduling_and_report_gates(r)
 
     r.record("R42-static-mixed-prefix-wiring",
              "R42 混合串修正的接线：先修前缀再走「含中文就跳过」守卫",
@@ -1987,47 +2083,111 @@ def run_installer(r: Runner) -> None:
         shutil.rmtree(tmp, ignore_errors=True)
 
 
-def main() -> int:
+def release_inputs(root: Path = ROOT, *, engine_path: Path | None = None,
+                   setup_path: Path | None = None) -> dict[str, str]:
+    """One read-only input scope for report production and release validation."""
+    root = Path(root)
+    version = (root / "VERSION").read_text(encoding="utf-8").strip()
+    selected: set[Path] = set()
+    for directory in ("src/engine", "src/installer", "src/updater", "src/shared", "src/tests",
+                      "scripts", "assets", "dict/src", "dict/placenames"):
+        selected.update(path for path in (root / directory).rglob("*")
+                        if path.is_file() and "__pycache__" not in path.parts
+                        and path.suffix.lower() != ".pyc" and not path.name.startswith("credentials"))
+    for name in ("VERSION", "GAME_BUILD", "STABLE_VERSION", "README.md", "docs/ROUTING.md",
+                 "docs/BUG_REGISTRY.md", "docs/CHANGELOG.md", "docs/RELEASE_MANIFEST.md",
+                 "docs/RELEASE_TEST_SOP.md", "docs/AUTO_UPDATE_DESIGN.md",
+                 "dict/glossary.json", "dict/strings_pool.json", "dict/scenario_meta.json",
+                 "dict/briefing_dict.json", "dict/brief_translations.json"):
+        path = root / name
+        if path.is_file():
+            selected.add(path)
+    source = hashlib.sha256()
+    for path in sorted(selected, key=lambda item: item.relative_to(root).as_posix()):
+        source.update(path.relative_to(root).as_posix().encode("utf-8") + b"\0")
+        source.update(hashlib.sha256(path.read_bytes()).digest())
+    def digest(path: Path) -> str:
+        return hashlib.sha256(path.read_bytes()).hexdigest() if path.is_file() else ""
+    return {"source_sha256": source.hexdigest(),
+            "dictionary_sha256": digest(root / "dict/CMOLocalizer.json"),
+            "engine_sha256": digest(Path(engine_path) if engine_path else root / "build/CMOLocalizer.dll"),
+            "setup_sha256": digest(Path(setup_path) if setup_path else root / "build" / f"CMO_Chinese_Setup_v{version}.exe")}
+
+
+def _write_regression_report(report: dict) -> None:
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
+    temporary = REPORT.with_name(REPORT.name + ".tmp")
+    temporary.write_text(json.dumps(report, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
+    os.replace(temporary, REPORT)
+
+
+def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--static", action="store_true")
     ap.add_argument("--live", action="store_true")
     ap.add_argument("--installer", action="store_true",
                     help="安装/还原/回退的隔离验证（临时目录，不需要游戏）")
     ap.add_argument("--no-report", action="store_true",
-                    help="不写 build/regression_report.json（供 package.sh 做中间门禁，"
-                         "避免覆盖发版用的 live 报告）")
-    args = ap.parse_args()
+                    help="不写 build/regression_report.json（打包中间门禁）")
+    args = ap.parse_args(argv)
     any_flag = args.static or args.live or args.installer
     do_static = args.static or not any_flag
     do_live = args.live or not any_flag
-    do_installer = args.installer or not any_flag
+    do_installer = args.installer
+    if do_installer and do_live:
+        ap.error("--installer and --live must run separately; installer terminates the game")
 
     version = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+    inputs = release_inputs()
     runner = Runner()
-    if do_static:
-        run_static(runner)
-    if do_installer:
-        run_installer(runner)
-    if do_live:
-        run_live(runner)
+    mode_reports = {}
+    if not args.no_report and REPORT.is_file():
+        try:
+            previous = json.loads(REPORT.read_text(encoding="utf-8"))
+            if previous.get("schema") == 2 and previous.get("version") == version and previous.get("inputs") == inputs:
+                mode_reports.update(previous.get("mode_reports", {}))
+        except (OSError, ValueError, TypeError):
+            pass
 
-    failed = [x["id"] for x in runner.results if x["status"] != "pass"]
-    report = {
-        "version": version,
-        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "modes": [m for m, on in (("static", do_static), ("installer", do_installer),
-                                  ("live", do_live)) if on],
-        "passed": not failed,
-        "failed": failed,
-        "results": runner.results,
-    }
-    REPORT.parent.mkdir(parents=True, exist_ok=True)
-    if not args.no_report:
-        REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
+    def report_data() -> dict:
+        modes = sorted(mode_reports)
+        records = [record for mode in modes for record in mode_reports[mode].get("results", [])]
+        failed = [record["id"] for record in records if record.get("status") != "pass"]
+        passed = bool(records) and all(mode_reports[mode].get("passed") for mode in modes) and not failed
+        return {"schema": 2, "version": version, "inputs": inputs,
+                "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                "modes": modes, "mode_reports": mode_reports,
+                "passed": passed, "failed": failed, "results": records}
+
+    for mode, enabled, operation in (("static", do_static, run_static),
+                                     ("installer", do_installer, run_installer), ("live", do_live, run_live)):
+        if not enabled:
+            continue
+        mode_reports[mode] = {"generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                              "passed": False, "results": [{"id": mode + "-running", "status": "fail",
+                                                               "detail": "verification has not completed"}]}
+        if not args.no_report:
+            _write_regression_report(report_data())
+        start = len(runner.results)
+        try:
+            operation(runner)
+        except Exception as error:
+            runner.record(mode + "-exception", mode + " verification raised an exception", False,
+                          f"{type(error).__name__}: {error}")
+        records = runner.results[start:]
+        if not records:
+            runner.record(mode + "-empty", mode + " verification selected no test cases", False, "empty samples cannot pass")
+            records = runner.results[start:]
+        mode_reports[mode] = {"generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+                              "passed": all(record["status"] == "pass" for record in records), "results": records}
+        if not args.no_report:
+            _write_regression_report(report_data())
+
+    failed = [record["id"] for record in runner.results if record["status"] != "pass"]
     print(f"\n==> 回归报告: {REPORT.relative_to(ROOT)}" + ("（--no-report，未写入）" if args.no_report else "")
           + f"  {len(runner.results) - len(failed)}/{len(runner.results)} 通过"
           + (f"，失败：{', '.join(failed)}" if failed else ""))
-    return 1 if failed else 0
+    return 1 if failed or not runner.results else 0
 
 
 if __name__ == "__main__":

@@ -6,8 +6,8 @@
 - **稳定版**：由维护者人工确认。版本号存在仓库根 `STABLE_VERSION`，是唯一事实源。
   链接用**显式 tag**（`releases/download/v<版本>/...`），因此固定不变——
   只有维护者提升稳定版时才需要改。
-- **测试版**：永远是"最近一次发布"。用 GitHub 的 `releases/latest` 通道，
-  下载地址里不含版本号，所以不需要随每次发版改 README。
+- **测试版**：按 `VERSION` 使用显式 tag + 版本化资产名，避免 latest 已前移后旧文件名 404。
+  提升版本后由维护者在验收前显式同步；发布/verify-only 不会代写 README。
 
 用法：
     python scripts/sync_readme_downloads.py            # 按 STABLE_VERSION 与 VERSION 重写下载区
@@ -50,9 +50,10 @@ def render(stable: str, latest: str) -> str:
     pack = "CMO_Chinese_Pack_{v}.zip"
     stable_setup = f"https://github.com/{REPO}/releases/download/v{stable}/{setup.format(v=stable)}"
     stable_pack = f"https://github.com/{REPO}/releases/download/v{stable}/{pack.format(v=stable)}"
-    # 测试版走 releases/latest 通道：地址不含版本号，发版后自动指向新版本。
-    latest_setup = f"https://github.com/{REPO}/releases/latest/download/{setup.format(v=latest)}"
-    latest_pack = f"https://github.com/{REPO}/releases/latest/download/{pack.format(v=latest)}"
+    # Four versioned assets have no unversioned aliases. Bind both displayed version and URL
+    # to the same immutable tag; latest/download/<old-versioned-name> becomes 404 after release.
+    latest_setup = f"https://github.com/{REPO}/releases/download/v{latest}/{setup.format(v=latest)}"
+    latest_pack = f"https://github.com/{REPO}/releases/download/v{latest}/{pack.format(v=latest)}"
 
     return f"""{BEGIN}
 ## 下载
@@ -60,22 +61,33 @@ def render(stable: str, latest: str) -> str:
 | 通道 | 适合谁 | 版本 | 下载 |
 |---|---|---|---|
 | **稳定版** | 想安稳玩、不想折腾 | **`{stable}`**（维护者人工确认） | [安装器]({stable_setup}) · [绿色包]({stable_pack}) |
-| **测试版** | 想第一时间拿到最新修复 | **`{latest}`**（每次发布的最新版） | [安装器]({latest_setup}) · [绿色包]({latest_pack}) |
+| **测试版** | 想第一时间拿到最新修复 | **`{latest}`**（本页登记版本） | [安装器]({latest_setup}) · [绿色包]({latest_pack}) |
 
 > **稳定版**链接固定指向 `v{stable}`，只有维护者确认新版本稳定后才会提升。
-> **测试版**始终指向最近一次发布，可能包含尚未充分验证的修复。
+> **测试版**链接固定指向本页标注的 `v{latest}`，可能包含尚未充分验证的修复。
+> 两个下载都绑定明确版本；最近一次发布与全部历史版本见 [Releases](https://github.com/{REPO}/releases)。
 >
 > 不确定选哪个？**选稳定版**。想帮忙验证修复，再用测试版。
 
-全部历史版本见 [Releases](https://github.com/{REPO}/releases)。
+### 绿色包首次启用（不是只解压即生效）
+
+把 ZIP 解压到独立临时目录（不要先覆盖游戏目录），退出游戏后在该目录运行包内同版本安装器：
+
+```powershell
+& ".\\CMO_Chinese_Setup_v{latest}.exe" --install "<游戏根目录>" --silent
+```
+
+稳定版绿色包使用它对应的 `CMO_Chinese_Setup_v{stable}.exe` 执行相同参数；历史 ZIP 若未附安装器，须从同一 tag 另行下载该版本安装器到临时目录，不要混用版本。
+安装器统一部署内嵌载荷、合并目标自己的官方 runtime/bindingRedirects、保留首次 `.cmo_bak`/`.orig` 备份与玩家设置，并登记安装状态。
+`--adopt "<游戏根目录>" --silent` 仅登记已有完整载荷，不代替首次 apply；不要改名/覆盖 `Command.exe.config.patch` 或其他旧备份。
 {END}"""
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser()
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(allow_abbrev=False)
     ap.add_argument("--check", action="store_true",
                     help="只检查 README 与 STABLE_VERSION/VERSION 是否一致")
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
 
     stable = read_version(STABLE_FILE, "STABLE_VERSION")
     latest = read_version(VERSION_FILE, "VERSION")

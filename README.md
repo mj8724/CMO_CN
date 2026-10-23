@@ -12,14 +12,25 @@
 | 通道 | 适合谁 | 版本 | 下载 |
 |---|---|---|---|
 | **稳定版** | 想安稳玩、不想折腾 | **`4.2.1`**（维护者人工确认） | [安装器](https://github.com/mj8724/CMO_CN/releases/download/v4.2.1/CMO_Chinese_Setup_v4.2.1.exe) · [绿色包](https://github.com/mj8724/CMO_CN/releases/download/v4.2.1/CMO_Chinese_Pack_4.2.1.zip) |
-| **测试版** | 想第一时间拿到最新修复 | **`4.2.2`**（每次发布的最新版） | [安装器](https://github.com/mj8724/CMO_CN/releases/latest/download/CMO_Chinese_Setup_v4.2.2.exe) · [绿色包](https://github.com/mj8724/CMO_CN/releases/latest/download/CMO_Chinese_Pack_4.2.2.zip) |
+| **测试版** | 想第一时间拿到最新修复 | **`4.2.3`**（本页登记版本） | [安装器](https://github.com/mj8724/CMO_CN/releases/download/v4.2.3/CMO_Chinese_Setup_v4.2.3.exe) · [绿色包](https://github.com/mj8724/CMO_CN/releases/download/v4.2.3/CMO_Chinese_Pack_4.2.3.zip) |
 
 > **稳定版**链接固定指向 `v4.2.1`，只有维护者确认新版本稳定后才会提升。
-> **测试版**始终指向最近一次发布，可能包含尚未充分验证的修复。
+> **测试版**链接固定指向本页标注的 `v4.2.3`，可能包含尚未充分验证的修复。
+> 两个下载都绑定明确版本；最近一次发布与全部历史版本见 [Releases](https://github.com/mj8724/CMO_CN/releases)。
 >
 > 不确定选哪个？**选稳定版**。想帮忙验证修复，再用测试版。
 
-全部历史版本见 [Releases](https://github.com/mj8724/CMO_CN/releases)。
+### 绿色包首次启用（不是只解压即生效）
+
+把 ZIP 解压到独立临时目录（不要先覆盖游戏目录），退出游戏后在该目录运行包内同版本安装器：
+
+```powershell
+& ".\CMO_Chinese_Setup_v4.2.3.exe" --install "<游戏根目录>" --silent
+```
+
+稳定版绿色包使用它对应的 `CMO_Chinese_Setup_v4.2.1.exe` 执行相同参数；历史 ZIP 若未附安装器，须从同一 tag 另行下载该版本安装器到临时目录，不要混用版本。
+安装器统一部署内嵌载荷、合并目标自己的官方 runtime/bindingRedirects、保留首次 `.cmo_bak`/`.orig` 备份与玩家设置，并登记安装状态。
+`--adopt "<游戏根目录>" --silent` 仅登记已有完整载荷，不代替首次 apply；不要改名/覆盖 `Command.exe.config.patch` 或其他旧备份。
 <!-- downloads:end -->
 
 ---

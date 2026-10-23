@@ -1503,3 +1503,60 @@ python scripts/perf_probe.py          # 游戏已在想定里
   已记入待修清单（下一步：查 `TranslateWpfElementInner` 的 TextBlock 分支为何不进写入）。
 
 - **验收**：Blue Dawn 上 `perf_probe_large` PASS（含浸泡 8 分钟）、static 26/26、routing PASS。
+
+---
+
+## R54 WPF 文档分片用 IEnumerator 作游标，写 Run.Text 后静默中止（未发布）
+
+- **来源**：2026-10-23 大文档续做回归（6000 Run）失败，用户可见形态为「消息日志/简报只翻第一条，其余永远英文」。
+- **现象与证据**：`WpfSchedulingTests document` 输出 `translated=1 pending=0 slices=3`；
+  引擎日志 `WPF Run Translated: Ready -> 就绪` 后紧接
+  `WPF queued translation failed: 集合被修改；枚举操作可能无法执行。`
+- **根因**：分片队列用 `IEnumerator`（`paragraph.Inlines` 等）保存跨切片位置；
+  `TranslateFlowInline` → `SetRunTextKeepBinding` 写 `Run.Text` 会修改该集合，
+  枚举器随即失效，续扫位置作废 → 只处理首条，其余节点丢失。
+- **修复**：改用 WPF 文档模型的**稳定同级引用**作游标（`Blocks.FirstBlock`→`NextBlock`、
+  `Inlines.FirstInline`→`NextInline`），写文本不会使其失效；不预分配子节点数组，
+  30,000 Run 也不必在让出前扫完。
+- **验收**：`R54-static-wpf-scheduling`（document/mutation/root/remote/input 五模式）
+  6000 Run 全部译完、`pending=0`、切片数 >1、单切片 ≤16.7ms（实测峰值 7.57ms）；
+  测试内含可重放的「旧枚举器」负向对照，必须失败。
+- **教训**：**WPF 的集合不能用枚举器当跨切片游标**——任何写操作都会让 MeToo 状态失效；
+  跨切片位置只能存对象引用（同级指针或显式下标 + 归属复核）。
+
+## R55 补扫计量只覆盖窗口循环，ElementHost/render/layout 与未执行根未计入（未发布）
+
+- **来源**：2026-10-23 本轮审查与实测。旧 `sweepMaxMs` 在真实启动界面报 **1ms**，
+  而同一进程 `elementHosts` 实测峰值 **73.0ms**、`repaint` **74.4ms**、`render` **21.2ms**。
+- **根因**：`sweepMaxMs` 只包住窗口循环；ElementHost 子树、`CompositionTarget.Rendering`
+  与 `LayoutUpdated` 的工作在计时之外；`sweepWindowsTotal` 在投递阶段自增，把尚未执行的根也统计进去。
+- **修复**：新增 `UiPerfMetrics`（posted/started/completed/pending/peakPending/maxQueueMs/over16ms
+  分离，投递不算完成、取消不完成），WPF 队列/ElementHost/repaint/render/layout/WinForms 队列全部接线；
+  `_wpfSweepWindowCount` 改为「已入队待执行」并在执行完成或取消时递减；分片耗时在 Drain 的 finally 累计。
+- **验收**：`R55-static-ui-perf`（14 项，含排队不算执行、慢回调超帧、取消不完成、忙时拒绝重置）。
+- **教训**：**投递 ≠ 执行**。计量必须落在真正执行 UI 工作的线程与区间上，否则「0ms」会掩盖整帧卡顿。
+
+## R56 部署不刷新标签缓存，引擎/地名源更新后地图仍显示英文旧瓦片（未发布）
+
+- **来源**：2026-10-23 用户反馈「地图翻译怎么没了」。截图为 Blue Dawn（506 活跃单位）全英文地名。
+- **证据**：`WW/PlacenameSets/{Synoptic,Cities}/0000_0000.wwp` 已与仓库逐字节一致、
+  标签服务日志显示正常出图（`LocalTile z=7 … rendered=8`），但
+  `WW/Cache/Stamen Terrain - Labels/7/105/50.png` 内容仍是 `Liaocheng / Jining / Tai'an`。
+  即：**缓存里的 PNG 由英文地名源渲染，且从未随部署刷新**；`deploy.sh` 只铺 dll/json/wwp。
+- **修复**：`deploy.sh` 部署后调用 `scripts/refresh_placename_tiles.ps1` 重绘已有标签瓦片
+  （保留 `.orig` 英文原件，不碰地形底图）；本次实机重绘 4,671 张，同一瓦片变为「聊城/济宁」。
+- **验收**：`docs/PLACENAME_LABEL_RENDERING.md` 的缓存回归 + 本次同瓦片前后对照；
+  实机判据为「当屏标签无英文残留」，并在证据里记录实际 `z/x/y`。
+- **教训**：**只更新 `.wwp` 或只替换引擎都会留下旧缓存**；部署链路必须显式包含缓存重绘，
+  否则本地验证与用户现场会出现"我这边是中文、你那边是英文"的错位。
+
+## R57 单节点异常丢弃整个 Work 并从根重扫（未发布）
+
+- **来源**：2026-10-23 分片实现审查（与 R54 同一状态机的第二个缺陷）。
+- **根因**：队列级 `catch` 只记日志并结束该 Work，本拍已完成位置丢失；
+  200ms 定时重新发现后又从根开始，形成「每拍重复失败、英文长期停留」。
+- **修复**：节点翻译、附加子节点、子游标推进三处各自隔离异常，只跳过该节点/该集合，
+  继续同级与父级；Work 仍能推进到 `pending=0`。
+- **验收**：`R54-static-wpf-scheduling` 的 `mutation` 模式（扫描中途重建集合不抛错且收敛）。
+- **教训**：**分片状态的异常边界必须与续做单位对齐**——抛一次就丢整棵树，等于把分片变成碰运气。
+

@@ -27,7 +27,7 @@ namespace CMOShared
     /// </summary>
     public static class ReleaseConstants
     {
-        public const string Version = "4.2.2";
+        public const string Version = "4.2.3";
         /// <summary>
         /// 本汉化适配的游戏内部版本（构建号，例如 1900.23）。它与 Version 一起必须出现在
         /// 安装器标题、更新助手提示、发版说明与 README 里；游戏更新（构建号变化）时我们的
@@ -843,6 +843,33 @@ namespace CMOShared
             }
         }
 
+        public static bool VerifyEngineFiles(string packagePath, Dictionary<string, string> files, out string error)
+        {
+            error = "";
+            if (files == null || files.Count != InstallManifest.EngineFiles.Length)
+            {
+                error = "部署后引擎文件不完整（期望 dll+json），已中止登记。";
+                return false;
+            }
+            foreach (string name in InstallManifest.EngineFiles)
+            {
+                string expect = EmbeddedSha256(packagePath, name);
+                string actual;
+                if (string.IsNullOrEmpty(expect))
+                {
+                    error = "安装包内未找到 " + name + " 资源或无法读取其 SHA256，已中止登记。";
+                    return false;
+                }
+                if (!files.TryGetValue(name, out actual)
+                    || !string.Equals(actual, expect, StringComparison.OrdinalIgnoreCase))
+                {
+                    error = "部署后 " + name + " 与安装包内嵌载荷不一致，已中止登记（避免混合态）。";
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static Stream EmbeddedResourceStream(string packagePath, string resourceName)
         {
             return Load(packagePath).GetManifestResourceStream(resourceName);
@@ -912,6 +939,12 @@ namespace CMOShared
     {
         public static bool Run(string gamePath, string targetVersion, bool silent, out string error)
         {
+            return Run(gamePath, targetVersion, silent, KillProcesses, out error);
+        }
+
+        // 隔离测试替换进程枚举，不替换完整包安装/哈希/清单路径。
+        internal static bool Run(string gamePath, string targetVersion, bool silent, Action stopProcesses, out string error)
+        {
             error = "";
             if (string.IsNullOrEmpty(gamePath) || !Directory.Exists(gamePath))
             {
@@ -933,8 +966,7 @@ namespace CMOShared
                 return false;
             }
 
-            KillProcesses();
-            string expectDll = PackageAssets.EmbeddedSha256(pkg, "CMOLocalizer.dll");
+            stopProcesses();
 
             string args = "--install \"" + gamePath + "\" --silent";
             int code = RunProcess(pkg, args, 600000);
@@ -946,16 +978,8 @@ namespace CMOShared
             }
 
             Dictionary<string, string> files = InstallManifest.HashEngineFiles(gamePath);
-            if (files.Count != InstallManifest.EngineFiles.Length)
+            if (!PackageAssets.VerifyEngineFiles(pkg, files, out error))
             {
-                error = "回退后引擎文件不完整（期望 dll+json）";
-                CmoLog.Error(error);
-                return false;
-            }
-            if (!string.IsNullOrEmpty(expectDll)
-                && !string.Equals(files["CMOLocalizer.dll"], expectDll, StringComparison.OrdinalIgnoreCase))
-            {
-                error = "回退后 CMOLocalizer.dll 与该安装包内嵌版本不一致，已中止登记（避免混合态）。";
                 CmoLog.Error(error);
                 return false;
             }
@@ -970,27 +994,48 @@ namespace CMOShared
 
         public static void KillProcesses()
         {
+            KillProcesses(Process.GetProcessesByName, System.Threading.Thread.Sleep);
+        }
+
+        internal static void KillProcesses(Func<string, Process[]> findProcesses, Action<int> sleep)
+        {
+            int currentPid;
+            using (Process current = Process.GetCurrentProcess()) currentPid = current.Id;
             foreach (string name in new string[] { "Command", "CMO_Updater" })
             {
                 try
                 {
-                    foreach (Process p in Process.GetProcessesByName(name))
+                    foreach (Process p in OtherProcesses(name, currentPid, findProcesses))
                     {
-                        try { p.CloseMainWindow(); } catch { }
+                        using (p) { try { p.CloseMainWindow(); } catch { } }
                     }
                     for (int i = 0; i < 10; i++)
                     {
-                        if (Process.GetProcessesByName(name).Length == 0) break;
-                        System.Threading.Thread.Sleep(500);
+                        Process[] remaining = OtherProcesses(name, currentPid, findProcesses);
+                        int count = remaining.Length;
+                        foreach (Process p in remaining) p.Dispose();
+                        if (count == 0) break;
+                        sleep(500);
                     }
-                    foreach (Process p in Process.GetProcessesByName(name))
+                    foreach (Process p in OtherProcesses(name, currentPid, findProcesses))
                     {
-                        try { p.Kill(); } catch { }
+                        using (p) { try { p.Kill(); } catch { } }
                     }
                 }
                 catch (Exception ex) { CmoLog.Warn("结束进程 " + name + " 失败: " + ex.Message); }
             }
-            System.Threading.Thread.Sleep(700);
+            sleep(700);
+        }
+
+        private static Process[] OtherProcesses(string name, int currentPid, Func<string, Process[]> findProcesses)
+        {
+            List<Process> others = new List<Process>();
+            foreach (Process p in findProcesses(name))
+            {
+                if (p.Id == currentPid) p.Dispose();
+                else others.Add(p);
+            }
+            return others.ToArray();
         }
 
         public static int RunProcess(string exe, string args, int timeoutMs)

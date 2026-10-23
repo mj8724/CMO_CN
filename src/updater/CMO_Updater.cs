@@ -49,7 +49,7 @@ namespace CMOUpdater
         {
             get
             {
-                string d = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CMOChinese");
+                string d = CmoPaths.LocalDir;
                 if (!Directory.Exists(d)) Directory.CreateDirectory(d);
                 return d;
             }
@@ -475,16 +475,21 @@ namespace CMOUpdater
 
         public static bool VerifySha(string file, string shaUrl, out string detail)
         {
+            return VerifySha(file, shaUrl, GetString, out detail);
+        }
+
+        internal static bool VerifySha(string file, string shaUrl, Func<string, int, string> readDigest, out string detail)
+        {
             detail = "";
-            if (string.IsNullOrEmpty(shaUrl))
+            if (string.IsNullOrWhiteSpace(shaUrl))
             {
-                detail = "该 Release 未提供 SHA256 摘要，已跳过摘要校验";
+                detail = "该 Release 未提供 SHA256 摘要，已拒绝自动安装；请从发布页面手动核验。";
                 Log.Warn(detail);
-                return true;
+                return false;
             }
             try
             {
-                string text = GetString(shaUrl, 20000);
+                string text = readDigest(shaUrl, 20000);
                 Match m = Regex.Match(text, "\\b([0-9a-fA-F]{64})\\b");
                 if (!m.Success) { detail = "摘要文件格式无法识别"; return false; }
                 string expect = m.Groups[1].Value.ToLowerInvariant();

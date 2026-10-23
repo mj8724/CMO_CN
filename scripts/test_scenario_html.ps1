@@ -6,6 +6,21 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 $repoRoot = [IO.Path]::GetFullPath((Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) '..'))
+function Get-FileSha256([string]$Path) {
+    # Local .NET implementation: Get-FileHash lives in a module that PowerShell 7
+    # module paths can shadow, which silently broke the fixture hash binding.
+    $stream = [IO.File]::OpenRead($Path)
+    $sha = $null
+    try {
+        $sha = [Security.Cryptography.SHA256]::Create()
+        return ([BitConverter]::ToString($sha.ComputeHash($stream)) -replace '-', '').ToLowerInvariant()
+    }
+    finally {
+        if ($sha) { $sha.Dispose() }
+        $stream.Dispose()
+    }
+}
+
 if (-not $OutputDir) { $OutputDir = Join-Path $repoRoot 'build\scenario-html-tests' }
 $output = [IO.Path]::GetFullPath($OutputDir)
 New-Item -ItemType Directory -Force -Path $output | Out-Null
@@ -38,9 +53,9 @@ $utf8 = New-Object Text.UTF8Encoding($false)
 Write-Output ($runOutput -join $lf)
 $result = [PSCustomObject]@{
     ExitCode = $code
-    InstallerSha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $installer).Hash.ToLowerInvariant()
-    PayloadSha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $payload).Hash.ToLowerInvariant()
-    SourceSha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $source).Hash.ToLowerInvariant()
+    InstallerSha256 = Get-FileSha256 $installer
+    PayloadSha256 = Get-FileSha256 $payload
+    SourceSha256 = Get-FileSha256 $source
 }
 [IO.File]::WriteAllText((Join-Path $output 'scenario_html_results.json'), (($result | ConvertTo-Json) -replace "`r`n", $lf) + $lf, $utf8)
 if ($code) { throw 'Scenario HTML installer contract failed; see scenario_html.log' }

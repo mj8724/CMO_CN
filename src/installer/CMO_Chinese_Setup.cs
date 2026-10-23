@@ -43,7 +43,7 @@ namespace CMOLocalizerInstaller
 
         public InstallerForm(string initialPath)
         {
-            this.Text = "Command: Modern Operations (CMO) 完整中文汉化一键安装工具 v4.2.2（适配游戏内部版本 " + ReleaseConstants.GameBuild + "）";
+            this.Text = "Command: Modern Operations (CMO) 完整中文汉化一键安装工具 v4.2.3（适配游戏内部版本 " + ReleaseConstants.GameBuild + "）";
             this.Size = new Size(700, 770);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -771,7 +771,7 @@ namespace CMOLocalizerInstaller
         {
             try
             {
-                string dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CMOChinese");
+                string dir = CmoPaths.LocalDir;
                 Directory.CreateDirectory(dir);
                 string file = Path.Combine(dir, "installer.log");
                 if (File.Exists(file) && new FileInfo(file).Length > 512 * 1024)
@@ -937,6 +937,12 @@ namespace CMOLocalizerInstaller
 
         public static bool Install(string gamePath, out string errorMsg)
         {
+            return Install(gamePath, WriteRegistrySettings, out errorMsg);
+        }
+
+        // 文件部署仍走同一路径；隔离测试仅替换用户设置副作用。
+        internal static bool Install(string gamePath, Action<string> writeSettings, out string errorMsg)
+        {
             errorMsg = "";
             if (string.IsNullOrEmpty(gamePath) || !File.Exists(Path.Combine(gamePath, "Command.exe")))
             {
@@ -945,14 +951,6 @@ namespace CMOLocalizerInstaller
             }
 
             string curDir = AppDomain.CurrentDomain.BaseDirectory;
-            string dllSrc = Path.Combine(curDir, "CMOLocalizer.dll");
-            string jsonSrc = Path.Combine(curDir, "CMOLocalizer.json");
-
-            if (!File.Exists(dllSrc))
-            {
-                dllSrc = Path.Combine(curDir, "patch_files", "CMOLocalizer.dll");
-                jsonSrc = Path.Combine(curDir, "patch_files", "CMOLocalizer.json");
-            }
 
             // 先探测目标目录可写性：Steam 默认装在 C:\Program Files 下，普通权限写不进去，
             // 而这正是「在别的电脑上、没开游戏也装不上」的首要原因。直接探针比事后猜靠谱。
@@ -966,7 +964,7 @@ namespace CMOLocalizerInstaller
                 return false;
             }
             WriteLog("安装开始：游戏目录=" + gamePath + "；安装包目录=" + curDir
-                + "；用磁盘 DLL=" + File.Exists(dllSrc));
+                + "；载荷来源=安装包内嵌资源");
 
             try
             {
@@ -978,31 +976,15 @@ namespace CMOLocalizerInstaller
                 // 共享冲突拒绝，而旧实现把这个异常吞掉、只能报「未找到资源」——用户实测
                 // 2026-10-18 21:02 在游戏运行时安装拿到的完全不着边际的报错就是这个。
                 // 统一走「写同目录临时文件 + MoveFileEx 原子替换」：重命名不受文件占用影响。
-                if (File.Exists(dllSrc))
-                {
-                    if (!string.Equals(Path.GetFullPath(dllSrc), Path.GetFullPath(dllDest), StringComparison.OrdinalIgnoreCase)
-                        && !CopyFileAtomic(dllSrc, dllDest, out writeErr))
-                    {
-                        errorMsg = writeErr;
-                        return false;
-                    }
-                }
-                else if (!ExtractEmbeddedResource("CMOLocalizer.dll", dllDest, out writeErr))
+                // 发布包只部署自身内嵌字节：旁边或目标目录里的旧载荷不能代表新包。
+                // 无内嵌资源的开发构建明确失败，不把磁盘旧文件登记为 CurrentVersion。
+                if (!ExtractEmbeddedResource("CMOLocalizer.dll", dllDest, out writeErr))
                 {
                     errorMsg = writeErr;
                     return false;
                 }
 
-                if (File.Exists(jsonSrc))
-                {
-                    if (!string.Equals(Path.GetFullPath(jsonSrc), Path.GetFullPath(jsonDest), StringComparison.OrdinalIgnoreCase)
-                        && !CopyFileAtomic(jsonSrc, jsonDest, out writeErr))
-                    {
-                        errorMsg = writeErr;
-                        return false;
-                    }
-                }
-                else if (!ExtractEmbeddedResource("CMOLocalizer.json", jsonDest, out writeErr))
+                if (!ExtractEmbeddedResource("CMOLocalizer.json", jsonDest, out writeErr))
                 {
                     errorMsg = writeErr;
                     return false;
@@ -1026,33 +1008,10 @@ namespace CMOLocalizerInstaller
                     config.AppendChild(runtime);
                 }
 
-                XmlNode typeNode = runtime.SelectSingleNode("appDomainManagerType");
-                if (typeNode == null)
-                {
-                    typeNode = doc.CreateElement("appDomainManagerType");
-                    XmlAttribute attr = doc.CreateAttribute("value");
-                    attr.Value = "CMOLocalizer.LocalizerDomainManager";
-                    typeNode.Attributes.Append(attr);
-                    runtime.AppendChild(typeNode);
-                }
-                else
-                {
-                    typeNode.Attributes["value"].Value = "CMOLocalizer.LocalizerDomainManager";
-                }
-
-                XmlNode asmNode = runtime.SelectSingleNode("appDomainManagerAssembly");
-                if (asmNode == null)
-                {
-                    asmNode = doc.CreateElement("appDomainManagerAssembly");
-                    XmlAttribute attr = doc.CreateAttribute("value");
-                    attr.Value = "CMOLocalizer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
-                    asmNode.Attributes.Append(attr);
-                    runtime.AppendChild(asmNode);
-                }
-                else
-                {
-                    asmNode.Attributes["value"].Value = "CMOLocalizer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null";
-                }
+                NormalizeDomainManagerSetting(doc, runtime, "appDomainManagerType",
+                    "CMOLocalizer.LocalizerDomainManager");
+                NormalizeDomainManagerSetting(doc, runtime, "appDomainManagerAssembly",
+                    "CMOLocalizer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null");
 
                 doc.Save(cfgPath);
 
@@ -1090,7 +1049,7 @@ namespace CMOLocalizerInstaller
 
                 // 部署自动升级组件并写入设置（开机自启 / 每 6 小时检查）
                 DeployUpdater(gamePath);
-                WriteRegistrySettings(gamePath);
+                writeSettings(gamePath);
 
                 // 兜底：对 zip 未覆盖的 HTML 做标题级替换 (带 .orig 备份)
                 LocalizeScenarioBriefings(Path.Combine(gamePath, "Scenarios"));
@@ -1109,6 +1068,11 @@ namespace CMOLocalizerInstaller
                         + "，安装器 CurrentVersion=" + CurrentVersion);
                 }
                 Dictionary<string, string> manifestFiles = InstallManifest.HashEngineFiles(gamePath);
+                if (!PackageAssets.VerifyEngineFiles(Application.ExecutablePath, manifestFiles, out errorMsg))
+                {
+                    CmoLog.Error(errorMsg);
+                    return false;
+                }
                 if (!InstallManifest.Write(gamePath, CurrentVersion, Application.ExecutablePath, manifestFiles))
                 {
                     errorMsg = "汉化文件已部署，但写入安装清单失败（状态可能显示不准，重新安装即可修复）。";
@@ -1627,6 +1591,15 @@ namespace CMOLocalizerInstaller
         //  自动升级（更新助手 CMO_Updater.exe）集成
         // ──────────────────────────────────────────────────────────────
         // 发布常量的唯一来源是 CMOShared.ReleaseConstants（禁止在本文件再写字面量副本）。
+        private static void NormalizeDomainManagerSetting(XmlDocument doc, XmlNode runtime, string name, string value)
+        {
+            XmlNodeList existing = runtime.SelectNodes(name);
+            XmlElement setting = existing.Count == 0 ? doc.CreateElement(name) : (XmlElement)existing[0];
+            for (int i = existing.Count - 1; i > 0; i--) runtime.RemoveChild(existing[i]);
+            if (existing.Count == 0) runtime.AppendChild(setting);
+            setting.SetAttribute("value", value);
+        }
+
         public const string CurrentVersion = ReleaseConstants.Version;
         private const string RegPath = ReleaseConstants.RegPath;
         private const string RunKeyName = ReleaseConstants.RunKeyName;
@@ -1897,6 +1870,11 @@ namespace CMOLocalizerInstaller
 
         public static bool Uninstall(string gamePath, out string errorMsg)
         {
+            return Uninstall(gamePath, CleanupUpdater, out errorMsg);
+        }
+
+        internal static bool Uninstall(string gamePath, Action<string> cleanupUpdater, out string errorMsg)
+        {
             errorMsg = "";
             if (string.IsNullOrEmpty(gamePath) || !File.Exists(Path.Combine(gamePath, "Command.exe")))
             {
@@ -1962,7 +1940,7 @@ namespace CMOLocalizerInstaller
                 RestoreSymbolsAndLauncher(gamePath);
 
                 // 清理自动升级：结束助手进程、删除开机启动项、注册表设置与助手本体
-                CleanupUpdater(gamePath);
+                cleanupUpdater(gamePath);
 
                 return true;
             }

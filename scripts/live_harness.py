@@ -63,7 +63,7 @@ def send(cmd: str, timeout: float = 15.0) -> dict:
 def wait_ready(timeout: float = 60.0) -> bool:
     t0 = time.time()
     while time.time() - t0 < timeout:
-        if send("PING", timeout=3.0).get("status") != "timeout":
+        if send("PING", timeout=3.0).get("status") == "ok":
             return True
         time.sleep(1.0)
     return False
@@ -87,7 +87,7 @@ def restart_game(scen: str | None = None, wait: float = 60.0) -> int:
             return pid
     if pid is None:
         raise RuntimeError("Command.exe did not start")
-    return pid
+    raise RuntimeError("Command.exe started but the localization command channel was not ready")
 
 
 def list_windows(pid: int | None = None) -> list[dict]:
@@ -177,6 +177,8 @@ $g.Dispose(); $bmp.Dispose()
         )
         line = (proc.stdout or "").strip().splitlines()[-1] if proc.stdout else ""
         seq = [x for x in line.split(",") if x]
+        if proc.returncode != 0 or len(seq) != frames or any(not re.fullmatch(r"[0-9A-Fa-f]{8}", item) for item in seq):
+            return -1
         return sum(1 for a, b in zip(seq, seq[1:]) if a != b)
     except Exception:  # noqa: BLE001
         return -1

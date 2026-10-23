@@ -12,6 +12,339 @@ using System.Text;
 using System.Text.RegularExpressions;
 using CMOShared;
 
+#if CMO_INTEGRITY_TEST
+// /define:CMO_INTEGRITY_TEST /main:CMOIntegritySelfTest：合成完整 bundle，禁用真实用户/进程副作用。
+internal static class CMOIntegritySelfTest
+{
+    private const string FixtureMarker = "CMO_INTEGRITY_TEST_ONLY";
+    private static string root;
+    private static int checks;
+    private static int failures;
+    private static readonly string[] Templates = {
+        "Aircraft.html", "Facility.html", "GroundUnit.html", "Platform.html",
+        "Satellite.html", "Ship.html", "Submarine.html", "Weapon.html"
+    };
+
+    private static void Check(string name, bool ok, string detail)
+    {
+        checks++;
+        if (!ok) failures++;
+        Console.WriteLine((ok ? "PASS " : "FAIL ") + name + (detail.Length == 0 ? "" : " -- " + detail));
+    }
+
+    private static void Write(string path, string text)
+    {
+        Directory.CreateDirectory(Path.GetDirectoryName(path));
+        File.WriteAllText(path, text, new UTF8Encoding(false));
+    }
+
+    private static void Prepare(string output)
+    {
+        foreach (string marker in new string[] { "new", "rollback" })
+        {
+            string dir = Path.Combine(output, marker);
+            Write(Path.Combine(dir, "CMOLocalizer.dll"), "SYNTHETIC-" + marker + "-ENGINE-NOT-A-REAL-DLL");
+            Write(Path.Combine(dir, "CMOLocalizer.json"), "{\"_meta\":{\"version\":\"" + ReleaseConstants.Version
+                + "\"},\"fixture\":\"" + marker + "\"}");
+            foreach (string name in new string[] { "UPDATER_EXE", "PLACE_SYNOPTIC", "PLACE_CITIES", "LAUNCHER_ZH" })
+                Write(Path.Combine(dir, name), "SYNTHETIC-" + marker + "-" + name);
+            foreach (string name in Templates)
+                Write(Path.Combine(dir, "TPL_" + name), "<p>合成模板 " + marker + " " + name + "</p>");
+            CreateZip(Path.Combine(dir, "SCEN_HTML_ZIP"), "Scenarios/probe.html", "<p>合成简报 " + marker + "</p>");
+            CreateZip(Path.Combine(dir, "SYMBOLS_MENU_ZIP"), "probe.png", "SYNTHETIC-" + marker + "-MENU");
+        }
+        Console.WriteLine("Prepared synthetic bundles (not game payloads): " + output);
+    }
+
+    private static void CreateZip(string path, string name, string text)
+    {
+        using (FileStream fs = File.Create(path))
+        using (System.IO.Compression.ZipArchive zip = new System.IO.Compression.ZipArchive(fs, System.IO.Compression.ZipArchiveMode.Create))
+        using (Stream entry = zip.CreateEntry(name).Open())
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(text);
+            entry.Write(bytes, 0, bytes.Length);
+        }
+    }
+
+    private static void Isolate(string path)
+    {
+        CmoPaths.LocalDirOverride = Path.Combine(path, "local");
+        CmoPaths.RoamingDirOverride = Path.Combine(path, "roaming");
+    }
+
+    private static string Fixture(string tag)
+    {
+        string game = Path.Combine(root, tag);
+        Write(Path.Combine(game, ".cmo-integrity-fixture"), FixtureMarker);
+        Write(Path.Combine(game, "Command.exe"), "SYNTHETIC STUB - NEVER EXECUTE");
+        Write(Path.Combine(game, "Command.exe.config"), "<configuration><runtime /></configuration>");
+        Write(Path.Combine(game, "CMOLocalizer.dll"), "OLD-DISK-DLL");
+        Write(Path.Combine(game, "CMOLocalizer.json"), "OLD-DISK-JSON");
+        Write(Path.Combine(game, "Scenarios", "probe.html"), "ORIGINAL-Scenarios");
+        Write(Path.Combine(game, "Symbols", "Menu", "probe.png"), "ORIGINAL-Menu");
+        Write(Path.Combine(game, "Launcher", "Localization", "stringsChinese.resx"), "ORIGINAL-Launcher");
+        foreach (string set in new string[] { "Synoptic", "Cities" })
+            Write(Path.Combine(game, "WW", "PlacenameSets", set, "0000_0000.wwp"), "ORIGINAL-" + set);
+        foreach (string name in Templates)
+            Write(Path.Combine(game, "DB", "Templates", name), "ORIGINAL-" + name);
+        return game;
+    }
+
+    private static byte[] Resource(string bundle, string name)
+    {
+        using (Stream stream = PackageAssets.EmbeddedResourceStream(bundle, name))
+        using (MemoryStream bytes = new MemoryStream())
+        {
+            if (stream == null) throw new InvalidOperationException("Missing fixture resource " + name);
+            stream.CopyTo(bytes);
+            return bytes.ToArray();
+        }
+    }
+
+    private static bool Same(byte[] left, byte[] right)
+    {
+        if (left.Length != right.Length) return false;
+        for (int i = 0; i < left.Length; i++) if (left[i] != right[i]) return false;
+        return true;
+    }
+
+    private static byte[] ZipResource(string bundle, string name, string entry)
+    {
+        using (MemoryStream bytes = new MemoryStream(Resource(bundle, name)))
+        using (System.IO.Compression.ZipArchive zip = new System.IO.Compression.ZipArchive(bytes, System.IO.Compression.ZipArchiveMode.Read))
+        using (Stream stream = zip.GetEntry(entry).Open())
+        using (MemoryStream result = new MemoryStream())
+        {
+            stream.CopyTo(result);
+            return result.ToArray();
+        }
+    }
+
+    private static void CheckBundle(string tag, string game, string bundle)
+    {
+        string error;
+        Dictionary<string, string> hashes = InstallManifest.HashEngineFiles(game);
+        bool match = PackageAssets.VerifyEngineFiles(bundle, hashes, out error);
+        InstallManifest manifest = InstallManifest.Read(game);
+        bool recorded = manifest != null && manifest.Version == ReleaseConstants.Version && manifest.Files.Count == 2;
+        foreach (string name in InstallManifest.EngineFiles)
+        {
+            string hash;
+            recorded = recorded && manifest.Files.TryGetValue(name, out hash)
+                && hash == PackageAssets.EmbeddedSha256(bundle, name);
+        }
+        Check(tag + "-dll-json-embedded-and-manifest", match && recorded, error);
+        bool assets = Same(File.ReadAllBytes(Path.Combine(game, "Scenarios", "probe.html")),
+                ZipResource(bundle, "SCEN_HTML_ZIP", "Scenarios/probe.html"))
+            && Same(File.ReadAllBytes(Path.Combine(game, "Symbols", "Menu", "probe.png")),
+                ZipResource(bundle, "SYMBOLS_MENU_ZIP", "probe.png"));
+        foreach (string name in Templates)
+            assets = assets && Same(File.ReadAllBytes(Path.Combine(game, "DB", "Templates", name)), Resource(bundle, "TPL_" + name));
+        foreach (string set in new string[] { "Synoptic", "Cities" })
+            assets = assets && Same(File.ReadAllBytes(Path.Combine(game, "WW", "PlacenameSets", set, "0000_0000.wwp")),
+                Resource(bundle, set == "Synoptic" ? "PLACE_SYNOPTIC" : "PLACE_CITIES"));
+        assets = assets && Same(File.ReadAllBytes(Path.Combine(game, "Launcher", "Localization", "stringsChinese.resx")), Resource(bundle, "LAUNCHER_ZH"))
+            && Same(File.ReadAllBytes(Path.Combine(game, "CMO_Updater.exe")), Resource(bundle, "UPDATER_EXE"));
+        Check(tag + "-whole-synthetic-package-assets", assets, "Scenarios/Menu/8 templates/2 placenames/launcher/updater");
+    }
+
+    private static void InstallAndRestore(string self)
+    {
+        Write(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CMOLocalizer.dll"), "STALE-NEIGHBOR-DLL");
+        Write(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CMOLocalizer.json"), "STALE-NEIGHBOR-JSON");
+        string game = Fixture("neighbor");
+        CmoSettings settings = new CmoSettings();
+        settings.GamePath = game;
+        settings.CheckIntervalHours = 12;
+        settings.TrayOnClose = false;
+        settings.AutoStart = false;
+        settings.Save(); // 文件预存在，Load 不走注册表迁移。
+        byte[] saved = File.ReadAllBytes(CmoPaths.SettingsFile);
+        string error;
+        bool ok = CMOLocalizerInstaller.InstallerCore.Install(game, delegate(string path) { }, out error);
+        Check("new-exe-with-old-neighbor-install", ok, error);
+        CheckBundle("neighbor", game, self);
+        Check("install-settings-preserved", Same(saved, File.ReadAllBytes(CmoPaths.SettingsFile)), "file-only settings, no registry callback");
+        ok = CMOLocalizerInstaller.InstallerCore.Uninstall(game, delegate(string path) { File.Delete(Path.Combine(path, "CMO_Updater.exe")); }, out error);
+        if (ok) InstallManifest.Clear(game); // 与 CLI 的最后一步一致，不执行 CleanupUpdater/Purge。
+        Check("restore-config-and-clear-manifest", ok && File.ReadAllText(Path.Combine(game, "Command.exe.config")) == "<configuration><runtime /></configuration>"
+            && !File.Exists(CmoPaths.ManifestPath(game)) && !File.Exists(Path.Combine(game, "CMOLocalizer.dll"))
+            && !File.Exists(Path.Combine(game, "CMOLocalizer.json")), error);
+        bool restored = File.ReadAllText(Path.Combine(game, "Scenarios", "probe.html")) == "ORIGINAL-Scenarios"
+            && File.ReadAllText(Path.Combine(game, "Symbols", "Menu", "probe.png")) == "ORIGINAL-Menu"
+            && File.ReadAllText(Path.Combine(game, "Launcher", "Localization", "stringsChinese.resx")) == "ORIGINAL-Launcher";
+        foreach (string name in Templates)
+            restored = restored && File.ReadAllText(Path.Combine(game, "DB", "Templates", name)) == "ORIGINAL-" + name;
+        foreach (string set in new string[] { "Synoptic", "Cities" })
+            restored = restored && File.ReadAllText(Path.Combine(game, "WW", "PlacenameSets", set, "0000_0000.wwp")) == "ORIGINAL-" + set;
+        Check("restore-whole-assets-and-keep-settings", restored && Same(saved, File.ReadAllBytes(CmoPaths.SettingsFile)), "no user settings purge");
+
+        game = Fixture("exe-in-stale-target");
+        string setup = Path.Combine(game, "CMO_Chinese_Setup_new.exe");
+        File.Copy(self, setup);
+        int code = Rollback.RunProcess(setup, "--install \"" + game + "\" --silent", 15000);
+        Check("new-exe-in-old-target-install", code == 0, "test-only CLI rc=" + code);
+        CheckBundle("source-equals-target", game, setup);
+    }
+
+    private static void IntegrityFailures(string missingBundle)
+    {
+        foreach (string name in InstallManifest.EngineFiles)
+        {
+            string game = Fixture("tamper-" + Path.GetExtension(name).Substring(1));
+            InstallManifest.Write(game, "4.0.0", "original", InstallManifest.HashEngineFiles(game));
+            byte[] saved = File.ReadAllBytes(CmoPaths.ManifestPath(game));
+            string error;
+            bool ok = CMOLocalizerInstaller.InstallerCore.Install(game,
+                delegate(string path) { Write(Path.Combine(path, name), "TAMPERED"); }, out error);
+            Check("reject-" + name + "-before-new-manifest", !ok && error.Contains(name)
+                && Same(saved, File.ReadAllBytes(CmoPaths.ManifestPath(game))), error);
+        }
+        string absent = Fixture("missing-embedded");
+        InstallManifest.Write(absent, "4.0.0", "original", InstallManifest.HashEngineFiles(absent));
+        byte[] original = File.ReadAllBytes(CmoPaths.ManifestPath(absent));
+        int code = Rollback.RunProcess(missingBundle, "--install \"" + absent + "\" --silent", 15000);
+        Check("missing-bundle-rejects-disk-fallback", code != 0 && Same(original, File.ReadAllBytes(CmoPaths.ManifestPath(absent))), "test-only CLI rc=" + code);
+        string detail;
+        Check("missing-embedded-hash-fails-closed", !PackageAssets.VerifyEngineFiles(missingBundle,
+            InstallManifest.HashEngineFiles(absent), out detail), detail);
+    }
+
+    private static void DigestTests(string self)
+    {
+        int reads = 0;
+        string text = "";
+        Func<string, int, string> reader = delegate(string url, int timeout) { reads++; return text; };
+        string detail;
+        foreach (string url in new string[] { null, "", "   " })
+            Check("sha-missing-url-rejected-" + (url == null ? "null" : url.Length.ToString()),
+                !CMOUpdater.UpdateService.VerifySha(self, url, reader, out detail), detail);
+        Check("sha-missing-rejects-before-digest-read", reads == 0
+            && !CMOUpdater.UpdateService.VerifySha(self, null, out detail), "digest reads=" + reads);
+        text = new string('0', 64) + "  setup.exe";
+        Check("sha-mismatch-rejected", !CMOUpdater.UpdateService.VerifySha(self, "https://fixture.invalid/digest", reader, out detail), detail);
+        text = InstallManifest.Sha256OfFile(self).ToUpperInvariant() + " *setup.exe";
+        Check("sha-correct-accepted", CMOUpdater.UpdateService.VerifySha(self, "https://fixture.invalid/digest", reader, out detail), detail);
+        text = "no digest";
+        Check("sha-malformed-rejected", !CMOUpdater.UpdateService.VerifySha(self, "https://fixture.invalid/digest", reader, out detail), detail);
+        Check("sha-fetch-failure-rejected", !CMOUpdater.UpdateService.VerifySha(self, "https://fixture.invalid/digest",
+            delegate(string url, int timeout) { throw new IOException("synthetic read failure"); }, out detail), detail);
+    }
+
+    private static System.Diagnostics.Process Worker(string self, string name)
+    {
+        string exe = Path.Combine(root, "workers", name, name + ".exe");
+        Directory.CreateDirectory(Path.GetDirectoryName(exe));
+        File.Copy(self, exe);
+        System.Diagnostics.ProcessStartInfo start = new System.Diagnostics.ProcessStartInfo(exe, "--worker");
+        start.UseShellExecute = false;
+        start.CreateNoWindow = true;
+        return System.Diagnostics.Process.Start(start);
+    }
+
+    private static void StopOwned(System.Diagnostics.Process process)
+    {
+        if (process == null) return;
+        try { if (!process.HasExited) { process.Kill(); process.WaitForExit(3000); } }
+        finally { process.Dispose(); }
+    }
+
+    private static void RollbackTests(string self, string bundle)
+    {
+        string game = Fixture("rollback");
+        Isolate(Path.Combine(root, "rollback-user"));
+        CmoSettings settings = new CmoSettings();
+        settings.GamePath = game;
+        settings.CheckIntervalHours = 3;
+        settings.TrayOnClose = false;
+        settings.Save();
+        byte[] saved = File.ReadAllBytes(CmoPaths.SettingsFile);
+        string cached = VersionStore.Cache(bundle);
+        Check("rollback-caches-whole-synthetic-exe", cached != null && Same(File.ReadAllBytes(cached), File.ReadAllBytes(bundle)), "cache=" + cached);
+        InstallManifest.Write(game, "9.9.9", "synthetic-newer", InstallManifest.HashEngineFiles(game));
+        System.Diagnostics.Process command = null;
+        System.Diagnostics.Process updater = null;
+        int stops = 0;
+        int waits = 0;
+        try
+        {
+            command = Worker(self, "Command");
+            updater = Worker(self, "CMO_Updater");
+            Func<string, System.Diagnostics.Process[]> ownedOnly = delegate(string name)
+            {
+                List<System.Diagnostics.Process> found = new List<System.Diagnostics.Process>();
+                if (name == "CMO_Updater") found.Add(System.Diagnostics.Process.GetCurrentProcess());
+                System.Diagnostics.Process worker = name == "Command" ? command : updater;
+                if (worker != null && !worker.HasExited) found.Add(System.Diagnostics.Process.GetProcessById(worker.Id));
+                return found.ToArray(); // 只使用本测试创建的 PID，绝不 GetProcessesByName。
+            };
+            string error;
+            bool ok = Rollback.Run(game, ReleaseConstants.Version, true, delegate
+            {
+                stops++;
+                Rollback.KillProcesses(ownedOnly, delegate(int milliseconds) { if (milliseconds == 500) waits++; });
+            }, out error);
+            Check("rollback-caller-updater-survives-full-flow", ok && stops == 1
+                && System.Diagnostics.Process.GetCurrentProcess().ProcessName == "CMO_Updater", error + " callerPID=" + System.Diagnostics.Process.GetCurrentProcess().Id);
+            Check("rollback-other-owned-game-updater-stopped", command.WaitForExit(3000) && updater.WaitForExit(3000),
+                "owned worker PIDs=" + command.Id + "/" + updater.Id + " wait iterations=" + waits);
+            CheckBundle("rollback", game, cached);
+            Check("rollback-package-source-and-settings-preserved", InstallManifest.Read(game).Source == cached
+                && Same(saved, File.ReadAllBytes(CmoPaths.SettingsFile)), "full EXE path; file settings unchanged");
+        }
+        finally { StopOwned(command); StopOwned(updater); }
+        waits = 0;
+        Rollback.KillProcesses(delegate(string name)
+        {
+            return name == "CMO_Updater" ? new System.Diagnostics.Process[] { System.Diagnostics.Process.GetCurrentProcess() }
+                : new System.Diagnostics.Process[0];
+        }, delegate(int milliseconds) { if (milliseconds == 500) waits++; });
+        Check("self-only-updater-not-counted-in-wait", waits == 0, "wait iterations=" + waits);
+        string noCache = Fixture("no-cache");
+        InstallManifest.Write(noCache, "9.9.9", "original", InstallManifest.HashEngineFiles(noCache));
+        byte[] old = File.ReadAllBytes(CmoPaths.ManifestPath(noCache));
+        string reason;
+        bool missing = Rollback.Run(noCache, "0.0.1", true, delegate { stops++; }, out reason);
+        Check("rollback-no-cache-refused-before-process-stop", !missing && stops == 1
+            && Same(old, File.ReadAllBytes(CmoPaths.ManifestPath(noCache))), reason);
+    }
+
+    private static int Main(string[] args)
+    {
+        Console.OutputEncoding = new UTF8Encoding(false);
+        try
+        {
+            if (args.Length == 2 && args[0] == "--prepare") { Prepare(Path.GetFullPath(args[1])); return 0; }
+            if (args.Length == 1 && args[0] == "--worker") { System.Threading.Thread.Sleep(30000); return 0; }
+            if (args.Length >= 2 && args[0] == "--install")
+            {
+                string game = Path.GetFullPath(args[1]);
+                if (File.ReadAllText(Path.Combine(game, ".cmo-integrity-fixture")) != FixtureMarker)
+                    throw new InvalidOperationException("Not an explicitly marked test fixture");
+                Isolate(Path.Combine(game, "test-only-user"));
+                string error;
+                bool ok = CMOLocalizerInstaller.InstallerCore.Install(game, delegate(string path) { }, out error);
+                Console.WriteLine("Synthetic package CLI install=" + ok + " " + error);
+                return ok ? 0 : 1;
+            }
+            if (args.Length != 4 || args[0] != "--tests")
+                throw new ArgumentException("--prepare <inputs> | --tests <fixtures> <rollback-bundle> <missing-bundle>");
+            root = Path.GetFullPath(args[1]);
+            Directory.CreateDirectory(root);
+            Isolate(Path.Combine(root, "user"));
+            string self = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            InstallAndRestore(self);
+            IntegrityFailures(Path.GetFullPath(args[3]));
+            DigestTests(self);
+            RollbackTests(self, Path.GetFullPath(args[2]));
+        }
+        catch (Exception ex) { failures++; Console.WriteLine("FAIL integrity-harness -- " + ex); }
+        Console.WriteLine("CMOIntegrityTest: checks=" + checks + " failures=" + failures + "; synthetic only, no real game/registry/process enumeration");
+        return failures == 0 ? 0 : 1;
+    }
+}
+#else
 internal static class CMOSharedSelfTest
 {
     private static int failures;
@@ -311,3 +644,4 @@ internal static class CMOSharedSelfTest
         File.WriteAllText(Path.Combine(game, "CMOLocalizer.json"), json);
     }
 }
+#endif

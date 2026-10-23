@@ -207,6 +207,7 @@ namespace CMOLocalizer
                 if (continuation != null) continuation.Cancel();
                 draining = true;
                 long started = Stopwatch.GetTimestamp();
+                using (new UiPerfScope("winFormsQueue", false))
                 try
                 {
                     Work item;
@@ -217,6 +218,7 @@ namespace CMOLocalizer
                         try
                         {
                             TranslateControlNode(control);
+                            if (control is Form) TranslateWpfElementHostsNow();
                         }
                         catch (Exception ex) { Log("Queued UI node translation failed: " + ex.Message); }
                         // A failing parent's business callback must not prevent

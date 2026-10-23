@@ -35,6 +35,7 @@ namespace CMOLocalizer
         private static readonly Dictionary<string, string> dynamicCache = new Dictionary<string, string>(StringComparer.Ordinal);
         private static readonly object cacheLock = new object();
         private const int MAX_CACHE_SIZE = 16384;
+        private static readonly HashSet<string> translationTerminals = new HashSet<string>(StringComparer.Ordinal);
 
         private static void Log(string msg)
         {
@@ -1064,9 +1065,9 @@ namespace CMOLocalizer
         //      绝不让单拍吃掉整帧。窗口本身按可见性 + 尺寸排序，优先扫用户看得见的。
         private const int WPF_SWEEP_BUDGET_MS = 4;
 
-        private static long _wpfSweepCursor;          // 上一拍扫到第几个窗口
-        private static long _wpfSweepWindowCount;     // 上一拍枚举到的窗口总数
-        private static int _wpfSweepMs;               // 上一拍实际耗时（诊断用）
+        private static long _wpfSweepWindowCount;
+        private static long _wpfMaxStepTicks;
+        private static string _wpfMaxStepNode = "";     // 待处理根总数（跨 Dispatcher）
 
         // R53 性能诊断：累计统计，供 TRACE_DUMP 输出。
         // 为什么需要它：补扫频率只说明「扫了多少次」，不说明「每次多贵」。
@@ -1080,153 +1081,28 @@ namespace CMOLocalizer
         /// <summary>
         /// 翻译单个 WPF 窗口（标题 + 视觉树）。调用方必须已确保在该窗口的 Dispatcher 上。
         /// </summary>
-        private static void SweepOneWpfSource(System.Windows.Interop.HwndSource src)
-        {
-            try
-            {
-                if (src == null || src.RootVisual == null) return;
-                InstallWpfRenderHook();
-                System.Windows.DependencyObject rootDep = src.RootVisual as System.Windows.DependencyObject;
-                System.Windows.Window win = rootDep != null ? System.Windows.Window.GetWindow(rootDep) : null;
-                if (win != null)
-                {
-                    string wt = win.Title;
-                    string trWt = TranslateTitleText(wt);
-                    if (!string.IsNullOrEmpty(trWt) && trWt != wt) win.Title = trWt;
-                }
-                TranslateWpfElement(src.RootVisual);
-            }
-            catch { }
-        }
-
-        /// <summary>
-        /// 全树补扫：枚举进程内所有 HwndWrapper 窗口，按预算翻译。
-        /// 由 40ms/200ms 定时器驱动（R53 起不再由渲染帧驱动）。
-        /// </summary>
         private static void TranslateWpfWindows()
         {
-            try
+            if (currentPid == 0) currentPid = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
+            EnumWindows(delegate(IntPtr hwnd, IntPtr unused)
             {
-                if (currentPid == 0)
+                try
                 {
-                    currentPid = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
+                    uint pid;
+                    GetWindowThreadProcessId(hwnd, out pid);
+                    if (pid != currentPid || !IsWindowVisible(hwnd)) return true;
+                    StringBuilder name = new StringBuilder(64);
+                    GetClassName(hwnd, name, name.Capacity);
+                    if (!name.ToString().StartsWith("HwndWrapper")) return true;
+                    RECT_I rectangle;
+                    if (!GetWindowRect(hwnd, out rectangle) || rectangle.Right <= rectangle.Left
+                        || rectangle.Bottom <= rectangle.Top) return true;
+                    System.Windows.Interop.HwndSource source = System.Windows.Interop.HwndSource.FromHwnd(hwnd);
+                    QueueWpfSource(source);
                 }
-
-                // 先收集候选窗口句柄（EnumWindows 本身很便宜），再按预算逐个处理。
-                List<IntPtr> handles = new List<IntPtr>(16);
-                EnumWindows(delegate(IntPtr hWnd, IntPtr lParam)
-                {
-                    try
-                    {
-                        uint pid;
-                        GetWindowThreadProcessId(hWnd, out pid);
-                        if (pid != currentPid) return true;
-                        StringBuilder sb = new StringBuilder(64);
-                        GetClassName(hWnd, sb, sb.Capacity);
-                        if (!sb.ToString().StartsWith("HwndWrapper")) return true;
-                        if (!IsWindowVisible(hWnd)) return true;   // 隐藏/僵尸窗口不扫
-                        handles.Add(hWnd);
-                    }
-                    catch { }
-                    return true;
-                }, IntPtr.Zero);
-
-                int n = handles.Count;
-                if (n == 0) { _wpfSweepCursor = 0; _wpfSweepWindowCount = 0; return; }
-
-                // 按矩形去重：游戏里的模态窗口会累积多个同大小同位置的 HwndWrapper
-                // （实测「想定特性与拟真度选项」会堆 4 个，每个 153 个节点），
-                // 它们互相完全遮挡，图上只能看到一个。逐个全树翻译纯属浪费。
-                // 注意 IsWindowVisible 在这类窗口上仍返回 true（WS_VISIBLE 置位），
-                // 所以只能按屏幕矩形重合度判断谁被完全遮挡。
-                List<IntPtr> visibleOnly = new List<IntPtr>(handles.Count);
-                List<RECT_I> seenRect = new List<RECT_I>(handles.Count);
-                for (int i = 0; i < handles.Count; i++)
-                {
-                    RECT_I r;
-                    if (!GetWindowRect(handles[i], out r)) { visibleOnly.Add(handles[i]); continue; }
-                    int w = r.Right - r.Left, h = r.Bottom - r.Top;
-                    if (w <= 0 || h <= 0) continue;           // 零尺寸不要
-                    bool covered = false;
-                    for (int j = 0; j < seenRect.Count; j++)
-                    {
-                        RECT_I s = seenRect[j];
-                        if (s.Left == r.Left && s.Top == r.Top
-                            && (s.Right - s.Left) == w && (s.Bottom - s.Top) == h)
-                        {
-                            covered = true;     // 完全重叠：先加入的那个保留即可
-                            break;
-                        }
-                    }
-                    if (covered) continue;
-                    seenRect.Add(r);
-                    visibleOnly.Add(handles[i]);
-                }
-                handles = visibleOnly;
-                n = handles.Count;
-                if (n == 0) { _wpfSweepCursor = 0; _wpfSweepWindowCount = 0; return; }
-
-                // 窗口数量变化（新开/关闭）时重置游标，避免错位漏扫。
-                if (n != _wpfSweepWindowCount) { _wpfSweepCursor = 0; _wpfSweepWindowCount = n; }
-                long start = _wpfSweepCursor;
-                if (start < 0 || start >= n) start = 0;
-
-                long t0 = System.Diagnostics.Stopwatch.GetTimestamp();
-                long budgetTicks = WPF_SWEEP_BUDGET_MS * System.Diagnostics.Stopwatch.Frequency / 1000;
-                int visited = 0;
-                for (int k = 0; k < n; k++)
-                {
-                    int idx = (int)((start + k) % n);
-                    IntPtr hWnd = handles[idx];
-                    try
-                    {
-                        System.Windows.Interop.HwndSource src = System.Windows.Interop.HwndSource.FromHwnd(hWnd);
-                        if (src != null && src.Dispatcher != null && src.RootVisual != null)
-                        {
-                            // R53：必须在**该窗口自己的 Dispatcher** 上翻译。
-                            // 定时器跑在 WinForms UI 线程（或线程池），而 WPF 窗口往往属于另一个
-                            // Dispatcher；跨线程直接碰视觉树会抛
-                            // 「The calling thread cannot access this object」。
-                            // CheckAccess() 为真时同步执行（省掉一次排队），否则 BeginInvoke。
-                            if (src.Dispatcher.CheckAccess())
-                            {
-                                SweepOneWpfSource(src);
-                            }
-                            else
-                            {
-                                System.Windows.Interop.HwndSource cap = src;
-                                src.Dispatcher.BeginInvoke(new Action(delegate
-                                {
-                                    try { SweepOneWpfSource(cap); } catch { }
-                                }), null);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Log("WPF sweep item error: " + ex.Message);
-                    }
-                    visited++;
-                    _wpfSweepCursor = (start + k + 1) % n;
-                    if (System.Diagnostics.Stopwatch.GetTimestamp() - t0 >= budgetTicks) break;
-                }
-                _wpfSweepMs = (int)((System.Diagnostics.Stopwatch.GetTimestamp() - t0) * 1000
-                                    / System.Diagnostics.Stopwatch.Frequency);
-                // R53 诊断：单次补扫耗时分布 + 是否能在预算内扫完整轮。
-                // 这是判定「卡不卡」最直接的证据：单次超一帧（≈16ms）用户就能感知。
-                lock (traceLock)
-                {
-                    _sweepCalls++;
-                    _sweepTotalMs += _wpfSweepMs;
-                    if (_wpfSweepMs > _sweepMaxMs) _sweepMaxMs = _wpfSweepMs;
-                    _sweepWindowsVisited += visited;
-                    if (visited >= n) _sweepFullPasses++;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log("TranslateWpfWindows outer error: " + ex.Message);
-            }
+                catch (Exception error) { Log("WPF sweep discovery failed: " + error.Message); }
+                return true;
+            }, IntPtr.Zero);
         }
 
         private static int wpfTranslatedCount = 0;
@@ -1390,82 +1266,31 @@ namespace CMOLocalizer
         /// </summary>
         private static void TranslateWpfElementHostsNow()
         {
-            lock (traceLock) { elementHostScanCount++; }
-            FormCollection forms = Application.OpenForms;
-            if (forms == null) return;
-            for (int i = 0; i < forms.Count; i++)
+            using (new UiPerfScope("elementHosts", false))
             {
-                Form f = forms[i];
-                if (f == null || f.IsDisposed) continue;
-                TranslateElementHostsInControl(f, 0);
+                lock (traceLock) { elementHostScanCount++; }
+                if (registeredElementHosts == null) return;
+                for (int i = registeredElementHosts.Count - 1; i >= 0; i--)
+                {
+                    Control host = registeredElementHosts[i].Target as Control;
+                    if (host == null || host.IsDisposed) { registeredElementHosts.RemoveAt(i); continue; }
+                    try { RequestElementHost(host); }
+                    catch (Exception error) { Log("ElementHost discovery failed: " + error.Message); }
+                }
             }
         }
 
-        private static readonly HashSet<int> layoutHooked = new HashSet<int>();
-
-        /// <summary>
-        /// 给 ElementHost 的 WPF 根挂 LayoutUpdated（R46）。
-        ///
-        /// 单位状态面板的元素是**被游戏周期性重建**的：旧元素作废、新元素带着英文出现。
-        /// 依赖属性钩子对"新建即带初值"的元素不会触发，定时补扫又要等下一拍（几十毫秒），
-        /// 于是英文总有机会被画到屏幕上——这就是用户反复看到的"蓝字雷达在闪"。
-        /// LayoutUpdated 在布局完成后、绘制之前同步触发，此时改写仍在同一帧内完成，
-        /// 英文不会上屏。重入保护避免翻译自身引起的布局再次进入。
-        /// </summary>
         private static void HookElementHostLayout(System.Windows.DependencyObject root)
         {
-            if (root == null) return;
-            try
-            {
-                System.Windows.FrameworkElement fe = root as System.Windows.FrameworkElement;
-                if (fe == null) return;
-                int h = fe.GetHashCode();
-                if (layoutHooked.Contains(h)) return;
-                layoutHooked.Add(h);
-                fe.LayoutUpdated += delegate
-                {
-                    if (_inLayoutPass) return;
-                    _inLayoutPass = true;
-                    try { TranslateWpfElement(root); }
-                    catch { }
-                    finally { _inLayoutPass = false; }
-                };
-            }
-            catch { }
-        }
-
-        private static bool _inLayoutPass;
-
-        private static void TranslateElementHostsInControl(Control c, int depth)
-        {
-            if (c == null || depth > 12) return;
-            try
-            {
-                if (c.GetType().Name.IndexOf("ElementHost", StringComparison.OrdinalIgnoreCase) >= 0)
-                {
-                    PropertyInfo piChild = c.GetType().GetProperty("Child");
-                    object childObj = piChild != null ? piChild.GetValue(c, null) : null;
-                    System.Windows.DependencyObject depChild = childObj as System.Windows.DependencyObject;
-                    if (depChild != null)
-                    {
-                        HookElementHostLayout(depChild);
-                        TranslateWpfElement(depChild);
-                    }
-                }
-                foreach (Control sub in c.Controls)
-                {
-                    TranslateElementHostsInControl(sub, depth + 1);
-                }
-            }
-            catch { }
+            System.Windows.FrameworkElement element = root as System.Windows.FrameworkElement;
+            if (element == null || !element.Dispatcher.CheckAccess()) return;
+            wpfLayoutRequests.GetValue(element,
+                delegate(System.Windows.FrameworkElement owner) { return new WpfLayoutRequest(owner); });
         }
 
         private static System.Threading.Timer wpfRepaintTimer;
         private static int _repaintBusy;
         private static int _repaintChanged;   // 本拍实际改写了多少处文本
-        private static int _idleTicks;        // 连续空转拍数（用于退避）
-        private static long _repaintPeriod = 40;   // 当前补扫周期（ms），空闲时退避到 200
-        private static long _lastRepaintMs;       // 上次真正补扫的时刻（ms）
 
         /// <summary>
         /// 与 WPF 渲染无关的固定节拍：每 40ms 主动补扫一次 ElementHost 子树。
@@ -1475,70 +1300,16 @@ namespace CMOLocalizer
         private static void StartWpfRepaintTick()
         {
             if (wpfRepaintTimer != null) return;
-            try
+            // Native discovery never waits for a disposable WinForms anchor.
+            // The owning Dispatcher queue coalesces all actual translation work.
+            wpfRepaintTimer = new System.Threading.Timer(delegate(object unused)
             {
-                // 历史 bug（R47，2026-10-20 实测两处）：
-                // ① 原来对**每个窗体**各投递一次补扫，而补扫本身又遍历全部窗体——
-                //    打开任务编辑器后窗体变多，投递数被放大到 67 次/秒（设计 25 次/秒），
-                //    每次走完整棵 WPF 视觉树 ⇒ 明显卡顿。
-                // ② 第一版修复用 Timer.Change 动态改周期来退避，结果把节拍整个停掉了
-                //    （实测补扫 0 次）。所以周期固定，退避改成"到点才做"的自限流，
-                //    并且 busy 标志一律在 finally 里释放，绝不跨线程持有。
-                wpfRepaintTimer = new System.Threading.Timer(delegate(object st)
-                {
-                    try
-                    {
-                        // 自限流：空闲时不必每 40ms 都扫整棵树
-                        long period = Interlocked.Read(ref _repaintPeriod);
-                        long now = DateTime.UtcNow.Ticks / 10000;   // ms
-                        long last = Interlocked.Read(ref _lastRepaintMs);
-                        if (last != 0 && now - last < period) return;
-
-                        if (System.Threading.Interlocked.CompareExchange(ref _repaintBusy, 1, 0) != 0) return;
-                        Interlocked.Exchange(ref _lastRepaintMs, now);
-
-                        FormCollection forms = Application.OpenForms;
-                        if (forms == null) { Interlocked.Exchange(ref _repaintBusy, 0); return; }
-                        Control anchor = null;
-                        for (int i = 0; i < forms.Count; i++)
-                        {
-                            Form f = forms[i];
-                            if (f == null || f.IsDisposed) continue;
-                            try { if (!f.IsHandleCreated) continue; } catch { continue; }
-                            anchor = f;
-                            break;   // 只用一个锚点，避免按窗体数放大
-                        }
-                        if (anchor == null) { Interlocked.Exchange(ref _repaintBusy, 0); return; }
-
-                        anchor.BeginInvoke((MethodInvoker)delegate
-                        {
-                            try
-                            {
-                                int before = Interlocked.CompareExchange(ref _repaintChanged, 0, 0);
-                                // R53：全树补扫现在只在这里跑（UI 线程同步、4ms 预算 + 游标续扫），
-                                // 不再从渲染帧钩子触发。ElementHost 子树补扫仍保留在下面。
-                                try { TranslateWpfWindows(); } catch { }
-                                TranslateWpfElementHostsNow();
-                                int after = Interlocked.CompareExchange(ref _repaintChanged, 0, 0);
-                                if (after > before)
-                                {
-                                    Interlocked.Exchange(ref _idleTicks, 0);
-                                    Interlocked.Exchange(ref _repaintPeriod, 40);
-                                }
-                                else if (Interlocked.Increment(ref _idleTicks) >= 5)
-                                {
-                                    Interlocked.Exchange(ref _repaintPeriod, 200);
-                                }
-                            }
-                            catch { }
-                            finally { System.Threading.Interlocked.Exchange(ref _repaintBusy, 0); }
-                        });
-                    }
-                    catch { System.Threading.Interlocked.Exchange(ref _repaintBusy, 0); }
-                }, null, 40, 40);
-                Log("WPF repaint tick started (40ms, timer-driven)");
-            }
-            catch (Exception ex) { Log("WPF repaint tick failed: " + ex.Message); }
+                if (Interlocked.CompareExchange(ref _repaintBusy, 1, 0) != 0) return;
+                try { TranslateWpfWindows(); }
+                catch (Exception error) { Log("WPF sweep discovery failed: " + error.Message); }
+                finally { Interlocked.Exchange(ref _repaintBusy, 0); }
+            }, null, 200, 200);
+            Log("WPF repaint discovery started (200ms, owning Dispatcher queue)");
         }
 
         private static void OnWpfElementLoaded(object sender, System.Windows.RoutedEventArgs e)
@@ -1567,6 +1338,7 @@ namespace CMOLocalizer
         {
             if (_inRenderPass) return;
             _inRenderPass = true;
+            using (new UiPerfScope("wpfRender", false))
             try
             {
                 _renderFrame++;
@@ -1601,7 +1373,7 @@ namespace CMOLocalizer
                         if (string.IsNullOrEmpty(cur) || !HasAsciiLetter(cur)) continue;
                         System.Windows.Documents.Run run = dep as System.Windows.Documents.Run;
                         if (run != null) TranslateFlowInline(run);
-                        else TranslateWpfElement(dep);
+                        else TranslateWpfNode(dep);
                     }
                     catch { }
                 }
@@ -1664,10 +1436,10 @@ namespace CMOLocalizer
         private static void TranslateWpfElement(System.Windows.DependencyObject dep)
         {
             if (dep == null || IsEditableWpfTarget(dep)) return;
-            TranslateWpfElementInner(dep);
+            QueueWpfElement(dep, true);
         }
 
-        private static void TranslateWpfElementInner(System.Windows.DependencyObject dep)
+        private static void TranslateWpfNode(System.Windows.DependencyObject dep)
         {
             try
             {
@@ -1685,7 +1457,7 @@ namespace CMOLocalizer
                     }
                     else if (hc.Header is System.Windows.DependencyObject)
                     {
-                        TranslateWpfElement((System.Windows.DependencyObject)hc.Header);
+                        // Header content is queued by WpfNodeExtras.
                     }
                 }
                 if (dep is System.Windows.Controls.HeaderedItemsControl)
@@ -1702,7 +1474,7 @@ namespace CMOLocalizer
                     }
                     else if (hic.Header is System.Windows.DependencyObject)
                     {
-                        TranslateWpfElement((System.Windows.DependencyObject)hic.Header);
+                        // Header content is queued by WpfNodeExtras.
                     }
                 }
                 if (dep is System.Windows.Controls.TextBlock)
@@ -1716,32 +1488,10 @@ namespace CMOLocalizer
                     // A bound Text creates an implicit Run. Editing that Run
                     // clears Text's binding, so translate the bound value below.
                     if (!System.Windows.Data.BindingOperations.IsDataBound(tb, System.Windows.Controls.TextBlock.TextProperty)
+                        && string.IsNullOrEmpty(tb.Text)
                         && tb.Inlines != null && tb.Inlines.Count > 0)
                     {
-                        List<System.Windows.Documents.Inline> inlines =
-                            new List<System.Windows.Documents.Inline>();
-                        foreach (System.Windows.Documents.Inline inl in tb.Inlines) inlines.Add(inl);
-                        foreach (System.Windows.Documents.Inline inl in inlines)
-                        {
-                            System.Windows.Documents.Hyperlink hl = inl as System.Windows.Documents.Hyperlink;
-                            if (hl != null)
-                            {
-                                List<System.Windows.Documents.Inline> subs =
-                                    new List<System.Windows.Documents.Inline>();
-                                foreach (System.Windows.Documents.Inline sub in hl.Inlines) subs.Add(sub);
-                                foreach (System.Windows.Documents.Inline sub in subs)
-                                {
-                                    System.Windows.Documents.Run subRun = sub as System.Windows.Documents.Run;
-                                    if (subRun != null && !string.IsNullOrEmpty(subRun.Text))
-                                    {
-                                        string trSub = TranslateCellText(subRun.Text);
-                                        if (trSub != subRun.Text) SetRunTextKeepBinding(subRun, trSub);
-                                    }
-                                }
-                                continue;
-                            }
-                            TranslateFlowInline(inl);
-                        }
+                        // Inline children are processed individually by the queue.
                     }
                     else if (!string.IsNullOrEmpty(tb.Text))
                     {
@@ -1794,7 +1544,7 @@ namespace CMOLocalizer
                     }
                     else if (cc.Content is System.Windows.DependencyObject)
                     {
-                        TranslateWpfElement((System.Windows.DependencyObject)cc.Content);
+                        // Content descendants are queued by WpfNodeExtras.
                     }
                 }
 
@@ -1823,7 +1573,7 @@ namespace CMOLocalizer
                         try { flowDoc = piDoc.GetValue(dep, null) as System.Windows.Documents.FlowDocument; } catch { }
                     }
                 }
-                if (flowDoc != null) TranslateFlowDocument(flowDoc);
+                // Document blocks and Runs are queued, not traversed on this node stack.
 
                 // Window captions live outside the visual tree.
                 System.Windows.Window wnd = dep as System.Windows.Window;
@@ -1837,13 +1587,31 @@ namespace CMOLocalizer
                     }
                 }
 
-                int count = System.Windows.Media.VisualTreeHelper.GetChildrenCount(dep);
-                for (int i = 0; i < count; i++)
-                {
-                    TranslateWpfElement(System.Windows.Media.VisualTreeHelper.GetChild(dep, i));
-                }
+                System.Windows.Documents.Run leaf = dep as System.Windows.Documents.Run;
+                if (leaf != null) TranslateFlowInline(leaf);
             }
             catch { }
+        }
+
+        private static System.Windows.DependencyObject[] WpfNodeExtras(System.Windows.DependencyObject dep)
+        {
+            List<System.Windows.DependencyObject> extra = new List<System.Windows.DependencyObject>(3);
+            System.Windows.Controls.HeaderedContentControl header = dep as System.Windows.Controls.HeaderedContentControl;
+            if (header != null && header.Header is System.Windows.DependencyObject)
+                extra.Add((System.Windows.DependencyObject)header.Header);
+            System.Windows.Controls.HeaderedItemsControl itemHeader = dep as System.Windows.Controls.HeaderedItemsControl;
+            if (itemHeader != null && itemHeader.Header is System.Windows.DependencyObject)
+                extra.Add((System.Windows.DependencyObject)itemHeader.Header);
+            System.Windows.Controls.ContentControl content = dep as System.Windows.Controls.ContentControl;
+            if (content != null && content.Content is System.Windows.DependencyObject)
+                extra.Add((System.Windows.DependencyObject)content.Content);
+            PropertyInfo document = Reflect.Prop(dep.GetType(), "Document", BindingFlags.Public | BindingFlags.Instance);
+            if (document != null && document.PropertyType == typeof(System.Windows.Documents.FlowDocument))
+            {
+                System.Windows.DependencyObject value = document.GetValue(dep, null) as System.Windows.DependencyObject;
+                if (value != null) extra.Add(value);
+            }
+            return extra.ToArray();
         }
 
 
@@ -2494,19 +2262,8 @@ namespace CMOLocalizer
             }
             else if (ctrl.GetType().Name.IndexOf("ElementHost", StringComparison.OrdinalIgnoreCase) >= 0)
             {
-                try
-                {
-                    PropertyInfo piChild = ctrl.GetType().GetProperty("Child");
-                    if (piChild != null)
-                    {
-                        object childObj = piChild.GetValue(ctrl, null);
-                        if (childObj is System.Windows.DependencyObject)
-                        {
-                            TranslateWpfElement((System.Windows.DependencyObject)childObj);
-                        }
-                    }
-                }
-                catch { }
+                try { RequestElementHost(ctrl); }
+                catch (Exception error) { Log("ElementHost discovery failed: " + error.Message); }
             }
             else if (ctrl.GetType().Name.Contains("ChromiumWebBrowser"))
             {
@@ -2607,7 +2364,21 @@ namespace CMOLocalizer
 
         private static string TranslateBriefingText(string text)
         {
+            if (string.IsNullOrEmpty(text) || IsTranslationTerminal(text)) return text;
+            return FinishTranslation(text, TranslateBriefingTextCore(text));
+        }
+
+        private static string TranslateBriefingTextCore(string text)
+        {
             if (string.IsNullOrEmpty(text)) return text;
+            if (ContainsChinese(text))
+            {
+                string mixed = FixMixedEnglishPrefix(text);
+                if (mixed != null) return mixed;
+                string bracketOnly = TranslateBracketSegments(text);
+                string fixedTail = TranslateMixedValueTail(bracketOnly);
+                if (fixedTail != text) return fixedTail;
+            }
 
             // 0. 词库整句/整行优先。数据库描述正文（DB/Descriptions 的每一行）
             //    以纯查表命中，命中即直接采用，避免被下方的启发式规则拆解。
@@ -4365,6 +4136,30 @@ namespace CMOLocalizer
 
         public static string TranslateString(string raw)
         {
+            if (string.IsNullOrEmpty(raw) || IsTranslationTerminal(raw)) return raw;
+            return FinishTranslation(raw, TranslateStringCore(raw));
+        }
+
+        private static bool IsTranslationTerminal(string text)
+        {
+            if (!ContainsChinese(text)) return false;
+            lock (cacheLock) return translationTerminals.Contains(text.Trim());
+        }
+
+        private static string FinishTranslation(string raw, string result)
+        {
+            if (!string.IsNullOrEmpty(result) && result != raw && ContainsChinese(raw)
+                && result.Length > raw.Length && result.IndexOf(raw, StringComparison.Ordinal) >= 0) return raw;
+            if (!string.IsNullOrEmpty(result) && result != raw && ContainsChinese(result))
+            {
+                lock (cacheLock)
+                    if (translationTerminals.Count < exactMap.Count + MAX_CACHE_SIZE) translationTerminals.Add(result.Trim());
+            }
+            return result;
+        }
+
+        private static string TranslateStringCore(string raw)
+        {
             if (string.IsNullOrEmpty(raw)) return raw;
             // 1. Exact match & Trimmed exact match (highest priority before path filtering)
             if (exactMap.ContainsKey(raw)) return exactMap[raw];
@@ -4463,7 +4258,6 @@ namespace CMOLocalizer
             if (ContainsChinese(raw))
             {
                 string bracketOnly = TranslateBracketSegments(raw);
-                if (bracketOnly != raw) return bracketOnly;
                 return TranslateMixedValueTail(bracketOnly);
             }
 
@@ -4779,6 +4573,14 @@ namespace CMOLocalizer
             string s = Regex.Replace(spec.Trim(), @"\s+", " ");
             if (s.Length == 0) return null;
 
+            Match qty = Regex.Match(s, @"^(?<n>\d+)\s*x\s*(?<rest>.+)$", RegexOptions.IgnoreCase);
+            if (qty.Success)
+            {
+                string rest = TranslateComposedSpec(qty.Groups["rest"].Value);
+                if (rest == null) return null;
+                return qty.Groups["n"].Value + " 个" + rest;
+            }
+
             // `105mm/37 L118 Towed Light Gun x 6`、`100mm KS-19 x 4, Fire Can FCR`
             // —— 数据库里的数量写在后缀（有时后面还有逗号续接的内容），
             // 而下面的 QTY 规则只认前缀（`6 x Gun`）。不处理后缀就会让 `x`
@@ -4811,14 +4613,6 @@ namespace CMOLocalizer
                     string joined = restZh + " × " + rightZh;
                     return tailZh != null ? joined + "，" + tailZh : joined;
                 }
-            }
-
-            Match qty = Regex.Match(s, @"^(?<n>\d+)\s*x\s*(?<rest>.+)$", RegexOptions.IgnoreCase);
-            if (qty.Success)
-            {
-                string rest = TranslateComposedSpec(qty.Groups["rest"].Value);
-                if (rest == null) return null;
-                return qty.Groups["n"].Value + " 个" + rest;
             }
 
             Match units = Regex.Match(s, @"^(?<n>\d[\d,]*)\s*units?$", RegexOptions.IgnoreCase);
@@ -4971,6 +4765,8 @@ namespace CMOLocalizer
             {
                 if (string.IsNullOrEmpty(raw)) return raw;
                 int colon = raw.IndexOf(':');
+                int fullColon = raw.IndexOf('：');
+                if (colon < 0 || (fullColon >= 0 && fullColon < colon)) colon = fullColon;
                 if (colon <= 0 || colon >= raw.Length - 1 || colon > 40) return raw;
                 string left = raw.Substring(0, colon);
                 string right = raw.Substring(colon + 1).Trim();
@@ -5575,6 +5371,12 @@ namespace CMOLocalizer
             {
                 string jsonText = File.ReadAllText(jsonPath, Encoding.UTF8);
                 ParseJsonSections(jsonText);
+                lock (cacheLock)
+                {
+                    translationTerminals.Clear();
+                    foreach (string value in exactMap.Values)
+                        if (ContainsChinese(value)) translationTerminals.Add(value.Trim());
+                }
             }
             catch (Exception ex)
             {
@@ -6021,6 +5823,9 @@ namespace CMOLocalizer
                 cmd = rawCmd.Trim().ToUpperInvariant();
             }
 
+            if (cmd == "PING")
+                return "{\"status\":\"ok\",\"action\":\"PING\"}";
+
             if (cmd == "RELOAD_DICT")
             {
                 string baseDir = AppDomain.CurrentDomain.BaseDirectory;
@@ -6268,6 +6073,13 @@ namespace CMOLocalizer
                        + ",\"hint\":\"wait then run FLICKER_RESULT\"}";
             }
 
+            if (cmd == "UI_PERF_RESET")
+            {
+                return ResetUiPerfMetrics()
+                    ? "{\"status\":\"ok\",\"action\":\"UI_PERF_RESET\"}"
+                    : "{\"status\":\"busy\",\"message\":\"UI work is pending or active\"}";
+            }
+
             if (cmd == "TRACE_START")
             {
                 lock (traceLock) { traceLog.Clear(); traceEnabled = true; }
@@ -6305,7 +6117,11 @@ namespace CMOLocalizer
                   .Append(",\"sweepWindowsVisited\":").Append(sweepVisited)
                   .Append(",\"sweepFullPasses\":").Append(sweepFull)
                   .Append(",\"sweepWindowsTotal\":").Append(Interlocked.Read(ref _wpfSweepWindowCount))
-                  .Append(",\"lines\":[");
+                  .Append(",\"wpfMaxStepMs\":").Append((_wpfMaxStepTicks * 1000.0 / System.Diagnostics.Stopwatch.Frequency)
+                      .ToString("F3", CultureInfo.InvariantCulture))
+                  .Append(",\"wpfMaxStepNode\":\"").Append(JsonEsc(_wpfMaxStepNode)).Append("\"");
+                AppendUiPerfMetrics(tb);
+                tb.Append(",\"lines\":[");
                 for (int i = 0; i < arr.Length; i++)
                 {
                     if (i > 0) tb.Append(",");
@@ -6430,6 +6246,76 @@ namespace CMOLocalizer
                 return "{\"status\":\"error\",\"message\":\"Button not found: " + JsonEsc(arg) + "\"}";
             }
 
+            if (cmd == "DUMP_FORM_BUTTONS" || cmd == "CLICK_FORM_BUTTON")
+            {
+                // Self-drawn card lists expose unlabeled Buttons only; index+Tag is
+                // the only safe identity, so discovery and activation live together.
+                int splitAt = arg.IndexOf(' ');
+                string formFilter = splitAt > 0 ? arg.Substring(0, splitAt).Trim() : arg.Trim();
+                int wantedIndex = -1;
+                if (splitAt > 0) int.TryParse(arg.Substring(splitAt + 1).Trim(), out wantedIndex);
+                Form buttonForm = null;
+                FormCollection allForms = Application.OpenForms;
+                if (allForms != null)
+                {
+                    for (int i = 0; i < allForms.Count; i++)
+                    {
+                        Form candidate = allForms[i];
+                        if (candidate == null || candidate.IsDisposed) continue;
+                        if (candidate.Name.IndexOf(formFilter, StringComparison.OrdinalIgnoreCase) >= 0
+                            || (candidate.Text ?? "").IndexOf(formFilter, StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            buttonForm = candidate;
+                            break;
+                        }
+                    }
+                }
+                if (buttonForm == null) return "{\"status\":\"error\",\"message\":\"form not found\"}";
+                List<Control> cardButtons = new List<Control>();
+                CollectButtonControls(buttonForm, cardButtons, 0);
+                if (cmd == "DUMP_FORM_BUTTONS")
+                {
+                    StringBuilder bb = new StringBuilder();
+                    bb.Append("{\"status\":\"ok\",\"form\":\"").Append(JsonEsc(buttonForm.Name))
+                      .Append("\",\"buttons\":[");
+                    for (int i = 0; i < cardButtons.Count; i++)
+                    {
+                        Control b = cardButtons[i];
+                        if (i > 0) bb.Append(",");
+                        bb.Append("{\"i\":").Append(i)
+                          .Append(",\"type\":\"").Append(JsonEsc(b.GetType().Name))
+                          .Append("\",\"name\":\"").Append(JsonEsc(b.Name))
+                          .Append("\",\"text\":\"").Append(JsonEsc(Trunc(b.Text, 60)))
+                          .Append("\",\"tag\":\"").Append(JsonEsc(b.Tag == null ? "" : Trunc(b.Tag.ToString(), 80)))
+                          .Append("\",\"enabled\":").Append(b.Enabled ? "true" : "false")
+                          .Append(",\"visible\":").Append(b.Visible ? "true" : "false")
+                          .Append(",\"x\":").Append(b.Bounds.X).Append(",\"y\":").Append(b.Bounds.Y)
+                          .Append(",\"w\":").Append(b.Bounds.Width).Append(",\"h\":").Append(b.Bounds.Height)
+                          .Append("}");
+                    }
+                    bb.Append("]}");
+                    return bb.ToString();
+                }
+                if (wantedIndex < 0 || wantedIndex >= cardButtons.Count)
+                    return "{\"status\":\"error\",\"message\":\"button index out of range\"}";
+                Control chosenCard = cardButtons[wantedIndex];
+                if (!chosenCard.Enabled || !chosenCard.Visible)
+                    return "{\"status\":\"error\",\"message\":\"button is not clickable\"}";
+                string cardLabel = chosenCard.Tag == null ? "" : chosenCard.Tag.ToString();
+                buttonForm.BeginInvoke((MethodInvoker)delegate
+                {
+                    try
+                    {
+                        MethodInfo perform = chosenCard.GetType().GetMethod("PerformClick",
+                            BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                        if (perform != null) perform.Invoke(chosenCard, null);
+                    }
+                    catch (Exception error) { Log("CLICK_FORM_BUTTON failed: " + error.Message); }
+                });
+                return "{\"status\":\"ok\",\"action\":\"CLICK_FORM_BUTTON\",\"index\":" + wantedIndex
+                    + ",\"tag\":\"" + JsonEsc(cardLabel) + "\"}";
+            }
+
             if (cmd == "SELECT_TAB")
             {
                 // SELECT_TAB <窗体过滤> <索引或页签标题片段>：只读切页签（UI 线程），
@@ -6536,9 +6422,10 @@ namespace CMOLocalizer
 
             if (cmd == "CLICK_TOOLBAR")
             {
-                int targetIdx = 0;
-                int.TryParse(arg, out targetIdx);
-                ToolStripItem tsi = FindToolbarButtonByIndex(mainFrm, targetIdx);
+                int targetIdx;
+                bool byIndex = int.TryParse(arg, out targetIdx);
+                ToolStripItem tsi = byIndex ? FindToolbarButtonByIndex(mainFrm, targetIdx)
+                    : FindToolStripItemInControl(mainFrm, arg);
                 if (tsi != null && mainFrm != null)
                 {
                     mainFrm.BeginInvoke((MethodInvoker)delegate
@@ -7207,7 +7094,7 @@ namespace CMOLocalizer
                         if (pid3 != currentPid) return true;
                         StringBuilder sb = new StringBuilder(256);
                         GetClassName(hWnd, sb, sb.Capacity);
-                        if (!sb.ToString().StartsWith("HwndWrapper")) return true;
+                        if (!sb.ToString().StartsWith("HwndWrapper") || !IsWindowVisible(hWnd) || clicked != 0) return true;
                         System.Windows.Interop.HwndSource src3 = System.Windows.Interop.HwndSource.FromHwnd(hWnd);
                         if (src3 == null || src3.Dispatcher == null || src3.RootVisual == null) return true;
                         src3.Dispatcher.Invoke(new Action(delegate
@@ -7238,10 +7125,12 @@ namespace CMOLocalizer
                 if (btn != null)
                 {
                     string content = btn.Content as string;
-                    if (!string.IsNullOrEmpty(content) && content.IndexOf(want, StringComparison.OrdinalIgnoreCase) >= 0)
+                    if (btn.IsEnabled && btn.IsVisible && (string.Equals(btn.Name, want, StringComparison.Ordinal)
+                        || (!string.IsNullOrEmpty(content) && content.IndexOf(want, StringComparison.OrdinalIgnoreCase) >= 0)))
                     {
-                        btn.RaiseEvent(new System.Windows.RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
-                        n++;
+                        // RaiseEvent skips ButtonBase.OnClick and its ICommand.
+                        MethodInfo click = btn.GetType().GetMethod("OnClick", BindingFlags.Instance | BindingFlags.NonPublic);
+                        if (click != null) { click.Invoke(btn, null); return 1; }
                     }
                 }
             }
@@ -7251,8 +7140,21 @@ namespace CMOLocalizer
             for (int i = 0; i < count; i++)
             {
                 try { n += ClickWpfButton(System.Windows.Media.VisualTreeHelper.GetChild(dep, i), want); } catch { }
+                if (n != 0) break;
             }
             return n;
+        }
+
+        private static void CollectButtonControls(Control root, List<Control> found, int depth)
+        {
+            if (root == null || depth > 12) return;
+            try
+            {
+                if (root is Button || root.GetType().Name.IndexOf("Button", StringComparison.OrdinalIgnoreCase) >= 0)
+                    found.Add(root);
+                foreach (Control child in root.Controls) CollectButtonControls(child, found, depth + 1);
+            }
+            catch { }
         }
 
         private static IEnumerable<Control> AllControls(Control root)

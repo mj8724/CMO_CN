@@ -11,6 +11,7 @@
 //   ② 半译：`状态: Unassigned` 这种「中文标签 + 英文值」必须整条变成中文，
 //      而不是因为"整串含中文"就早退（旧守卫的实际后果）。
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -35,6 +36,7 @@ class IdempotencyTests
 
     static int Main(string[] args)
     {
+        Console.OutputEncoding = new System.Text.UTF8Encoding(false);
         string root = args.Length > 0 ? args[0] : Directory.GetCurrentDirectory();
         string dll = args.Length > 1 ? args[1] : Path.Combine(root, "build", "CMOLocalizer.dll");
         Assembly asm = Assembly.LoadFrom(dll);
@@ -43,10 +45,16 @@ class IdempotencyTests
 
         MethodInfo load = loc.GetMethod("LoadDictionaries",
                                         BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
-        if (load != null) load.Invoke(null, new object[] { Path.Combine(root, "dict", "CMOLocalizer.json") });
+        string dictionary = args.Length > 2 ? args[2] : Path.Combine(root, "dict", "CMOLocalizer.json");
+        if (load != null) load.Invoke(null, new object[] { dictionary });
         MethodInfo tr = loc.GetMethod("TranslateString", BindingFlags.Static | BindingFlags.Public);
         if (tr == null) { Console.WriteLine("FAIL: TranslateString not found"); return 1; }
         Func<string, string> T = s => (string)tr.Invoke(null, new object[] { s });
+        MethodInfo briefing = loc.GetMethod("TranslateBriefingText", BindingFlags.Static | BindingFlags.NonPublic);
+        MethodInfo spec = loc.GetMethod("TranslateComposedSpec", BindingFlags.Static | BindingFlags.NonPublic);
+        if (briefing == null || spec == null) { Console.WriteLine("FAIL: briefing/composition entry not found"); return 1; }
+        Func<string, string> B = s => (string)briefing.Invoke(null, new object[] { s });
+        Func<string, string> S = s => (string)spec.Invoke(null, new object[] { s });
 
         // ① 幂等：第二次翻译不得再改变结果
         string[] corpus =
@@ -59,6 +67,9 @@ class IdempotencyTests
             "Hardened Aircraft Shelter (6x Medium Aircraft)",
             "Inherited, 持续制导至命中", "Inherited, Tight",
             "Runway", "跑道", "跑道 (2600m)", "Nothing", "No unit selected",
+            "Launch", "  Launch  ", "* Launch", "Area", "Flightplan Editor",
+            "状态 (Mode): Unassigned", "所属阵营：Israel",
+            "Hangar (2 x Large Aircraft)", "Hangar (10x Large Aircraft)",
         };
         int unstable = 0;
         foreach (string raw in corpus)
@@ -97,6 +108,50 @@ class IdempotencyTests
         Check("纯英文冒号", T("Status: Unassigned") == "状态：未分配任务", T("Status: Unassigned"));
         Check("括号不再叠加", T("主动 (Active)") == "主动 (Active)", T("主动 (Active)"));
         Check("布尔值", T("Nothing") == "无", T("Nothing"));
+
+        Check("中文标签+全角冒号", T("状态：Unassigned") == "状态：未分配任务", T("状态：Unassigned"));
+        Check("Launch 保全原译", T("Launch") == "发射/起飞" && T(T("Launch")) == "发射/起飞", T("Launch"));
+
+        // ④ Web 调用的兄弟入口必须闭合同一混排/幂等契约，而非只测公开函数。
+        int briefingUnstable = 0;
+        foreach (string raw in corpus)
+        {
+            string once = B(raw), twice = B(once);
+            if (once != twice)
+            {
+                briefingUnstable++;
+                Console.WriteLine("     简报不幂等: " + raw + " -> " + once + " -> " + twice);
+            }
+        }
+        Check("Briefing 幂等", briefingUnstable == 0, "不稳定 " + briefingUnstable + " 条");
+        Check("Briefing 混排右值", B("状态: Unassigned") == "状态：未分配任务", B("状态: Unassigned"));
+        Check("Briefing 全角冒号", B("所属阵营：Israel") == "所属阵营：以色列", B("所属阵营：Israel"));
+        Check("Briefing 混合前缀", B("Inherited, 持续制导至命中") == "继承自上级，持续制导至命中", B("Inherited, 持续制导至命中"));
+
+        // ⑤ 直接调用结构规则，避免现有整串词条遮蔽数量前缀的错误优先级。
+        Check("数量前缀保持完整规格", S("2 x Large Aircraft") == "2 个大型飞机", S("2 x Large Aircraft"));
+        Check("紧凑数量前缀", S("10x Large Aircraft") == "10 个大型飞机", S("10x Large Aircraft"));
+        string gun = S("Gun"), gunTail = S("Gun x 6");
+        Check("数量尾缀不回退", !string.IsNullOrEmpty(gun) && gunTail == gun + " × 6", gunTail);
+        Check("组合生词仍整体拒绝", S("2 x ZzyzxUnknown Aircraft") == null, S("2 x ZzyzxUnknown Aircraft") ?? "<null>");
+
+        // 可选的同一行为全词库检查，不是全项目 suite；不读取游戏或发送诊断命令。
+        if (args.Length > 3 && args[3] == "all-exact")
+        {
+            var exact = (Dictionary<string, string>)loc.GetField("exactMap", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+            int allUnstable = 0;
+            foreach (string raw in new List<string>(exact.Keys))
+            {
+                string once = T(raw), twice = T(once);
+                if (once != twice)
+                {
+                    allUnstable++;
+                    if (allUnstable <= 8) Console.WriteLine("     真实词库不幂等: " + raw + " -> " + once + " -> " + twice);
+                }
+            }
+            Check("真实 exact T(T)==T", exact.Count >= 70571 && allUnstable == 0,
+                "词库条目 " + exact.Count + "，不稳定 " + allUnstable);
+        }
 
         Console.WriteLine(failures == 0 ? "ALL PASS" : "FAILURES: " + failures);
         return failures == 0 ? 0 : 2;
