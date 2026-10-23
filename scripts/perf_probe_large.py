@@ -39,7 +39,7 @@ def _number(value, name: str) -> float:
     return value
 
 
-def _reset_ui_perf(timeout: float = 10.0) -> None:
+def _reset_ui_perf(timeout: float = 60.0) -> None:
     """Reset execution metrics, tolerating the engine's transient "busy" reply.
 
     The engine refuses a reset while a slice is in flight; that is correct
@@ -200,8 +200,28 @@ def _inplace_health() -> dict:
         nodes += len(values)
         texts.update(node.get("text", "").strip() for node in values)
     exact = json.loads((H.ROOT / "dict/CMOLocalizer.json").read_text(encoding="utf-8"))["exact"]
-    residual = sorted(text for text in texts if text and not re.search(r"[\u4e00-\u9fff]", text)
+    def scan_residual(values):
+        return sorted(text for text in values if text and not re.search(r"[一-鿿]", text)
                       and text in exact and exact[text] != text)
+
+    residual = scan_residual(texts)
+    rechecked = 0
+    if residual:
+        # Panels refresh about every 200ms; a node sampled mid-update is English
+        # for a fraction of a second. Re-sample once before calling it a gap.
+        rechecked = 1
+        time.sleep(1.2)
+        retry = set()
+        for node in H.send("CTRL_TREE", 60).get("nodes") or []:
+            value = (node.get("text") or "").strip()
+            if value:
+                retry.add(value)
+        for window in H.send("WPF_DUMP", 90).get("windows") or []:
+            for node in window.get("nodes") or []:
+                value = (node.get("text") or "").strip()
+                if value:
+                    retry.add(value)
+        residual = scan_residual(retry)
     log = (H.GAME / "CMOLocalizer.log").read_text(encoding="utf-8-sig", errors="replace")
     start = log.rfind("=== CMOLocalizer")
     if start < 0:
@@ -214,6 +234,7 @@ def _inplace_health() -> dict:
     if not texts or not any(texts):
         raise ProbeError("no on-screen text was sampled")
     return {"combo_items": items, "combo_mixed": sorted(set(mixed)), "residual_en": residual,
+            "residual_recheck": rechecked,
             "sampled_texts": len(texts), "windows": len(windows), "nodes": nodes,
             "zombies": zombies, "write_loop": session.count("WRITE LOOP BLOCKED"),
             "sweep_errors": sum(session.count(marker) for marker in
