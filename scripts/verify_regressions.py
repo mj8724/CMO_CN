@@ -965,7 +965,15 @@ def _ground_list_probe(H, probe: dict, exact: dict, previous_html: str | None) -
         return result
     viewer = viewers[0]
     x, y = viewer["rect"]["X"], viewer["rect"]["Y"]
-    if H.focus(viewer["hwnd"]) is not True:
+    # Windows 允许前台化的时机受输入焦点影响；短暂重试比直接判红更贴近真实条件，
+    # 但重试耗尽后仍然拒绝发送全局输入（安全性不降级）。
+    focused = False
+    for _ in range(3):
+        if H.focus(viewer["hwnd"]) is True:
+            focused = True
+            break
+        time.sleep(1.0)
+    if not focused:
         result["errors"] = ["Ground 当前库查看器聚焦失败，拒绝发送全局键鼠输入"]
         return result
     H.click(x + 100, y + 55)
