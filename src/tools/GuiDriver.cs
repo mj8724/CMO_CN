@@ -86,6 +86,11 @@ public class GuiDriver
         return list;
     }
 
+        [DllImport("user32.dll")] private static extern IntPtr GetForegroundWindow();
+        [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr hWnd, IntPtr processId);
+        [DllImport("kernel32.dll")] private static extern uint GetCurrentThreadId();
+        [DllImport("user32.dll")] private static extern bool AttachThreadInput(uint idAttach, uint idAttachTo, bool attach);
+
     public static bool FocusWindow(IntPtr hwnd, bool maximize = false)
     {
         if (maximize)
@@ -99,6 +104,27 @@ public class GuiDriver
         SetWindowPos(hwnd, new IntPtr(-1), 0, 0, 0, 0, 0x0001 | 0x0002 | 0x0040); // HWND_TOPMOST
         BringWindowToTop(hwnd);
         bool ok = SetForegroundWindow(hwnd);
+        if (!ok)
+        {
+            // Windows 只允许“正在接收输入”的线程抢前台。测试由后台进程驱动时
+            // SetForegroundWindow 会一直被拒；临时附加到当前前台线程即可通过。
+            IntPtr foreground = GetForegroundWindow();
+            uint currentThread = GetCurrentThreadId();
+            uint foregroundThread = GetWindowThreadProcessId(foreground, IntPtr.Zero);
+            bool attached = false;
+            try
+            {
+                if (foregroundThread != 0 && foregroundThread != currentThread)
+                    attached = AttachThreadInput(foregroundThread, currentThread, true);
+                ShowWindow(hwnd, SW_RESTORE);
+                BringWindowToTop(hwnd);
+                ok = SetForegroundWindow(hwnd);
+            }
+            finally
+            {
+                if (attached) AttachThreadInput(foregroundThread, currentThread, false);
+            }
+        }
         SetWindowPos(hwnd, new IntPtr(-2), 0, 0, 0, 0, 0x0001 | 0x0002 | 0x0040); // HWND_NOTOPMOST
         return ok;
     }
