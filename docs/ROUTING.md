@@ -421,6 +421,7 @@
 | `src/tests/UiLifecycleTests.cs` | UI 生命周期挂钩 | — |
 | `src/tests/UiSchedulingTests.cs` | UI 调度顺序（不吞掉新投递的回调） | — |
 | `src/tests/UiPerfMetricsTests.cs` | UI 执行计量负向验证：排队不算执行、慢回调超帧、取消不完成、忙时拒绝重置 | `R55-static-ui-perf` |
+| `src/tests/FormsSnapshotTests.cs` | R59 回归：WinForms 活集合在窗体增删期间必须取快照遍历；含“直接 foreach 会抛错”的负向对照 | `R61-static-forms-snapshot` |
 | `src/tests/WpfSchedulingTests.cs` | WPF 分片与归属回归：稳定同级游标续扫、跨 Dispatcher 合并、换根取消、输入让出 | `R54-static-wpf-scheduling` |
 | `src/tests/WpfSafetyTests.cs` | WPF 写回安全（不重入属性系统、编辑区不写） | — |
 | `src/tests/FirstPaintTests.cs` | 首帧中文（不等下一轮慢扫） | — |

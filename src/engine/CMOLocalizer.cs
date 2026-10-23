@@ -6182,11 +6182,11 @@ namespace CMOLocalizer
 
             if (cmd == "CLOSE_FORM")
             {
-                FormCollection forms = Application.OpenForms;
+                Form[] forms = OpenFormsSnapshot();
                 int closedCount = 0;
                 if (forms != null)
                 {
-                    for (int i = forms.Count - 1; i >= 0; i--)
+                    for (int i = forms.Length - 1; i >= 0; i--)
                     {
                         Form f = forms[i];
                         if (f == null || f.IsDisposed || f == mainFrm) continue;
@@ -6206,7 +6206,7 @@ namespace CMOLocalizer
 
             if (cmd == "CLICK_BUTTON")
             {
-                FormCollection forms = Application.OpenForms;
+                Form[] forms = OpenFormsSnapshot();
                 string clickedInfo = null;
                 if (forms != null)
                 {
@@ -6255,10 +6255,10 @@ namespace CMOLocalizer
                 int wantedIndex = -1;
                 if (splitAt > 0) int.TryParse(arg.Substring(splitAt + 1).Trim(), out wantedIndex);
                 Form buttonForm = null;
-                FormCollection allForms = Application.OpenForms;
+                Form[] allForms = OpenFormsSnapshot();
                 if (allForms != null)
                 {
-                    for (int i = 0; i < allForms.Count; i++)
+                    for (int i = 0; i < allForms.Length; i++)
                     {
                         Form candidate = allForms[i];
                         if (candidate == null || candidate.IsDisposed) continue;
@@ -7145,6 +7145,24 @@ namespace CMOLocalizer
             return n;
         }
 
+        /// <summary>
+        /// WinForms 的 OpenForms 是活集合：游戏在同时增删窗体时直接 foreach 会抛
+        /// 「Collection was modified」。诊断/自动化命令必须先取快照，否则一次窗体切换
+        /// 就会把整次观测变成失败（实测 R59）。
+        /// </summary>
+        private static Form[] OpenFormsSnapshot()
+        {
+            try
+            {
+                FormCollection forms = Application.OpenForms;
+                if (forms == null) return new Form[0];
+                Form[] copy = new Form[forms.Count];
+                for (int i = 0; i < copy.Length; i++) copy[i] = forms[i];
+                return copy;
+            }
+            catch { return new Form[0]; }
+        }
+
         private static void CollectButtonControls(Control root, List<Control> found, int depth)
         {
             if (root == null || depth > 12) return;
@@ -7283,9 +7301,9 @@ namespace CMOLocalizer
         /// </summary>
         private static void DumpElementHostWpf(ref StringBuilder json, ref bool first)
         {
-            FormCollection forms = Application.OpenForms;
-            if (forms == null) return;
-            for (int i = 0; i < forms.Count; i++)
+            Form[] forms = OpenFormsSnapshot();
+            if (forms.Length == 0) return;
+            for (int i = 0; i < forms.Length; i++)
             {
                 Form f = forms[i];
                 if (f == null || f.IsDisposed) continue;

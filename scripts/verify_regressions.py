@@ -239,6 +239,11 @@ def _run_ui_scheduling_and_report_gates(r: Runner) -> None:
             "src/tests/UiPerfMetricsTests.cs", [],
             "src/tests/UiPerfMetricsTests.cs",
             needs_dictionary=False, expect_all_pass=False)
+    cs_case("R61-static-forms-snapshot",
+            "R61 WinForms 活集合快照：窗体增删期间遍历不抛“集合被修改”",
+            "src/tests/FormsSnapshotTests.cs", [],
+            "src/tests/FormsSnapshotTests.cs",
+            needs_dictionary=False, expect_all_pass=True)
     py_case("R56-static-perf-probe",
             "R56 性能探针失败关闭：超时/零工作/未推进/漏健康都必须失败",
             "src/tests/PerformanceProbeTests.py")
