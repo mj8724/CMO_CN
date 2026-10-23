@@ -1560,3 +1560,27 @@ python scripts/perf_probe.py          # 游戏已在想定里
 - **验收**：`R54-static-wpf-scheduling` 的 `mutation` 模式（扫描中途重建集合不抛错且收敛）。
 - **教训**：**分片状态的异常边界必须与续做单位对齐**——抛一次就丢整棵树，等于把分片变成碰运气。
 
+## R59 `DUMP_OPEN_FORMS` 在窗体集合变化瞬间抛「Collection was modified」（v4.2.3 发布后工具侧发现）
+
+- **来源**：发布后自检时，Blue Dawn 入口脚本在战役窗口弹出的瞬间调用 `DUMP_OPEN_FORMS`，
+  返回 `{"status":"error","message":"Collection was modified; enumeration operation may not execute."}`。
+- **根因**：命令处理直接枚举 `Application.OpenForms`（活集合），游戏此时正在增删窗体；
+  同类写法也出现在 `CLICK_BUTTON` / `CLOSE_FORM` / `DumpElementHostWpf` 等遍历处。
+- **影响**：只影响诊断/自动化命令的瞬时可靠性，不影响游戏内翻译与游玩；
+  但自动化会在窗体切换时误判为「观测失败」。
+- **临时处置（已在工具侧落地）**：`scripts/live_load_blue_dawn.py` 对窗体观测做有限重试（8 次/1.5s），
+  失败时如实报最后一次错误，不静默降级。
+- **待修（下一版本）**：在引擎侧先把 `Application.OpenForms` 复制成快照（`new Form[Count]` + `CopyTo`），
+  再遍历；每个窗体单独 try/catch，避免一个窗体失效中断整次导出。
+- **教训**：**涉及 WinForms 活集合的命令必须先取快照**；这类错误是瞬时竞态，
+  自动化的正确应对是「有限重试 + 保留真实错误」，而不是把失败当空结果。
+
+## R60 部署/安装链路的两处工具侧陷阱（v4.2.3 期间发现，已修正流程）
+
+- **① `localize_html_files.py --copy-to` 的目标必须是游戏根目录**：传 `Scenarios` 会把
+  `Scenarios/…` 前缀再套一层，产生 `Scenarios/Scenarios/…` 的重复文件（实测文件数 340→680→1020）。
+- **② 简报门禁统计中文前必须先解码 HTML 实体**：`&#26085;&#26399;`（“日期”）被判成未翻译，
+  导致已汉化页面被计为英文（`verify_all.gate_briefings`，已修为 `html.unescape` 后再判 CJK）。
+- **教训**：路径前缀与字符编码都属于「看起来对、结果错」的类别，必须用计数对照验证，
+  不能只看「命令返回成功」。
+

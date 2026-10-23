@@ -19,10 +19,17 @@ CAMPAIGN = "Chains Of War"
 
 
 def _forms() -> list[dict]:
-    response = H.send("DUMP_OPEN_FORMS", timeout=30)
-    if response.get("status") != "ok" or not isinstance(response.get("forms"), list):
-        raise RuntimeError("form observation failed: " + str(response))
-    return response["forms"]
+    # The engine enumerates the live WinForms collection; a window opening at the
+    # same moment yields a transient "Collection was modified" error. Retry a few
+    # times instead of failing the whole entry, and surface the reason if it lasts.
+    last = None
+    for _ in range(8):
+        response = H.send("DUMP_OPEN_FORMS", timeout=30)
+        if response.get("status") == "ok" and isinstance(response.get("forms"), list):
+            return response["forms"]
+        last = response
+        time.sleep(1.5)
+    raise RuntimeError("form observation failed: " + str(last))
 
 
 def _names() -> list[str]:
@@ -51,7 +58,12 @@ def _click_form_button(form: str, tag_part: str) -> int:
     if dump.get("status") != "ok":
         raise RuntimeError("button dump failed: " + str(dump))
     for button in dump.get("buttons") or []:
-        if tag_part.casefold() in (button.get("tag") or "").casefold():
+        tag = (button.get("tag") or "").casefold()
+        # The engine dump truncates long tags with an ellipsis, so compare the
+        # last path segment as a prefix of the wanted campaign name.
+        leaf = tag.rstrip("…").replace("/", "\\").split("\\")[-1].strip()
+        wanted = tag_part.casefold()
+        if wanted in tag or (leaf and (wanted.startswith(leaf) or leaf.startswith(wanted))):
             result = H.send(f"CLICK_FORM_BUTTON {form} {button['i']}", timeout=30)
             if result.get("status") != "ok":
                 raise RuntimeError("button click failed: " + str(result))
