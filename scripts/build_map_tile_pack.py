@@ -388,10 +388,11 @@ def symbol_patch(symbol):
     return patch.resize((math.ceil(size), math.ceil(size)), Image.Resampling.LANCZOS)
 
 
-def render_region(region, features, translations, layouts, symbols, font_paths, cmaps, gap):
+def render_region(region, features, translations, layouts, symbols, font_paths, cmaps, gap, shared_sources=None):
     size = (region["width_tiles"] * TILE_SIZE, region["height_tiles"] * TILE_SIZE)
     atlas, occupied = Image.new("RGBA", size), Image.new("L", size)
     labels, symbol_reports, instances = [], [], []
+    shared_sources = shared_sources or {}
 
     def place(identity, patch, x, y, category):
         number(x, f"{identity} x", -4096, 8192)
@@ -489,11 +490,19 @@ def render_region(region, features, translations, layouts, symbols, font_paths, 
                                   or not isinstance(symbol.get("review_notes"), str) or not symbol["review_notes"].strip())):
             gap("unlabeled_symbol", id=identity, reason="requires independent source evidence and no named feature")
             continue
-        if not unlabeled and symbol.get("feature_id") not in features:
+        if "shared_source_id" in symbol:
+            shared_id = symbol["shared_source_id"]
+            source = shared_sources.get(shared_id) if isinstance(shared_id, str) else None
+            if (unlabeled or "feature_id" in symbol or source is None
+                    or (source["kind"], symbol.get("kind")) not in (("city", "circle"), ("peak", "triangle"))):
+                gap("symbol_binding", id=identity, reason="requires exactly one valid named shared source")
+                continue
+        elif not unlabeled and symbol.get("feature_id") not in features:
             gap("symbol_feature", id=identity, feature_id=symbol.get("feature_id"))
             continue
         bounds, touched, _ = place(identity, symbol_patch(symbol), symbol.get("x"), symbol.get("y"), "symbol")
         symbol_reports.append(dict(id=identity, feature_id=symbol.get("feature_id"), kind=symbol["kind"],
+                                   **(dict(shared_source_id=shared_id) if "shared_source_id" in symbol else {}),
                                    **(dict(unlabeled=True) if unlabeled else {}),
                                    bounds=bounds, tiles=touched))
     return atlas, labels, symbol_reports, instances
@@ -542,6 +551,7 @@ def compile_manifest(manifest, original_root, font_path, bold_font_path, preview
         bounded_regions.append((region, z, x, y, width, height, keys))
     legacy_points = None
     suppression_records = {}
+    native_boxes, native_centers = {}, {}
     input_paths = {path.resolve() for path in font_paths.values()}
     # Collect every region's sources before writing any previews: an earlier
     # region's preview filename must not overwrite a later region's evidence.
@@ -602,7 +612,23 @@ def compile_manifest(manifest, original_root, font_path, bold_font_path, preview
         region_report["source_alpha"] = audit_original(
             region, original, contexts, features, symbols, gap, shared_sources, background)
         atlas, labels, symbol_reports, crossing = render_region(
-            region, features, translations, layouts, symbols, font_paths, cmaps, gap)
+            region, features, translations, layouts, symbols, font_paths, cmaps, gap, shared_sources)
+        # Native identity is physical, independent of feature/shared aliases.
+        # Use actual raster bounds for center aliases after pixel rounding.
+        for rendered in symbol_reports:
+            symbol = symbols[rendered["id"]]
+            box = world_original_bbox(region, symbol["original_bbox"], f"{symbol['id']} native original_bbox")
+            bounds = rendered["bounds"]
+            center = [x * TILE_SIZE + (bounds[0] + bounds[2]) / 2,
+                      y * TILE_SIZE + (bounds[1] + bounds[3]) / 2]
+            reference = dict(region=identity, id=symbol["id"])
+            for code, key, index in (
+                    ("duplicate_native_bbox", (z, *box), native_boxes),
+                    ("duplicate_native_center", (z, symbol["kind"], *center), native_centers)):
+                if key in index:
+                    gap(code, first=index[key], second=reference)
+                else:
+                    index[key] = reference
         if records(region.get("legacy_suppressions", []), "legacy_suppressions"):
             if legacy_points is None:
                 legacy_points, report["legacy_sources"] = canonical_legacy_points()

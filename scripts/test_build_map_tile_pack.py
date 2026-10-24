@@ -943,5 +943,190 @@ class TilePackBuilderTests(unittest.TestCase):
                             for g in report["gaps"]))
 
 
+    def shared_native_fixture(self):
+        borrower = self.shared_source_fixture()
+        tile = borrower["original_tiles"][0]
+        path = self.original / tile["path"]
+        with Image.open(path) as source:
+            image = source.convert("RGBA")
+        ImageDraw.Draw(image).ellipse((40, 110, 48, 118), fill="white")
+        image.save(path)
+        tile["sha256"] = sha(path)
+        self.manifest["regions"] = [self.region]
+        self.approve()
+        self.sign_render()
+        wire, report = self.compile(preview=True)
+        self.assertIsNotNone(wire, report["gaps"])
+        self.old_owner = copy.deepcopy(self.region)
+        self.old_owner_png = (self.base / "preview/owner.zh.png").read_bytes()
+        borrower["symbols"] = [dict(id="shared-dot", shared_source_id="city-shared", kind="circle",
+                                    x=44.5, y=114.5, size=7, outline_width=1,
+                                    original_bbox=[40, 110, 49, 119])]
+        self.manifest["regions"] = [borrower, self.region]
+        self.sign_shared_regions()
+        return borrower
+
+    def test_shared_native_named_point_renders_once_without_another_label(self):
+        borrower = self.shared_native_fixture()
+        wire, report = self.compile(preview=True)
+        self.assertIsNotNone(wire, report["gaps"])
+        self.assertTrue(report["ready"], report["gaps"])
+        self.assertEqual((1, 1), (report["label_count"], report["symbol_count"]))
+        self.assertEqual(self.old_owner, self.region)
+        self.assertEqual(self.old_owner_png, (self.base / "preview/owner.zh.png").read_bytes())
+        self.assertEqual([], borrower["features"])
+        self.assertEqual([], borrower["translations"])
+        self.assertEqual([], borrower["layouts"])
+        row = report["regions"][0]
+        self.assertEqual([], row["labels"])
+        self.assertEqual(0, row["tiles"][0]["label_count"])
+        self.assertEqual("city-shared", row["symbols"][0]["shared_source_id"])
+        self.assertIsNone(row["symbols"][0]["feature_id"])
+        self.assertFalse(row["symbols"][0].get("unlabeled", False))
+        self.assertEqual(0, row["source_alpha"]["unaccounted_pixels"])
+        with Image.open(self.base / "preview/borrower.zh.png") as image:
+            self.assertIsNotNone(image.getchannel("A").getbbox())
+            self.assertIsNotNone(image.getchannel("A").crop((40, 110, 49, 119)).getbbox())
+        stream = io.BytesIO(wire[73:])
+        packed = {}
+        for _ in range(struct.unpack("<i", stream.read(4))[0]):
+            z, x, y, count, length = struct.unpack("<iiiii", stream.read(20))
+            packed[z, x, y] = count, stream.read(length)
+        self.assertEqual((0, (self.base / "preview/borrower.zh.png").read_bytes()), packed[3, 1, 0])
+        self.assertEqual((1, self.old_owner_png), packed[3, 0, 0])
+
+    def test_shared_native_binding_modes_are_exclusive_and_never_fall_back(self):
+        borrower = self.shared_native_fixture()
+        saved = copy.deepcopy(borrower["symbols"][0])
+        cases = [dict(shared_source_id="absent"), dict(shared_source_id=None),
+                 dict(shared_source_id=""), dict(shared_source_id=1),
+                 dict(feature_id="city"), dict(feature_id=None),
+                 dict(unlabeled=True, source_url="https://example.com/dot", review_notes="Not unnamed")]
+        for changes in cases:
+            with self.subTest(changes=changes):
+                borrower["symbols"] = [dict(saved, **changes)]
+                self.sign_shared_regions()
+                self.rejected("symbol_binding")
+        borrower["symbols"] = [dict(saved)]
+        del borrower["symbols"][0]["shared_source_id"]
+        self.sign_shared_regions()
+        self.rejected("symbol_feature")
+
+    def test_shared_native_unlabeled_cannot_hide_a_present_null_reference(self):
+        self.unlabeled_symbol()
+        self.region["symbols"][0]["shared_source_id"] = None
+        self.approve()
+        self.sign_render()
+        self.rejected("symbol_binding")
+
+    def test_shared_native_reuses_owner_identity_and_output_guards(self):
+        self.shared_native_fixture()
+        baseline = copy.deepcopy(self.manifest)
+        for change in ("zoom", "owner", "chain", "bbox", "url", "review", "output"):
+            with self.subTest(change=change):
+                self.manifest = copy.deepcopy(baseline)
+                borrower, self.region = self.manifest["regions"]
+                source = borrower["shared_sources"][0]
+                if change == "zoom":
+                    borrower["z"] = 4
+                elif change == "owner":
+                    source["owner_region"] = "absent"
+                elif change == "chain":
+                    source["owner_region"] = "borrower"
+                    source["feature_id"] = "city-shared"
+                elif change == "bbox":
+                    source["original_bbox"][0] -= 0.5
+                elif change == "url":
+                    source["source_url"] = "https://example.com/different"
+                elif change == "output":
+                    self.region["layouts"] = []
+                self.sign_shared_regions()
+                if change == "review":
+                    self.region["review"]["status"] = "draft"
+                self.rejected("shared_source_owner" if change in ("review", "output") else "shared_source")
+
+    def test_shared_native_kind_must_match_the_named_source_kind(self):
+        borrower = self.shared_native_fixture()
+        borrower["symbols"][0]["kind"] = "triangle"
+        self.sign_shared_regions()
+        self.rejected("symbol_binding")
+
+    def test_shared_native_aliases_cannot_duplicate_a_physical_point(self):
+        borrower = self.shared_native_fixture()
+        borrower["shared_sources"].append(dict(borrower["shared_sources"][0], id="alias"))
+        borrower["symbols"].append(dict(borrower["symbols"][0], id="alias-dot", shared_source_id="alias"))
+        self.sign_shared_regions()
+        self.rejected("duplicate_native_bbox")
+
+    def test_shared_native_physical_index_spans_different_regions(self):
+        borrower = self.shared_source_fixture()
+        atlas = Image.new("RGBA", (512, 256))
+        for tile in self.region["original_tiles"] + borrower["original_tiles"]:
+            with Image.open(self.original / tile["path"]) as source:
+                atlas.paste(source.convert("RGBA"), (tile["x"] * 256, 0))
+        ImageDraw.Draw(atlas).ellipse((252, 110, 260, 118), fill="white")
+        for tile in self.region["original_tiles"] + borrower["original_tiles"]:
+            atlas.crop((tile["x"] * 256, 0, (tile["x"] + 1) * 256, 256)).save(self.original / tile["path"])
+            tile["sha256"] = sha(self.original / tile["path"])
+        self.region["symbols"] = [dict(id="local-dot", feature_id="city", kind="circle", x=248, y=114.5,
+                                       size=7, outline_width=1, original_bbox=[252, 110, 261, 119])]
+        borrower["symbols"] = [dict(id="shared-dot", shared_source_id="city-shared", kind="circle", x=8, y=114.5,
+                                    size=7, outline_width=1, original_bbox=[-4, 110, 5, 119])]
+        self.sign_shared_regions()
+        self.rejected("duplicate_native_bbox")
+
+    def test_shared_native_local_and_shared_points_use_one_physical_index(self):
+        borrower = self.shared_native_fixture()
+        tile = borrower["original_tiles"][0]
+        with Image.open(self.original / tile["path"]) as source:
+            image = source.convert("RGBA")
+        ImageDraw.Draw(image).rectangle((90, 150, 109, 169), fill="white")
+        image.save(self.original / tile["path"])
+        tile["sha256"] = sha(self.original / tile["path"])
+        feature = dict(id="local", kind="city", original="Local City", original_bbox=[90, 150, 110, 170], source_url="https://example.com/local")
+        borrower["features"] = [feature]
+        borrower["translations"] = [dict(id="local", zh="本城", status="approved", source="https://example.com/translation", review_notes="Synthetic local city", record_sha256=record_fingerprint(feature))]
+        borrower["layouts"] = [dict(id="local", x=100, y=180, font_size=12, font_style="regular")]
+        local = dict(borrower["symbols"][0], id="local-dot", feature_id="local")
+        del local["shared_source_id"]
+        borrower["symbols"].append(local)
+        self.sign_shared_regions()
+        self.rejected("duplicate_native_bbox")
+
+    def test_shared_native_unlabeled_points_use_one_physical_index(self):
+        borrower = self.shared_native_fixture()
+        other = dict(borrower["symbols"][0], id="unlabeled-dot", unlabeled=True,
+                     source_url="https://example.com/native", review_notes="Synthetic independently recorded point")
+        del other["shared_source_id"]
+        borrower["symbols"].append(other)
+        self.sign_shared_regions()
+        self.rejected("duplicate_native_bbox")
+
+    def test_shared_native_different_kinds_cannot_claim_the_same_source_frame(self):
+        self.unlabeled_symbol()
+        self.region["symbols"].append(dict(self.region["symbols"][0], id="triangle-alias", kind="triangle",
+                                           x=200, y=200))
+        self.approve()
+        self.sign_render()
+        self.rejected("duplicate_native_bbox")
+
+    def test_shared_native_equal_output_center_rejects_altered_source_box(self):
+        borrower = self.shared_native_fixture()
+        borrower["symbols"].append(dict(borrower["symbols"][0], id="shifted-box", original_bbox=[40.5, 110, 49, 119]))
+        self.sign_shared_regions()
+        self.rejected("duplicate_native_center")
+
+    def test_shared_native_subpixel_aliases_use_the_actual_rendered_center(self):
+        borrower = self.shared_native_fixture()
+        borrower["symbols"].append(dict(borrower["symbols"][0], id="subpixel-alias", x=44.6,
+                                         original_bbox=[40.5, 110, 49, 119]))
+        self.sign_shared_regions()
+        self.rejected("duplicate_native_center")
+
+    def test_shared_native_reference_change_invalidates_region_approval(self):
+        borrower = self.shared_native_fixture()
+        borrower["symbols"][0]["shared_source_id"] = "changed"
+        self.rejected("region_fingerprint")
+
 if __name__ == "__main__":
     unittest.main()
