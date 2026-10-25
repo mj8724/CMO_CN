@@ -25,6 +25,8 @@ import json
 import os
 import re
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -45,8 +47,7 @@ def record(name: str, ok: bool, detail: str) -> None:
 
 def run(script: str, argv: list[str] | None = None) -> tuple[bool, str]:
     cmd = [sys.executable, str(ROOT / "scripts" / script)] + (argv or [])
-    p = subprocess.run(cmd, capture_output=True, text=True,
-                       encoding="utf-8", errors="replace")
+    p = proc_util.run(cmd, capture_output=True)
     tail = [l for l in (p.stdout or "").strip().splitlines() if l.strip()]
     return p.returncode == 0, (tail[-1] if tail else "(no output)")
 
@@ -75,7 +76,7 @@ def gate_scenario_meta() -> None:
     meta_file = DICT / "scenario_meta.json"
     # 有游戏目录时重新抽取（新增/更新过想定后会多出未翻译的标题）；无游戏时用已入库快照。
     if GAME.is_dir() or not meta_file.is_file():
-        subprocess.run([sys.executable, str(ROOT / "scripts/scenario_meta.py")],
+        proc_util.run([sys.executable, str(ROOT / "scripts/scenario_meta.py")],
                        capture_output=True)
     meta = json.loads(meta_file.read_text(encoding="utf-8"))
     miss_t = [t for t in meta["titles"] if t not in exact]
@@ -251,17 +252,17 @@ def gate_readme_downloads() -> None:
     这里只做一致性检查（不联网），真正的可下载性由发布流程保证。
     """
     script = ROOT / "scripts/sync_readme_downloads.py"
-    proc = subprocess.run([sys.executable, str(script), "--check"],
-                          capture_output=True, text=True, encoding="utf-8",
-                          errors="replace", timeout=120)
+    proc = proc_util.run([sys.executable, str(script), "--check"],
+                          capture_output=True, 
+                          timeout=120)
     ok = proc.returncode == 0
     detail = ((proc.stdout or "") + (proc.stderr or "")).strip().splitlines()
     record("readme-downloads", ok, detail[-1] if detail else "无输出")
 
 
 def gate_repository() -> None:
-    p = subprocess.run(["git", "status", "--porcelain"], cwd=str(ROOT),
-                       capture_output=True, text=True)
+    p = proc_util.run(["git", "status", "--porcelain"], cwd=str(ROOT),
+                       capture_output=True)
     dirty = [l for l in p.stdout.splitlines() if l.strip()]
     record("repository", not dirty,
            "clean" if not dirty else f"{len(dirty)} uncommitted path(s)")
@@ -284,8 +285,8 @@ def gate_routing() -> None:
     路由表靠自觉维护必然腐烂：新加脚本忘了登记，半年后没人知道它干什么、
     能不能删。所以"新增文件要登记"必须是机械可检查的。
     """
-    r = subprocess.run([sys.executable, str(SCRIPTS / "verify_routing.py")],
-                       capture_output=True, text=True, encoding="utf-8", timeout=300)
+    r = proc_util.run([sys.executable, str(SCRIPTS / "verify_routing.py")],
+                       capture_output=True, timeout=300)
     lines = (r.stdout or "").strip().splitlines()
     summary = next((ln.strip() for ln in lines if "[PASS]" in ln or "[FAIL]" in ln), "")
     gaps = [ln.strip() for ln in lines if ln.startswith("   ") and "/" in ln]

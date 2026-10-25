@@ -21,6 +21,8 @@ import re
 import shutil
 import sqlite3
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 import tempfile
 import time
@@ -117,13 +119,13 @@ def _tile_harness(r: Runner, work: Path) -> None:
                                          TILE_WPF / "PresentationCore.dll",
                                          TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
     builds = [
-        subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
+        proc_util.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
                         "-optimize+", f"-out:{dll}", *refs, *_engine_source_args()],
-                       capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180),
-        subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
+                       capture_output=True, timeout=180),
+        proc_util.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
                         f"-out:{exe}", "-reference:System.dll", "-reference:System.Drawing.dll",
                         str(ROOT / "src/tests/MapTileServerTests.cs")],
-                       capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180),
+                       capture_output=True, timeout=180),
     ]
     if any(b.returncode for b in builds):
         r.record("R34-static-tile-harness", "R34 瓦片服务 7 模式并发回归", False,
@@ -143,8 +145,8 @@ def _tile_harness(r: Runner, work: Path) -> None:
                 dst = fx / "WW/PlacenameSets" / set_name
                 dst.mkdir(parents=True)
                 shutil.copyfile(ROOT / "assets/placenames" / f"{set_name}.wwp", dst / "0000_0000.wwp")
-            run = subprocess.run([str(exe), str(dll), str(fx), mode], capture_output=True,
-                                 text=True, encoding="utf-8", errors="replace", timeout=60)
+            run = proc_util.run([str(exe), str(dll), str(fx), mode], capture_output=True,
+                                 timeout=60)
             if run.returncode == 0:
                 status = "ok" + ("(重试)" if attempt == 2 else "")
                 mark = [l for l in run.stdout.splitlines()
@@ -179,15 +181,15 @@ def _run_ui_scheduling_and_report_gates(r: Runner) -> None:
         work = Path(tempfile.mkdtemp(prefix="cmo-cs-", dir=str(ROOT / "build")))
         try:
             dll, exe = work / "CMOLocalizer.dll", work / "fixture.exe"
-            build_lib = subprocess.run([str(TILE_CSC), "-nologo", "-utf8output", "-target:library",
+            build_lib = proc_util.run([str(TILE_CSC), "-nologo", "-utf8output", "-target:library",
                                         "-platform:anycpu", "-optimize+", f"-out:{dll}",
                                         *engine_refs, *_engine_source_args()],
-                                       capture_output=True, text=True, encoding="utf-8",
-                                       errors="replace", timeout=300)
-            build_exe = subprocess.run([str(TILE_CSC), "-nologo", "-utf8output", "-target:exe",
+                                       capture_output=True, 
+                                       timeout=300)
+            build_exe = proc_util.run([str(TILE_CSC), "-nologo", "-utf8output", "-target:exe",
                                         f"-out:{exe}", *wpf_refs, str(ROOT / source)],
-                                       capture_output=True, text=True, encoding="utf-8",
-                                       errors="replace", timeout=120)
+                                       capture_output=True, 
+                                       timeout=120)
             if build_lib.returncode or build_exe.returncode:
                 all_ok = False
                 notes.append("compile failed: "
@@ -200,7 +202,7 @@ def _run_ui_scheduling_and_report_gates(r: Runner) -> None:
                         args.append(str(DICT))
                     if modes:
                         args.append(mode)
-                    run = subprocess.run(args, capture_output=True, timeout=300, cwd=str(work))
+                    run = proc_util.run(args, capture_output=True, timeout=300, cwd=str(work))
                     out = _decode(run.stdout or b"") + _decode(run.stderr or b"")
                     marker = "ALL PASS" in out if expect_all_pass else ("PASS " in out and "FAIL " not in out)
                     ok = run.returncode == 0 and marker
@@ -220,7 +222,7 @@ def _run_ui_scheduling_and_report_gates(r: Runner) -> None:
     def py_case(cid: str, title: str, script: str, *args: str) -> None:
         path = ROOT / script
         try:
-            run = subprocess.run([sys.executable, "-B", str(path), *args], capture_output=True,
+            run = proc_util.run([sys.executable, "-B", str(path), *args], capture_output=True,
                                  timeout=900, cwd=str(ROOT))
             out = _decode(run.stdout or b"") + _decode(run.stderr or b"")
             tail = [ln.strip() for ln in out.strip().splitlines() if ln.strip()][-2:]
@@ -325,8 +327,8 @@ def run_static(r: Runner) -> None:
     r.record("R6-static-sql", "R6 offsets 不含 SQL/连接串片段",
              not bad, f"offenders={bad[:5] or 'none'}", "dict/CMOLocalizer.json")
 
-    term = subprocess.run([sys.executable, str(ROOT / "scripts/verify_terminology.py")],
-                          cwd=str(ROOT), capture_output=True, text=True)
+    term = proc_util.run([sys.executable, str(ROOT / "scripts/verify_terminology.py")],
+                          cwd=str(ROOT), capture_output=True)
     tail = (term.stdout or term.stderr).strip().splitlines()[-1:] or [""]
     r.record("R7-static-terms", "R7 术语/机翻门禁", term.returncode == 0, tail[0][:120],
              "scripts/verify_terminology.py")
@@ -337,8 +339,7 @@ def run_static(r: Runner) -> None:
         r.record("R18-static-selftest", "R18 共享状态层单测（设置/清单/缓存/门控）", False,
                  "缺少 build/CMOSharedTest.exe，请先跑 bash scripts/build.sh")
     else:
-        p = subprocess.run([str(shared)], capture_output=True, text=True,
-                           encoding="utf-8", errors="replace")
+        p = proc_util.run([str(shared)], capture_output=True)
         out = (p.stdout or "") + (p.stderr or "")
         fails = [ln for ln in out.splitlines() if ln.startswith("FAIL ")]
         passes = [ln for ln in out.splitlines() if ln.startswith("PASS ")]
@@ -552,8 +553,8 @@ def run_static(r: Runner) -> None:
         # 反向不变量：不能把合法的界面标签（含单位缩写）误杀——窄口径剪枝的预防针
         r38["合法标签未被误杀"] = (_off_of.get("Acoustic (1-10 kHz)") is not None
                               and str(_off_of["Acoustic (1-10 kHz)"]) in _built)
-        _chk = subprocess.run([sys.executable, str(ROOT / "src/tests/PoolDisplayInjectionTests.py")],
-                              capture_output=True, text=True, encoding="utf-8", errors="replace")
+        _chk = proc_util.run([sys.executable, str(ROOT / "src/tests/PoolDisplayInjectionTests.py")],
+                              capture_output=True, )
         r38["注入源与池/构建词典一致"] = _chk.returncode == 0
         _source_check = (_chk.stdout or _chk.stderr).strip().splitlines()[-1:] or [""]
         _d38 = (f"放行={r38['新源已放行']} 面板串={len(_injected)}/{len(_need)} "
@@ -610,12 +611,12 @@ def run_static(r: Runner) -> None:
         _refs39 += [f"-reference:{p}" for p in (TILE_WPF / "WindowsBase.dll",
                                                 TILE_WPF / "PresentationCore.dll",
                                                 TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
-        _b1 = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
+        _b1 = proc_util.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
                               "-optimize+", f"-out:{_dll39}", *_refs39, *_engine_source_args()],
-                             capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
-        _b2 = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
+                             capture_output=True, timeout=180)
+        _b2 = proc_util.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
                               f"-out:{_exe39}", str(ROOT / "src/tests/DBTranslationTests.cs")],
-                             capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
+                             capture_output=True, timeout=180)
         if _b1.returncode or _b2.returncode:
             r39["编译"] = False
             _d39 = "编译失败: " + " ".join((b.stdout + b.stderr).strip() for b in (_b1, _b2)
@@ -624,7 +625,7 @@ def run_static(r: Runner) -> None:
             r39["编译"] = True
             # 宿主输出是控制台编码（中文 Windows 为 GBK），按 _decode 回落链解码，
             # 否则会拿到 U+FFFD 并污染报告。
-            _run39 = subprocess.run([str(_exe39), str(ROOT), str(_dll39)],
+            _run39 = proc_util.run([str(_exe39), str(ROOT), str(_dll39)],
                                     capture_output=True, timeout=180)
             _out39 = _decode(_run39.stdout or b"") + _decode(_run39.stderr or b"")
             r39["行为"] = _run39.returncode == 0
@@ -674,13 +675,13 @@ def run_static(r: Runner) -> None:
             _refs42 += [f"-reference:{p}" for p in (TILE_WPF / "WindowsBase.dll",
                                                     TILE_WPF / "PresentationCore.dll",
                                                     TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
-            _b42a = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
+            _b42a = proc_util.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
                                     "-optimize+", f"-out:{_dll42}", *_refs42, *_engine_source_args()],
-                                   capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
-            _b42b = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
+                                   capture_output=True, timeout=180)
+            _b42b = proc_util.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
                                     f"-out:{_exe42}", f"-reference:{_dll42}",
                                     str(ROOT / "src/tests/MixedPrefixTests.cs")],
-                                   capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=180)
+                                   capture_output=True, timeout=180)
             if _b42a.returncode or _b42b.returncode:
                 r42["编译"] = False
                 _d42 = "编译失败: " + " ".join((b.stdout + b.stderr).strip()
@@ -688,7 +689,7 @@ def run_static(r: Runner) -> None:
                                              if b.returncode)[:800].replace("\n", " ")
             else:
                 r42["编译"] = True
-                _run42 = subprocess.run([str(_exe42), str(ROOT), str(_dll42)], capture_output=True,
+                _run42 = proc_util.run([str(_exe42), str(ROOT), str(_dll42)], capture_output=True,
                                         timeout=180, cwd=str(_w42))
                 _out42 = _decode(_run42.stdout or b"") + _decode(_run42.stderr or b"")
                 r42["行为"] = _run42.returncode == 0 and "ALL PASS" in _out42
@@ -761,21 +762,21 @@ def run_static(r: Runner) -> None:
             _refs45 += [f"-reference:{p}" for p in (TILE_WPF / "WindowsBase.dll",
                                                    TILE_WPF / "PresentationCore.dll",
                                                    TILE_WPF / "PresentationFramework.dll", TILE_XAML)]
-            _b45a = subprocess.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
+            _b45a = proc_util.run([str(TILE_CSC), "-nologo", "-target:library", "-platform:anycpu",
                                     "-optimize+", f"-out:{_dll45}", *_refs45, *_engine_source_args()],
-                                   capture_output=True, text=True, encoding="utf-8",
-                                   errors="replace", timeout=180)
-            _b45b = subprocess.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
+                                   capture_output=True, 
+                                   timeout=180)
+            _b45b = proc_util.run([str(TILE_CSC), "-nologo", "-target:exe", "-platform:anycpu",
                                     f"-out:{_exe45}", f"-reference:{_dll45}",
                                     str(ROOT / "src/tests/IdempotencyTests.cs")],
-                                   capture_output=True, text=True, encoding="utf-8",
-                                   errors="replace", timeout=180)
+                                   capture_output=True, 
+                                   timeout=180)
             if _b45a.returncode or _b45b.returncode:
                 r45["编译"] = False
                 _d45 = "compile failed: " + (_b45a.stdout + _b45a.stderr + _b45b.stdout + _b45b.stderr)[:160].replace(chr(10), " ")
             else:
                 r45["编译"] = True
-                _run45 = subprocess.run([str(_exe45), str(ROOT), str(_dll45)],
+                _run45 = proc_util.run([str(_exe45), str(ROOT), str(_dll45)],
                                         capture_output=True, timeout=180, cwd=str(_w45))
                 _out45 = _decode(_run45.stdout or b"") + _decode(_run45.stderr or b"")
                 r45["行为"] = _run45.returncode == 0 and "ALL PASS" in _out45
@@ -853,7 +854,7 @@ def _open_viewer(H, attempts: int = 10) -> bool:
 def _shot(H, name: str, hwnd: int) -> Path:
     SHOTS.mkdir(parents=True, exist_ok=True)
     out = SHOTS / f"{name}.png"
-    subprocess.run([str(ROOT / "build/GuiDriver.exe"), "capture", str(out), str(hwnd)],
+    proc_util.run([str(ROOT / "build/GuiDriver.exe"), "capture", str(out), str(hwnd)],
                    capture_output=True)
     return out
 
@@ -1247,8 +1248,8 @@ def _child_windows(hwnd: int) -> list[dict]:
     不用引擎读 `Control.Handle`：窗口树里的 WebView2 是 WPF 托管控件，从后台命令
     线程强制创建句柄会让 WPF 在非 STA 线程初始化 InputManager 而直接搞崩游戏。
     """
-    out = subprocess.run([str(ROOT / "build/GuiDriver.exe"), "children", str(hwnd)],
-                         capture_output=True, text=True, encoding="utf-8", errors="replace")
+    out = proc_util.run([str(ROOT / "build/GuiDriver.exe"), "children", str(hwnd)],
+                         capture_output=True, )
     kids = []
     for line in (out.stdout or "").splitlines():
         m = _CHILD_RE.match(line)
@@ -1313,7 +1314,7 @@ def _input_guard_probe(H, r: Runner, pid: int | None) -> None:
     label_cn = any("\u4e00" <= ch <= "\u9fff" for ch in (label or {}).get("text", ""))
     H.click(target["x"] + target["w"] // 2, target["y"] + target["h"] // 2)
     time.sleep(0.8)
-    subprocess.run([driver, "postchar", str(target["hwnd"]), "m"], capture_output=True)
+    proc_util.run([driver, "postchar", str(target["hwnd"]), "m"], capture_output=True)
 
     def _box_text() -> str:
         cur = H.send("SCEN_CTRL_TREE", timeout=20)
@@ -1364,7 +1365,7 @@ def _input_guard_probe(H, r: Runner, pid: int | None) -> None:
     # 收尾放在断言之后：关闭模态对话框后游戏可能自行正常退出（事件日志无错误记录），
     # 不能让它影响判定，也不能污染下一次运行。
     for _ in range(max(1, len(landed))):
-        subprocess.run([driver, "postchar", str(target["hwnd"]), "\b"], capture_output=True)
+        proc_util.run([driver, "postchar", str(target["hwnd"]), "\b"], capture_output=True)
         time.sleep(0.2)
     H.send("CLOSE_FORM LoadScenario", timeout=20)
 
@@ -1638,15 +1639,39 @@ def _analyze_panel_samples(responses: list[dict], simulation_before: int | None,
             if (any("一" <= ch <= "鿿" for ch in a[key])
                     != any("一" <= ch <= "鿿" for ch in b[key])):
                 flips.append((key, a[key], b[key]))
+    # R64：同一元素在采样期间出现两种**不同译文**（两边都含中文）同样是频闪。
+    # 真实事故：词典整串译 “F-16I 战隼 [Sufa]”，军名兜底又改写成 “F-16I 战隼 [苏法/风暴]”，
+    # 200ms 补扫与同步钩子各写一种，逐拍互相覆盖——旧判据只比「有无汉字」所以完全看不见。
+    #
+    # 判据只认「回摆」：值必须**再次变回之前出现过的相同值**（A→B→A）。
+    # 航向递增、飞行时间跳秒这类正常刷新每个值只出现一次，不会被误判。
+    dual = []
+    for key in (frames[0].keys() if frames else []):
+        seen = []
+        for frame in frames:
+            value = frame.get(key)
+            if value is None:
+                continue
+            if not seen or seen[-1] != value:
+                seen.append(value)
+        if len(seen) < 3:
+            continue
+        returns = sum(1 for i in range(2, len(seen)) if seen[i] == seen[i - 2])
+        if returns >= 2:
+            distinct = []
+            for value in seen:
+                if value not in distinct:
+                    distinct.append(value)
+            dual.append((key, distinct[:4], len(seen), returns))
     invalid = [{"index": index, "errors": sample["errors"]}
                for index, sample in enumerate(parsed) if not sample["valid"]]
     advanced = (simulation_before is not None and simulation_after is not None
                 and simulation_after > simulation_before)
-    return {"ok": len(parsed) >= 10 and not invalid and advanced and not flips,
+    return {"ok": len(parsed) >= 10 and not invalid and advanced and not flips and not dual,
             "valid_frames": len(parsed) - len(invalid), "invalid_frames": invalid,
             "simulation_time_before": simulation_before, "simulation_time_after": simulation_after,
             "simulation_advanced": advanced,
-            "flips": flips, "parsed_frames": parsed}
+            "flips": flips, "dual_translation": dual, "parsed_frames": parsed}
 
 
 def _panel_flicker_probe(H, r: Runner, pid: int | None) -> None:
@@ -1709,9 +1734,12 @@ def _panel_flicker_probe(H, r: Runner, pid: int | None) -> None:
     H.send("CLOSE_FORM ALL", timeout=20)
 
     ok = analysis["ok"] and after <= before
+    dual = analysis.get("dual_translation") or []
     r.record(name, title, ok,
              f"有效采样 {analysis['valid_frames']}/{len(samples)} 帧；中英翻转 {len(flips)} 处"
              + (f"（例 {flips[:2]}）" if flips else "（无）")
+             + f"；双译法交替 {len(dual)} 处"
+             + (f"（例 {dual[:2]}）" if dual else "（无）")
              + f"；推演时间 {simulation_before}→{simulation_after}"
              + f"（前进={analysis['simulation_advanced']}）"
              + (f"；无效帧 {analysis['invalid_frames'][:2]}" if analysis["invalid_frames"] else "")
@@ -1837,8 +1865,12 @@ def _reg_restore(keys: dict) -> None:
             winreg.SetValueEx(k, name, 0, kind, value)
 
 
-def _decode(raw: bytes) -> str:
-    """安装器输出走控制台编码（中文 Windows 为 GBK）；先试 UTF-8 再回退 GBK。"""
+def _decode(raw) -> str:
+    """安装器/探针输出统一解码：已是 str 直接返回；bytes 先试 UTF-8 再回退 GBK。"""
+    if raw is None:
+        return ""
+    if isinstance(raw, str):
+        return raw
     for enc in ("utf-8", "gbk"):
         try:
             return raw.decode(enc)
@@ -1884,7 +1916,7 @@ def run_installer(r: Runner) -> None:
             shutil.move(str(p), str(pkg_backup / p.name))
 
     def run(*args: str, timeout: int = 600) -> tuple[int, str]:
-        p = subprocess.run([str(setup), *args], capture_output=True, timeout=timeout)
+        p = proc_util.run([str(setup), *args], capture_output=True, timeout=timeout)
         return p.returncode, (_decode(p.stdout or b"") + _decode(p.stderr or b"")).strip()
 
     try:
@@ -1974,7 +2006,7 @@ def run_installer(r: Runner) -> None:
         shutil.copyfile(setup, dist / setup.name)
         game2 = _mk_game(tmp / "r35")
         dist_setup = dist / setup.name
-        p = subprocess.run([str(dist_setup), "--install", str(game2), "--silent"],
+        p = proc_util.run([str(dist_setup), "--install", str(game2), "--silent"],
                            capture_output=True, timeout=600)
         out = (_decode(p.stdout or b"") + _decode(p.stderr or b"")).strip()
         dll2 = game2 / "CMOLocalizer.dll"
@@ -2003,7 +2035,7 @@ def run_installer(r: Runner) -> None:
         try:
             if handle in (None, -1, 0xFFFFFFFFFFFFFFFF):
                 raise OSError(f"CreateFileW 失败 err={ctypes.get_last_error()}")
-            p = subprocess.run([str(dist_setup), "--install", str(game2), "--silent"],
+            p = proc_util.run([str(dist_setup), "--install", str(game2), "--silent"],
                                capture_output=True, timeout=600)
             locked_rc = p.returncode
             locked_out = (_decode(p.stdout or b"") + _decode(p.stderr or b"")).strip()
@@ -2031,9 +2063,9 @@ def run_installer(r: Runner) -> None:
             "  $h = [System.BitConverter]::ToString($sha.ComputeHash($b)).Replace('-','').ToLower()\n"
             "  Write-Output ($n + '|' + $s.Length + '|' + $h)\n"
             "}\n", encoding="utf-8")
-        probe = subprocess.run(["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
+        probe = proc_util.run(["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
                                 "-File", str(ps1), str(setup)],
-                               capture_output=True, text=True, encoding="utf-8", errors="replace",
+                               capture_output=True, 
                                timeout=300)
         res = {}
         for line in (probe.stdout or "").splitlines():
@@ -2069,16 +2101,16 @@ def run_installer(r: Runner) -> None:
         # 文案必须指向权限，而不是误报资源缺失——这是「别的电脑、没开游戏也装不上」的首要原因。
         user = os.environ.get("USERNAME", "")
         game3 = _mk_game(tmp / "r37")
-        subprocess.run(["icacls", str(game3), "/deny", f"{user}:(W)"], capture_output=True)
+        proc_util.run(["icacls", str(game3), "/deny", f"{user}:(W)"], capture_output=True)
         try:
-            p = subprocess.run([str(dist_setup), "--install", str(game3), "--silent"],
+            p = proc_util.run([str(dist_setup), "--install", str(game3), "--silent"],
                                capture_output=True, timeout=300)
             msg = (_decode(p.stdout or b"") + _decode(p.stderr or b"")).strip()
             r.record("R37-dir-not-writable", "R37 目录不可写时文案指向权限（不得误报资源缺失）",
                      p.returncode != 0 and "不可写" in msg and "管理员" in msg and "未找到" not in msg,
                      f"rc={p.returncode} 文案={msg[:110]}", "icacls deny (W)")
         finally:
-            subprocess.run(["icacls", str(game3), "/remove:d", user], capture_output=True)
+            proc_util.run(["icacls", str(game3), "/remove:d", user], capture_output=True)
     finally:
         if saved_settings is None:
             if settings.exists():

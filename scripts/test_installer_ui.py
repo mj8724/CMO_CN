@@ -11,6 +11,8 @@ import ctypes
 import json
 import os
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 import time
 import winreg
@@ -167,10 +169,10 @@ def main() -> int:
         except Exception as ex:
             print(f"恢复注册表失败: {ex}")
 
-    for line in subprocess.run(["tasklist", "/FI", f"IMAGENAME eq {SETUP_NAME}"],
-                               capture_output=True, text=True).stdout.splitlines():
+    for line in proc_util.run(["tasklist", "/FI", f"IMAGENAME eq {SETUP_NAME}"],
+                               capture_output=True).stdout.splitlines():
         if "CMO_Chinese_Setup" in line:
-            subprocess.run(["taskkill", "/IM", SETUP_NAME, "/F"], capture_output=True)
+            proc_util.run(["taskkill", "/IM", SETUP_NAME, "/F"], capture_output=True)
 
     try:
         proc = subprocess.Popen([str(SETUP)])
@@ -205,7 +207,7 @@ def main() -> int:
         if dlgs:
             result["steps"][-1]["shot"] = str(H.shot("live/installer_checkupdate", hwnd=dlgs[0]["hwnd"], out_dir=BASE))
         dismiss_all(proc.pid)
-        subprocess.run(["taskkill", "/IM", "CMO_Updater.exe", "/F"], capture_output=True)
+        proc_util.run(["taskkill", "/IM", "CMO_Updater.exe", "/F"], capture_output=True)
         time.sleep(0.8)
 
         # ② 不再提醒（关）→ ③ 再点一次恢复
@@ -266,7 +268,7 @@ def main() -> int:
         result["final_shot"] = str(H.shot("live/installer_ui_final", hwnd=win["hwnd"], out_dir=BASE))
         return 0
     finally:
-        subprocess.run(["taskkill", "/IM", SETUP_NAME, "/F"], capture_output=True)
+        proc_util.run(["taskkill", "/IM", SETUP_NAME, "/F"], capture_output=True)
         restore()
         (ROOT / "build" / "installer_ui_v414.json").write_text(
             json.dumps(result, ensure_ascii=False, indent=1), encoding="utf-8")

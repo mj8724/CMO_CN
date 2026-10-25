@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import time
 from pathlib import Path
 
@@ -47,8 +49,8 @@ def send_cmd(cmd_text: str, timeout: float = 8.0) -> dict:
 
 
 def get_top_dialog_hwnd(pid: int) -> int | None:
-    res = subprocess.run([str(DRIVER), "list", str(pid)],
-                         capture_output=True, text=True, errors="replace")
+    res = proc_util.run([str(DRIVER), "list", str(pid)],
+                         capture_output=True, )
     for line in res.stdout.splitlines():
         if "vis=True" in line and "rect=" in line:
             parts = line.split()
@@ -62,7 +64,7 @@ def get_top_dialog_hwnd(pid: int) -> int | None:
 
 
 def main() -> int:
-    pid_res = subprocess.run(["tasklist"], capture_output=True, text=True)
+    pid_res = proc_util.run(["tasklist"], capture_output=True)
     cmo_pid = None
     for line in pid_res.stdout.splitlines():
         if line.lower().startswith("command.exe"):
@@ -91,18 +93,18 @@ def main() -> int:
         out_png = OUT_DIR / f"{out_prefix}.png"
         if diag_hwnd:
             print(f"     Found dialog HWND={diag_hwnd}, capturing...")
-            subprocess.run([str(DRIVER), "capture", str(out_png), str(diag_hwnd)],
+            proc_util.run([str(DRIVER), "capture", str(out_png), str(diag_hwnd)],
                            check=True)
         else:
             print("     Capturing full screen...")
-            subprocess.run([str(DRIVER), "capture", str(out_png)], check=True)
+            proc_util.run([str(DRIVER), "capture", str(out_png)], check=True)
         print(f"     Saved: {out_png.name}")
 
         # Close the dialog
         time.sleep(0.5)
         send_cmd("CLOSE_FORM ALL")
         # Also press Escape as fallback
-        subprocess.run([str(DRIVER), "key", "{ESC}"], check=True)
+        proc_util.run([str(DRIVER), "key", "{ESC}"], check=True)
         time.sleep(1.0)
 
     print(f"\nAll 7 subwindows tested and saved to {OUT_DIR}!")

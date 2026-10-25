@@ -16,6 +16,8 @@ import json
 import os
 import shutil
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 import tempfile
 import time
@@ -42,9 +44,9 @@ def make_game(tmp: Path, version: str) -> Path:
     (game / "Command.exe").write_bytes(b"stub")
     (game / "Command.exe.config").write_text(
         '<?xml version="1.0"?><configuration><runtime></runtime></configuration>', encoding="utf-8")
-    subprocess.run([sys.executable, "-c", "import sys; sys.exit(0)"], capture_output=True)
-    rc = subprocess.run([str(SETUP), "--install", str(game), "--silent"],
-                        capture_output=True, text=True, encoding="utf-8", errors="replace")
+    proc_util.run([sys.executable, "-c", "import sys; sys.exit(0)"], capture_output=True)
+    rc = proc_util.run([str(SETUP), "--install", str(game), "--silent"],
+                        capture_output=True, )
     man = game / MANIFEST
     data = json.loads(man.read_text(encoding="utf-8"))
     data["version"] = version
@@ -90,12 +92,12 @@ def run_check(tag: str, wait: float = 9.0) -> dict:
 def check_tray(tag: str = "tray") -> dict:
     p = subprocess.Popen([str(UPD), "--restarted"])
     time.sleep(6)
-    procs = subprocess.run(["tasklist", "/FI", "IMAGENAME eq CMO_Updater.exe"],
-                           capture_output=True, text=True).stdout
+    procs = proc_util.run(["tasklist", "/FI", "IMAGENAME eq CMO_Updater.exe"],
+                           capture_output=True).stdout
     f = H.shot(f"live/{tag}_tray", out_dir=BASE)
     running = "CMO_Updater.exe" in procs
     print(f"[{tag}] 托盘进程: {'运行中' if running else '未运行'} -> {f}")
-    subprocess.run(["taskkill", "/IM", "CMO_Updater.exe", "/F"], capture_output=True, text=True)
+    proc_util.run(["taskkill", "/IM", "CMO_Updater.exe", "/F"], capture_output=True)
     time.sleep(1)
     return {"tag": tag, "running": running, "shot": str(f)}
 

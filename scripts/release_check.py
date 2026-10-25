@@ -24,6 +24,8 @@ import io
 import json
 import re
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 import zipfile
 from datetime import datetime, timezone
@@ -304,8 +306,8 @@ try {
   }
 } finally { $sha.Dispose() }
 """ % literal
-    p = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", code],
-                       capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=60)
+    p = proc_util.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", code],
+                       capture_output=True, timeout=60)
     if p.returncode:
         raise ValueError("安装器的 CLR 内嵌资源不可读取（ReflectionOnlyLoad）")
     found: dict[str, str] = {}
@@ -416,8 +418,8 @@ def frozen_version_problems(version: str, *, root: Path | None = None,
     if tuple(map(int, version.split("."))) <= FROZEN_THROUGH:
         problems.append(f"v{version} 已冻结（历史至少到 v4.2.2），禁止重新构建/打包")
     try:
-        p = subprocess.run(["git", "tag", "--list", f"v{version}"], cwd=root,
-                           capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=15)
+        p = proc_util.run(["git", "tag", "--list", f"v{version}"], cwd=root,
+                           capture_output=True, timeout=15)
         if p.returncode:
             problems.append("无法只读核验本地 tag，拒绝构建/打包")
         elif p.stdout.strip():

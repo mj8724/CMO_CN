@@ -11,6 +11,8 @@ import json
 import os
 import re
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 import time
 from pathlib import Path
@@ -31,10 +33,10 @@ _WIN_RE = re.compile(
 
 
 def game_pid() -> int | None:
-    out = subprocess.run(
+    out = proc_util.run(
         ["powershell", "-NoProfile", "-Command",
          "(Get-Process Command -ErrorAction SilentlyContinue | Select-Object -First 1).Id"],
-        capture_output=True, text=True)
+        capture_output=True)
     txt = (out.stdout or "").strip()
     return int(txt) if txt.isdigit() else None
 
@@ -71,7 +73,7 @@ def wait_ready(timeout: float = 60.0) -> bool:
 
 def restart_game(scen: str | None = None, wait: float = 60.0) -> int:
     """Kill any running Command.exe and relaunch, optionally on a scenario."""
-    subprocess.run(["taskkill", "/F", "/IM", "Command.exe"], capture_output=True)
+    proc_util.run(["taskkill", "/F", "/IM", "Command.exe"], capture_output=True)
     time.sleep(2.0)
     args = [str(GAME / "Command.exe")]
     if scen:
@@ -91,8 +93,8 @@ def restart_game(scen: str | None = None, wait: float = 60.0) -> int:
 
 
 def list_windows(pid: int | None = None) -> list[dict]:
-    out = subprocess.run([str(DRIVER), "list", str(pid or 0)],
-                         capture_output=True, text=True, encoding="utf-8", errors="replace")
+    out = proc_util.run([str(DRIVER), "list", str(pid or 0)],
+                         capture_output=True, )
     wins = []
     for line in (out.stdout or "").splitlines():
         m = _WIN_RE.match(line.strip())
@@ -123,18 +125,18 @@ def shot(name: str, hwnd: int | None = None, out_dir: Path | None = None) -> Pat
     out_dir.mkdir(parents=True, exist_ok=True)
     dest = out_dir / (name if name.endswith(".png") else name + ".png")
     args = [str(DRIVER), "capture", str(dest)] + ([str(hwnd)] if hwnd else [])
-    subprocess.run(args, capture_output=True, text=True)
+    proc_util.run(args, capture_output=True)
     return dest if dest.exists() else None
 
 
 def click(x: int, y: int, how: str | None = None) -> None:
     args = [str(DRIVER), "click", str(x), str(y)] + ([how] if how else [])
-    subprocess.run(args, capture_output=True, text=True)
+    proc_util.run(args, capture_output=True)
 
 
 def focus(hwnd: int) -> bool:
     """把目标窗口拉到前台（否则后续鼠标点击会落到盖在上面的窗口上）。"""
-    result = subprocess.run([str(DRIVER), "focus", str(hwnd)], capture_output=True, text=True)
+    result = proc_util.run([str(DRIVER), "focus", str(hwnd)], capture_output=True)
     return result.returncode == 0 and any(line.strip() == "Focus result: True"
                                          for line in (result.stdout or "").splitlines())
 
@@ -171,10 +173,9 @@ $g.Dispose(); $bmp.Dispose()
         fh.write(script)
         path = fh.name
     try:
-        proc = subprocess.run(
+        proc = proc_util.run(
             ["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", path],
-            capture_output=True, text=True, timeout=180,
-        )
+            capture_output=True, timeout=180)
         line = (proc.stdout or "").strip().splitlines()[-1] if proc.stdout else ""
         seq = [x for x in line.split(",") if x]
         if proc.returncode != 0 or len(seq) != frames or any(not re.fullmatch(r"[0-9A-Fa-f]{8}", item) for item in seq):
@@ -191,7 +192,7 @@ $g.Dispose(); $bmp.Dispose()
 
 
 def keys(combo: str) -> None:
-    subprocess.run([str(DRIVER), "key", combo], capture_output=True, text=True)
+    proc_util.run([str(DRIVER), "key", combo], capture_output=True)
 
 
 if __name__ == "__main__":

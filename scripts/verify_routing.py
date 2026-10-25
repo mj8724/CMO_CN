@@ -21,6 +21,8 @@ from __future__ import annotations
 import argparse
 import re
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 from pathlib import Path
 
@@ -30,8 +32,7 @@ ROUTING = ROOT / "docs" / "ROUTING.md"
 # 不参与登记的文件：由工具链自动生成/管理的元数据，人工维护没有意义。
 SKIP_PREFIXES = (
     ".workflow/",   # maestro 知识库（specs/knowhow/embedding），由 maestro 命令管理
-    ".git",
-)
+    ".git")
 SKIP_EXACT = {".gitignore", ".git-blame-ignore-revs"}
 
 
@@ -42,8 +43,8 @@ def tracked_files() -> list[str]:
     只看已跟踪文件的话，新建文件在 `git add` 之前根本不会被检查，
     等于放行了最该拦截的时刻。
     """
-    out = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard"],
-                         cwd=ROOT, capture_output=True, text=True, encoding="utf-8")
+    out = proc_util.run(["git", "ls-files", "--cached", "--others", "--exclude-standard"],
+                         cwd=ROOT, capture_output=True, )
     if out.returncode != 0:
         print("ERROR: git ls-files 失败（不在 git 仓库里？）", file=sys.stderr)
         raise SystemExit(2)

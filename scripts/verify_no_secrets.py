@@ -18,6 +18,8 @@ from __future__ import annotations
 
 import re
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 from pathlib import Path
 
@@ -39,15 +41,13 @@ DANGEROUS_GLOBS = (
     "**/__pycache__/*.pyc", "**/*.pyc", "**/*.pyo",
     ".env", ".env.*", "**/.env", "**/.env.*",
     "**/*.pem", "**/*.key", "**/*.pfx", "**/*.p12",
-    "**/*.log", "**/credentials*.json", "**/*secret*.json",
-)
+    "**/*.log", "**/credentials*.json", "**/*secret*.json")
 
 MAX_BYTES = 5_000_000
 
 
 def _git(*args: str) -> list[str]:
-    out = subprocess.run(["git", *args], capture_output=True, text=True,
-                         encoding="utf-8", errors="ignore").stdout
+    out = proc_util.run(["git", *args], capture_output=True).stdout
     return [p for p in out.splitlines() if p.strip()]
 
 
@@ -125,8 +125,8 @@ def scan_history(max_bytes: int = 200_000_000) -> tuple[list[str], str]:
     skipped_big = 0
     for i in range(0, len(shas), chunk):
         part = shas[i:i + chunk]
-        out = subprocess.run(["git", "cat-file", "--batch-check"], input="\n".join(part) + "\n",
-                             capture_output=True, text=True, encoding="utf-8", errors="ignore").stdout
+        out = proc_util.run(["git", "cat-file", "--batch-check"], input="\n".join(part) + "\n",
+                             capture_output=True, ).stdout
         for line in out.splitlines():
             f = line.split()
             if len(f) < 3 or f[1] != "blob":
@@ -144,7 +144,7 @@ def scan_history(max_bytes: int = 200_000_000) -> tuple[list[str], str]:
         part = blobs[i:i + chunk]
         if budget > max_bytes:
             break
-        out = subprocess.run(["git", "cat-file", "--batch"],
+        out = proc_util.run(["git", "cat-file", "--batch"],
                              input=("\n".join(s for s, _ in part) + "\n").encode(),
                              capture_output=True).stdout
         pos = 0

@@ -20,6 +20,8 @@ import json
 import os
 import re
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 import time
 from pathlib import Path
@@ -118,7 +120,7 @@ def static_audit() -> bool:
     dump_p = ROOT / "build/all_tutorials_dump.json"
     if not dump_p.exists():
         print("Running build/dump_all_tutorials.exe...")
-        subprocess.run([str(ROOT / "build/dump_all_tutorials.exe")], check=True)
+        proc_util.run([str(ROOT / "build/dump_all_tutorials.exe")], check=True)
 
     tut_data = json.loads(dump_p.read_text(encoding="utf-8-sig"))
     cmo_dict = json.loads((ROOT / "dict/CMOLocalizer.json").read_text(encoding="utf-8"))
@@ -180,7 +182,7 @@ def static_audit() -> bool:
 
 def get_cmo_windows() -> tuple[int | None, int | None, list[tuple[int, str, str]]]:
     """Return (pid, main_hwnd, list of (hwnd, rect, text) for visible windows)."""
-    res = subprocess.run([str(DRIVER), "list"], capture_output=True, text=True, errors="replace")
+    res = proc_util.run([str(DRIVER), "list"], capture_output=True, )
     main_hwnd = None
     pid = None
     vis_windows = []
@@ -219,7 +221,7 @@ def live_test() -> bool:
         # Wait for WPF Start Menu or MainForm
         for _ in range(45):
             time.sleep(2)
-            res = subprocess.run([str(DRIVER), "list"], capture_output=True, text=True, errors="replace")
+            res = proc_util.run([str(DRIVER), "list"], capture_output=True, )
             wpf_hwnd = None
             for line in res.stdout.splitlines():
                 if "vis=True" in line and "1024x640" in line and "Command: Modern Operations" in line:
@@ -231,7 +233,7 @@ def live_test() -> bool:
             if main_hwnd:
                 break
             if wpf_hwnd:
-                subprocess.run([str(DRIVER), "focus", str(wpf_hwnd)], check=True)
+                proc_util.run([str(DRIVER), "focus", str(wpf_hwnd)], check=True)
                 time.sleep(0.5)
                 # Click close on WPF start menu (top right X at rx+1005, ry+18) or load scenario
                 for line in res.stdout.splitlines():
@@ -239,7 +241,7 @@ def live_test() -> bool:
                         rect = [p for p in line.split() if p.startswith("rect=")][0]
                         c = rect.replace("rect=[", "").replace("]", "").split(",")
                         rx, ry = int(c[0]), int(c[1])
-                        subprocess.run([str(DRIVER), "click", str(rx + 1005), str(ry + 18)], check=True)
+                        proc_util.run([str(DRIVER), "click", str(rx + 1005), str(ry + 18)], check=True)
                         break
                 time.sleep(2)
                 break
@@ -278,10 +280,10 @@ def live_test() -> bool:
         _, _, wins = get_cmo_windows()
         for h, r, t in wins:
             if h != main_hwnd and ("0x0" not in r) and ("235x44" not in r):
-                subprocess.run([str(DRIVER), "focus", str(h)], check=True)
+                proc_util.run([str(DRIVER), "focus", str(h)], check=True)
                 time.sleep(0.4)
                 p_load = OUT_DIR / f"{slug}_load_brief.png"
-                subprocess.run([str(DRIVER), "capture", str(p_load), str(h)], check=True)
+                proc_util.run([str(DRIVER), "capture", str(p_load), str(h)], check=True)
                 print(f"  Saved Load & Description screenshot: {p_load.name}")
                 break
 
@@ -294,31 +296,31 @@ def live_test() -> bool:
         # Focus Realism Options if present and press Enter to enter battlefield
         for h, r, t in wins:
             if "850x600" in r or "Realism" in t or "真实度" in t or "想定特征" in t:
-                subprocess.run([str(DRIVER), "focus", str(h)], check=True)
+                proc_util.run([str(DRIVER), "focus", str(h)], check=True)
                 time.sleep(0.3)
-                subprocess.run([str(DRIVER), "keys", "{ENTER}"], check=True)
+                proc_util.run([str(DRIVER), "keys", "{ENTER}"], check=True)
                 time.sleep(2.0)
                 break
 
         # Capture full battlefield + any popup (Side Briefing or Special Message)
-        subprocess.run([str(DRIVER), "focus", str(main_hwnd)], check=True)
+        proc_util.run([str(DRIVER), "focus", str(main_hwnd)], check=True)
         time.sleep(1.0)
         p_battle = OUT_DIR / f"{slug}_in_game.png"
-        subprocess.run([str(DRIVER), "capture", str(p_battle), str(main_hwnd)], check=True)
+        proc_util.run([str(DRIVER), "capture", str(p_battle), str(main_hwnd)], check=True)
         print(f"  Saved In-Game & Popup screenshot: {p_battle.name}")
 
         # Start simulation for 3 seconds to trigger initial Special Message events!
-        subprocess.run([str(DRIVER), "keys", " "], check=True)
+        proc_util.run([str(DRIVER), "keys", " "], check=True)
         time.sleep(3.5)
 
         # Check if a Special Message or subwindow popped up
         _, _, wins = get_cmo_windows()
         for h, r, t in wins:
             if h != main_hwnd and ("0x0" not in r) and ("235x44" not in r) and ("850x600" not in r):
-                subprocess.run([str(DRIVER), "focus", str(h)], check=True)
+                proc_util.run([str(DRIVER), "focus", str(h)], check=True)
                 time.sleep(0.8)
                 p_msg = OUT_DIR / f"{slug}_special_msg.png"
-                subprocess.run([str(DRIVER), "capture", str(p_msg), str(h)], check=True)
+                proc_util.run([str(DRIVER), "capture", str(p_msg), str(h)], check=True)
                 print(f"  Saved Special Message / Briefing popup: {p_msg.name} (title={t})")
                 break
 

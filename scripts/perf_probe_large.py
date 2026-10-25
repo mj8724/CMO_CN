@@ -12,6 +12,8 @@ import json
 import math
 import re
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 import time
 from datetime import datetime, timezone
@@ -155,8 +157,8 @@ def _identity(expected: str = "") -> dict:
 
 def _process_metrics(pid: int) -> dict:
     command = f"Get-Process -Id {int(pid)} -ErrorAction Stop | Select-Object Id,WorkingSet64,CPU | ConvertTo-Json -Compress"
-    process = subprocess.run(["powershell.exe", "-NoProfile", "-Command", command],
-                             capture_output=True, text=True, timeout=15, check=True)
+    process = proc_util.run(["powershell.exe", "-NoProfile", "-Command", command],
+                             capture_output=True, timeout=15, check=True)
     result = json.loads(process.stdout)
     if result.get("Id") != pid or not isinstance(result.get("WorkingSet64"), int) or result["WorkingSet64"] <= 0:
         raise ProbeError("valid process memory sample is required")

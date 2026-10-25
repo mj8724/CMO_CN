@@ -8,6 +8,8 @@ import json
 import os
 import re
 import subprocess
+import proc_util
+proc_util.utf8_stdout()
 import sys
 import urllib.error
 import urllib.parse
@@ -29,9 +31,9 @@ def get_github_token() -> str:
     if token:
         return token
     try:
-        p = subprocess.run(["git", "credential", "fill"],
+        p = proc_util.run(["git", "credential", "fill"],
                            input="protocol=https\nhost=github.com\n\n",
-                           capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30)
+                           capture_output=True, timeout=30)
         if p.returncode == 0:
             for line in p.stdout.splitlines():
                 if line.startswith("password="):
@@ -152,8 +154,8 @@ def verify_release(tag_name: str) -> int:
 
 def run_intake_check() -> bool:
     """The full shared intake gate also checks README with --check, never regenerating it."""
-    p = subprocess.run([sys.executable, str(ROOT / "scripts/release_check.py")],
-                       capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=600)
+    p = proc_util.run([sys.executable, str(ROOT / "scripts/release_check.py")],
+                       capture_output=True, timeout=600)
     print(((p.stdout or "") + (p.stderr or "")).strip())
     return p.returncode == 0
 
@@ -185,8 +187,8 @@ def release_notes(version: str) -> tuple[str, str]:
 
 
 def current_commit() -> str:
-    p = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True,
-                       text=True, encoding="ascii", timeout=15)
+    p = proc_util.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True,
+                       timeout=15)
     commit = p.stdout.strip()
     if p.returncode or not re.fullmatch(r"[0-9a-f]{40,64}", commit):
         raise ValueError("无法确认当前已验收源码 commit")
