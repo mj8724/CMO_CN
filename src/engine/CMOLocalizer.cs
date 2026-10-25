@@ -6582,6 +6582,58 @@ namespace CMOLocalizer
                 return "{\"status\":\"ok\",\"id\":" + objId + ",\"name\":\"" + JsonEsc(objName) + "\",\"sot\":\"" + JsonEsc(sotVal) + "\",\"html_len\":" + (html != null ? html.Length : 0) + ",\"html_sample\":\"" + JsonEsc(html != null ? html.Substring(0, Math.Min(350, html.Length)) : "") + "\"}";
             }
 
+            if (cmd == "OOB_SELECT")
+            {
+                // OOB_SELECT <搜索词>：在「作战序列」窗口的搜索框写入关键词，
+                // 然后在 TV_ByGroup 里选中首个匹配节点（双击 = 游戏自己的选中动作）。
+                //
+                // 存在的理由：地图上的飞机一直在动，用屏幕坐标点选不可靠（实测连续
+                // 4 次点偏，还误点地图把已选单位取消了）。从 OoB 搜索选中是确定性路径，
+                // 让「选中一架在飞的飞机」变成可重复的前置步骤。
+                Form orb = null;
+                Form[] orbForms = OpenFormsSnapshot();
+                foreach (Form f in orbForms)
+                {
+                    if (f == null || f.IsDisposed) continue;
+                    if (f.Name == "ORBAT" || f.GetType().Name == "ORBAT") { orb = f; break; }
+                }
+                if (orb == null) return "{\"status\":\"error\",\"message\":\"ORBAT window not open\"}";
+
+                string oobQuery = arg.Trim();
+                string oobFound = null;
+                orb.BeginInvoke((MethodInvoker)delegate
+                {
+                    try
+                    {
+                        Control search = FindControlByTypeOrName(orb, "TB_SearchOOB");
+                        Control tree = FindControlByTypeOrName(orb, "TV_ByGroup");
+                        if (search != null && !string.IsNullOrEmpty(oobQuery))
+                        {
+                            search.Text = oobQuery;
+                            MethodInfo onText = search.GetType().GetMethod("OnTextChanged",
+                                BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                            if (onText != null) onText.Invoke(search, new object[] { EventArgs.Empty });
+                            else
+                            {
+                                EventHandler eh = delegate { };
+                                search.TextChanged += eh;
+                                search.Text = oobQuery;
+                            }
+                        }
+                        if (tree != null)
+                        {
+                            PropertyInfo piNodes = tree.GetType().GetProperty("Nodes");
+                            var nodes = piNodes != null ? piNodes.GetValue(tree, null) as System.Collections.IEnumerable : null;
+                            if (nodes != null) oobFound = SelectDarkNodeRecursive(tree, nodes, oobQuery);
+                            tree.Invalidate();
+                        }
+                    }
+                    catch (Exception ex) { Log("OOB_SELECT error: " + ex.Message); }
+                });
+                return "{\"status\":\"ok\",\"action\":\"OOB_SELECT\",\"query\":\"" + JsonEsc(oobQuery)
+                       + "\",\"match\":\"" + JsonEsc(oobFound ?? "") + "\"}";
+            }
+
             if (cmd == "DB_NAVIGATE_ID")
             {
                 Form dbForm = FindDBViewerForm();
@@ -7501,7 +7553,11 @@ namespace CMOLocalizer
                         }
                         if (seq.Count < 400)
                         {
-                            seq.Add(DateTime.Now.ToString("ss.fff") + "|" + (text.Length > 60 ? text.Substring(0, 60) : text));
+                            // 截断长度必须能覆盖燃油面板整块（总燃油/任务燃油/预留/消耗率/到达返航/至基地
+                            // 共 6 行，实测约 180 字符）。旧值 60 只能看到前两行，
+                            // 导致「油耗率被写死」这类问题在探针里完全不可见（探针自己成了盲区）。
+                            int cap = text.Length > 400 ? 400 : text.Length;
+                            seq.Add(DateTime.Now.ToString("ss.fff") + "|" + text.Substring(0, cap));
                         }
                     }
                 }
