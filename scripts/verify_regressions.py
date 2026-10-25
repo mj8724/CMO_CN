@@ -257,6 +257,41 @@ def _run_ui_scheduling_and_report_gates(r: Runner) -> None:
             "src/tests/DictionarySourceTests.py", "--fixtures")
 
 
+def run_weapons_diagnostic(r: Runner) -> None:
+    """Only compile and run the read-only weapons diagnostic fixture; never touch CMO."""
+    work = Path(tempfile.mkdtemp(prefix="weapons-gate-", dir=str(ROOT / "build")))
+    dll = work / "engine/CMOLocalizer.dll"
+    try:
+        build = proc_util.run(["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
+                               "-File", str(ROOT / "scripts/build.ps1"), "-OutputDir", str(dll.parent)],
+                              capture_output=True, timeout=180)
+        (work / "engine-build.log").write_text(_decode(build.stdout) + _decode(build.stderr), encoding="utf-8")
+        if build.returncode:
+            r.record("D-static-weapons-diagnostic", "只读武器诊断", False,
+                     "engine compilation failed", str(work / "engine-build.log"))
+            return
+        run = proc_util.run(["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
+                             "-File", str(ROOT / "scripts/test_ui.ps1"), "-Suite", "wpf",
+                             "-Mode", "weapons-diagnostic", "-Engine", str(dll),
+                             "-OutputDir", str(work / "tests")], capture_output=True, timeout=180)
+        (work / "fixture-run.log").write_text(_decode(run.stdout) + _decode(run.stderr), encoding="utf-8")
+        result_path = work / "tests/results.json"
+        result = json.loads(result_path.read_text(encoding="utf-8-sig")) if result_path.is_file() else {}
+        records = result.get("Results") or []
+        log = work / "tests/wpf-weapons-diagnostic.log"
+        output = log.read_text(encoding="utf-8-sig") if log.is_file() else ""
+        marker = re.search(r"PASS weapons-diagnostic checks=([1-9][0-9]*)", output)
+        ok = (run.returncode == 0 and result.get("Completed") is True and result.get("Passed") is True
+              and len(records) == 1 and records[0].get("Mode") == "weapons-diagnostic"
+              and records[0].get("ExitCode") == 0 and marker is not None
+              and result.get("EngineSha256") == hashlib.sha256(dll.read_bytes()).hexdigest())
+        r.record("D-static-weapons-diagnostic", "只读武器诊断", ok,
+                 f"fixture checks={marker.group(1) if marker else 0}; exit={run.returncode}", str(result_path))
+    except Exception as error:
+        r.record("D-static-weapons-diagnostic", "只读武器诊断", False,
+                 f"{type(error).__name__}: {error}", str(work))
+
+
 def run_static(r: Runner) -> None:
     print("== static 用例 ==", flush=True)
     src = ENGINE.read_text(encoding="utf-8")
@@ -800,6 +835,7 @@ def run_static(r: Runner) -> None:
              "scripts/compose_terms.py + dict/src/terms.json + dict/CMOLocalizer.json")
 
     _run_ui_scheduling_and_report_gates(r)
+    run_weapons_diagnostic(r)
 
     r.record("R42-static-mixed-prefix-wiring",
              "R42 混合串修正的接线：先修前缀再走「含中文就跳过」守卫",
@@ -2172,9 +2208,17 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--live", action="store_true")
     ap.add_argument("--installer", action="store_true",
                     help="安装/还原/回退的隔离验证（临时目录，不需要游戏）")
+    ap.add_argument("--weapons-diagnostic", action="store_true",
+                    help="只跑只读武器诊断夹具，不操作游戏、不写主回归报告")
     ap.add_argument("--no-report", action="store_true",
                     help="不写 build/regression_report.json（打包中间门禁）")
     args = ap.parse_args(argv)
+    if args.weapons_diagnostic:
+        if args.static or args.live or args.installer:
+            ap.error("--weapons-diagnostic must be selected on its own")
+        focused = Runner()
+        run_weapons_diagnostic(focused)
+        return 0 if focused.results and all(record["status"] == "pass" for record in focused.results) else 1
     any_flag = args.static or args.live or args.installer
     do_static = args.static or not any_flag
     do_live = args.live or not any_flag
