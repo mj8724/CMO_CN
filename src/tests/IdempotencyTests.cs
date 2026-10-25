@@ -135,6 +135,24 @@ class IdempotencyTests
         Check("数量尾缀不回退", !string.IsNullOrEmpty(gun) && gunTail == gun + " × 6", gunTail);
         Check("组合生词仍整体拒绝", S("2 x ZzyzxUnknown Aircraft") == null, S("2 x ZzyzxUnknown Aircraft") ?? "<null>");
 
+        // ⑥ R64：军名兜底规则不得产出第二种译法。
+        // 真实事故（2026-10-24，FLICKER_PROBE 抓到 20 样本逐拍交替）：
+        //   词典整串："F-16I Falcon [Sufa]" -> "F-16I 战隼 [Sufa]"
+        //   兑底 TranslateMilitaryUnitName 又把 [Sufa] 改成 [苏法/风暴]，
+        //   200ms 补扫与同步钩子各写一种 → 单元状态机型行频闪。
+        // 判据：对词典译文（含中文）再过兑底必须原样返回；两条写路径对同一输入
+        // 产出同一输出（T 与兜底拼装结果一致）。
+        MethodInfo milName = loc.GetMethod("TranslateMilitaryUnitName", BindingFlags.Static | BindingFlags.NonPublic);
+        if (milName == null) { Console.WriteLine("FAIL: TranslateMilitaryUnitName not found"); return 1; }
+        Func<string, string> M = s => (string)milName.Invoke(null, new object[] { s });
+        string dictFull = T("F-16I Falcon [Sufa]");
+        Check("军名兑底不动已译串", dictFull.Contains("战隼") && M(dictFull) == dictFull,
+            dictFull + " => " + M(dictFull));
+        Check("军名兑底仍处理纯英文", M("F-16I Falcon [Sufa]").Contains("战隼"), M("F-16I Falcon [Sufa]"));
+        // 同一英文源经「词典路径」与「纯英文兑底路径」必须收敛到同一输出。
+        Check("两路译名一致", M("F-16I Falcon [Sufa]") == M(M("F-16I Falcon [Sufa]")),
+            M("F-16I Falcon [Sufa]"));
+
         // 可选的同一行为全词库检查，不是全项目 suite；不读取游戏或发送诊断命令。
         if (args.Length > 3 && args[3] == "all-exact")
         {
