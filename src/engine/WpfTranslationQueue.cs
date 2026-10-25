@@ -101,8 +101,11 @@ namespace CMOLocalizer
                 long now = Stopwatch.GetTimestamp();
                 if (lastRequest != 0 && now - lastRequest < Stopwatch.Frequency / 25) return;
                 lastRequest = now;
-                // Layout is a discovery hint; all actual work runs on the queue so
-                // it can be sliced and cannot starve input or paint.
+                // Layout is a discovery hint; all work runs on the queue so it can be
+                // sliced and cannot starve input or paint. R65 removed the in-place
+                // pre-paint translation here: it was a compensation for new elements
+                // waiting in the queue, and the first-frame gap is now closed in the
+                // Loaded path itself.
                 QueueWpfElement(root, false);
             }
         }
@@ -130,6 +133,9 @@ namespace CMOLocalizer
                 internal DependencyObject Root;
                 internal PresentationSource Presentation;
                 internal DependencyObject Parent;
+                // R65：曾经有一个 DirtyRewritten 字段，用「上一片是否改写了文本」把队列升级到
+                // Render 优先级。实测首帧缺口来自「新元素先入队」，已在 Loaded 路径内同步
+                // 翻译解决；该升级既不能提前首帧，又让每一片都抢渲染，故已删除。
                 internal Stack<Frame> Frames;
                 internal HashSet<DependencyObject> Visited;
                 internal int SlicesRun;
@@ -404,6 +410,8 @@ namespace CMOLocalizer
                         Work work;
                         lock (gate) { if (ready.Count == 0) break; work = ready.Dequeue(); }
                         bool again = false;
+                        // R64c：用全量写入计数器判定「这一片是否真的改了文本」。
+                        // 改了就说明该根正在与游戏高频刷新抢同一个节点，下一次必须
                         try
                         {
                             if (work.Frames == null && !Initialize(work)) { }

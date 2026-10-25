@@ -77,6 +77,7 @@
 |---|---|
 | `src/engine/CMOLocalizer.cs` | **整个汉化引擎**（约 7600 行，C# 5）。一轮改动的主战场，见下方内部地图 |
 | `src/engine/Reflect.cs` | 反射辅助（私有字段/方法访问），引擎的地基 |
+| `src/engine/WeaponsTextTranslation.cs` | 武器行绑定投影用的 `IMultiValueConverter`/`IValueConverter`：在绑定求值链上产出中文，`ConvertBack` 明确拒绝（只做显示投影） |
 | `src/engine/ComboBoxTranslation.cs` | 下拉项增量翻译：动态回填排队，保留业务键/选中值/原生类型 token |
 | `src/engine/DarkTreeTranslation.cs` | 深色树分片遍历：核对实时集合归属，分片避免长阻塞 |
 | `src/engine/UiLifecycle.cs` | UI 生命周期挂钩（控件创建/重挂载），替代纯周期扫描来发现新控件 |
@@ -86,7 +87,7 @@
 | `src/engine/WpfTranslationQueue.cs` | 每 Dispatcher 一份有界合并队列，以节点/Inline 游标分片；换根或卸载取消旧工作，避免全树异线程积压 |
 | `src/engine/WebViewTranslation.cs` | WebView2 译文注入宿主：注册文档脚本、限制来源/nonce/容量、拒绝旧回包与编辑区写入 |
 | `src/engine/WebViewTranslation.js` | 上面宿主注入页面的脚本。**以嵌入资源 `CMOLocalizer.WebViewTranslation.js` 打进 DLL**（`scripts/build.ps1` 负责 `-resource:`），改名或移动会运行期抛 `Missing WebViewTranslation.js embedded resource` |
-| `src/engine/WpfValueTranslation.cs` | WPF 值翻译（`Content`/`Text`/绑定安全写回），从 `CMOLocalizer.cs` 抽出的 partial 分片 |
+| `src/engine/WpfValueTranslation.cs` | WPF 值翻译（`Content`/`Text`/绑定安全写回）、武器子树的只读绑定/Inline/时序诊断，以及**挂在稳定 ItemsControl 容器上的武器行绑定投影**（R68）；从 `CMOLocalizer.cs` 抽出的 partial 分片 |
 ### `CMOLocalizer.cs` 内部地图（按子系统找，不要按行号找）
 
 | 子系统 | 关键字（grep 这些） | 干什么 |
@@ -314,6 +315,7 @@
 |---|---|
 | `scripts/scenario_meta.py` | 抽取想定元数据（键已排序 + 优先正式想定路径，保证产物稳定） |
 | `scripts/credentials.py` | **凭据读取唯一入口**（密钥绝不入库） |
+| `scripts/proc_util.py` | **子进程唯一入口**：给子进程注入 UTF-8 输出环境 + `utf-8 → cp936 → replace` 容错解码；脚本捕获子进程输出一律走这里，禁止裸 `text=True`（见 R63） |
 | `scripts/cmocmd.sh` | 命令行快捷封装 |
 | `scripts/migrate.sh` | 迁移脚本（历史） |
 | `scripts/verify_launch.sh` | 启动验证（历史） |
@@ -329,6 +331,7 @@
 |---|---|
 | `XLATE <文本>` / `XLATE_BATCH <file>` | 只读翻译探针，验证某串会译成什么 |
 | `WPF_DUMP` / `WPF_TEXTLOG` | 导出 WPF 控件树 / 文本变更日志 |
+| `WEAPONS_DIAG SNAPSHOT / START / STOP` | 只读武器子树诊断：绑定/Inline/位置与 8 秒有界 Loaded/属性钩子/Rendering 记录；不是像素或首帧验收结果 |
 | `CTRL_TREE [过滤]` | 控件树（可按窗体名过滤） |
 | `TRACE_START` / `TRACE_STOP` / `TRACE_DUMP` | 事件追踪（含 `renderTicks`、`elementHostScans` 计数） |
 | `FLICKER_PROBE` / `FLICKER_RESULT` | 频闪检测（按树内位置路径做 key） |
@@ -374,6 +377,7 @@
 | `docs/project_memory.md` | 项目口径与历史决策（16 条，改口径要同步） |
 | `docs/AUTO_UPDATE_DESIGN.md` | 更新助手设计 |
 | `docs/GITHUB_AUTO_UPDATE_DESIGN.md` | GitHub 自动更新设计 |
+| `docs/FLIGHT_TUTORIAL_MANUAL.md` | **飞行教程通关手册**：8 个基础飞行教程的入口/按键/判定/注意事项 + 汉化排障口径。改教程相关 UI 文案、快捷键或汉化行为时同步更新 |
 | `docs/PLACENAME_LOCALIZATION.md` | 地名汉化方案 |
 | `docs/LOCALIZATION_VALIDATION.md` | 汉化验证说明（各门禁与实机检查的边界、计时口径、已知限制）。PR#5 引入，是「哪些通过了、哪些没验」的权威说明 |
 | `docs/PLACENAME_SOURCES.md` | 地名译名的资料来源说明（哪些是中文通行名、哪些来自当地名称、哪些人工整理） |
@@ -423,7 +427,7 @@
 | `src/tests/UiPerfMetricsTests.cs` | UI 执行计量负向验证：排队不算执行、慢回调超帧、取消不完成、忙时拒绝重置 | `R55-static-ui-perf` |
 | `src/tests/FormsSnapshotTests.cs` | R59 回归：WinForms 活集合在窗体增删期间必须取快照遍历；含“直接 foreach 会抛错”的负向对照 | `R61-static-forms-snapshot` |
 | `src/tests/WpfSchedulingTests.cs` | WPF 分片与归属回归：稳定同级游标续扫、跨 Dispatcher 合并、换根取消、输入让出 | `R54-static-wpf-scheduling` |
-| `src/tests/WpfSafetyTests.cs` | WPF 写回安全（不重入属性系统、编辑区不写） | — |
+| `src/tests/WpfSafetyTests.cs` | WPF 写回安全（不重入属性系统、编辑区不写）与只读武器诊断的空目标/错控件/配额/命令可达性检查 | — |
 | `src/tests/FirstPaintTests.cs` | 首帧中文（不等下一轮慢扫） | — |
 | `src/tests/UpstreamCompatibilityTests.cs` | 与上游 master 修复的兼容性 | — |
 | `src/tests/WebViewTranslationHostTests.cs` | 注入宿主：来源/nonce/容量/回退预算 | — |

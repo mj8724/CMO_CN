@@ -36,8 +36,8 @@ $plans = [ordered]@{
         Modes = @('coalesce', 'visible', 'yield', 'reentrant', 'lifecycle', 'failure', 'nested') }
     'idle' = @{ Source = 'UiIdleContinuationTests'; References = $winforms; Options = @('-optimize+')
         Modes = @('idle', 'cancel', 'fallback', 'reentrant', 'lifecycle') }
-    'wpf' = @{ Source = 'WpfSafetyTests'; References = @('System.dll', 'System.Core.dll') + $wpf
-        Modes = @('headers', 'editable', 'collection', 'lifecycle', 'dispatchers') }
+    'wpf' = @{ Source = 'WpfSafetyTests'; References = @('System.dll', 'System.Core.dll', 'System.Windows.Forms.dll', 'System.Drawing.dll', 'System.Web.Extensions.dll') + $wpf
+        Modes = @('headers', 'editable', 'collection', 'lifecycle', 'dispatchers', 'weapons-diagnostic', 'weapons-negative-controls', 'weapons-first-frame-order', 'weapons-bound-run-sync', 'weapons-binding-projection') }
     'upstream' = @{ Source = 'UpstreamCompatibilityTests'; NoMode = $true
         References = @('System.dll', 'System.Core.dll', 'System.Data.dll', 'System.Windows.Forms.dll') + $wpf; Modes = @('all') }
     'lifecycle' = @{ Source = 'UiLifecycleTests'; References = $winforms + $wpf; Options = @('-platform:anycpu'); Dictionary = $true

@@ -833,10 +833,10 @@ namespace CMOLocalizer
                     }
                     catch { }
 
-                    FormCollection openForms = Application.OpenForms;
-                    if (openForms != null && openForms.Count > 0)
+                    Form[] openFormsSnapshot = OpenFormsSnapshot();
+                    if (openFormsSnapshot.Length > 0)
                     {
-                        foreach (Form frm in openForms)
+                        foreach (Form frm in openFormsSnapshot)
                         {
                             if (frm != null && !frm.IsDisposed)
                             {
@@ -1237,6 +1237,12 @@ namespace CMOLocalizer
                         System.Windows.EventManager.RegisterClassHandler(typeof(System.Windows.FrameworkElement),
                             System.Windows.FrameworkElement.LoadedEvent,
                             new System.Windows.RoutedEventHandler(OnWpfElementLoaded));
+                        // R64：Run/Span 是 FrameworkContentElement（不是 FrameworkElement），
+                        // 上面的类处理器收不到；单元武器/燃油块的行文本在 Run 里，
+                        // 必须再挂一拿才能在生成时就翻译。
+                        System.Windows.EventManager.RegisterClassHandler(typeof(System.Windows.FrameworkContentElement),
+                            System.Windows.FrameworkContentElement.LoadedEvent,
+                            new System.Windows.RoutedEventHandler(OnWpfElementLoaded));
                         wpfLoadedHookInstalled = true;
                     }
                 }
@@ -1315,9 +1321,36 @@ namespace CMOLocalizer
         private static void OnWpfElementLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
             System.Windows.DependencyObject target = sender as System.Windows.DependencyObject;
-            if (target is System.Windows.Controls.TextBlock || target is System.Windows.Controls.ContentControl
-                || target is System.Windows.Controls.RichTextBox)
-                TranslateWpfElement(target);
+            RecordWeaponsDiagnosticNode(target, "loaded_before_translation");
+            if (!(target is System.Windows.Controls.TextBlock || target is System.Windows.Controls.ContentControl
+                || target is System.Windows.Controls.RichTextBox || target is System.Windows.Documents.Run
+                || target is System.Windows.Documents.Span || target is System.Windows.Controls.ItemsControl)) return;
+            // R65：实测（build/weapons-flicker/order/wpf-weapons-first-frame-order.log）事件顺序是
+            // `loaded -> render -> text`：Loaded 确实早于首个绘制帧，但 TranslateWpfElement 会先入
+            // 有界队列（96 步/4ms 分片，且排在已有工作之后），翻译落在首帧之后 ⇒ 英文必然上屏一帧。
+            // 所以武器行改成在 Loaded 里**同步**翻译；其余元素仍走队列，
+            // 全树同步会把 UI 线程淹没（R53）。
+            if (IsWeaponsDisplayNode(target) && !IsEditableWpfTarget(target))
+            {
+                TranslateWpfNode(target);
+                return;
+            }
+            TranslateWpfElement(target);
+        }
+
+        /// <summary>
+        /// 该节点是否属于单位武器显示子树（`UnitWeapons_WPF`）。只做父链上溯（限 64 层），
+        /// 不遍历子树，代价与想定规模无关。
+        /// </summary>
+        private static bool IsWeaponsDisplayNode(System.Windows.DependencyObject target)
+        {
+            int depth = 0;
+            for (System.Windows.DependencyObject current = target; current != null && depth++ < 64; )
+            {
+                if (current.GetType().Name == "UnitWeapons_WPF") return true;
+                current = WeaponsParent(current);
+            }
+            return false;
         }
 
         private static bool IsEditableWpfTarget(System.Windows.DependencyObject target)
@@ -1341,6 +1374,7 @@ namespace CMOLocalizer
             using (new UiPerfScope("wpfRender", false))
             try
             {
+                RecordWeaponsDiagnosticFrame("render_before_translation");
                 _renderFrame++;
                 lock (traceLock) { renderTickCount++; }
                 // R53：渲染帧里**不再**做全树遍历。
@@ -1379,7 +1413,11 @@ namespace CMOLocalizer
                 }
             }
             catch { }
-            finally { _inRenderPass = false; }
+            finally
+            {
+                RecordWeaponsDiagnosticFrame("render_after_translation");
+                _inRenderPass = false;
+            }
         }
 
         /// <summary>把控件树（类型/名称/可见/尺寸/文本）导出为 JSON，用于定位自绘或数据绑定控件。</summary>
@@ -1413,21 +1451,18 @@ namespace CMOLocalizer
             StringBuilder sb = new StringBuilder();
             sb.Append("{\"status\":\"ok\",\"filter\":\"").Append(JsonEsc(filter)).Append("\",\"nodes\":[");
             bool first = true;
-            FormCollection forms = Application.OpenForms;
-            if (forms != null)
+            Form[] forms = OpenFormsSnapshot();
+            foreach (Form f in forms)
             {
-                foreach (Form f in forms)
+                if (f == null || f.IsDisposed) continue;
+                if (filter.Length > 0)
                 {
-                    if (f == null || f.IsDisposed) continue;
-                    if (filter.Length > 0)
-                    {
-                        string ft = f.Text ?? "";
-                        string fn = f.Name ?? "";
-                        if (ft.IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0 &&
-                            fn.IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0) continue;
-                    }
-                    DumpControlTree(f, sb, ref first, 0);
+                    string ft = f.Text ?? "";
+                    string fn = f.Name ?? "";
+                    if (ft.IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0 &&
+                        fn.IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0) continue;
                 }
+                DumpControlTree(f, sb, ref first, 0);
             }
             sb.Append("]}");
             return sb.ToString();
@@ -1499,22 +1534,31 @@ namespace CMOLocalizer
                         if (cur.Contains("kg") && (cur.Contains("fuel") || cur.Contains("燃油") || cur.Contains("Tank") || cur.Contains("坦克") || cur.Contains("reserve")))
                         {
                             string trF = TranslateFuelPanelText(cur);
-                            if (trF != cur)
+                            if (trF != cur && tb.Text == cur)
                             {
                                 SetTextKeepBinding(tb, trF);
                                 return;
                             }
                         }
-                        string trans = TranslateString(tb.Text);
-                        if (string.IsNullOrEmpty(trans) || trans == tb.Text)
+                        string trans = TranslateString(cur);
+                        if (string.IsNullOrEmpty(trans) || trans == cur)
                         {
-                            trans = TranslateMilitaryUnitName(tb.Text);
+                            trans = TranslateMilitaryUnitName(cur);
                         }
-                        if (trans != tb.Text)
+                        // R64c：只要这个节点里还有 ASCII 字母，就登记为「实时目标」。
+                        // 历史缺陷：旧代码只在**写入成功**时登记，于是「游戏每拍重建、
+                        // 我们读到的已经是中文」的那批节点永远进不了 liveWpfTargets，
+                        // 渲染帧也就管不到它们；一旦游戏用英文重绘就有一帧英文上屏
+                        // （抓屏实测 60~70ms、每秒 2 次，而 WPF_TEXTLOG 增量为 0）。
+                        // 登记与写入解耦后，这类节点会在渲染帧里被持续盯住。
+                        TrackLiveWpfTarget(tb);
+                        // R63：游戏每 0.2~0.3 秒就重建一次面板文本（燃油/武器块）。
+                        // 翻译基于较早的快照，若期间文本已变，写回旧快照就会把多行块
+                        // 截成前缀并引发频闪。写入前复核快照仍是当前值，否则丢弃本拍。
+                        if (trans != cur && tb.Text == cur)
                         {
-                            string old = tb.Text;
+                            string old = cur;
                             SetTextKeepBinding(tb, trans);
-                            TrackLiveWpfTarget(tb);
                             LogWpfWrite("TextBlock", old, trans);
                             wpfTranslatedCount++;
                             if (wpfTranslatedCount <= 20) Log("WPF TextBlock Translated: " + old + " -> " + trans);
@@ -1532,7 +1576,8 @@ namespace CMOLocalizer
                         if (!string.IsNullOrEmpty(s))
                         {
                             string trans = TranslateString(s);
-                            if (trans != s)
+                            // R63：同上——快照失效就不写，避免把旧内容覆盖回面板。
+                            if (trans != s && (string)cc.Content == s)
                             {
                                 LogWpfWrite("ContentControl", s, trans);
                                 TrackLiveWpfTarget(cc);
@@ -1587,8 +1632,17 @@ namespace CMOLocalizer
                     }
                 }
 
+                System.Windows.Controls.ItemsControl items = dep as System.Windows.Controls.ItemsControl;
+                if (items != null) AttachWeaponsContainerProjection(items);
+
                 System.Windows.Documents.Run leaf = dep as System.Windows.Documents.Run;
-                if (leaf != null) TranslateFlowInline(leaf);
+                if (leaf != null)
+                {
+                    // R66：带绑定的武器行 Run 必须在值变更时就同步翻译，
+                    // 否则游戏推英文后要等到下一轮补扫，英文必然先上屏。
+                    AttachWeaponsRunTranslation(leaf);
+                    TranslateFlowInline(leaf);
+                }
             }
             catch { }
         }
@@ -1715,7 +1769,7 @@ namespace CMOLocalizer
                     string tr = TranslateString(txt);
                     if (string.IsNullOrEmpty(tr) || tr == txt) tr = TranslateMilitaryUnitName(txt);
                     if (string.IsNullOrEmpty(tr) || tr == txt) tr = TranslateCellText(txt);
-                    if (!string.IsNullOrEmpty(tr) && tr != txt)
+                    if (!string.IsNullOrEmpty(tr) && tr != txt && run.Text == txt)
                     {
                         SetRunTextKeepBinding(run, tr);
                                     TrackLiveWpfTarget(run);
@@ -1949,8 +2003,7 @@ namespace CMOLocalizer
         // 只读定位「加载想定」窗口；仅由 SCEN_CTRL_TREE 探针使用。
         private static Form FindLoadScenarioForm()
         {
-            FormCollection forms = Application.OpenForms;
-            if (forms == null) return null;
+            Form[] forms = OpenFormsSnapshot();
             foreach (Form f in forms)
             {
                 if (f == null || f.IsDisposed) continue;
@@ -2078,7 +2131,27 @@ namespace CMOLocalizer
             s = s.Replace("to base:", "至基地:");
             s = s.Replace("to Bingo", "到达返航油量(Bingo)");
 
+            // R69：游戏用「有小数才显示小数」的格式输出重量，于是 5870.0 显示成 "5870"，
+            // 比 "5870.3" 窄两个字符宽度；该行随值刷新时宽度来回跳，视觉上就是向左缩进一格
+            // （用户截图：预留备用油量那一行）。这里只**补全被省略的小数位**，不改数值，
+            // 使同一行的字符宽度恒定。严格限定为「数字 + 空格 + kg」形式，
+            // 且必须恰好是一个整数，避免误伤 "22.6 nm"、"14 分钟" 之类。
+            s = NormalizeFuelWeightDecimals(s);
+
             return s;
+        }
+
+        /// <summary>
+        /// 把 "5870 kg" 补成 "5870.0 kg"，只动整数重量，不碰已有小数、不碰其他单位。
+        /// 宽度恒定后，折行位置不再随数值变化。
+        /// </summary>
+        private static string NormalizeFuelWeightDecimals(string s)
+        {
+            if (string.IsNullOrEmpty(s) || s.IndexOf("kg", StringComparison.Ordinal) < 0) return s;
+            return Regex.Replace(s, @"(?<![\d.,])(\d{1,7})(\s+kg)", delegate(Match m)
+            {
+                return m.Groups[1].Value + ".0" + m.Groups[2].Value;
+            });
         }
 
         private static void TranslateControlTree(Control ctrl)
@@ -2691,6 +2764,13 @@ namespace CMOLocalizer
         private static string TranslateMilitaryUnitName(string raw)
         {
             if (string.IsNullOrEmpty(raw)) return raw;
+            // R64：本函数是纯英文军名的**兜底**规则（整串词典未命中时才该跑）。
+            // 若输入已含中文（例如词典整串命中的「F-16I 战隼 [Sufa]」），再跑下面的
+            // .Replace("Sufa","苏法/风暴") 就会产出第二种译法「F-16I 战隼 [苏法/风暴]」；
+            // 200ms 补扫与同步钩子各写一种，逐拍互相覆盖——单元状态面板的机型行
+            // 因此中英（两种中文变体）频闪（FLICKER_PROBE 实抓 20 样本严格交替）。
+            // 词典是唯一事实源：含中文的串一律原样返回，兜底只处理纯英文军名。
+            if (ContainsChinese(raw)) return raw;
             string s = raw;
 
             // 1. 如果有数量前缀如 "2x ", "6x "
@@ -2953,13 +3033,10 @@ namespace CMOLocalizer
         /// </summary>
         private static Form FindDBViewerForm()
         {
-            FormCollection forms = Application.OpenForms;
-            if (forms != null)
+            Form[] forms = OpenFormsSnapshot();
+            foreach (Form f in forms)
             {
-                foreach (Form f in forms)
-                {
-                    if (f != null && !f.IsDisposed && IsDBViewerForm(f)) return f;
-                }
+                if (f != null && !f.IsDisposed && IsDBViewerForm(f)) return f;
             }
 
             Form found = null;
@@ -4773,7 +4850,10 @@ namespace CMOLocalizer
                 if (!ContainsChinese(left)) return raw;
                 if (right.Length == 0 || right.Length > 64) return raw;
                 if (ContainsChinese(right)) return raw;
-                if (!Regex.IsMatch(right, "^[A-Za-z][A-Za-z0-9 ,./()&+%-]*$")) return raw;
+                // R63：右值可能是「子键: 值」的复合串（`挂载方案: A/A: AIM-7M Sparrow III, Heavy`）。
+                // 旧正则不允许冒号，这类半译串被原样返回并钉在屏幕上，游戏刷新时与整译
+                // 版本交替出现——用户看到的就是频闪。
+                if (!Regex.IsMatch(right, "^[A-Za-z][A-Za-z0-9 ,./()&+%:\\-]*$")) return raw;
                 string trRight = TranslateString(right);
                 if (string.IsNullOrEmpty(trRight) || trRight == right) return raw;
                 return left.TrimEnd() + "：" + trRight;
@@ -5649,8 +5729,7 @@ namespace CMOLocalizer
         private static MenuStrip FindMainMenuStrip(out Form ownerForm)
         {
             ownerForm = null;
-            FormCollection forms = Application.OpenForms;
-            if (forms == null) return null;
+            Form[] forms = OpenFormsSnapshot();
             foreach (Form frm in forms)
             {
                 if (frm == null || frm.IsDisposed) continue;
@@ -5826,6 +5905,8 @@ namespace CMOLocalizer
             if (cmd == "PING")
                 return "{\"status\":\"ok\",\"action\":\"PING\"}";
 
+            if (cmd == "WEAPONS_DIAG") return ExecuteWeaponsDiagnostic(arg);
+
             if (cmd == "RELOAD_DICT")
             {
                 string baseDir = AppDomain.CurrentDomain.BaseDirectory;
@@ -5975,31 +6056,28 @@ namespace CMOLocalizer
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("{\"status\":\"ok\",\"forms\":[");
-                FormCollection forms = Application.OpenForms;
+                Form[] forms = OpenFormsSnapshot();
                 bool first = true;
-                if (forms != null)
+                foreach (Form f in forms)
                 {
-                    foreach (Form f in forms)
+                    if (f == null || f.IsDisposed) continue;
+                    if (!first) sb.Append(",");
+                    first = false;
+                    List<string> ctrls = new List<string>();
+                    try { CollectControlTexts(f, ctrls); } catch { }
+                    sb.Append("{\"name\":\"").Append(JsonEsc(f.Name))
+                      .Append("\",\"type\":\"").Append(JsonEsc(f.GetType().FullName))
+                      .Append("\",\"text\":\"").Append(JsonEsc(f.Text))
+                      .Append("\",\"visible\":").Append(f.Visible ? "true" : "false")
+                      .Append(",\"hwnd\":").Append(f.Handle.ToInt64())
+                      .Append(",\"bounds\":\"").Append(f.Bounds.ToString())
+                      .Append("\",\"controls\":[");
+                    for (int i = 0; i < ctrls.Count && i < 200; i++)
                     {
-                        if (f == null || f.IsDisposed) continue;
-                        if (!first) sb.Append(",");
-                        first = false;
-                        List<string> ctrls = new List<string>();
-                        try { CollectControlTexts(f, ctrls); } catch { }
-                        sb.Append("{\"name\":\"").Append(JsonEsc(f.Name))
-                          .Append("\",\"type\":\"").Append(JsonEsc(f.GetType().FullName))
-                          .Append("\",\"text\":\"").Append(JsonEsc(f.Text))
-                          .Append("\",\"visible\":").Append(f.Visible ? "true" : "false")
-                          .Append(",\"hwnd\":").Append(f.Handle.ToInt64())
-                          .Append(",\"bounds\":\"").Append(f.Bounds.ToString())
-                          .Append("\",\"controls\":[");
-                        for (int i = 0; i < ctrls.Count && i < 200; i++)
-                        {
-                            if (i > 0) sb.Append(",");
-                            sb.Append("\"").Append(JsonEsc(ctrls[i])).Append("\"");
-                        }
-                        sb.Append("]}");
+                        if (i > 0) sb.Append(",");
+                        sb.Append("\"").Append(JsonEsc(ctrls[i])).Append("\"");
                     }
+                    sb.Append("]}");
                 }
                 sb.Append("]}");
                 return sb.ToString();
@@ -6030,35 +6108,32 @@ namespace CMOLocalizer
                     {
                         try
                         {
-                            FormCollection forms = Application.OpenForms;
-                            if (forms != null)
+                            Form[] forms = OpenFormsSnapshot();
+                            for (int i = 0; i < forms.Length; i++)
                             {
-                                for (int i = 0; i < forms.Count; i++)
+                                Form f = forms[i];
+                                if (f == null || f.IsDisposed) continue;
+                                Control snap = f;
+                                Control[] kids = null;
+                                try { kids = CollectElementHosts(snap); } catch { }
+                                if (kids == null) continue;
+                                for (int k = 0; k < kids.Length; k++)
                                 {
-                                    Form f = forms[i];
-                                    if (f == null || f.IsDisposed) continue;
-                                    Control snap = f;
-                                    Control[] kids = null;
-                                    try { kids = CollectElementHosts(snap); } catch { }
-                                    if (kids == null) continue;
-                                    for (int k = 0; k < kids.Length; k++)
+                                    Control eh = kids[k];
+                                    if (eh == null) continue;
+                                    try
                                     {
-                                        Control eh = kids[k];
-                                        if (eh == null) continue;
-                                        try
+                                        eh.BeginInvoke((MethodInvoker)delegate
                                         {
-                                            eh.BeginInvoke((MethodInvoker)delegate
+                                            try
                                             {
-                                                try
-                                                {
-                                                    lock (flickerLock) { flickerTicks++; }
-                                                    ProbeElementHostOnce(eh);
-                                                }
-                                                catch { }
-                                            });
-                                        }
-                                        catch { }
+                                                lock (flickerLock) { flickerTicks++; }
+                                                ProbeElementHostOnce(eh);
+                                            }
+                                            catch { }
+                                        });
                                     }
+                                    catch { }
                                 }
                             }
                         }
@@ -6330,21 +6405,18 @@ namespace CMOLocalizer
                 }
                 Form tabForm = null;
                 TabControl tabCtl = null;
-                FormCollection tabForms = Application.OpenForms;
-                if (tabForms != null)
+                Form[] tabForms = OpenFormsSnapshot();
+                foreach (Form f in tabForms)
                 {
-                    foreach (Form f in tabForms)
-                    {
-                        if (f == null || f.IsDisposed) continue;
-                        if (filter.Length > 0 &&
-                            (f.Text ?? "").IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0 &&
-                            (f.Name ?? "").IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0) continue;
-                        TabControl tc = FindTabControlIn(f);
-                        if (tc == null) continue;
-                        tabForm = f;
-                        tabCtl = tc;
-                        break;
-                    }
+                    if (f == null || f.IsDisposed) continue;
+                    if (filter.Length > 0 &&
+                        (f.Text ?? "").IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0 &&
+                        (f.Name ?? "").IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0) continue;
+                    TabControl tc = FindTabControlIn(f);
+                    if (tc == null) continue;
+                    tabForm = f;
+                    tabCtl = tc;
+                    break;
                 }
                 if (tabCtl == null)
                 {
@@ -6682,18 +6754,15 @@ namespace CMOLocalizer
                     : (wparts.Length > 1 ? wparts[1] : "");
                 if (wscript.Length == 0) return "{\"status\":\"error\",\"message\":\"no script\"}";
                 Form whost = null;
-                FormCollection wforms = Application.OpenForms;
-                if (wforms != null)
+                Form[] wforms = OpenFormsSnapshot();
+                foreach (Form f in wforms)
                 {
-                    foreach (Form f in wforms)
-                    {
-                        if (f == null || f.IsDisposed) continue;
-                        if (wfilter.Length > 0
-                            && (f.Text ?? "").IndexOf(wfilter, StringComparison.OrdinalIgnoreCase) < 0
-                            && (f.Name ?? "").IndexOf(wfilter, StringComparison.OrdinalIgnoreCase) < 0) continue;
-                        whost = f;
-                        break;
-                    }
+                    if (f == null || f.IsDisposed) continue;
+                    if (wfilter.Length > 0
+                        && (f.Text ?? "").IndexOf(wfilter, StringComparison.OrdinalIgnoreCase) < 0
+                        && (f.Name ?? "").IndexOf(wfilter, StringComparison.OrdinalIgnoreCase) < 0) continue;
+                    whost = f;
+                    break;
                 }
                 // 注意：这里只选窗体（读 Form.Text/Name 在后台线程是被容的）；
                 // WebView2 控件本身的搜索也必须放到 UI 线程（见下），
@@ -6816,19 +6885,16 @@ namespace CMOLocalizer
                 Control dtvCtrl = null;
                 Button btnLoad = null;
 
-                FormCollection forms = Application.OpenForms;
-                if (forms != null)
+                Form[] forms = OpenFormsSnapshot();
+                foreach (Form f in forms)
                 {
-                    foreach (Form f in forms)
+                    if (f == null || f.IsDisposed) continue;
+                    if (f.GetType().Name.IndexOf("LoadScenario", StringComparison.OrdinalIgnoreCase) >= 0 || f.Name.IndexOf("LoadScenario", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
-                        if (f == null || f.IsDisposed) continue;
-                        if (f.GetType().Name.IndexOf("LoadScenario", StringComparison.OrdinalIgnoreCase) >= 0 || f.Name.IndexOf("LoadScenario", StringComparison.OrdinalIgnoreCase) >= 0)
-                        {
-                            loadScenForm = f;
-                            dtvCtrl = FindControlByTypeOrName(f, "DarkTreeView");
-                            btnLoad = FindControlByTypeOrName(f, "Button2") as Button;
-                            break;
-                        }
+                        loadScenForm = f;
+                        dtvCtrl = FindControlByTypeOrName(f, "DarkTreeView");
+                        btnLoad = FindControlByTypeOrName(f, "Button2") as Button;
+                        break;
                     }
                 }
 
@@ -6890,25 +6956,22 @@ namespace CMOLocalizer
                 string want = arg.Trim();
                 ComboBox hit = null;
                 string ownerName = "";
-                FormCollection fc2 = Application.OpenForms;
-                if (fc2 != null)
+                Form[] fc2s = OpenFormsSnapshot();
+                foreach (Form f3 in fc2s)
                 {
-                    foreach (Form f3 in fc2)
+                    if (f3 == null || f3.IsDisposed || !f3.Visible) continue;
+                    foreach (Control c3 in AllControls(f3))
                     {
-                        if (f3 == null || f3.IsDisposed || !f3.Visible) continue;
-                        foreach (Control c3 in AllControls(f3))
+                        ComboBox c3b = c3 as ComboBox;
+                        if (c3b == null) continue;
+                        if (want.Length == 0 || c3b.Name.IndexOf(want, StringComparison.OrdinalIgnoreCase) >= 0)
                         {
-                            ComboBox c3b = c3 as ComboBox;
-                            if (c3b == null) continue;
-                            if (want.Length == 0 || c3b.Name.IndexOf(want, StringComparison.OrdinalIgnoreCase) >= 0)
-                            {
-                                hit = c3b;
-                                ownerName = f3.GetType().Name;
-                                break;
-                            }
+                            hit = c3b;
+                            ownerName = f3.GetType().Name;
+                            break;
                         }
-                        if (hit != null) break;
                     }
+                    if (hit != null) break;
                 }
                 if (hit == null) return "{\"status\":\"error\",\"message\":\"combo not found: " + JsonEsc(want) + "\"}";
                 ComboBox target = hit;
@@ -7004,8 +7067,7 @@ namespace CMOLocalizer
                     jb.Append("{\"status\":\"ok\",\"combos\":[");
                     bool first = true;
                     List<Form> forms = new List<Form>();
-                    FormCollection fc = Application.OpenForms;
-                    if (fc != null) foreach (Form f in fc) if (f != null && !f.IsDisposed) forms.Add(f);
+                    foreach (Form f in OpenFormsSnapshot()) if (f != null && !f.IsDisposed) forms.Add(f);
                     foreach (Form f2 in forms)
                     {
                         try
@@ -7026,14 +7088,10 @@ namespace CMOLocalizer
                     StringBuilder lb2 = new StringBuilder();
                     lb2.Append("{\"status\":\"ok\",\"lists\":[");
                     bool lbFirst = true;
-                    FormCollection lfc = Application.OpenForms;
-                    if (lfc != null)
+                    foreach (Form lf in OpenFormsSnapshot())
                     {
-                        foreach (Form lf in lfc)
-                        {
-                            if (lf == null || lf.IsDisposed) continue;
-                            try { CollectLists(lf, lb2, ref lbFirst); } catch { }
-                        }
+                        if (lf == null || lf.IsDisposed) continue;
+                        try { CollectLists(lf, lb2, ref lbFirst); } catch { }
                     }
                     lb2.Append("]}");
                     return lb2.ToString();
