@@ -144,9 +144,13 @@ def scan_history(max_bytes: int = 200_000_000) -> tuple[list[str], str]:
         part = blobs[i:i + chunk]
         if budget > max_bytes:
             break
-        out = proc_util.run(["git", "cat-file", "--batch"],
+        # cat-file --batch 的后续切片依赖**字节**长度（下面的 size 来自 --batch-check 的字节数），
+        # 所以这一步必须取原始 bytes。proc_util.run 一律解码为 str，用它会让
+        # `out.find(b"\n")` 抛 TypeError（历史回归：门禁 --history 整条路径直接崩）。
+        raw = subprocess.run(["git", "cat-file", "--batch"],
                              input=("\n".join(s for s, _ in part) + "\n").encode(),
-                             capture_output=True).stdout
+                             capture_output=True)
+        out = raw.stdout or b""
         pos = 0
         for sha, size in part:
             nl = out.find(b"\n", pos)

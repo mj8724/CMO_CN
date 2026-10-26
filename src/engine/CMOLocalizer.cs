@@ -6642,6 +6642,21 @@ namespace CMOLocalizer
                 string[] parts = arg.Split(' ');
                 string objType = parts.Length > 0 ? parts[0] : "Sensor";
                 string objIdStr = parts.Length > 1 ? parts[1] : "1438";
+                // 类型名本身可能含空格（"Ground Unit"）。旧写法按空格切分，
+                // 于是 `DB_NAVIGATE_ID Ground Unit 3` 被拆成 type="Ground" / id="Unit"，
+                // 搜索框收到 "Unit" 后找不到任何对象，表现为“Ground Unit 无法用 ID 定位”。
+                // 约定：最后一个 token 是 ID，前面的全部拼回类型名。
+                if (parts.Length > 2)
+                {
+                    objIdStr = parts[parts.Length - 1];
+                    StringBuilder typeBuilder = new StringBuilder();
+                    for (int ti = 0; ti < parts.Length - 1; ti++)
+                    {
+                        if (ti > 0) typeBuilder.Append(' ');
+                        typeBuilder.Append(parts[ti]);
+                    }
+                    objType = typeBuilder.ToString();
+                }
 
                 dbForm.BeginInvoke((MethodInvoker)delegate
                 {
