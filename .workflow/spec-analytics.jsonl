@@ -56,3 +56,11 @@
 {"type":"cli","id":"CLI-1792679566231-1","timestamp":"2026-10-22T14:32:46.231Z","command":"load","args":{"type":"spec"}}
 {"type":"cli","id":"CLI-1792682431896-1","timestamp":"2026-10-22T15:20:31.896Z","command":"load","args":{"type":"knowhow","id":"knowhow-DCS-20261015-1351-001"}}
 {"type":"cli","id":"CLI-1792712823205-1","timestamp":"2026-10-22T23:47:03.205Z","command":"load","args":{"type":"knowhow","id":"knowhow-tip-20261017-b7e01c3d5209070c"}}
+{"type":"cli","id":"CLI-1792893252559-1","timestamp":"2026-10-25T01:54:12.559Z","command":"load","args":{"type":"knowhow","id":"knowhow-TIP-20261018-ece485f8bf1f18e4-001"}}
+{"type":"cli","id":"CLI-1792893252849-1","timestamp":"2026-10-25T01:54:12.849Z","command":"load","args":{"type":"knowhow","id":"knowhow-TIP-20261018-d067e50ef13da61a-001"}}
+{"type":"cli","id":"CLI-1792893253159-1","timestamp":"2026-10-25T01:54:13.159Z","command":"load","args":{"type":"knowhow","id":"knowhow-TIP-20261017-276b91a8d7317404-003"}}
+{"type":"cli","id":"CLI-1792893253414-1","timestamp":"2026-10-25T01:54:13.414Z","command":"load","args":{"type":"spec","id":"spec:project:ui-conventions"}}
+{"type":"cli","id":"CLI-1792895772735-1","timestamp":"2026-10-25T02:36:12.735Z","command":"load","args":{"type":"knowhow","id":"knowhow-TIP-20261017-3611d56f2835a17f-003"}}
+{"type":"cli","id":"CLI-1792895773009-1","timestamp":"2026-10-25T02:36:13.009Z","command":"load","args":{"type":"knowhow","id":"knowhow-TIP-20261017-2d2b195ae8ca0f88-003"}}
+{"type":"cli","id":"CLI-1792897756151-1","timestamp":"2026-10-25T03:09:16.151Z","command":"load","args":{"type":"knowhow","id":"knowhow-tip-20261017-276b91a8d7317404"}}
+{"type":"cli","id":"CLI-1792914814856-1","timestamp":"2026-10-25T07:53:34.856Z","command":"load","args":{"type":"spec","id":"spec:project:learnings-001"}}
