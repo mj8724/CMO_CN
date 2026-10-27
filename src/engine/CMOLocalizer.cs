@@ -3497,7 +3497,23 @@ namespace CMOLocalizer
             }
             m = Regex.Match(seg, @"^(\d{1,4})\s+(Rnds?|rounds?|Rounds?|rnds?)$", RegexOptions.IgnoreCase);
             if (m.Success) return m.Groups[1].Value + " 发";
-            m = Regex.Match(seg, @"^(\d{1,3})x\s+(Tubes?|Tube|Barrels?|DCs?|Missiles?|Chaff|Salvos?|Sites?|Groups?|Lnchrs?|Launchers?)$",
+            // `Nx Ordered/Planned/Lost/…`（交付/损失/出售类动词）——Comments 里成批出现。
+            m = Regex.Match(seg,
+                @"^(\d{1,4})x\s+(Ordered|Planned|Lost|Sold|Leased|Loaned|Captured|Delivered|Built|Laid Down|Sunk|Crashed|Transferred|Claimed|Retired)$",
+                            RegexOptions.IgnoreCase);
+            if (m.Success)
+            {
+                string v = m.Groups[2].Value.ToLowerInvariant();
+                string zh = v == "ordered" ? "订购" : v == "planned" ? "计划" : v == "lost" ? "损失"
+                          : v == "sold" ? "售出" : v == "leased" || v == "loaned" ? "租用"
+                          : v == "captured" ? "缴获" : v == "delivered" ? "交付" : v == "built" ? "建成"
+                          : v == "laid down" ? "开工" : v == "sunk" ? "沉没" : v == "crashed" ? "坠毁"
+                          : v == "transferred" ? "转隶" : v == "claimed" ? "声称" : "退役";
+                return m.Groups[1].Value + "x " + zh;
+            }
+            // `Nx 发射管/炮管/深水炸弹/导弹/箔条/齐射/阵地/编组/发射装置`
+            m = Regex.Match(seg,
+                @"^(\d{1,3})x\s+(Tubes?|Tube|Barrels?|DCs?|Missiles?|Chaff|Salvos?|Sites?|Groups?|Lnchrs?|Launchers?)$",
                             RegexOptions.IgnoreCase);
             if (m.Success)
             {
