@@ -125,7 +125,10 @@ def check_table(table: dict[str, str]) -> list[str]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--top", type=int, default=80)
-    ap.add_argument("--check", action="store_true")
+    ap.add_argument("--check", action="store_true",
+                    help="词表守卫；同时用固定阈值断言覆盖率不退化")
+    ap.add_argument("--min-covered", type=float, default=0.44,
+                    help="--check 时要求的最低完全覆盖率（默认 0.44）")
     ap.add_argument("--json", default=str(BUILD / "db_comments_work.json"))
     ap.add_argument("--dbs", default="DB3K_519,CWDB_519",
                     help="逗号分隔的 DB 文件名（不含 .db3）")
@@ -141,8 +144,6 @@ def main() -> int:
             print("  - " + p)
         return 1
     print("守卫：PASS（译文含中文、无纯数量键、无残留英文词）")
-    if args.check:
-        return 0
 
     dbs = [GAME / "DB" / (n.strip() + ".db3") for n in args.dbs.split(",")]
     dbs = [d for d in dbs if d.is_file()]
@@ -170,6 +171,15 @@ def main() -> int:
     print(f"  完全覆盖 {done:>6} ({done/total:5.1%})")
     print(f"  部分覆盖 {partial:>6} ({partial/total:5.1%})")
     print(f"  未动     {total-done-partial:>6} ({(total-done-partial)/total:5.1%})")
+
+    if args.check:
+        # 覆盖率守卫：词表被误删/误改会让覆盖跌破阈值，必须判红，
+        # 否则「表还在但内容被清空」这种退化会静默通过。
+        ratio = done / total if total else 0.0
+        ok = ratio >= args.min_covered
+        print(f"覆盖率守卫：{ratio:.1%} >= {args.min_covered:.0%} -> "
+              + ("PASS" if ok else "FAIL"))
+        return 0 if ok else 1
 
     ranked = sorted(backlog.items(), key=lambda kv: -kv[1])
     print(f"\n待译段 {len(ranked)} 个（按出现行数排序，前 {args.top}）：")

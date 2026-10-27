@@ -164,6 +164,17 @@ class DbListCommentsTests
         string gotPlain = tr(rowPlain);
         Check("R72 无 Comments 的行不受影响", gotPlain.Contains("1960-1985") && gotPlain.Contains("苏联"), gotPlain);
 
+        // ---- 6. 端到端：用**真实词库**跑几条真实 DB 行（Comments 来自 DB3K_519）----
+        // 这条挡住「词表写对了但没进词典」：fixture 只证明行为，真实词库才证明接线到数据。
+        load.Invoke(null, new object[] { dict });
+        string realHit = tr("A-300-600ST Beluga -- 民用/商用机 (商业民航), 1995, 5x, Super Guppy Replacement");
+        Check("R72 真实词库把 Super Guppy Replacement 译出",
+              realHit.Contains("超级孔雀鱼替代") || !realHit.Contains("Super Guppy Replacement"), realHit);
+        string realCode = tr("A.400M Atlas -- 比利时 (空军), 2020, 7x");
+        Check("R72 真实词库不动纯代号 7x", realCode.EndsWith("7x"), realCode);
+        string realClean = tr("3MS-1 Bison B [Bomber] -- 苏联 [-1991] (远程航空兵 [DA]), 1960-1985");
+        Check("R72 真实词库不乱动无 Comments 行", realClean.Contains("1960-1985"), realClean);
+
         try { File.Delete(fixture); } catch { }
         Console.WriteLine(failures == 0 ? "\nR72 ALL PASS" : "\nR72 FAILURES: " + failures);
         return failures == 0 ? 0 : 1;
