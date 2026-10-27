@@ -1940,6 +1940,8 @@ python scripts/perf_probe.py          # 游戏已在想定里
   覆盖率是**门禁阈值**：`scripts/db_comments_work.py --check` 断言完全覆盖率 ≥ 44%，
   词表被误删/清空会直接判红（否则「表还在但内容没了」会静默通过）。
 
+- **尚未验证的一点（如实记录）**：`TranslateDarkListView` 对「已含中文」的行整体跳过，而本项是在 `TranslateDBListEntry` **同一次调用内**接上 Comments 的（所以不存在 R42 那种「函数好但被前面的含中文守卫挡住」的问题）。但如果将来有别的路径先给整行写入了中文，行尾步骤就不会再跑——实机验证时若发现某类行尾仍英文，先查这一点。实机 A/B 仍受本机 Steam 未登录阻塞（游戏启动即退出），部署已就绪，登录后可直接复核。
+
 - **回归**：`R72-static-db-comments`（接线 + 行为 + 端到端 + 负向：未命中不拆词、
   纯代号不污染；端到端用**真实词库**跑真实 DB 行 `A-300-600ST Beluga … 5x, Super Guppy
   Replacement` → 译出「超级孔雀鱼替代」）、`R72-static-comments-table`（词表守卫 +
