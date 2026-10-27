@@ -300,6 +300,7 @@
 | `scripts/term_gap_analysis.py` | 术语缺口分析（R52）：逐字复现引擎匹配规则，报出每条缺口卡在哪个词上，算出「加哪个词解锁最多条目」。输出收益排行 + 可生成术语批次 |
 | `scripts/merge_terms.py` | 术语合并（R52）：把 LLM 精修的术语写进 `dict/src/terms.json`。守卫拒收未翻译/半译/句子/过长；术语表是组合翻译的词汇层，一个坏词会污染上千条名字 |
 | `scripts/merge_record_names.py` | 数据库装备名合并（R52）：写回 `db_record_names.json`。守卫拒收残留英文词、二选一写法、结构性内容；型号/编号/`Type 63A` 这类正确放行 |
+| `scripts/db_comments_next.py` | 列出 Comments 词表的下一批待译段（按出现行数排序，剔除 `Mod`/`Blk`/`Mk` 等型号批次词与纯代号）；配合人工翻译循环用 |
 | `scripts/db_comments_work.py` | 数据库列表行尾 Comments（R72）待译清单 + 词表守卫：`--check` 供门禁（译文含中文、无纯数量键、无残留英文词），默认输出覆盖率与按行数排序的待译段 |
 | `scripts/fix_db_residue.py` | 数据库记录名括号外英文残留的**确定性**改写（R71）：`Type NNN`→`NNN型/式` + 人工核过的厂名与整串译名；绝不按词替换（实测会把 `PC2`→「巡逻艇2」）。产出 `build/residue_out/batch_*.json` 交 `merge_record_names.py` 合并 |
 | `scripts/merge_scenario_texts.py` | 想定文本合并（R52）：按批次清单的 `src` 写回**原归属** side/message 文件（全塞一个池会被字母序覆盖），DTG 时间码放行 |
