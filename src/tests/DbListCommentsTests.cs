@@ -169,6 +169,18 @@ class DbListCommentsTests
         string rowTons = "Truck W -- 苏联 (陆军), 1965-1970, 1.5 tons";
         Check("R72 数量规则 1.5 tons", tr(rowTons).Contains("1.5 吨"), tr(rowTons));
 
+        // ---- 3c. 句首模板 + 尾部原样（Comments 里成批出现，逐个枚举不现实）----
+        string rowRetired = "Ship A -- 苏联 (海军), 1977-1995, Retired 1977";
+        Check("R72 模板规则 Retired 1977", tr(rowRetired).Contains("1977 年退役"), tr(rowRetired));
+        string rowOper = "Ship B -- 苏联 (海军), 1976-1990, Operational 1976";
+        Check("R72 模板规则 Operational 1976", tr(rowOper).Contains("1976 年服役"), tr(rowOper));
+        string rowReactor =
+            "Sat C -- 苏联 (空军), 1968, Reactor boosted to high orbit 22-10-1985";
+        Check("R72 模板规则 Reactor boosted", tr(rowReactor).Contains("反应堆推入高轨 22-10-1985"), tr(rowReactor));
+        // 模板只认固定句式：型号不得被模板吃掉
+        string rowModel = "Ftr D -- 苏联 (空军), 1980-1995, SA-6";
+        Check("R72 模板不吃型号 SA-6", tr(rowModel).EndsWith("SA-6"), tr(rowModel));
+
         // ---- 4b. 非 DB 行不得被行尾逻辑改写（TranslateDarkListView 对全部 DarkListView 生效）----
         string notDbRow = "Alpha Team, Export";
         Check("R72 非 DB 行（无 ' -- '）不改写", tr(notDbRow) == notDbRow, tr(notDbRow));

@@ -3444,6 +3444,40 @@ namespace CMOLocalizer
             m = Regex.Match(seg, @"^(\d{1,4}(?:\.\d)?)\s*lb$", RegexOptions.IgnoreCase);
             if (m.Success) return m.Groups[1].Value + " 磅";
 
+            // 句首模板 + 尾部原样保留：`Retired 1977`、`Operational 1971`、
+            // `Reactor boosted to high orbit 22-10-1985`（这类在 Comments 里成批出现，
+            // 逐个枚举不现实；模板锚定句首，尾部（年份/日期/编号）不译，安全）。
+            return TranslateCommentTemplate(seg);
+        }
+
+        /// <summary>
+        /// Comments 里的「句首模板 + 尾部」形态。只认**固定模板**，尾部原样保留；
+        /// 不匹配返回 null（调用方保持原文）。模板里不含任何装备代号，故不会误伤型号。
+        /// </summary>
+        private static string TranslateCommentTemplate(string seg)
+        {
+            Match m = Regex.Match(seg, @"^(\d{4})\s*[-–]\s*(\d{4})$");
+            if (m.Success) return seg;                       // 纯年份区间，保留
+            m = Regex.Match(seg, @"^(Retired|Operational|Cancelled|Delivered|Ordered)\s+(\d{4})$",
+                            RegexOptions.IgnoreCase);
+            if (m.Success)
+            {
+                string verb = m.Groups[1].Value.ToLowerInvariant();
+                string zh = verb == "retired" ? "退役" : verb == "operational" ? "服役"
+                          : verb == "cancelled" ? "取消" : verb == "delivered" ? "交付" : "订购";
+                return m.Groups[2].Value + " 年" + zh;
+            }
+            m = Regex.Match(seg, @"^Reactor boosted to high orbit\s+(.+)$", RegexOptions.IgnoreCase);
+            if (m.Success) return "反应堆推入高轨 " + m.Groups[1].Value;
+            m = Regex.Match(seg, @"^Reactor ejected but failed to boost to high orbit\s+(.+)$",
+                            RegexOptions.IgnoreCase);
+            if (m.Success) return "反应堆已弹出但未能推入高轨 " + m.Groups[1].Value;
+            m = Regex.Match(seg, @"^(?:Was\s+)?[Bb]oosted to high orbit\s+(.+)$");
+            if (m.Success) return "推入高轨 " + m.Groups[1].Value;
+            m = Regex.Match(seg, @"^(\d{1,3})\s+years?\s+in\s+service$", RegexOptions.IgnoreCase);
+            if (m.Success) return "服役 " + m.Groups[1].Value + " 年";
+
+            // 数量+单位/编制（`4x Mounts`、`3x Bty`、`120 Rounds`）：逐个枚举永远追不上。
             // `Nx 连/排/营/团`、`N 发`、`Nx 发射管/导弹/箔条` —— Comments 里最常见的两种形态。
             // 只认**固定少数单位词**，锚定整段，型号（`Tu-16`、`SA-6`）永远匹配不上。
             m = Regex.Match(seg, @"^(\d{1,3})x\s+(Bty|Btys|Plt|Plts|Bn|Bns|Coy|Coys|Sec|Secs|Regt|Regts)$",
