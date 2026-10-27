@@ -1926,7 +1926,7 @@ python scripts/perf_probe.py          # 游戏已在想定里
   Comments 行逐条过「词表 + 数量规则」，翻完之后：
   | 口径 | 结果 |
   |---|---|
-  | 段内已无可译英文词（型号批次词 `Mod`/`Blk`/`Mk`/`Series` 不算可译） | **30,913 行 / 86.2%** |
+  | 段内已无可译英文词（型号批次词 `Mod`/`Blk`/`Mk`/`Series` 不算可译） | **30,973 行 / 86.4%** |
   | 严格口径（连 `Mod 2` 这类型号批次词也算作残留） | 见 `db_comments_work.py --check` 输出 |
 
   开工前这两项都是 **0**（Comments 完全没进翻译通道，行尾永远是英文）。
@@ -1964,6 +1964,13 @@ python scripts/perf_probe.py          # 游戏已在想定里
 复查确认无问题的部分（原样记录）：五分区边界逐字节复刻校验一致、两分区译文路径在全部
 15,731 个真实 Comments 值上只在行尾命中、黑名单解除未引入任何池注入（offsets 仍 8,756）、
 `verify_engine_parse` 与引擎镜像一致。
+
+- **后续补充（2026-10-28 凌晨）**：把成批出现的**系统性形态**从词表移到引擎规则，
+词表只留"词"：
+  ① `Retired 1977` / `Operational 1976` / `Reactor boosted to high orbit <date>` 等句首模板；
+  ② `Nx Bty/Plt/Bn/Regt`、`N Rnds`、`Nx Tubes/Barrels/DCs/Missiles/Salvos/…` 数量+单位；
+  ③ `Assoc w/ X` 家族（8 种拼写变体：`Assoc w/`、`Assoc. w/`、`Assow w`、`Associated with`…）。
+  每条规则都有对应用例；词表因此**净减** 68 条 Assoc 键 + 51 条纯数量键。
 
 *（顺带修掉一个同源缺陷：年份闸门最初用 `@"…"` 写进 C# 时被脚本转义成了退格字符，
 正则在实机上永不匹配——现已改为正确的逐字字符串，并由上面的负向用例守住。）*
