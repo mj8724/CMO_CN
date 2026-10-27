@@ -148,12 +148,11 @@ def check_normalized_conflicts(table: dict[str, str]) -> list[str]:
     import collections
     groups: dict[str, dict[str, str]] = collections.defaultdict(dict)
     for k, v in table.items():
-        # 只抹掉空白/下划线与**首尾**标点：`-(Armoured Personel Carrier)` 的前导 `-`
-        # 是有意义的形态标记，抹掉就会把两条不同的段误判成同一段的两种译法。
-        # 只抹掉**内部**空白/下划线与首尾标点：`Poseidon C-3` 与 `Poseidon C3` 应判同段。
-        # 连字符与斜杠**不能**抹：`Victor I/II`（I、II 批次）与 `Victor III`（III 级）是
-        # 不同的批次，抹掉 `/` 会把两者撞成同一个键、误报冲突（实测踩过）。
-        key = re.sub(r"[\s_]+", "", k.strip().strip("-—–·,.;:")).lower()
+        # 只抹掉**内部**空白/下划线：`Poseidon C-3` 与 `Poseidon C3` 应判同段（这是要抓的）。
+        # 连字符、斜杠、前导 `-` 都**不能**抹：
+        #   · `Victor I/II`（I、II 批次）与 `Victor III`（III 级）是不同批次，抹 `/` 会误报冲突；
+        #   · `-(Armoured Personel Carrier)` 的前导 `-` 是有意义的形态标记。
+        key = re.sub(r"[\s_]+", "", k.strip()).lower()
         groups[key][k] = v
     out = []
     for norm, variants in groups.items():
