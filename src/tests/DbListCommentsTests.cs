@@ -159,6 +159,10 @@ class DbListCommentsTests
         string gotCodes = tr(rowCodes);
         Check("R72 纯代号行尾不产生中文污染", gotCodes.EndsWith("7x"), gotCodes);
 
+        // ---- 4b. 非 DB 行不得被行尾逻辑改写（TranslateDarkListView 对全部 DarkListView 生效）----
+        string notDbRow = "Alpha Team, Export";
+        Check("R72 非 DB 行（无 ' -- '）不改写", tr(notDbRow) == notDbRow, tr(notDbRow));
+
         // ---- 5. 前缀（名称/国家/兵种）仍走原有通道，不能被行尾逻辑破坏 ----
         string rowPlain = "3MS-1 Bison B [Bomber] -- 苏联 [-1991] (远程航空兵 [DA]), 1960-1985";
         string gotPlain = tr(rowPlain);

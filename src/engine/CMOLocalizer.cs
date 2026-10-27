@@ -3363,6 +3363,10 @@ namespace CMOLocalizer
         private static string TranslateDBRowCommentsTail(string s)
         {
             if (string.IsNullOrEmpty(s) || commentsMap.Count == 0) return s;
+            // 只对**数据库查看器行格式**动手（`名称 -- 国家 (兵种), 年份, Comments`）。
+            // TranslateDarkListView 对游戏里所有 DarkListView 都跑（兵种编成、任务列表…），
+            // 没有 ` -- ` 分隔的行不是 DB 行，行尾不该被当成 Comments 处理。
+            if (s.IndexOf(" -- ", StringComparison.Ordinal) < 0) return s;
 
             // 先试整段后缀（Comments 自带逗号时只有整段才对得上），最长匹配优先。
             const string SEP = ", ";
