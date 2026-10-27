@@ -26,13 +26,11 @@ DESIGNATION = {"Mod", "Blk", "Block", "Mk", "Mark", "Series", "Model", "Flight",
                "Batch", "Tranche", "Lot", "Phase", "Type", "B/L", "No", "Mods"}
 LATIN = re.compile(r"[A-Za-z]")
 DIGIT = re.compile(r"\d")
-QUANTITY = (
-    re.compile(r"^\d{1,3}x\s+(Mounts?|Pylons?)$", re.I),
-    re.compile(r"^\d{1,3}x pr (Bty|Plt|Bn|Coy|Sec|Rgt)$", re.I),
-    re.compile(r"^\d{1,4}(?:\.\d)?\s+tons?$", re.I),
-    re.compile(r"^\d{1,3}(?:\.\d)?k\s+lb$", re.I),
-    re.compile(r"^\d{1,4}(?:\.\d)?\s*lb$", re.I),
-)
+
+# 数量规则是**单一事实源**在 db_comments_work.py 里；这里 import 复用，
+# 不复制一份——两份拷贝漂移过一次（扩展规则后本清单仍把已处理的段算作待译）。
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from db_comments_work import QUANTITY  # noqa: E402
 
 
 def real_words(seg: str) -> list[str]:
@@ -49,11 +47,11 @@ def real_words(seg: str) -> list[str]:
 def covered(seg: str, table: dict[str, str]) -> bool:
     if seg in table:
         return True
+    if any(p.match(seg) for p in QUANTITY):   # 结构规则优先，与引擎同序
+        return True
     if not DIGIT.search(seg):
         return False
     if not LATIN.search(seg):
-        return True
-    if any(p.match(seg) for p in QUANTITY):
         return True
     return seg[:1].isdigit() and len(seg) <= 6
 
