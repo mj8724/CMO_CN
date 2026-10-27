@@ -37,9 +37,9 @@ LATIN_WORD = re.compile(r"(?<![A-Za-z])([A-Za-z]{2,})(?![A-Za-z])")
 QUANTITY = (
     re.compile(r"^\d{1,3}x\s+(Mounts?|Pylons?)$", re.I),
     re.compile(r"^\d{1,3}x pr (Bty|Plt|Bn|Coy|Sec|Rgt)$", re.I),
-    re.compile(r"^\d{1,4} tons?$", re.I),
-    re.compile(r"^\d{1,3}k lb$", re.I),
-    re.compile(r"^\d{1,4} lb$", re.I),
+    re.compile(r"^\d{1,4}(?:\.\d)?\s+tons?$", re.I),
+    re.compile(r"^\d{1,3}(?:\.\d)?k\s+lb$", re.I),
+    re.compile(r"^\d{1,4}(?:\.\d)?\s*lb$", re.I),
 )
 
 

@@ -3425,11 +3425,11 @@ namespace CMOLocalizer
                           : unit == "coy" ? "连" : unit == "sec" ? "班" : "团";
                 return "每" + zh + " " + m.Groups[1].Value + "x";
             }
-            m = Regex.Match(seg, @"^(\d{1,4})\s+tons?$", RegexOptions.IgnoreCase);
+            m = Regex.Match(seg, @"^(\d{1,4}(?:\.\d)?)\s+tons?$", RegexOptions.IgnoreCase);
             if (m.Success) return m.Groups[1].Value + " 吨";
-            m = Regex.Match(seg, @"^(\d{1,3})k\s+lb$", RegexOptions.IgnoreCase);
+            m = Regex.Match(seg, @"^(\d{1,3}(?:\.\d)?)k\s+lb$", RegexOptions.IgnoreCase);
             if (m.Success) return m.Groups[1].Value + "k 磅";
-            m = Regex.Match(seg, @"^(\d{1,4})\s*lb$", RegexOptions.IgnoreCase);
+            m = Regex.Match(seg, @"^(\d{1,4}(?:\.\d)?)\s*lb$", RegexOptions.IgnoreCase);
             if (m.Success) return m.Groups[1].Value + " 磅";
             return null;
         }
