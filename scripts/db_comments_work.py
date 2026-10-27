@@ -40,6 +40,11 @@ QUANTITY = (
     re.compile(r"^\d{1,4}(?:\.\d)?\s+tons?$", re.I),
     re.compile(r"^\d{1,3}(?:\.\d)?k\s+lb$", re.I),
     re.compile(r"^\d{1,4}(?:\.\d)?\s*lb$", re.I),
+    # 与引擎 TranslateCommentQuantity 的扩展规则保持一一对应（漏一条就会把
+    # 引擎已经处理好的段算成"待译"，清单虚高）
+    re.compile(r"^\d{1,3}x\s+(Bty|Btys|Plt|Plts|Bn|Bns|Coy|Coys|Sec|Secs|Regt|Regts)$", re.I),
+    re.compile(r"^\d{1,4}\s+(Rnds?|rounds?|Rounds?|rnds?)$", re.I),
+    re.compile(r"^\d{1,3}x\s+(Tubes?|Tube|Barrels?|DCs?|Missiles?|Chaff|Salvos?|Sites?|Groups?|Lnchrs?|Launchers?)$", re.I),
 )
 
 

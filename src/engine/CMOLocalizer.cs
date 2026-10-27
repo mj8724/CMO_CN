@@ -3390,20 +3390,23 @@ namespace CMOLocalizer
             for (int i = 1; i < parts.Length; i++)   // parts[0] 是名称+国家+兵种，交给前面的步骤
             {
                 string seg = parts[i].Trim();
-                if (seg.Length == 0 || IsYearOrCount(seg)) continue;
-                string hit;
-                if (commentsMap.TryGetValue(seg, out hit) && ContainsChinese(hit))
-                {
-                    parts[i] = hit;
-                    changed = true;
-                    continue;
-                }
-                // 数量段是**结构**（`4x Mounts`、`3x pr Bty`、`2 tons`），逐个枚举会永远追不上，
+                if (seg.Length == 0) continue;
+                // 数量段是**结构**（`4x Mounts`、`3x Bty`、`120 Rounds`），逐个枚举永远追不上，
                 // 交给规则；规则只认数字 + 固定单位/编制词，范围极窄，不会把型号吃进去。
+                // 必须在 IsYearOrCount 之前跑：`3x Bty` 这种"数字开头 + 短"的段会被
+                // 年份/数量守卫提前跳过（实机踩过：规则写了却不生效）。
                 string ruled = TranslateCommentQuantity(seg);
                 if (ruled != null)
                 {
                     parts[i] = ruled;
+                    changed = true;
+                    continue;
+                }
+                if (IsYearOrCount(seg)) continue;
+                string hit;
+                if (commentsMap.TryGetValue(seg, out hit) && ContainsChinese(hit))
+                {
+                    parts[i] = hit;
                     changed = true;
                 }
             }
@@ -3435,6 +3438,35 @@ namespace CMOLocalizer
             if (m.Success) return m.Groups[1].Value + "k 磅";
             m = Regex.Match(seg, @"^(\d{1,4}(?:\.\d)?)\s*lb$", RegexOptions.IgnoreCase);
             if (m.Success) return m.Groups[1].Value + " 磅";
+
+            // `Nx 连/排/营/团`、`N 发`、`Nx 发射管/导弹/箔条` —— Comments 里最常见的两种形态。
+            // 只认**固定少数单位词**，锚定整段，型号（`Tu-16`、`SA-6`）永远匹配不上。
+            m = Regex.Match(seg, @"^(\d{1,3})x\s+(Bty|Btys|Plt|Plts|Bn|Bns|Coy|Coys|Sec|Secs|Regt|Regts)$",
+                            RegexOptions.IgnoreCase);
+            if (m.Success)
+            {
+                string u = m.Groups[2].Value.ToLowerInvariant().TrimEnd('s');
+                string zh = u == "bty" ? "连" : u == "plt" ? "排" : u == "bn" ? "营"
+                          : u == "coy" ? "连" : u == "sec" ? "班" : "团";
+                return m.Groups[1].Value + "x " + zh;
+            }
+            m = Regex.Match(seg, @"^(\d{1,4})\s+(Rnds?|rounds?|Rounds?|rnds?)$", RegexOptions.IgnoreCase);
+            if (m.Success) return m.Groups[1].Value + " 发";
+            m = Regex.Match(seg, @"^(\d{1,3})x\s+(Tubes?|Tube|Barrels?|DCs?|Missiles?|Chaff|Salvos?|Sites?|Groups?|Lnchrs?|Launchers?)$",
+                            RegexOptions.IgnoreCase);
+            if (m.Success)
+            {
+                string u = m.Groups[2].Value.ToLowerInvariant();
+                string zh = u.StartsWith("tube") ? "发射管"
+                          : u.StartsWith("barrel") ? "炮管"
+                          : u.StartsWith("dc") ? "深水炸弹"
+                          : u.StartsWith("missile") ? "导弹"
+                          : u.StartsWith("chaff") ? "箔条"
+                          : u.StartsWith("salvo") ? "齐射"
+                          : u.StartsWith("site") ? "阵地"
+                          : u.StartsWith("group") ? "编组" : "发射装置";
+                return m.Groups[1].Value + "x " + zh;
+            }
             return null;
         }
 

@@ -159,6 +159,16 @@ class DbListCommentsTests
         string gotCodes = tr(rowCodes);
         Check("R72 纯代号行尾不产生中文污染", gotCodes.EndsWith("7x"), gotCodes);
 
+        // ---- 3b. 数量+固定单位由规则处理（不靠词表枚举）----
+        string rowTubes = "Ship X -- 苏联 (海军), 1980, 8x Tubes";
+        Check("R72 数量规则 8x Tubes", tr(rowTubes).Contains("8x 发射管"), tr(rowTubes));
+        string rowRnds = "Gun Y -- 苏联 (陆军), 1970, 120 Rounds";
+        Check("R72 数量规则 120 Rounds", tr(rowRnds).Contains("120 发"), tr(rowRnds));
+        string rowBty = "Bty Z -- 苏联 (陆军), 1965, 3x Bty";
+        Check("R72 数量规则 3x Bty", tr(rowBty).Contains("3x 连"), tr(rowBty));
+        string rowTons = "Truck W -- 苏联 (陆军), 1965, 1.5 tons";
+        Check("R72 数量规则 1.5 tons", tr(rowTons).Contains("1.5 吨"), tr(rowTons));
+
         // ---- 4b. 非 DB 行不得被行尾逻辑改写（TranslateDarkListView 对全部 DarkListView 生效）----
         string notDbRow = "Alpha Team, Export";
         Check("R72 非 DB 行（无 ' -- '）不改写", tr(notDbRow) == notDbRow, tr(notDbRow));
