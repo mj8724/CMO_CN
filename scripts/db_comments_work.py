@@ -122,6 +122,22 @@ def check_table(table: dict[str, str]) -> list[str]:
     return problems
 
 
+def check_normalized_conflicts(table: dict[str, str]) -> list[str]:
+    """归一化后同一个键不得有两种译文（`Pacer CRAG` / `Pacer Crag` 这类）。
+
+    实测出现过：同一个英文段大小写写法不同、译文却不一致，玩家看到两种说法。
+    """
+    import collections
+    groups: dict[str, dict[str, str]] = collections.defaultdict(dict)
+    for k, v in table.items():
+        groups[re.sub(r"[\s\-_/]+", "", k).lower()][k] = v
+    out = []
+    for norm, variants in groups.items():
+        if len(set(variants.values())) > 1:
+            out.append(f"{norm}: " + " | ".join(f"{k}={v}" for k, v in variants.items()))
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--top", type=int, default=80)
@@ -137,7 +153,7 @@ def main() -> int:
     table = load_table()
     print(f"词表 {TABLE.name}: {len(table)} 条")
 
-    problems = check_table(table)
+    problems = check_table(table) + check_normalized_conflicts(table)
     if problems:
         print(f"\n守卫失败（{len(problems)} 条）：")
         for p in problems[:20]:
