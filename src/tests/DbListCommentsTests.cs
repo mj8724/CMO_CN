@@ -196,7 +196,7 @@ class DbListCommentsTests
         // ---- 3e. 交付/损失类动词（Nx Ordered / Planned / Lost …）----
         Check("R72 交付类动词 6x Ordered", tr("Tank A -- 苏联 (陆军), 1970-1990, 6x Ordered").Contains("6x 订购"),
               tr("Tank A -- 苏联 (陆军), 1970-1990, 6x Ordered"));
-        Check("R72 交付类动词 2x Lost", tr("Tank B -- 苏联 (陆军), 1970-1990, 2x Lost").Contains("损失 2x"),
+        Check("R72 交付类动词 2x Lost", tr("Tank B -- 苏联 (陆军), 1970-1990, 2x Lost").Contains("2x 损失"),
               tr("Tank B -- 苏联 (陆军), 1970-1990, 2x Lost"));
 
         // ---- 4b. 非 DB 行不得被行尾逻辑改写（TranslateDarkListView 对全部 DarkListView 生效）----
