@@ -299,6 +299,7 @@
 | `scripts/term_gap_analysis.py` | 术语缺口分析（R52）：逐字复现引擎匹配规则，报出每条缺口卡在哪个词上，算出「加哪个词解锁最多条目」。输出收益排行 + 可生成术语批次 |
 | `scripts/merge_terms.py` | 术语合并（R52）：把 LLM 精修的术语写进 `dict/src/terms.json`。守卫拒收未翻译/半译/句子/过长；术语表是组合翻译的词汇层，一个坏词会污染上千条名字 |
 | `scripts/merge_record_names.py` | 数据库装备名合并（R52）：写回 `db_record_names.json`。守卫拒收残留英文词、二选一写法、结构性内容；型号/编号/`Type 63A` 这类正确放行 |
+| `scripts/fix_db_residue.py` | 数据库记录名括号外英文残留的**确定性**改写（R71）：`Type NNN`→`NNN型/式` + 人工核过的厂名与整串译名；绝不按词替换（实测会把 `PC2`→「巡逻艇2」）。产出 `build/residue_out/batch_*.json` 交 `merge_record_names.py` 合并 |
 | `scripts/merge_scenario_texts.py` | 想定文本合并（R52）：按批次清单的 `src` 写回**原归属** side/message 文件（全塞一个池会被字母序覆盖），DTG 时间码放行 |
 | `scripts/gen_v3_batches.py` | 按 `build/residue_gaps.json` 的当前真实剩余缺口，按表族生成 v3 精修批次（每类一套专用 instructions：传感器北约绰号、挂载弹种、设施编制、飞机绰号、卫星代号、武器弹头、基座形式、推进装置、舰艇舰级）。批次写入 `build/v3_batches/`，供 teammate 逐条精修 |
 | `scripts/verify_placenames.py` | 地名发布门禁 |
@@ -439,6 +440,7 @@
 | `src/tests/ReleaseContractTests.py` | 隔离 unittest/mock 验证报告、四资产、冻结构建及绿色包安装器契约；不读凭据/写网络/操作游戏 | `R57-static-release-contract` |
 | `src/tests/PoolDisplayInjectionTests.py` | 池级注入白名单回归 | `R38-static-pool-inject` |
 | `src/tests/DictionarySourceTests.py` | 词库完整字节重建、产物独立性、源删除不回生及污染注入负向测试；只写临时目录 | `R58-static-dictionary-source` |
+| `src/tests/DatabaseResidueTests.py` | 数据库记录名三道判据：场景源不得用句子碎片覆盖 db_* 干净译名、已修脏值不得回生、残留改写脚本不得按词污染型号（均带负向用例）| `R71-static-db-residue` |
 | `src/tests/README_WebViewTranslation.md` | 上面 WebView 系列测试的说明 | — |
 | `src/tests/search_methods.cs`、`src/tests/test_db_load.cs` | 方法搜索 / DB 加载试验（历史） | — |
 | `src/tests/README_MapTileServer.md` | 瓦片服务测试说明 | — |

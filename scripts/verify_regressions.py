@@ -255,6 +255,9 @@ def _run_ui_scheduling_and_report_gates(r: Runner) -> None:
     py_case("R58-static-dictionary-source",
             "R58 词库源可重建：两次完整构建字节一致、删源不回生、产物不再作为输入",
             "src/tests/DictionarySourceTests.py", "--fixtures")
+    py_case("R71-static-db-residue",
+            "R71 数据库记录名：场景源不得覆盖 db_* 干净译名、句子碎片不得回生、残留改写不得污染型号",
+            "src/tests/DatabaseResidueTests.py")
 
 
 def run_weapons_diagnostic(r: Runner) -> None:
