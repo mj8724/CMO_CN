@@ -130,7 +130,12 @@ def check_normalized_conflicts(table: dict[str, str]) -> list[str]:
     import collections
     groups: dict[str, dict[str, str]] = collections.defaultdict(dict)
     for k, v in table.items():
-        groups[re.sub(r"[\s\-_/]+", "", k).lower()][k] = v
+        # 只抹掉空白/下划线与**首尾**标点：`-(Armoured Personel Carrier)` 的前导 `-`
+        # 是有意义的形态标记，抹掉就会把两条不同的段误判成同一段的两种译法。
+        # 只抹掉**内部**空白/连字符/下划线（`Poseidon C-3` 与 `Poseidon C3` 应判为同一段），
+        # 但保留开头的 `-`/`(` 这类形态标记（`-(Armoured ...)` 与 `(Armoured ...)` 是不同段）。
+        key = re.sub(r"(?<=.)[\s\-_/]+", "", k.strip()).lower()
+        groups[key][k] = v
     out = []
     for norm, variants in groups.items():
         if len(set(variants.values())) > 1:
