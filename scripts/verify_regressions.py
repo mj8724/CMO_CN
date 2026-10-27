@@ -255,6 +255,12 @@ def _run_ui_scheduling_and_report_gates(r: Runner) -> None:
     py_case("R58-static-dictionary-source",
             "R58 词库源可重建：两次完整构建字节一致、删源不回生、产物不再作为输入",
             "src/tests/DictionarySourceTests.py", "--fixtures")
+    cs_case("R72-static-db-comments",
+            "R72 数据库列表行尾 Comments：接线到位、整段优先、未命中不拆词、纯代号不污染",
+            "src/tests/DbListCommentsTests.cs", [], "src/tests/DbListCommentsTests.cs")
+    py_case("R72-static-comments-table",
+            "R72 Comments 词表守卫：译文含中文、无纯数量键、无残留英文词",
+            "scripts/db_comments_work.py", "--check")
     py_case("R71-static-db-residue",
             "R71 数据库记录名：场景源不得覆盖 db_* 干净译名、句子碎片不得回生、残留改写不得污染型号",
             "src/tests/DatabaseResidueTests.py")

@@ -27,6 +27,10 @@ namespace CMOLocalizer
         private static string logPath = "";
         private static Dictionary<int, string> offsetMap = new Dictionary<int, string>();
         private static Dictionary<string, string> exactMap = new Dictionary<string, string>(StringComparer.Ordinal);
+        // R72：数据库列表行尾 Comments 专用词表。**不能**塞进 exactMap——
+        // Comments 里的 `Tank`(油箱) / `Mount`(挂架) / `Group`(编组) 与界面同名词条
+        // 含义不同（界面上 Tank=坦克、Group=编队），共用一张表会把界面译坏。
+        private static Dictionary<string, string> commentsMap = new Dictionary<string, string>(StringComparer.Ordinal);
         private static Dictionary<string, string> partialMap = new Dictionary<string, string>(StringComparer.Ordinal);
         private static Dictionary<string, string> wordsMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private static Dictionary<string, string> normExactMap = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -3342,7 +3346,111 @@ namespace CMOLocalizer
                  .Replace("Beluga", "Beluga [大白鲸]")
                  .Replace("Atlas", "Atlas [阿特拉斯]");
 
+            // 4. 行尾的 Comments（型号批次/年代/备注）：游戏把它拼在最后一个年份之后，
+            //    实机形态 `A-300-600ST Beluga -- 民用/商用机 (商业民航), 1995, 5x, Super Guppy Replacement`。
+            s = TranslateDBRowCommentsTail(s);
+
             return s;
+        }
+
+        /// <summary>
+        /// 数据库列表行末尾的 Comments（R72）。游戏把 Comments 直接拼在行尾，
+        /// 而 Comments 自身可能带逗号（`5x, Super Guppy Replacement`），所以不能按逗号逐段翻译。
+        /// 唯一安全的做法是「后缀整段命中」：从行内最早的分隔点起逐个试，
+        /// 命中就整段替换并停止（最长优先），未命中则原样返回。
+        /// 只有译文含中文才采信——避免把纯代号段拿去组合翻译产出垃圾串。
+        /// </summary>
+        private static string TranslateDBRowCommentsTail(string s)
+        {
+            if (string.IsNullOrEmpty(s) || commentsMap.Count == 0) return s;
+
+            // 先试整段后缀（Comments 自带逗号时只有整段才对得上），最长匹配优先。
+            const string SEP = ", ";
+            int idx = s.IndexOf(SEP, StringComparison.Ordinal);
+            while (idx >= 0)
+            {
+                string suffix = s.Substring(idx + SEP.Length);
+                if (suffix.Length > 1 && suffix.Length <= 160)
+                {
+                    string hit;
+                    if (commentsMap.TryGetValue(suffix.Trim(), out hit) && ContainsChinese(hit))
+                        return s.Substring(0, idx + SEP.Length) + hit;
+                }
+                idx = s.IndexOf(SEP, idx + SEP.Length, StringComparison.Ordinal);
+            }
+
+            // 再按逗号分段逐段查：Comments 多为 `2x Mounts` / `Export` / 年份 这类短段，
+            // 整段没命中时逐段替换才能覆盖真实形态。年份与纯代号查不到表就原样保留。
+            string[] parts = s.Split(new string[] { SEP }, StringSplitOptions.None);
+            bool changed = false;
+            for (int i = 1; i < parts.Length; i++)   // parts[0] 是名称+国家+兵种，交给前面的步骤
+            {
+                string seg = parts[i].Trim();
+                if (seg.Length == 0 || IsYearOrCount(seg)) continue;
+                string hit;
+                if (commentsMap.TryGetValue(seg, out hit) && ContainsChinese(hit))
+                {
+                    parts[i] = hit;
+                    changed = true;
+                    continue;
+                }
+                // 数量段是**结构**（`4x Mounts`、`3x pr Bty`、`2 tons`），逐个枚举会永远追不上，
+                // 交给规则；规则只认数字 + 固定单位/编制词，范围极窄，不会把型号吃进去。
+                string ruled = TranslateCommentQuantity(seg);
+                if (ruled != null)
+                {
+                    parts[i] = ruled;
+                    changed = true;
+                }
+            }
+            return changed ? string.Join(SEP, parts) : s;
+        }
+
+        /// <summary>
+        /// Comments 里的数量+单位/编制（`4x Mounts`、`3x pr Bty`、`2 tons`、`8k lb`）。
+        /// 返回 null 表示不匹配（调用方保持原文）。范围窄到只有数字 + 少数单位词，
+        /// 型号（`SA-6`、`Tu-16`）永远匹配不上。
+        /// </summary>
+        private static string TranslateCommentQuantity(string seg)
+        {
+            Match m = Regex.Match(seg, @"^(\d{1,3})x\s+Mounts?$", RegexOptions.IgnoreCase);
+            if (m.Success) return m.Groups[1].Value + "x 挂架";
+            m = Regex.Match(seg, @"^(\d{1,3})x\s+Pylons?$", RegexOptions.IgnoreCase);
+            if (m.Success) return m.Groups[1].Value + "x 挂架";
+            m = Regex.Match(seg, @"^(\d{1,3})x\s+pr\s+(Bty|Plt|Bn|Coy|Sec|Rgt)$", RegexOptions.IgnoreCase);
+            if (m.Success)
+            {
+                string unit = m.Groups[2].Value.ToLowerInvariant();
+                string zh = unit == "bty" ? "连" : unit == "plt" ? "排" : unit == "bn" ? "营"
+                          : unit == "coy" ? "连" : unit == "sec" ? "班" : "团";
+                return "每" + zh + " " + m.Groups[1].Value + "x";
+            }
+            m = Regex.Match(seg, @"^(\d{1,4})\s+tons?$", RegexOptions.IgnoreCase);
+            if (m.Success) return m.Groups[1].Value + " 吨";
+            m = Regex.Match(seg, @"^(\d{1,3})k\s+lb$", RegexOptions.IgnoreCase);
+            if (m.Success) return m.Groups[1].Value + "k 磅";
+            m = Regex.Match(seg, @"^(\d{1,4})\s*lb$", RegexOptions.IgnoreCase);
+            if (m.Success) return m.Groups[1].Value + " 磅";
+            return null;
+        }
+
+        /// <summary>`1992`、`1992-1996`、`2x`、`4k lb` 这类纯年份/数量段不进词表替换。</summary>
+        private static bool IsYearOrCount(string seg)
+        {
+            if (seg.Length == 0) return true;
+            bool hasDigit = false, hasLetter = false;
+            for (int i = 0; i < seg.Length; i++)
+            {
+                char c = seg[i];
+                if (c >= '0' && c <= '9') { hasDigit = true; continue; }
+                if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) hasLetter = true;
+                else if (c == ' ' || c == '-' || c == '/' || c == '.' || c == ',') continue;
+                else hasLetter = true;
+            }
+            if (!hasDigit) return false;
+            if (!hasLetter) return true;
+            // `2x`、`4k lb`、`12x`：数字开头的短数量段
+            return seg.Length <= 6 && (seg[0] >= '0' && seg[0] <= '9');
         }
 
         private static void TranslateDarkListView(Control ctrl)
@@ -5473,12 +5581,16 @@ namespace CMOLocalizer
             int idxExact = FindTopLevelKey(text, "exact");
             int idxPartial = FindTopLevelKey(text, "partial");
             int idxWords = FindTopLevelKey(text, "words");
+            int idxComments = FindTopLevelKey(text, "comments");
 
             List<SectionPos> sections = new List<SectionPos>();
             if (idxOffsets >= 0) sections.Add(new SectionPos { Name = "offsets", Pos = idxOffsets });
             if (idxExact >= 0) sections.Add(new SectionPos { Name = "exact", Pos = idxExact });
             if (idxPartial >= 0) sections.Add(new SectionPos { Name = "partial", Pos = idxPartial });
             if (idxWords >= 0) sections.Add(new SectionPos { Name = "words", Pos = idxWords });
+            // comments 排在文件最前：老引擎看不到它（第一个已知分区之前的内容会被忽略），
+            // 因此新词典仍能被旧引擎正常读取——向后兼容是硬要求。
+            if (idxComments >= 0) sections.Add(new SectionPos { Name = "comments", Pos = idxComments });
 
             sections.Sort((a, b) => a.Pos.CompareTo(b.Pos));
 
@@ -5489,7 +5601,8 @@ namespace CMOLocalizer
                 string block = text.Substring(start, end - start);
                 string name = sections[i].Name;
 
-                ParsePairs(block, name == "offsets", name == "exact", name == "partial", name == "words");
+                ParsePairs(block, name == "offsets", name == "exact", name == "partial",
+                           name == "words", name == "comments");
             }
         }
 
@@ -5536,7 +5649,8 @@ namespace CMOLocalizer
             return -1;
         }
 
-        private static void ParsePairs(string block, bool isOffset, bool isExact, bool isPartial, bool isWords)
+        private static void ParsePairs(string block, bool isOffset, bool isExact, bool isPartial,
+                                       bool isWords, bool isComments)
         {
             int p = 0;
             while (p < block.Length)
@@ -5648,7 +5762,8 @@ namespace CMOLocalizer
                 }
                 string val = sbVal.ToString();
 
-                if (key == "offsets" || key == "exact" || key == "partial" || key == "words") continue;
+                if (key == "offsets" || key == "exact" || key == "partial" || key == "words"
+                    || key == "comments") continue;
 
                 if (isOffset)
                 {
@@ -5674,6 +5789,10 @@ namespace CMOLocalizer
                 else if (isWords)
                 {
                     wordsMap[key] = val;
+                }
+                else if (isComments)
+                {
+                    commentsMap[key] = val;
                 }
             }
         }

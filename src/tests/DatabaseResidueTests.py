@@ -75,6 +75,16 @@ def check(ok: bool, message: str) -> None:
     print("PASS " + message, flush=True)
 
 
+# `db_comments.json` 是列表行尾 Comments 的分段词表（R72），**不是** DB 记录名源：
+# 它的键是 `Tank`/`Naval` 这类通用词，混进来会被当成「db 干净译名」误判单一事实源。
+NOT_RECORD_NAME_SOURCES = frozenset({"db_comments.json"})
+
+
+def record_name_sources() -> list[str]:
+    return [p.name for p in sorted(SRC.glob("db_*.json"))
+            if p.name not in NOT_RECORD_NAME_SOURCES]
+
+
 def load(name: str) -> dict:
     p = SRC / name
     if not p.is_file():
@@ -136,8 +146,8 @@ def find_debris(db: dict, sides: dict, debris: dict) -> list[str]:
 
 def check_single_source() -> None:
     db: dict[str, str] = {}
-    for p in sorted(SRC.glob("db_*.json")):
-        db.update(load(p.name))
+    for name in record_name_sources():
+        db.update(load(name))
     sides = side_sources()
 
     offenders = find_single_source_violations(db, sides)
@@ -154,8 +164,8 @@ def check_single_source() -> None:
 
 def check_fixed_debris_absent() -> None:
     db: dict[str, str] = {}
-    for p in sorted(SRC.glob("db_*.json")):
-        db.update(load(p.name))
+    for name in record_name_sources():
+        db.update(load(name))
     sides = side_sources()
 
     bad = find_debris(db, sides, FIXED_DEBRIS)

@@ -51,7 +51,7 @@ MAIN = DICT / "CMOLocalizer.json"
 # The engine's own scanner (scripts/verify_engine_parse.py) and the offset
 # injection path require exactly these top-level sections.  Any other producer
 # (see the legacy engines) must fail loudly rather than ship a foreign schema.
-TOP_LEVEL_SECTIONS = frozenset({"_meta", "offsets", "exact", "partial", "words"})
+TOP_LEVEL_SECTIONS = frozenset({"_meta", "comments", "offsets", "exact", "partial", "words"})
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from triage import classify, is_script_or_schema  # noqa: E402
@@ -83,7 +83,10 @@ def iter_source_maps():
     for p in sorted(SRC.glob("*.json")):
         if p.name in ("blacklist.json", "labels.json", "identifiers.json",
                       "force_offsets.json", "dlc_briefing_fixes.json",
-                      "term_replacements.json", "terms.json", "legacy_preserved.json"):
+                      "term_replacements.json", "terms.json", "legacy_preserved.json",
+                      # R72：Comments 词表走独立 `comments` 分区，绝不能并进 exact
+                      # （Tank/Mount/Group 与界面同名词条含义不同）
+                      "db_comments.json"):
             continue
         data = load(p)
         if isinstance(data, dict):
@@ -109,6 +112,29 @@ def load_terms() -> dict:
             continue
         terms[k] = v
     return terms
+
+
+def load_comments() -> dict:
+    """数据库列表行尾 Comments 专用词表（R72）。
+
+    单独成表，**不能**并进 `exact`：Comments 里的 `Tank`(油箱)、`Mount`(挂架)、
+    `Group`(编组) 与界面同名词条含义不同（界面上 Tank=坦克、Group=编队），
+    共用一张表会把界面译坏（实测冲突 47 条）。引擎只在 DB 列表行尾查这张表。
+    """
+    p = SRC / "db_comments.json"
+    if not p.is_file():
+        return {}
+    data = load(p)
+    if not isinstance(data, dict):
+        return {}
+    out = {}
+    for k, v in data.items():
+        if k.startswith("_") or not isinstance(v, str) or not v.strip():
+            continue
+        if not re.search(r"[一-鿿]", v):
+            continue          # 译文必须含中文，否则保留原文更安全
+        out[k] = v
+    return out
 
 
 def normalize_ellipsis(en: str, zh: str) -> str:
@@ -514,6 +540,8 @@ def build() -> dict:
 
     terms = load_terms()
     ordered_words = {k: terms[k] for k in sorted(terms)}
+    commented = load_comments()
+    ordered_comments = {k: commented[k] for k in sorted(commented)}
 
     ordered_offsets = {str(k): offsets[k] for k in sorted(offsets)}
     ordered_exact = {k: exact[k] for k in sorted(exact)}
@@ -533,6 +561,10 @@ def build() -> dict:
                 "n_words": len(ordered_words),
             },
         },
+        # `comments` 必须排在**第一个**已知分区之前：旧引擎的分区扫描只认
+        # offsets/exact/partial/words，它会忽略第一个已知分区之前的所有内容，
+        # 因此新词典仍能被旧引擎正常读取（向后兼容是硬要求，R72）。
+        "comments": ordered_comments,
         "offsets": ordered_offsets,
         "exact": ordered_exact,
         "partial": ordered_partial,

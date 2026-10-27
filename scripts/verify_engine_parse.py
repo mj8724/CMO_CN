@@ -118,7 +118,7 @@ def parse_pairs(block: str) -> dict[str, str]:
             else:
                 buf.append(ch)
                 pos += 1
-        if key in ("offsets", "exact", "partial", "words"):
+        if key in ("offsets", "exact", "partial", "words", "comments"):
             continue
         out[key] = "".join(buf)
     return out
@@ -126,9 +126,9 @@ def parse_pairs(block: str) -> dict[str, str]:
 
 def engine_load(text: str) -> dict[str, dict]:
     idx = {name: find_top_level_key(text, name)
-           for name in ("offsets", "exact", "partial", "words")}
+           for name in ("comments", "offsets", "exact", "partial", "words")}
     present = sorted(((pos, name) for name, pos in idx.items() if pos >= 0))
-    result = {"offsets": {}, "exact": {}, "partial": {}, "words": {}}
+    result = {"comments": {}, "offsets": {}, "exact": {}, "partial": {}, "words": {}}
     for i, (start, name) in enumerate(present):
         end = present[i + 1][0] if i + 1 < len(present) else len(text)
         result[name] = parse_pairs(text[start:end])
@@ -141,12 +141,12 @@ def main() -> int:
     loaded = engine_load(text)
 
     print(f"file size            : {len(text)} bytes")
-    for name in ("offsets", "exact", "partial", "words"):
+    for name in ("comments", "offsets", "exact", "partial", "words"):
         print(f"  {name:<8} json={len(truth.get(name, {})):<7} "
               f"engine={len(loaded[name])}")
 
     problems = []
-    for name in ("offsets", "exact", "partial", "words"):
+    for name in ("comments", "offsets", "exact", "partial", "words"):
         want = truth.get(name, {})
         got = loaded[name]
         if len(want) != len(got):
@@ -159,7 +159,7 @@ def main() -> int:
     naive_positions = {n: find_top_level_key_naive(text, n)
                        for n in ("offsets", "exact", "partial", "words")}
     real_positions = {n: find_top_level_key(text, n)
-                      for n in ("offsets", "exact", "partial", "words")}
+                      for n in ("comments", "offsets", "exact", "partial", "words")}
     hazard = [n for n in naive_positions
               if naive_positions[n] != real_positions[n]]
     if hazard:

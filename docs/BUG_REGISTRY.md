@@ -1868,3 +1868,89 @@ python scripts/perf_probe.py          # 游戏已在想定里
   `verify_regressions --static` 32/34（`R71` PASS；`R0` 因未部署到游戏目录而红，
   `R57` 为本机 `powershell.exe` 启动 60s 超时的环境抖动——单独执行该用例 31/31 OK）、
   `verify_routing` PASS、词典二次构建 sha256 一致（字节可复现）。
+
+---
+
+## R72 数据库列表行尾的 Comments 从未进入翻译通道（v4.2.5 后）
+
+- **来源**：用户 2026-10-28「做1和2」——先确认 `Data*.Comments` 到底会不会显示给玩家。
+
+- **可见性取证（这一步决定了后面 9,884 条要不要做）**
+  静态侧会给出**错误结论**：8 个 `assets/db_templates/*.html`（以及游戏自带的
+  `DB/Templates/*.html`）都**没有** Comments 字段，`Command.exe` 里 `Comments`
+  只出现 4 次（1 次是 MemberRecords 表结构、2 次是 INI 解析器成员名、1 次是版本资源）。
+  但实机截图 `evidence/live/dbviewer/103_pane_rendered.png` 的列表行把结论钉死：
+  | DB 记录 | `Comments` 列 | 截图行尾 |
+  |---|---|---|
+  | A-300-600ST Beluga | `5x, Super Guppy Replacement` | `… 1995, 5x, Super Guppy Replacement` |
+  | A.400M Atlas (ID 271) | `7x` | `… 2020, 7x` |
+  | A.400M Atlas (法国) | `-` | 无尾巴 |
+  | 3MS-1 Bison B | `-` | 无尾巴 |
+  ⇒ **Comments 显示在列表行尾**（由游戏混淆代码拼接，所以在模板/串表里查不到）。
+
+- **根因**：`TranslateDBListEntry` 只处理三件事——方括号里的平台子类型、
+  ` -- 国家 (兵种)`、一小撮导弹/platform 双语化；行尾 Comments 原样输出。
+  也就是说这批词条即使译好也显示不出来（同 R42 的「函数好但没接线」失效模式）。
+
+- **为什么必须单独建分区（本轮最重要的架构决定）**
+  不能把 Comments 词表并进 `exact`：Comments 里的
+  `Tank`(油箱)、`Mount`(挂架)、`Group`(编组) 与界面同名词条**含义不同**
+  （界面上 `Tank`=坦克、`Group`=编队），实测与现有 exact **冲突 47 条**，
+  一旦合并就会把界面译坏。因此新增顶层分区 `comments`：
+  1. 该分区**排在文件最前**（`_meta` 之后、`offsets` 之前）。
+     旧引擎的分区扫描只认 `offsets/exact/partial/words`，且**忽略第一个已知分区之前的内容**，
+     所以新词典仍能被旧引擎正常加载（向后兼容硬要求，`verify_engine_parse` 已加断言）。
+  2. 引擎只在 DB 列表行尾查这张表（`commentsMap`），界面词库零风险。
+
+- **修复**
+  1. `build_dict.py`：新增 `comments` 分区（源 `dict/src/db_comments.json`），
+     并在 `iter_source_maps()` 里**排除**该文件（否则它会同时污染 exact）。
+  2. 引擎：`ParseJsonSections/ParsePairs` 支持 `comments`；
+     `TranslateDBRowCommentsTail()` 先试「整段后缀命中」（Comments 自带逗号时只有整段才对），
+     再退化为「按逗号分段逐段查表」；`IsYearOrCount` / `TranslateCommentQuantity`
+     把 `1992`、`4x`、`4x Mounts`、`3x pr Bty`、`2 tons`、`8k lb` 这类结构式内容交给规则，
+     词表只放**词**。未命中一律原样保留，绝不拼词。
+  3. `dict/src/db_comments.json`：441 条人工核过的词表（国家、舰种缩写、兵装通用词、
+     卫星项目名、编制/功能短语）。
+  4. `scripts/db_comments_work.py`：待译清单 + 词表守卫（门禁 `--check`）。
+
+- **量化（`scripts/db_comments_work.py`，DB3K_519 + CWDB_519，35,849 行 / 15,731 个唯一值）**
+  | 指标 | 数值 |
+  |---|---|
+  | 完全覆盖（每个逗号段都能出中文） | 14,771 行 / 41.2% |
+  | 部分覆盖 | 7,270 行 / 20.3% |
+  | 未动 | 13,808 行 / 38.5% |
+  | 剩余待译段 | 12,308 个，其中**纯型号/代号 4,365 个**（保留原文，不算缺口）、含可译英文词 7,943 个 |
+
+- **回归**：`R72-static-db-comments`（接线 + 行为 + 负向：未命中不拆词、纯代号不污染）、
+  `R72-static-comments-table`（词表守卫）。两者都在 `--static` 里跑。
+
+---
+
+## R73 blacklist 把 96 条「已有干净译名」的想定舰名/基地名整段清掉了（v4.2.5 后）
+
+- **现象**：Desert Storm / Fail Safe / Red Tide 等想定的简报与编成表里，
+  `CG-55 Leyte Gulf`、`DD-963 Spruance`、`HMS Fearless [LPD]`、
+  `RFA Sir Lancelot [LSL]`、`Task Unit 70.01.01` 等**永远是英文**，
+  而 `dict/src/*_side.json` 里早就备好了中文（`CG-55 莱特湾号` 等）。
+
+- **根因（git 取证，不是猜测）**：`c053fa3`（2026-10-15）当时这些键的值是**句子碎片**
+  （`"CG-55 Leyte Gulf": "CG-55 Leyte Gulf巡洋舰担负护航。"`），
+  那轮把它们整批写进 `dict/src/blacklist.json` 止血（黑名单会从 exact/offsets 里 clear 掉）。
+  后续批次把值修成了干净译名，**但黑名单条目没有一起撤**，
+  于是"译好了却被自己清掉"。
+
+- **修复**：按「源里已有干净译文（含中文、无句读、不是"键+句子"）」判据解除 64 条，
+  黑名单 163 → 42（剩 37 条真 SQL/结构片段 + 5 条无干净译名：
+  `Task Pool` / `Shift + Ins` / `Be-12 Mail` / `LCVP #7050 [LCVP]` / `SourceAnnex…`）。
+  同时删掉 `red_tide_side.json` 里 `Banak` 的句子碎片条目，
+  让 `fail_safe_side.json` 的 `Banak基地` 胜出。
+
+- **验收（可复核）**
+  - `build_dict` 后 `offsets` 仍为 **8,756**（未新增一条池注入 ——
+    side 源不属于 `offset_safe_sources`，解除黑名单不可能引入偏移注入风险）；
+  - `exact` 70,667 → 70,731（+64，即解除的那些键）；
+  - 全库缺口 1,913 → 1,818（scenario 288 → 193；db 1,596、ui 29 不变）。
+  - 待办：实机 A/B 因本机 Steam 处于未登录状态（游戏启动即弹「Steam client Not running」
+    并退出）未能执行，**需用户登录 Steam 后补跑**；静态侧已证明这与既有已上线译名
+    （`HNoMS Bergen [DD]` 等同型串一直是译的）无差异。
