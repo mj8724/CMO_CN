@@ -3477,6 +3477,12 @@ namespace CMOLocalizer
             m = Regex.Match(seg, @"^(\d{1,3})\s+years?\s+in\s+service$", RegexOptions.IgnoreCase);
             if (m.Success) return "服役 " + m.Groups[1].Value + " 年";
 
+            // `Assoc w/ X` 家族（Associat­ed with）：电子战/声呐/数据链的配套关系，
+            // 系统性形态——前缀翻「配」，设备名（多为型号）原样保留。拼写变体 8 种都在实测清单里。
+            m = Regex.Match(seg,
+                @"^Asso[a-z]*\.?\s*w(?:ith|/|\.)?\s+(.+)$", RegexOptions.IgnoreCase);
+            if (m.Success) return "配 " + m.Groups[1].Value;
+
             // 数量+单位/编制（`4x Mounts`、`3x Bty`、`120 Rounds`）：逐个枚举永远追不上。
             // `Nx 连/排/营/团`、`N 发`、`Nx 发射管/导弹/箔条` —— Comments 里最常见的两种形态。
             // 只认**固定少数单位词**，锚定整段，型号（`Tu-16`、`SA-6`）永远匹配不上。

@@ -181,6 +181,18 @@ class DbListCommentsTests
         string rowModel = "Ftr D -- 苏联 (空军), 1980-1995, SA-6";
         Check("R72 模板不吃型号 SA-6", tr(rowModel).EndsWith("SA-6"), tr(rowModel));
 
+        // ---- 3d. `Assoc w/ X` 家族（8 种拼写变体，系统性形态）----
+        foreach (string assoc in new string[]
+                 {
+                     "Radar A -- 苏联 (海军), 1980-1995, Assoc w/ AN/ALQ-41",
+                     "Radar B -- 苏联 (海军), 1980-1995, Assoc. w/ SA-6",
+                     "Radar C -- 苏联 (海军), 1980-1995, Associated with HQ-9",
+                     "Radar D -- 苏联 (海军), 1980-1995, Assow w TB-16",
+                 })
+        {
+            Check("R72 Assoc 家族: " + assoc, tr(assoc).Contains("配 "), tr(assoc));
+        }
+
         // ---- 4b. 非 DB 行不得被行尾逻辑改写（TranslateDarkListView 对全部 DarkListView 生效）----
         string notDbRow = "Alpha Team, Export";
         Check("R72 非 DB 行（无 ' -- '）不改写", tr(notDbRow) == notDbRow, tr(notDbRow));
