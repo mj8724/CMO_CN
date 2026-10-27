@@ -74,6 +74,19 @@ def covered(seg: str, table: dict[str, str]) -> bool:
     return seg in table or is_year_or_count(seg) or is_quantity(seg)
 
 
+def write_freq(dbs: list[Path], freq: "list[tuple[str, int]]") -> Path:
+    """把频次表写到 build/comments_freq.json。
+
+    `db_comments_next.py` 靠它排序；以前这份文件没有生成者（手工留的），
+    一旦 build/ 被清理，`--limit` 会静默输出「待译段 0 个」并以 0 退出——
+    翻译循环在还有上千待译段时无提示断粮（R72 复查 F3）。
+    """
+    out = BUILD / "comments_freq.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(freq, ensure_ascii=False), encoding="utf-8")
+    return out
+
+
 def collect_comments(dbs: list[Path]) -> "list[tuple[str, int]]":
     import collections
     counts: collections.Counter[str] = collections.Counter()
@@ -177,6 +190,8 @@ def main() -> int:
         print("找不到 DB 文件；用 --dbs 指定", file=sys.stderr)
         return 1
     freq = collect_comments(dbs)
+    freq_path = write_freq(dbs, freq)
+    print(f"频次表: {freq_path}")
     total = sum(n for _, n in freq)
 
     done = partial = 0

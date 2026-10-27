@@ -145,7 +145,7 @@ class DbListCommentsTests
         string gotGuppy = tr(rowGuppy);
         Check("R72 带逗号 Comments 整段命中", gotGuppy.Contains("超级孔雀鱼替代"), gotGuppy);
 
-        string rowCancelled = "Su-27M [Flanker] -- 苏联 (空军), 1995, Cancelled, Su-27M";
+        string rowCancelled = "Su-27M [Flanker] -- 苏联 (空军), 1985-1995, Cancelled, Su-27M";
         string gotCancelled = tr(rowCancelled);
         Check("R72 行尾 Comments 命中词典", gotCancelled.Contains("已取消"), gotCancelled);
 
@@ -162,16 +162,28 @@ class DbListCommentsTests
         // ---- 3b. 数量+固定单位由规则处理（不靠词表枚举）----
         string rowTubes = "Ship X -- 苏联 (海军), 1980, 8x Tubes";
         Check("R72 数量规则 8x Tubes", tr(rowTubes).Contains("8x 发射管"), tr(rowTubes));
-        string rowRnds = "Gun Y -- 苏联 (陆军), 1970, 120 Rounds";
+        string rowRnds = "Gun Y -- 苏联 (陆军), 1970-1974, 120 Rounds";
         Check("R72 数量规则 120 Rounds", tr(rowRnds).Contains("120 发"), tr(rowRnds));
-        string rowBty = "Bty Z -- 苏联 (陆军), 1965, 3x Bty";
+        string rowBty = "Bty Z -- 苏联 (陆军), 1965-1968, 3x Bty";
         Check("R72 数量规则 3x Bty", tr(rowBty).Contains("3x 连"), tr(rowBty));
-        string rowTons = "Truck W -- 苏联 (陆军), 1965, 1.5 tons";
+        string rowTons = "Truck W -- 苏联 (陆军), 1965-1970, 1.5 tons";
         Check("R72 数量规则 1.5 tons", tr(rowTons).Contains("1.5 吨"), tr(rowTons));
 
         // ---- 4b. 非 DB 行不得被行尾逻辑改写（TranslateDarkListView 对全部 DarkListView 生效）----
         string notDbRow = "Alpha Team, Export";
         Check("R72 非 DB 行（无 ' -- '）不改写", tr(notDbRow) == notDbRow, tr(notDbRow));
+
+        // 含 ' -- ' 但**没有四位年份**的行同样不是 DB 行：通用词（Charlie/Active）
+        // 不许把它们误译（R72 复查 F2 的真实反例）。
+        foreach (string bogus in new string[]
+                 {
+                     "Alpha Team -- Bravo, Charlie, Delta",
+                     "Patrol -- Radar, Active",
+                     "Squadron -- Command, Charlie",
+                 })
+        {
+            Check("R72 非 DB 行（含 ' -- ' 但无年份）不改写: " + bogus, tr(bogus) == bogus, tr(bogus));
+        }
 
         // ---- 5. 前缀（名称/国家/兵种）仍走原有通道，不能被行尾逻辑破坏 ----
         string rowPlain = "3MS-1 Bison B [Bomber] -- 苏联 [-1991] (远程航空兵 [DA]), 1960-1985";
@@ -182,8 +194,10 @@ class DbListCommentsTests
         // 这条挡住「词表写对了但没进词典」：fixture 只证明行为，真实词库才证明接线到数据。
         load.Invoke(null, new object[] { dict });
         string realHit = tr("A-300-600ST Beluga -- 民用/商用机 (商业民航), 1995, 5x, Super Guppy Replacement");
+        // 断言**精确译文**：不许用「只要不含原文就算过」的兜底——那种写法对任何改写都恒真，
+        // 等于没测（R72 复查 F1：曾出现测试假绿）。
         Check("R72 真实词库把 Super Guppy Replacement 译出",
-              realHit.Contains("超级孔雀鱼替代") || !realHit.Contains("Super Guppy Replacement"), realHit);
+              realHit.EndsWith("5x、超级孔雀鱼替代"), realHit);
         string realCode = tr("A.400M Atlas -- 比利时 (空军), 2020, 7x");
         Check("R72 真实词库不动纯代号 7x", realCode.EndsWith("7x"), realCode);
         string realClean = tr("3MS-1 Bison B [Bomber] -- 苏联 [-1991] (远程航空兵 [DA]), 1960-1985");

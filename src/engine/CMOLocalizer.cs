@@ -3365,8 +3365,13 @@ namespace CMOLocalizer
             if (string.IsNullOrEmpty(s) || commentsMap.Count == 0) return s;
             // 只对**数据库查看器行格式**动手（`名称 -- 国家 (兵种), 年份, Comments`）。
             // TranslateDarkListView 对游戏里所有 DarkListView 都跑（兵种编成、任务列表…），
-            // 没有 ` -- ` 分隔的行不是 DB 行，行尾不该被当成 Comments 处理。
+            // 所以闸门要卡两个特征，缺一不可：
+            //   ① ` -- ` 分隔（DB 行才有）；
+            //   ② 行内必须出现**四位年份**（DB 行必有服役年份区间）。
+            // 只卡 ① 不够：`Alpha Team -- Bravo, Charlie, Delta` 这类非 DB 行也含 ` -- `，
+            // 词表里的通用词（Charlie=查理级、Active=主动）会把它误译（R72 复查 F2 实测）。
             if (s.IndexOf(" -- ", StringComparison.Ordinal) < 0) return s;
+            if (!Regex.IsMatch(s, @"\b(?:1[89]|20)\d{2}\b")) return s;
 
             // 先试整段后缀（Comments 自带逗号时只有整段才对得上），最长匹配优先。
             const string SEP = ", ";

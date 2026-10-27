@@ -63,7 +63,11 @@ def main() -> int:
     args = ap.parse_args()
 
     table = json.loads(TABLE.read_text(encoding="utf-8"))
-    freq = json.loads(FREQ.read_text(encoding="utf-8")) if FREQ.is_file() else []
+    if not FREQ.is_file():
+        print(f"缺少 {FREQ}——先跑 `python scripts/db_comments_work.py`（它会重建频次表）",
+              file=sys.stderr)
+        return 2
+    freq = json.loads(FREQ.read_text(encoding="utf-8"))
 
     counts: dict[str, int] = {}
     for value, rows in freq:

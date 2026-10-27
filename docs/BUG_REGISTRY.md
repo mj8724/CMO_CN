@@ -1942,6 +1942,32 @@ python scripts/perf_probe.py          # 游戏已在想定里
 
 - **尚未验证的一点（如实记录）**：`TranslateDarkListView` 对「已含中文」的行整体跳过，而本项是在 `TranslateDBListEntry` **同一次调用内**接上 Comments 的（所以不存在 R42 那种「函数好但被前面的含中文守卫挡住」的问题）。但如果将来有别的路径先给整行写入了中文，行尾步骤就不会再跑——实机验证时若发现某类行尾仍英文，先查这一点。实机 A/B 仍受本机 Steam 未登录阻塞（游戏启动即退出），部署已就绪，登录后可直接复核。
 
+### R72 复查修正（独立 reviewer 复核后，2026-10-28）
+
+独立 reviewer 按 4e57dd7 复验后给出 3 条发现，均已修并补了能红的用例：
+
+1. **[HIGH] 端到端用例假绿**：原断言是
+   `realHit.Contains("超级孔雀鱼替代") || !realHit.Contains("Super Guppy Replacement")`，
+   而 `5x, Super Guppy Replacement` 当时根本不在词表里 ⇒ 右半边恒真 ⇒ 换成任何输入都能过，
+   台账里「译出超级孔雀鱼替代」的验收从未真正被执行。
+   **修**：把该真实 DB 值加进词表，断言改成**精确译文** `EndsWith("5x、超级孔雀鱼替代")`。
+2. **[MEDIUM-HIGH] 形态闸门太松，会误伤非 DB 列表**：`TranslateDarkListView` 对游戏里
+   **所有** DarkListView 生效，原来只卡「含 ` -- `」，而 `Alpha Team -- Bravo, Charlie, Delta`
+   这类非 DB 行也含 ` -- `，词表里的通用词（`Charlie`=查理级、`Active`=主动）会把它误译。
+   **修**：闸门加第二个特征——行内必须出现**四位年份**（DB 行必有服役年份区间）。
+   补 3 条负向用例（含 ` -- ` 但无年份的行必须原样返回）。
+3. **[MEDIUM] `comments_freq.json` 无生成者**：`db_comments_next.py` 读它排序，
+   但 `db_comments_work.py` 从不写它。`build/` 一清理，`--limit` 会静默输出「待译段 0 个」
+   并以 0 退出，翻译循环无提示断粮。
+   **修**：`db_comments_work.py` 负责写出频次表；`db_comments_next.py` 缺文件时明确报错并返回 2。
+
+复查确认无问题的部分（原样记录）：五分区边界逐字节复刻校验一致、两分区译文路径在全部
+15,731 个真实 Comments 值上只在行尾命中、黑名单解除未引入任何池注入（offsets 仍 8,756）、
+`verify_engine_parse` 与引擎镜像一致。
+
+*（顺带修掉一个同源缺陷：年份闸门最初用 `@"…"` 写进 C# 时被脚本转义成了退格字符，
+正则在实机上永不匹配——现已改为正确的逐字字符串，并由上面的负向用例守住。）*
+
 - **回归**：`R72-static-db-comments`（接线 + 行为 + 端到端 + 负向：未命中不拆词、
   纯代号不污染；端到端用**真实词库**跑真实 DB 行 `A-300-600ST Beluga … 5x, Super Guppy
   Replacement` → 译出「超级孔雀鱼替代」）、`R72-static-comments-table`（词表守卫 +
