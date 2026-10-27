@@ -1968,6 +1968,9 @@ python scripts/perf_probe.py          # 游戏已在想定里
 *（顺带修掉一个同源缺陷：年份闸门最初用 `@"…"` 写进 C# 时被脚本转义成了退格字符，
 正则在实机上永不匹配——现已改为正确的逐字字符串，并由上面的负向用例守住。）*
 
+**独立 reviewer 二次复验（HEAD 27ff362）：verdict = pass。** 三项修复均确认落地、
+用例真实能红（改错期望 → 用例红、rc=1）；五分区边界逐字节一致、offsets 恒为 8756、
+无新问题。证据：`agent://08261963-674a-4702-a0b3-d21ce97da18a`。
 - **回归**：`R72-static-db-comments`（接线 + 行为 + 端到端 + 负向：未命中不拆词、
   纯代号不污染；端到端用**真实词库**跑真实 DB 行 `A-300-600ST Beluga … 5x, Super Guppy
   Replacement` → 译出「超级孔雀鱼替代」）、`R72-static-comments-table`（词表守卫 +
