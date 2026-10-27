@@ -150,9 +150,10 @@ def check_normalized_conflicts(table: dict[str, str]) -> list[str]:
     for k, v in table.items():
         # 只抹掉空白/下划线与**首尾**标点：`-(Armoured Personel Carrier)` 的前导 `-`
         # 是有意义的形态标记，抹掉就会把两条不同的段误判成同一段的两种译法。
-        # 只抹掉**内部**空白/连字符/下划线（`Poseidon C-3` 与 `Poseidon C3` 应判为同一段），
-        # 但保留开头的 `-`/`(` 这类形态标记（`-(Armoured ...)` 与 `(Armoured ...)` 是不同段）。
-        key = re.sub(r"(?<=.)[\s\-_/]+", "", k.strip()).lower()
+        # 只抹掉**内部**空白/下划线与首尾标点：`Poseidon C-3` 与 `Poseidon C3` 应判同段。
+        # 连字符与斜杠**不能**抹：`Victor I/II`（I、II 批次）与 `Victor III`（III 级）是
+        # 不同的批次，抹掉 `/` 会把两者撞成同一个键、误报冲突（实测踩过）。
+        key = re.sub(r"[\s_]+", "", k.strip().strip("-—–·,.;:")).lower()
         groups[key][k] = v
     out = []
     for norm, variants in groups.items():
