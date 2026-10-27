@@ -203,6 +203,7 @@
 | `dict/src/db_record_names.json` | 装备/设施记录名 |
 | `dict/src/db_descriptions.json` | 数据库查看器描述正文（**最大的单个源**） |
 | `dict/src/db_platforms_facilities.json` | 四类高原生平台/设施名 |
+| `dict/src/db_comments.json` | 数据库列表**行尾 Comments** 的分段词表（R72）。落进词典的独立 `comments` 分区，**绝不并进 `exact`**：`Tank`(油箱)/`Mount`(挂架)/`Group`(编组) 与界面同名词条含义不同，合并会译坏界面 |
 | `dict/src/db_viewer_html_terms.json` | 数据库查看器 HTML 模板术语 |
 | → 目录 | `assets/db_templates/*.html` 是 8 个 HTML 模板（见 §10） |
 
