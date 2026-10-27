@@ -64,3 +64,4 @@
 {"type":"cli","id":"CLI-1792895773009-1","timestamp":"2026-10-25T02:36:13.009Z","command":"load","args":{"type":"knowhow","id":"knowhow-TIP-20261017-2d2b195ae8ca0f88-003"}}
 {"type":"cli","id":"CLI-1792897756151-1","timestamp":"2026-10-25T03:09:16.151Z","command":"load","args":{"type":"knowhow","id":"knowhow-tip-20261017-276b91a8d7317404"}}
 {"type":"cli","id":"CLI-1792914814856-1","timestamp":"2026-10-25T07:53:34.856Z","command":"load","args":{"type":"spec","id":"spec:project:learnings-001"}}
+{"type":"cli","id":"CLI-1793100057676-1","timestamp":"2026-10-27T11:20:57.676Z","command":"load","args":{"type":"knowhow","id":"knowhow-tip-20261015-b3e6c7fed2efa60d"}}
