@@ -144,10 +144,15 @@ def check_quality(entries: dict[str, str], label: str, pool_vals: set[str]) -> N
             fail(f"{label}[{src!r}]={dst!r} lost leading/trailing whitespace")
         # Fragments such as "(Type:" are intentionally unbalanced; compare the
         # *difference* in balance instead of demanding a closed pair.
-        for o, c in BRACKETS.items():
-            if (src.count(o) - src.count(c)) != (dst.count(o) - dst.count(c)):
-                fail(f"{label}[{src!r}]={dst!r} bracket balance changed for {o}{c}")
-                break
+        # 同时只比「不平衡度」，不逐字形比：中文译文把 ASCII 括号写成全角是正常写法
+        # （R76：`x MQ-4C Triton UAV)` → `×MQ-4C“特里同”无人机）`，逐字形会误报）。
+        _open = sum(src.count(o) for o in BRACKETS)
+        _close = sum(src.count(c) for c in BRACKETS.values())
+        _dopen = sum(dst.count(o) for o in BRACKETS)
+        _dclose = sum(dst.count(c) for c in BRACKETS.values())
+        if (_open - _close) != (_dopen - _dclose):
+            fail(f"{label}[{src!r}]={dst!r} bracket balance changed "
+                 f"({_open - _close} -> {_dopen - _dclose})")
         if src.count("\n") != dst.count("\n"):
             fail(f"{label}[{src!r}] line-count changed ({src.count(chr(10))}"
                  f" -> {dst.count(chr(10))})")

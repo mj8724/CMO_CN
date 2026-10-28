@@ -445,6 +445,7 @@
 | `src/tests/DictionarySourceTests.py` | 词库完整字节重建、产物独立性、源删除不回生及污染注入负向测试；只写临时目录 | `R58-static-dictionary-source` |
 | `src/tests/DbListCommentsTests.cs` | 数据库列表行尾 Comments 接线与行为（R72）：接线到位、整段优先命中、未命中不拆词、纯代号不产生中文污染 | `R72-static-db-comments` |
 | `src/tests/DatabaseResidueTests.py` | 数据库记录名三道判据：场景源不得用句子碎片覆盖 db_* 干净译名、已修脏值不得回生、残留改写脚本不得按词污染型号（均带负向用例）| `R71-static-db-residue` |
+| `src/tests/SanitizeGuardTests.py` | R76 构建期守卫双向回归：分号句尾散文 / 番号后括号 / 全角括号互写不得误杀；真代码与括号结构差仍拦住 | `R76-static-sanitize-guards` |
 | `src/tests/README_WebViewTranslation.md` | 上面 WebView 系列测试的说明 | — |
 | `src/tests/search_methods.cs`、`src/tests/test_db_load.cs` | 方法搜索 / DB 加载试验（历史） | — |
 | `src/tests/README_MapTileServer.md` | 瓦片服务测试说明 | — |

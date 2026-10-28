@@ -264,6 +264,9 @@ def _run_ui_scheduling_and_report_gates(r: Runner) -> None:
     py_case("R71-static-db-residue",
             "R71 数据库记录名：场景源不得覆盖 db_* 干净译名、句子碎片不得回生、残留改写不得污染型号",
             "src/tests/DatabaseResidueTests.py")
+    py_case("R76-static-sanitize-guards",
+            "R76 构建期守卫不得误杀自然语言：分号句尾/番号后括号/全角括号互写放行，代码与结构差仍拦住",
+            "src/tests/SanitizeGuardTests.py")
 
 
 def run_weapons_diagnostic(r: Runner) -> None:

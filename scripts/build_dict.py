@@ -69,6 +69,13 @@ HAN = re.compile(r"[\u4e00-\u9fff]")
 HAN_GAP = re.compile(r"(?<=[\u4e00-\u9fff])[ \t]+(?=[\u4e00-\u9fff])")
 BRACKET_PAIRS = ("()", "[]", "（）：", "【】", "〔〕")
 BRACKET_PAIRS = (("(", ")"), ("[", "]"), ("（", "）"), ("【", "】"), ("〔", "〕"))
+# 中文译文把 ASCII 括号写成全角是完全正常的写法（`Bomb Wing) (B-2A)` →
+# `轰炸机联队）（B-2A）`），但逐形状比对会把这当成结构差而**丢掉整条译文**（R76）。
+# 真正的契约是「**括号不平衡度**不变」：全角/ASCII 互写、以及译文为澄清补一对
+# 成对括号，都不改变不平衡度；而源缺括号（`HMS Brazen (F 88`）/译文多补单个
+# 括号（`AAA Plt (Korkut (…` → 只留一对）会改变不平衡度，仍丢弃。
+OPEN_BRACKETS = "([（【〔"
+CLOSE_BRACKETS = ")]）】〕"
 
 
 def load(path: Path):
@@ -177,9 +184,13 @@ def sanitize(en: str, zh: str, allow_sensitive: bool = False) -> str | None:
     if not HAN.search(zh):
         return None
     # Bracket balance must match the source's balance.
-    for o, c in BRACKET_PAIRS:
-        if (en.count(o) - en.count(c)) != (zh.count(o) - zh.count(c)):
-            return None
+    # 按**不平衡度**而不是逐形状比对（见 OPEN_BRACKETS 注释）。
+    en_open = sum(en.count(c) for c in OPEN_BRACKETS)
+    zh_open = sum(zh.count(c) for c in OPEN_BRACKETS)
+    en_close = sum(en.count(c) for c in CLOSE_BRACKETS)
+    zh_close = sum(zh.count(c) for c in CLOSE_BRACKETS)
+    if (en_open - en_close) != (zh_open - zh_close):
+        return None
     # Line structure is part of the string contract.
     if en.count("\n") != zh.count("\n"):
         return None

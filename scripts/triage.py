@@ -89,10 +89,20 @@ ERROR_PROBE = re.compile(r"^Error at\b")
 XML_FRAGMENT = re.compile(r"^\s*</?[A-Za-z_]|</[A-Za-z_]+>\s*$|<[A-Za-z_]+>.*</[A-Za-z_]+>\s*$")
 HTML_FRAGMENT = re.compile(r"<\s*(td|tr|table|br|b|i|u|font|span|div|p)\b", re.I)
 CODE_EXPR = re.compile(r"(==|!=|&&|\|\||=>|::|;\s*$|\bnull\b|\bvoid\b|\bstring\b\s*\()")
+# `;` 结尾的**自然语言句子**不是代码：想定简报里的
+# `There is risk that North Korea will launch an immediate ground attack;` 被
+# `;\s*$` 当成代码/模式串丢掉，玩家永远看不到译文（R76）。
+# 只对「有虚词、短英文词成句」的串豁免，`int i;`、`x = 1;` 仍算代码。
+NATURAL_WORDS = re.compile(
+    r"\b(the|and|of|to|is|are|was|were|will|would|we|our|there|that|this|with|for|not|from|be|has|have|may|can)\b",
+    re.I)
 # 编译后源码字面量的碎片（枚举/switch 标签表里被截出来的），例如 ", 'Aircraft', '"。
 # 它不是界面文案，而偏移池注入会改坏游戏代码里的字面量（R31 实证：偏移 280066）。
 CODE_LITERAL_FRAGMENT = re.compile(r"^\s*[,']\s*'[^']{0,40}'\s*,?\s*'?\s*$")
-MEMBER_CALL = re.compile(r"\.\w+\s*\(|\w+\s*\(\s*\)\s*$")
+MEMBER_CALL = re.compile(r"\.[A-Za-z_]\w*\s*\(|\w+\s*\(\s*\)\s*$")
+# `.003 (` 这类**小数/部队番号后面的括号**不是成员调用：标识符必以字母/下划线开头。
+# 否则 `Abeche: Escadron EC 01.003 (Mirage 2000D)`、`Task Unit 544.01.06 (Based at …)`
+# 会被当成代码丢掉（R76）。
 # Executable script text.  Injecting a translation over one of these corrupts the
 # engine exactly the way translating a Lua sandbox keyword did before.
 SCRIPT_CODE = re.compile(
@@ -248,6 +258,24 @@ def classify(s: str) -> str:
     return "internal"
 
 
+def _code_expr_hit(t: str) -> bool:
+    """`CODE_EXPR` 命中是否为真代码（R76）。
+
+    只有「句尾分号」一种命中时，**自然语言句子**不算代码：想定简报里的
+    `There is risk that North Korea will launch an immediate ground attack;`
+    曾因 `;\s*$` 被当作模式串丢弃，玩家永远看不到译文。
+    仍算代码的：`int i;`、`x = 1;`（无虚词、无成句）、以及带 `==`/`::`/`null` 等任何其它命中。
+    """
+    hits = [m.group(0).strip() for m in CODE_EXPR.finditer(t)]
+    if not hits:
+        return False
+    if any(h != ";" for h in hits):
+        return True
+    if NATURAL_WORDS.search(t) and len(re.findall(r"[A-Za-z]{2,}", t)) >= 5:
+        return False
+    return True
+
+
 def is_script_or_schema(s: str) -> bool:
     """True when translating this string at source level could corrupt the engine.
 
@@ -267,7 +295,7 @@ def is_script_or_schema(s: str) -> bool:
                 or is_sql or LUA_IDENT.search(t)
                 or CONTROL_PREFIX.match(t) or UNDERSCORE_IDENT.match(t)
                 or DOTTED.match(t) or NAMESPACE_LIKE.match(t)
-                or MEMBER_CALL.search(t) or CODE_EXPR.search(t)
+                or MEMBER_CALL.search(t) or _code_expr_hit(t)
                 or ERROR_PROBE.match(t) or LOWER_CAMEL.match(t)
                 or DESIGNER_FIELD.search(t) or t.startswith(CODE_PREFIXES)
                 or (SQL_WEAK.search(t) and SQL_COLUMNISH.search(t)))
