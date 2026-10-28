@@ -3285,6 +3285,9 @@ namespace CMOLocalizer
         {
             if (string.IsNullOrEmpty(t)) return t;
             string s = t;
+            // `名称 -- 国家 (兵种), …` 是 DB 行独有的结构，第 2 步命中即置位。
+            // 行尾逻辑靠它区分真 DB 行与恰好含 ` -- ` 的普通列表行（R75）。
+            bool structuredRow = false;
 
             // 1. 替换方括号内的平台子类型 [Bomber], [Fighter], [Tanker] 等
             s = Regex.Replace(s, @"\[([A-Za-z0-9\s/\-]+)\]", m =>
@@ -3309,6 +3312,7 @@ namespace CMOLocalizer
                     string countryStr = rightPart.Substring(0, parenIdx).Trim();
                     string trCountry = TranslateString(countryStr);
                     string rest = rightPart.Substring(parenIdx);
+                    string restBefore = rest;
 
                     rest = rest.Replace("(Air Force)", "(空军)")
                                .Replace("(Navy)", "(海军)")
@@ -3324,7 +3328,24 @@ namespace CMOLocalizer
                                .Replace("(Commercial)", "(商业民航)")
                                .Replace("(Border Guard)", "(边防部队)")
                                .Replace("(Royal Air Force)", "(皇家空军)")
-                               .Replace("(Royal Navy)", "(皇家海军)");
+                               .Replace("(Royal Navy)", "(皇家海军)")
+                               // 兵种在原引擎里只有这一张写死的替换表，词库 exact 里的
+                               // 军种名永远进不来（R75：实机 24 行 `(IRGC Aerospace Force)`
+                               // `(Air National Guard)` `(Royal Army)` 一直原样显示）。
+                               .Replace("(IRGC Aerospace Force)", "(伊斯兰革命卫队航天部队)")
+                               .Replace("(IRGC Ground Forces)", "(伊斯兰革命卫队地面部队)")
+                               .Replace("(IRGC Navy)", "(伊斯兰革命卫队海军)")
+                               .Replace("(Air National Guard)", "(空军国民警卫队)")
+                               .Replace("(Ground Self-Defense Force)", "(陆上自卫队)")
+                               .Replace("(National Guard)", "(国民警卫队)")
+                               .Replace("(Royal Army)", "(皇家陆军)")
+                               .Replace("(Civilian)", "(民用)")
+                               .Replace("(Air Defence Troops [PVO])", "(国土防空军 [PVO])")
+                               .Replace("(PLANAF)", "(海军航空兵 [PLANAF])");
+
+                    // 兵种命中写死表才置位：表外的行（含显式兵种的普通列表行）
+                    // 仍回到「必须有年份」的旧闸门，不因此变宽（R75）。
+                    structuredRow = rest != restBefore;
 
                     rightPart = trCountry + rest;
                 }
@@ -3348,7 +3369,7 @@ namespace CMOLocalizer
 
             // 4. 行尾的 Comments（型号批次/年代/备注）：游戏把它拼在最后一个年份之后，
             //    实机形态 `A-300-600ST Beluga -- 民用/商用机 (商业民航), 1995, 5x, Super Guppy Replacement`。
-            s = TranslateDBRowCommentsTail(s);
+            s = TranslateDBRowCommentsTail(s, structuredRow);
 
             return s;
         }
@@ -3360,7 +3381,7 @@ namespace CMOLocalizer
         /// 命中就整段替换并停止（最长优先），未命中则原样返回。
         /// 只有译文含中文才采信——避免把纯代号段拿去组合翻译产出垃圾串。
         /// </summary>
-        private static string TranslateDBRowCommentsTail(string s)
+        private static string TranslateDBRowCommentsTail(string s, bool structuredRow)
         {
             if (string.IsNullOrEmpty(s) || commentsMap.Count == 0) return s;
             // 只对**数据库查看器行格式**动手（`名称 -- 国家 (兵种), 年份, Comments`）。
@@ -3370,8 +3391,12 @@ namespace CMOLocalizer
             //   ② 行内必须出现**四位年份**（DB 行必有服役年份区间）。
             // 只卡 ① 不够：`Alpha Team -- Bravo, Charlie, Delta` 这类非 DB 行也含 ` -- `，
             // 词表里的通用词（Charlie=查理级、Active=主动）会把它误译（R72 复查 F2 实测）。
+            // ② 真 DB 行必有四位年份——但**不是所有 DB 行都有年份**：`AB.412EP -- 土耳其
+            // (海岸警卫队), 14x, Agusta-Bell`、`Ababil-3 UAV … -- 伊拉克 (陆军), IS Unkn`
+            // 这类无年份行被年份闸门整行挡住，词表里明明有译文却不生效（R75 实测 11 行）。
+            // 故年份之外再认 **DB 行结构**（`名称 -- 国家 (兵种)`，由第 2 步判定）。
             if (s.IndexOf(" -- ", StringComparison.Ordinal) < 0) return s;
-            if (!Regex.IsMatch(s, @"\b(?:1[89]|20)\d{2}\b")) return s;
+            if (!structuredRow && !Regex.IsMatch(s, @"\b(?:1[89]|20)\d{2}\b")) return s;
 
             const string SEP = ", ";
             string[] parts = s.Split(new string[] { SEP }, StringSplitOptions.None);
@@ -3516,9 +3541,11 @@ namespace CMOLocalizer
             m = Regex.Match(seg, @"^(\d{1,4})\s+(Rnds?|rounds?|Rounds?|rnds?)$", RegexOptions.IgnoreCase);
             if (m.Success) return m.Groups[1].Value + " 发";
             // `Nx Ordered/Planned/Lost/…`（交付/损失/出售类动词）——Comments 里成批出现。
-            // 数量允许区间写法（实机行里出现过 `40-75x Planned`、`255x Planned`）。
+            // 数量允许区间写法（实机行里出现过 `40-75x Planned`、`255x Planned`）；
+            // 动词后面允许跟年份（`1x lost 2001`）或引号年份（`8x Loaned '24`）——
+            // 实机 2026-10-28 导出里这类写法成批出现。
             m = Regex.Match(seg,
-                @"^(\d{1,4}(?:\s*[-–]\s*\d{1,4})?)x\s+(Ordered|Planned|Lost|Sold|Leased|Loaned|Captured|Delivered|Built|Laid Down|Sunk|Crashed|Transferred|Claimed|Retired)$",
+                @"^(\d{1,4}(?:\s*[-–]\s*\d{1,4})?)x\s+(Ordered|Planned|Lost|Sold|Leased|Loaned|Captured|Delivered|Built|Laid Down|Sunk|Crashed|Transferred|Claimed|Retired)(?:\s+(\d{4}|'\d{2}))?$",
                             RegexOptions.IgnoreCase);
             if (m.Success)
             {
@@ -3528,8 +3555,17 @@ namespace CMOLocalizer
                           : v == "captured" ? "缴获" : v == "delivered" ? "交付" : v == "built" ? "建成"
                           : v == "laid down" ? "开工" : v == "sunk" ? "沉没" : v == "crashed" ? "坠毁"
                           : v == "transferred" ? "转隶" : v == "claimed" ? "声称" : "退役";
-                return m.Groups[1].Value + "x " + zh;
+                string year = m.Groups[3].Value;
+                if (year.Length == 0) return m.Groups[1].Value + "x " + zh;
+                if (year[0] == '\'') return m.Groups[1].Value + "x " + zh + " ('" + year.Substring(1) + ")";
+                return m.Groups[1].Value + "x " + zh + " " + year;
             }
+            // `96x in '26`（未来交付计划）：数量 + in + 引号年份
+            m = Regex.Match(seg, @"^(\d{1,4})x\s+in\s+'(\d{2})$", RegexOptions.IgnoreCase);
+            if (m.Success) return m.Groups[1].Value + "x（'" + m.Groups[2].Value + " 年）";
+            // `Upgraded to AH-1F` / `Upgraded to D Standard`：固定句首模板，尾部保留
+            m = Regex.Match(seg, @"^Upgraded\s+to\s+(.+)$", RegexOptions.IgnoreCase);
+            if (m.Success) return "升级至 " + m.Groups[1].Value;
             // `Nx 发射管/炮管/深水炸弹/导弹/箔条/齐射/阵地/编组/发射装置`
             m = Regex.Match(seg,
                 @"^(\d{1,3})x\s+(Tubes?|Tube|Barrels?|DCs?|Missiles?|Chaff|Salvos?|Sites?|Groups?|Lnchrs?|Launchers?)$",

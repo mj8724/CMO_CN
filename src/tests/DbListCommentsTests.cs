@@ -199,6 +199,37 @@ class DbListCommentsTests
         Check("R72 交付类动词 2x Lost", tr("Tank B -- 苏联 (陆军), 1970-1990, 2x Lost").Contains("2x 损失"),
               tr("Tank B -- 苏联 (陆军), 1970-1990, 2x Lost"));
 
+        // ---- 3g. R75：无年份的 DB 行（兵种命中写死表）也要译行尾 ----
+        // 实机 `AB.412EP -- Turkey (Coast Guard), 14x, Agusta-Bell` 这类行**没有四位年份**，
+        // 原年份闸门把整行挡住——词表里有译文也不生效（R75 实测 11 行）。
+        // 注意：输入必须是**英文原文行**（运行时 TranslateDarkListView 对含中文的项直接跳过），
+        // 用导出里已部分汉化的行测会把闸门问题测成假红。
+        string rowNoYear = "AB.412EP -- Turkey (Coast Guard), 14x, Agusta-Bell";
+        Check("R75 无年份 DB 行仍译行尾", tr(rowNoYear).EndsWith("阿古斯塔-贝尔"), tr(rowNoYear));
+        string rowIsUnkn = "Ababil-3 UAV [Mod. Seeker 2D Copy] -- Iraq (Army), IS Unkn";
+        Check("R75 无年份 DB 行 IS Unkn", tr(rowIsUnkn).Contains("在役状态不明"), tr(rowIsUnkn));
+        // 兵种写死表外的新军种（R75：实机 24 行长期原样显示）
+        string rowIrgc = "Ababil-3 UAV -- Iran (IRGC Aerospace Force), 2008, AB-3";
+        Check("R75 兵种 IRGC Aerospace Force", tr(rowIrgc).Contains("(伊斯兰革命卫队航天部队)"), tr(rowIrgc));
+        string rowAng = "A-7D Corsair II -- United States (Air National Guard), 1976";
+        Check("R75 兵种 Air National Guard", tr(rowAng).Contains("(空军国民警卫队)"), tr(rowAng));
+        // 负向：非 DB 行（既无年份、兵种也不在表内）仍然不得改写
+        // 注意不能直接断言整行相等：第 2 步的国家翻译本来就会把 Bravo 译成布拉沃，
+        // 要断言的是**行尾 Comments 段没被翻译**（Charlie 不得变查理）。
+        string notDb2 = "Alpha Team -- Bravo (Charlie), Delta";
+        Check("R75 非 DB 行（兵种表外）不改写", !tr(notDb2).Contains("查理"), tr(notDb2));
+
+        // ---- 3h. R75：交付/损失类动词带年份的写法（实机成批）----
+        Check("R75 规则 1x lost 2001", tr("Tank C -- 苏联 (陆军), 1985, 1x lost 2001").Contains("1x 损失 2001"),
+              tr("Tank C -- 苏联 (陆军), 1985, 1x lost 2001"));
+        Check("R75 规则 8x Loaned '24", tr("Helo E -- 波兰 (陆军), 2024, 8x Loaned '24").Contains("8x 租用 ('24)"),
+              tr("Helo E -- 波兰 (陆军), 2024, 8x Loaned '24"));
+        Check("R75 规则 96x in '26", tr("Helo F -- 波兰 (陆军), 2024, 96x in '26").Contains("96x（'26 年）"),
+              tr("Helo F -- 波兰 (陆军), 2024, 96x in '26"));
+        Check("R75 规则 Upgraded to AH-1F",
+              tr("Helo G -- 巴基斯坦 (陆军), 1986, Upgraded to AH-1F").Contains("升级至 AH-1F"),
+              tr("Helo G -- 巴基斯坦 (陆军), 1986, Upgraded to AH-1F"));
+
         // ---- 3f. 实机取到的真实行（2026-10-28 实机 DB_LIST_TEXT 导出）----
         // 这些是玩家真正看到的行；计划/交付类段必须被规则吃掉。
         string realA29 =
