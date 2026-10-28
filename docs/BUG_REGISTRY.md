@@ -1983,6 +1983,39 @@ python scripts/perf_probe.py          # 游戏已在想定里
   Replacement` → 译出「超级孔雀鱼替代」）、`R72-static-comments-table`（词表守卫 +
   覆盖率阈值）。两者都在 `--static` 里跑。
 
+### R72 实机验收（2026-10-28 07:30，用户登录 Steam 后补跑）
+
+游戏正常启动（不再弹「Steam client Not running」）。按实机证据补记：
+
+**① 列表行尾 Comments 已中文化（正向）**
+新增只读探针 `DB_LIST_TEXT`（直接读虚拟列表的 `item.Text`——引擎写回界面、玩家真正
+看到的文本）导出 500 行，实机形态：
+- `A.300-600ST Beluga [大白鲸] -- 民用/商用机 (商业民航), 1995, 5x、超级孔雀鱼替代`
+  （开工前是 `5x, Super Guppy Replacement`）
+- `A.400M Atlas … 2020, 7x`：纯代号原样保留；`Comments='-'` 的行没有尾巴。
+截图：`evidence/live/r72/comments_tail_check.png`；导出文本：`evidence/live/r72/*.txt`。
+
+**② 黑名单解封已生效（R73 正向）**
+`XLATE` 实机返回：`CG-55 Leyte Gulf` → `CG-55 莱特湾号`、`DD-963 Spruance` →
+`DD-963 斯普鲁恩斯号`、`HMS Fearless [LPD]` → `英国海军“无畏”号[LPD]`、
+`Task Unit 70.01.01` → `第70.01.01特混小队`；仍在黑名单的 `Task Pool`、`Shift + Ins`
+按预期保持英文。
+
+**③ 实机抓到 2 个静态用例没覆盖的代码缺陷（已修 + 落成永久用例）**
+1. **整段命中后早返回**：`A-29B … 2018, 6x Planned, 4x Delivered, 1x Lost 2020` 里
+   `1x Lost 2020` 整段命中词表就直接 `return`，导致同行**前面**的 `6x Planned`、
+   `4x Delivered` 永远不译。改为「整段命中只标记该范围，再继续逐段处理它前面的部分」。
+2. **数量区间不在规则内**：实机 `A/F-117X Sea Hawk … 40-75x Planned` 的 `40-75x`
+   不被 `Nx` 规则匹配。已支持 `N-Mx`。
+
+修复后实机复核：`6x 计划, 4x 交付, 2020 年损失 1x`、`40-75x 计划`、
+`阿古斯塔-贝尔, 1978 年前编号 Z.18`。两条都写进 `DbListCommentsTests`（样本取自
+实机导出，不是构造输入）。
+
+**④ 量级（实机 500 行，Aircraft 类型）**：行尾含中文 142 / 500 = 28.4%。
+低于词表估算（88.8%）是因为 Aircraft 的 Comments 大量是纯型号/代号段
+（`AN/ARC-210`、`LAU-88`、`Pave Penny`），按约定保留原文，不计入待译。
+
 ---
 
 ## R73 blacklist 把 96 条「已有干净译名」的想定舰名/基地名整段清掉了（v4.2.5 后）
