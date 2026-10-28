@@ -199,6 +199,16 @@ class DbListCommentsTests
         Check("R72 交付类动词 2x Lost", tr("Tank B -- 苏联 (陆军), 1970-1990, 2x Lost").Contains("2x 损失"),
               tr("Tank B -- 苏联 (陆军), 1970-1990, 2x Lost"));
 
+        // ---- 3f. 实机取到的真实行（2026-10-28 实机 DB_LIST_TEXT 导出）----
+        // 这些是玩家真正看到的行；计划/交付类段必须被规则吃掉。
+        string realA29 =
+            "A-29B Super Tucano [EMB-314] -- 马里 [1960-] (空军), 2018, 6x Planned, 4x Delivered, 1x Lost 2020";
+        Check("R72 实机行 6x Planned 被规则翻译", tr(realA29).Contains("6x 计划"), tr(realA29));
+        Check("R72 实机行 4x Delivered 被规则翻译", tr(realA29).Contains("4x 交付"), tr(realA29));
+        string realF117 =
+            "A/F-117X Sea Hawk -- 美国 (海军), 1999, 1994 proposed A/F-X cancellation compensation, 40-75x Planned";
+        Check("R72 实机行 40-75x Planned 被规则翻译", tr(realF117).Contains("40-75x 计划"), tr(realF117));
+
         // ---- 4b. 非 DB 行不得被行尾逻辑改写（TranslateDarkListView 对全部 DarkListView 生效）----
         string notDbRow = "Alpha Team, Export";
         Check("R72 非 DB 行（无 ' -- '）不改写", tr(notDbRow) == notDbRow, tr(notDbRow));

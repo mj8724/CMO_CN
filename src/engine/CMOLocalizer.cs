@@ -3373,26 +3373,35 @@ namespace CMOLocalizer
             if (s.IndexOf(" -- ", StringComparison.Ordinal) < 0) return s;
             if (!Regex.IsMatch(s, @"\b(?:1[89]|20)\d{2}\b")) return s;
 
-            // 先试整段后缀（Comments 自带逗号时只有整段才对得上），最长匹配优先。
             const string SEP = ", ";
-            int idx = s.IndexOf(SEP, StringComparison.Ordinal);
-            while (idx >= 0)
-            {
-                string suffix = s.Substring(idx + SEP.Length);
-                if (suffix.Length > 1 && suffix.Length <= 160)
-                {
-                    string hit;
-                    if (commentsMap.TryGetValue(suffix.Trim(), out hit) && ContainsChinese(hit))
-                        return s.Substring(0, idx + SEP.Length) + hit;
-                }
-                idx = s.IndexOf(SEP, idx + SEP.Length, StringComparison.Ordinal);
-            }
-
-            // 再按逗号分段逐段查：Comments 多为 `2x Mounts` / `Export` / 年份 这类短段，
-            // 整段没命中时逐段替换才能覆盖真实形态。年份与纯代号查不到表就原样保留。
             string[] parts = s.Split(new string[] { SEP }, StringSplitOptions.None);
             bool changed = false;
-            for (int i = 1; i < parts.Length; i++)   // parts[0] 是名称+国家+兵种，交给前面的步骤
+
+            // ① 整段后缀优先（Comments 自带逗号时只有整段才对得上，如 `5x, Super Guppy Replacement`）。
+            //   **命中后不能直接 return**：实机行
+            //   `A-29B … 2018, 6x Planned, 4x Delivered, 1x Lost 2020` 里
+            //   `1x Lost 2020` 整段命中词表，早返回会让前面的 `6x Planned`、`4x Delivered`
+            //   永远不译（2026-10-28 实机 DB_LIST_TEXT 导出抓到的真缺陷）。
+            //   正确做法：命中后把该范围**标记已替换**，再继续逐段处理它前面的部分。
+            int segEnd = parts.Length;   // parts[segEnd..] 已由整段命中处理
+            for (int i = 1; i < parts.Length; i++)
+            {
+                string tail = string.Join(SEP, parts, i, parts.Length - i).Trim();
+                if (tail.Length < 2 || tail.Length > 160) continue;
+                string tailHit;
+                if (commentsMap.TryGetValue(tail, out tailHit) && ContainsChinese(tailHit))
+                {
+                    parts[i] = tailHit;
+                    for (int j = i + 1; j < parts.Length; j++) parts[j] = null;
+                    segEnd = i;
+                    changed = true;
+                    break;
+                }
+            }
+
+            // ② 再按逗号分段逐段查：Comments 多为 `2x Mounts` / `Export` / 年份 这类短段。
+            //   年份与纯代号查不到表就原样保留。
+            for (int i = 1; i < segEnd; i++)   // parts[0] 是名称+国家+兵种，交给前面的步骤
             {
                 string seg = parts[i].Trim();
                 if (seg.Length == 0) continue;
@@ -3415,7 +3424,16 @@ namespace CMOLocalizer
                     changed = true;
                 }
             }
-            return changed ? string.Join(SEP, parts) : s;
+            if (!changed) return s;
+            // 被整段命中吃掉的分段已置 null，重组时跳过（保持 `, ` 分隔不变）。
+            StringBuilder joined = new StringBuilder();
+            for (int i = 0; i < parts.Length; i++)
+            {
+                if (parts[i] == null) continue;
+                if (joined.Length > 0) joined.Append(SEP);
+                joined.Append(parts[i]);
+            }
+            return joined.ToString();
         }
 
         /// <summary>
@@ -3498,8 +3516,9 @@ namespace CMOLocalizer
             m = Regex.Match(seg, @"^(\d{1,4})\s+(Rnds?|rounds?|Rounds?|rnds?)$", RegexOptions.IgnoreCase);
             if (m.Success) return m.Groups[1].Value + " 发";
             // `Nx Ordered/Planned/Lost/…`（交付/损失/出售类动词）——Comments 里成批出现。
+            // 数量允许区间写法（实机行里出现过 `40-75x Planned`、`255x Planned`）。
             m = Regex.Match(seg,
-                @"^(\d{1,4})x\s+(Ordered|Planned|Lost|Sold|Leased|Loaned|Captured|Delivered|Built|Laid Down|Sunk|Crashed|Transferred|Claimed|Retired)$",
+                @"^(\d{1,4}(?:\s*[-–]\s*\d{1,4})?)x\s+(Ordered|Planned|Lost|Sold|Leased|Loaned|Captured|Delivered|Built|Laid Down|Sunk|Crashed|Transferred|Claimed|Retired)$",
                             RegexOptions.IgnoreCase);
             if (m.Success)
             {
@@ -7095,6 +7114,56 @@ namespace CMOLocalizer
                 sb.Append("{\"status\":\"ok\",\"tree\":[");
                 bool firstNode = true;
                 CollectControlTree(dbForm, 0, sb, ref firstNode);
+                sb.Append("]}");
+                return sb.ToString();
+            }
+
+            // 只读探针：导出数据库列表**行的显示文本**（R72 实机验收用）。
+            // 列表是虚拟列表，`DUMP_LISTS` 的 items 恒为空、控件树也不含行文本，
+            // 所以必须直接读 item.Text —— 那是引擎翻译后写回界面、用户真正看到的东西。
+            if (cmd == "DB_LIST_TEXT")
+            {
+                Form dbForm = FindDBViewerForm();
+                if (dbForm == null) return "{\"status\":\"error\",\"message\":\"InternalDBViewer not open\"}";
+                FieldInfo fListDump = dbForm.GetType().GetField("dXkHcikCGK6",
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                if (fListDump == null)
+                {
+                    foreach (FieldInfo fi in dbForm.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                    {
+                        if (!typeof(Control).IsAssignableFrom(fi.FieldType)) continue;
+                        object v = null;
+                        try { v = fi.GetValue(dbForm); } catch (Exception) { }
+                        if (v != null && v.GetType().GetProperty("SelectedIndices") != null) { fListDump = fi; break; }
+                    }
+                }
+                if (fListDump == null) return "{\"status\":\"error\",\"message\":\"list field not found\"}";
+                object lvObj = fListDump.GetValue(dbForm);
+                if (lvObj == null) return "{\"status\":\"error\",\"message\":\"list is null\"}";
+                PropertyInfo piItemsDump = lvObj.GetType().GetProperty("Items");
+                if (piItemsDump == null) return "{\"status\":\"error\",\"message\":\"Items not found\"}";
+                System.Collections.IList itemsDump = piItemsDump.GetValue(lvObj, null) as System.Collections.IList;
+                if (itemsDump == null) return "{\"status\":\"error\",\"message\":\"Items null\"}";
+                // 不分页：虚拟列表按偏移读取会触发游戏侧 realize，实测把命令通道卡住（timeout）。
+                // 需要其它对象类型时，先用 `DB_NAVIGATE_ID <type> <id>` 切换列表类型再 dump。
+                int start = 0;
+                const int limit = 500;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("{\"status\":\"ok\",\"action\":\"DB_LIST_TEXT\",\"count\":").Append(itemsDump.Count)
+                  .Append(",\"rows\":[");
+                for (int i = start; i < itemsDump.Count && i < start + limit; i++)
+                {
+                    object it = itemsDump[i];
+                    string txt = "";
+                    try
+                    {
+                        PropertyInfo piText = it != null ? it.GetType().GetProperty("Text") : null;
+                        txt = piText != null ? Convert.ToString(piText.GetValue(it, null)) : Convert.ToString(it);
+                    }
+                    catch (Exception) { }
+                    if (i > 0) sb.Append(",");
+                    sb.Append("\"").Append(JsonEsc(txt)).Append("\"");
+                }
                 sb.Append("]}");
                 return sb.ToString();
             }
