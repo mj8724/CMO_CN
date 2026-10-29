@@ -1,0 +1,63 @@
+{
+  "id": "EU-Med25-Column36-z6-36-21",
+  "z": 6,
+  "x": 36,
+  "y": 21,
+  "width_tiles": 1,
+  "height_tiles": 4,
+  "original_tiles": [
+    "6/36/21.png",
+    "6/36/22.png",
+    "6/36/23.png",
+    "6/36/24.png"
+  ],
+  "context_tiles": [
+    "6/35/23.png",
+    "6/35/24.png",
+    "6/37/22.png"
+  ],
+  "features": [
+    {"id": "EM6-SRC-02", "kind": "city", "original": "Brest", "original_bbox": [50, 24, 84, 44], "source_url": "@source/598898cc811cb766"},
+    {"id": "EM6-SRC-04", "kind": "city", "original": "Lviv", "original_bbox": [65, 187, 95, 207], "source_url": "@source/598898cc811cb766"},
+    {"id": "EM6-SRC-17", "kind": "admin0", "original": "ROMANIA", "original_bbox": [30, 438, 172, 462], "source_url": "@source/6bd995ffac9267a3"},
+    {"id": "EM6-SRC-24", "kind": "city", "original": "Bucharest", "original_bbox": [159, 549, 220, 570], "source_url": "@source/af299496c1a73738"},
+    {"id": "EM6-SRC-34", "kind": "admin0", "original": "BULGARIA", "original_bbox": [61, 653, 213, 677], "source_url": "@source/af299496c1a73738"},
+    {"id": "EM6-SRC-42", "kind": "city", "original": "Thessaloniki", "original_bbox": [15, 784, 82, 803], "source_url": "@source/486c2dd507160c28"},
+    {"id": "EM6-SRC-52", "kind": "city", "original": "Izmir", "original_bbox": [206, 915, 240, 934], "source_url": "@source/486c2dd507160c28"},
+    {"id": "EM6-SRC-54", "kind": "city", "original": "Athens", "original_bbox": [52, 941, 100, 963], "source_url": "@source/486c2dd507160c28"}
+  ],
+  "translations": [
+    {"id": "EM6-SRC-02", "zh": "布列斯特", "source": "@source/c28c3369afb7e93f", "status": "approved", "record_sha256": "294cd2955a9e48e6cb310c700b74da70a48edad61425720e3939ec24b0b822ff", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-04", "zh": "利沃夫", "source": "@source/8e9f8f358c04b731", "status": "approved", "record_sha256": "3ab2e387a0dd9b4b41963c7e24cb1d76895751449e567a64663ccd98c944a52e", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-17", "zh": "罗马尼亚", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "8f5eacc489b62a70fc4a98f639625fb88e228199bf8948b27f7f6512c88f675d", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-24", "zh": "布加勒斯特", "source": "@source/619098c14b9fd967", "status": "approved", "record_sha256": "ce39b888490f1c6f7ebe9392b4317098da1acf235de509371a3d3728574e85a1", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-34", "zh": "保加利亚", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "0d3861d62f492abece9b66a1f0adfe6a9ccdd522f7d1d237734b7b9252cdb6f0", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-42", "zh": "塞萨洛尼基", "source": "@source/90c416c3b6dee065", "status": "approved", "record_sha256": "d88171807a3c69a161858b1ff8e00e24862bb0e74e9f90d7ad6008e83a8d18cd", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-52", "zh": "伊兹密尔", "source": "@source/1d64d7e8d4edc11f", "status": "approved", "record_sha256": "729fbb6271aa02e4cd895e3d6e666b1d4c2837c9df7038f89cfc7d4016e5d219", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-54", "zh": "雅典", "source": "@source/d6eb9e7f9b793f63", "status": "approved", "record_sha256": "1db5442c4b9e3947a22759cbe4fb6789413e35cb3e7d474bb113c306f6a9a203", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EM6-SRC-02", "x": 88.0, "y": 36.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-04", "x": 97.0, "y": 199.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-17", "x": 101.0, "y": 450.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-24", "x": 203.0, "y": 561.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-34", "x": 137.0, "y": 665.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-42", "x": 59.0, "y": 796.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-52", "x": 177.0, "y": 927.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-54", "x": 78.0, "y": 953.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EM6-SRC-02-NATIVE", "feature_id": "EM6-SRC-02", "kind": "circle", "original_bbox": [50, 24, 59, 33], "x": 54.5, "y": 28.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-04-NATIVE", "feature_id": "EM6-SRC-04", "kind": "circle", "original_bbox": [65, 187, 74, 196], "x": 69.5, "y": 191.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-24-NATIVE", "feature_id": "EM6-SRC-24", "kind": "circle", "original_bbox": [159, 549, 168, 558], "x": 163.5, "y": 553.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-42-NATIVE", "feature_id": "EM6-SRC-42", "kind": "circle", "original_bbox": [15, 784, 24, 793], "x": 19.5, "y": 788.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-52-NATIVE", "feature_id": "EM6-SRC-52", "kind": "circle", "original_bbox": [206, 915, 215, 924], "x": 210.5, "y": 919.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-54-NATIVE", "feature_id": "EM6-SRC-54", "kind": "circle", "original_bbox": [52, 941, 61, 950], "x": 56.5, "y": 945.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "EM25-SH-02", "owner_region": "EU-East-A-z6-37-20", "feature_id": "EE6-MOLDOVA", "kind": "admin0", "original": "MOLDOVA", "original_bbox": [202, 352, 353, 376], "source_url": "@source/6bd995ffac9267a3", "review_notes": "@note/shared_sources"},
+    {"id": "EM25-SH-11", "owner_region": "EU-Med25-Column35-z6-35-21", "feature_id": "EM6-SRC-39", "kind": "admin0", "original": "NORTH MACEDONIA", "original_bbox": [-125, 700, 56, 751], "source_url": "@source/a96a329ca4e7c613", "review_notes": "@note/shared_sources"},
+    {"id": "EM25-SH-15", "owner_region": "EU-Med25-Column35-z6-35-21", "feature_id": "EM6-SRC-50", "kind": "admin0", "original": "GREECE", "original_bbox": [-80, 870, 34, 894], "source_url": "@source/d4365caab74c6b86", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

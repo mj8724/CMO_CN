@@ -1,0 +1,57 @@
+{
+  "id": "OCEAN-z4-12-0",
+  "z": 4,
+  "x": 12,
+  "y": 0,
+  "width_tiles": 4,
+  "height_tiles": 4,
+  "original_tiles": [
+    "4/12/0.png",
+    "4/13/0.png",
+    "4/14/0.png",
+    "4/15/0.png",
+    "4/12/1.png",
+    "4/13/1.png",
+    "4/14/1.png",
+    "4/15/1.png",
+    "4/12/2.png",
+    "4/13/2.png",
+    "4/14/2.png",
+    "4/15/2.png",
+    "4/12/3.png",
+    "4/13/3.png",
+    "4/14/3.png",
+    "4/15/3.png"
+  ],
+  "context_tiles": [
+    "4/11/0.png",
+    "4/0/0.png",
+    "4/11/1.png",
+    "4/0/1.png",
+    "4/11/2.png",
+    "4/0/2.png",
+    "4/11/3.png",
+    "4/0/3.png",
+    "4/11/4.png",
+    "4/12/4.png",
+    "4/13/4.png",
+    "4/14/4.png",
+    "4/15/4.png",
+    "4/0/4.png"
+  ],
+  "features": [
+    {"id": "OCEAN-z4-12-0-laptev-sea-1", "kind": "marine", "original": "Laptev Sea", "original_bbox": [369, 672, 451, 688], "source_url": "@source/d3f1ff651e4d7bb3"},
+    {"id": "OCEAN-z4-12-0-tiksi-2", "kind": "city", "original": "Tiksi", "original_bbox": [444, 860, 469, 875], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "OCEAN-z4-12-0-laptev-sea-1", "zh": "拉普捷夫海", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "4520cfcc69fe2c6efb791bdd96de89d2f38e28dc8e9d9942a40f7e635751ae19", "review_notes": "@note/translations"},
+    {"id": "OCEAN-z4-12-0-tiksi-2", "zh": "季克西", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "3b268f09d4c8ee16aa0efb133696e61f3f00961d90b4713c3a0402f143a71394", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OCEAN-z4-12-0-laptev-sea-1", "x": 410.0, "y": 680.0, "font_size": 14, "font_style": "regular"},
+    {"id": "OCEAN-z4-12-0-tiksi-2", "x": 466.5, "y": 867.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "OCEAN-z4-12-0-tiksi-2-point", "feature_id": "OCEAN-z4-12-0-tiksi-2", "x": 442.5, "y": 860.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [438, 856, 447, 865]}
+  ]
+}

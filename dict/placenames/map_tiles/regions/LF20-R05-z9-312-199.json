@@ -1,0 +1,54 @@
+{
+  "id": "LF20-R05-z9-312-199",
+  "z": 9,
+  "x": 312,
+  "y": 199,
+  "width_tiles": 4,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/312/199.png",
+    "9/313/199.png",
+    "9/314/199.png",
+    "9/315/199.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "LF20-N001", "kind": "city", "original": "Amudah", "original_bbox": [542, 17, 590, 34], "source_url": "@source/30169648b09f6153"},
+    {"id": "LF20-N002", "kind": "city", "original": "Ad-Darbasiyah", "original_bbox": [434, 22, 496, 59], "source_url": "@source/ab8a34720b310e0b"},
+    {"id": "LF20-N007", "kind": "city", "original": "Al-Qahtaniyah", "original_bbox": [760, 42, 824, 79], "source_url": "@source/f15ce7a46fa4ef96"},
+    {"id": "LF20-N008", "kind": "city", "original": "Al Mu`abbadah", "original_bbox": [908, 44, 977, 79], "source_url": "@source/f15ce7a46fa4ef96"},
+    {"id": "LF20-N009", "kind": "city", "original": "Qamishli", "original_bbox": [649, 45, 704, 67], "source_url": "@source/30169648b09f6153"},
+    {"id": "LF20-N018", "kind": "city", "original": "Ceylanpınar", "original_bbox": [214, 135, 280, 155], "source_url": "@source/68c81c4146cae026"},
+    {"id": "LF20-N022", "kind": "city", "original": "Yaaroubia", "original_bbox": [950, 151, 1007, 167], "source_url": "@source/f15ce7a46fa4ef96"},
+    {"id": "LF20-N025", "kind": "city", "original": "Tall Hamis", "original_bbox": [707, 178, 767, 194], "source_url": "@source/30169648b09f6153"},
+    {"id": "LF20-N027", "kind": "city", "original": "Tall Birak", "original_bbox": [583, 208, 637, 224], "source_url": "@source/30169648b09f6153"},
+    {"id": "LF20-N030", "kind": "city", "original": "Tall Tamr", "original_bbox": [337, 222, 391, 238], "source_url": "@source/ab8a34720b310e0b"}
+  ],
+  "translations": [
+    {"id": "LF20-N001", "zh": "阿穆达", "status": "approved", "source": "@source/30169648b09f6153", "record_sha256": "97d92fcab72d239e42a63362f68529e581be328596429f09fe72ce913b346c2f", "review_notes": "@note/translations"},
+    {"id": "LF20-N002", "zh": "达尔巴西耶", "status": "approved", "source": "@source/ab8a34720b310e0b", "record_sha256": "14ac53c3d1031d4dd3498125d65be9ac07917e4996b7d4eedc16a7fd4256d521", "review_notes": "@note/translations"},
+    {"id": "LF20-N007", "zh": "阿尔卡赫塔尼耶", "status": "approved", "source": "@source/f15ce7a46fa4ef96", "record_sha256": "fe0450c471f053fe821a741dc932db431dbf7a7bd3ea051b3bd483972d669e06", "review_notes": "@note/translations"},
+    {"id": "LF20-N008", "zh": "阿尔穆阿巴达", "status": "approved", "source": "@source/f15ce7a46fa4ef96", "record_sha256": "78d084412ef43652c9dda526d13ec5ce1f233f35b20ebde5b8d1df2ae3f6fb2f", "review_notes": "@note/translations"},
+    {"id": "LF20-N009", "zh": "卡米什利", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "990b558ae3e523affd74c45d44dd9390b8156a39a85a6bd7400e6665001406c3", "review_notes": "@note/translations"},
+    {"id": "LF20-N018", "zh": "杰伊兰珀纳尔", "status": "approved", "source": "@source/f44b90dd11b086b9", "record_sha256": "2d55b4e819a125c980becd8c6479cdca96575fd4b51fef7d0175b611f8bd88af", "review_notes": "@note/translations"},
+    {"id": "LF20-N022", "zh": "亚鲁比亚", "status": "approved", "source": "@source/f15ce7a46fa4ef96", "record_sha256": "7f814dedb923ffad5998e321d5274755269bddb55c6b1049eab3395787674dc6", "review_notes": "@note/translations"},
+    {"id": "LF20-N025", "zh": "塔勒哈米斯", "status": "approved", "source": "@source/30169648b09f6153", "record_sha256": "b88e2d1f06250eb8b2db0dfbc84c1671086f1c04f0518dc77acc3a1e2242d3a3", "review_notes": "@note/translations"},
+    {"id": "LF20-N027", "zh": "塔勒比拉克", "status": "approved", "source": "@source/30169648b09f6153", "record_sha256": "f3e168fa68386a6134b0e19fb9ce56064b3983d7bb768ce79657b9dbb03c7a03", "review_notes": "@note/translations"},
+    {"id": "LF20-N030", "zh": "泰勒塔米尔", "status": "approved", "source": "@source/f2df626f815c0604", "record_sha256": "7528f9cd6411ce72c870eab70337e77652d45e68f757385b9f0af03f6bed8294", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LF20-N001", "x": 566.0, "y": 25.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N002", "x": 465.0, "y": 40.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N007", "x": 792.0, "y": 60.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N008", "x": 942.5, "y": 61.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N009", "x": 676.5, "y": 56.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N018", "x": 247.0, "y": 145.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N022", "x": 978.5, "y": 159.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N025", "x": 737.0, "y": 186.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N027", "x": 610.0, "y": 216.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N030", "x": 364.0, "y": 230.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

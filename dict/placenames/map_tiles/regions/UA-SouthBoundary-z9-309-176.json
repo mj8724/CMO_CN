@@ -1,0 +1,61 @@
+{
+  "id": "UA-SouthBoundary-z9-309-176",
+  "z": 9,
+  "x": 309,
+  "y": 176,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/309/176.png",
+    "9/310/176.png"
+  ],
+  "context_tiles": [
+    "9/308/176.png",
+    "9/310/175.png",
+    "9/311/176.png"
+  ],
+  "features": [
+    {"id": "UAS16-054", "kind": "city", "original": "Mykolaivka", "original_bbox": [150, 26, 213, 45], "source_url": "@source/7cc080196e0b33f3"},
+    {"id": "UAS16-055", "kind": "city", "original": "Kramatorsk", "original_bbox": [81, 93, 152, 110], "source_url": "@source/7cc080196e0b33f3"},
+    {"id": "UAS16-056", "kind": "city", "original": "Druzhkivka", "original_bbox": [64, 159, 125, 175], "source_url": "@source/7cc080196e0b33f3"},
+    {"id": "UAS16-057", "kind": "city", "original": "Novomykolaivka", "original_bbox": [-5, 189, 85, 209], "source_url": "@source/7cc080196e0b33f3"},
+    {"id": "UAS16-058", "kind": "city", "original": "Kostiantynivka", "original_bbox": [115, 206, 196, 225], "source_url": "@source/7cc080196e0b33f3"},
+    {"id": "UAS16-059", "kind": "city", "original": "Bakhmut", "original_bbox": [243, 176, 294, 192], "source_url": "@source/fffd4ec5fd8400db"},
+    {"id": "UAS16-061", "kind": "city", "original": "Siversk", "original_bbox": [279, 22, 322, 38], "source_url": "@source/fffd4ec5fd8400db"},
+    {"id": "UAS16-062", "kind": "city", "original": "Hirske", "original_bbox": [429, 93, 465, 109], "source_url": "@source/fffd4ec5fd8400db"},
+    {"id": "UAS16-063", "kind": "city", "original": "Toshkivka", "original_bbox": [451, 70, 507, 86], "source_url": "@source/fffd4ec5fd8400db"},
+    {"id": "UAS16-064", "kind": "city", "original": "Pervomaisk", "original_bbox": [432, 156, 496, 172], "source_url": "@source/fffd4ec5fd8400db"},
+    {"id": "UAS16-065", "kind": "city", "original": "Kadiivka", "original_bbox": [480, 192, 528, 208], "source_url": "@source/fffd4ec5fd8400db"}
+  ],
+  "translations": [
+    {"id": "UAS16-054", "zh": "梅科莱夫卡", "source": "@source/61490a0befe047b2", "status": "approved", "record_sha256": "d51025ca5cc20253e6356dc9712251d15b2769824cb4aa46c77c6c02594fdad6", "review_notes": "@note/translations"},
+    {"id": "UAS16-055", "zh": "克拉马托尔斯克", "source": "@source/ffb1e19ece257b59", "status": "approved", "record_sha256": "3f59c34d2aa934b50374252bb875979d633a0592a95766a27fb4ff240f5defa9", "review_notes": "@note/translations"},
+    {"id": "UAS16-056", "zh": "德鲁日基夫卡", "source": "@source/beb8dcc9336dce72", "status": "approved", "record_sha256": "8a448c88306284214f6d79762663397fc831a994761e04e4f055af1f819f9480", "review_notes": "@note/translations"},
+    {"id": "UAS16-057", "zh": "新米科拉伊夫卡", "source": "@source/7cc080196e0b33f3", "status": "approved", "record_sha256": "c3c396f1f5a7489c31517cbb73a145b36498060c6e7fc35561619bf3cbfbee72", "review_notes": "@note/translations"},
+    {"id": "UAS16-058", "zh": "康斯坦丁尼夫卡", "source": "@source/b09456f8c61f4101", "status": "approved", "record_sha256": "cc82e579f149e4aa87a413b1aa5e234f8b579dc1e918f7e499c940c0ac62e10a", "review_notes": "@note/translations"},
+    {"id": "UAS16-059", "zh": "巴赫穆特", "source": "@source/cab35c291d9b53de", "status": "approved", "record_sha256": "ddb96f37d6de5c379fcfd3ddd9a34e97450ad1cd415df8cc535cbd9b01065ead", "review_notes": "@note/translations"},
+    {"id": "UAS16-061", "zh": "锡韦尔斯克", "source": "@source/f4e863554592def5", "status": "approved", "record_sha256": "47132528d41fba930fff1f321242a862fb641c430ac179ac5b8757106078ff8f", "review_notes": "@note/translations"},
+    {"id": "UAS16-062", "zh": "希尔斯凯", "source": "@source/a56bb33fd68e1be0", "status": "approved", "record_sha256": "e20176ae3cd1c94279448c142a24813d83003ccd7237cdd0634e3266fa878d3f", "review_notes": "@note/translations"},
+    {"id": "UAS16-063", "zh": "托什基夫卡", "source": "@source/91e6d7fa7bd2a6f9", "status": "approved", "record_sha256": "2e708d2ab368f4fd7c3ebd70a805b95e740cd5a3c689c2078fe5d839040efe69", "review_notes": "@note/translations"},
+    {"id": "UAS16-064", "zh": "佩尔沃迈斯克", "source": "@source/cbc1764635f65526", "status": "approved", "record_sha256": "1f8af331c2568e43afdcd0c719e1c141fe103633efa058c71b3471d5ecd28f87", "review_notes": "@note/translations"},
+    {"id": "UAS16-065", "zh": "卡季伊夫卡", "source": "@source/c7ecfdb11cdd2e70", "status": "approved", "record_sha256": "29540566addda276dae39c0e2326ac4257992071304d6b7027a9e74422edc297", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UAS16-054", "x": 181.5, "y": 35.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-055", "x": 116.5, "y": 101.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-056", "x": 94.5, "y": 167.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-057", "x": 46.0, "y": 199.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-058", "x": 155.5, "y": 215.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-059", "x": 268.5, "y": 184.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-061", "x": 300.5, "y": 30.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-062", "x": 447.0, "y": 101.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-063", "x": 478.0, "y": 78.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-064", "x": 464.0, "y": 164.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-065", "x": 478.0, "y": 200.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "UAS16-SH-UKS-060", "owner_region": "UA-East-z9-304-168", "feature_id": "UAE9-160", "kind": "city", "original": "Lysychansk", "source_url": "@source/fffd4ec5fd8400db", "original_bbox": [389, -6, 460, 15], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

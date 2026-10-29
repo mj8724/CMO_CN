@@ -1,0 +1,37 @@
+{
+  "id": "CE19-IberiaWest-z7-61-46",
+  "z": 7,
+  "x": 61,
+  "y": 46,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/61/46.png",
+    "7/62/46.png"
+  ],
+  "context_tiles": [
+    "7/63/46.png"
+  ],
+  "features": [
+    {"id": "CE7-SRC-50", "kind": "city", "original": "Santander", "original_bbox": [417, 202, 474, 222], "source_url": "@source/4e76ba5ba04ffea9"},
+    {"id": "CE7-SRC-51", "kind": "city", "original": "Oviedo / Uviéu", "original_bbox": [231, 215, 275, 251], "source_url": "@source/9f539a4ac47ebb1f"},
+    {"id": "CE7-SRC-53", "kind": "city", "original": "Bilbao", "original_bbox": [496, 227, 536, 247], "source_url": "@source/4e76ba5ba04ffea9"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-50", "zh": "桑坦德", "source": "@source/7a90852f076204b8", "status": "approved", "record_sha256": "06ef1092b5d4a7a54b158c67a9f1c4426d5cfa1d6d63943a467489f8bb7a1828", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-51", "zh": "奥维耶多", "source": "@source/b6f4495493619d23", "status": "approved", "record_sha256": "2201ddc2bc9cd0dd4da9fcf17bd0e3200c73cb9c301cb09be243f410108f2fa9", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-53", "zh": "毕尔巴鄂", "source": "@source/24cc545243c88f41", "status": "approved", "record_sha256": "8d176d34564960fdd4e1eeaf0b7040f4b64b8afc425ae74578c2f9aca276a1d6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-50", "x": 449.0, "y": 214.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-51", "x": 269.0, "y": 227.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-53", "x": 467.0, "y": 239.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-50-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-50", "original_bbox": [417, 202, 426, 211], "x": 421.5, "y": 206.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-51-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-51", "original_bbox": [231, 215, 240, 224], "x": 235.5, "y": 219.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-53-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-53", "original_bbox": [496, 227, 505, 236], "x": 500.5, "y": 231.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

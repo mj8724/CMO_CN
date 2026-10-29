@@ -1,0 +1,56 @@
+{
+  "id": "C3-R02-z8-135-123",
+  "z": 8,
+  "x": 135,
+  "y": 123,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "8/135/123.png",
+    "8/135/124.png"
+  ],
+  "context_tiles": [
+    "8/136/124.png"
+  ],
+  "features": [
+    {"id": "C3-N009", "kind": "city", "original": "Wum", "original_bbox": [38, 110, 72, 129], "source_url": "@source/f51f11c6e4d24868"},
+    {"id": "C3-N010", "kind": "city", "original": "Kumbo", "original_bbox": [149, 143, 197, 164], "source_url": "@source/f51f11c6e4d24868"},
+    {"id": "C3-N011", "kind": "city", "original": "Bamenda", "original_bbox": [51, 188, 114, 210], "source_url": "@source/f51f11c6e4d24868"},
+    {"id": "C3-N012", "kind": "city", "original": "Foumban", "original_bbox": [187, 231, 246, 252], "source_url": "@source/f51f11c6e4d24868"},
+    {"id": "C3-N013", "kind": "city", "original": "Bafoussam", "original_bbox": [101, 277, 169, 298], "source_url": "@source/29bcbb7f190c049e"},
+    {"id": "C3-N014", "kind": "city", "original": "Bafang", "original_bbox": [57, 335, 103, 360], "source_url": "@source/29bcbb7f190c049e"},
+    {"id": "C3-N015", "kind": "city", "original": "Nkongsamba", "original_bbox": [13, 373, 91, 397], "source_url": "@source/29bcbb7f190c049e"}
+  ],
+  "translations": [
+    {"id": "C3-N009", "zh": "武姆", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "7e87bf788347d15ea5dc41c9b87e093369d592a30f03de4038df464c2129f700", "review_notes": "@note/translations"},
+    {"id": "C3-N010", "zh": "昆博", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8a5f7d9fab9a84b04b2664e7bee118255c1eaea7320897f51260d27bdf272a75", "review_notes": "@note/translations"},
+    {"id": "C3-N011", "zh": "巴门达", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "37b835c80faed0493653d6e80774927bd37c7bccc244335d1bc8f30a62d7d906", "review_notes": "@note/translations"},
+    {"id": "C3-N012", "zh": "丰班", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "5626f595b045a7b6aebe99fa0b09148c48ff6ff35b01a0db1925a36f66b19417", "review_notes": "@note/translations"},
+    {"id": "C3-N013", "zh": "巴富萨姆", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "44f84429bd875e27eddb39f5c0e712e139da77087ef4651263361623f9e7116c", "review_notes": "@note/translations"},
+    {"id": "C3-N014", "zh": "巴方", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "08c32ab649e2625e5209f23334189a56d4f5cea3af764255ab8a309825375822", "review_notes": "@note/translations"},
+    {"id": "C3-N015", "zh": "恩康桑巴", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "5c3f946889f10cdff1c283abf4b348435c4c895c3f66fabb368f945611c3aed6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C3-N009", "x": 67.5, "y": 130.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N010", "x": 178.5, "y": 163.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N011", "x": 86.5, "y": 208.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N012", "x": 216.5, "y": 251.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N013", "x": 142.5, "y": 297.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N014", "x": 86.5, "y": 355.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N015", "x": 54.5, "y": 393.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "C3-C009", "feature_id": "C3-N009", "kind": "circle", "original_bbox": [38, 110, 47, 119], "x": 42.5, "y": 114.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C010", "feature_id": "C3-N010", "kind": "circle", "original_bbox": [149, 143, 158, 152], "x": 153.5, "y": 147.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C011", "feature_id": "C3-N011", "kind": "circle", "original_bbox": [51, 188, 60, 197], "x": 55.5, "y": 192.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C012", "feature_id": "C3-N012", "kind": "circle", "original_bbox": [187, 231, 196, 240], "x": 191.5, "y": 235.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C013", "feature_id": "C3-N013", "kind": "circle", "original_bbox": [101, 277, 110, 286], "x": 105.5, "y": 281.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C014", "feature_id": "C3-N014", "kind": "circle", "original_bbox": [57, 335, 66, 344], "x": 61.5, "y": 339.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C015", "feature_id": "C3-N015", "kind": "circle", "original_bbox": [13, 373, 22, 382], "x": 17.5, "y": 377.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C022", "shared_source_id": "C3-SH002", "kind": "circle", "original_bbox": [246, 412, 255, 421], "x": 250.5, "y": 416.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "C3-SH002", "owner_region": "CAF8-z8-136-122-3-6", "feature_id": "CAF8-031-Bafia", "kind": "city", "original": "Bafia", "original_bbox": [246, 412, 284, 433], "source_url": "@source/29bcbb7f190c049e", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

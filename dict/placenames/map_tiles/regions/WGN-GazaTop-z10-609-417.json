@@ -1,0 +1,39 @@
+{
+  "id": "WGN-GazaTop-z10-609-417",
+  "z": 10,
+  "x": 609,
+  "y": 417,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/609/417.png",
+    "10/610/417.png"
+  ],
+  "context_tiles": [
+    "10/611/417.png",
+    "10/609/418.png"
+  ],
+  "features": [
+    {"id": "WGN-001", "kind": "city", "original": "Gaza", "original_bbox": [242, 109, 278, 130], "source_url": "@source/d8b9d1ad7b018d84"},
+    {"id": "WGN-002", "kind": "city", "original": "Deir el-Balah", "original_bbox": [158, 182, 205, 220], "source_url": "@source/d8b9d1ad7b018d84"},
+    {"id": "WGN-004", "kind": "city", "original": "Beit Lahiya", "original_bbox": [265, 81, 320, 98], "source_url": "@source/56947b5a3bb0ae7f"},
+    {"id": "WGN-005", "kind": "city", "original": "Kiryat Gat", "original_bbox": [469, 18, 508, 57], "source_url": "@source/56947b5a3bb0ae7f"}
+  ],
+  "translations": [
+    {"id": "WGN-001", "zh": "加沙", "source": "@source/599e2da0f6fd3730", "status": "approved", "record_sha256": "05893bff3a4e8ecf6cb78a7ed3d8ce0dec21fb85d135e420eecc68f919869872", "review_notes": "@note/translations"},
+    {"id": "WGN-002", "zh": "代尔拜莱赫", "source": "@source/38fef48025bb2416", "status": "approved", "record_sha256": "d39adbba70933c70fd42dc8718010b73fb3e8762357d59d511722077d63f227e", "review_notes": "@note/translations"},
+    {"id": "WGN-004", "zh": "拜特拉希亚", "source": "@source/fe82847b73d73e00", "status": "approved", "record_sha256": "70898991b58df280e996afbf69f3c8d9e117cf91507e28b3f845088b4e9642b8", "review_notes": "@note/translations"},
+    {"id": "WGN-005", "zh": "基里亚特盖特", "source": "@source/caa2f7cc71f0ff4d", "status": "approved", "record_sha256": "0f1a30470d8fd7e3d22b12a80605aac6baf597a39c3da9c4c73d8f5380e6049e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WGN-001", "x": 260.0, "y": 119.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WGN-002", "x": 181.5, "y": 201.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WGN-004", "x": 292.5, "y": 89.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WGN-005", "x": 469.0, "y": 37.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "WGN-INTERNAL-KhanTopTail", "owner_region": "WGN-GazaSouth-z10-609-418", "feature_id": "WGN-003", "kind": "city", "original": "Khan Yunis", "source_url": "@source/d8b9d1ad7b018d84", "original_bbox": [128, 244, 165, 282], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

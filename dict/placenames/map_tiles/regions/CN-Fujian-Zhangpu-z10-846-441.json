@@ -1,0 +1,54 @@
+{
+  "id": "CN-Fujian-Zhangpu-z10-846-441",
+  "z": 10,
+  "x": 846,
+  "y": 441,
+  "width_tiles": 2,
+  "height_tiles": 2,
+  "original_tiles": [
+    "10/846/441.png",
+    "10/846/442.png",
+    "10/847/441.png",
+    "10/847/442.png"
+  ],
+  "context_tiles": [
+    "10/845/440.png",
+    "10/846/440.png",
+    "10/847/440.png",
+    "10/847/443.png",
+    "10/848/440.png",
+    "10/848/441.png",
+    "10/848/442.png",
+    "10/848/443.png",
+    "10/845/442.png"
+  ],
+  "features": [
+    {"id": "FJ10-000", "kind": "city", "original": "Chitu", "original_bbox": [189, 37, 217, 52], "source_url": "@source/0c3c902e2c432d0a"},
+    {"id": "FJ10-001", "kind": "city", "original": "Zhangpu", "original_bbox": [107, 60, 165, 82], "source_url": "@source/520ef242814ba2a5"},
+    {"id": "FJ10-002", "kind": "city", "original": "Duxun", "original_bbox": [115, 202, 148, 217], "source_url": "@source/517b0965091807dc"},
+    {"id": "FJ10-003", "kind": "city", "original": "Liu'ao", "original_bbox": [220, 209, 256, 225], "source_url": "@source/bbe1c373eb29b020"},
+    {"id": "FJ10-004", "kind": "city", "original": "Fotan", "original_bbox": [338, 11, 371, 27], "source_url": "@source/5c6ba38f9661878d"},
+    {"id": "FJ10-005", "kind": "city", "original": "Gulei", "original_bbox": [126, 286, 156, 303], "source_url": "@source/f521e7c10400b14e"},
+    {"id": "FJ10-006", "kind": "city", "original": "Dongshan", "original_bbox": [-30, 392, 35, 414], "source_url": "@source/c01a7ad5a030cb61"}
+  ],
+  "translations": [
+    {"id": "FJ10-000", "zh": "赤土", "status": "approved", "source": "@source/0c3c902e2c432d0a", "record_sha256": "761dcc82ee425087a736bbe61eee11eaee593f8616b288acb37314eda8b0fb9e", "review_notes": "@note/translations"},
+    {"id": "FJ10-001", "zh": "漳浦", "status": "approved", "source": "@source/520ef242814ba2a5", "record_sha256": "0cb30473aa9d66c15be2f977bb18475995578003d41d2f8bc7cf2086144bcf04", "review_notes": "@note/translations"},
+    {"id": "FJ10-002", "zh": "杜浔", "status": "approved", "source": "@source/517b0965091807dc", "record_sha256": "0533e25bfe263d83095f58b8254d5dd57daa637440e0cc4f2e248b262b03e7e0", "review_notes": "@note/translations"},
+    {"id": "FJ10-003", "zh": "六鳌", "status": "approved", "source": "@source/bbe1c373eb29b020", "record_sha256": "daf872b05586c9d83ad4501590a8cda8a2e917672b17fe2354c8f3bd19d058bc", "review_notes": "@note/translations"},
+    {"id": "FJ10-004", "zh": "佛昙", "status": "approved", "source": "@source/5c6ba38f9661878d", "record_sha256": "b0c2dd962c27de2bce13880c03402401160401071d70ccccb679adc69bdf6c52", "review_notes": "@note/translations"},
+    {"id": "FJ10-005", "zh": "古雷", "status": "approved", "source": "@source/f521e7c10400b14e", "record_sha256": "f39d08e4b212a7a09d240cac47378a294066be1011cfc0e87968f96dca3c31a8", "review_notes": "@note/translations"},
+    {"id": "FJ10-006", "zh": "东山", "status": "approved", "source": "@source/c01a7ad5a030cb61", "record_sha256": "28a4607b5f7b6726bc86db2896dd1d7ba754a8c355db6da7a120e61f03b7f329", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FJ10-000", "x": 203.0, "y": 44.5, "font_size": 12, "font_style": "regular"},
+    {"id": "FJ10-001", "x": 136.0, "y": 71.0, "font_size": 14, "font_style": "regular"},
+    {"id": "FJ10-002", "x": 131.5, "y": 209.5, "font_size": 12, "font_style": "regular"},
+    {"id": "FJ10-003", "x": 238.0, "y": 217.0, "font_size": 12, "font_style": "regular"},
+    {"id": "FJ10-004", "x": 354.5, "y": 19.0, "font_size": 12, "font_style": "regular"},
+    {"id": "FJ10-005", "x": 141.0, "y": 294.5, "font_size": 12, "font_style": "regular"},
+    {"id": "FJ10-006", "x": 17.0, "y": 403.0, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": []
+}

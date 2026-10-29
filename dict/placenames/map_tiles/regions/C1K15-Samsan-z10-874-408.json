@@ -1,0 +1,26 @@
+{
+  "id": "C1K15-Samsan-z10-874-408",
+  "z": 10,
+  "x": 874,
+  "y": 408,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/874/408.png"
+  ],
+  "context_tiles": [
+    "10/873/408.png"
+  ],
+  "features": [
+    {"id": "C1K15-N042", "kind": "city", "original": "Samsan-myeon", "original_bbox": [3, 157, 52, 195], "source_url": "@source/ed147b7da0a26ca1"}
+  ],
+  "translations": [
+    {"id": "C1K15-N042", "zh": "三山面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "84d220ae59ba9daedd5c31891fa04a39679c9470d883da5496b129c6f1178001", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C1K15-N042", "x": 27.5, "y": 176.0, "font_size": 12, "font_style": "regular", "lines": ["三山面"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

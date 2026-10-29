@@ -1,0 +1,22 @@
+{
+  "id": "CA-ON-z6-16-21",
+  "z": 6,
+  "x": 16,
+  "y": 21,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/16/21.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "CA-Ontario-province", "kind": "admin1", "original": "Ontario", "original_bbox": [150, 172, 214, 185], "source_url": "@source/98c784d6ab886143"}
+  ],
+  "translations": [
+    {"id": "CA-Ontario-province", "zh": "安大略省", "status": "approved", "source": "@source/98c784d6ab886143", "record_sha256": "bedaa6ce6c1e86d763ce88d8565895d006c5e95a29cd8cbcd9246a22db4f9fad", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CA-Ontario-province", "x": 182.0, "y": 178.5, "font_size": 13, "font_style": "bold"}
+  ],
+  "symbols": []
+}

@@ -1,0 +1,75 @@
+{
+  "id": "AP-Northeast-China-South-z8-208-95",
+  "z": 8,
+  "x": 208,
+  "y": 95,
+  "width_tiles": 7,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "8/208/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 1234},
+    {"path": "8/209/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "8/210/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "8/211/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "8/212/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 399},
+    {"path": "8/213/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 1778},
+    {"path": "8/214/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 1355}
+  ],
+  "context_tiles": [
+    {"path": "8/207/94.png", "origin": "official frozen tile HTTP", "source_alpha_count": 0},
+    {"path": "8/208/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "8/209/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "8/210/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "8/211/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "8/212/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 788},
+    {"path": "8/213/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "8/214/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 477},
+    {"path": "8/215/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 84},
+    {"path": "8/207/95.png", "origin": "official frozen tile HTTP", "source_alpha_count": 791},
+    {"path": "8/215/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 2535},
+    {"path": "8/207/96.png", "origin": "official frozen tile HTTP", "source_alpha_count": 753},
+    {"path": "8/208/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 1625},
+    {"path": "8/209/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 1719},
+    {"path": "8/210/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 1107},
+    {"path": "8/211/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 478},
+    {"path": "8/212/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 1129},
+    {"path": "8/213/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 431},
+    {"path": "8/214/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 301},
+    {"path": "8/215/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 420}
+  ],
+  "features": [
+    {"id": "AP-NE8-019", "kind": "city", "original": "Fuxin", "original_bbox": [1660, 0, 1700, 21], "source_url": "@source/fd8ecbaf2141df1e"},
+    {"id": "AP-NE8-020", "kind": "city", "original": "Beipiao", "original_bbox": [1500, 52, 1550, 76], "source_url": "@source/63d1352ec5547e8b"},
+    {"id": "AP-NE8-022", "kind": "city", "original": "Chaoyang", "original_bbox": [1441, 107, 1502, 132], "source_url": "@source/d2af273a63cae51f"},
+    {"id": "AP-NE8-023", "kind": "city", "original": "Shangdu", "original_bbox": [188, 111, 244, 136], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-NE8-026", "kind": "city", "original": "Lingyuan", "original_bbox": [1251, 188, 1309, 213], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-NE8-027", "kind": "city", "original": "Jinzhou", "original_bbox": [1564, 220, 1614, 241], "source_url": "@source/b77738a8785affaf"},
+    {"id": "AP-NE8-029", "kind": "city", "original": "Jining", "original_bbox": [107, 238, 147, 263], "source_url": "@source/34b32c7ff747b236"}
+  ],
+  "translations": [
+    {"id": "AP-NE8-019", "zh": "阜新市", "status": "approved", "source": "@source/fd8ecbaf2141df1e", "record_sha256": "11d985e867a837e4c9143b267ce1fb080fa9371f5b73de58dee62ce6886ee006", "review_notes": "@note/translations"},
+    {"id": "AP-NE8-020", "zh": "北票", "status": "approved", "source": "@source/63d1352ec5547e8b", "record_sha256": "227c9ccd5b7c2c2bc578ec7097ccf76a3b766e510f818943a1a48c38d402265c", "review_notes": "@note/translations"},
+    {"id": "AP-NE8-022", "zh": "朝阳", "status": "approved", "source": "@source/d2af273a63cae51f", "record_sha256": "a750df3c53b86c6b765e3d9df1a1cf629048d6fbf5737a7b9691dfc4a80fda54", "review_notes": "@note/translations"},
+    {"id": "AP-NE8-023", "zh": "商都县", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "02fa2379812c8fad221d71fea711bbec59f2a440cbeb269e3b6dfa28dff24ced", "review_notes": "@note/translations"},
+    {"id": "AP-NE8-026", "zh": "凌源", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e68f0013aa99c4dcc3d7c05ff7748a0cf8946080b224c2bee198dd1fa28357eb", "review_notes": "@note/translations"},
+    {"id": "AP-NE8-027", "zh": "锦州", "status": "approved", "source": "@source/b77738a8785affaf", "record_sha256": "5daf7e378c86272ceb6e0817676c1354888c2267e02385919a91397650fb84c8", "review_notes": "@note/translations"},
+    {"id": "AP-NE8-029", "zh": "集宁", "status": "approved", "source": "@source/34b32c7ff747b236", "record_sha256": "a5323a0719102993435d2471bdacba4b4c41d45be3412161b13f88f6a033fb88", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-NE8-019", "x": 1687.5, "y": 14.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NE8-020", "x": 1522.0, "y": 66.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NE8-022", "x": 1463.0, "y": 121.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NE8-023", "x": 215.5, "y": 125.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NE8-026", "x": 1273.0, "y": 202.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NE8-027", "x": 1586.0, "y": 234.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NE8-029", "x": 129.0, "y": 246.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-NE8-019-circle", "feature_id": "AP-NE8-019", "kind": "circle", "x": 1664.5, "y": 4.5, "size": 7, "outline_width": 1, "original_bbox": [1660, 0, 1669, 9]},
+    {"id": "AP-NE8-020-circle", "feature_id": "AP-NE8-020", "kind": "circle", "x": 1504.5, "y": 56.5, "size": 7, "outline_width": 1, "original_bbox": [1500, 52, 1509, 61]},
+    {"id": "AP-NE8-022-circle", "feature_id": "AP-NE8-022", "kind": "circle", "x": 1445.5, "y": 111.5, "size": 7, "outline_width": 1, "original_bbox": [1441, 107, 1450, 116]},
+    {"id": "AP-NE8-023-circle", "feature_id": "AP-NE8-023", "kind": "circle", "x": 192.5, "y": 115.5, "size": 7, "outline_width": 1, "original_bbox": [188, 111, 197, 120]},
+    {"id": "AP-NE8-026-circle", "feature_id": "AP-NE8-026", "kind": "circle", "x": 1255.5, "y": 192.5, "size": 7, "outline_width": 1, "original_bbox": [1251, 188, 1260, 197]},
+    {"id": "AP-NE8-027-circle", "feature_id": "AP-NE8-027", "kind": "circle", "x": 1568.5, "y": 224.5, "size": 7, "outline_width": 1, "original_bbox": [1564, 220, 1573, 229]},
+    {"id": "AP-NE8-029-circle", "feature_id": "AP-NE8-029", "kind": "circle", "x": 111.5, "y": 242.5, "size": 7, "outline_width": 1, "original_bbox": [107, 238, 116, 247]}
+  ]
+}

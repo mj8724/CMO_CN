@@ -1,0 +1,24 @@
+{
+  "z": 6,
+  "x": 58,
+  "y": 20,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "FER6-B-z6-58-20",
+  "original_tiles": [
+    "6/58/20.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "FER6-PH-03", "kind": "marine", "original": "Sea of Okhotsk", "original_bbox": [134, 41, 209, 78], "source_url": "@source/8a0b32527285fdaf"}
+  ],
+  "translations": [
+    {"id": "FER6-PH-03", "zh": "鄂霍次克海", "source": "@source/e9fe3a8cfffcf905", "status": "approved", "record_sha256": "39045fc9b67a60b8696e07c5ee19e09b52112f558c52cf5bf0e52d1a803ef5d7", "review_notes": "Root cc4ae16e exact private model; independent Geo SOURCE be109e. Complete unchanged CJK evidence grade and editorial below. Different TARGET /root/remaining_catalog remains pending; author is not that peer. {\"Chinese\": \"鄂霍次克海\", \"Chinese_grade\": \"ORIGINAL_NE_COMMUNITY_CHINESE_FIELD\", \"GNID_is_supplier_ID\": false, \"SOURCE_entity_semantic\": \"sea\", \"explicit_caption_editorial\": null, \"explicit_character_normalization\": [], \"future_Target_kind_adapter_font_or_layout_approved\": false, \"id\": \"FER6-PH-03\", \"identity_basis\": \"Actual complete literal and Far East Russian map context, original RUS NE and exact raw GN primary/alias/country/region record for populated places; sea uses original marine DBF type and complete exact literal. Kazakhstan Petropavl, Ural Petropavlovsk and South American Palana/Parana are explicitly rejected. No nearest-point selection.\", \"literal\": \"Sea of Okhotsk\", \"official_Chinese_wording_selected\": false, \"original_GN19_identity_context\": null, \"original_NE_Chinese_candidate_unmodified\": \"鄂霍次克海\", \"original_NE_fullfield_record\": {\"dataset\": \"ne_10m_geography_marine_polys\", \"matched_names\": [\"seaofokhotsk\"], \"raw_fields\": {\"changed\": \"Version 1.4\", \"featurecla\": \"sea\", \"label\": \"Sea of Okhotsk\", \"max_label\": 7.5, \"min_label\": 2.0, \"name\": \"Sea of Okhotsk\", \"name_ar\": \"بحر أوخوتسك\", \"name_bn\": \"ওখোৎস্ক সাগর\", \"name_de\": \"Ochotskisches Meer\", \"name_el\": \"Οχοτσκική θάλασσα\", \"name_en\": \"Sea of Okhotsk\", \"name_es\": \"mar de Ojotsk\", \"name_fa\": \"دریای اختسک\", \"name_fr\": \"mer d'Okhotsk\", \"name_he\": \"ים אוחוצק\", \"name_hi\": \"ओख़ोत्स्क सागर\", \"name_hu\": \"Ohotszki-tenger\", \"name_id\": \"Laut Okhotsk\", \"name_it\": \"mare di Ochotsk\", \"name_ja\": \"オホーツク海\", \"name_ko\": \"오호츠크해\", \"name_nl\": \"Zee van Ochotsk\", \"name_pl\": \"Morze Ochockie\", \"name_pt\": \"Mar de Okhotsk\", \"name_ru\": \"Охотское море\", \"name_sv\": \"Ochotska havet\", \"name_tr\": \"Ohotsk Denizi\", \"name_uk\": \"Охотське море\", \"name_ur\": \"بحیرہ اخوتسک\", \"name_vi\": \"Biển Okhotsk\", \"name_zh\": \"鄂霍次克海\", \"name_zht\": \"鄂霍次克海\", \"namealt\": \"\", \"ne_id\": 1159115541, \"note\": \"\", \"scalerank\": 1, \"wikidataid\": \"Q41602\"}, \"zero_based_record\": 23}, \"primary_official_evidence\": {\"bytes\": 2502, \"path\": \"C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-21\\\\cha\\\\work\\\\parallel_map\\\\research_FarEastRussia_z6_exact6_SOURCE_after8191applied_20261026\\\\ACTUAL_primary_consular_fulltext_Chinese_city_and_sea_evidence.json\", \"sha256\": \"04a914f761639cf88a20e75e78973d5dd8d944350a96aab8c47e63c9a60c22ee\"}, \"project_transcription\": false, \"source_native_raster_midpoint\": null, \"supplier_ID\": null, \"supplier_source_URLs\": [\"http://warfaresims.slitherine.com/MapTiles/Labels/6/58/20.png\"], \"supplier_vector_or_admin_ID\": null} Different actual TARGET reviewer /root/remaining_catalog personally inspected the actual saved four wholes, five complete Source/CJK pairs, four native frames and all22 bounded new/readonly RAM joins. Rootcc4ae fixes city12regular, circle9/1 original midpoint delta0, marine12regular single-line Sea and complete Petro3+9 with 罗. All9 pristine positive RGBA and complete composed atlases independently exact; each circle retains all69 Source support positions as73 target positives, not a source-color/vector reconstruction. No clipping/collision/missing glyph/extra alias/height/rule/canonical duplicate; two already printed canonical instances do not create extra captions, old WWP spelling unchanged. Original supplier literal/bbox/URL and qualified4communityHan plus1primary official caption stem remain unchanged. SOURCE/Target author C3 and different SOURCE Geo are different from this reviewer. Private component Target acceptance only; no Root window/formal/global approval."}
+  ],
+  "layouts": [
+    {"id": "FER6-PH-03", "x": 171.5, "y": 59.5, "font_size": 12, "font_style": "regular", "lines": ["鄂霍次克海"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

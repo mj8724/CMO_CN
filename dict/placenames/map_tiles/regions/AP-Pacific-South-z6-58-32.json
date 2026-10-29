@@ -1,0 +1,90 @@
+{
+  "id": "AP-Pacific-South-z6-58-32",
+  "z": 6,
+  "x": 58,
+  "y": 32,
+  "width_tiles": 6,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/58/32.png",
+    "6/58/33.png",
+    "6/59/32.png",
+    "6/59/33.png",
+    "6/60/32.png",
+    "6/60/33.png",
+    "6/61/32.png",
+    "6/61/33.png",
+    "6/62/32.png",
+    "6/62/33.png",
+    "6/63/32.png",
+    "6/63/33.png"
+  ],
+  "context_tiles": [
+    "6/57/31.png",
+    "6/57/32.png",
+    "6/57/33.png",
+    "6/57/34.png",
+    "6/58/31.png",
+    "6/58/34.png",
+    "6/59/31.png",
+    "6/59/34.png",
+    "6/60/31.png",
+    "6/60/34.png",
+    "6/61/31.png",
+    "6/61/34.png",
+    "6/62/31.png",
+    "6/62/34.png",
+    "6/63/31.png",
+    "6/63/34.png"
+  ],
+  "features": [
+    {"id": "AP-P6-004", "kind": "admin0", "original": "Nauru", "original_bbox": [890, 8, 992, 32], "source_url": "@source/ea9990d40022f156"},
+    {"id": "AP-P6-006", "kind": "city", "original": "Kavieng", "original_bbox": [202, 113, 249, 135], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-P6-008", "kind": "marine", "original": "Bismarck Sea", "original_bbox": [18, 171, 142, 188], "source_url": "@source/698925e7a234c8e8"},
+    {"id": "AP-P6-009", "kind": "city", "original": "Rabaul", "original_bbox": [265, 187, 308, 206], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-P6-013", "kind": "city", "original": "Lae", "original_bbox": [30, 302, 56, 322], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-P6-014", "kind": "admin0", "original": "Tuvalu", "original_bbox": [1390, 340, 1509, 363], "source_url": "@source/ea9990d40022f156"},
+    {"id": "AP-P6-015", "kind": "marine", "original": "Solomon Sea", "original_bbox": [339, 354, 458, 371], "source_url": "@source/d3f1ff651e4d7bb3"},
+    {"id": "AP-P6-016", "kind": "city", "original": "Funafuti", "original_bbox": [1495, 385, 1536, 404], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-P6-017", "kind": "admin0", "original": "Solomon Islands", "original_bbox": [679, 416, 830, 467], "source_url": "@source/ea9990d40022f156"},
+    {"id": "AP-P6-018", "kind": "city", "original": "Honiara", "original_bbox": [619, 427, 665, 446], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-P6-019", "kind": "city", "original": "Port Moresby", "original_bbox": [37, 429, 86, 466], "source_url": "@source/3709faa02684f5f9"}
+  ],
+  "translations": [
+    {"id": "AP-P6-004", "zh": "瑙鲁", "status": "approved", "source": "@source/ea9990d40022f156", "record_sha256": "fd0b799c372864aad72f8b4a076c0c59fc9c67f767aaf744dedf318447a78119", "review_notes": "@note/translations"},
+    {"id": "AP-P6-006", "zh": "卡维恩", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "fa8212362514f9d06ec8e23cf284685447d4552a3d275b4d1546b7699788bc0b", "review_notes": "@note/translations"},
+    {"id": "AP-P6-008", "zh": "俾斯麦海", "status": "approved", "source": "@source/698925e7a234c8e8", "record_sha256": "93ceb6447e9b12b837ea475201518cf6fc36cfe06a92b6f0396754ac3d947ac6", "review_notes": "@note/translations"},
+    {"id": "AP-P6-009", "zh": "拉包尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "fdbba8aaa9a7face06ce5ced6035ffb70dd96fcf790aed09030b21381bac1bfc", "review_notes": "@note/translations"},
+    {"id": "AP-P6-013", "zh": "莱城", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b87fa2a053a1434dcfbbee6d9ddeb0f9c7e38065c1d585f9b9a5a321535e44f0", "review_notes": "@note/translations"},
+    {"id": "AP-P6-014", "zh": "图瓦卢", "status": "approved", "source": "@source/ea9990d40022f156", "record_sha256": "b44de3f8c10a404c8791b95b157c13d0f3c4b829ca1ac519e2ef288229af91ee", "review_notes": "@note/translations"},
+    {"id": "AP-P6-015", "zh": "所罗门海", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "50503b93145a623e5f2322eb5fd30e30ae39059530ca8cfe9f64eab9f25b9b72", "review_notes": "@note/translations"},
+    {"id": "AP-P6-016", "zh": "富纳富提", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "66a53580cc5a3b48887fcf030493a5a2f6f68fda86e2be156351f6f0333ead1f", "review_notes": "@note/translations"},
+    {"id": "AP-P6-017", "zh": "所罗门群岛", "status": "approved", "source": "@source/ea9990d40022f156", "record_sha256": "b65d8f825b58832e6ed769bc197a890cd96fbf26ee0dbbef53c386df4c02307c", "review_notes": "@note/translations"},
+    {"id": "AP-P6-018", "zh": "霍尼亚拉", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "a92c776334608720a3a73c31e9f5518dedc3526d0bca24e38909e13348aba7ea", "review_notes": "@note/translations"},
+    {"id": "AP-P6-019", "zh": "莫尔兹比港", "status": "approved", "source": "@source/3709faa02684f5f9", "record_sha256": "d3adb7f7b1a3781241eca242dc13803d32310a1dd208383910c286bbbcb7a26a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-P6-004", "x": 941.0, "y": 20.0, "font_size": 16, "font_style": "bold"},
+    {"id": "AP-P6-006", "x": 228.5, "y": 124.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-P6-008", "x": 80.0, "y": 179.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-P6-009", "x": 291.5, "y": 196.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-P6-013", "x": 51.0, "y": 312.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-P6-014", "x": 1449.5, "y": 351.5, "font_size": 16, "font_style": "bold"},
+    {"id": "AP-P6-015", "x": 398.5, "y": 362.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-P6-016", "x": 1470.0, "y": 394.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-P6-017", "x": 754.5, "y": 441.5, "font_size": 16, "font_style": "bold"},
+    {"id": "AP-P6-018", "x": 651.0, "y": 436.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-P6-019", "x": 74.5, "y": 447.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-P6-006-circle", "feature_id": "AP-P6-006", "kind": "circle", "x": 206.5, "y": 117.5, "size": 7, "outline_width": 1, "original_bbox": [202, 113, 211, 122]},
+    {"id": "AP-P6-009-circle", "feature_id": "AP-P6-009", "kind": "circle", "x": 269.5, "y": 191.5, "size": 7, "outline_width": 1, "original_bbox": [265, 187, 274, 196]},
+    {"id": "AP-P6-013-circle", "feature_id": "AP-P6-013", "kind": "circle", "x": 34.5, "y": 306.5, "size": 7, "outline_width": 1, "original_bbox": [30, 302, 39, 311]},
+    {"id": "AP-P6-016-circle", "feature_id": "AP-P6-016", "kind": "circle", "x": 1499.5, "y": 389.5, "size": 7, "outline_width": 1, "original_bbox": [1495, 385, 1504, 394]},
+    {"id": "AP-P6-018-circle", "feature_id": "AP-P6-018", "kind": "circle", "x": 623.5, "y": 431.5, "size": 7, "outline_width": 1, "original_bbox": [619, 427, 628, 436]},
+    {"id": "AP-P6-019-circle", "feature_id": "AP-P6-019", "kind": "circle", "x": 41.5, "y": 433.5, "size": 7, "outline_width": 1, "original_bbox": [37, 429, 46, 438]}
+  ],
+  "shared_sources": [
+    {"id": "shared-AP-P6-010", "owner_region": "AP-Papua-z6-56-32", "feature_id": "AP-P6-010", "kind": "city", "original": "Madang", "source_url": "@source/de57b59c289acedb", "original_bbox": [-25, 233, 22, 255], "review_notes": "@note/shared_sources"}
+  ]
+}

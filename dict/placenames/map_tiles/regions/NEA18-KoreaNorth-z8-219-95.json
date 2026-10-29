@@ -1,0 +1,31 @@
+{
+  "id": "NEA18-KoreaNorth-z8-219-95",
+  "z": 8,
+  "x": 219,
+  "y": 95,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/219/95.png",
+    "8/220/95.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NEA18-026", "kind": "city", "original": "Hyesan", "original_bbox": [34, 149, 82, 173], "source_url": "@source/af922f89d5e78569"},
+    {"id": "NEA18-027", "kind": "city", "original": "Chŏngjin", "original_bbox": [333, 57, 392, 81], "source_url": "@source/0f458ea3ef50fd7e"}
+  ],
+  "translations": [
+    {"id": "NEA18-026", "zh": "惠山", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8b0ed9c93fe2c521459c87600d57f86a8928a223574ffc94b46b161327c28671", "review_notes": "@note/translations"},
+    {"id": "NEA18-027", "zh": "清津", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8fab3ce15e67718c0cc423aceecb3a76751ceee0e3a07d2ea27897c99e21ca80", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA18-026", "x": 60.0, "y": 161.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-027", "x": 359.0, "y": 69.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NEA18-N-029", "kind": "circle", "feature_id": "NEA18-026", "original_bbox": [34, 149, 43, 158], "x": 38.5, "y": 153.5, "size": 9, "outline_width": 1},
+    {"id": "NEA18-N-030", "kind": "circle", "feature_id": "NEA18-027", "original_bbox": [333, 57, 342, 66], "x": 337.5, "y": 61.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "C1K15-Tsushima-z10-879-408",
+  "z": 10,
+  "x": 879,
+  "y": 408,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/879/408.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C1K15-N034", "kind": "city", "original": "Tsushima", "original_bbox": [167, 80, 228, 99], "source_url": "@source/c7b089292ca8c688"}
+  ],
+  "translations": [
+    {"id": "C1K15-N034", "zh": "对马市", "status": "approved", "source": "@source/49da08cee64b0c11", "record_sha256": "c001e9e2cf9896b95b7094cb335c13fc4c5117944322465d56d08e84b88383d0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C1K15-N034", "x": 197.5, "y": 89.5, "font_size": 12, "font_style": "regular", "lines": ["对马市"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

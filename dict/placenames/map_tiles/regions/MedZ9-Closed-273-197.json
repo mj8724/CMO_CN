@@ -1,0 +1,27 @@
+{
+  "id": "MedZ9-Closed-273-197",
+  "z": 9,
+  "x": 273,
+  "y": 197,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/273/197.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "GZ9-08-18", "kind": "city", "original": "Trapani", "original_bbox": [181, 109, 228, 130], "source_url": "@source/f618de9e2b0981a9"},
+    {"id": "GZ9-08-19", "kind": "city", "original": "Marsala", "original_bbox": [153, 211, 198, 228], "source_url": "@source/f618de9e2b0981a9"}
+  ],
+  "translations": [
+    {"id": "GZ9-08-18", "zh": "特拉帕尼", "source": "@source/d8ccb57dcd20be68", "status": "approved", "record_sha256": "3e8533309dff83d05d17707d0478faa89e9e50ec3819d00dcf116010bbc7036d", "review_notes": "@note/translations"},
+    {"id": "GZ9-08-19", "zh": "马尔萨拉", "source": "@source/07f29a8fbfcffab8", "status": "approved", "record_sha256": "4ee189dc083c78ea2c0870f73cb6d407cff3278b7b577df356e0d3ba6445700f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-08-18", "x": 204.5, "y": 119.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-08-19", "x": 175.5, "y": 219.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

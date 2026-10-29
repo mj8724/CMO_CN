@@ -1,0 +1,35 @@
+{
+  "id": "JP7-Column115-z7-115-46",
+  "z": 7,
+  "x": 115,
+  "y": 46,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/115/46.png",
+    "7/115/47.png"
+  ],
+  "context_tiles": [
+    "7/114/47.png"
+  ],
+  "features": [
+    {"id": "JP7-KITAMI", "kind": "city", "original": "Kitami", "original_bbox": [37, 160, 77, 179], "source_url": "@source/f2637ad4660ef2d7"},
+    {"id": "JP7-KUSHIRO", "kind": "city", "original": "Kushiro", "original_bbox": [82, 262, 127, 281], "source_url": "@source/45202c581b06509a"}
+  ],
+  "translations": [
+    {"id": "JP7-KITAMI", "zh": "北见", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "15ada92b71bdcda758f75dd52aa9bc6a81e77eece38029af4189dd0322bc1089", "review_notes": "@note/translations"},
+    {"id": "JP7-KUSHIRO", "zh": "钏路", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "ec82ae8208bd3d0e34344b1802c8b139ce2205a3dad5689c54709f01a2b83cb7", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "JP7-KITAMI", "x": 63.0, "y": 172.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-KUSHIRO", "x": 108.0, "y": 274.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "JP7-KITAMI-NATIVE", "kind": "circle", "feature_id": "JP7-KITAMI", "original_bbox": [37, 160, 46, 169], "x": 41.5, "y": 164.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-KUSHIRO-NATIVE", "kind": "circle", "feature_id": "JP7-KUSHIRO", "original_bbox": [82, 262, 91, 271], "x": 86.5, "y": 266.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "JP7-SH-00-OBIHIRO", "owner_region": "JP7-Column114-z7-114-45", "feature_id": "JP7-OBIHIRO", "kind": "city", "original": "Obihiro", "original_bbox": [-26, 269, 18, 289], "source_url": "@source/d2d9cd388841cc2d", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

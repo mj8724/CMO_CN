@@ -1,0 +1,59 @@
+{
+  "id": "CE19-Hungary-z7-71-44",
+  "z": 7,
+  "x": 71,
+  "y": 44,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/71/44.png",
+    "7/71/45.png"
+  ],
+  "context_tiles": [
+    "7/71/43.png"
+  ],
+  "features": [
+    {"id": "CE7-SRC-25", "kind": "city", "original": "Košice", "original_bbox": [138, 24, 178, 43], "source_url": "@source/4af64f394bb99051"},
+    {"id": "CE7-SRC-26", "kind": "city", "original": "Miskolc", "original_bbox": [96, 108, 142, 127], "source_url": "@source/4af64f394bb99051"},
+    {"id": "CE7-SRC-27", "kind": "city", "original": "Debrecen", "original_bbox": [172, 186, 225, 205], "source_url": "@source/4af64f394bb99051"},
+    {"id": "CE7-SRC-28", "kind": "city", "original": "Szolnok", "original_bbox": [42, 233, 89, 253], "source_url": "@source/4af64f394bb99051"},
+    {"id": "CE7-SRC-33", "kind": "city", "original": "Szeged", "original_bbox": [37, 356, 81, 378], "source_url": "@source/3ff2d27f3362fdc8"},
+    {"id": "CE7-SRC-40", "kind": "city", "original": "Timişoara", "original_bbox": [135, 421, 191, 443], "source_url": "@source/3ff2d27f3362fdc8"},
+    {"id": "CE7-SRC-47", "kind": "city", "original": "Reşiţa", "original_bbox": [196, 482, 234, 504], "source_url": "@source/3ff2d27f3362fdc8"},
+    {"id": "CE7-SRC-48", "kind": "city", "original": "Novi Sad", "original_bbox": [10, 486, 61, 505], "source_url": "@source/3ff2d27f3362fdc8"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-25", "zh": "科希策", "source": "@source/84ddaa3da832acb9", "status": "approved", "record_sha256": "f387ffb1f04755f3589393e0224487ac9a1e4db0628b235599b5840a1722a089", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-26", "zh": "米什科尔茨", "source": "@source/0a4d3a125d264fc6", "status": "approved", "record_sha256": "e7da7472ab878e9c55cadf3dfa07c536ea80aa7e17abd0367388d3ebe59bd418", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-27", "zh": "德布勒森", "source": "@source/99289a9053e70fb6", "status": "approved", "record_sha256": "63b2521b51a24217389be33268560fcab61d19c0a21a03199bd5f1f5cd9bfefe", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-28", "zh": "索尔诺克", "source": "@source/62f080aa6b7ecc7f", "status": "approved", "record_sha256": "20caeffac71df5a0026ab06300afb666532d0e8924241896c0d5a3dfa488d37c", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-33", "zh": "塞格德", "source": "@source/eeabc8e82fc41d02", "status": "approved", "record_sha256": "fd9db9c3aacb7a2af675fe390ea815b5cc6e9a4a4b53d71a0db0eab9c1859d44", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-40", "zh": "蒂米什瓦拉", "source": "@source/36a7707ece4c9d86", "status": "approved", "record_sha256": "d96f2b77bfa909000ad2d8973b2d028b185108a9ac4efb987ad874adcc294644", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-47", "zh": "雷希察", "source": "@source/cdb624c55c33e276", "status": "approved", "record_sha256": "d476df08fff941683cbaa490fb32375243da036b06f8dca679c18ec8134f3c48", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-48", "zh": "诺维萨德", "source": "@source/e834f193f2bd6e50", "status": "approved", "record_sha256": "7959caffe3f7405275342ecc390a4a5b72cea2fe3f4e813fb055e455ab691c86", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-25", "x": 170.0, "y": 36.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-26", "x": 140.0, "y": 120.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-27", "x": 210.0, "y": 198.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-28", "x": 80.0, "y": 245.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-33", "x": 69.0, "y": 368.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-40", "x": 179.0, "y": 433.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-47", "x": 228.0, "y": 494.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-48", "x": 48.0, "y": 498.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-25-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-25", "original_bbox": [138, 24, 147, 33], "x": 142.5, "y": 28.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-26-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-26", "original_bbox": [96, 108, 105, 117], "x": 100.5, "y": 112.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-27-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-27", "original_bbox": [172, 186, 181, 195], "x": 176.5, "y": 190.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-28-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-28", "original_bbox": [42, 233, 51, 242], "x": 46.5, "y": 237.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-33-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-33", "original_bbox": [37, 356, 46, 365], "x": 41.5, "y": 360.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-40-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-40", "original_bbox": [135, 421, 144, 430], "x": 139.5, "y": 425.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-47-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-47", "original_bbox": [196, 482, 205, 491], "x": 200.5, "y": 486.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-48-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-48", "original_bbox": [10, 486, 19, 495], "x": 14.5, "y": 490.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "CE19-SH-01", "owner_region": "Balkans-Krakow-z7-71-43", "feature_id": "BALK7-095", "kind": "city", "original": "Prešov", "original_bbox": [137, -15, 178, 4], "source_url": "@source/7ec08421478b9f81", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

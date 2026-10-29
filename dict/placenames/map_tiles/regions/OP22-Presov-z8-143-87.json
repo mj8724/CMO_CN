@@ -1,0 +1,26 @@
+{
+  "id": "OP22-Presov-z8-143-87",
+  "z": 8,
+  "x": 143,
+  "y": 87,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/143/87.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N12", "kind": "city", "original": "Prešov", "original_bbox": [22, 230, 68, 251], "source_url": "@source/8b820e3020d3f74c"}
+  ],
+  "translations": [
+    {"id": "OP24-N12", "zh": "普雷绍夫", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e47cc16f31399cb7efc93aafc7a8d36e0ead89b8d6cce3b363e31b750a7780bf", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N12", "x": 57.0, "y": 240.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "OP24-S12", "feature_id": "OP24-N12", "kind": "circle", "x": 26.5, "y": 234.5, "size": 9, "outline_width": 1, "original_bbox": [22, 230, 31, 239]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

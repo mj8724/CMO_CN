@@ -1,0 +1,24 @@
+{
+  "id": "NEA-HaiyangDao-z10-862-391",
+  "z": 10,
+  "x": 862,
+  "y": 391,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/862/391.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NEA10-021", "kind": "city", "original": "Haiyang", "original_bbox": [68, 28, 114, 47], "source_url": "@source/e6a0dd462d5b2821"}
+  ],
+  "translations": [
+    {"id": "NEA10-021", "zh": "海洋", "status": "approved", "source": "@source/1feef0772d73b947", "record_sha256": "18d5244f1584fdc8a72dd594953ea48c65c0f1a31b2978159bf06adb476a08d1", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA10-021", "x": 91.0, "y": 37.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

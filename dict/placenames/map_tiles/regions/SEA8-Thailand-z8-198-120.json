@@ -1,0 +1,31 @@
+{
+  "id": "SEA8-Thailand-z8-198-120",
+  "z": 8,
+  "x": 198,
+  "y": 120,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "8/198/120.png",
+    "8/198/121.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "SEA8-Thailand-z8-198-120-01-name", "kind": "city", "original": "Chumphon", "original_bbox": [130, 122, 190, 143], "source_url": "@source/5e1b9c37f80ede11"},
+    {"id": "SEA8-Thailand-z8-198-120-02-name", "kind": "city", "original": "Surat Thani", "original_bbox": [157, 372, 198, 413], "source_url": "@source/e533db21745139e2"}
+  ],
+  "translations": [
+    {"id": "SEA8-Thailand-z8-198-120-01-name", "zh": "春蓬", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "458946954fcfeff72a7ed55b0981ff660b364553cc1155eac378c5ff8d3e7f2c", "review_notes": "@note/translations"},
+    {"id": "SEA8-Thailand-z8-198-120-02-name", "zh": "素叻他尼", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "cef6d10131d8c2e4686e41a64d7089f3a1834c288d77e8650cd821df772aa8e9", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SEA8-Thailand-z8-198-120-01-name", "x": 164, "y": 136, "font_size": 12, "font_style": "regular"},
+    {"id": "SEA8-Thailand-z8-198-120-02-name", "x": 197, "y": 389, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SEA8-Thailand-z8-198-120-01-name-circle", "feature_id": "SEA8-Thailand-z8-198-120-01-name", "kind": "circle", "x": 134.5, "y": 126.5, "size": 9, "outline_width": 1, "original_bbox": [130, 122, 139, 131]},
+    {"id": "SEA8-Thailand-z8-198-120-02-name-circle", "feature_id": "SEA8-Thailand-z8-198-120-02-name", "kind": "circle", "x": 161.5, "y": 376.5, "size": 9, "outline_width": 1, "original_bbox": [157, 372, 166, 381]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

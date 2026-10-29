@@ -1,0 +1,32 @@
+{
+  "id": "P9-Closed6-z9-296-245",
+  "z": 9,
+  "x": 296,
+  "y": 245,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/296/245.png"
+  ],
+  "context_tiles": [
+    "9/297/245.png"
+  ],
+  "features": [
+    {"id": "P9-PH-026", "kind": "city", "original": "Thiet", "original_bbox": [234, 30, 266, 46], "source_url": "@source/b11bbd9b0efb325b"},
+    {"id": "P9-PH-027", "kind": "city", "original": "Kuajiena", "original_bbox": [30, 66, 79, 85], "source_url": "@source/b11bbd9b0efb325b"},
+    {"id": "P9-PH-028", "kind": "city", "original": "Tonj", "original_bbox": [189, 152, 216, 171], "source_url": "@source/b11bbd9b0efb325b"}
+  ],
+  "translations": [
+    {"id": "P9-PH-026", "zh": "蒂耶特", "status": "approved", "source": "@source/b11bbd9b0efb325b", "record_sha256": "bc522bdc8db66c7dd44f8737bcbf8e102a325f529313cfa807d7435a596c1d5e", "review_notes": "@note/translations"},
+    {"id": "P9-PH-027", "zh": "夸杰纳", "status": "approved", "source": "@source/b11bbd9b0efb325b", "record_sha256": "fa95e8bdd343ab56c91ff3e5a72507c8a6e5bd92e50335c6a254bcfc6a594f4f", "review_notes": "@note/translations"},
+    {"id": "P9-PH-028", "zh": "通季", "status": "approved", "source": "@source/c01790fbc64cce5e", "record_sha256": "06b9e37eaecb8bef8ce769b8f284ae6e2c3f061238ee1b854cf21a2552abf2d5", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P9-PH-026", "x": 232.0, "y": 38.0, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-027", "x": 54.5, "y": 75.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-028", "x": 202.5, "y": 161.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

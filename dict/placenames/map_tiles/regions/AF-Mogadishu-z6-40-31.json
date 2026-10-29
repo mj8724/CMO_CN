@@ -1,0 +1,26 @@
+{
+  "id": "AF-Mogadishu-z6-40-31",
+  "z": 6,
+  "x": 40,
+  "y": 31,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/40/31.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "KEN7-14", "kind": "city", "original": "Mogadishu", "original_bbox": [11, 159, 72, 181], "source_url": "@source/c0b86d0c6178c45a"}
+  ],
+  "translations": [
+    {"id": "KEN7-14", "zh": "摩加迪沙", "status": "approved", "source": "@source/5d45cbf2b72c23b9", "record_sha256": "a62cced56a27371059bfeb2cdb083144d96fb2ac748092699ad20477f495364b", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "KEN7-14", "x": 47.5, "y": 172.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "KEN7-14-circle", "feature_id": "KEN7-14", "kind": "circle", "x": 15.5, "y": 163.5, "size": 9, "outline_width": 1, "original_bbox": [11, 159, 20, 168]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

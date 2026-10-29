@@ -1,0 +1,90 @@
+{
+  "z": 7,
+  "x": 90,
+  "y": 57,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "id": "IND7-MaharashtraTelanganaSouth-z7-90-57",
+  "original_tiles": [
+    "7/90/57.png",
+    "7/91/57.png"
+  ],
+  "context_tiles": [
+    "7/87/55.png",
+    "7/87/56.png",
+    "7/87/57.png",
+    "7/88/55.png",
+    "7/88/56.png",
+    "7/88/57.png",
+    "7/89/55.png",
+    "7/89/56.png",
+    "7/89/57.png",
+    "7/90/55.png",
+    "7/90/56.png",
+    "7/91/55.png",
+    "7/91/56.png",
+    "7/92/55.png",
+    "7/92/56.png",
+    "7/90/58.png",
+    "7/91/58.png",
+    "7/92/57.png"
+  ],
+  "features": [
+    {"id": "IND7-N014", "kind": "city", "original": "Nanded", "original_bbox": [376, 9, 422, 28], "source_url": "@source/6275827f6d34c02b"},
+    {"id": "IND7-N015", "kind": "admin1", "original": "MAHARASHTRA", "original_bbox": [159, 27, 306, 45], "source_url": "@source/5c3d9ad81320d802"},
+    {"id": "IND7-N016", "kind": "city", "original": "Nizamabad", "original_bbox": [448, 57, 509, 76], "source_url": "@source/6275827f6d34c02b"},
+    {"id": "IND7-N017", "kind": "city", "original": "Pune", "original_bbox": [62, 72, 99, 93], "source_url": "@source/5c3d9ad81320d802"},
+    {"id": "IND7-N018", "kind": "city", "original": "Latur", "original_bbox": [308, 83, 343, 103], "source_url": "@source/6275827f6d34c02b"},
+    {"id": "IND7-N019", "kind": "admin1", "original": "TELANGANA", "original_bbox": [487, 129, 604, 147], "source_url": "@source/6275827f6d34c02b"},
+    {"id": "IND7-N020", "kind": "city", "original": "Bidar", "original_bbox": [396, 130, 431, 149], "source_url": "@source/6275827f6d34c02b"},
+    {"id": "IND7-N021", "kind": "city", "original": "Solapur", "original_bbox": [248, 153, 294, 175], "source_url": "@source/5c3d9ad81320d802"},
+    {"id": "IND7-N022", "kind": "city", "original": "Hyderabad", "original_bbox": [482, 183, 550, 206], "source_url": "@source/6275827f6d34c02b"},
+    {"id": "IND7-N023", "kind": "city", "original": "Kalaburagi", "original_bbox": [333, 185, 392, 208], "source_url": "@source/6275827f6d34c02b"},
+    {"id": "IND7-N024", "kind": "city", "original": "Vijayapura", "original_bbox": [231, 233, 290, 256], "source_url": "@source/5c3d9ad81320d802"},
+    {"id": "IND7-N025", "kind": "city", "original": "Kolhapur", "original_bbox": [97, 245, 149, 267], "source_url": "@source/5c3d9ad81320d802"}
+  ],
+  "translations": [
+    {"id": "IND7-N014", "zh": "楠代德", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "2ef2fae4991c5cc061564044977bd9d5be752f8c4e738bd691ee76da7f9e3744", "review_notes": "@note/translations"},
+    {"id": "IND7-N015", "zh": "马哈拉施特拉邦", "source": "@source/c99418598e3d79b5", "status": "approved", "record_sha256": "8b44facd3e256f44c4cff93b461b3cc0de75d8d7beaf3179ae6bbc0a9bbd0b26", "review_notes": "@note/translations"},
+    {"id": "IND7-N016", "zh": "尼扎玛巴特", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "02f89724ed1d732b48dbc43ad6bb55fc05208502b87ccff7c2c99ac0797ea01b", "review_notes": "@note/translations"},
+    {"id": "IND7-N017", "zh": "浦那", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "8b0db150b78af2253b0c173232ceb479f6c7ca04b0a27bc6c5c9fbd1143aadbb", "review_notes": "@note/translations"},
+    {"id": "IND7-N018", "zh": "拉杜尔", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "cc9434e998b280cf073a33bbf5404bb46efe8c3e90c3ec036b19afd402494cf7", "review_notes": "@note/translations"},
+    {"id": "IND7-N019", "zh": "特伦甘纳邦", "source": "@source/c99418598e3d79b5", "status": "approved", "record_sha256": "698b391cbbb0af76c7e78d76f699b3edcf2c364a73d0342650873696b8046c8a", "review_notes": "@note/translations"},
+    {"id": "IND7-N020", "zh": "比达", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "f765755b14060308ab0109dc28c30caabee2afba1062aee3b31d1bb7f4ccce03", "review_notes": "@note/translations"},
+    {"id": "IND7-N021", "zh": "索拉普", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "3210ff5fb74f452cd710cb6ad7941fe47a2be0e03f96285552b8a0a5b14d6e0d", "review_notes": "@note/translations"},
+    {"id": "IND7-N022", "zh": "海德拉巴", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "1e9d483aae8683cce12bdaa9fac3d2241b209f4505dae481ca37ca4831f9ac8c", "review_notes": "@note/translations"},
+    {"id": "IND7-N023", "zh": "古巴尔嘎", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "5946b1df085bff0c73324bb09a6cbebba76baff9c7d9a891130fbb3d4f7c95ef", "review_notes": "@note/translations"},
+    {"id": "IND7-N024", "zh": "比贾普尔", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "76a63668632a4b300f15458b3d52a0ecf57b54b1e94e594bae526c7f6fdfe801", "review_notes": "@note/translations"},
+    {"id": "IND7-N025", "zh": "戈尔哈布尔", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "ea5b4c15e8edb7a06fca9d75a9c377f645e15608fda9302c2b345b2ac2d92f69", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "IND7-N014", "x": 413.5, "y": 28.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N015", "x": 232.5, "y": 36.0, "font_size": 18, "font_style": "regular"},
+    {"id": "IND7-N016", "x": 475.0, "y": 76.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N017", "x": 93.5, "y": 91.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N018", "x": 345.5, "y": 102.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N019", "x": 460.0, "y": 120, "font_size": 18, "font_style": "regular"},
+    {"id": "IND7-N020", "x": 427.5, "y": 149.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N021", "x": 285.5, "y": 172.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N022", "x": 481.0, "y": 202.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N023", "x": 376.5, "y": 204.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N024", "x": 274.5, "y": 247, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N025", "x": 146.5, "y": 247, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "IND7-C014", "feature_id": "IND7-N014", "kind": "circle", "original_bbox": [376, 9, 385, 18], "x": 380.5, "y": 13.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C015", "feature_id": "IND7-N016", "kind": "circle", "original_bbox": [448, 57, 457, 66], "x": 452.5, "y": 61.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C016", "feature_id": "IND7-N017", "kind": "circle", "original_bbox": [62, 72, 71, 81], "x": 66.5, "y": 76.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C017", "feature_id": "IND7-N018", "kind": "circle", "original_bbox": [308, 83, 317, 92], "x": 312.5, "y": 87.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C018", "feature_id": "IND7-N020", "kind": "circle", "original_bbox": [396, 130, 405, 139], "x": 400.5, "y": 134.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C019", "feature_id": "IND7-N021", "kind": "circle", "original_bbox": [248, 153, 257, 162], "x": 252.5, "y": 157.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C020", "feature_id": "IND7-N022", "kind": "circle", "original_bbox": [482, 183, 491, 192], "x": 486.5, "y": 187.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C021", "feature_id": "IND7-N023", "kind": "circle", "original_bbox": [333, 185, 342, 194], "x": 337.5, "y": 189.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C022", "feature_id": "IND7-N024", "kind": "circle", "original_bbox": [231, 233, 240, 242], "x": 235.5, "y": 237.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C023", "feature_id": "IND7-N025", "kind": "circle", "original_bbox": [97, 245, 106, 254], "x": 101.5, "y": 249.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "IND7-A-Bhiwandi", "owner_region": "IND7-GujaratMumbai-z7-89-56", "feature_id": "IND7-N012", "kind": "city", "original": "Bhiwandi", "original_bbox": [-11, -4, 43, 16], "source_url": "@source/061707ed334a960c", "review_notes": "@note/shared_sources"},
+    {"id": "IND7-A-Mumbai", "owner_region": "IND7-GujaratMumbai-z7-89-56", "feature_id": "IND7-N013", "kind": "city", "original": "Mumbai", "original_bbox": [-27, 18, 38, 43], "source_url": "@source/0764c8409cd2e4f7", "review_notes": "@note/shared_sources"}
+  ]
+}

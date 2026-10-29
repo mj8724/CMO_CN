@@ -1,0 +1,50 @@
+{
+  "id": "AM-EquatorialAtlantic-z6-24-32",
+  "z": 6,
+  "x": 24,
+  "y": 32,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/24/32.png",
+    "6/25/32.png"
+  ],
+  "context_tiles": [
+    "6/23/32.png",
+    "6/25/33.png"
+  ],
+  "features": [
+    {"id": "ATS2-001", "kind": "city", "original": "São Luís", "original_bbox": [27, 111, 76, 130], "source_url": "@source/953d2a7aea77b6a9"},
+    {"id": "ATS2-002", "kind": "city", "original": "Caxias", "original_bbox": [70, 217, 110, 237], "source_url": "@source/953d2a7aea77b6a9"},
+    {"id": "ATS2-003", "kind": "city", "original": "Fortaleza", "original_bbox": [290, 165, 347, 186], "source_url": "@source/b176944c9e899a92"},
+    {"id": "ATS2-004", "kind": "city", "original": "Aracati", "original_bbox": [325, 203, 366, 222], "source_url": "@source/b176944c9e899a92"},
+    {"id": "ATS2-005", "kind": "admin1", "original": "CEARÁ", "original_bbox": [217, 233, 264, 248], "source_url": "@source/953d2a7aea77b6a9"},
+    {"id": "ATS2-006", "kind": "admin1", "original": "RIO GRANDE DO NORTE", "original_bbox": [345, 243, 431, 271], "source_url": "@source/55217579e0e83aee"}
+  ],
+  "translations": [
+    {"id": "ATS2-001", "zh": "圣路易斯", "status": "approved", "source": "@source/feb0c21a22cd49f2", "record_sha256": "40e0a41eeb7e1a2e7e2bde61a98e11c393c4672579153b339c25913037c20cca", "review_notes": "@note/translations"},
+    {"id": "ATS2-002", "zh": "卡希亚斯", "status": "approved", "source": "@source/feb0c21a22cd49f2", "record_sha256": "658392b489a9cd1faacbe7e30db9a470674ecd9a14b777780d446a14db9b700c", "review_notes": "@note/translations"},
+    {"id": "ATS2-003", "zh": "福塔雷萨", "status": "approved", "source": "@source/feb0c21a22cd49f2", "record_sha256": "bb9292fc5ba75478c50fab960fb445c4907b0f1fd0be3b4b79ac10f92229c942", "review_notes": "@note/translations"},
+    {"id": "ATS2-004", "zh": "阿拉卡蒂", "status": "approved", "source": "@source/feb0c21a22cd49f2", "record_sha256": "b4fd0f8e6766ec40a916f40e912356e1d4cd90d87d1d2194b6dbf85effaf50c9", "review_notes": "@note/translations"},
+    {"id": "ATS2-005", "zh": "塞阿腊", "status": "approved", "source": "@source/8cee8015d002edba", "record_sha256": "51f79d19c1e5935e3f1f48d5aab839dc0e0044088fb134f484e53fd1c4206b04", "review_notes": "@note/translations"},
+    {"id": "ATS2-006", "zh": "北里约格朗德州", "status": "approved", "source": "@source/b7d4328d7b38b4d7", "record_sha256": "107985690ce9909bda688d541520840b4d348ecbcf405444c9eb20576f546b4f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "ATS2-001", "x": 65.0, "y": 120.5, "font_size": 12, "font_style": "regular"},
+    {"id": "ATS2-002", "x": 108.0, "y": 227.0, "font_size": 12, "font_style": "regular"},
+    {"id": "ATS2-003", "x": 328.0, "y": 175.5, "font_size": 12, "font_style": "regular"},
+    {"id": "ATS2-004", "x": 363.0, "y": 212.5, "font_size": 12, "font_style": "regular"},
+    {"id": "ATS2-005", "x": 240.5, "y": 240.5, "font_size": 14, "font_style": "regular"},
+    {"id": "ATS2-006", "x": 388.0, "y": 243.0, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "ATS2-N001", "feature_id": "ATS2-001", "kind": "circle", "original_bbox": [27, 111, 36, 120], "x": 31.5, "y": 115.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "ATS2-N002", "feature_id": "ATS2-002", "kind": "circle", "original_bbox": [70, 217, 79, 226], "x": 74.5, "y": 221.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "ATS2-N003", "feature_id": "ATS2-003", "kind": "circle", "original_bbox": [290, 165, 299, 174], "x": 294.5, "y": 169.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "ATS2-N004", "feature_id": "ATS2-004", "kind": "circle", "original_bbox": [325, 203, 334, 212], "x": 329.5, "y": 207.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "ATS2-SH001", "owner_region": "AM-NorthSouthAmerica-z6-19-29", "feature_id": "AM31-44-MARANH-O", "original": "MARANHÃO", "kind": "admin1", "original_bbox": [-59, 226, 23, 243], "source_url": "@source/3dd0f7c710f2e66d", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

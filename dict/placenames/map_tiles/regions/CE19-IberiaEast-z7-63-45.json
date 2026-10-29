@@ -1,0 +1,52 @@
+{
+  "id": "CE19-IberiaEast-z7-63-45",
+  "z": 7,
+  "x": 63,
+  "y": 45,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    "7/63/45.png",
+    "7/63/46.png",
+    "7/63/47.png"
+  ],
+  "context_tiles": [
+    "7/62/46.png"
+  ],
+  "features": [
+    {"id": "CE7-SRC-34", "kind": "city", "original": "La Rochelle", "original_bbox": [147, 112, 196, 147], "source_url": "@source/f412a08070047d3c"},
+    {"id": "CE7-SRC-49", "kind": "city", "original": "Bordeaux", "original_bbox": [199, 283, 253, 303], "source_url": "@source/b4a08462c23eaca4"},
+    {"id": "CE7-SRC-52", "kind": "city", "original": "Donostia / San Sebastián", "original_bbox": [71, 476, 126, 526], "source_url": "@source/b4a08462c23eaca4"},
+    {"id": "CE7-SRC-54", "kind": "city", "original": "Pamplona", "original_bbox": [102, 539, 158, 560], "source_url": "@source/aed7b9e911e874e6"},
+    {"id": "CE7-SRC-55", "kind": "city", "original": "Logroño", "original_bbox": [29, 582, 78, 604], "source_url": "@source/aed7b9e911e874e6"},
+    {"id": "CE7-SRC-56", "kind": "city", "original": "Zaragoza", "original_bbox": [171, 682, 223, 704], "source_url": "@source/aed7b9e911e874e6"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-34", "zh": "拉罗谢尔", "source": "@source/4b92c9ff17c40480", "status": "approved", "record_sha256": "caf44e08f55d1090e11b4a2c6d0cb6a277d67f0e30682a73fb6a39ba879fc8eb", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-49", "zh": "波尔多", "source": "@source/a6f4cc1a7476df72", "status": "approved", "record_sha256": "5038d0ab130d56fe059523191902d6913f648e803d92fc46f096461df36330e2", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-52", "zh": "圣塞巴斯蒂安", "source": "@source/fe0aa1b085940cf4", "status": "approved", "record_sha256": "83b04afd9bcd5b2098e79848356550e1866d861d7b99e2a5cb59b81f632077ad", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-54", "zh": "潘普洛纳", "source": "@source/6ab2b9eea25fd59c", "status": "approved", "record_sha256": "45742ada69088bafcd30a28d6ab3c1b66c12372c806845358e51683ac101e4c4", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-55", "zh": "洛格罗尼奥", "source": "@source/25909236eaada272", "status": "approved", "record_sha256": "35b1d862f69c6b7a9d8916799bc0b46bfaa728ce36125c19142c622ddf299f93", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-56", "zh": "萨拉戈萨", "source": "@source/35598a040816d943", "status": "approved", "record_sha256": "18bdfef12dddaf17dfbecd8553744213a06f03e2b4d798541bae34140c12f226", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-34", "x": 185.0, "y": 124.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-49", "x": 231.0, "y": 295.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-52", "x": 121.0, "y": 488.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-54", "x": 140.0, "y": 551.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-55", "x": 73.0, "y": 594.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-56", "x": 209.0, "y": 694.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-34-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-34", "original_bbox": [147, 112, 156, 121], "x": 151.5, "y": 116.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-49-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-49", "original_bbox": [199, 283, 208, 292], "x": 203.5, "y": 287.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-52-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-52", "original_bbox": [71, 476, 80, 485], "x": 75.5, "y": 480.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-54-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-54", "original_bbox": [102, 539, 111, 548], "x": 106.5, "y": 543.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-55-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-55", "original_bbox": [29, 582, 38, 591], "x": 33.5, "y": 586.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-56-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-56", "original_bbox": [171, 682, 180, 691], "x": 175.5, "y": 686.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "CE19-SH-03", "owner_region": "CE19-IberiaWest-z7-61-46", "feature_id": "CE7-SRC-53", "kind": "city", "original": "Bilbao", "original_bbox": [-16, 483, 24, 503], "source_url": "@source/4e76ba5ba04ffea9", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,38 @@
+{
+  "id": "NEA13-R09-z8-216-91",
+  "z": 8,
+  "x": 216,
+  "y": 91,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/216/91.png"
+  ],
+  "context_tiles": [
+    "8/216/92.png",
+    "8/217/91.png",
+    "8/217/92.png"
+  ],
+  "features": [
+    {"id": "NEA13-N014", "kind": "city", "original": "Da'an", "original_bbox": [93, 144, 133, 165], "source_url": "@source/e231109951f78250"},
+    {"id": "NEA13-N015", "kind": "city", "original": "Songyuan", "original_bbox": [190, 239, 252, 263], "source_url": "@source/e231109951f78250"}
+  ],
+  "translations": [
+    {"id": "NEA13-N014", "zh": "大安", "status": "approved", "source_evidence_role": "original_NE_Daan_Chinese_plus_exact_GN2037930_Dalai_explicit_Daan_alias", "source_identity_contract_sha256": "06996a6d20fceb03eb1f76218e6af68fe169a517e2ca278bb1c6c0421320a714", "source": "@source/de57b59c289acedb", "record_sha256": "cf3c2bd8127f537a94a5d4e13767c66e98e9d98673e692400bd5db719399cc77", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."},
+    {"id": "NEA13-N015", "zh": "松原", "status": "approved", "source_evidence_role": "original_GN_own_Chinese_and_NE_same_printed_lexeme_Admin_context_not_equal_GNID", "source_identity_contract_sha256": "efff74c8d09898cf086163902fc12a660bc3bad6ec810b21caa6d07d0a66606a", "source": "@source/de57b59c289acedb", "record_sha256": "e138fc6ce659c11178bf6b114ef28e4a8e6e7e97a3aec0fd4577a745d8656171", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."}
+  ],
+  "layouts": [
+    {"id": "NEA13-N014", "x": 127, "y": 160, "font_size": 12, "font_style": "regular", "lines": ["大安"]},
+    {"id": "NEA13-N015", "x": 221, "y": 221, "font_size": 12, "font_style": "regular", "lines": ["松原"]}
+  ],
+  "symbols": [
+    {"id": "NEA13-N014-circle", "feature_id": "NEA13-N014", "kind": "circle", "size": 9, "outline_width": 1, "x": 97.5, "y": 148.5, "original_bbox": [93, 144, 102, 153]},
+    {"id": "NEA13-N015-circle", "feature_id": "NEA13-N015", "kind": "circle", "size": 9, "outline_width": 1, "x": 194.5, "y": 243.5, "original_bbox": [190, 239, 199, 248]}
+  ],
+  "canonical_captions": [
+    {"id": "NEA13-Cities-886", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 886, "original_Chinese_name": "前郭", "lat_f32_bits": 1110734828, "lon_f32_bits": 1123661481, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 215, "y": 182, "font_size": 12, "font_style": "regular", "lines": ["前郭"]}},
+    {"id": "NEA13-Cities-923", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 923, "original_Chinese_name": "扶余", "lat_f32_bits": 1110752187, "lon_f32_bits": 1123656227, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 160, "y": 216, "font_size": 12, "font_style": "regular", "lines": ["扶余"]}}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

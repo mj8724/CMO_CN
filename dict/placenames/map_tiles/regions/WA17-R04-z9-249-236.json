@@ -1,0 +1,52 @@
+{
+  "id": "WA17-R04-z9-249-236",
+  "z": 9,
+  "x": 249,
+  "y": 236,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/249/236.png",
+    "9/250/236.png",
+    "9/251/236.png"
+  ],
+  "context_tiles": [
+    "9/248/236.png",
+    "9/249/235.png"
+  ],
+  "features": [
+    {"id": "WA17-N005", "kind": "city", "original": "Soubala", "original_bbox": [494, 14, 540, 30], "source_url": "@source/410ea8b24d5fc680"},
+    {"id": "WA17-N008", "kind": "city", "original": "Madiana", "original_bbox": [167, 40, 218, 56], "source_url": "@source/833d9b4aa7026167"},
+    {"id": "WA17-N012", "kind": "city", "original": "Diallassagou", "original_bbox": [437, 60, 507, 80], "source_url": "@source/410ea8b24d5fc680"},
+    {"id": "WA17-N022", "kind": "city", "original": "Baramandougou", "original_bbox": [75, 113, 165, 133], "source_url": "@source/833d9b4aa7026167"},
+    {"id": "WA17-N026", "kind": "city", "original": "Sokoura", "original_bbox": [397, 148, 444, 165], "source_url": "@source/410ea8b24d5fc680"},
+    {"id": "WA17-N027", "kind": "city", "original": "Ouolon", "original_bbox": [1, 150, 43, 167], "source_url": "@source/833d9b4aa7026167"},
+    {"id": "WA17-N041", "kind": "city", "original": "San", "original_bbox": [-4, 222, 23, 241], "source_url": "@source/833d9b4aa7026167"},
+    {"id": "WA17-N042", "kind": "city", "original": "Tominian", "original_bbox": [91, 230, 151, 247], "source_url": "@source/833d9b4aa7026167"}
+  ],
+  "translations": [
+    {"id": "WA17-N005", "zh": "苏巴拉", "status": "approved", "source": "@source/410ea8b24d5fc680", "record_sha256": "a223620f2cf4121b0f8c4e17dff4e4fd11bc60fe6b17de417ce9a9c7667b27b1", "review_notes": "@note/translations"},
+    {"id": "WA17-N008", "zh": "马迪亚纳", "status": "approved", "source": "@source/833d9b4aa7026167", "record_sha256": "81e2e015d3f5a2f29d957c802fe9be80730f12f9ed5692e220c079945a787bc3", "review_notes": "@note/translations"},
+    {"id": "WA17-N012", "zh": "迪亚拉萨古", "status": "approved", "source": "@source/410ea8b24d5fc680", "record_sha256": "3a4f592b15ea2aee88330ae9af308fad9bc297f71ecce233ca1ec9443932ca0a", "review_notes": "@note/translations"},
+    {"id": "WA17-N022", "zh": "巴拉曼杜古", "status": "approved", "source": "@source/833d9b4aa7026167", "record_sha256": "19c62f9055f94c7429b610a61217e29cfa81958ad778d3753e8d7e4a59bbbf3b", "review_notes": "@note/translations"},
+    {"id": "WA17-N026", "zh": "索库拉", "status": "approved", "source": "@source/410ea8b24d5fc680", "record_sha256": "6648c6dd518326c887e7f3be567239cd0920133b021380ac30ecad8a09ed83aa", "review_notes": "@note/translations"},
+    {"id": "WA17-N027", "zh": "乌奥隆", "status": "approved", "source": "@source/833d9b4aa7026167", "record_sha256": "7fdc20813aee4e4264e9a290cdc442ff6d302c2a74d9787207ede3dbd0b3cb97", "review_notes": "@note/translations"},
+    {"id": "WA17-N041", "zh": "桑", "status": "approved", "source": "@source/833d9b4aa7026167", "record_sha256": "ac00c5ac732f0260af4764d34c6035b148877c9e9ca2a2d0a3837a2be07ed619", "review_notes": "@note/translations"},
+    {"id": "WA17-N042", "zh": "托米尼昂", "status": "approved", "source": "@source/833d9b4aa7026167", "record_sha256": "f99644639e3a5e79f1614484a64e58e0dbc0929f1e7b4c9ac7aa5e70222397b2", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WA17-N005", "x": 517.0, "y": 22.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N008", "x": 192.5, "y": 48.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N012", "x": 472.0, "y": 70.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N022", "x": 120.0, "y": 123.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N026", "x": 420.5, "y": 156.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N027", "x": 24.0, "y": 158.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N041", "x": 12.0, "y": 231.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N042", "x": 121.0, "y": 238.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "WA17-SH004", "owner_region": "WA-Sahel-z9-244-230", "feature_id": "WA9-131", "kind": "city", "original": "Djenné", "original_bbox": [109, -4, 159, 21], "source_url": "@source/5598c23024fae55c", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

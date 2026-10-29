@@ -1,0 +1,61 @@
+{
+  "id": "CNWB18-C-z9-415-196",
+  "z": 9,
+  "x": 415,
+  "y": 196,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "9/415/196.png",
+    "9/415/197.png"
+  ],
+  "context_tiles": [
+    "9/414/196.png",
+    "9/414/197.png",
+    "9/416/197.png"
+  ],
+  "features": [
+    {"id": "CNWB18-CNG-075", "kind": "city", "original": "Geliao", "original_bbox": [153, 39, 190, 56], "source_url": "@source/1847d29f6792d260"},
+    {"id": "CNWB18-CNG-076", "kind": "city", "original": "Xinbao", "original_bbox": [32, 94, 73, 110], "source_url": "@source/1847d29f6792d260"},
+    {"id": "CNWB18-CNG-077", "kind": "city", "original": "Suopo", "original_bbox": [128, 183, 166, 203], "source_url": "@source/1847d29f6792d260"},
+    {"id": "CNWB18-CNG-078", "kind": "city", "original": "Shunhui", "original_bbox": [-45, 198, 2, 215], "source_url": "@source/1847d29f6792d260"},
+    {"id": "CNWB18-CNG-079", "kind": "city", "original": "Jingle", "original_bbox": [29, 209, 67, 231], "source_url": "@source/1847d29f6792d260"},
+    {"id": "CNWB18-CNG-080", "kind": "city", "original": "Xilingjing", "original_bbox": [197, 312, 252, 331], "source_url": "@source/477593f20aa80e5d"},
+    {"id": "CNWB18-CNG-081", "kind": "city", "original": "Geshang", "original_bbox": [103, 328, 151, 349], "source_url": "@source/477593f20aa80e5d"},
+    {"id": "CNWB18-CNG-082", "kind": "city", "original": "Tianchidian", "original_bbox": [-13, 401, 52, 418], "source_url": "@source/477593f20aa80e5d"},
+    {"id": "CNWB18-CNG-083", "kind": "city", "original": "Gujiao", "original_bbox": [115, 416, 156, 438], "source_url": "@source/477593f20aa80e5d"},
+    {"id": "CNWB18-CNG-085", "kind": "city", "original": "Chakou", "original_bbox": [7, 445, 49, 462], "source_url": "@source/477593f20aa80e5d"},
+    {"id": "CNWB18-CNG-086", "kind": "city", "original": "Chang'an", "original_bbox": [63, 463, 114, 484], "source_url": "@source/477593f20aa80e5d"}
+  ],
+  "translations": [
+    {"id": "CNWB18-CNG-075", "zh": "圪辽", "status": "approved", "source": "@source/8429335cf9b8de43", "record_sha256": "0b953a49b9b33e644944ae1fe57b44c6ec71450f1922adadd3582dc0da2c8f86", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-076", "zh": "新堡", "status": "approved", "source": "@source/41de8725ada7f91b", "record_sha256": "8d795bbcc6db10ad21ed45b02b104808f9af881b954532d39446d9bc945fa985", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-077", "zh": "索坡", "status": "approved", "source": "@source/1847d29f6792d260", "record_sha256": "3e6dd4548ca2e0476601b042443562de2b117b23a41f36f0bdd35741f2e774c7", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-078", "zh": "顺会", "status": "approved", "source": "@source/8b2494d457a7efb1", "record_sha256": "feb237de7a47618c3e4d7ce5f7fbabe5738a7593fb5a9180c21970bdf17eb8a3", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-079", "zh": "静乐", "status": "approved", "source": "@source/2a88cdba29a8409c", "record_sha256": "6f781fb6a94e335851f2138010b35c3e2e84fc531460a9ef311e8d36639e804a", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-080", "zh": "西岭京", "status": "approved", "source": "@source/477593f20aa80e5d", "record_sha256": "16bdff83e6deca7c22504c7c0e00714bc184715073a76069a5848b96a7b12245", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-081", "zh": "格尚", "status": "approved", "source": "@source/477593f20aa80e5d", "record_sha256": "64dedfe598f320a786b67484477a19cc66eea86e4e90dc7cdba694e29d05e590", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-082", "zh": "天池典", "status": "approved", "source": "@source/477593f20aa80e5d", "record_sha256": "a94aa2e760f3a5ebbc8053984d593fb9e473b4c34b67244e40df6916c98f1411", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-083", "zh": "古交", "status": "approved", "source": "@source/632feda38ce14ebf", "record_sha256": "f11f7c2ef40b05ca5c1fb8034eabbf9df9302882a9e8341baf68acef2c25f1dd", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-085", "zh": "岔口", "status": "approved", "source": "@source/937754a95ec09b7a", "record_sha256": "53dae9ab712403d3fdff011e6c58bb51fe397c50c9951ccc476def20e330b6bc", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-086", "zh": "昌安", "status": "approved", "source": "@source/477593f20aa80e5d", "record_sha256": "5c0e0b646200e7c303024accc17534be5ad31fbe7b529f38c3c9e2f3c960cd5d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CNWB18-CNG-075", "x": 171.5, "y": 47.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-076", "x": 52.5, "y": 102.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-077", "x": 147.0, "y": 193.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-078", "x": 18, "y": 206.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-079", "x": 48.0, "y": 220.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-080", "x": 224.5, "y": 321.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-081", "x": 127.0, "y": 338.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-082", "x": 24, "y": 409.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-083", "x": 135.5, "y": 427.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-085", "x": 28.0, "y": 453.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-086", "x": 88.5, "y": 473.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "CNWB18-SH-CNG-084", "kind": "city", "original": "Taiyuan", "original_bbox": [242, 432, 303, 457], "source_url": "@source/09354edc483f5a22", "feature_id": "CNW9-245", "owner_region": "CN-NORTHWEST-z9-416-192", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

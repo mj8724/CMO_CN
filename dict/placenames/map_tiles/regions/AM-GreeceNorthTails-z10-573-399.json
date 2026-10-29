@@ -1,0 +1,46 @@
+{
+  "id": "AM-GreeceNorthTails-z10-573-399",
+  "z": 10,
+  "x": 573,
+  "y": 399,
+  "width_tiles": 5,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/573/399.png",
+    "10/574/399.png",
+    "10/575/399.png",
+    "10/576/399.png",
+    "10/577/399.png"
+  ],
+  "context_tiles": [
+    "10/576/400.png"
+  ],
+  "features": [
+    {"id": "AM36-001", "kind": "city", "original": "Methoni", "original_bbox": [166, 43, 215, 61], "source_url": "@source/c045bfd298bf3961"},
+    {"id": "AM36-002", "kind": "city", "original": "Koroni", "original_bbox": [352, 66, 392, 85], "source_url": "@source/c9ef1cc575bca1e1"},
+    {"id": "AM36-003", "kind": "marine", "original": "Messenian Gulf", "original_bbox": [461, 141, 525, 170], "source_url": "@source/c9ef1cc575bca1e1"},
+    {"id": "AM36-004", "kind": "city", "original": "Skala", "original_bbox": [873, 17, 904, 34], "source_url": "@source/a57405c98cb33f58"},
+    {"id": "AM36-005", "kind": "city", "original": "Gythio", "original_bbox": [796, 97, 836, 119], "source_url": "@source/a57405c98cb33f58"},
+    {"id": "AM36-006", "kind": "city", "original": "Molai", "original_bbox": [1007, 59, 1041, 78], "source_url": "@source/a57405c98cb33f58"}
+  ],
+  "translations": [
+    {"id": "AM36-001", "zh": "迈索尼", "source": "@source/c045bfd298bf3961", "status": "approved", "record_sha256": "69469fd626ea5f31c8a84d9205e96ba2160cfc0af4cde25d06dc4e2d95de6830", "review_notes": "@note/translations"},
+    {"id": "AM36-002", "zh": "科罗尼", "source": "@source/c9ef1cc575bca1e1", "status": "approved", "record_sha256": "d7afd89f637b9c59a00594b81cc33a5f35f359e1e1f93c178477d530dbbfb992", "review_notes": "@note/translations"},
+    {"id": "AM36-003", "zh": "梅塞尼亚湾", "source": "@source/c9ef1cc575bca1e1", "status": "approved", "record_sha256": "b9dda55a4dcc1b35a8ba566ffbbb30520adb71b76a42c0ac720921f691a43efa", "review_notes": "@note/translations"},
+    {"id": "AM36-004", "zh": "斯卡拉", "source": "@source/a57405c98cb33f58", "status": "approved", "record_sha256": "3e649453369a7dc11a85d7b3ea899b435d50830760b60fde9361a305f11e54c4", "review_notes": "@note/translations"},
+    {"id": "AM36-005", "zh": "伊西奥", "source": "@source/a57405c98cb33f58", "status": "approved", "record_sha256": "42796bbee9da722319401f72fe3e77ca7316b98d84763f2c82cbcc2391ff334b", "review_notes": "@note/translations"},
+    {"id": "AM36-006", "zh": "莫莱", "source": "@source/a57405c98cb33f58", "status": "approved", "record_sha256": "ac1d4017c92b97986d4ac448c3a1890ca1df7b20d2474be206eb30f8660a4024", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AM36-001", "x": 190.5, "y": 52.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AM36-002", "x": 372.0, "y": 75.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AM36-003", "x": 493.0, "y": 155.5, "font_size": 14, "font_style": "regular", "lines": ["梅塞尼亚", "湾"]},
+    {"id": "AM36-004", "x": 888.5, "y": 25.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AM36-005", "x": 816.0, "y": 108.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AM36-006", "x": 1024.0, "y": 68.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "AM36-SHARED-CR10-000", "owner_region": "CreteSouthGreece-z10-576-400", "feature_id": "CR10-000", "kind": "marine", "original": "Laconian Gulf", "original_bbox": [869, 250, 952, 264], "source_url": "@source/a57405c98cb33f58", "review_notes": "@note/shared_sources"}
+  ]
+}

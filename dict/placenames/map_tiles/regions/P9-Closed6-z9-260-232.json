@@ -1,0 +1,29 @@
+{
+  "id": "P9-Closed6-z9-260-232",
+  "z": 9,
+  "x": 260,
+  "y": 232,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/260/232.png"
+  ],
+  "context_tiles": [
+    "9/260/233.png",
+    "9/261/232.png"
+  ],
+  "features": [
+    {"id": "P9-PH-006", "kind": "city", "original": "Agazragane", "original_bbox": [193, 216, 258, 237], "source_url": "@source/2e4fbe7072bccddb"}
+  ],
+  "translations": [
+    {"id": "P9-PH-006", "zh": "阿加兹拉甘", "status": "approved", "source": "@source/2e4fbe7072bccddb", "record_sha256": "42501905c38e02cda36d5c7c0a7e6f56525870a48388ab3dab52f3d52e44da92", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P9-PH-006", "x": 220.0, "y": 226.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "P9-SH-007", "owner_region": "FAS27-EastMali-z9-260-233", "feature_id": "FAS27-Inekar", "kind": "city", "original": "Inekar", "original_bbox": [108, 253, 144, 269], "source_url": "@source/5bae415ef051e604", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

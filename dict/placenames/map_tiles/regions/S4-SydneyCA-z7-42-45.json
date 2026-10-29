@@ -1,0 +1,26 @@
+{
+  "id": "S4-SydneyCA-z7-42-45",
+  "z": 7,
+  "x": 42,
+  "y": 45,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/42/45.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "S4-004", "kind": "city", "original": "Sydney", "original_bbox": [149, 115, 192, 137], "source_url": "@source/10468c41c4bb529a"}
+  ],
+  "translations": [
+    {"id": "S4-004", "zh": "悉尼", "status": "approved", "source": "@source/e01a994324eae788", "record_sha256": "776a032a785aa97949886fb3c42edc4982d08bfd1e88bde9a8a2ba7396ac682c", "review_notes": "Different SOURCE/CJK qualified: DIRECT_RAW_GN_AND_NE_CHINESE_CANADIAN_CITY_PROJECT_USE. Complete Sydney plus observed original circle is on Cape Breton/Nova Scotia in eastern Canada, not Australia. GN6354908 P/PPL CA and NE6680 Sydney/Canada/悉尼 support the entity and Chinese. GN2147714/NE7283 Australia are rejected same-name records. Existing z6 Canada print is wording context only and has no samezoom alias relationship. Historical dictionary URL retained as wording context only; no new HTTP or fresh official-name proof. SOURCE evidence is the frozen mandatory contract/raw original fields. All Target/model/layout/actual support approval remains pending Root selection and different TARGET reviewer. Root27eed exact finite model. Author /root/remaining_secondary_research actually viewed all four whole targets, five complete original/CJK pairs and two complete native frame boards. All CJK glyph/allalpha/positiveRGBA pristine, no clip/collision, no text move. Both source nominal observed native midpoints unchanged, project circle9/1 actual73; original mixedraw71/72 intersects70 each, adjacent glyph-contact differences explicitly recorded; no pure69/vector or zero source pixel difference claim. Only SELF_PRIVATE_MODEL_ONLY technical acceptance; different TARGET /root/northwest_mexico_source and Root integration remain pending. Independent /root/northwest_mexico_source actual TARGET audit under Root27eed: complete selected Chinese/pristine glyph RGBA and whole shown; inherited SOURCE/CJK grade and identity retained; no supplier vector/official wording claim."}
+  ],
+  "layouts": [
+    {"id": "S4-004", "x": 175, "y": 133, "font_size": 12, "font_style": "regular", "lines": ["悉尼"]}
+  ],
+  "symbols": [
+    {"id": "S4-004-N", "feature_id": "S4-004", "kind": "circle", "original_bbox": [149, 115, 158, 124], "x": 153.5, "y": 119.5, "size": 9, "outline_width": 1, "source_url": "@source/10468c41c4bb529a"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

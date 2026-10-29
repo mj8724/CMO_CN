@@ -1,0 +1,36 @@
+{
+  "z": 6,
+  "x": 32,
+  "y": 21,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "EU-Channel-z6-32-21",
+  "original_tiles": [
+    "6/32/21.png"
+  ],
+  "context_tiles": [
+    "6/31/21.png",
+    "6/33/21.png"
+  ],
+  "features": [
+    {"id": "NW6-BELGIUM", "kind": "admin0", "original": "BELGIUM", "original_bbox": [146, 119, 279, 143], "source_url": "@source/6b719077311ca17b"},
+    {"id": "NW6-LE-HAVRE", "kind": "city", "original": "Le Havre", "original_bbox": [0, 212, 50, 231], "source_url": "@source/6b719077311ca17b"}
+  ],
+  "translations": [
+    {"id": "NW6-BELGIUM", "zh": "比利时", "source": "@source/6b719077311ca17b", "status": "approved", "record_sha256": "6410feb34c1311e90a703a19eb3cdc35ac44705680a0c9f6694ff4616e1df2fb", "review_notes": "@note/translations"},
+    {"id": "NW6-LE-HAVRE", "zh": "勒阿弗尔", "source": "@source/6b719077311ca17b", "status": "approved", "record_sha256": "20e7b9c567f837d35a66852f1b1deffb64772dd0774fc0842627770f758bf63d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NW6-BELGIUM", "x": 212.5, "y": 131.0, "font_size": 20, "font_style": "bold"},
+    {"id": "NW6-LE-HAVRE", "x": 41.0, "y": 225.5, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NW6-LE-HAVRE-NATIVE", "kind": "circle", "feature_id": "NW6-LE-HAVRE", "original_bbox": [0, 212, 9, 221], "x": 4.5, "y": 216.5, "size": 8, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "NW6-SH-01-NETHERLANDS", "owner_region": "EU-NW-Main-z6-33-20", "feature_id": "NW6-NETHERLANDS", "kind": "admin0", "original": "NETHERLANDS", "original_bbox": [148, 2, 366, 26], "source_url": "@source/5a73dc82dc94bbe0", "review_notes": "@note/shared_sources"},
+    {"id": "NW6-SH-03-LUXEMBOURG", "owner_region": "EU-NW-Main-z6-33-20", "feature_id": "NW6-LUXEMBOURG", "kind": "admin0", "original": "LUXEMBOURG", "original_bbox": [175, 178, 384, 202], "source_url": "@source/5a73dc82dc94bbe0", "review_notes": "@note/shared_sources"},
+    {"id": "NW6-SH-06-LONDON", "owner_region": "EU-UK-Vertical-z6-31-19", "feature_id": "NW6-LONDON", "kind": "city", "original": "London", "original_bbox": [-10, 68, 48, 91], "source_url": "@source/32c70ee1fec17185", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

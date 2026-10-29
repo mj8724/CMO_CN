@@ -1,0 +1,50 @@
+{
+  "id": "AP-Sakhalin-Closure-z6-57-21",
+  "z": 6,
+  "x": 57,
+  "y": 21,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/57/21.png",
+    "6/57/22.png"
+  ],
+  "context_tiles": [
+    "6/56/20.png",
+    "6/57/20.png",
+    "6/58/20.png",
+    "6/56/21.png",
+    "6/58/21.png",
+    "6/56/22.png",
+    "6/58/22.png",
+    "6/56/23.png",
+    "6/57/23.png",
+    "6/58/23.png"
+  ],
+  "features": [
+    {"id": "AP-Z6C-S-000", "kind": "city", "original": "Nogliki", "original_bbox": [110, 46, 152, 69], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-Z6C-S-001", "kind": "city", "original": "Aleksandrovsk-Sakhalinskiy", "original_bbox": [65, 112, 145, 149], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-Z6C-S-002", "kind": "admin1", "original": "Sakhalin Oblast", "original_bbox": [93, 184, 164, 213], "source_url": "@source/c99418598e3d79b5"},
+    {"id": "AP-Z6C-S-004", "kind": "city", "original": "Yuzhno-Sakhalinsk", "original_bbox": [91, 385, 151, 420], "source_url": "@source/c970a69dc76f8a36"}
+  ],
+  "translations": [
+    {"id": "AP-Z6C-S-000", "zh": "诺格利基", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "99b6001b498a768a55beed4b0f15397b892712885e1e2f50bd26b792f0734f81", "review_notes": "@note/translations"},
+    {"id": "AP-Z6C-S-001", "zh": "萨哈林亚历山德罗夫斯克", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "ce93f35c70dd71c35f88b7e65ced14ea8b254d3ac46e31081c1c227fd0e006a8", "review_notes": "@note/translations"},
+    {"id": "AP-Z6C-S-002", "zh": "萨哈林州", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "a06ce6cd890330ce98eb042f3eb151e037673612e49d2da4585c2d595297ff52", "review_notes": "@note/translations"},
+    {"id": "AP-Z6C-S-004", "zh": "南萨哈林斯克", "status": "approved", "source": "@source/c970a69dc76f8a36", "record_sha256": "76fd38ae0f9a33aa0c700a303d7fd520bfca57c20777a4a88572f6e16499810c", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-Z6C-S-000", "x": 142.0, "y": 57.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-Z6C-S-001", "x": 119.0, "y": 130.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-Z6C-S-002", "x": 128.5, "y": 198.5, "font_size": 10, "font_style": "bold"},
+    {"id": "AP-Z6C-S-004", "x": 134.0, "y": 402.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-Z6C-S-000-circle", "feature_id": "AP-Z6C-S-000", "x": 114.5, "y": 50.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [110, 46, 119, 55]},
+    {"id": "AP-Z6C-S-001-circle", "feature_id": "AP-Z6C-S-001", "x": 69.5, "y": 116.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [65, 112, 74, 121]},
+    {"id": "AP-Z6C-S-004-circle", "feature_id": "AP-Z6C-S-004", "x": 95.5, "y": 389.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [91, 385, 100, 394]}
+  ],
+  "shared_sources": [
+    {"id": "shared-AP-Z6C-S-003", "owner_region": "AP-China-Mongolia-z6-50-19", "feature_id": "AP-C6-034", "kind": "city", "original": "Sovetskaya Gavan", "source_url": "@source/de57b59c289acedb", "original_bbox": [-20, 249, 42, 283], "review_notes": "@note/shared_sources"}
+  ]
+}

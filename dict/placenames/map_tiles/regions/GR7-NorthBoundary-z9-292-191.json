@@ -1,0 +1,30 @@
+{
+  "id": "GR7-NorthBoundary-z9-292-191",
+  "z": 9,
+  "x": 292,
+  "y": 191,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "GR7-N-011", "kind": "city", "original": "Krumovgrad", "original_bbox": [91, 9, 159, 29], "source_url": "@source/80446f6ce289036e"},
+    {"id": "GR7-N-045", "kind": "city", "original": "Komotini", "original_bbox": [5, 180, 62, 198], "source_url": "@source/80446f6ce289036e"},
+    {"id": "GR7-N-053", "kind": "city", "original": "Sapes", "original_bbox": [122, 226, 157, 245], "source_url": "@source/80446f6ce289036e"}
+  ],
+  "translations": [
+    {"id": "GR7-N-011", "zh": "克鲁莫夫格勒", "status": "approved", "source": "@source/7b98eeeb59b3cf29", "record_sha256": "b2f44667490ffa8cc1d2279e1d71e6a7c00937730bbf782d778b112a798afae9", "review_notes": "@note/translations"},
+    {"id": "GR7-N-045", "zh": "科莫蒂尼", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "791ea4566ac52f47f4fd9d4653e2be6645e7ef2dbe0997901175132c2d3496e3", "review_notes": "@note/translations"},
+    {"id": "GR7-N-053", "zh": "萨佩斯", "status": "approved", "source": "@source/f966f3abb7eb0cb5", "record_sha256": "799131f7ffcbdca52e635a5d0bfb4ca73b19efbc8981fd6bcf5519e1a311e1c7", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GR7-N-011", "x": 125.0, "y": 19.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-045", "x": 33.5, "y": 189.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-053", "x": 139.5, "y": 235.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/292/191.png"
+  ],
+  "context_tiles": []
+}

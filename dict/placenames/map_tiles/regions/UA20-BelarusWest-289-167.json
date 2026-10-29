@@ -1,0 +1,71 @@
+{
+  "id": "UA20-BelarusWest-289-167",
+  "z": 9,
+  "x": 289,
+  "y": 167,
+  "width_tiles": 7,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/289/167.png",
+    "9/290/167.png",
+    "9/291/167.png",
+    "9/292/167.png",
+    "9/293/167.png",
+    "9/294/167.png",
+    "9/295/167.png"
+  ],
+  "context_tiles": [
+    "9/288/167.png"
+  ],
+  "features": [
+    {"id": "UA20-N005", "kind": "city", "original": "Čyrvonaja Slabada", "original_bbox": [1418, 15, 1473, 51], "source_url": "@source/cdaeecef92eec11a"},
+    {"id": "UA20-N006", "kind": "city", "original": "Ruzhany", "original_bbox": [591, 18, 639, 37], "source_url": "@source/4594f06a0ff53331"},
+    {"id": "UA20-N013", "kind": "city", "original": "Lyuban", "original_bbox": [1725, 60, 1767, 79], "source_url": "@source/c65e2e04c592af16"},
+    {"id": "UA20-N015", "kind": "city", "original": "Salihorsk", "original_bbox": [1547, 62, 1606, 81], "source_url": "@source/c65e2e04c592af16"},
+    {"id": "UA20-N016", "kind": "city", "original": "Bielsk Podlaski", "original_bbox": [-27, 68, 20, 101], "source_url": "@source/4ccfbbc5d7ec9ce7"},
+    {"id": "UA20-N018", "kind": "city", "original": "Hantsavichy", "original_bbox": [1141, 80, 1208, 99], "source_url": "@source/1805221e0052b6d5"},
+    {"id": "UA20-N019", "kind": "city", "original": "Kosava", "original_bbox": [690, 83, 731, 99], "source_url": "@source/4594f06a0ff53331"},
+    {"id": "UA20-N023", "kind": "city", "original": "Hajnówka", "original_bbox": [110, 93, 166, 113], "source_url": "@source/b528c217e9bb9c26"},
+    {"id": "UA20-N025", "kind": "city", "original": "Ivatsevichy", "original_bbox": [747, 112, 809, 131], "source_url": "@source/628fb4de1e4d12bd"},
+    {"id": "UA20-N035", "kind": "city", "original": "Kleszczele", "original_bbox": [16, 193, 73, 209], "source_url": "@source/b528c217e9bb9c26"},
+    {"id": "UA20-N039", "kind": "city", "original": "Pruzhany", "original_bbox": [431, 203, 482, 222], "source_url": "@source/f4d5b781bed3df24"},
+    {"id": "UA20-N040", "kind": "city", "original": "Sherashava", "original_bbox": [337, 204, 400, 221], "source_url": "@source/f4d5b781bed3df24"},
+    {"id": "UA20-N043", "kind": "city", "original": "Biaroza", "original_bbox": [628, 217, 670, 233], "source_url": "@source/4594f06a0ff53331"},
+    {"id": "UA20-N046", "kind": "city", "original": "Celjakhany", "original_bbox": [931, 227, 991, 246], "source_url": "@source/628fb4de1e4d12bd"}
+  ],
+  "translations": [
+    {"id": "UA20-N005", "zh": "切尔沃纳亚斯拉巴达", "status": "approved", "source": "@source/cdaeecef92eec11a", "record_sha256": "786b6bc030df426d272eb3b7702150f4d3f992672c34ef82fdf5c72de4624a7e", "review_notes": "@note/translations"},
+    {"id": "UA20-N006", "zh": "鲁扎内", "status": "approved", "source": "@source/4594f06a0ff53331", "record_sha256": "2ef05b75d22ed672211857e95104b9b57bd34491cd6f5e4dc1c8ac32355dc63f", "review_notes": "@note/translations"},
+    {"id": "UA20-N013", "zh": "柳班", "status": "approved", "source": "@source/c65e2e04c592af16", "record_sha256": "b75d357a61005ac9b01ee6baa68c60cbd2a2ac09d2ea1948a9a0d16d9849ecb9", "review_notes": "@note/translations"},
+    {"id": "UA20-N015", "zh": "索利戈尔斯克", "status": "approved", "source": "@source/e5bf9aecc16afcdb", "record_sha256": "f65c4e34f2621a1d61b1ffce7fd271ee0dd785b92a3d3c6e5793e4ebceb512be", "review_notes": "@note/translations"},
+    {"id": "UA20-N016", "zh": "波德拉谢地区别尔斯克", "status": "approved", "source": "@source/767b2b44dd9fec3a", "record_sha256": "16e76919556a8136e5e2ae63d487667a7c889c7cfb417106a8bc0d7d745f6f20", "review_notes": "@note/translations"},
+    {"id": "UA20-N018", "zh": "甘采维奇", "status": "approved", "source": "@source/22b8bcf7a437ca81", "record_sha256": "fb45f5d93210c5bdb2c31a3346feed29806bd892d37a69a9dd702259ba1acc18", "review_notes": "@note/translations"},
+    {"id": "UA20-N019", "zh": "科萨瓦", "status": "approved", "source": "@source/fafdfe1e27a50687", "record_sha256": "d28d3a686ca08f7ffc82553c50701abe45a2b454c9121a33399f44ebe065b259", "review_notes": "@note/translations"},
+    {"id": "UA20-N023", "zh": "哈伊努夫卡", "status": "approved", "source": "@source/768232f43fd578c9", "record_sha256": "883fceb5fd4dc21639d84f3cc95d21dfece59f5286e563ef9a9e1013802ef02d", "review_notes": "@note/translations"},
+    {"id": "UA20-N025", "zh": "伊瓦采维奇", "status": "approved", "source": "@source/628fb4de1e4d12bd", "record_sha256": "590897e50e5e4c2fdf2c92876b0746bd18a59cdbc387e3b34274f832104d2f4b", "review_notes": "@note/translations"},
+    {"id": "UA20-N035", "zh": "克莱什切莱", "status": "approved", "source": "@source/458f38639a2c4719", "record_sha256": "e4a0c78bba14e1c53172ac8d8782fb67636a31dc9b6fe4e033d860682ddf2ce5", "review_notes": "@note/translations"},
+    {"id": "UA20-N039", "zh": "普鲁扎内", "status": "approved", "source": "@source/f4d5b781bed3df24", "record_sha256": "4b593dbeb40283d5979914c999b058fdb23e7ff7a8c9419b8f9209b3eeeed6ba", "review_notes": "@note/translations"},
+    {"id": "UA20-N040", "zh": "舍拉沙瓦", "status": "approved", "source": "@source/f4d5b781bed3df24", "record_sha256": "4e15f80489fefb275ce2a42e54625cf95db9accc79f918cc13291597eac8c0c2", "review_notes": "@note/translations"},
+    {"id": "UA20-N043", "zh": "比亚罗扎", "status": "approved", "source": "@source/4594f06a0ff53331", "record_sha256": "c473d496fc2e2eb2bf743fb1c49e6571450436b4bdc71df8da8da011d905744e", "review_notes": "@note/translations"},
+    {"id": "UA20-N046", "zh": "采利亚哈内", "status": "approved", "source": "@source/628fb4de1e4d12bd", "record_sha256": "5093d4479a332f78d2f54f2f9a86589fb68ea769562947ded8a4723446d25055", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UA20-N005", "x": 1445.5, "y": 33.0, "font_size": 12, "font_style": "regular", "lines": ["切尔沃纳亚", "斯拉巴达"]},
+    {"id": "UA20-N006", "x": 615.0, "y": 27.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N013", "x": 1746.0, "y": 69.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N015", "x": 1576.5, "y": 71.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N016", "x": 42.0, "y": 84.5, "font_size": 12, "font_style": "regular", "lines": ["波德拉谢地区", "别尔斯克"]},
+    {"id": "UA20-N018", "x": 1174.5, "y": 89.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N019", "x": 710.5, "y": 91.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N023", "x": 138.0, "y": 103.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N025", "x": 778.0, "y": 121.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N035", "x": 44.5, "y": 201.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N039", "x": 456.5, "y": 212.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N040", "x": 368.5, "y": 212.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N043", "x": 649.0, "y": 225.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N046", "x": 961.0, "y": 236.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

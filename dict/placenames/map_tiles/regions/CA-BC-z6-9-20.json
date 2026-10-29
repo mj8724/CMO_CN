@@ -1,0 +1,27 @@
+{
+  "id": "CA-BC-z6-9-20",
+  "z": 6,
+  "x": 9,
+  "y": 20,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/9/20.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "CA-BC-province", "kind": "admin1", "original": "British Columbia", "original_bbox": [162, 46, 237, 75], "source_url": "@source/98c784d6ab886143"},
+    {"id": "CA-Smithers-city", "kind": "city", "original": "Smithers", "original_bbox": [102, 80, 146, 95], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "CA-BC-province", "zh": "不列颠哥伦比亚省", "status": "approved", "source": "@source/98c784d6ab886143", "record_sha256": "1c9b156f820d1f9fdfa8d5b42005f84a495e17b523445cf8737991a1fab3db68", "review_notes": "@note/translations"},
+    {"id": "CA-Smithers-city", "zh": "史密特斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "ba4e23b0a966bd0bb81b714cc478098c4b9f9e32832bc425905c283defc47a4a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CA-BC-province", "x": 199.5, "y": 60.5, "font_size": 13, "font_style": "bold", "lines": ["不列颠", "哥伦比亚省"]},
+    {"id": "CA-Smithers-city", "x": 130.0, "y": 90.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CA-Smithers-point", "feature_id": "CA-Smithers-city", "x": 100.5, "y": 79.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [96, 75, 105, 84]}
+  ]
+}

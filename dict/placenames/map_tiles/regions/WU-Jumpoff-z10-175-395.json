@@ -1,0 +1,26 @@
+{
+  "id": "WU-Jumpoff-z10-175-395",
+  "z": 10,
+  "x": 175,
+  "y": 395,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/175/395.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "WUF-27", "kind": "peak", "original": "The Jumpoff", "original_bbox": [23, 131, 95, 173], "source_url": "@source/f717a828d16d7e69", "original_elevation_m": "4126"}
+  ],
+  "translations": [
+    {"id": "WUF-27", "zh": "贾姆普奥夫", "status": "approved", "source": "@source/f7f943b09e2de8f7", "record_sha256": "c1d69262c94cd2b882638f3415c70e973e233f1e9c3b570255ac0c481d45e6a3", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WUF-27", "x": 50.0, "y": 153.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "WUF-27-triangle", "feature_id": "WUF-27", "kind": "triangle", "original_bbox": [85, 164, 95, 173], "x": 90, "y": 168.5, "size": 10, "outline_width": 1.25}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

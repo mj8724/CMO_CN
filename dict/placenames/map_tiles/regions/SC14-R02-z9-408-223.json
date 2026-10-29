@@ -1,0 +1,39 @@
+{
+  "id": "SC14-R02-z9-408-223",
+  "z": 9,
+  "x": 408,
+  "y": 223,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/408/223.png"
+  ],
+  "context_tiles": [
+    "9/408/222.png",
+    "9/409/223.png"
+  ],
+  "features": [
+    {"id": "SC14-N028", "kind": "city", "original": "Zhubu", "original_bbox": [20, 0, 57, 16], "source_url": "@source/ad512a21c8a8b9e1"},
+    {"id": "SC14-N032", "kind": "city", "original": "Qujiu", "original_bbox": [238, 21, 271, 42], "source_url": "@source/ad512a21c8a8b9e1"},
+    {"id": "SC14-N035", "kind": "city", "original": "Chongzuo City", "original_bbox": [146, 65, 208, 106], "source_url": "@source/ad512a21c8a8b9e1"},
+    {"id": "SC14-N042", "kind": "city", "original": "Banli", "original_bbox": [224, 133, 253, 149], "source_url": "@source/ad512a21c8a8b9e1"},
+    {"id": "SC14-N044", "kind": "city", "original": "Ningming", "original_bbox": [40, 170, 100, 193], "source_url": "@source/ad512a21c8a8b9e1"}
+  ],
+  "translations": [
+    {"id": "SC14-N028", "zh": "逐卜", "status": "approved", "source": "@source/ad512a21c8a8b9e1", "record_sha256": "ba05d5db60cbab1184bae97b844a619aad68940fd5bf24b375a624f397e69e75", "review_notes": "@note/translations"},
+    {"id": "SC14-N032", "zh": "渠旧", "status": "approved", "source": "@source/ad512a21c8a8b9e1", "record_sha256": "4f1f0d840a847d34bbdb9bed32c15577d4ac7f5bf41832f9dd0fae5016a0268d", "review_notes": "@note/translations"},
+    {"id": "SC14-N035", "zh": "崇左市", "status": "approved", "source": "@source/ad512a21c8a8b9e1", "record_sha256": "56a1e0ede1eafdf754c7f59948d7e636a65a0ceb3262a2eb3650334169e7d03d", "review_notes": "@note/translations"},
+    {"id": "SC14-N042", "zh": "板利", "status": "approved", "source": "@source/ad512a21c8a8b9e1", "record_sha256": "212a01d4d9a2d95c8a2139bea0d9a6d1725e17d25d8a32b0407daded2445aa0a", "review_notes": "@note/translations"},
+    {"id": "SC14-N044", "zh": "宁明", "status": "approved", "source": "@source/ad512a21c8a8b9e1", "record_sha256": "7e8e8b6cdfd2e7ee71d921d6a9ef698b2c1fe2e43ecffc781c8cfd9ec14980ba", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SC14-N028", "x": 38.5, "y": 10.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N032", "x": 240.0, "y": 31.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N035", "x": 177.0, "y": 85.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N042", "x": 238.5, "y": 141.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N044", "x": 70.0, "y": 181.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

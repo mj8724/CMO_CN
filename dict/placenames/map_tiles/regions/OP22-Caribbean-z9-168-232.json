@@ -1,0 +1,41 @@
+{
+  "id": "OP22-Caribbean-z9-168-232",
+  "z": 9,
+  "x": 168,
+  "y": 232,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    "9/168/232.png",
+    "9/168/233.png",
+    "9/168/234.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N16", "kind": "city", "original": "Petit-Canal", "original_bbox": [111, 89, 172, 106], "source_url": "@source/c4a645dbab2372ff"},
+    {"id": "OP24-N17", "kind": "city", "original": "Pointe-à-Pitre", "original_bbox": [101, 131, 148, 169], "source_url": "@source/c4a645dbab2372ff"},
+    {"id": "OP24-N18", "kind": "city", "original": "Basse-Terre", "original_bbox": [20, 233, 84, 249], "source_url": "@source/c4a645dbab2372ff"},
+    {"id": "OP24-N19", "kind": "city", "original": "Grand-Bourg", "original_bbox": [185, 268, 223, 306], "source_url": "@source/4132a9856b0a437f"},
+    {"id": "OP24-N20", "kind": "city", "original": "Colihaut", "original_bbox": [127, 427, 175, 444], "source_url": "@source/4132a9856b0a437f"},
+    {"id": "OP24-N21", "kind": "city", "original": "Roseau", "original_bbox": [157, 498, 199, 514], "source_url": "@source/4132a9856b0a437f"}
+  ],
+  "translations": [
+    {"id": "OP24-N16", "zh": "佩蒂卡纳尔", "status": "approved", "source": "@source/c4a645dbab2372ff", "record_sha256": "c638767618f37f20e2e3d7128687d6e8f0c0a9c11921ae9279fd9b358d062eeb", "review_notes": "@note/translations"},
+    {"id": "OP24-N17", "zh": "皮特尔角城", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "adf5160e8d1ee59371c2842530ca306b0e7ba5909ac907b0d2853cc01e76336e", "review_notes": "@note/translations"},
+    {"id": "OP24-N18", "zh": "巴斯特尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "bad4d784323199973848f1d24e026fa4c4a06487781d93dc88594563d08a01ae", "review_notes": "@note/translations"},
+    {"id": "OP24-N19", "zh": "格朗布尔", "status": "approved", "source": "@source/4132a9856b0a437f", "record_sha256": "9d1b034f0e55ab95f8e7a0362bded91c054d1e2f923c04a43210926438fce850", "review_notes": "@note/translations"},
+    {"id": "OP24-N20", "zh": "科利奥", "status": "approved", "source": "@source/4132a9856b0a437f", "record_sha256": "ecfe80476c3209df2cf967067aac572f7a7e35232d5ae98b59a9649d46b7ee69", "review_notes": "@note/translations"},
+    {"id": "OP24-N21", "zh": "罗索", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "f8e450a1d259764c25c368cb513a3e700c3f66122c9ad0dd8afbcb937c8eb032", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N16", "x": 141.5, "y": 97.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OP24-N17", "x": 124.5, "y": 150.0, "font_size": 12, "font_style": "regular"},
+    {"id": "OP24-N18", "x": 52.0, "y": 241.0, "font_size": 12, "font_style": "regular"},
+    {"id": "OP24-N19", "x": 204.0, "y": 287.0, "font_size": 12, "font_style": "regular"},
+    {"id": "OP24-N20", "x": 151.0, "y": 435.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OP24-N21", "x": 178.0, "y": 506.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

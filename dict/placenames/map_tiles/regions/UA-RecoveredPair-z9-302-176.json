@@ -1,0 +1,40 @@
+{
+  "id": "UA-RecoveredPair-z9-302-176",
+  "z": 9,
+  "x": 302,
+  "y": 176,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/302/176.png",
+    "9/303/176.png"
+  ],
+  "context_tiles": [
+    "9/301/176.png",
+    "9/303/177.png"
+  ],
+  "features": [
+    {"id": "UAR2-001", "kind": "city", "original": "Znamianka", "original_bbox": [86, 104, 148, 120], "source_url": "@source/c22af890576efdac"},
+    {"id": "UAR2-002", "kind": "city", "original": "Nova Praha", "original_bbox": [173, 186, 236, 203], "source_url": "@source/c22af890576efdac"},
+    {"id": "UAR2-003", "kind": "city", "original": "Oleksandriia", "original_bbox": [247, 130, 316, 147], "source_url": "@source/00290ffd4cf81881"},
+    {"id": "UAR2-004", "kind": "city", "original": "Balakhivka", "original_bbox": [274, 244, 335, 260], "source_url": "@source/00290ffd4cf81881"}
+  ],
+  "translations": [
+    {"id": "UAR2-001", "zh": "兹纳缅卡", "source": "@source/91a43cddea477a6e", "status": "approved", "record_sha256": "985f3da6322d05776b39030b29b557b6873c05269d1b735c5b7f584972618611", "review_notes": "@note/translations"},
+    {"id": "UAR2-002", "zh": "新布拉哈", "source": "@source/19762fe92df3158f", "status": "approved", "record_sha256": "f69e55d5b5e634beeee5075b29b9513f95c1fbb180e2dc0ba117dcff3a24cfba", "review_notes": "@note/translations"},
+    {"id": "UAR2-003", "zh": "亚历山德里亚", "source": "@source/7d3a251836dd1f10", "status": "approved", "record_sha256": "e77d4ad56f72c194f93b240c6a28e630371a8bf2e708c37ce108f30dae495624", "review_notes": "@note/translations"},
+    {"id": "UAR2-004", "zh": "巴拉希夫卡", "source": "@source/a8c76e08e1ea4861", "status": "approved", "record_sha256": "7df5ed9ca0a4427b10fa4d3207c931b16ec47851ddb6d5cb6d51ac78d4d656c0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UAR2-001", "x": 117.0, "y": 112.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAR2-002", "x": 204.5, "y": 194.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UAR2-003", "x": 281.5, "y": 138.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UAR2-004", "x": 304.5, "y": 246.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "UAR2-SH-001", "owner_region": "UA-SouthBoundary-z9-296-176", "feature_id": "UAS16-036", "kind": "city", "original": "Lisove", "source_url": "@source/6b869ae5f9212387", "original_bbox": [-23, 36, 14, 52], "review_notes": "@note/shared_sources"},
+    {"id": "UAR2-SH-002", "owner_region": "UA-SouthBoundary-z9-296-176", "feature_id": "UAS16-037", "kind": "city", "original": "Kropyvnytskyi", "source_url": "@source/6b869ae5f9212387", "original_bbox": [-72, 218, 15, 239], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,26 @@
+{
+  "id": "OSNA11-N3-z6-21-22",
+  "z": 6,
+  "x": 21,
+  "y": 22,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/21/22.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NA11-09-Sydney", "kind": "city", "original": "Sydney", "original_bbox": [72, 183, 116, 205], "source_url": "@source/327403c638cc9c59"}
+  ],
+  "translations": [
+    {"id": "NA11-09-Sydney", "zh": "悉尼", "status": "approved", "source": "@source/e01a994324eae788", "record_sha256": "89c72c46027d17ec89fdded5b9ef46dfb7d6a88892767335a454dcdadc165a67", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NA11-09-Sydney", "x": 100.0, "y": 195.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NA11-09-Sydney-circle", "feature_id": "NA11-09-Sydney", "kind": "circle", "x": 76.5, "y": 187.5, "size": 9, "outline_width": 1, "original_bbox": [72, 183, 81, 192], "source_url": "@source/327403c638cc9c59", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

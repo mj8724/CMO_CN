@@ -1,0 +1,37 @@
+{
+  "id": "LF20-R08-z9-320-203",
+  "z": 9,
+  "x": 320,
+  "y": 203,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/320/203.png"
+  ],
+  "context_tiles": [
+    "9/319/203.png"
+  ],
+  "features": [
+    {"id": "LF20-N039", "kind": "city", "original": "Sarqala", "original_bbox": [2, 55, 45, 74], "source_url": "@source/adaa0acc88743c08"},
+    {"id": "LF20-N040", "kind": "city", "original": "Kalar", "original_bbox": [100, 106, 131, 122], "source_url": "@source/adaa0acc88743c08"},
+    {"id": "LF20-N041", "kind": "city", "original": "Ghasr-e Shirin", "original_bbox": [189, 146, 233, 181], "source_url": "@source/adaa0acc88743c08"},
+    {"id": "LF20-N042", "kind": "city", "original": "Kanaqin", "original_bbox": [120, 230, 166, 249], "source_url": "@source/adaa0acc88743c08"}
+  ],
+  "translations": [
+    {"id": "LF20-N039", "zh": "萨尔卡拉", "status": "approved", "source": "@source/adaa0acc88743c08", "record_sha256": "83ca313f46553012cc41f901a47bea89413cb06d8ba8bdd05be45f8c707452e6", "review_notes": "@note/translations"},
+    {"id": "LF20-N040", "zh": "卡拉尔", "status": "approved", "source": "@source/adaa0acc88743c08", "record_sha256": "861f5fa2cedaa120ff385cfab8d6635d9b720f9cf6c9dd38bc6173266651fd94", "review_notes": "@note/translations"},
+    {"id": "LF20-N041", "zh": "席林堡", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "cefd0ca33ffe12d035cee2b9225608d18f81aa323d1386b1525d39437edaed89", "review_notes": "@note/translations"},
+    {"id": "LF20-N042", "zh": "哈纳金", "status": "approved", "source": "@source/6b8ebd0eec9403e0", "record_sha256": "c53faabf12496e9a70055fd14ea4db7fed9cfb3422a6cd82fb732acd17b5fa57", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LF20-N039", "x": 28.0, "y": 64.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N040", "x": 115.5, "y": 114.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N041", "x": 211.0, "y": 163.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N042", "x": 143.0, "y": 239.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "LF20-S004", "owner_region": "IRQ-West-z9-62-south", "feature_id": "IRQ9-066", "kind": "city", "original": "Qara Tapa", "source_url": "@source/557bc5026de2a0fc", "original_bbox": [-52, 192, 5, 211], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

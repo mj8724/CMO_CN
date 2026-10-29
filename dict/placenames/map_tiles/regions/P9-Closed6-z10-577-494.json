@@ -1,0 +1,26 @@
+{
+  "id": "P9-Closed6-z10-577-494",
+  "z": 10,
+  "x": 577,
+  "y": 494,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/577/494.png"
+  ],
+  "context_tiles": [
+    "10/576/494.png"
+  ],
+  "features": [
+    {"id": "P9-PH-001", "kind": "city", "original": "Nzako", "original_bbox": [-9, 127, 27, 145], "source_url": "@source/0e82d4d43e332d18"}
+  ],
+  "translations": [
+    {"id": "P9-PH-001", "zh": "恩扎科", "status": "approved", "source": "@source/0e82d4d43e332d18", "record_sha256": "e51063cce5fbe1a044bb0b1924cf1ed156f71c948a2a8db31fd1d158287a2815", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P9-PH-001", "x": 24.0, "y": 136.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,52 @@
+{
+  "id": "UA-SouthBoundary-z9-306-176",
+  "z": 9,
+  "x": 306,
+  "y": 176,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/306/176.png",
+    "9/307/176.png"
+  ],
+  "context_tiles": [
+    "9/305/176.png",
+    "9/307/175.png",
+    "9/308/176.png"
+  ],
+  "features": [
+    {"id": "UAS16-045", "kind": "city", "original": "Hubynykha", "original_bbox": [6, 55, 68, 74], "source_url": "@source/cc2567da476ae592"},
+    {"id": "UAS16-046", "kind": "city", "original": "Hvardiiske", "original_bbox": [33, 95, 91, 111], "source_url": "@source/cc2567da476ae592"},
+    {"id": "UAS16-047", "kind": "city", "original": "Novomoskovsk", "original_bbox": [-3, 150, 80, 166], "source_url": "@source/cc2567da476ae592"},
+    {"id": "UAS16-048", "kind": "city", "original": "Pavlohrad", "original_bbox": [229, 207, 291, 225], "source_url": "@source/4a717215f2cce5da"},
+    {"id": "UAS16-050", "kind": "city", "original": "Lozova", "original_bbox": [402, 13, 443, 29], "source_url": "@source/4a717215f2cce5da"},
+    {"id": "UAS16-051", "kind": "city", "original": "Yurivka", "original_bbox": [292, 90, 335, 106], "source_url": "@source/4a717215f2cce5da"},
+    {"id": "UAS16-052", "kind": "city", "original": "Ternivka", "original_bbox": [309, 213, 358, 229], "source_url": "@source/4a717215f2cce5da"},
+    {"id": "UAS16-053", "kind": "city", "original": "Blyzniuky", "original_bbox": [481, 30, 536, 49], "source_url": "@source/4a717215f2cce5da"}
+  ],
+  "translations": [
+    {"id": "UAS16-045", "zh": "胡比尼哈", "source": "@source/e94e2f75bd701293", "status": "approved", "record_sha256": "4b2d2eb36b5f47876f1e82511a322e11ca35d68174205825b1f7d5ff7fe3476b", "review_notes": "@note/translations"},
+    {"id": "UAS16-046", "zh": "近卫军村", "source": "@source/8425c1f6ced9d2b6", "status": "approved", "record_sha256": "7093976eb11dc4c67ee0bafab20387fa7576025d13502ed580faa2fb465ebc58", "review_notes": "@note/translations"},
+    {"id": "UAS16-047", "zh": "新莫斯科斯克", "source": "@source/696a248e139945c7", "status": "approved", "record_sha256": "b5390640e2182aa7da37c0803bf0c1e9cc0e868eb4528071c35d90b3ff18d639", "review_notes": "@note/translations"},
+    {"id": "UAS16-048", "zh": "巴甫洛格勒", "source": "@source/219458b71d35f880", "status": "approved", "record_sha256": "51a4aac0328295556ee06f352aee5d91621128654b6f0131f07c60c2ad9fa23b", "review_notes": "@note/translations"},
+    {"id": "UAS16-050", "zh": "洛佐瓦", "source": "@source/e3765b874b0841a6", "status": "approved", "record_sha256": "ce05fd1c03404ce1418a5af284886c99f7edd0b94d52ee799ac26a8b855c57b0", "review_notes": "@note/translations"},
+    {"id": "UAS16-051", "zh": "尤里夫卡", "source": "@source/48e497c0d03709a2", "status": "approved", "record_sha256": "e3ea0583ecb5528b82eec9e979b85d1f702b63535cfabc0f31cb49b544c74f3f", "review_notes": "@note/translations"},
+    {"id": "UAS16-052", "zh": "捷尔尼夫卡", "source": "@source/44a535cd7cdbc8eb", "status": "approved", "record_sha256": "1e845eca4a98554fe33a8f7f6cefd0aa5ac3716c8095160e3b3b45654426ee49", "review_notes": "@note/translations"},
+    {"id": "UAS16-053", "zh": "布利兹纽基", "source": "@source/f9355a1f20a12316", "status": "approved", "record_sha256": "34c0f97ad15baa812066b675bd9add32c49eca5ac3e55ab522bfe4bc8bc13b8d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UAS16-045", "x": 37.0, "y": 64.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-046", "x": 62.0, "y": 103.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-047", "x": 40.0, "y": 158.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-048", "x": 260.0, "y": 216.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-050", "x": 422.5, "y": 21.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-051", "x": 313.5, "y": 98.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-052", "x": 333.5, "y": 221.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-053", "x": 478.0, "y": 39.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "UAS16-SH-UKS-049", "owner_region": "UA-East-z9-304-168", "feature_id": "UAE9-159", "kind": "city", "original": "Paniutyne", "source_url": "@source/910ebdbdedfb942e", "original_bbox": [378, -18, 439, 4], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

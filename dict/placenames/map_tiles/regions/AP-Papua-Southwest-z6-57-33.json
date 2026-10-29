@@ -1,0 +1,37 @@
+{
+  "id": "AP-Papua-Southwest-z6-57-33",
+  "z": 6,
+  "x": 57,
+  "y": 33,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/57/33.png"
+  ],
+  "context_tiles": [
+    "6/56/32.png",
+    "6/56/33.png",
+    "6/56/34.png",
+    "6/57/32.png",
+    "6/57/34.png",
+    "6/58/32.png",
+    "6/58/33.png",
+    "6/58/34.png"
+  ],
+  "features": [
+    {"id": "AP-P6-011", "kind": "city", "original": "Mount Hagen", "original_bbox": [160, 7, 200, 44], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-P6-012", "kind": "city", "original": "Goroka", "original_bbox": [212, 16, 255, 36], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "AP-P6-011", "zh": "芒特哈根", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "cbf1d6c7162fa8fcf41fbc37804fc003f7dbcee8fa46dd87fb4ea28a6cb35b8e", "review_notes": "@note/translations"},
+    {"id": "AP-P6-012", "zh": "戈罗卡", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e3bcdfee2209644cd4bf4073f8c6397a0e00dca33adb6d2061d8da3932b5e29e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-P6-011", "x": 132.0, "y": 15.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-P6-012", "x": 192.5, "y": 26.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-P6-011-circle", "feature_id": "AP-P6-011", "kind": "circle", "x": 164.5, "y": 11.5, "size": 7, "outline_width": 1, "original_bbox": [160, 7, 169, 16]},
+    {"id": "AP-P6-012-circle", "feature_id": "AP-P6-012", "kind": "circle", "x": 216.5, "y": 20.5, "size": 7, "outline_width": 1, "original_bbox": [212, 16, 221, 25]}
+  ]
+}

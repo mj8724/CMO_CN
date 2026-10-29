@@ -1,0 +1,27 @@
+{
+  "id": "VN14-R03-z10-815-469",
+  "z": 10,
+  "x": 815,
+  "y": 469,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "10/815/469.png", "z": 10}
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "VN14-N09", "kind": "region", "original": "Attapeu", "original_bbox": [196, 90, 247, 112], "source_url": "@source/d95c64eb1c9072bd"},
+    {"id": "VN14-N10", "kind": "region", "original": "Sanamxai", "original_bbox": [16, 188, 65, 203], "source_url": "@source/d95c64eb1c9072bd"}
+  ],
+  "translations": [
+    {"id": "VN14-N09", "zh": "阿速坡", "status": "approved", "source": "@source/f12f5f2aec23f72f", "record_sha256": "02710738f70e4167f91c35dcf2666f9432b0aa348dcb6ec52c35f5e895e45375", "review_notes": "@note/translations"},
+    {"id": "VN14-N10", "zh": "萨南赛", "status": "approved", "source": "@source/d95c64eb1c9072bd", "record_sha256": "b04a54dfe1e6c1370a5b873a86d708884c392d261db6535e4024aa593a9de58b", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "VN14-N09", "x": 221.5, "y": 101.0, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N10", "x": 40.5, "y": 195.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,26 @@
+{
+  "id": "LZ12-Unalaska-z6-2-20",
+  "z": 6,
+  "x": 2,
+  "y": 20,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/2/20.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "LZ12-Unalaska-z6-2-20-Unalaska", "kind": "city", "original": "Unalaska", "original_bbox": [96, 146, 148, 165], "source_url": "@source/258d5a3ff99f25ef", "source_printed_lines": ["Unalaska"]}
+  ],
+  "translations": [
+    {"id": "LZ12-Unalaska-z6-2-20-Unalaska", "zh": "乌纳拉斯卡", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e009a1f525ca0f9fb36f80460ec0f67c542f2c10c15b2fd6343b242ee04e35af", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LZ12-Unalaska-z6-2-20-Unalaska", "x": 142.0, "y": 158.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "LZ12-Unalaska-z6-2-20-Unalaska-circle", "feature_id": "LZ12-Unalaska-z6-2-20-Unalaska", "kind": "circle", "x": 100.5, "y": 150.5, "size": 9, "outline_width": 1, "original_bbox": [96, 146, 105, 155], "source_url": "@source/258d5a3ff99f25ef", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

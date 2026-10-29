@@ -1,0 +1,30 @@
+{
+  "id": "C3-R01-z8-133-120",
+  "z": 8,
+  "x": 133,
+  "y": 120,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/133/120.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C3-N007", "kind": "city", "original": "Zaria", "original_bbox": [121, 7, 157, 29], "source_url": "@source/89677b32cc3512bb"},
+    {"id": "C3-N008", "kind": "city", "original": "Kaduna", "original_bbox": [69, 118, 122, 140], "source_url": "@source/89677b32cc3512bb"}
+  ],
+  "translations": [
+    {"id": "C3-N007", "zh": "扎里亚", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b8a1caaf0e06c5229f63ce97b0d40f6e6ba59a8ad1660830b848703ee4b6391d", "review_notes": "@note/translations"},
+    {"id": "C3-N008", "zh": "卡杜纳", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b7bdf021a352e3458f7ebe592a8c5be3da92fabc95d2e6281143759ea459d761", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C3-N007", "x": 156.5, "y": 27.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N008", "x": 104.5, "y": 138.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "C3-C007", "feature_id": "C3-N007", "kind": "circle", "original_bbox": [121, 7, 130, 16], "x": 125.5, "y": 11.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C008", "feature_id": "C3-N008", "kind": "circle", "original_bbox": [69, 118, 78, 127], "x": 73.5, "y": 122.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

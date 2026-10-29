@@ -1,0 +1,28 @@
+{
+  "id": "C3-R08-z8-146-128",
+  "z": 8,
+  "x": 146,
+  "y": 128,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/146/128.png"
+  ],
+  "context_tiles": [
+    "8/147/128.png"
+  ],
+  "features": [
+    {"id": "C3-N018", "kind": "city", "original": "Lubutu", "original_bbox": [227, 130, 274, 151], "source_url": "@source/5b9653090b974db8"}
+  ],
+  "translations": [
+    {"id": "C3-N018", "zh": "卢布图", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "0935271f8e60fa76d879b042809d2d88a5701f6fd6705d4b035c85a76b2a862d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C3-N018", "x": 233.0, "y": 150.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "C3-C018", "feature_id": "C3-N018", "kind": "circle", "original_bbox": [227, 130, 236, 139], "x": 231.5, "y": 134.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,56 @@
+{
+  "id": "UA-SouthBoundary-z9-287-176",
+  "z": 9,
+  "x": 287,
+  "y": 176,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/287/176.png",
+    "9/288/176.png",
+    "9/289/176.png"
+  ],
+  "context_tiles": [
+    "9/287/175.png",
+    "9/288/175.png"
+  ],
+  "features": [
+    {"id": "UAS16-000", "kind": "city", "original": "Velykyi Bereznyi", "original_bbox": [217, 1, 265, 38], "source_url": "@source/bda5b46631182141"},
+    {"id": "UAS16-001", "kind": "city", "original": "Humenné", "original_bbox": [12, -16, 65, 1], "source_url": "@source/3d4a09b724cba2a0"},
+    {"id": "UAS16-002", "kind": "city", "original": "Michalovce", "original_bbox": [14, 87, 77, 103], "source_url": "@source/bda5b46631182141"},
+    {"id": "UAS16-003", "kind": "city", "original": "Sobrance", "original_bbox": [114, 90, 166, 106], "source_url": "@source/bda5b46631182141"},
+    {"id": "UAS16-004", "kind": "city", "original": "Uzhhorod", "original_bbox": [154, 157, 215, 175], "source_url": "@source/bda5b46631182141"},
+    {"id": "UAS16-005", "kind": "city", "original": "Serednie", "original_bbox": [233, 202, 282, 218], "source_url": "@source/616eea8cb6dca24a"},
+    {"id": "UAS16-006", "kind": "city", "original": "Volovets", "original_bbox": [481, 107, 532, 123], "source_url": "@source/616eea8cb6dca24a"},
+    {"id": "UAS16-007", "kind": "city", "original": "Svaliava", "original_bbox": [410, 199, 458, 216], "source_url": "@source/616eea8cb6dca24a"},
+    {"id": "UAS16-008", "kind": "city", "original": "Slavsko", "original_bbox": [578, 34, 622, 51], "source_url": "@source/9d199c5a01d9479e"},
+    {"id": "UAS16-009", "kind": "city", "original": "Mizhhiria", "original_bbox": [595, 210, 647, 226], "source_url": "@source/9d199c5a01d9479e"}
+  ],
+  "translations": [
+    {"id": "UAS16-000", "zh": "大别列兹内", "source": "@source/15223275d1027859", "status": "approved", "record_sha256": "301f092501ebf3bd58baac26682f6ac6bab21db45c0eacb0baf6458cbf186e90", "review_notes": "@note/translations"},
+    {"id": "UAS16-001", "zh": "胡门内", "source": "@source/a10e7667f5d5e372", "status": "approved", "record_sha256": "647d9c3fb0fdc62657e285d6f742931c9785ebdf3b6274f0a0b01a1dd9f7c163", "review_notes": "@note/translations"},
+    {"id": "UAS16-002", "zh": "米哈洛夫采", "source": "@source/4ce2b76732588c85", "status": "approved", "record_sha256": "cb18f0857ee7cc1ef2f063dd0879aba2363596717f13fd73dbd510a3b69de396", "review_notes": "@note/translations"},
+    {"id": "UAS16-003", "zh": "索布兰采", "source": "@source/8a2a836c02dee03c", "status": "approved", "record_sha256": "58308dca581bafc277b692a17ff5530b5e31f02eba0be9aef23a908985e17943", "review_notes": "@note/translations"},
+    {"id": "UAS16-004", "zh": "乌日霍罗德", "source": "@source/7d6c8b75e0a42723", "status": "approved", "record_sha256": "6a7ba23411befc4de67af3934d5fa7708cf86fbfd787aacab824d293dabb1d26", "review_notes": "@note/translations"},
+    {"id": "UAS16-005", "zh": "塞雷德纳", "source": "@source/98df4a7904fff8ae", "status": "approved", "record_sha256": "a72dcabab843a2bf624a5de2a8b058a73d9ff8534e9e94389193d13227c6c507", "review_notes": "@note/translations"},
+    {"id": "UAS16-006", "zh": "沃洛韦茨", "source": "@source/e58d8e87bb9e7945", "status": "approved", "record_sha256": "65d8cf6c0339c9278878e15e48ad6db2dbb1408954044da6f72396f45e1a703f", "review_notes": "@note/translations"},
+    {"id": "UAS16-007", "zh": "斯瓦利亚瓦", "source": "@source/6c88cb4428d2df2c", "status": "approved", "record_sha256": "b6564cb5eee720409f1992fc597f35a6abcc55749f959f65fdb1d85c97f0ceb6", "review_notes": "@note/translations"},
+    {"id": "UAS16-008", "zh": "斯拉夫斯科", "source": "@source/c2ebc58d6fd55d22", "status": "approved", "record_sha256": "6f7322b84de9c7dbaa7b4aaa3502e671f3fd860264fe9f9722cc4fe079a39d40", "review_notes": "@note/translations"},
+    {"id": "UAS16-009", "zh": "米日希里亚", "source": "@source/8c63093578e7ab20", "status": "approved", "record_sha256": "69e146c1e98f38998b9372369ef365634cb78ae15e41f5c2e1d1b6d2ac5dfed3", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UAS16-000", "x": 241.0, "y": 19.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-001", "x": 38.5, "y": 10.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-002", "x": 45.5, "y": 95.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-003", "x": 140.0, "y": 98.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-004", "x": 184.5, "y": 166.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-005", "x": 257.5, "y": 210.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-006", "x": 506.5, "y": 115.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-007", "x": 434.0, "y": 207.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-008", "x": 600.0, "y": 42.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-009", "x": 621.0, "y": 218.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

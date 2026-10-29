@@ -1,0 +1,36 @@
+{
+  "id": "EML13-R02",
+  "z": 7,
+  "x": 79,
+  "y": 51,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/79/51.png"
+  ],
+  "context_tiles": [
+    "7/79/52.png",
+    "7/80/51.png"
+  ],
+  "features": [
+    {"id": "EML13-N003", "kind": "city", "original": "Al Hillah", "original_bbox": [200, 194, 249, 214], "source_url": "@source/c6767031c44f2897"}
+  ],
+  "translations": [
+    {"id": "EML13-N003", "zh": "希拉", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "a13e8a574c4a3b0ebdec29a832f0f6e7fbe232ab426d70c6d63d0449d48f6985", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EML13-N003", "x": 229.5, "y": 214.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EML13-C001", "kind": "circle", "size": 9, "outline_width": 1, "x": 204.5, "y": 198.5, "original_bbox": [200, 194, 209, 203], "feature_id": "EML13-N003"},
+    {"id": "EML13-C014", "kind": "circle", "size": 9, "outline_width": 1, "x": 224.5, "y": 61.5, "original_bbox": [220, 57, 229, 66], "shared_source_id": "EML13-SH003"},
+    {"id": "EML13-C015", "kind": "circle", "size": 9, "outline_width": 1, "x": 200.5, "y": 109.5, "original_bbox": [196, 105, 205, 114], "shared_source_id": "EML13-SH004"},
+    {"id": "EML13-C016", "kind": "circle", "size": 9, "outline_width": 1, "x": 195.0, "y": 250.5, "original_bbox": [191, 246, 199, 255], "shared_source_id": "EML13-SH005"}
+  ],
+  "shared_sources": [
+    {"id": "EML13-SH003", "owner_region": "IRG-z7-80-48-8-8", "feature_id": "IG7-040-Baqubah", "kind": "city", "original": "Baqubah", "original_bbox": [220, 57, 270, 79], "source_url": "@source/c6767031c44f2897", "review_notes": "@note/shared_sources"},
+    {"id": "EML13-SH004", "owner_region": "IRG-z7-80-48-8-8", "feature_id": "IG7-043-Baghdad", "kind": "city", "original": "Baghdad", "original_bbox": [196, 105, 259, 132], "source_url": "@source/c6767031c44f2897", "review_notes": "@note/shared_sources"},
+    {"id": "EML13-SH005", "owner_region": "AM-Mediterranean-z7-EastSouth", "feature_id": "AM29-39-Al-Najaf", "kind": "city", "original": "Al Najaf", "original_bbox": [190, 245, 239, 269], "source_url": "@source/c6767031c44f2897", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

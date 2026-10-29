@@ -1,0 +1,25 @@
+{
+  "id": "LZ12-Arctic-z6-1-3",
+  "z": 6,
+  "x": 1,
+  "y": 3,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/1/3.png",
+    "6/2/3.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "LZ12-Arctic-z6-1-3-ArcticOcean", "kind": "marine", "original": "Arctic Ocean", "original_bbox": [123, 126, 275, 144], "source_url": "@source/68f5aff0cd9cdd45", "source_printed_lines": ["Arctic Ocean"]}
+  ],
+  "translations": [
+    {"id": "LZ12-Arctic-z6-1-3-ArcticOcean", "zh": "北冰洋", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "611c7952eddb5ba848d7fc3d566e9f3fab0f6115970da978c99a74bc63aa634e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LZ12-Arctic-z6-1-3-ArcticOcean", "x": 199.0, "y": 135.0, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

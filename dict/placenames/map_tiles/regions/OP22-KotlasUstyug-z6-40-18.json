@@ -1,0 +1,30 @@
+{
+  "id": "OP22-KotlasUstyug-z6-40-18",
+  "z": 6,
+  "x": 40,
+  "y": 18,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/40/18.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N02", "kind": "city", "original": "Kotlas", "original_bbox": [71, 29, 110, 49], "source_url": "@source/7e06e39d562c59b5"},
+    {"id": "OP24-N03", "kind": "city", "original": "Velikiy Ustyug", "original_bbox": [55, 75, 97, 113], "source_url": "@source/7e06e39d562c59b5"}
+  ],
+  "translations": [
+    {"id": "OP24-N02", "zh": "科特拉斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "3ce3fbcf531f9981a2b15967336231146b4af02249f66372800bbbb36a2d242b", "review_notes": "@note/translations"},
+    {"id": "OP24-N03", "zh": "大乌斯秋格", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "fdb2ea02bb7e5ce9cc547c2a00418c030e838f5929180644117d5edb2e0a4b3c", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N02", "x": 106.0, "y": 39.0, "font_size": 12, "font_style": "regular"},
+    {"id": "OP24-N03", "x": 96.0, "y": 94.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "OP24-S02", "feature_id": "OP24-N02", "kind": "circle", "x": 75.5, "y": 33.5, "size": 9, "outline_width": 1, "original_bbox": [71, 29, 80, 38]},
+    {"id": "OP24-S03", "feature_id": "OP24-N03", "kind": "circle", "x": 59.5, "y": 79.5, "size": 9, "outline_width": 1, "original_bbox": [55, 75, 64, 84]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

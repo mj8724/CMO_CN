@@ -1,0 +1,35 @@
+{
+  "id": "SA10-NorthAmazon-z7-40-64",
+  "z": 7,
+  "x": 40,
+  "y": 64,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/40/64.png",
+    "7/41/64.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "SA10-N-023", "kind": "city", "original": "São Gabriel da Cachoeira", "original_bbox": [34, 7, 90, 57], "source_url": "@source/4c727c186a73fd22"},
+    {"id": "SA10-N-027", "kind": "city", "original": "Barcelos", "original_bbox": [412, 84, 461, 103], "source_url": "@source/597179dc0232bbef"},
+    {"id": "SA10-N-032", "kind": "city", "original": "Fonte Boa", "original_bbox": [123, 224, 180, 244], "source_url": "@source/4c727c186a73fd22"}
+  ],
+  "translations": [
+    {"id": "SA10-N-023", "zh": "圣加布里埃尔达卡绍埃拉", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "2ed32648b4e4ab282ad400e99417152d642bac15618d2197982dc34b1d6d3901", "review_notes": "@note/translations"},
+    {"id": "SA10-N-027", "zh": "巴塞洛斯", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "497cd2684b569e1b09e04f75544d6194147980973e8e9ddc1500b0e81be4e4ce", "review_notes": "@note/translations"},
+    {"id": "SA10-N-032", "zh": "方特堡", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "8b41a59e7b3c544ff1f78db617ebde0804472e69baa1560e0784313b729efeab", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SA10-N-023", "x": 113.0, "y": 11.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-027", "x": 449.0, "y": 89.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-032", "x": 154.0, "y": 229.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SA10-C-018", "feature_id": "SA10-N-023", "kind": "circle", "x": 38.5, "y": 11.5, "size": 9, "outline_width": 1, "original_bbox": [34, 7, 43, 16], "source_url": "@source/4c727c186a73fd22", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-022", "feature_id": "SA10-N-027", "kind": "circle", "x": 416.5, "y": 88.5, "size": 9, "outline_width": 1, "original_bbox": [412, 84, 421, 93], "source_url": "@source/597179dc0232bbef", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-027", "feature_id": "SA10-N-032", "kind": "circle", "x": 127.5, "y": 228.5, "size": 9, "outline_width": 1, "original_bbox": [123, 224, 132, 233], "source_url": "@source/4c727c186a73fd22", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

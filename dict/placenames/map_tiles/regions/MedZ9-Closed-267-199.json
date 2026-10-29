@@ -1,0 +1,33 @@
+{
+  "id": "MedZ9-Closed-267-199",
+  "z": 9,
+  "x": 267,
+  "y": 199,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/267/199.png"
+  ],
+  "context_tiles": [
+    "9/266/199.png",
+    "9/268/199.png"
+  ],
+  "features": [
+    {"id": "GZ9-04-09", "kind": "city", "original": "Annaba", "original_bbox": [-19, 109, 34, 129], "source_url": "@source/bda333e803bb7ac2"},
+    {"id": "GZ9-04-10", "kind": "city", "original": "El Kala", "original_bbox": [238, 113, 278, 129], "source_url": "@source/94062d02e1061da8"},
+    {"id": "GZ9-04-11", "kind": "city", "original": "Bouteldja", "original_bbox": [143, 163, 196, 182], "source_url": "@source/94062d02e1061da8"}
+  ],
+  "translations": [
+    {"id": "GZ9-04-09", "zh": "安纳巴", "source": "@source/b8fe173568a01e0d", "status": "approved", "record_sha256": "b3a1eb1312586a57e0d8be5da01a2aa0c9761a599dae231d8eb3c9243589ca0d", "review_notes": "@note/translations"},
+    {"id": "GZ9-04-10", "zh": "卡拉", "source": "@source/0244d21060e22445", "status": "approved", "record_sha256": "591ddfbf5eeba71605f3156d990ae9143b3a2cd2aea5e33a6dbfc0428fa8a5ec", "review_notes": "@note/translations"},
+    {"id": "GZ9-04-11", "zh": "布泰尔贾", "source": "@source/94062d02e1061da8", "status": "approved", "record_sha256": "3610b6bb115fce497ea64bc9fe2638fd0ff3f8959b46116f51af60a7c188f6da", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-04-09", "x": 22.0, "y": 119.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-04-10", "x": 240.0, "y": 121.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-04-11", "x": 169.5, "y": 172.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

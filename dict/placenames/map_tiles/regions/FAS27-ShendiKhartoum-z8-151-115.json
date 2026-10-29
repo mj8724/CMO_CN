@@ -1,0 +1,31 @@
+{
+  "id": "FAS27-ShendiKhartoum-z8-151-115",
+  "z": 8,
+  "x": 151,
+  "y": 115,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "features": [
+    {"id": "FAS27-Shendi", "kind": "city", "original": "Shendi", "original_bbox": [201, 246, 240, 263], "source_url": "@source/30d51fda42cbc565"},
+    {"id": "FAS27-Khartoum", "kind": "city", "original": "Khartoum", "original_bbox": [39, 460, 102, 479], "source_url": "@source/59610ce87049a9e9"}
+  ],
+  "translations": [
+    {"id": "FAS27-Shendi", "zh": "沉迪", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "91f3ed1feb80b44919a42051ee1f980aa0d65f05f639d939501d5e00d67d0e7f", "review_notes": "@note/translations"},
+    {"id": "FAS27-Khartoum", "zh": "喀土穆", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "849651e8b8731088d0f97a5fd0d24c9307c425290dd436c7895fa92db020b122", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Shendi", "x": 220.5, "y": 254.5, "font_size": 12, "font_style": "regular"},
+    {"id": "FAS27-Khartoum", "x": 70.5, "y": 469.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "FAS27-Shendi-native", "feature_id": "FAS27-Shendi", "kind": "circle", "original_bbox": [194, 241, 203, 250], "x": 198.5, "y": 245.5, "size": 9, "outline_width": 1},
+    {"id": "FAS27-Khartoum-native", "feature_id": "FAS27-Khartoum", "kind": "circle", "original_bbox": [30, 455, 39, 464], "x": 34.5, "y": 459.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "8/151/115.png",
+    "8/151/116.png"
+  ],
+  "context_tiles": []
+}

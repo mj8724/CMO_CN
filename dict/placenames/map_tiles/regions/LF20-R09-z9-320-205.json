@@ -1,0 +1,51 @@
+{
+  "id": "LF20-R09-z9-320-205",
+  "z": 9,
+  "x": 320,
+  "y": 205,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    "9/320/205.png",
+    "9/320/206.png",
+    "9/320/207.png"
+  ],
+  "context_tiles": [
+    "9/319/205.png",
+    "9/319/206.png",
+    "9/319/207.png",
+    "9/319/208.png",
+    "9/320/208.png"
+  ],
+  "features": [
+    {"id": "LF20-N043", "kind": "city", "original": "Az Zubaydiyah", "original_bbox": [32, 403, 97, 440], "source_url": "@source/6be74e2e62703c49"},
+    {"id": "LF20-N044", "kind": "city", "original": "An Numaniyah", "original_bbox": [119, 492, 182, 529], "source_url": "@source/233d5de505abf61a"},
+    {"id": "LF20-N045", "kind": "city", "original": "Al Ahrar", "original_bbox": [196, 514, 243, 531], "source_url": "@source/233d5de505abf61a"},
+    {"id": "LF20-N046", "kind": "city", "original": "Afak", "original_bbox": [76, 711, 105, 728], "source_url": "@source/233d5de505abf61a"},
+    {"id": "LF20-N047", "kind": "city", "original": "Al-Badair", "original_bbox": [122, 751, 175, 767], "source_url": "@source/233d5de505abf61a"}
+  ],
+  "translations": [
+    {"id": "LF20-N043", "zh": "阿兹祖拜迪耶", "status": "approved", "source": "@source/6be74e2e62703c49", "record_sha256": "908f55c769065f6fe133ad7f7a7feb70032da0eac44a71debf89b43d2685dd05", "review_notes": "@note/translations"},
+    {"id": "LF20-N044", "zh": "努马尼耶", "status": "approved", "source": "@source/233d5de505abf61a", "record_sha256": "1869a8822d690dac9ea7c48af1e246a35eca448d87c6df28bc30e1d23daaa464", "review_notes": "@note/translations"},
+    {"id": "LF20-N045", "zh": "阿尔阿赫拉尔", "status": "approved", "source": "@source/233d5de505abf61a", "record_sha256": "60646becc18c68fd3dafd3d5f1cb1f41106c57dcc9d888be38864771aae140c2", "review_notes": "@note/translations"},
+    {"id": "LF20-N046", "zh": "阿法克", "status": "approved", "source": "@source/233d5de505abf61a", "record_sha256": "fa2af3efa2311334ce2d6f99683e8cfd72130d0c9df2701396480072a4839033", "review_notes": "@note/translations"},
+    {"id": "LF20-N047", "zh": "阿尔巴达伊尔", "status": "approved", "source": "@source/233d5de505abf61a", "record_sha256": "8b92c64d7073bc413815d968538f4132421781921ebf8e4ad725bf7f8aa4f889", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LF20-N043", "x": 64.5, "y": 421.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N044", "x": 150.5, "y": 510.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N045", "x": 216.0, "y": 522.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N046", "x": 90.5, "y": 719.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N047", "x": 148.5, "y": 758.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "LF20-S005", "owner_region": "IRQ-West-z9-62-south", "feature_id": "IRQ9-076", "kind": "city", "original": "Balad Ruz", "source_url": "@source/af12d5841340b2bf", "original_bbox": [-5, 7, 51, 23], "review_notes": "@note/shared_sources"},
+    {"id": "LF20-S006", "owner_region": "IRQ-West-z9-62-south", "feature_id": "IRQ9-091", "kind": "city", "original": "Al ‘Aziziyah", "source_url": "@source/b94c64dacd1bde82", "original_bbox": [-11, 345, 53, 365], "review_notes": "@note/shared_sources"},
+    {"id": "LF20-S007", "owner_region": "IRQ-West-z9-62-south", "feature_id": "IRQ9-093", "kind": "city", "original": "Ash Shuhaymiyah", "source_url": "@source/174825d0b9af77fb", "original_bbox": [-47, 430, 28, 467], "review_notes": "@note/shared_sources"},
+    {"id": "LF20-S008", "owner_region": "IRQ-West-z9-62-south", "feature_id": "IRQ9-097", "kind": "city", "original": "Ash Shawmali", "source_url": "@source/c09f2972edc501df", "original_bbox": [-61, 587, 1, 626], "review_notes": "@note/shared_sources"},
+    {"id": "LF20-S009", "owner_region": "IRQ-West-z9-62-south", "feature_id": "IRQ9-100", "kind": "city", "original": "Sumar", "source_url": "@source/6647ac69670dbd5c", "original_bbox": [-21, 673, 21, 691], "review_notes": "@note/shared_sources"},
+    {"id": "LF20-S010", "owner_region": "IRQ-West-z9-62-south", "feature_id": "IRQ9-103", "kind": "city", "original": "Ad Diwaniyah", "source_url": "@source/284f1c1815476941", "original_bbox": [-60, 734, 6, 776], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

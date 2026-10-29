@@ -1,0 +1,83 @@
+{
+  "id": "JP7-Column113-z7-113-48",
+  "z": 7,
+  "x": 113,
+  "y": 48,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    "7/113/48.png",
+    "7/113/49.png",
+    "7/113/50.png"
+  ],
+  "context_tiles": [
+    "7/112/50.png",
+    "7/114/48.png",
+    "7/114/49.png",
+    "7/114/50.png"
+  ],
+  "features": [
+    {"id": "JP7-HIROSAKI", "kind": "city", "original": "Hirosaki", "original_bbox": [237, 41, 284, 60], "source_url": "@source/f93fd3d06911b73d"},
+    {"id": "JP7-AKITA", "kind": "city", "original": "Akita", "original_bbox": [204, 146, 238, 165], "source_url": "@source/f93fd3d06911b73d"},
+    {"id": "JP7-SAKATA", "kind": "city", "original": "Sakata", "original_bbox": [180, 241, 221, 260], "source_url": "@source/f93fd3d06911b73d"},
+    {"id": "JP7-YAMAGATA", "kind": "city", "original": "Yamagata", "original_bbox": [225, 318, 281, 340], "source_url": "@source/409205e2abe6a4df"},
+    {"id": "JP7-NIIGATA", "kind": "city", "original": "Niigata", "original_bbox": [107, 357, 150, 379], "source_url": "@source/409205e2abe6a4df"},
+    {"id": "JP7-FUKUSHIMA", "kind": "city", "original": "Fukushima", "original_bbox": [238, 375, 298, 394], "source_url": "@source/409205e2abe6a4df"},
+    {"id": "JP7-NAGAOKA", "kind": "city", "original": "Nagaoka", "original_bbox": [90, 411, 140, 433], "source_url": "@source/409205e2abe6a4df"},
+    {"id": "JP7-NAGANO", "kind": "city", "original": "Nagano", "original_bbox": [30, 502, 76, 524], "source_url": "@source/409205e2abe6a4df"},
+    {"id": "JP7-MITO", "kind": "city", "original": "Mito", "original_bbox": [238, 534, 269, 553], "source_url": "@source/a7f6b6a5b28bb2d3"},
+    {"id": "JP7-MATSUMOTO", "kind": "city", "original": "Matsumoto", "original_bbox": [10, 548, 72, 567], "source_url": "@source/a7f6b6a5b28bb2d3"},
+    {"id": "JP7-TOKYO", "kind": "city", "original": "Tokyo", "original_bbox": [174, 610, 227, 639], "source_url": "@source/a7f6b6a5b28bb2d3"},
+    {"id": "JP7-KOFU", "kind": "city", "original": "Kofu", "original_bbox": [64, 613, 97, 632], "source_url": "@source/a7f6b6a5b28bb2d3"},
+    {"id": "JP7-SHIZUOKA", "kind": "city", "original": "Shizuoka", "original_bbox": [47, 689, 99, 708], "source_url": "@source/a7f6b6a5b28bb2d3"}
+  ],
+  "translations": [
+    {"id": "JP7-HIROSAKI", "zh": "弘前", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "34e4e82078e464235b5cd7ba49c06dd6f55073d665692aa0b44203561fa23594", "review_notes": "@note/translations"},
+    {"id": "JP7-AKITA", "zh": "秋田", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "1abafdffc41ad01be5527192f8d837415ae29bd1eee4632978c94a290f6a7206", "review_notes": "@note/translations"},
+    {"id": "JP7-SAKATA", "zh": "酒田", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "6fe05bbb16ca3c99a4e8f64b1b4c2729154ceaec5c984d43c882ae6180d0d264", "review_notes": "@note/translations"},
+    {"id": "JP7-YAMAGATA", "zh": "山形", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "e4d303ec7d7695b9df82f36da1174679b3a96728cf516fdac33b3b391c5189da", "review_notes": "@note/translations"},
+    {"id": "JP7-NIIGATA", "zh": "新潟", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "418672cf5ba5c587f3eb3c67c6dab89392f1c259dc544533fb6b0e55015b08ae", "review_notes": "@note/translations"},
+    {"id": "JP7-FUKUSHIMA", "zh": "福岛", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "decc3ce356cbdd1257bec0f2b7c04825c140ceaadb38cd8663fcc6fc202610ff", "review_notes": "@note/translations"},
+    {"id": "JP7-NAGAOKA", "zh": "长冈", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "b775840698f82a49e5eed77161a1b33255f4a2c1f41fa30ba7971f7ef0fef8a3", "review_notes": "@note/translations"},
+    {"id": "JP7-NAGANO", "zh": "长野", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "70cf2043dd22a7f0240f59536efc9612d4094583b0896015ac91495c5a1503bd", "review_notes": "@note/translations"},
+    {"id": "JP7-MITO", "zh": "水户", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "1cfe65130733ec269b7445c7143be8829d3532b142bcfe34d30ed3a67f867482", "review_notes": "@note/translations"},
+    {"id": "JP7-MATSUMOTO", "zh": "松本", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "402f6c85eeb12be765b35e9032c4bb3c080ba7196a4ae8c7dad0e004a9e65a38", "review_notes": "@note/translations"},
+    {"id": "JP7-TOKYO", "zh": "东京", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "8be4813037a9a5c0abd74c937e149eae15bbcdf8e3d38e57fc86ddd5ee30be74", "review_notes": "@note/translations"},
+    {"id": "JP7-KOFU", "zh": "甲府", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "d8ab21a465e81d0c0502f4ebf026098e5b5928642fcc74c63abe1cf6f2f6d51f", "review_notes": "@note/translations"},
+    {"id": "JP7-SHIZUOKA", "zh": "静冈", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "a4ad4558fbcc936f8e8d313b070064b1988aa5641fc47d9d2c7f3783a2f8aafa", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "JP7-HIROSAKI", "x": 220.0, "y": 53.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-AKITA", "x": 230.0, "y": 158.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-SAKATA", "x": 206.0, "y": 252.5, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-YAMAGATA", "x": 208.0, "y": 330.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-NIIGATA", "x": 133.0, "y": 369.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-FUKUSHIMA", "x": 221.0, "y": 387.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-NAGAOKA", "x": 116.0, "y": 423.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-NAGANO", "x": 56.0, "y": 514.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-MITO", "x": 221.0, "y": 546.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-MATSUMOTO", "x": 36.0, "y": 560.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-TOKYO", "x": 202.0, "y": 623.0, "font_size": 14, "font_style": "bold"},
+    {"id": "JP7-KOFU", "x": 90.0, "y": 625.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-SHIZUOKA", "x": 73.0, "y": 701.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "JP7-HIROSAKI-NATIVE", "kind": "circle", "feature_id": "JP7-HIROSAKI", "original_bbox": [237, 41, 246, 50], "x": 241.5, "y": 45.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-AKITA-NATIVE", "kind": "circle", "feature_id": "JP7-AKITA", "original_bbox": [204, 146, 213, 155], "x": 208.5, "y": 150.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-SAKATA-NATIVE", "kind": "circle", "feature_id": "JP7-SAKATA", "original_bbox": [180, 241, 189, 250], "x": 184.5, "y": 245.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-YAMAGATA-NATIVE", "kind": "circle", "feature_id": "JP7-YAMAGATA", "original_bbox": [225, 318, 234, 327], "x": 229.5, "y": 322.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-NIIGATA-NATIVE", "kind": "circle", "feature_id": "JP7-NIIGATA", "original_bbox": [107, 357, 116, 366], "x": 111.5, "y": 361.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-FUKUSHIMA-NATIVE", "kind": "circle", "feature_id": "JP7-FUKUSHIMA", "original_bbox": [238, 375, 247, 384], "x": 242.5, "y": 379.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-NAGAOKA-NATIVE", "kind": "circle", "feature_id": "JP7-NAGAOKA", "original_bbox": [90, 411, 99, 420], "x": 94.5, "y": 415.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-NAGANO-NATIVE", "kind": "circle", "feature_id": "JP7-NAGANO", "original_bbox": [30, 502, 39, 511], "x": 34.5, "y": 506.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-MITO-NATIVE", "kind": "circle", "feature_id": "JP7-MITO", "original_bbox": [238, 534, 247, 543], "x": 242.5, "y": 538.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-MATSUMOTO-NATIVE", "kind": "circle", "feature_id": "JP7-MATSUMOTO", "original_bbox": [10, 548, 19, 557], "x": 14.5, "y": 552.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-TOKYO-NATIVE", "kind": "circle", "feature_id": "JP7-TOKYO", "original_bbox": [174, 610, 183, 619], "x": 178.5, "y": 614.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-KOFU-NATIVE", "kind": "circle", "feature_id": "JP7-KOFU", "original_bbox": [64, 613, 73, 622], "x": 68.5, "y": 617.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-SHIZUOKA-NATIVE", "kind": "circle", "feature_id": "JP7-SHIZUOKA", "original_bbox": [47, 689, 56, 698], "x": 51.5, "y": 693.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "JP7-SH-05-HAMAMATSU", "owner_region": "JP7-Column112-z7-112-50", "feature_id": "JP7-HAMAMATSU", "kind": "city", "original": "Hamamatsu", "original_bbox": [-12, 719, 52, 738], "source_url": "@source/c2ce891e85b7dcb8", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

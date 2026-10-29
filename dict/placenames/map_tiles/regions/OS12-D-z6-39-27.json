@@ -1,0 +1,29 @@
+{
+  "id": "OS12-D-z6-39-27",
+  "z": 6,
+  "x": 39,
+  "y": 27,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/39/27.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OS12-20-Medina", "kind": "city", "original": "Medina", "original_bbox": [6, 126, 51, 146], "source_url": "@source/aef9742d866d0ec4"},
+    {"id": "OS12-28-SAUDI-ARABIA", "kind": "admin0", "original": "SAUDI ARABIA", "original_bbox": [79, 44, 193, 94], "source_url": "@source/aef9742d866d0ec4"}
+  ],
+  "translations": [
+    {"id": "OS12-20-Medina", "zh": "麦地那", "status": "approved", "source": "@source/79f88d7b45f29452", "record_sha256": "81fa4cac57c8a8989a4396ca6806e3ff6691c02c4b8e6a2d4bd914be16367972", "review_notes": "@note/translations"},
+    {"id": "OS12-28-SAUDI-ARABIA", "zh": "沙特阿拉伯", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "b104690bcfe6c5f0c09e1e9a4fef436bb9628e344d516135f570e1b65de5c4ee", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OS12-20-Medina", "x": 40.0, "y": 138.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-28-SAUDI-ARABIA", "x": 136.0, "y": 69.0, "font_size": 14, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "OS12-20-Medina-circle", "feature_id": "OS12-20-Medina", "kind": "circle", "x": 10.5, "y": 130.5, "size": 9, "outline_width": 1, "original_bbox": [6, 126, 15, 135], "source_url": "@source/aef9742d866d0ec4", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

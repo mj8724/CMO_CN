@@ -1,0 +1,24 @@
+{
+  "z": 9,
+  "x": 292,
+  "y": 256,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "C2-Africa-Closed19-z9-292-256",
+  "original_tiles": [
+    "9/292/256.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C2-G032", "kind": "city", "original": "Ubundu", "original_bbox": [21, 122, 66, 138], "source_url": "@source/e4a3c6083170ba21"}
+  ],
+  "translations": [
+    {"id": "C2-G032", "zh": "乌本杜", "status": "approved", "source": "@source/e4a3c6083170ba21", "record_sha256": "7f4e1f6f5ccf303df269231b6a1a386536c5d7ebf122777a4dd55bad0f5700cb", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C2-G032", "x": 43.5, "y": 130.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

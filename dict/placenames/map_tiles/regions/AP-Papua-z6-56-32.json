@@ -1,0 +1,53 @@
+{
+  "id": "AP-Papua-z6-56-32",
+  "z": 6,
+  "x": 56,
+  "y": 32,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/56/32.png",
+    "6/57/32.png"
+  ],
+  "context_tiles": [
+    "6/55/31.png",
+    "6/55/32.png",
+    "6/55/33.png",
+    "6/56/31.png",
+    "6/56/33.png",
+    "6/57/31.png",
+    "6/57/33.png",
+    "6/58/31.png",
+    "6/58/32.png",
+    "6/58/33.png"
+  ],
+  "features": [
+    {"id": "AP-P6-005", "kind": "city", "original": "Jayapura", "original_bbox": [255, 111, 305, 133], "source_url": "@source/b6a778dc06842779"},
+    {"id": "AP-P6-007", "kind": "city", "original": "Wewak", "original_bbox": [388, 157, 432, 177], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-P6-010", "kind": "city", "original": "Madang", "original_bbox": [487, 233, 534, 255], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-P6-020", "kind": "admin1", "original": "Papua", "original_bbox": [117, 104, 165, 117], "source_url": "@source/c99418598e3d79b5"},
+    {"id": "AP-P6-021", "kind": "admin1", "original": "Central Papua", "original_bbox": [31, 160, 95, 188], "source_url": "@source/92bc4655cb27e4af"},
+    {"id": "AP-P6-022", "kind": "admin1", "original": "Papuan Highlands", "original_bbox": [159, 177, 239, 206], "source_url": "@source/92bc4655cb27e4af"}
+  ],
+  "translations": [
+    {"id": "AP-P6-005", "zh": "查亚普拉", "status": "approved", "source": "@source/b6a778dc06842779", "record_sha256": "a426b6dc901c62a6be9523e8d1cb1d0369b3be35f7c9749a4d785ad8c24e92f2", "review_notes": "@note/translations"},
+    {"id": "AP-P6-007", "zh": "韦瓦克", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "c7953dee0607c4355923c98d8bde8a1f5376a8b4182e7cadbcb55495d382555e", "review_notes": "@note/translations"},
+    {"id": "AP-P6-010", "zh": "马当", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "ef3fcffc64fb0abf7249af0380eae3adda788df20a1c7db9625cacb1047dd2a9", "review_notes": "@note/translations"},
+    {"id": "AP-P6-020", "zh": "巴布亚省", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "3b95394b1bd2df1589faf4f596ce13883974bc64df180688a170dd895de1043b", "review_notes": "@note/translations"},
+    {"id": "AP-P6-021", "zh": "中巴布亚省", "status": "approved", "source": "@source/92bc4655cb27e4af", "record_sha256": "0f84e70eefb64c442792ea0a362364940e268a56c7d8d19a9541c5f1d1371f0f", "review_notes": "@note/translations"},
+    {"id": "AP-P6-022", "zh": "山地巴布亚省", "status": "approved", "source": "@source/92bc4655cb27e4af", "record_sha256": "0700d4a3a91e403360249c8729cf7e92cf729fbf7ad88a0ffe0c2869631b093a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-P6-005", "x": 287.0, "y": 122.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-P6-007", "x": 414.5, "y": 167.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-P6-010", "x": 473.0, "y": 244.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-P6-020", "x": 141.0, "y": 110.5, "font_size": 10, "font_style": "bold"},
+    {"id": "AP-P6-021", "x": 63.0, "y": 174.0, "font_size": 10, "font_style": "bold"},
+    {"id": "AP-P6-022", "x": 199.0, "y": 191.5, "font_size": 10, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "AP-P6-005-circle", "feature_id": "AP-P6-005", "kind": "circle", "x": 259.5, "y": 115.5, "size": 7, "outline_width": 1, "original_bbox": [255, 111, 264, 120]},
+    {"id": "AP-P6-007-circle", "feature_id": "AP-P6-007", "kind": "circle", "x": 392.5, "y": 161.5, "size": 7, "outline_width": 1, "original_bbox": [388, 157, 397, 166]},
+    {"id": "AP-P6-010-circle", "feature_id": "AP-P6-010", "kind": "circle", "x": 491.5, "y": 237.5, "size": 7, "outline_width": 1, "original_bbox": [487, 233, 496, 242]}
+  ]
+}

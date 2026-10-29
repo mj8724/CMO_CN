@@ -1,0 +1,18 @@
+{
+  "z": 6,
+  "x": 30,
+  "y": 19,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "GhostClear-z6-30-19-1x1",
+  "original_tiles": [
+    "6/30/19.png"
+  ],
+  "context_tiles": [],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

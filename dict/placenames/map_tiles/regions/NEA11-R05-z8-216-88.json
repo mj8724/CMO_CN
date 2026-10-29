@@ -1,0 +1,27 @@
+{
+  "id": "NEA11-R05-z8-216-88",
+  "z": 8,
+  "x": 216,
+  "y": 88,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/216/88.png"
+  ],
+  "features": [
+    {"id": "NEA11-N007", "kind": "city", "original": "Nehe", "original_bbox": [201, 117, 238, 138], "source_url": "@source/a5c7f401ef473c80"}
+  ],
+  "translations": [
+    {"id": "NEA11-N007", "zh": "讷河", "source_evidence_role": "NE_same_country_original_CJK", "status": "approved", "source_identity_contract_sha256": "144475f2dcad6c3781672832cf6d3c596c88d408630a947e2e8b23921e6c0379", "source": "@source/de57b59c289acedb", "record_sha256": "4ec9f34b611861c452c92cbcd475c8575c38fdcf68a491f9c8829014faf0bb5d", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."}
+  ],
+  "layouts": [
+    {"id": "NEA11-N007", "x": 223, "y": 133, "font_size": 12, "font_style": "regular", "lines": ["讷河"]}
+  ],
+  "symbols": [
+    {"id": "NEA11-N007-circle", "feature_id": "NEA11-N007", "kind": "circle", "size": 9, "outline_width": 1, "x": 205.5, "y": 121.5, "original_bbox": [201, 117, 210, 126]}
+  ],
+  "canonical_captions": [],
+  "context_tiles": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

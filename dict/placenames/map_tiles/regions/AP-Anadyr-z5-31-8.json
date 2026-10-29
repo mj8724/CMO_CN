@@ -1,0 +1,30 @@
+{
+  "id": "AP-Anadyr-z5-31-8",
+  "z": 5,
+  "x": 31,
+  "y": 8,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/31/8.png"
+  ],
+  "context_tiles": [
+    "5/30/7.png",
+    "5/31/7.png",
+    "5/30/8.png",
+    "5/30/9.png",
+    "5/31/9.png"
+  ],
+  "features": [
+    {"id": "AP-N5-03", "kind": "city", "original": "Anadyr", "original_bbox": [195, 94, 238, 115], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "AP-N5-03", "zh": "阿纳德尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "38ee4a3b6226dcf4265f9fd3acdc2806708f1d2307b73219e11792ac2e2b68aa", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-N5-03", "x": 227.0, "y": 104.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-N5-03-circle", "feature_id": "AP-N5-03", "x": 199.5, "y": 98.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [195, 94, 204, 103]}
+  ]
+}

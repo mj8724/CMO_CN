@@ -1,0 +1,34 @@
+{
+  "id": "Somalia-QardhoGaroowe-z8-162-121",
+  "z": 8,
+  "x": 162,
+  "y": 121,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "8/162/121.png",
+    "8/162/122.png"
+  ],
+  "context_tiles": [
+    "8/160/121.png",
+    "8/163/121.png",
+    "8/164/120.png"
+  ],
+  "features": [
+    {"id": "SO8-001", "kind": "city", "original": "Qardho", "original_bbox": [228, 49, 277, 72], "source_url": "@source/de57b59c289acedb"},
+    {"id": "SO8-002", "kind": "city", "original": "Garoowe", "original_bbox": [118, 252, 175, 273], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "SO8-001", "zh": "卡尔多", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8fc0c0be1c47c3a2fd860e9109e7d047207413974bbeafacec06204de0e31eec", "review_notes": "@note/translations"},
+    {"id": "SO8-002", "zh": "加洛威", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "a04561c962f4b94c7bc66c4bf9d7f09005cfc321c4cc6f0c2233dc1d11274387", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SO8-001", "x": 206.5, "y": 63.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SO8-002", "x": 148.5, "y": 266.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SO8-001-circle", "feature_id": "SO8-001", "kind": "circle", "x": 232.5, "y": 53.5, "size": 7, "outline_width": 1, "original_bbox": [228, 49, 237, 58]},
+    {"id": "SO8-002-circle", "feature_id": "SO8-002", "kind": "circle", "x": 122.5, "y": 256.5, "size": 7, "outline_width": 1, "original_bbox": [118, 252, 127, 261]}
+  ],
+  "shared_sources": []
+}

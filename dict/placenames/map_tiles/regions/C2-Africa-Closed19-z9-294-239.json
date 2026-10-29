@@ -1,0 +1,24 @@
+{
+  "z": 9,
+  "x": 294,
+  "y": 239,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "C2-Africa-Closed19-z9-294-239",
+  "original_tiles": [
+    "9/294/239.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C2-G001", "kind": "city", "original": "Futaha", "original_bbox": [41, 30, 80, 46], "source_url": "@source/091be863407dba59"}
+  ],
+  "translations": [
+    {"id": "C2-G001", "zh": "富塔哈", "status": "approved", "source": "@source/091be863407dba59", "record_sha256": "d5c6256f71cea5b9a670ef74c7cb00da1a1479485d1357f9610fd23994be0253", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C2-G001", "x": 60.5, "y": 38.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

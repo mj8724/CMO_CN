@@ -1,0 +1,28 @@
+{
+  "id": "WA17-R06-z9-260-235",
+  "z": 9,
+  "x": 260,
+  "y": 235,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/260/235.png"
+  ],
+  "context_tiles": [
+    "9/259/235.png"
+  ],
+  "features": [
+    {"id": "WA17-N003", "kind": "city", "original": "Filingué", "original_bbox": [161, 85, 212, 108], "source_url": "@source/40ebee325d9a8a28"}
+  ],
+  "translations": [
+    {"id": "WA17-N003", "zh": "菲林盖", "status": "approved", "source": "@source/40ebee325d9a8a28", "record_sha256": "73d73515151dc08b24565f18becee81422c30d9052e82c6fb5aa993e0b300136", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WA17-N003", "x": 186.5, "y": 96.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "WA17-SH001", "owner_region": "WA-Sahel-z9-244-230", "feature_id": "WA9-105", "kind": "city", "original": "Zama", "original_bbox": [-12, 96, 21, 112], "source_url": "@source/7460c5ec564cbf56", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

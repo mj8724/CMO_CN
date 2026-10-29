@@ -1,0 +1,24 @@
+{
+  "id": "LZ12-Barents-z6-39-10",
+  "z": 6,
+  "x": 39,
+  "y": 10,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/39/10.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "LZ12-Barents-z6-39-10-BarentsSea", "kind": "marine", "original": "Barents Sea", "original_bbox": [92, 67, 203, 84], "source_url": "@source/d6187ee1d7dd7b40", "source_printed_lines": ["Barents Sea"]}
+  ],
+  "translations": [
+    {"id": "LZ12-Barents-z6-39-10-BarentsSea", "zh": "巴伦支海", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "a5eb0a2b41efdaada06d04231dd787e401cfcf6190550d42406e97adde3295b4", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LZ12-Barents-z6-39-10-BarentsSea", "x": 147.5, "y": 75.5, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

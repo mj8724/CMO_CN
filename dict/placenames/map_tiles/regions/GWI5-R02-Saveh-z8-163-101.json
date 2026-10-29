@@ -1,0 +1,27 @@
+{
+  "id": "GWI5-R02-Saveh-z8-163-101",
+  "z": 8,
+  "x": 163,
+  "y": 101,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/163/101.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "GWI5-N-03", "kind": "city", "original": "Saveh", "original_bbox": [203, 94, 245, 115], "source_url": "@source/022c6a8599840e6c"}
+  ],
+  "translations": [
+    {"id": "GWI5-N-03", "zh": "萨韦", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b953523bdbb5d6f6e9d5d7ff32163fdce37fac92e0418efb68feee340e4a98d7", "review_notes": "Combined metadata proposal only; no Root actual model selection/render/Target approval. Qualified Source2db68 full physical/CJK body preserved in complete per12 contract. Chinese original GN/NE source-grade and disambiguation preserved; Source native midpoint is raster fact, not recovered vector or supplier point ID. Actual author direct SELF model only; different TARGET pending."}
+  ],
+  "layouts": [
+    {"id": "GWI5-N-03", "x": 232.0, "y": 106.5, "font_size": 12, "font_style": "regular", "lines": ["萨韦"]}
+  ],
+  "symbols": [
+    {"id": "GWI5-S-03", "feature_id": "GWI5-N-03", "kind": "circle", "x": 207.5, "y": 98.5, "size": 9, "outline_width": 1, "original_bbox": [203, 94, 212, 103]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "canonical_captions": []
+}

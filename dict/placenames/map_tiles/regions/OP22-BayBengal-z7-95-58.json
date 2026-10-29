@@ -1,0 +1,24 @@
+{
+  "id": "OP22-BayBengal-z7-95-58",
+  "z": 7,
+  "x": 95,
+  "y": 58,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/95/58.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N08", "kind": "marine", "original": "Bay of Bengal", "original_bbox": [6, 70, 77, 114], "source_url": "@source/158cb61cbf686e5e"}
+  ],
+  "translations": [
+    {"id": "OP24-N08", "zh": "孟加拉湾", "status": "approved", "source": "@source/98f1a766b282ca2d", "record_sha256": "b3abf743118bd74f8246569be8a812d700bcc79323c3158fca8cb8b7a096613d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N08", "x": 41.5, "y": 92.0, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

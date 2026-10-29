@@ -1,0 +1,22 @@
+{
+  "id": "SC14-R07-z9-416-224",
+  "z": 9,
+  "x": 416,
+  "y": 224,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/416/224.png"
+  ],
+  "context_tiles": [
+    "9/415/224.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "SC14-S007", "owner_region": "AP-Vietnam-Hainan-z9-62-topeast", "feature_id": "AP-VH9-009", "kind": "city", "original": "Wencun", "original_bbox": [-28, 24, 18, 40], "source_url": "@source/722ec64f7de085f2", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

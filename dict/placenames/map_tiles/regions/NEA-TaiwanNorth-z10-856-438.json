@@ -1,0 +1,48 @@
+{
+  "id": "NEA-TaiwanNorth-z10-856-438",
+  "z": 10,
+  "x": 856,
+  "y": 438,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/856/438.png",
+    "10/857/438.png",
+    "10/858/438.png"
+  ],
+  "context_tiles": [
+    "10/856/439.png"
+  ],
+  "features": [
+    {"id": "NEA10-001", "kind": "city", "original": "Keelung", "original_bbox": [562, 18, 614, 40], "source_url": "@source/bf125c9352273064"},
+    {"id": "NEA10-002", "kind": "city", "original": "Dayuan District", "original_bbox": [166, 64, 210, 99], "source_url": "@source/a35709ebc7875f7c"},
+    {"id": "NEA10-003", "kind": "city", "original": "Taipei", "original_bbox": [431, 92, 480, 117], "source_url": "@source/9a39b3a18d50ee34"},
+    {"id": "NEA10-004", "kind": "city", "original": "New Taipei", "original_bbox": [364, 103, 404, 145], "source_url": "@source/9a39b3a18d50ee34"},
+    {"id": "NEA10-005", "kind": "city", "original": "Zhongli District", "original_bbox": [187, 143, 231, 178], "source_url": "@source/a35709ebc7875f7c"},
+    {"id": "NEA10-006", "kind": "city", "original": "Taoyuan", "original_bbox": [237, 129, 293, 151], "source_url": "@source/9a39b3a18d50ee34"},
+    {"id": "NEA10-007", "kind": "city", "original": "Yangmei District", "original_bbox": [127, 190, 176, 224], "source_url": "@source/a35709ebc7875f7c"}
+  ],
+  "translations": [
+    {"id": "NEA10-001", "zh": "基隆", "status": "approved", "source": "@source/3c6e4d7a3641b8f4", "record_sha256": "59868314939fae47913d8f5ad02d08ce491ee2382278dc7f41436a34c3030645", "review_notes": "@note/translations"},
+    {"id": "NEA10-002", "zh": "大园区", "status": "approved", "source": "@source/8f70bb1f21b2aa39", "record_sha256": "780f8db1375e66ecfcdc96607e37c1378e5d85ccaf1cb29002a16290885ed659", "review_notes": "@note/translations"},
+    {"id": "NEA10-003", "zh": "台北", "status": "approved", "source": "@source/54815d72ebec7243", "record_sha256": "99cf2933bbb7fcdde480b08a002769d156fb131956b8574c1d369e498c9f0f68", "review_notes": "@note/translations"},
+    {"id": "NEA10-004", "zh": "新北", "status": "approved", "source": "@source/8763763b7c786c07", "record_sha256": "4604a25cafeca24a6944898d77c92dcbcaac0f0dc6b0d9675e33ebb70de15781", "review_notes": "@note/translations"},
+    {"id": "NEA10-005", "zh": "中坜区", "status": "approved", "source": "@source/08f8922ca128a8fd", "record_sha256": "2d1f9b9938398843e70290d1e301112076e1f64f852224787c643f7589e4a95c", "review_notes": "@note/translations"},
+    {"id": "NEA10-006", "zh": "桃园", "status": "approved", "source": "@source/e896bcba22aaf2fa", "record_sha256": "5d15c2127d108826e9163bff76e6896e0d1cb130157510880157f6d46dc5f4fa", "review_notes": "@note/translations"},
+    {"id": "NEA10-007", "zh": "杨梅区", "status": "approved", "source": "@source/f3191ab6b88113fd", "record_sha256": "cd5981522c6fb990df7790dcfd5383698163961881965750ae44987a21552b6d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA10-001", "x": 588.0, "y": 29.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-002", "x": 188.0, "y": 81.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-003", "x": 455.0, "y": 105.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-004", "x": 384.0, "y": 124.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-006", "x": 265.0, "y": 140.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-005", "x": 209.0, "y": 161.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-007", "x": 151.0, "y": 207.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "NEA11-SH-01-NEA10-008", "owner_region": "NEA-HsinchuNorth-z10-856-439", "feature_id": "NEA10-008", "kind": "city", "original": "Zhubei City", "original_bbox": [16, 253, 81, 272], "source_url": "@source/7ba5318085f320bd", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

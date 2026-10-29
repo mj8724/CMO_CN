@@ -1,0 +1,47 @@
+{
+  "id": "NE12-Volga-z7-78-39",
+  "z": 7,
+  "x": 78,
+  "y": 39,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/78/39.png",
+    "7/79/39.png",
+    "7/80/39.png"
+  ],
+  "context_tiles": [
+    "7/76/39.png",
+    "7/81/39.png"
+  ],
+  "features": [
+    {"id": "NE12-N-PH011", "kind": "city", "original": "Ivanovo", "original_bbox": [141, 51, 188, 70], "source_url": "@source/03e2b5c232c9f9a9"},
+    {"id": "NE12-N-PH012", "kind": "city", "original": "Kovrov", "original_bbox": [172, 154, 215, 173], "source_url": "@source/03e2b5c232c9f9a9"},
+    {"id": "NE12-N-PH013", "kind": "city", "original": "Vladimir", "original_bbox": [90, 194, 139, 214], "source_url": "@source/03e2b5c232c9f9a9"},
+    {"id": "NE12-N-PH014", "kind": "city", "original": "Nizhny Novgorod", "original_bbox": [417, 162, 472, 199], "source_url": "@source/7433f36405959f7d"}
+  ],
+  "translations": [
+    {"id": "NE12-N-PH011", "zh": "伊万诺沃", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "18e72b27d13d8a83a652179c270e2887ab5458c72f32d519e49f50cf3c0e59e3", "review_notes": "@note/translations"},
+    {"id": "NE12-N-PH012", "zh": "科夫罗夫", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e1fd4d39b018baf9772a22bcf126bde9bcb5aa947be354f4a06641531afd6589", "review_notes": "@note/translations"},
+    {"id": "NE12-N-PH013", "zh": "弗拉基米尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "802cdbaec1bce3808a69258a15de5f5d0e649234fe558e50834de82c8f8e2bfc", "review_notes": "@note/translations"},
+    {"id": "NE12-N-PH014", "zh": "下诺夫哥罗德", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "74a9c7bf8a12e3cdeb7cf8c0938d76e89b1dd836bab20aa2a20d13a298f0632b", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NE12-N-PH011", "x": 179.0, "y": 60.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NE12-N-PH012", "x": 210.0, "y": 163.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NE12-N-PH013", "x": 133.0, "y": 204.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NE12-N-PH014", "x": 467.0, "y": 180.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NE12-C-PH011", "feature_id": "NE12-N-PH011", "kind": "circle", "original_bbox": [141, 51, 150, 60], "x": 145.5, "y": 55.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "NE12-C-PH012", "feature_id": "NE12-N-PH012", "kind": "circle", "original_bbox": [172, 154, 181, 163], "x": 176.5, "y": 158.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "NE12-C-PH013", "feature_id": "NE12-N-PH013", "kind": "circle", "original_bbox": [90, 194, 98, 203], "x": 94.0, "y": 198.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "NE12-C-PH014", "feature_id": "NE12-N-PH014", "kind": "circle", "original_bbox": [417, 162, 426, 171], "x": 421.5, "y": 166.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "NE12-C-Cheboksary-shared", "shared_source_id": "NE12-A-016", "kind": "circle", "original_bbox": [712, 194, 721, 203], "x": 716.5, "y": 198.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "NE12-A-015", "owner_region": "AM-UralCaspian-z7-Kazan", "feature_id": "AM24-1-MARI-EL", "kind": "admin1", "original": "MARI EL", "original_bbox": [733, 113, 817, 132], "source_url": "@source/beb94e09539432ac", "review_notes": "@note/shared_sources"},
+    {"id": "NE12-A-016", "owner_region": "AM-UralCaspian-z7-Kazan", "feature_id": "AM24-2-Cheboksary", "kind": "city", "original": "Cheboksary", "original_bbox": [711, 193, 776, 217], "source_url": "@source/ecbc2a4e24fd6b49", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

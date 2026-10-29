@@ -1,0 +1,60 @@
+{
+  "id": "US-SierraLower-z10-174-399",
+  "z": 10,
+  "x": 174,
+  "y": 399,
+  "width_tiles": 2,
+  "height_tiles": 2,
+  "original_tiles": [
+    "10/174/399.png",
+    "10/174/400.png",
+    "10/175/399.png",
+    "10/175/400.png"
+  ],
+  "context_tiles": [
+    "10/174/398.png",
+    "10/175/397.png",
+    "10/175/398.png"
+  ],
+  "features": [
+    {"id": "US10-003", "kind": "peak", "original": "Mount Baxter", "original_bbox": [262, -21, 341, 10], "source_url": "@source/34d7e67fc4625212", "original_elevation_m": "4004"},
+    {"id": "US10-004", "kind": "peak", "original": "Black Mountain", "original_bbox": [239, 27, 327, 57], "source_url": "@source/34d7e67fc4625212", "original_elevation_m": "4045"},
+    {"id": "US10-005", "kind": "peak", "original": "University Peak", "original_bbox": [254, 82, 340, 113], "source_url": "@source/34d7e67fc4625212", "original_elevation_m": "4138"},
+    {"id": "US10-006", "kind": "peak", "original": "Table Mountain", "original_bbox": [170, 162, 258, 193], "source_url": "@source/34d7e67fc4625212", "original_elevation_m": "4151"},
+    {"id": "US10-007", "kind": "peak", "original": "Mount Williamson", "original_bbox": [274, 166, 376, 197], "source_url": "@source/34d7e67fc4625212", "original_elevation_m": "4383"},
+    {"id": "US10-008", "kind": "peak", "original": "Mount Whitney", "original_bbox": [304, 236, 391, 266], "source_url": "@source/2d3e68a39b4fb336", "original_elevation_m": "4421"},
+    {"id": "US10-009", "kind": "peak", "original": "Mount Kaweah", "original_bbox": [169, 284, 254, 314], "source_url": "@source/2d3e68a39b4fb336", "original_elevation_m": "4205"},
+    {"id": "US10-010", "kind": "peak", "original": "Mount Langley", "original_bbox": [344, 286, 430, 316], "source_url": "@source/2d3e68a39b4fb336", "original_elevation_m": "4277"}
+  ],
+  "translations": [
+    {"id": "US10-003", "zh": "巴克斯特山", "status": "approved", "source": "@source/34d7e67fc4625212", "record_sha256": "0d27135155ec6a065a381b677f7620c843bc01d9d81dc9a3b0930adbc0b54483", "review_notes": "@note/translations"},
+    {"id": "US10-004", "zh": "黑山", "status": "approved", "source": "@source/34d7e67fc4625212", "record_sha256": "9318efb7960b39a8ff29f412333c98a1dd018f41012a8d4146a2b5a222a59024", "review_notes": "@note/translations"},
+    {"id": "US10-005", "zh": "大学峰", "status": "approved", "source": "@source/34d7e67fc4625212", "record_sha256": "76981a2b1761337c631d315abba0b1d29bc10dd3874aecefadd7388ac86a35d7", "review_notes": "@note/translations"},
+    {"id": "US10-006", "zh": "桌山", "status": "approved", "source": "@source/34d7e67fc4625212", "record_sha256": "3a88a72945e50cfbb10a58c487c8904e4543ae998b24d11bfe5cfb55cae198dc", "review_notes": "@note/translations"},
+    {"id": "US10-007", "zh": "威廉姆森山", "status": "approved", "source": "@source/34d7e67fc4625212", "record_sha256": "fd289c084d34f2c58670d2c79a89a493db195dde75917b2450b6cd6009fe5f1c", "review_notes": "@note/translations"},
+    {"id": "US10-008", "zh": "惠特尼峰", "status": "approved", "source": "@source/2d3e68a39b4fb336", "record_sha256": "9983ff908b7446e3123ab1cd0ff44b0d303990a9e8ed6c9ce504306469e43e41", "review_notes": "@note/translations"},
+    {"id": "US10-009", "zh": "卡韦亚山", "status": "approved", "source": "@source/2d3e68a39b4fb336", "record_sha256": "5a87c56216572426d852475240c5a8e418bb7ce656560ca62f7b090ce580cd7e", "review_notes": "@note/translations"},
+    {"id": "US10-010", "zh": "兰利山", "status": "approved", "source": "@source/2d3e68a39b4fb336", "record_sha256": "97c58235b8f2c8ee4a792f9ee5578e2af21882c7625f4c6441c228974d1a5466", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "US10-003", "x": 301.5, "y": 16.5, "font_size": 12, "font_style": "regular"},
+    {"id": "US10-004", "x": 283.0, "y": 46.0, "font_size": 12, "font_style": "regular"},
+    {"id": "US10-005", "x": 297.0, "y": 97.5, "font_size": 12, "font_style": "regular"},
+    {"id": "US10-006", "x": 214.0, "y": 177.5, "font_size": 12, "font_style": "regular"},
+    {"id": "US10-007", "x": 325.0, "y": 181.5, "font_size": 12, "font_style": "regular"},
+    {"id": "US10-008", "x": 347.5, "y": 251.0, "font_size": 12, "font_style": "regular"},
+    {"id": "US10-009", "x": 211.5, "y": 299.0, "font_size": 12, "font_style": "regular"},
+    {"id": "US10-010", "x": 387.0, "y": 301.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "US10-003-triangle", "feature_id": "US10-003", "kind": "triangle", "x": 339.0, "y": 16.5, "size": 8, "outline_width": 1, "original_bbox": [334, 12, 344, 21]},
+    {"id": "US10-004-triangle", "feature_id": "US10-004", "kind": "triangle", "x": 328.0, "y": 63.5, "size": 8, "outline_width": 1, "original_bbox": [323, 59, 333, 68]},
+    {"id": "US10-005-triangle", "feature_id": "US10-005", "kind": "triangle", "x": 339.5, "y": 119.5, "size": 8, "outline_width": 1, "original_bbox": [335, 115, 344, 124]},
+    {"id": "US10-006-triangle", "feature_id": "US10-006", "kind": "triangle", "x": 258.0, "y": 198.5, "size": 8, "outline_width": 1, "original_bbox": [253, 194, 263, 203]},
+    {"id": "US10-007-triangle", "feature_id": "US10-007", "kind": "triangle", "x": 376.0, "y": 202.5, "size": 8, "outline_width": 1, "original_bbox": [371, 198, 381, 207]},
+    {"id": "US10-008-triangle", "feature_id": "US10-008", "kind": "triangle", "x": 390.0, "y": 272.5, "size": 8, "outline_width": 1, "original_bbox": [385, 268, 395, 277]},
+    {"id": "US10-009-triangle", "feature_id": "US10-009", "kind": "triangle", "x": 255.0, "y": 320.5, "size": 8, "outline_width": 1, "original_bbox": [250, 316, 260, 325]},
+    {"id": "US10-010-triangle", "feature_id": "US10-010", "kind": "triangle", "x": 429.0, "y": 322.5, "size": 8, "outline_width": 1, "original_bbox": [424, 318, 434, 327]}
+  ],
+  "shared_sources": []
+}

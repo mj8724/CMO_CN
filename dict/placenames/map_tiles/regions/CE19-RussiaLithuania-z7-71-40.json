@@ -1,0 +1,34 @@
+{
+  "id": "CE19-RussiaLithuania-z7-71-40",
+  "z": 7,
+  "x": 71,
+  "y": 40,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/71/40.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "CE7-SRC-11", "kind": "city", "original": "Klaipėda", "original_bbox": [127, 6, 177, 28], "source_url": "@source/35925df269d105cb"},
+    {"id": "CE7-SRC-13", "kind": "city", "original": "Sovetsk", "original_bbox": [196, 107, 242, 126], "source_url": "@source/35925df269d105cb"},
+    {"id": "CE7-SRC-14", "kind": "city", "original": "Kaliningrad", "original_bbox": [70, 166, 133, 188], "source_url": "@source/35925df269d105cb"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-11", "zh": "克莱佩达", "source": "@source/004f4f328d3162bc", "status": "approved", "record_sha256": "6ac9e86607406e3e9756e5b856f4f1d6f98da093a2f0de025e5c11a21d85bec9", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-13", "zh": "苏维埃茨克", "source": "@source/0eaee4832e3e939b", "status": "approved", "record_sha256": "b35f482868c196df7996e40db95e8d3697158336ed25ca1a8486319b12f0be6b", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-14", "zh": "加里宁格勒", "source": "@source/1229725ebbf1c63c", "status": "approved", "record_sha256": "4e06bcdd1ad84aefd8ae0ed59f8f60a1f18c746307d043e92df9cf3b1549fcdd", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-11", "x": 165.0, "y": 18.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-13", "x": 161.0, "y": 119.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-14", "x": 114.0, "y": 178.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-11-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-11", "original_bbox": [127, 6, 136, 15], "x": 131.5, "y": 10.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-13-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-13", "original_bbox": [196, 107, 205, 116], "x": 200.5, "y": 111.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-14-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-14", "original_bbox": [70, 166, 79, 175], "x": 74.5, "y": 170.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

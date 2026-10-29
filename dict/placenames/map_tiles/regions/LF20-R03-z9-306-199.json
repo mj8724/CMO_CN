@@ -1,0 +1,48 @@
+{
+  "id": "LF20-R03-z9-306-199",
+  "z": 9,
+  "x": 306,
+  "y": 199,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/306/199.png",
+    "9/307/199.png"
+  ],
+  "context_tiles": [
+    "9/307/200.png",
+    "9/308/199.png"
+  ],
+  "features": [
+    {"id": "LF20-N004", "kind": "city", "original": "Osmaniye", "original_bbox": [368, 30, 430, 52], "source_url": "@source/15f6156b0c22466f"},
+    {"id": "LF20-N010", "kind": "city", "original": "Ceyhan", "original_bbox": [218, 51, 260, 71], "source_url": "@source/3c7226a87260a0da"},
+    {"id": "LF20-N013", "kind": "city", "original": "Adana", "original_bbox": [39, 69, 84, 89], "source_url": "@source/3c7226a87260a0da"},
+    {"id": "LF20-N015", "kind": "city", "original": "Erzin", "original_bbox": [365, 85, 395, 101], "source_url": "@source/15f6156b0c22466f"},
+    {"id": "LF20-N019", "kind": "city", "original": "Dörtyol", "original_bbox": [369, 139, 412, 158], "source_url": "@source/15f6156b0c22466f"},
+    {"id": "LF20-N023", "kind": "city", "original": "Hassa", "original_bbox": [479, 156, 513, 172], "source_url": "@source/15f6156b0c22466f"},
+    {"id": "LF20-N024", "kind": "city", "original": "Yumurtalık", "original_bbox": [201, 171, 262, 187], "source_url": "@source/3c7226a87260a0da"}
+  ],
+  "translations": [
+    {"id": "LF20-N004", "zh": "奥斯曼尼耶", "status": "approved", "source": "@source/f9f4f015285d6380", "record_sha256": "244732cb1ebcff0079303d044be4462f4e798b4e7453d393e63689bf7ce02e83", "review_notes": "@note/translations"},
+    {"id": "LF20-N010", "zh": "杰伊汉", "status": "approved", "source": "@source/1a640b93ffe37ec5", "record_sha256": "1499faced241f4feaedb34abae1eb9ad02e1bcb282e3a6e7bb38f27f01233c1b", "review_notes": "@note/translations"},
+    {"id": "LF20-N013", "zh": "阿达纳", "status": "approved", "source": "@source/7c850e4eb2e4b33a", "record_sha256": "8eea1adc89a20f67c2ee74c19b273ae85919e380f7334b173bed8ebaa95bdc7b", "review_notes": "@note/translations"},
+    {"id": "LF20-N015", "zh": "埃尔津", "status": "approved", "source": "@source/15f6156b0c22466f", "record_sha256": "bb1c6cae0e1068757bc9d376492a57ec90cb329494dd11f8417fb91241a38499", "review_notes": "@note/translations"},
+    {"id": "LF20-N019", "zh": "多尔特约尔", "status": "approved", "source": "@source/15f6156b0c22466f", "record_sha256": "fb78be25e6672065f72373d23c54e091fb31a378661d4dbfd877bd65e531ef38", "review_notes": "@note/translations"},
+    {"id": "LF20-N023", "zh": "哈萨", "status": "approved", "source": "@source/15f6156b0c22466f", "record_sha256": "34fbbae8039d84cbb0f749d8df03ce077f4c70cbf163abe7b7bb269c76ab43eb", "review_notes": "@note/translations"},
+    {"id": "LF20-N024", "zh": "尤穆尔塔勒克", "status": "approved", "source": "@source/3c7226a87260a0da", "record_sha256": "f7aa58e14411bafaeb1ceec7621c12acf1b58df966473aea948c4f1bee518fdb", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LF20-N004", "x": 399.0, "y": 41.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N010", "x": 239.0, "y": 61.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N013", "x": 61.5, "y": 79.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N015", "x": 380.0, "y": 93.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N019", "x": 390.5, "y": 148.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N023", "x": 496.0, "y": 164.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N024", "x": 231.5, "y": 179.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "LF20-S003", "owner_region": "LEVANT-z9-304-200", "feature_id": "LEV9-003", "kind": "city", "original": "İskenderun", "source_url": "@source/bdefdf2e4178992e", "original_bbox": [339, 249, 400, 268], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,87 @@
+{
+  "id": "CA15-R03-TurkestanTashkent-z7-88-46",
+  "z": 7,
+  "x": 88,
+  "y": 46,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/88/46.png",
+    "7/88/47.png"
+  ],
+  "context_tiles": [
+    "7/100/43.png",
+    "7/100/44.png",
+    "7/101/43.png",
+    "7/101/44.png",
+    "7/102/43.png",
+    "7/102/44.png",
+    "7/103/43.png",
+    "7/103/44.png",
+    "7/87/41.png",
+    "7/87/42.png",
+    "7/87/43.png",
+    "7/87/44.png",
+    "7/87/45.png",
+    "7/87/46.png",
+    "7/87/47.png",
+    "7/87/48.png",
+    "7/88/41.png",
+    "7/88/42.png",
+    "7/88/43.png",
+    "7/88/44.png",
+    "7/88/45.png",
+    "7/88/48.png",
+    "7/89/47.png",
+    "7/89/48.png",
+    "7/90/47.png",
+    "7/90/48.png",
+    "7/91/47.png",
+    "7/91/48.png",
+    "7/92/47.png",
+    "7/92/48.png",
+    "7/93/47.png",
+    "7/93/48.png",
+    "7/94/47.png",
+    "7/94/48.png",
+    "7/95/47.png",
+    "7/95/48.png",
+    "7/96/47.png",
+    "7/96/48.png",
+    "7/97/46.png",
+    "7/97/47.png",
+    "7/97/48.png",
+    "7/98/43.png",
+    "7/98/44.png",
+    "7/98/46.png",
+    "7/98/47.png",
+    "7/98/48.png",
+    "7/99/43.png",
+    "7/99/44.png"
+  ],
+  "features": [
+    {"id": "CA15-N007", "kind": "city", "original": "Turkestan", "original_bbox": [66, 222, 121, 242], "source_url": "@source/5de342794ee51634"},
+    {"id": "CA15-N014", "kind": "city", "original": "Shymkent", "original_bbox": [186, 345, 242, 367], "source_url": "@source/4b0d31e203b33341"},
+    {"id": "CA15-N017", "kind": "city", "original": "Tashkent", "original_bbox": [157, 467, 223, 491], "source_url": "@source/4b0d31e203b33341"}
+  ],
+  "translations": [
+    {"id": "CA15-N007", "zh": "突厥斯坦", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "d508eb422f813a25e98a5934deaf0f23c1ceb211d80f6736e140c07572863d79", "review_notes": "@note/translations"},
+    {"id": "CA15-N014", "zh": "希姆肯特", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "d531af5ed670d8f6f415ff36e4429bd2d9822434a7e4aa51dfd9fda5106ef26d", "review_notes": "@note/translations"},
+    {"id": "CA15-N017", "zh": "塔什干", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "5b835c6280f5cafd22631b0296f422530f07528699488ed2db395e473fa6bf68", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CA15-N007", "x": 104.0, "y": 232.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CA15-N014", "x": 224.0, "y": 356.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CA15-N017", "x": 189.0, "y": 479.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CA15-C007", "kind": "circle", "original_bbox": [66, 222, 75, 231], "x": 70.5, "y": 226.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols", "feature_id": "CA15-N007"},
+    {"id": "CA15-C014", "kind": "circle", "original_bbox": [186, 345, 195, 354], "x": 190.5, "y": 349.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols", "feature_id": "CA15-N014"},
+    {"id": "CA15-C017", "kind": "circle", "original_bbox": [157, 467, 166, 476], "x": 161.5, "y": 471.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols", "feature_id": "CA15-N017"},
+    {"id": "CA15-C019", "kind": "circle", "original_bbox": [230, 503, 239, 512], "x": 234.5, "y": 507.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols", "shared_source_id": "CA15-SH001-Angren"}
+  ],
+  "shared_sources": [
+    {"id": "CA15-SH001-Angren", "owner_region": "AM-India-z7-NorthBridge", "feature_id": "AM26-1-Angren", "kind": "city", "original": "Angren", "source_url": "@source/4b0d31e203b33341", "original_bbox": [229, 502, 274, 526], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

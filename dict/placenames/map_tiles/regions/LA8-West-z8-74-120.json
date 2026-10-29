@@ -1,0 +1,67 @@
+{
+  "id": "LA8-West-z8-74-120",
+  "z": 8,
+  "x": 74,
+  "y": 120,
+  "width_tiles": 5,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/74/120.png",
+    "8/75/120.png",
+    "8/76/120.png",
+    "8/77/120.png",
+    "8/78/120.png"
+  ],
+  "context_tiles": [
+    "8/75/119.png",
+    "8/79/120.png"
+  ],
+  "features": [
+    {"id": "LA8-West-z8-74-120-Cartagena", "kind": "city", "original": "Cartagena", "original_bbox": [67, 135, 133, 160], "source_url": "@source/47c2ab9a91d0cf43", "source_printed_lines": ["Cartagena"]},
+    {"id": "LA8-West-z8-74-120-Barranquilla", "kind": "city", "original": "Barranquilla", "original_bbox": [204, 30, 282, 55], "source_url": "@source/47c2ab9a91d0cf43", "source_printed_lines": ["Barranquilla"]},
+    {"id": "LA8-West-z8-74-120-CerroIcachui", "kind": "peak", "original": "Cerro Icachui", "original_bbox": [358, 43, 437, 85], "source_url": "@source/738a104bdf5f27cc", "source_printed_lines": ["Cerro Icachui", "4374m"], "original_elevation_m": "4374"},
+    {"id": "LA8-West-z8-74-120-Valledupar", "kind": "city", "original": "Valledupar", "original_bbox": [484, 128, 551, 151], "source_url": "@source/738a104bdf5f27cc", "source_printed_lines": ["Valledupar"]},
+    {"id": "LA8-West-z8-74-120-Machiques", "kind": "city", "original": "Machiques", "original_bbox": [613, 203, 679, 226], "source_url": "@source/5a70ff5841b987e6", "source_printed_lines": ["Machiques"]},
+    {"id": "LA8-West-z8-74-120-Maracaibo", "kind": "city", "original": "Maracaibo", "original_bbox": [777, 94, 852, 117], "source_url": "@source/ff41cd04c5a72523", "source_printed_lines": ["Maracaibo"]},
+    {"id": "LA8-West-z8-74-120-Cabimas", "kind": "city", "original": "Cabimas", "original_bbox": [814, 141, 869, 162], "source_url": "@source/ff41cd04c5a72523", "source_printed_lines": ["Cabimas"]},
+    {"id": "LA8-West-z8-74-120-Carora", "kind": "city", "original": "Carora", "original_bbox": [1063, 182, 1107, 203], "source_url": "@source/7fcd9e21fa843a8d", "source_printed_lines": ["Carora"]},
+    {"id": "LA8-West-z8-74-120-Barquisimeto", "kind": "city", "original": "Barquisimeto", "original_bbox": [1200, 199, 1279, 223], "source_url": "@source/7fcd9e21fa843a8d", "source_printed_lines": ["Barquisimeto"]}
+  ],
+  "translations": [
+    {"id": "LA8-West-z8-74-120-Cartagena", "zh": "卡塔赫纳", "status": "approved", "source": "@source/12ec93f78684bd09", "record_sha256": "ad1d9cd346b49f4c42c195e22964c70104345a0f32e1dbf19a017f260d118c4d", "review_notes": "@note/translations"},
+    {"id": "LA8-West-z8-74-120-Barranquilla", "zh": "巴兰基亚", "status": "approved", "source": "@source/2d75ae47a1660a02", "record_sha256": "14b0adfb7a3f62ebf5e54f7d58de9641a3aa9a74f988d2cbcaa1b27eb8c057ed", "review_notes": "@note/translations"},
+    {"id": "LA8-West-z8-74-120-CerroIcachui", "zh": "伊卡丘伊山", "status": "approved", "source": "@source/738a104bdf5f27cc", "record_sha256": "a75421a23253769f69ee279ee705f2448fa5e536ff03b6c8556204044fe3e164", "review_notes": "@note/translations"},
+    {"id": "LA8-West-z8-74-120-Valledupar", "zh": "巴耶杜帕尔", "status": "approved", "source": "@source/f567c12d1ee4a8d6", "record_sha256": "af470dde578967804230faa761abc92ea04a6917ade4eecd726a470f4eb9d921", "review_notes": "@note/translations"},
+    {"id": "LA8-West-z8-74-120-Machiques", "zh": "马奇克斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "210777d179e66524f7604af04f3be098a4d0a4c4b0ae65bec1098064f8faa5ea", "review_notes": "@note/translations"},
+    {"id": "LA8-West-z8-74-120-Maracaibo", "zh": "马拉开波", "status": "approved", "source": "@source/7f40a45e0f5748d4", "record_sha256": "53c9bee75e36e22206f291e24a837958c2019fa707711edf79cc65bd27ea9c79", "review_notes": "@note/translations"},
+    {"id": "LA8-West-z8-74-120-Cabimas", "zh": "卡维马斯", "status": "approved", "source": "@source/b66010ddc218dcb1", "record_sha256": "dc595878ab1085a0a13f60e496feaa8b9a33b605c38599379f95243aaf10c6b9", "review_notes": "@note/translations"},
+    {"id": "LA8-West-z8-74-120-Carora", "zh": "卡罗拉", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "46f85449497f823d0735510d0b941f4834b5e03279e62e65691f8e45b2353959", "review_notes": "@note/translations"},
+    {"id": "LA8-West-z8-74-120-Barquisimeto", "zh": "巴基西梅托", "status": "approved", "source": "@source/1d3436c30a137e9c", "record_sha256": "d5f6d5d376e3409a070f217ee136ffa47fb8c0edaf254a0cd24978f6567957f2", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LA8-West-z8-74-120-Cartagena", "x": 107.0, "y": 147.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LA8-West-z8-74-120-Barranquilla", "x": 244.0, "y": 42.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LA8-West-z8-74-120-CerroIcachui", "x": 395.5, "y": 58.5, "font_size": 12, "font_style": "bold"},
+    {"id": "LA8-West-z8-74-120-Valledupar", "x": 530.0, "y": 140.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LA8-West-z8-74-120-Machiques", "x": 653.0, "y": 215.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LA8-West-z8-74-120-Maracaibo", "x": 817.0, "y": 106.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LA8-West-z8-74-120-Cabimas", "x": 854.0, "y": 153.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LA8-West-z8-74-120-Carora", "x": 1097.0, "y": 194.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LA8-West-z8-74-120-Barquisimeto", "x": 1246.0, "y": 211.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "LA8-West-z8-74-120-Cartagena-circle", "feature_id": "LA8-West-z8-74-120-Cartagena", "kind": "circle", "x": 71.5, "y": 139.5, "size": 9, "outline_width": 1, "original_bbox": [67, 135, 76, 144], "source_url": "@source/47c2ab9a91d0cf43", "review_notes": "@note/symbols"},
+    {"id": "LA8-West-z8-74-120-Barranquilla-circle", "feature_id": "LA8-West-z8-74-120-Barranquilla", "kind": "circle", "x": 208.5, "y": 34.5, "size": 9, "outline_width": 1, "original_bbox": [204, 30, 213, 39], "source_url": "@source/47c2ab9a91d0cf43", "review_notes": "@note/symbols"},
+    {"id": "LA8-West-z8-74-120-CerroIcachui-triangle", "feature_id": "LA8-West-z8-74-120-CerroIcachui", "kind": "triangle", "x": 432.0, "y": 80.5, "size": 10, "outline_width": 1.25, "original_bbox": [427, 76, 437, 85], "source_url": "@source/738a104bdf5f27cc", "review_notes": "@note/symbols"},
+    {"id": "LA8-West-z8-74-120-Valledupar-circle", "feature_id": "LA8-West-z8-74-120-Valledupar", "kind": "circle", "x": 488.5, "y": 132.5, "size": 9, "outline_width": 1, "original_bbox": [484, 128, 493, 137], "source_url": "@source/738a104bdf5f27cc", "review_notes": "@note/symbols"},
+    {"id": "LA8-West-z8-74-120-Machiques-circle", "feature_id": "LA8-West-z8-74-120-Machiques", "kind": "circle", "x": 617.5, "y": 207.5, "size": 9, "outline_width": 1, "original_bbox": [613, 203, 622, 212], "source_url": "@source/5a70ff5841b987e6", "review_notes": "@note/symbols"},
+    {"id": "LA8-West-z8-74-120-Maracaibo-circle", "feature_id": "LA8-West-z8-74-120-Maracaibo", "kind": "circle", "x": 781.5, "y": 98.5, "size": 9, "outline_width": 1, "original_bbox": [777, 94, 786, 103], "source_url": "@source/ff41cd04c5a72523", "review_notes": "@note/symbols"},
+    {"id": "LA8-West-z8-74-120-Cabimas-circle", "feature_id": "LA8-West-z8-74-120-Cabimas", "kind": "circle", "x": 818.5, "y": 145.5, "size": 9, "outline_width": 1, "original_bbox": [814, 141, 823, 150], "source_url": "@source/ff41cd04c5a72523", "review_notes": "@note/symbols"},
+    {"id": "LA8-West-z8-74-120-Carora-circle", "feature_id": "LA8-West-z8-74-120-Carora", "kind": "circle", "x": 1067.5, "y": 186.5, "size": 9, "outline_width": 1, "original_bbox": [1063, 182, 1072, 191], "source_url": "@source/7fcd9e21fa843a8d", "review_notes": "@note/symbols"},
+    {"id": "LA8-West-z8-74-120-Barquisimeto-circle", "feature_id": "LA8-West-z8-74-120-Barquisimeto", "kind": "circle", "x": 1204.5, "y": 203.5, "size": 9, "outline_width": 1, "original_bbox": [1200, 199, 1209, 208], "source_url": "@source/7fcd9e21fa843a8d", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "LA8-West-z8-74-120-SantaMarta-old-exactshared", "owner_region": "AM-Caribbean-z8-South", "feature_id": "AM25-36-Santa-Marta", "kind": "city", "original": "Santa Marta", "source_url": "@source/e759c83f2ce09763", "original_bbox": [312, -16, 354, 25], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

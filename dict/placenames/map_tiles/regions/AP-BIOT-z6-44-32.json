@@ -1,0 +1,41 @@
+{
+  "z": 6,
+  "x": 44,
+  "y": 32,
+  "width_tiles": 2,
+  "height_tiles": 2,
+  "id": "AP-BIOT-z6-44-32",
+  "original_tiles": [
+    "6/44/32.png",
+    "6/45/32.png",
+    "6/44/33.png",
+    "6/45/33.png"
+  ],
+  "context_tiles": [
+    "6/43/31.png",
+    "6/44/31.png",
+    "6/45/31.png",
+    "6/46/31.png",
+    "6/43/32.png",
+    "6/46/32.png",
+    "6/43/33.png",
+    "6/46/33.png",
+    "6/43/34.png",
+    "6/44/34.png",
+    "6/45/34.png",
+    "6/46/34.png"
+  ],
+  "features": [
+    {"id": "AP-LR-001", "kind": "admin0", "original": "British Indian Ocean Territory", "original_bbox": [119, 231, 292, 334], "source_url": "@source/c96c84a1c9558d58"},
+    {"id": "AP-LR-002", "kind": "marine", "original": "Indian Ocean", "original_bbox": [77, 435, 151, 475], "source_url": "@source/d3f1ff651e4d7bb3"}
+  ],
+  "translations": [
+    {"id": "AP-LR-001", "zh": "英属印度洋领地", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "d3ef206ab08c7d840bfea9d586ed035964b7dc2e92823a0bcea4ba2f56f4164a", "review_notes": "@note/translations"},
+    {"id": "AP-LR-002", "zh": "印度洋", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "715ffb56b961abcab3b71f4d05e5d61e6df82d338794e4a3374b3f137a4eed4c", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-LR-001", "x": 205.5, "y": 282.5, "font_size": 16, "font_style": "bold"},
+    {"id": "AP-LR-002", "x": 114.0, "y": 455.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": []
+}

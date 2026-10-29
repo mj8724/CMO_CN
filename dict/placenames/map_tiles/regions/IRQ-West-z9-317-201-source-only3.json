@@ -1,0 +1,38 @@
+{
+  "id": "IRQ-West-z9-317-201-source-only3",
+  "z": 9,
+  "x": 317,
+  "y": 201,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/317/201.png"
+  ],
+  "context_tiles": [
+    "9/316/200.png",
+    "9/317/200.png",
+    "9/318/200.png",
+    "9/316/201.png",
+    "9/318/201.png",
+    "9/316/202.png",
+    "9/317/202.png",
+    "9/318/202.png"
+  ],
+  "features": [
+    {"id": "IRQ9-031", "kind": "city", "original": "Gayara", "original_bbox": [127, 96, 166, 115], "source_url": "@source/da1dd90ab9307650"},
+    {"id": "IRQ9-036", "kind": "city", "original": "Qaraj", "original_bbox": [223, 166, 254, 186], "source_url": "@source/8e412cb41e902810"},
+    {"id": "IRQ9-039", "kind": "city", "original": "Sharqat", "original_bbox": [103, 221, 148, 241], "source_url": "@source/58284edb8dba289b"}
+  ],
+  "translations": [
+    {"id": "IRQ9-031", "zh": "盖亚拉", "status": "approved", "source": "@source/24e57a49dbede800", "record_sha256": "008db62595d7233ef8e0b3f6c1cf9f321af4a34433c96dc3309cd47993e5dd5d", "review_notes": "@note/translations"},
+    {"id": "IRQ9-036", "zh": "卡拉杰", "status": "approved", "source": "@source/8e412cb41e902810", "record_sha256": "d8202b51513ace221a334d3dc10218bac27d3ec503b739d11bebf98e3953e969", "review_notes": "@note/translations"},
+    {"id": "IRQ9-039", "zh": "舍尔加特", "status": "approved", "source": "@source/a6c01e9c74bfd6e9", "record_sha256": "b3161e6dc1829aad5d585b6dfb4a13758364b69e5310901e158a337afece5a71", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "IRQ9-031", "x": 146.5, "y": 105.5, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-036", "x": 236.5, "y": 176.0, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-039", "x": 125.5, "y": 231.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": []
+}

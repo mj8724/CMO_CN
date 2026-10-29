@@ -1,0 +1,29 @@
+{
+  "id": "LF20-R01-z9-303-199",
+  "z": 9,
+  "x": 303,
+  "y": 199,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/303/199.png",
+    "9/304/199.png"
+  ],
+  "context_tiles": [
+    "9/304/200.png"
+  ],
+  "features": [
+    {"id": "LF20-N032", "kind": "city", "original": "Mut", "original_bbox": [130, 227, 155, 243], "source_url": "@source/526e4ae5ba4553e8"}
+  ],
+  "translations": [
+    {"id": "LF20-N032", "zh": "穆特", "status": "approved", "source": "@source/526e4ae5ba4553e8", "record_sha256": "6b82d018f2946b08acd8b7e06be3c6a6158f06da8e7b2d1be1a5122a154b76ad", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LF20-N032", "x": 142.5, "y": 235.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "LF20-S001", "owner_region": "LEVANT-z9-304-200", "feature_id": "LEV9-000", "kind": "city", "original": "Erdemli", "source_url": "@source/6c6ade450c8f042c", "original_bbox": [439, 244, 481, 261], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

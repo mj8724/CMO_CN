@@ -1,0 +1,44 @@
+{
+  "id": "PHL12-R03-BatangasWest-z10-855-471",
+  "z": 10,
+  "x": 855,
+  "y": 471,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "10/855/471.png",
+    "10/855/472.png"
+  ],
+  "context_tiles": [
+    "10/856/471.png"
+  ],
+  "features": [
+    {"id": "PHL12-N014", "kind": "region", "original": "Nasugbu", "original_bbox": [9, 134, 59, 155], "source_url": "@source/1b8e6c68ef6f768b"},
+    {"id": "PHL12-N015", "kind": "region", "original": "Lian", "original_bbox": [38, 164, 61, 179], "source_url": "@source/1b8e6c68ef6f768b"},
+    {"id": "PHL12-N016", "kind": "region", "original": "Balayan", "original_bbox": [85, 238, 125, 255], "source_url": "@source/1b8e6c68ef6f768b"},
+    {"id": "PHL12-N017", "kind": "region", "original": "Calaca", "original_bbox": [145, 241, 187, 260], "source_url": "@source/1b8e6c68ef6f768b"},
+    {"id": "PHL12-N020", "kind": "region", "original": "Calatagan", "original_bbox": [6, 315, 62, 336], "source_url": "@source/8e1102987e330b0e"},
+    {"id": "PHL12-N021", "kind": "marine", "original": "Balayan Bay", "original_bbox": [123, 323, 196, 338], "source_url": "@source/8e1102987e330b0e"}
+  ],
+  "translations": [
+    {"id": "PHL12-N014", "zh": "纳苏格布", "status": "approved", "source": "@source/1b8e6c68ef6f768b", "record_sha256": "c4b5739ce44ba711677a24101682bd412d9caafe0a5369ac6cf1fca60b021f4b", "review_notes": "@note/translations"},
+    {"id": "PHL12-N015", "zh": "利安", "status": "approved", "source": "@source/1b8e6c68ef6f768b", "record_sha256": "8aac567f73c90c09a5aa048cbf4b472ddba2c353fc9ad3c5af45c32d3c97abc6", "review_notes": "@note/translations"},
+    {"id": "PHL12-N016", "zh": "巴拉延", "status": "approved", "source": "@source/1b8e6c68ef6f768b", "record_sha256": "0d528e28225db53ec23b59fdd21fd61042f136cfe14fc6376e6b9bf7997d033d", "review_notes": "@note/translations"},
+    {"id": "PHL12-N017", "zh": "卡拉卡", "status": "approved", "source": "@source/1b8e6c68ef6f768b", "record_sha256": "1061388c63b2aaa3855b6a6769a0a4db85bb762c04c632d25c4a6bfd7d0affa9", "review_notes": "@note/translations"},
+    {"id": "PHL12-N020", "zh": "卡拉塔甘", "status": "approved", "source": "@source/8e1102987e330b0e", "record_sha256": "258b76921be779d48504b2ac2ecab46b8936470d7765cfd614213e72737fff35", "review_notes": "@note/translations"},
+    {"id": "PHL12-N021", "zh": "巴拉延湾", "status": "approved", "source": "@source/8e1102987e330b0e", "record_sha256": "ee4fc262fcaf63d1ec2d0c03b4c019690335af309de80a1ee2d9fb1f3589810e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PHL12-N014", "x": 34.0, "y": 144.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N015", "x": 49.5, "y": 171.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N016", "x": 105.0, "y": 246.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N017", "x": 166.0, "y": 250.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N020", "x": 34.0, "y": 325.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N021", "x": 159.5, "y": 330.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "PHL12-SH013", "owner_region": "AM-Luzon-z10-856-464", "feature_id": "AM23-57-Tagaytay", "kind": "city", "original": "Tagaytay", "source_url": "@source/1b8e6c68ef6f768b", "original_bbox": [222, 111, 282, 135], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

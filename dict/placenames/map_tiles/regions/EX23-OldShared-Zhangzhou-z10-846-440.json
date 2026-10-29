@@ -1,0 +1,21 @@
+{
+  "id": "EX23-OldShared-Zhangzhou-z10-846-440",
+  "z": 10,
+  "x": 846,
+  "y": 440,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/846/440.png"
+  ],
+  "context_tiles": [
+    "10/846/439.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"owner_region": "AP-Fujian-Inland-z10-840-432", "feature_id": "AP-I10-191", "kind": "city", "original": "Zhangzhou", "source_url": "@source/3378e25ae902eef5", "original_bbox": [125, -1, 196, 21], "id": "EX23-SHARED-003", "review_notes": "@note/shared_sources"}
+  ]
+}

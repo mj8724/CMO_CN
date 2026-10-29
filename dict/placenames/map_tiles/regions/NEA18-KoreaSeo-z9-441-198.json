@@ -1,0 +1,25 @@
+{
+  "id": "NEA18-KoreaSeo-z9-441-198",
+  "z": 9,
+  "x": 441,
+  "y": 198,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/441/198.png",
+    "9/442/198.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NEA18-042", "kind": "city", "original": "Seo-myeon", "original_bbox": [245, 96, 308, 116], "source_url": "@source/761f9cd18ef8336b"}
+  ],
+  "translations": [
+    {"id": "NEA18-042", "zh": "西面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "4e47b4149d94297ddf112a363382234cb8acf2c89314c9962874063ce6aa4091", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA18-042", "x": 276.5, "y": 106.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

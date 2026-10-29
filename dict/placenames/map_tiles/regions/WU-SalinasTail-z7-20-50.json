@@ -1,0 +1,22 @@
+{
+  "id": "WU-SalinasTail-z7-20-50",
+  "z": 7,
+  "x": 20,
+  "y": 50,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/20/50.png"
+  ],
+  "context_tiles": [
+    "7/20/49.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "WU12-SH-01", "owner_region": "AM-CanadaNorthWestUS-z7-18-39", "feature_id": "AM7-181-Salinas", "kind": "city", "original": "Salinas", "original_bbox": [185, -14, 230, 7], "source_url": "@source/d932225c8914321c", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

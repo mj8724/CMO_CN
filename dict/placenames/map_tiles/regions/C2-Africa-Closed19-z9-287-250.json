@@ -1,0 +1,40 @@
+{
+  "z": 9,
+  "x": 287,
+  "y": 250,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "id": "C2-Africa-Closed19-z9-287-250",
+  "original_tiles": [
+    "9/287/250.png",
+    "9/287/251.png",
+    "9/287/252.png"
+  ],
+  "context_tiles": [
+    "9/288/250.png",
+    "9/288/251.png",
+    "9/288/252.png"
+  ],
+  "features": [
+    {"id": "C2-G022", "kind": "city", "original": "Abumumbazi", "original_bbox": [93, 183, 165, 200], "source_url": "@source/2c2981fda2907db7"},
+    {"id": "C2-G024", "kind": "city", "original": "Yandongi", "original_bbox": [146, 491, 199, 510], "source_url": "@source/94fa1bdb64f95c77"},
+    {"id": "C2-G027", "kind": "city", "original": "Monzamboli", "original_bbox": [78, 627, 145, 643], "source_url": "@source/78fc8c60a017aa19"}
+  ],
+  "translations": [
+    {"id": "C2-G022", "zh": "阿布穆姆巴济", "status": "approved", "source": "@source/2c2981fda2907db7", "record_sha256": "9271d10a91848693698d7384bb2cde65e5b377cdd1f646748b72bbfdedbd827c", "review_notes": "@note/translations"},
+    {"id": "C2-G024", "zh": "扬东吉", "status": "approved", "source": "@source/94fa1bdb64f95c77", "record_sha256": "4f784cd4982369f388946a75ffadf54cb5d38e88e1408eda0d319867f9791fd5", "review_notes": "@note/translations"},
+    {"id": "C2-G027", "zh": "蒙赞博利", "status": "approved", "source": "@source/78fc8c60a017aa19", "record_sha256": "252e67625d9b804eee6a9180d7c62265ff172924b792582395a5156f47f63730", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C2-G022", "x": 129.0, "y": 191.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G024", "x": 172.5, "y": 500.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G027", "x": 111.5, "y": 635.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "C2-SH-G021", "owner_region": "DRCNorth-z9-288-248", "feature_id": "DRCN9-008-Yakoma", "original": "Yakoma", "kind": "city", "original_bbox": [211, 31, 261, 49], "source_url": "@source/2c2981fda2907db7", "review_notes": "@note/shared_sources"},
+    {"id": "C2-SH-G025", "owner_region": "DRCNorth-z9-288-248", "feature_id": "DRCN9-029-Bongolu", "original": "Bongolu", "kind": "city", "original_bbox": [229, 506, 276, 526], "source_url": "@source/94fa1bdb64f95c77", "review_notes": "@note/shared_sources"},
+    {"id": "C2-SH-G029", "owner_region": "DRCNorth-z9-288-248", "feature_id": "DRCN9-038-Bumba", "original": "Bumba", "kind": "city", "original_bbox": [219, 731, 269, 751], "source_url": "@source/78fc8c60a017aa19", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

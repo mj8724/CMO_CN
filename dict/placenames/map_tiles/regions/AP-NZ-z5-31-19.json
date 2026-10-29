@@ -1,0 +1,37 @@
+{
+  "id": "AP-NZ-z5-31-19",
+  "z": 5,
+  "x": 31,
+  "y": 19,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "5/31/19.png",
+    "5/31/20.png"
+  ],
+  "context_tiles": [
+    "5/30/19.png",
+    "5/30/20.png",
+    "5/30/21.png",
+    "5/31/21.png"
+  ],
+  "features": [
+    {"id": "AP-NZ-0", "kind": "city", "original": "Auckland", "original_bbox": [132, 131, 188, 151], "source_url": "@source/b498d3f622f1541d"},
+    {"id": "AP-NZ-1", "kind": "admin0", "original": "New Zealand", "original_bbox": [33, 247, 153, 291], "source_url": "@source/ea9990d40022f156"},
+    {"id": "AP-NZ-3", "kind": "city", "original": "Christchurch", "original_bbox": [84, 330, 151, 349], "source_url": "@source/4d04c6468c8a5fc8"}
+  ],
+  "translations": [
+    {"id": "AP-NZ-0", "zh": "奥克兰", "status": "approved", "source": "@source/b498d3f622f1541d", "record_sha256": "b142273e510554f5d854d5078b7ef77a4dad47a32d6a2886f19c234e41177d07", "review_notes": "@note/translations"},
+    {"id": "AP-NZ-1", "zh": "新西兰", "status": "approved", "source": "@source/ea9990d40022f156", "record_sha256": "e1c3176b2ea1a2d6d286f046218b68574bab0e73466d6a5b9675b6813545fbee", "review_notes": "@note/translations"},
+    {"id": "AP-NZ-3", "zh": "克赖斯特彻奇", "status": "approved", "source": "@source/4d04c6468c8a5fc8", "record_sha256": "a57efe01fd1ee09fa66d9094b6db6e2d9107b08aa37544a96b485f6f6efdeedd", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-NZ-0", "x": 160.0, "y": 141.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NZ-1", "x": 93.0, "y": 269.0, "font_size": 16, "font_style": "bold"},
+    {"id": "AP-NZ-3", "x": 127.0, "y": 339.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-NZ-0-circle", "feature_id": "AP-NZ-0", "x": 136.5, "y": 135.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [132, 131, 141, 140]},
+    {"id": "AP-NZ-3-circle", "feature_id": "AP-NZ-3", "x": 88.5, "y": 334.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [84, 330, 93, 339]}
+  ]
+}

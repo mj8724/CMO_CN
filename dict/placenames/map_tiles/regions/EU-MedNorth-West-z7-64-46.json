@@ -1,0 +1,41 @@
+{
+  "id": "EU-MedNorth-West-z7-64-46",
+  "z": 7,
+  "x": 64,
+  "y": 46,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/64/46.png",
+    "7/65/46.png"
+  ],
+  "context_tiles": [
+    "7/66/46.png"
+  ],
+  "features": [
+    {"id": "MEDN7-001-Toulouse", "kind": "city", "original": "Toulouse", "original_bbox": [127, 184, 179, 204], "source_url": "@source/23890d4c0207d692"},
+    {"id": "MEDN7-002-Nimes", "kind": "city", "original": "Nimes", "original_bbox": [392, 155, 431, 174], "source_url": "@source/ef49d9db123de3a5"},
+    {"id": "MEDN7-003-Montpellier", "kind": "city", "original": "Montpellier", "original_bbox": [348, 184, 412, 205], "source_url": "@source/ef49d9db123de3a5"},
+    {"id": "MEDN7-004-Marseille", "kind": "city", "original": "Marseille", "original_bbox": [484, 223, 536, 242], "source_url": "@source/ef49d9db123de3a5"}
+  ],
+  "translations": [
+    {"id": "MEDN7-001-Toulouse", "zh": "图卢兹", "status": "approved", "source": "@source/1648782784c367c0", "record_sha256": "2147a13fc43eaa65d4679db18d183d3ef5f3b90d94d1061d3e166cd34b5ed1fb", "review_notes": "@note/translations"},
+    {"id": "MEDN7-002-Nimes", "zh": "尼姆", "status": "approved", "source": "@source/07448bd054194d79", "record_sha256": "da949cc0ca6af1d1737bebec5668f53fea6c2c2137bd29682b7553f3ac7df044", "review_notes": "@note/translations"},
+    {"id": "MEDN7-003-Montpellier", "zh": "蒙彼利埃", "status": "approved", "source": "@source/ff4d463efd94f79d", "record_sha256": "0a7796670cc25c5bf3d600d06fb2aeccadc8baafa5ebf5ae30757e8354dbc6fb", "review_notes": "@note/translations"},
+    {"id": "MEDN7-004-Marseille", "zh": "马赛", "status": "approved", "source": "@source/df9f74a72cfc595c", "record_sha256": "7b48256c2e5dc18b22a29d991a5bb23138e3197b6b275f1c424a8f1049b9b4ff", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "MEDN7-001-Toulouse", "x": 158.0, "y": 196.5, "font_size": 12, "font_style": "regular"},
+    {"id": "MEDN7-002-Nimes", "x": 417.0, "y": 167.0, "font_size": 12, "font_style": "regular"},
+    {"id": "MEDN7-003-Montpellier", "x": 385.0, "y": 196.0, "font_size": 12, "font_style": "regular"},
+    {"id": "MEDN7-004-Marseille", "x": 468.0, "y": 235.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "MEDN7-001-Toulouse-point", "feature_id": "MEDN7-001-Toulouse", "kind": "circle", "x": 131.5, "y": 189.0, "size": 9, "outline_width": 1, "original_bbox": [127, 184, 136, 194], "source_url": "@source/23890d4c0207d692", "review_notes": "@note/symbols"},
+    {"id": "MEDN7-002-Nimes-point", "feature_id": "MEDN7-002-Nimes", "kind": "circle", "x": 396.5, "y": 159.5, "size": 9, "outline_width": 1, "original_bbox": [392, 155, 401, 164], "source_url": "@source/ef49d9db123de3a5", "review_notes": "@note/symbols"},
+    {"id": "MEDN7-003-Montpellier-point", "feature_id": "MEDN7-003-Montpellier", "kind": "circle", "x": 352.5, "y": 188.5, "size": 9, "outline_width": 1, "original_bbox": [348, 184, 357, 193], "source_url": "@source/ef49d9db123de3a5", "review_notes": "@note/symbols"},
+    {"id": "MEDN7-004-Marseille-point", "feature_id": "MEDN7-004-Marseille", "kind": "circle", "x": 488.5, "y": 227.5, "size": 9, "outline_width": 1, "original_bbox": [484, 223, 493, 232], "source_url": "@source/ef49d9db123de3a5", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,30 @@
+{
+  "id": "CE19-Riga-z7-72-39",
+  "z": 7,
+  "x": 72,
+  "y": 39,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/72/39.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "CE7-SRC-01", "kind": "city", "original": "Riga", "original_bbox": [142, 59, 172, 81], "source_url": "@source/b518180fa8e47009"},
+    {"id": "CE7-SRC-06", "kind": "city", "original": "Jelgava", "original_bbox": [108, 108, 151, 130], "source_url": "@source/b518180fa8e47009"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-01", "zh": "里加", "source": "@source/f609579531d17b6a", "status": "approved", "record_sha256": "6f5825c163ddbe3fb866058ccb15099f76eac0006b9868a580d3aa045108382c", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-06", "zh": "叶尔加瓦", "source": "@source/411a549d373691a5", "status": "approved", "record_sha256": "4c664fc207e4431c92db77c8351907750aaec06d495079fe28a28f7ebf04a2c6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-01", "x": 168.0, "y": 71.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-06", "x": 146.0, "y": 120.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-01-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-01", "original_bbox": [142, 59, 151, 68], "x": 146.5, "y": 63.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-06-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-06", "original_bbox": [108, 108, 117, 117], "x": 112.5, "y": 112.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

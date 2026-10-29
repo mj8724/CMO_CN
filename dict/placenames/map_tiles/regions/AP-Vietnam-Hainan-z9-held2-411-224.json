@@ -1,0 +1,52 @@
+{
+  "id": "AP-Vietnam-Hainan-z9-held2-411-224",
+  "z": 9,
+  "x": 411,
+  "y": 224,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "9/411/224.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 5067}
+  ],
+  "context_tiles": [
+    {"path": "9/410/223.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 3030},
+    {"path": "9/411/223.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 3039},
+    {"path": "9/412/223.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 3579},
+    {"path": "9/410/224.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 2796},
+    {"path": "9/412/224.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 4331},
+    {"path": "9/410/225.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 0},
+    {"path": "9/411/225.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 1036},
+    {"path": "9/412/225.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 5956}
+  ],
+  "features": [
+    {"id": "AP-VH9-002", "kind": "city", "original": "Nasi", "original_bbox": [4, -4, 30, 12], "source_url": "@source/3cc9ed71c4118d69"},
+    {"id": "AP-VH9-004", "kind": "city", "original": "…（原词下半残字）", "original_bbox": [195, 0, 247, 10], "source_url": "@source/18f3ac79503bf167"},
+    {"id": "AP-VH9-014", "kind": "city", "original": "Gongguan", "original_bbox": [198, 49, 255, 69], "source_url": "@source/9276604ca33e122d"},
+    {"id": "AP-VH9-017", "kind": "city", "original": "Zhakou", "original_bbox": [158, 84, 201, 100], "source_url": "@source/3d9935cf885d9d4c"},
+    {"id": "AP-VH9-021", "kind": "city", "original": "Hepu", "original_bbox": [63, 101, 97, 122], "source_url": "@source/07119de207f43cbc"},
+    {"id": "AP-VH9-031", "kind": "city", "original": "Tieshangang", "original_bbox": [118, 152, 196, 174], "source_url": "@source/0c5a279d2bb37043"},
+    {"id": "AP-VH9-036", "kind": "city", "original": "Beihai", "original_bbox": [28, 171, 68, 189], "source_url": "@source/26c96e336d0d035e"}
+  ],
+  "translations": [
+    {"id": "AP-VH9-002", "zh": "那思", "status": "approved", "source": "@source/01a117d303c62fc6", "record_sha256": "e309fa1cc1320336c5be198b443a9e1d19240d421188edb226a20bf56719acad", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-004", "zh": "石埇", "status": "approved", "source": "@source/03fd809b32d8b6b9", "record_sha256": "dc762de6bda79ffb796c6b113cda6d47b44043ce8dd13ba5e583bb3b7ea9077c", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-014", "zh": "公馆", "status": "approved", "source": "@source/7fc257e50f527116", "record_sha256": "735f0c98a9e26752272a388ed1fe4b2e44074bf7448807aafb3ea0efbb50a295", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-017", "zh": "闸口", "status": "approved", "source": "@source/3d9935cf885d9d4c", "record_sha256": "23a5685ea7b8a9ef8cf9958d04a656b710ba0823d974e125b415b742b1f991af", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-021", "zh": "合浦", "status": "approved", "source": "@source/07119de207f43cbc", "record_sha256": "f2ed46fab9698777cfa19ac160b7619b5d72b038d81b35caa50802bdff781772", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-031", "zh": "铁山港", "status": "approved", "source": "@source/0c5a279d2bb37043", "record_sha256": "38c449dcd966625933c9a06795d10654b9ae548b32150cb9b12be3585836ed6c", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-036", "zh": "北海", "status": "approved", "source": "@source/26c96e336d0d035e", "record_sha256": "7a4d70751fa18340b0334ba0cc41b4ef9e6dcebcbdf762f0c24c13ad8044d90f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-VH9-002", "x": 17.0, "y": 9.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-004", "x": 221.0, "y": 9.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-014", "x": 226.5, "y": 59.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-017", "x": 179.5, "y": 92.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-021", "x": 80.0, "y": 111.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-031", "x": 157.0, "y": 163.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-036", "x": 48.0, "y": 180.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "AP-VH9-032-shared-held-224", "owner_region": "AP-Vietnam-Hainan-z9-62-topeast", "feature_id": "AP-VH9-032", "kind": "city", "original": "Shatian", "original_bbox": [223, 157, 266, 174], "source_url": "@source/2662b89c53db4367", "review_notes": "@note/shared_sources"}
+  ]
+}

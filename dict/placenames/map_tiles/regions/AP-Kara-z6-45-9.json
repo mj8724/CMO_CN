@@ -1,0 +1,37 @@
+{
+  "z": 6,
+  "x": 45,
+  "y": 9,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "id": "AP-Kara-z6-45-9",
+  "original_tiles": [
+    "6/45/9.png",
+    "6/46/9.png"
+  ],
+  "context_tiles": [
+    "6/44/8.png",
+    "6/45/8.png",
+    "6/46/8.png",
+    "6/47/8.png",
+    "6/44/9.png",
+    "6/47/9.png",
+    "6/44/10.png",
+    "6/45/10.png",
+    "6/46/10.png",
+    "6/47/10.png"
+  ],
+  "features": [
+    {"id": "AP-LR-003", "kind": "marine", "original": "Kara Sea", "original_bbox": [199, 214, 282, 231], "source_url": "@source/d3f1ff651e4d7bb3"}
+  ],
+  "translations": [
+    {"id": "AP-LR-003", "zh": "喀拉海", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "0e3a916fa15fed7100fce9f177424f6371b35c8b9fb5ac5f25056651db4bd8a2", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-LR-003", "x": 240.5, "y": 222.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "legacy_suppressions": [
+    {"feature_id": "AP-LR-003", "name": "喀拉海", "lat": 76.0, "lon": 80.0, "level": 0, "source": "@source/d3f1ff651e4d7bb3", "review_notes": "@note/legacy_suppressions"}
+  ]
+}

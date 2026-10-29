@@ -1,0 +1,36 @@
+{
+  "id": "UA20-OryolLipetsk-309-167",
+  "z": 9,
+  "x": 309,
+  "y": 167,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/309/167.png",
+    "9/310/167.png"
+  ],
+  "context_tiles": [
+    "9/308/167.png"
+  ],
+  "features": [
+    {"id": "UA20-N008", "kind": "city", "original": "Khomutovo", "original_bbox": [34, 25, 98, 41], "source_url": "@source/07a6a0dcbbc463a0"},
+    {"id": "UA20-N011", "kind": "city", "original": "Verkhovye", "original_bbox": [-39, 51, 20, 70], "source_url": "@source/2b6f84ed045592fd"},
+    {"id": "UA20-N014", "kind": "city", "original": "Krasnaya Zarya", "original_bbox": [130, 60, 180, 97], "source_url": "@source/07a6a0dcbbc463a0"},
+    {"id": "UA20-N031", "kind": "city", "original": "Yelets", "original_bbox": [430, 164, 469, 182], "source_url": "@source/0b2ddfdae80e7575"}
+  ],
+  "translations": [
+    {"id": "UA20-N008", "zh": "霍穆托沃", "status": "approved", "source": "@source/07a6a0dcbbc463a0", "record_sha256": "a161b8c76debc98ff58639e4473d0a950d057115f143a47dc559f9db246d793b", "review_notes": "@note/translations"},
+    {"id": "UA20-N011", "zh": "韦尔霍维耶", "status": "approved", "source": "@source/2b6f84ed045592fd", "record_sha256": "d48c545e7c2f16ce11a3fb10c0175814f54f85f41a6ee045448e4829090f1fa7", "review_notes": "@note/translations"},
+    {"id": "UA20-N014", "zh": "克拉斯纳亚扎里亚", "status": "approved", "source": "@source/07a6a0dcbbc463a0", "record_sha256": "a562835f3783505416dc3fcfb0d80352a5754761ad7d1afe50fd88f9977e5542", "review_notes": "@note/translations"},
+    {"id": "UA20-N031", "zh": "叶列茨", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "d4fede4c7c93caa5ed886dba82152a7ec95f368579f4e1f18991afc05bccc436", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UA20-N008", "x": 66.0, "y": 33.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N011", "x": 36.0, "y": 60.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N014", "x": 155.0, "y": 78.5, "font_size": 12, "font_style": "regular", "lines": ["克拉斯纳亚", "扎里亚"]},
+    {"id": "UA20-N031", "x": 449.5, "y": 173.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

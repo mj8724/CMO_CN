@@ -1,0 +1,72 @@
+{
+  "id": "CE19-NorthItaly-z7-67-45",
+  "z": 7,
+  "x": 67,
+  "y": 45,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/67/45.png",
+    "7/68/45.png",
+    "7/69/45.png"
+  ],
+  "context_tiles": [
+    "7/69/44.png"
+  ],
+  "features": [
+    {"id": "CE7-SRC-30", "kind": "city", "original": "Klagenfurt", "original_bbox": [530, 51, 589, 73], "source_url": "@source/5873db5e041e71b5"},
+    {"id": "CE7-SRC-31", "kind": "city", "original": "Maribor", "original_bbox": [652, 60, 698, 79], "source_url": "@source/5873db5e041e71b5"},
+    {"id": "CE7-SRC-32", "kind": "city", "original": "Bolzano - Bozen", "original_bbox": [261, 68, 308, 102], "source_url": "@source/54677b94700b6a54"},
+    {"id": "CE7-SRC-35", "kind": "city", "original": "Trento", "original_bbox": [240, 124, 280, 144], "source_url": "@source/d5689c6d8b67aa3d"},
+    {"id": "CE7-SRC-36", "kind": "city", "original": "Ljubljana", "original_bbox": [548, 127, 600, 149], "source_url": "@source/5873db5e041e71b5"},
+    {"id": "CE7-SRC-38", "kind": "city", "original": "Zagreb", "original_bbox": [682, 158, 724, 180], "source_url": "@source/5873db5e041e71b5"},
+    {"id": "CE7-SRC-41", "kind": "city", "original": "Bergamo", "original_bbox": [108, 173, 159, 195], "source_url": "@source/d5689c6d8b67aa3d"},
+    {"id": "CE7-SRC-42", "kind": "city", "original": "Trieste", "original_bbox": [481, 179, 523, 198], "source_url": "@source/54677b94700b6a54"},
+    {"id": "CE7-SRC-43", "kind": "city", "original": "Milan", "original_bbox": [64, 203, 104, 224], "source_url": "@source/d5689c6d8b67aa3d"},
+    {"id": "CE7-SRC-45", "kind": "city", "original": "Verona", "original_bbox": [228, 206, 271, 226], "source_url": "@source/d5689c6d8b67aa3d"},
+    {"id": "CE7-SRC-46", "kind": "city", "original": "Venice", "original_bbox": [350, 206, 391, 226], "source_url": "@source/54677b94700b6a54"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-30", "zh": "克拉根福", "source": "@source/5e2583d64cd6852e", "status": "approved", "record_sha256": "9d492c268f1607c1981316101aed7e681d732edd741a59ddd79b335778f744e4", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-31", "zh": "马里博尔", "source": "@source/c03aed5d8f5d1454", "status": "approved", "record_sha256": "e86a6f81adf207aa6c335b24338ffa3fbe46333e160475206f6fe9be93d777d9", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-32", "zh": "波尔查诺", "source": "@source/95888aa2cebfbf68", "status": "approved", "record_sha256": "2416d58852a08ce4572dc11d3d9d5976afe1234fa634754ddc3884018ab10b97", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-35", "zh": "特伦托", "source": "@source/464a5fb58ca11b2c", "status": "approved", "record_sha256": "bad7eb9ecf40a4dae22b1800dfef6c6b55ca40d483a3e138851bfb14dde12e1b", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-36", "zh": "卢布尔雅那", "source": "@source/9c9c8bfb638c4c0f", "status": "approved", "record_sha256": "1d0cb1650638f78e9bd477f721d326ff76de3cbb24696d03c674fb33a8f16d85", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-38", "zh": "萨格勒布", "source": "@source/3385a540ee8424b5", "status": "approved", "record_sha256": "87689ba259ec57e09172555dddc4d6021238efddf392b2a58cbb30218c78800b", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-41", "zh": "贝尔加莫", "source": "@source/852695f8935968ba", "status": "approved", "record_sha256": "ca42148d76f19e4f8c5ee73b2d1526a8d4ddafaaa258d22bf3e33eab3a28f3f5", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-42", "zh": "的里雅斯特", "source": "@source/d27cdbf7656087f5", "status": "approved", "record_sha256": "237fd7e462b887932a9eca3fd0cb1d5dc4d16d113433c62714b4e17498ebdce4", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-43", "zh": "米兰", "source": "@source/cef12ab22d734bf9", "status": "approved", "record_sha256": "67fa7a656c78d6f3492356e82c4f89c35e5b403c563bab6b1db07b898b589b74", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-45", "zh": "维罗纳", "source": "@source/a4ed019ec73a1b27", "status": "approved", "record_sha256": "1adde1a835c4efdd3caa18e9d3ab332a4803dd47eeb2025ccb2f9af3cd915a91", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-46", "zh": "威尼斯", "source": "@source/5b9395d5d77088b5", "status": "approved", "record_sha256": "b7d36a0cdd9b5b47ad8af42e3db5990b4d69a7ccf95718e32d0051e5c0d37d73", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-30", "x": 568.0, "y": 63.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-31", "x": 690.0, "y": 72.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-32", "x": 299.0, "y": 80.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-35", "x": 272.0, "y": 136.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-36", "x": 592.0, "y": 139.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-38", "x": 720.0, "y": 170.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-41", "x": 146.0, "y": 185.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-42", "x": 525.0, "y": 191.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-43", "x": 90.0, "y": 214.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-45", "x": 260.0, "y": 218.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-46", "x": 382.0, "y": 218.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-30-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-30", "original_bbox": [530, 51, 539, 60], "x": 534.5, "y": 55.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-31-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-31", "original_bbox": [652, 60, 661, 69], "x": 656.5, "y": 64.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-32-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-32", "original_bbox": [261, 68, 270, 77], "x": 265.5, "y": 72.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-35-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-35", "original_bbox": [240, 124, 249, 133], "x": 244.5, "y": 128.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-36-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-36", "original_bbox": [548, 127, 557, 136], "x": 552.5, "y": 131.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-38-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-38", "original_bbox": [682, 158, 691, 167], "x": 686.5, "y": 162.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-41-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-41", "original_bbox": [108, 173, 117, 182], "x": 112.5, "y": 177.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-42-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-42", "original_bbox": [481, 179, 490, 188], "x": 485.5, "y": 183.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-43-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-43", "original_bbox": [64, 203, 73, 212], "x": 68.5, "y": 207.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-45-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-45", "original_bbox": [228, 206, 237, 215], "x": 232.5, "y": 210.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-46-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-46", "original_bbox": [350, 206, 359, 215], "x": 354.5, "y": 210.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "CE19-SH-02", "owner_region": "EU-Column69-z7-69-43", "feature_id": "EU-Column69-z7-69-43-04", "kind": "city", "original": "Graz", "original_bbox": [633, -9, 663, 11], "source_url": "@source/cdcdb7ca72c9af53", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

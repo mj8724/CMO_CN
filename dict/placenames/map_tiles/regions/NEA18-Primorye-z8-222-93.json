@@ -1,0 +1,36 @@
+{
+  "id": "NEA18-Primorye-z8-222-93",
+  "z": 8,
+  "x": 222,
+  "y": 93,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "8/222/93.png",
+    "8/222/94.png"
+  ],
+  "context_tiles": [
+    "8/221/93.png",
+    "8/221/94.png"
+  ],
+  "features": [
+    {"id": "NEA18-028", "kind": "city", "original": "Nakhodka", "original_bbox": [124, 312, 186, 333], "source_url": "@source/351a5c7c66b0119c"}
+  ],
+  "translations": [
+    {"id": "NEA18-028", "zh": "纳霍德卡", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "132ac6dbad9c9886ab1664e0700eb187d44ddada36e12f6db52c08d177ecee25", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA18-028", "x": 162.0, "y": 324.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NEA18-N-033", "kind": "circle", "feature_id": "NEA18-028", "original_bbox": [124, 312, 133, 321], "x": 128.5, "y": 316.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"owner_region": "AP-Northeast-Asia-z8-216-93", "feature_id": "AP-NEA8-002", "kind": "city", "original": "Ussurijsk", "original_bbox": [-47, 69, 11, 93], "source_url": "@source/19150077a76d21f1", "id": "NEA18-SH-003", "review_notes": "@note/shared_sources"},
+    {"owner_region": "AP-Northeast-Asia-z8-216-93", "feature_id": "AP-NEA8-007", "kind": "city", "original": "Vladivostok", "original_bbox": [-59, 240, 17, 262], "source_url": "@source/19150077a76d21f1", "id": "NEA18-SH-004", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": [],
+  "source_backgrounds": [
+    {"x": 222, "y": 94, "sha256": "acddc56c62619b5022ef1bb101093b22a75555502f043fd2e5704156af3a03f8", "source_url": "@source/351a5c7c66b0119c", "rgba": [1, 1, 1, 1], "review_notes": "@note/source_backgrounds"}
+  ]
+}

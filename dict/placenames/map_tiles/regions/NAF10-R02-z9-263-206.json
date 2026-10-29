@@ -1,0 +1,32 @@
+{
+  "id": "NAF10-R02-z9-263-206",
+  "z": 9,
+  "x": 263,
+  "y": 206,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    {"path": "9/263/206.png", "z": 9},
+    {"path": "9/263/207.png", "z": 9},
+    {"path": "9/263/208.png", "z": 9}
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NAF10-N005", "kind": "region", "original": "El Hadjira", "original_bbox": [189, 219, 243, 239], "source_url": "@source/881d27f2bac8cc96"},
+    {"id": "NAF10-N006", "kind": "region", "original": "N'Goussa", "original_bbox": [116, 422, 167, 439], "source_url": "@source/3d8071c78efda863"},
+    {"id": "NAF10-N007", "kind": "region", "original": "Ouargla", "original_bbox": [121, 506, 171, 528], "source_url": "@source/3d8071c78efda863"}
+  ],
+  "translations": [
+    {"id": "NAF10-N005", "zh": "埃尔哈吉拉", "status": "approved", "source": "@source/881d27f2bac8cc96", "record_sha256": "2297a914b9d14fe2ca239c2b6f6f56f1109efdc114b12b3640205bc2c44deae8", "review_notes": "Signed Source78629/qual ae866 and Root37ee fix complete literal, all source bbox/RGBA/Chinese grade/URL roles. Region is neutral renderer category for printed geographical text, not city/country/admin/feature-class identity. Supplier PNG attests complete printed Latin literal only. Chinese is explicit nonofficial project phonetic caption, not official standard, recovered Han, or GN Chinese. Chinese grade=EXPLICIT_PROJECT_PHONETIC_TRANSCRIPTION_OF_COMPLETE_PRINTED_LITERAL_NOT_OFFICIAL_OR_GN_HAN. All supplier entity/country/admin/class/native/vector IDs null; no point or circle inferred. El Borma remains multiple distinct context records without provider/entity/country/class selection. Actual target pending author SELF and independent /root/remaining_catalog TARGET. Author actual SELF_PRIVATE_MODEL_ONLY accepted complete CJK/source5px/whole/join view; independent remaining_catalog TARGET remains pending. Not integration approval."},
+    {"id": "NAF10-N006", "zh": "恩古萨", "status": "approved", "source": "@source/3d8071c78efda863", "record_sha256": "3d1489fe13415df23a7aeda6be99b09fcd5d66f3c9a71224387971a80f7699ed", "review_notes": "Signed Source78629/qual ae866 and Root37ee fix complete literal, all source bbox/RGBA/Chinese grade/URL roles. Region is neutral renderer category for printed geographical text, not city/country/admin/feature-class identity. Supplier PNG attests complete printed Latin literal only. Chinese is explicit nonofficial project phonetic caption, not official standard, recovered Han, or GN Chinese. Chinese grade=EXPLICIT_PROJECT_PHONETIC_TRANSCRIPTION_OF_COMPLETE_PRINTED_LITERAL_NOT_OFFICIAL_OR_GN_HAN. All supplier entity/country/admin/class/native/vector IDs null; no point or circle inferred. El Borma remains multiple distinct context records without provider/entity/country/class selection. Actual target pending author SELF and independent /root/remaining_catalog TARGET. Author actual SELF_PRIVATE_MODEL_ONLY accepted complete CJK/source5px/whole/join view; independent remaining_catalog TARGET remains pending. Not integration approval."},
+    {"id": "NAF10-N007", "zh": "瓦尔格拉", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "6acc487674f23ab0f26dd81a0719a46e3e125137c4d07afbdcbf8baa09c296db", "review_notes": "Signed Source78629/qual ae866 and Root37ee fix complete literal, all source bbox/RGBA/Chinese grade/URL roles. Region is neutral renderer category for printed geographical text, not city/country/admin/feature-class identity. Original Natural Earth Chinese lexeme only; supplier entity/class/country/native not selected. Chinese grade=EXACT_ORIGINAL_NE_CHINESE_LEXEME_ONLY_NOT_SUPPLIER_CLASS_OR_OFFICIAL_STANDARD. All supplier entity/country/admin/class/native/vector IDs null; no point or circle inferred. El Borma remains multiple distinct context records without provider/entity/country/class selection. Actual target pending author SELF and independent /root/remaining_catalog TARGET. Author actual SELF_PRIVATE_MODEL_ONLY accepted complete CJK/source5px/whole/join view; independent remaining_catalog TARGET remains pending. Not integration approval."}
+  ],
+  "layouts": [
+    {"id": "NAF10-N005", "x": 216.0, "y": 229.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NAF10-N006", "x": 141.5, "y": 430.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NAF10-N007", "x": 146.0, "y": 517.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

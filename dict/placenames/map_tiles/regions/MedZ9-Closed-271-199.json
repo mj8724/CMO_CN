@@ -1,0 +1,30 @@
+{
+  "id": "MedZ9-Closed-271-199",
+  "z": 9,
+  "x": 271,
+  "y": 199,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/271/199.png"
+  ],
+  "context_tiles": [
+    "9/270/199.png",
+    "9/270/200.png",
+    "9/271/200.png"
+  ],
+  "features": [
+    {"id": "GZ9-07-16", "kind": "city", "original": "Kelibia", "original_bbox": [177, 135, 221, 152], "source_url": "@source/08923a5ab8f0b38f"}
+  ],
+  "translations": [
+    {"id": "GZ9-07-16", "zh": "凯利比亚", "source": "@source/4804b24be10a4071", "status": "approved", "record_sha256": "76a001312e3526bd43f471e0622aa8451baa6fd758de6a1daa7c41f270c6361d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-07-16", "x": 199.0, "y": 143.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "MedZ9-Closed-271-199-Grombalia-old-exactshared", "owner_region": "AM-NorthAfrica-z9-264-200", "feature_id": "AM28-2-Grombalia", "kind": "city", "original": "Grombalia", "source_url": "@source/aebec6e01627007b", "original_bbox": [-46, 246, 12, 265], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

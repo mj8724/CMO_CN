@@ -1,0 +1,47 @@
+{
+  "id": "EU-Column69-z7-69-43",
+  "z": 7,
+  "x": 69,
+  "y": 43,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/69/43.png",
+    "7/69/44.png"
+  ],
+  "context_tiles": [
+    "7/70/43.png",
+    "7/70/44.png",
+    "7/69/45.png"
+  ],
+  "features": [
+    {"id": "EU-Column69-z7-69-43-00", "kind": "city", "original": "Brno", "original_bbox": [228, 214, 260, 233], "source_url": "@source/a9a417f0ac1ff265"},
+    {"id": "EU-Column69-z7-69-43-01", "kind": "city", "original": "Vienna", "original_bbox": [206, 350, 258, 373], "source_url": "@source/cdcdb7ca72c9af53"},
+    {"id": "EU-Column69-z7-69-43-02", "kind": "city", "original": "Prague", "original_bbox": [28, 88, 75, 113], "source_url": "@source/a9a417f0ac1ff265"},
+    {"id": "EU-Column69-z7-69-43-03", "kind": "city", "original": "Linz", "original_bbox": [16, 336, 45, 355], "source_url": "@source/cdcdb7ca72c9af53"},
+    {"id": "EU-Column69-z7-69-43-04", "kind": "city", "original": "Graz", "original_bbox": [121, 503, 151, 523], "source_url": "@source/cdcdb7ca72c9af53"}
+  ],
+  "translations": [
+    {"id": "EU-Column69-z7-69-43-00", "zh": "布尔诺", "status": "approved", "source": "@source/ecec84c659ca4590", "record_sha256": "dbed7d5a5ae85bc830bedc9f711be2f3d6918dd9d46f186630628a79acc4f7c9", "review_notes": "@note/translations"},
+    {"id": "EU-Column69-z7-69-43-01", "zh": "维也纳", "status": "approved", "source": "@source/ece5bb474e6f4bf1", "record_sha256": "e46dbb806845357766c371c5ffe10ca059fa26466b46d367f7cdfd3c06b58ac4", "review_notes": "@note/translations"},
+    {"id": "EU-Column69-z7-69-43-02", "zh": "布拉格", "status": "approved", "source": "@source/b589ec718ee53a1e", "record_sha256": "a7d68081509e31af22534bf5cab1bfdb2664465f98650b455b31f1d87ce05151", "review_notes": "@note/translations"},
+    {"id": "EU-Column69-z7-69-43-03", "zh": "林茨", "status": "approved", "source": "@source/b2186e0b9732298e", "record_sha256": "ac9e3869bcc68f4e5c5a04473acac439acb4ab598b3d78b6d38791b1bd866688", "review_notes": "@note/translations"},
+    {"id": "EU-Column69-z7-69-43-04", "zh": "格拉茨", "status": "approved", "source": "@source/f03cd014caeec5dd", "record_sha256": "5b7d021cd4f2e835d4c67131327c92fd16ea4b6306cf9bf922be12bb580cfbd0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EU-Column69-z7-69-43-00", "x": 201.0, "y": 227.5, "font_size": 13, "font_style": "regular"},
+    {"id": "EU-Column69-z7-69-43-01", "x": 179.0, "y": 363.5, "font_size": 13, "font_style": "regular"},
+    {"id": "EU-Column69-z7-69-43-02", "x": 64.0, "y": 101.5, "font_size": 13, "font_style": "regular"},
+    {"id": "EU-Column69-z7-69-43-03", "x": 45.5, "y": 349.5, "font_size": 13, "font_style": "regular"},
+    {"id": "EU-Column69-z7-69-43-04", "x": 160.0, "y": 497.0, "font_size": 13, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EU-Column69-z7-69-43-00-point", "feature_id": "EU-Column69-z7-69-43-00", "kind": "circle", "x": 232.5, "y": 218.5, "size": 8, "outline_width": 1, "original_bbox": [228, 214, 237, 223]},
+    {"id": "EU-Column69-z7-69-43-01-point", "feature_id": "EU-Column69-z7-69-43-01", "kind": "circle", "x": 210.5, "y": 354.5, "size": 8, "outline_width": 1, "original_bbox": [206, 350, 215, 359]},
+    {"id": "EU-Column69-z7-69-43-02-point", "feature_id": "EU-Column69-z7-69-43-02", "kind": "circle", "x": 32.5, "y": 92.5, "size": 8, "outline_width": 1, "original_bbox": [28, 88, 37, 97]},
+    {"id": "EU-Column69-z7-69-43-03-point", "feature_id": "EU-Column69-z7-69-43-03", "kind": "circle", "x": 20.5, "y": 340.5, "size": 8, "outline_width": 1, "original_bbox": [16, 336, 25, 345]},
+    {"id": "EU-Column69-z7-69-43-04-point", "feature_id": "EU-Column69-z7-69-43-04", "kind": "circle", "x": 125.5, "y": 507.5, "size": 8, "outline_width": 1, "original_bbox": [121, 503, 130, 512]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

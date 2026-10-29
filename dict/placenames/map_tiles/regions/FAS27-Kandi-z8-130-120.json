@@ -1,0 +1,28 @@
+{
+  "id": "FAS27-Kandi-z8-130-120",
+  "z": 8,
+  "x": 130,
+  "y": 120,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "FAS27-Kandi", "kind": "city", "original": "Kandi", "original_bbox": [25, 9, 57, 25], "source_url": "@source/3314ab7140076d0f"}
+  ],
+  "translations": [
+    {"id": "FAS27-Kandi", "zh": "康迪", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "4ccd8ff6c691a3f044a3b055d5a2080680ab41ee9c491a4e13066278674484ae", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Kandi", "x": 41.0, "y": 17.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "FAS27-Kandi-native", "feature_id": "FAS27-Kandi", "kind": "circle", "original_bbox": [17, 4, 26, 13], "x": 21.5, "y": 8.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "8/130/120.png"
+  ],
+  "context_tiles": [
+    "8/130/119.png"
+  ]
+}

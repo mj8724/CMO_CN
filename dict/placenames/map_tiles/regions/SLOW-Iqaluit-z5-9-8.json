@@ -1,0 +1,38 @@
+{
+  "id": "SLOW-Iqaluit-z5-9-8",
+  "z": 5,
+  "x": 9,
+  "y": 8,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/9/8.png",
+    "5/10/8.png"
+  ],
+  "context_tiles": [
+    "5/10/7.png",
+    "5/10/9.png",
+    "5/11/7.png",
+    "5/11/8.png",
+    "5/11/9.png",
+    "5/8/7.png",
+    "5/8/8.png",
+    "5/8/9.png",
+    "5/9/7.png",
+    "5/9/9.png"
+  ],
+  "features": [
+    {"id": "SLOW-004", "kind": "city", "original": "Iqaluit", "original_bbox": [228, 145, 268, 167], "source_url": "@source/1bb955dc725cec7d"}
+  ],
+  "translations": [
+    {"id": "SLOW-004", "zh": "伊魁特", "status": "approved", "source": "@source/feb0c21a22cd49f2", "record_sha256": "c4a211d5348db277b99b47ad5235bd13408363d9c9e8c1e4cfac8ebde2ee44f0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SLOW-004", "x": 267.5, "y": 161.5, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SLOW-S001", "feature_id": "SLOW-004", "kind": "circle", "original_bbox": [228, 145, 237, 154], "x": 232.5, "y": 149.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

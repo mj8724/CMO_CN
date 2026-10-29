@@ -1,0 +1,27 @@
+{
+  "id": "AR-Longyearbyen-z6-34-8",
+  "z": 6,
+  "x": 34,
+  "y": 8,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/34/8.png",
+    "6/35/8.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "AR-Longyearbyen-z6-34-8-city", "kind": "city", "original": "Longyearbyen", "original_bbox": [196, 216, 270, 238], "source_url": "@source/11d0a24d7086b910"}
+  ],
+  "translations": [
+    {"id": "AR-Longyearbyen-z6-34-8-city", "zh": "朗伊尔城", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "edf25056b37c5270bcc52089ebfe1892df734c217169ef96505a49245cf41d45", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AR-Longyearbyen-z6-34-8-city", "x": 237.0, "y": 230.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AR-Longyearbyen-z6-34-8-city-circle", "feature_id": "AR-Longyearbyen-z6-34-8-city", "kind": "circle", "x": 200.5, "y": 220.5, "size": 8, "outline_width": 1, "original_bbox": [196, 216, 205, 225], "source_url": "@source/11d0a24d7086b910", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

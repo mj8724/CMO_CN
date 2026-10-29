@@ -1,0 +1,47 @@
+{
+  "id": "CN9-R-z9-425-191-1-1",
+  "z": 9,
+  "x": 425,
+  "y": 191,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/425/191.png"
+  ],
+  "context_tiles": [
+    "9/419/215.png",
+    "9/420/215.png",
+    "9/421/215.png",
+    "9/422/215.png",
+    "9/423/215.png",
+    "9/424/200.png",
+    "9/424/215.png",
+    "9/425/200.png",
+    "9/425/215.png",
+    "9/426/215.png",
+    "9/426/216.png",
+    "9/427/215.png",
+    "9/428/215.png"
+  ],
+  "features": [
+    {"id": "CN9-N-010-0", "kind": "region", "original": "Yushulinzi", "original_bbox": [105, 114, 162, 130], "source_url": "@source/00748f3b4155c135"},
+    {"id": "CN9-N-011-0", "kind": "region", "original": "Lingyuan", "original_bbox": [178, 121, 236, 143], "source_url": "@source/00748f3b4155c135"},
+    {"id": "CN9-N-021-0", "kind": "region", "original": "Taitoushan", "original_bbox": [47, 192, 109, 209], "source_url": "@source/00748f3b4155c135"},
+    {"id": "CN9-N-022-0", "kind": "region", "original": "Beilu", "original_bbox": [152, 197, 183, 213], "source_url": "@source/00748f3b4155c135"}
+  ],
+  "translations": [
+    {"id": "CN9-N-010-0", "zh": "榆树林子", "source": "@source/0152b6df80b1fd78", "status": "approved", "record_sha256": "9a475c2f75c6ad04c5ea3d896d2d077bfc8814607a947e8ae6dc12c2828694e0", "review_notes": "@note/translations"},
+    {"id": "CN9-N-011-0", "zh": "凌源", "source": "@source/04a6a91e968d5d96", "status": "approved", "record_sha256": "4a1802e1b943e9f6d7dda569fa007563df9510aab80a48750bad08fa75bf1922", "review_notes": "@note/translations"},
+    {"id": "CN9-N-021-0", "zh": "台头山", "source": "@source/09b2affed83e7fb1", "status": "approved", "record_sha256": "9ec918e2749754858af41f6a5be59c496dcc034b5425a520efdec7a820aed849", "review_notes": "@note/translations"},
+    {"id": "CN9-N-022-0", "zh": "北炉", "source": "@source/e5c80863841d6d7f", "status": "approved", "record_sha256": "4a196a3a51618f679427d803287581bd6cc65b31e046f918ae0b3ba4055d70c7", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CN9-N-010-0", "x": 133.5, "y": 122.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-011-0", "x": 207.0, "y": 132.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-021-0", "x": 78.0, "y": 200.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-022-0", "x": 167.5, "y": 205.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

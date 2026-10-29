@@ -1,0 +1,34 @@
+{
+  "id": "CE19-Baltic-z7-69-39",
+  "z": 7,
+  "x": 69,
+  "y": 39,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/69/39.png",
+    "7/70/39.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "CE7-SRC-03", "kind": "city", "original": "Växjö", "original_bbox": [64, 71, 100, 93], "source_url": "@source/872edfb5dd1d13a8"},
+    {"id": "CE7-SRC-05", "kind": "city", "original": "Kalmar", "original_bbox": [205, 106, 248, 126], "source_url": "@source/872edfb5dd1d13a8"},
+    {"id": "CE7-SRC-10", "kind": "marine", "original": "Baltic Sea", "original_bbox": [306, 207, 412, 226], "source_url": "@source/d90bf5d1b9039023"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-03", "zh": "韦克舍", "source": "@source/018f41acd1d853e1", "status": "approved", "record_sha256": "a07dcedd0e76da59f48df0d43d6f5403d5bd14e7983ff725774eea8a58d89dbf", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-05", "zh": "卡尔马", "source": "@source/1c6292e7f329a02e", "status": "approved", "record_sha256": "97d7caf87368b0e4e0b9c6a334196ac66573954563c4033372002268935cd786", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-10", "zh": "波罗的海", "source": "@source/98f1a766b282ca2d", "status": "approved", "record_sha256": "3a66ceb6fa383dfc5408542c9c8295d2cf737c7b65aba355ff447ab07e7f3112", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-03", "x": 96.0, "y": 83.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-05", "x": 237.0, "y": 118.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-10", "x": 359.0, "y": 216.5, "font_size": 18, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-03-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-03", "original_bbox": [64, 71, 73, 80], "x": 68.5, "y": 75.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-05-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-05", "original_bbox": [205, 106, 214, 115], "x": 209.5, "y": 110.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

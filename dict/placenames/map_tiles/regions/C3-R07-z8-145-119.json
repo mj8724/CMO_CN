@@ -1,0 +1,26 @@
+{
+  "id": "C3-R07-z8-145-119",
+  "z": 8,
+  "x": 145,
+  "y": 119,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/145/119.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C3-N003", "kind": "city", "original": "Nyala", "original_bbox": [173, 89, 215, 114], "source_url": "@source/940e54bb4b16e755"}
+  ],
+  "translations": [
+    {"id": "C3-N003", "zh": "尼亚拉", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8aff862c32e2c0fe36de673afcd3d53e6b672572ac159bd91ba683ba6e3a17be", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C3-N003", "x": 208.5, "y": 109.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "C3-C003", "feature_id": "C3-N003", "kind": "circle", "original_bbox": [173, 89, 182, 98], "x": 177.5, "y": 93.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

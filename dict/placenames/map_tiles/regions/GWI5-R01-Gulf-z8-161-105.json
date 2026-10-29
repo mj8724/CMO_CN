@@ -1,0 +1,43 @@
+{
+  "id": "GWI5-R01-Gulf-z8-161-105",
+  "z": 8,
+  "x": 161,
+  "y": 105,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/161/105.png",
+    "8/162/105.png",
+    "8/163/105.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "GWI5-N-01", "kind": "city", "original": "Basra", "original_bbox": [251, 50, 292, 72], "source_url": "@source/c12b89a1a394bec6"},
+    {"id": "GWI5-N-02", "kind": "city", "original": "Abadan", "original_bbox": [333, 78, 383, 99], "source_url": "@source/1d6101c05e4daae4"},
+    {"id": "GWI5-N-04", "kind": "city", "original": "Behbahan", "original_bbox": [694, 29, 749, 48], "source_url": "@source/a872f9cb64d86ec2"}
+  ],
+  "translations": [
+    {"id": "GWI5-N-01", "zh": "巴士拉", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "0fb3af759f34016dc7dec7d0edb665ccba8a1bc38ec0ea8b363b4c0c5cda2e53", "review_notes": "Combined metadata proposal only; no Root actual model selection/render/Target approval. Qualified Source2db68 full physical/CJK body preserved in complete per12 contract. Chinese original GN/NE source-grade and disambiguation preserved; Source native midpoint is raster fact, not recovered vector or supplier point ID. Actual author direct SELF model only; different TARGET pending."},
+    {"id": "GWI5-N-02", "zh": "阿巴丹", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "6c59ef2c479360f30c85ad660589d702dfb7cf935d1e89a356a0eb2865f80cdb", "review_notes": "Combined metadata proposal only; no Root actual model selection/render/Target approval. Qualified Source2db68 full physical/CJK body preserved in complete per12 contract. Chinese original GN/NE source-grade and disambiguation preserved; Source native midpoint is raster fact, not recovered vector or supplier point ID. Actual author direct SELF model only; different TARGET pending."},
+    {"id": "GWI5-N-04", "zh": "贝赫贝汉", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "a5186cde7184239a8a818e35fb1d4bc9a201b9ff2c595ac2b889a92ca364aa0e", "review_notes": "Combined metadata proposal only; no Root actual model selection/render/Target approval. Qualified Source2db68 full physical/CJK body preserved in complete per12 contract. Chinese original GN/NE source-grade and disambiguation preserved; Source native midpoint is raster fact, not recovered vector or supplier point ID. Actual author direct SELF model only; different TARGET pending."}
+  ],
+  "layouts": [
+    {"id": "GWI5-N-01", "x": 286.0, "y": 63.5, "font_size": 12, "font_style": "regular", "lines": ["巴士拉"]},
+    {"id": "GWI5-N-02", "x": 368.0, "y": 90.5, "font_size": 12, "font_style": "regular", "lines": ["阿巴丹"]},
+    {"id": "GWI5-N-04", "x": 735.0, "y": 41.0, "font_size": 12, "font_style": "regular", "lines": ["贝赫贝汉"]}
+  ],
+  "symbols": [
+    {"id": "GWI5-S-01", "feature_id": "GWI5-N-01", "kind": "circle", "x": 255.5, "y": 54.5, "size": 9, "outline_width": 1, "original_bbox": [251, 50, 260, 59]},
+    {"id": "GWI5-S-02", "feature_id": "GWI5-N-02", "kind": "circle", "x": 337.5, "y": 82.5, "size": 9, "outline_width": 1, "original_bbox": [333, 78, 342, 87]},
+    {"id": "GWI5-S-04", "feature_id": "GWI5-N-04", "kind": "circle", "x": 698.5, "y": 33.5, "size": 9, "outline_width": 1, "original_bbox": [694, 29, 703, 38]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "canonical_captions": [
+    {"id": "GWI5-CAN-Cities-002126", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 2126, "original_Chinese_name": "乌姆盖萨尔", "lat_f32_bits": 1106266659, "lon_f32_bits": 1111469460, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 276, "y": 152, "font_size": 12, "font_style": "regular", "lines": ["乌姆盖萨尔"]}},
+    {"id": "GWI5-CAN-Cities-002135", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 2135, "original_Chinese_name": "祖拜尔", "lat_f32_bits": 1106453269, "lon_f32_bits": 1111412376, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 212, "y": 98, "font_size": 12, "font_style": "regular", "lines": ["祖拜尔"]}},
+    {"id": "GWI5-CAN-Cities-002146", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 2146, "original_Chinese_name": "法奥", "lat_f32_bits": 1106234159, "lon_f32_bits": 1111614578, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 385, "y": 183, "font_size": 12, "font_style": "regular", "lines": ["法奥"]}},
+    {"id": "GWI5-CAN-Cities-002152", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 2152, "original_Chinese_name": "巴士拉老城", "lat_f32_bits": 1106511481, "lon_f32_bits": 1111442082, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 212, "y": 26, "font_size": 12, "font_style": "regular", "lines": ["巴士拉老城"]}},
+    {"id": "GWI5-CAN-Cities-002188", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 2188, "original_Chinese_name": "霍拉姆沙赫尔", "lat_f32_bits": 1106478781, "lon_f32_bits": 1111538868, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 386, "y": 51, "font_size": 12, "font_style": "regular", "lines": ["霍拉姆沙赫尔"]}}
+  ]
+}

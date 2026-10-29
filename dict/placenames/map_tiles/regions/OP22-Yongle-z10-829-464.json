@@ -1,0 +1,24 @@
+{
+  "id": "OP22-Yongle-z10-829-464",
+  "z": 10,
+  "x": 829,
+  "y": 464,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/829/464.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N29", "kind": "region", "original": "Yongle Qundao", "original_bbox": [194, 113, 240, 150], "source_url": "@source/551083c2c0059441"}
+  ],
+  "translations": [
+    {"id": "OP24-N29", "zh": "永乐群岛", "status": "approved", "source": "@source/b1828273a8c57b23", "record_sha256": "76e4b2f1596285ec7cd9f1c3c59628f523e2974ea66e0c8f643d800aa59cfc2f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N29", "x": 217.0, "y": 131.5, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

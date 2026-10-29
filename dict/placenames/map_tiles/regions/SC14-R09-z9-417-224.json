@@ -1,0 +1,22 @@
+{
+  "id": "SC14-R09-z9-417-224",
+  "z": 9,
+  "x": 417,
+  "y": 224,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/417/224.png"
+  ],
+  "context_tiles": [
+    "9/417/223.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "SC14-S005", "owner_region": "CN-SOUTH-z9-416-216", "feature_id": "CNS9-315", "kind": "city", "original": "Wanshan", "original_bbox": [163, -5, 215, 11], "source_url": "@source/ccac2da2e7590724", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

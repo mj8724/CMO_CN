@@ -1,0 +1,26 @@
+{
+  "id": "P9-Closed6-z9-287-248",
+  "z": 9,
+  "x": 287,
+  "y": 248,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/287/248.png"
+  ],
+  "context_tiles": [
+    "9/286/248.png"
+  ],
+  "features": [
+    {"id": "P9-PH-025", "kind": "city", "original": "Mingala", "original_bbox": [-19, 180, 26, 200], "source_url": "@source/84d9cfc6e7227934"}
+  ],
+  "translations": [
+    {"id": "P9-PH-025", "zh": "明加拉", "status": "approved", "source": "@source/84d9cfc6e7227934", "record_sha256": "ec9679e749af6f3236ad7dbf106e44862e7b8e2be0e9fedb4444d32db2637172", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P9-PH-025", "x": 24.0, "y": 190.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

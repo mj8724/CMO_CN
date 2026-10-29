@@ -1,0 +1,36 @@
+{
+  "z": 8,
+  "x": 152,
+  "y": 105,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "id": "RedSea-Aqaba-z8-152-105",
+  "original_tiles": [
+    "8/152/105.png",
+    "8/152/106.png"
+  ],
+  "context_tiles": [
+    "8/153/105.png",
+    "8/153/106.png",
+    "8/154/106.png",
+    "8/156/105.png",
+    "8/157/107.png",
+    "8/158/105.png",
+    "8/159/105.png",
+    "8/160/106.png",
+    "8/160/107.png"
+  ],
+  "features": [
+    {"id": "RS8-000", "kind": "city", "original": "Aqaba", "original_bbox": [224, 253, 268, 277], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "RS8-000", "zh": "亚喀巴", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "70d645834e3a6c5cb9918aba35edf36e27925de40d771b572afca0a74b5b94f9", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "RS8-000", "x": 202.5, "y": 267.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "RS8-000-circle", "feature_id": "RS8-000", "kind": "circle", "x": 228.5, "y": 257.5, "size": 7, "outline_width": 1, "original_bbox": [224, 253, 233, 262]}
+  ],
+  "shared_sources": []
+}

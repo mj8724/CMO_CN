@@ -1,0 +1,34 @@
+{
+  "id": "CE19-Warsaw-z7-71-42",
+  "z": 7,
+  "x": 71,
+  "y": 42,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/71/42.png"
+  ],
+  "context_tiles": [
+    "7/70/42.png"
+  ],
+  "features": [
+    {"id": "CE7-SRC-18", "kind": "city", "original": "Warsaw", "original_bbox": [116, 33, 169, 54], "source_url": "@source/20fd64ef4c30500a"},
+    {"id": "CE7-SRC-23", "kind": "city", "original": "Kielce", "original_bbox": [81, 232, 119, 251], "source_url": "@source/20fd64ef4c30500a"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-18", "zh": "华沙", "source": "@source/8a99be2a8b2c2a86", "status": "approved", "record_sha256": "07a78c2364adba386c2d3efd933024e6ed946a2e261b34399bb294b0b8525692", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-23", "zh": "凯尔采", "source": "@source/7157586a0a485d5f", "status": "approved", "record_sha256": "7f580793040b3f5c5d9411196bc75e654850b460544d887d24609e5562884c4f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-18", "x": 144.0, "y": 46.0, "font_size": 14, "font_style": "regular"},
+    {"id": "CE7-SRC-23", "x": 113.0, "y": 244.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-18-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-18", "original_bbox": [116, 33, 125, 42], "x": 120.5, "y": 37.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-23-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-23", "original_bbox": [81, 232, 90, 241], "x": 85.5, "y": 236.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "CE19-SH-00", "owner_region": "EU-Column70-z7-70-40", "feature_id": "EU-Column70-z7-70-40-04", "kind": "city", "original": "Łódź", "original_bbox": [-26, 101, 7, 121], "source_url": "@source/d0fd95f21973d4ab", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

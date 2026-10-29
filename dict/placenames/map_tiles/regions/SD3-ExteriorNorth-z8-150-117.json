@@ -1,0 +1,35 @@
+{
+  "id": "SD3-ExteriorNorth-z8-150-117",
+  "z": 8,
+  "x": 150,
+  "y": 117,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "features": [
+    {"id": "SD3-001-EdDueim", "kind": "city", "original": "Ed Dueim", "original_bbox": [245, 238, 290, 276], "source_url": "@source/80750db7e63eb05f"}
+  ],
+  "translations": [
+    {"id": "SD3-001-EdDueim", "zh": "艾德蒂姆", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "8a2fdedfbce42a5c2578f786cd165926150bd4a9faab8ce72bfcf964285cbe79", "review_notes": "Different actual TARGET FINAL by /root/fujian_target_author. Personally viewed all four complete original words, both complete new Chinese captions, all four complete source raw9frames and target circle9/outline1 frames, both new whole atlases, and independently rebuilt RAM joins for old Wad Madani/Sennar Chinese plus first shared circles and the Ed Dueim north/south internal alias. No missing glyphs, target clipping or collisions. All four target circles have positive73, retain all69 observed native source support pixels and the exact raster midpoint. Raw frames are unmasked composites: Kosti/Sennar each alpha81 includes exact1111 background10/9, foreground71/72 and nearby glyphs. Full old56 objects including reviews, encoded/count/RGBA/whole, all953 and original WWP4608 float32 remain exact. Wad stored diacritic and Sennar original URL are preserved. Only the exact selected RGBA1111 background is recognized; source bytes are untouched. Root2908 named private model accepted. This private TARGET signature does not select a cumulative Root21 document or grant formal/schedule READY."}
+  ],
+  "symbols": [
+    {"id": "SD3-C-EdDueim", "kind": "circle", "original_bbox": [245, 238, 254, 247], "x": 249.5, "y": 242.5, "size": 9, "outline_width": 1, "feature_id": "SD3-001-EdDueim", "review_notes": "PROPOSED Root private display model only: complete measured original9frame/midpoint unchanged; target9/outline1 requires Root selection and different actual TARGET review."},
+    {"id": "SD3-C-WadMadani", "kind": "circle", "original_bbox": [468, 163, 477, 172], "x": 472.5, "y": 167.5, "size": 9, "outline_width": 1, "shared_source_id": "SD3-A-WadMadani", "review_notes": "PROPOSED Root private display model only: complete measured original9frame/midpoint unchanged; target9/outline1 requires Root selection and different actual TARGET review."}
+  ],
+  "shared_sources": [
+    {"id": "SD3-A-WadMadani", "owner_region": "RS-RedSea-z8-top", "feature_id": "RS8-026", "kind": "city", "original": "Wad Madānī", "original_bbox": [468, 163, 518, 201], "source_url": "@source/fa9b5c57bc5dcddb", "review_notes": "PROPOSED complete exact old normal alias. Old owner/feature/CN/layout/review unchanged; new full native rendered only by this borrower after distinct Root model selection and actual TARGET review."}
+  ],
+  "source_backgrounds": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "8/150/117.png",
+    "8/151/117.png"
+  ],
+  "context_tiles": [
+    "8/150/118.png",
+    "8/151/118.png",
+    "8/152/117.png"
+  ],
+  "layouts": [
+    {"id": "SD3-001-EdDueim", "x": 282.0, "y": 242.5, "font_size": 12, "font_style": "regular"}
+  ]
+}

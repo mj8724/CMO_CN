@@ -1,0 +1,36 @@
+{
+  "id": "OS12-C-z6-38-26",
+  "z": 6,
+  "x": 38,
+  "y": 26,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/38/26.png"
+  ],
+  "context_tiles": [
+    "6/37/26.png",
+    "6/38/25.png"
+  ],
+  "features": [
+    {"id": "OS12-16-Gaza", "kind": "city", "original": "Gaza", "original_bbox": [28, 19, 60, 38], "source_url": "@source/e4850525e7dc6a32"},
+    {"id": "OS12-19-Tabuk", "kind": "city", "original": "Tabuk", "original_bbox": [124, 183, 163, 202], "source_url": "@source/e4850525e7dc6a32"}
+  ],
+  "translations": [
+    {"id": "OS12-16-Gaza", "zh": "加沙", "status": "approved", "source": "@source/599e2da0f6fd3730", "record_sha256": "c23e94792257b9e9f446ff1675a8f127005ae02c71d9b71ffadebb5301a44d62", "review_notes": "@note/translations"},
+    {"id": "OS12-19-Tabuk", "zh": "塔布克", "status": "approved", "source": "@source/d49aae61a6658c79", "record_sha256": "ff948722248a4e7a10c55163328c536a842fc206cfe0b3c79a3196f21f8c43cb", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OS12-16-Gaza", "x": 56.0, "y": 31.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-19-Tabuk", "x": 158.0, "y": 195.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "OS12-16-Gaza-circle", "feature_id": "OS12-16-Gaza", "kind": "circle", "x": 32.5, "y": 23.5, "size": 9, "outline_width": 1, "original_bbox": [28, 19, 37, 28], "source_url": "@source/e4850525e7dc6a32", "review_notes": "@note/symbols"},
+    {"id": "OS12-19-Tabuk-circle", "feature_id": "OS12-19-Tabuk", "kind": "circle", "x": 128.5, "y": 187.5, "size": 9, "outline_width": 1, "original_bbox": [124, 183, 133, 192], "source_url": "@source/e4850525e7dc6a32", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "OS12-C-z6-38-26-old-NA6-Israel", "owner_region": "NA-Sahara-z6-28-26", "feature_id": "NA6-Israel", "kind": "admin0", "original": "Israel", "original_bbox": [-1, 45, 105, 69], "source_url": "@source/ea9990d40022f156", "review_notes": "@note/shared_sources"},
+    {"id": "OS12-C-z6-38-26-from-A-OS12-14-Tel-Aviv", "owner_region": "OS12-A-z6-37-23", "feature_id": "OS12-14-Tel-Aviv", "kind": "city", "original": "Tel Aviv", "original_bbox": [42, -12, 94, 9], "source_url": "@source/20ff616c05b05905", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

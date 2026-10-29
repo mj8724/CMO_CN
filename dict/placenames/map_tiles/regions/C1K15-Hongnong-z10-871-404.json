@@ -1,0 +1,28 @@
+{
+  "id": "C1K15-Hongnong-z10-871-404",
+  "z": 10,
+  "x": 871,
+  "y": 404,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/871/404.png"
+  ],
+  "context_tiles": [
+    "10/872/404.png"
+  ],
+  "features": [
+    {"id": "C1K15-N026", "kind": "city", "original": "Hongnong-eup", "original_bbox": [143, 43, 199, 76], "source_url": "@source/9783f541c46338d0"}
+  ],
+  "translations": [
+    {"id": "C1K15-N026", "zh": "弘农邑", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "5685f7cedd0c1af05a396d3d42750900958c3ab694516c33f5b87725a839b56f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C1K15-N026", "x": 171.0, "y": 59.5, "font_size": 12, "font_style": "regular", "lines": ["弘农邑"]}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "C1K15-SH027", "owner_region": "KR-south-z10-872-400", "feature_id": "KR-S10-108", "kind": "city", "original": "Yeonggwang-eup", "original_bbox": [179, 147, 257, 184], "source_url": "@source/f2d44ba43727d7f9", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

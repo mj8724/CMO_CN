@@ -1,0 +1,52 @@
+{
+  "id": "OCEAN-z5-0-0",
+  "z": 5,
+  "x": 0,
+  "y": 0,
+  "width_tiles": 4,
+  "height_tiles": 4,
+  "original_tiles": [
+    "5/0/0.png",
+    "5/1/0.png",
+    "5/2/0.png",
+    "5/3/0.png",
+    "5/0/1.png",
+    "5/1/1.png",
+    "5/2/1.png",
+    "5/3/1.png",
+    "5/0/2.png",
+    "5/1/2.png",
+    "5/2/2.png",
+    "5/3/2.png",
+    "5/0/3.png",
+    "5/1/3.png",
+    "5/2/3.png",
+    "5/3/3.png"
+  ],
+  "context_tiles": [
+    "5/31/0.png",
+    "5/4/0.png",
+    "5/31/1.png",
+    "5/4/1.png",
+    "5/31/2.png",
+    "5/4/2.png",
+    "5/31/3.png",
+    "5/4/3.png",
+    "5/31/4.png",
+    "5/0/4.png",
+    "5/1/4.png",
+    "5/2/4.png",
+    "5/3/4.png",
+    "5/4/4.png"
+  ],
+  "features": [
+    {"id": "OCEAN-z5-0-0-arctic-ocean-1", "kind": "marine", "original": "Arctic Ocean", "original_bbox": [156, 441, 298, 459], "source_url": "@source/d3f1ff651e4d7bb3"}
+  ],
+  "translations": [
+    {"id": "OCEAN-z5-0-0-arctic-ocean-1", "zh": "北冰洋", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "ac56f24f936545a9244fcab0f054c29acb5c265e75537d29a8775100e18b3897", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OCEAN-z5-0-0-arctic-ocean-1", "x": 227.0, "y": 450.0, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": []
+}

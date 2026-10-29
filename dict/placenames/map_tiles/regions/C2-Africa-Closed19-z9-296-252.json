@@ -1,0 +1,27 @@
+{
+  "z": 9,
+  "x": 296,
+  "y": 252,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "C2-Africa-Closed19-z9-296-252",
+  "original_tiles": [
+    "9/296/252.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C2-G026", "kind": "city", "original": "Andudu", "original_bbox": [187, 95, 232, 112], "source_url": "@source/1231c8a65dc6578e"},
+    {"id": "C2-G028", "kind": "city", "original": "Ingbea", "original_bbox": [42, 137, 81, 157], "source_url": "@source/1231c8a65dc6578e"}
+  ],
+  "translations": [
+    {"id": "C2-G026", "zh": "安杜杜", "status": "approved", "source": "@source/1231c8a65dc6578e", "record_sha256": "4ace1cff3d70e5c5295dd641b31ec621d9a33f7c641a2092177a7413c0cd1654", "review_notes": "@note/translations"},
+    {"id": "C2-G028", "zh": "因格贝阿", "status": "approved", "source": "@source/1231c8a65dc6578e", "record_sha256": "e9c0103f1c741fc91d5b74f2158f977bd399de70cfa9818a0c9951eb06d7c27d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C2-G026", "x": 209.5, "y": 103.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G028", "x": 61.5, "y": 147.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

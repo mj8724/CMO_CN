@@ -1,0 +1,35 @@
+{
+  "id": "UA-SouthBoundary-z9-304-176",
+  "z": 9,
+  "x": 304,
+  "y": 176,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/304/176.png"
+  ],
+  "context_tiles": [
+    "9/305/176.png"
+  ],
+  "features": [
+    {"id": "UAS16-041", "kind": "city", "original": "Lykhivka", "original_bbox": [38, 123, 88, 141], "source_url": "@source/aedbfde50547c7e5"},
+    {"id": "UAS16-042", "kind": "city", "original": "Verkhnodniprovsk", "original_bbox": [163, 140, 263, 159], "source_url": "@source/aedbfde50547c7e5"},
+    {"id": "UAS16-043", "kind": "city", "original": "Vilnohirsk", "original_bbox": [71, 229, 129, 245], "source_url": "@source/aedbfde50547c7e5"},
+    {"id": "UAS16-044", "kind": "city", "original": "Verkhivtseve", "original_bbox": [143, 234, 215, 250], "source_url": "@source/aedbfde50547c7e5"}
+  ],
+  "translations": [
+    {"id": "UAS16-041", "zh": "利希夫卡", "source": "@source/aa6996d70aecc7d3", "status": "approved", "record_sha256": "585e34a527df138efd43efbb417af14df2b32c9d221d8b4a2d248f44657a1411", "review_notes": "@note/translations"},
+    {"id": "UAS16-042", "zh": "上第聂伯罗夫斯克", "source": "@source/4a4359e958d851f5", "status": "approved", "record_sha256": "caf6bf234adc09a41f4d38a3065caaa94e51d8eac1f83a05c57f5d2f07b55f92", "review_notes": "@note/translations"},
+    {"id": "UAS16-043", "zh": "维利诺希尔斯克", "source": "@source/a1763ff1768dbf93", "status": "approved", "record_sha256": "733c8907b0f15e02569d629bd2844793c0760a6052eb68a93b694a338e796f5d", "review_notes": "@note/translations"},
+    {"id": "UAS16-044", "zh": "韦尔霍夫采沃", "source": "@source/76a49f7c6d1bee13", "status": "approved", "record_sha256": "fac5ddd684f457d04af0bbe345e1033cb9cbaccfff738e2a18d2344943801f71", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UAS16-041", "x": 63.0, "y": 132.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-042", "x": 204.0, "y": 149.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-043", "x": 100.0, "y": 225, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-044", "x": 179.0, "y": 242.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

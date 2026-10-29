@@ -1,0 +1,45 @@
+{
+  "id": "AP-Canada-Moosonee-z6-17-21",
+  "z": 6,
+  "x": 17,
+  "y": 21,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "6/17/21.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 699}
+  ],
+  "context_tiles": [
+    {"path": "6/16/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 760},
+    {"path": "6/17/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/18/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 637},
+    {"path": "6/19/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/20/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 859},
+    {"path": "6/16/20.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/17/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 2075},
+    {"path": "6/18/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 919},
+    {"path": "6/19/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 410},
+    {"path": "6/20/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 1382},
+    {"path": "6/16/21.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 769},
+    {"path": "6/18/21.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/19/21.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 313},
+    {"path": "6/20/21.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/16/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 891},
+    {"path": "6/17/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 2421},
+    {"path": "6/18/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 836},
+    {"path": "6/19/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 2912},
+    {"path": "6/20/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 4632}
+  ],
+  "features": [
+    {"id": "AP-CA6-004", "kind": "city", "original": "Moosonee", "original_bbox": [165, 85, 223, 104], "source_url": "@source/b1378016f41765df"}
+  ],
+  "translations": [
+    {"id": "AP-CA6-004", "zh": "穆索尼", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "d235708c9a66e6f254472d44706932e50e4995516ad28610485f6c15eba41389", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-CA6-004", "x": 194.5, "y": 97.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-CA6-004-circle", "feature_id": "AP-CA6-004", "x": 169.5, "y": 89.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [165, 85, 174, 94]}
+  ],
+  "shared_sources": []
+}

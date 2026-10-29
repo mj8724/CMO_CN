@@ -1,0 +1,45 @@
+{
+  "id": "MedZ9-Closed-265-199",
+  "z": 9,
+  "x": 265,
+  "y": 199,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/265/199.png"
+  ],
+  "context_tiles": [
+    "9/264/199.png",
+    "9/266/199.png"
+  ],
+  "features": [
+    {"id": "GZ9-03-02", "kind": "city", "original": "Oued Attia", "original_bbox": [-26, 67, 37, 84], "source_url": "@source/f4c27211cac1df4d"},
+    {"id": "GZ9-03-03", "kind": "city", "original": "Kerkera", "original_bbox": [72, 97, 115, 113], "source_url": "@source/481b6e7479bf9614"},
+    {"id": "GZ9-03-04", "kind": "city", "original": "Skikda", "original_bbox": [189, 118, 233, 137], "source_url": "@source/481b6e7479bf9614"},
+    {"id": "GZ9-03-05", "kind": "city", "original": "Filfila", "original_bbox": [249, 112, 281, 128], "source_url": "@source/481b6e7479bf9614"},
+    {"id": "GZ9-03-06", "kind": "city", "original": "Tamalous", "original_bbox": [87, 140, 142, 156], "source_url": "@source/481b6e7479bf9614"},
+    {"id": "GZ9-03-07", "kind": "city", "original": "El Milia", "original_bbox": [-41, 178, 2, 194], "source_url": "@source/f4c27211cac1df4d"},
+    {"id": "GZ9-03-08", "kind": "city", "original": "El Harrouch", "original_bbox": [153, 224, 217, 240], "source_url": "@source/481b6e7479bf9614"}
+  ],
+  "translations": [
+    {"id": "GZ9-03-02", "zh": "瓦德阿提亚", "source": "@source/f4c27211cac1df4d", "status": "approved", "record_sha256": "a32841e908b9d212a3af66ad5807be493689044ee39720166c81892a089a2c9d", "review_notes": "@note/translations"},
+    {"id": "GZ9-03-03", "zh": "凯尔凯拉", "source": "@source/5af3e7d02fe0de7c", "status": "approved", "record_sha256": "e987feec49f1bbb7f0967c6f0d32734ed0c77f5ce2100d1c7f7f116fde96e0e5", "review_notes": "@note/translations"},
+    {"id": "GZ9-03-04", "zh": "斯基克达", "source": "@source/eb0b5b3305d87ad4", "status": "approved", "record_sha256": "49aac4b6b7d9246d25adf6bb450013cedb87fde48762fac08d7e0fcdffa3ed06", "review_notes": "@note/translations"},
+    {"id": "GZ9-03-05", "zh": "菲尔菲拉", "source": "@source/481b6e7479bf9614", "status": "approved", "record_sha256": "002cd5291ae5810ad4b2b8f93d69745b1213ddc0cdc9eb74704f46b3845efd57", "review_notes": "@note/translations"},
+    {"id": "GZ9-03-06", "zh": "塔马卢斯", "source": "@source/7d55ff8543237be2", "status": "approved", "record_sha256": "12b327667bc4ec8d9bf443a65981a0023e9c6fa4ffd4ae29c6d0a5b8a1105eb2", "review_notes": "@note/translations"},
+    {"id": "GZ9-03-07", "zh": "米利亚", "source": "@source/ff1e989896cba6eb", "status": "approved", "record_sha256": "a0ac24d48330a11aca41c012742df5cbf0f87e883e3eee12ce6c93f3a4c11197", "review_notes": "@note/translations"},
+    {"id": "GZ9-03-08", "zh": "哈鲁什", "source": "@source/481b6e7479bf9614", "status": "approved", "record_sha256": "2161e719a5763e6075fb49a1c99fc3f4d3169305c325c80ed4c43e777c09a099", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-03-02", "x": 34.0, "y": 75.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-03-03", "x": 93.5, "y": 105.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-03-04", "x": 211.0, "y": 127.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-03-05", "x": 228.0, "y": 104, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-03-06", "x": 114.5, "y": 148.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-03-07", "x": 22.0, "y": 186.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-03-08", "x": 185.0, "y": 232.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

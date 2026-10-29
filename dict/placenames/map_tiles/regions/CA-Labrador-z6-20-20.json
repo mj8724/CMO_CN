@@ -1,0 +1,37 @@
+{
+  "id": "CA-Labrador-z6-20-20",
+  "z": 6,
+  "x": 20,
+  "y": 20,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/20/20.png",
+    "6/21/20.png",
+    "6/22/20.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "CA-Newfoundland-and-Labrador-province", "kind": "admin1", "original": "Newfoundland and Labrador", "original_bbox": [227, 131, 344, 174], "source_url": "@source/98c784d6ab886143"},
+    {"id": "CA-Labrador-City-city", "kind": "city", "original": "Labrador City", "original_bbox": [29, 222, 73, 254], "source_url": "@source/c302e1706c08e2a6"},
+    {"id": "CA-Rigolet-city", "kind": "city", "original": "Rigolet", "original_bbox": [415, 126, 452, 144], "source_url": "@source/de57b59c289acedb"},
+    {"id": "CA-Cartwright-city", "kind": "city", "original": "Cartwright", "original_bbox": [479, 163, 531, 181], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "CA-Newfoundland-and-Labrador-province", "zh": "纽芬兰和拉布拉多省", "status": "approved", "source": "@source/98c784d6ab886143", "record_sha256": "9c74113500cb64681bb7c2898637d750d8a0fac294567e33715b82fba489889d", "review_notes": "@note/translations"},
+    {"id": "CA-Labrador-City-city", "zh": "拉布拉多市", "status": "approved", "source": "@source/c302e1706c08e2a6", "record_sha256": "d1e50ff86d2ac54c17539b2adb130dc77d766427009ef6830b204112b03a45da", "review_notes": "@note/translations"},
+    {"id": "CA-Rigolet-city", "zh": "里哥列", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "70ff1f745f0e0a359187df936bfe2ee2b32383b654979aa02c009d4ed8197ce8", "review_notes": "@note/translations"},
+    {"id": "CA-Cartwright-city", "zh": "卡特赖特", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8e20ba468adc081c88408a6b648a496bbaa2043a22b7eaed5c50001147e44844", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CA-Newfoundland-and-Labrador-province", "x": 285.5, "y": 152.5, "font_size": 13, "font_style": "bold", "lines": ["纽芬兰和", "拉布拉多省"]},
+    {"id": "CA-Labrador-City-city", "x": 66, "y": 238, "font_size": 12, "font_style": "regular"},
+    {"id": "CA-Rigolet-city", "x": 440, "y": 136, "font_size": 12, "font_style": "regular"},
+    {"id": "CA-Cartwright-city", "x": 510, "y": 173, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CA-Labrador-City-point", "feature_id": "CA-Labrador-City-city", "x": 26.5, "y": 221.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [22, 217, 31, 226]},
+    {"id": "CA-Rigolet-point", "feature_id": "CA-Rigolet-city", "x": 412.5, "y": 126.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [408, 122, 417, 131]},
+    {"id": "CA-Cartwright-point", "feature_id": "CA-Cartwright-city", "x": 476.5, "y": 163.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [472, 159, 481, 168]}
+  ]
+}

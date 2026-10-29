@@ -1,0 +1,53 @@
+{
+  "id": "PHL12-R02-Pangasinan-z10-852-466",
+  "z": 10,
+  "x": 852,
+  "y": 466,
+  "width_tiles": 4,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/852/466.png",
+    "10/853/466.png",
+    "10/854/466.png",
+    "10/855/466.png"
+  ],
+  "context_tiles": [
+    "10/854/467.png",
+    "10/856/466.png"
+  ],
+  "features": [
+    {"id": "PHL12-N004", "kind": "region", "original": "San Carlos", "original_bbox": [575, 6, 615, 45], "source_url": "@source/e24b47a424e4876f"},
+    {"id": "PHL12-N005", "kind": "region", "original": "Malasiqui", "original_bbox": [619, 24, 667, 41], "source_url": "@source/e24b47a424e4876f"},
+    {"id": "PHL12-N006", "kind": "region", "original": "Umingan", "original_bbox": [926, 17, 971, 35], "source_url": "@source/1013e6445ada529d"},
+    {"id": "PHL12-N007", "kind": "region", "original": "Infanta", "original_bbox": [255, 96, 291, 111], "source_url": "@source/356b7a7f5e94c2c8"},
+    {"id": "PHL12-N008", "kind": "region", "original": "Mangatarem", "original_bbox": [525, 124, 586, 141], "source_url": "@source/e24b47a424e4876f"},
+    {"id": "PHL12-N009", "kind": "region", "original": "Santa Cruz", "original_bbox": [246, 141, 306, 159], "source_url": "@source/356b7a7f5e94c2c8"},
+    {"id": "PHL12-N010", "kind": "region", "original": "Muñoz", "original_bbox": [978, 178, 1022, 197], "source_url": "@source/1013e6445ada529d"},
+    {"id": "PHL12-N011", "kind": "region", "original": "Paniqui", "original_bbox": [749, 214, 787, 231], "source_url": "@source/e24b47a424e4876f"}
+  ],
+  "translations": [
+    {"id": "PHL12-N004", "zh": "圣卡洛斯", "status": "approved", "source": "@source/e24b47a424e4876f", "record_sha256": "f37bdf02b100faa72ba67105bff95a1409cfdc6eb2b6ba01ad66899494b2f40c", "review_notes": "@note/translations"},
+    {"id": "PHL12-N005", "zh": "马拉西基", "status": "approved", "source": "@source/e24b47a424e4876f", "record_sha256": "41f6af2b34d0cc18c1bd845b357a494f63d48d45faca64346f0a52f252fdb097", "review_notes": "@note/translations"},
+    {"id": "PHL12-N006", "zh": "乌明甘", "status": "approved", "source": "@source/1013e6445ada529d", "record_sha256": "b8e72c994499340ee922742b2a2844adf3f1ff08487e2e286241989ab0ca043e", "review_notes": "@note/translations"},
+    {"id": "PHL12-N007", "zh": "因凡塔", "status": "approved", "source": "@source/356b7a7f5e94c2c8", "record_sha256": "5d5c247c65e19c6bc8d8fbe122cfc5123f8c430a4621621beb245ce4ecf56000", "review_notes": "@note/translations"},
+    {"id": "PHL12-N008", "zh": "曼加塔雷姆", "status": "approved", "source": "@source/e24b47a424e4876f", "record_sha256": "bb9967fb30b58e5eccd060a06bcefc8fa2deb01116a4320568c089dc30610ded", "review_notes": "@note/translations"},
+    {"id": "PHL12-N009", "zh": "圣克鲁斯", "status": "approved", "source": "@source/356b7a7f5e94c2c8", "record_sha256": "25056f455445d3adfbd746f9a77e0b967387f72d6c77bcea58e266ef8f22bd89", "review_notes": "@note/translations"},
+    {"id": "PHL12-N010", "zh": "穆尼奥斯", "status": "approved", "source": "@source/1013e6445ada529d", "record_sha256": "5407c8622f03f18d087935f4cf3b5fd0cc968abe6704923c88d966031370354d", "review_notes": "@note/translations"},
+    {"id": "PHL12-N011", "zh": "帕尼基", "status": "approved", "source": "@source/e24b47a424e4876f", "record_sha256": "84766ae08f357f42c486d2ed9511b82a81d0154e82dc07e65a9d1b824648beb4", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PHL12-N004", "x": 595.0, "y": 15.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N005", "x": 643.0, "y": 39.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N006", "x": 948.5, "y": 26.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N007", "x": 273.0, "y": 103.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N008", "x": 555.5, "y": 132.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N009", "x": 276.0, "y": 150.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N010", "x": 997.0, "y": 187.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N011", "x": 768.0, "y": 222.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "PHL12-SH012", "owner_region": "AM-LuzonWest-z10-853-467", "feature_id": "AM30-1-Mayantoc", "kind": "city", "original": "Mayantoc", "source_url": "@source/cd1ea298d9ff58ab", "original_bbox": [588, 250, 646, 271], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

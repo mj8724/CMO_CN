@@ -1,0 +1,28 @@
+{
+  "id": "OP22-Cyprus-z9-302-203",
+  "z": 9,
+  "x": 302,
+  "y": 203,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/302/203.png",
+    "9/303/203.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N22", "kind": "city", "original": "Limassol", "original_bbox": [224, 80, 280, 98], "source_url": "@source/b22b1088a0500888"},
+    {"id": "OP24-N23", "kind": "city", "original": "Pafos", "original_bbox": [11, 41, 47, 58], "source_url": "@source/b22b1088a0500888"}
+  ],
+  "translations": [
+    {"id": "OP24-N22", "zh": "利马索尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "59d371411ea55c5b77b542bbb3e5b256e8f4f976eedb357661f6c6342f637c97", "review_notes": "@note/translations"},
+    {"id": "OP24-N23", "zh": "帕福斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b5651415bf18bbe8ad1a5c298a085320c89a57205f4ef62e0c91bd52c4002b87", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N22", "x": 252.0, "y": 89.0, "font_size": 12, "font_style": "regular"},
+    {"id": "OP24-N23", "x": 29.0, "y": 49.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

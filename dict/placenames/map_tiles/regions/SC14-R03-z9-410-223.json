@@ -1,0 +1,38 @@
+{
+  "id": "SC14-R03-z9-410-223",
+  "z": 9,
+  "x": 410,
+  "y": 223,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/410/223.png"
+  ],
+  "context_tiles": [
+    "9/410/224.png",
+    "9/411/223.png"
+  ],
+  "features": [
+    {"id": "SC14-N034", "kind": "city", "original": "Taiping", "original_bbox": [170, 56, 213, 75], "source_url": "@source/1c9ead3693a92754"},
+    {"id": "SC14-N038", "kind": "city", "original": "Nanxiao", "original_bbox": [26, 104, 72, 121], "source_url": "@source/1c9ead3693a92754"},
+    {"id": "SC14-N039", "kind": "city", "original": "Luwu", "original_bbox": [228, 116, 260, 132], "source_url": "@source/1c9ead3693a92754"},
+    {"id": "SC14-N043", "kind": "city", "original": "Pingji", "original_bbox": [158, 162, 191, 181], "source_url": "@source/1c9ead3693a92754"}
+  ],
+  "translations": [
+    {"id": "SC14-N034", "zh": "太平", "status": "approved", "source": "@source/1c9ead3693a92754", "record_sha256": "eec110da4af107973b0016b71fa7dff7a6385529baf85223a782e2a03e795d7d", "review_notes": "@note/translations"},
+    {"id": "SC14-N038", "zh": "南晓", "status": "approved", "source": "@source/1c9ead3693a92754", "record_sha256": "dbec3f85310bd9a5f91979bc95e7240c7a6947f1a7e1d044826d780351c389ad", "review_notes": "@note/translations"},
+    {"id": "SC14-N039", "zh": "陆屋", "status": "approved", "source": "@source/1c9ead3693a92754", "record_sha256": "a1b699d1accced8b8e35a6b33bfa4ab6cb3fea7ea4a649eb149d9ca0bfd52e24", "review_notes": "@note/translations"},
+    {"id": "SC14-N043", "zh": "平吉", "status": "approved", "source": "@source/1c9ead3693a92754", "record_sha256": "b34a91f87e572c939ab5b0a3363aae4c3f27105fefda286c337974ad27ec1ad9", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SC14-N034", "x": 191.5, "y": 65.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N038", "x": 49.0, "y": 112.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N039", "x": 240.0, "y": 124.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N043", "x": 174.5, "y": 171.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "SC14-S004", "owner_region": "AP-Vietnam-Hainan-z9-62-topwest", "feature_id": "AP-VH9-000", "kind": "city", "original": "Qinzhou", "original_bbox": [97, 238, 151, 259], "source_url": "@source/8c0b16c66534f7f0", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

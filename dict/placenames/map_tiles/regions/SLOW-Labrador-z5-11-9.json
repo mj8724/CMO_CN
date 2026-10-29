@@ -1,0 +1,33 @@
+{
+  "id": "SLOW-Labrador-z5-11-9",
+  "z": 5,
+  "x": 11,
+  "y": 9,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/11/9.png"
+  ],
+  "context_tiles": [
+    "5/10/10.png",
+    "5/10/8.png",
+    "5/10/9.png",
+    "5/11/10.png",
+    "5/11/8.png",
+    "5/12/10.png",
+    "5/12/8.png",
+    "5/12/9.png"
+  ],
+  "features": [
+    {"id": "SLOW-005", "kind": "marine", "original": "Labrador Sea", "original_bbox": [13, 209, 123, 225], "source_url": "@source/b28590893e299865"}
+  ],
+  "translations": [
+    {"id": "SLOW-005", "zh": "拉布拉多海", "status": "approved", "source": "@source/9a654fb3722d61bb", "record_sha256": "6da726309e44b0a02bbb4c8226c877ea96b2ff1c301c1665f1df0b03c4ad1df6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SLOW-005", "x": 68.0, "y": 217.0, "font_size": 16, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "UA-SouthBoundary-z9-312-176",
+  "z": 9,
+  "x": 312,
+  "y": 176,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/312/176.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "UAS16-066", "kind": "city", "original": "Stanytsia Luhanska", "original_bbox": [18, 137, 71, 171], "source_url": "@source/1a46d6345415492b"}
+  ],
+  "translations": [
+    {"id": "UAS16-066", "zh": "斯坦尼察卢甘斯克", "source": "@source/f66f0d47cd1fe581", "status": "approved", "record_sha256": "8b8d361d04ce7f4bc75620c74a38a2a731fb7011e07309994df1255aeb6fd1f2", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UAS16-066", "x": 44.5, "y": 154.0, "font_size": 12, "font_style": "regular", "lines": ["斯坦尼察", "卢甘斯克"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

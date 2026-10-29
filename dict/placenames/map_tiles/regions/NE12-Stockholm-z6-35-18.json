@@ -1,0 +1,34 @@
+{
+  "id": "NE12-Stockholm-z6-35-18",
+  "z": 6,
+  "x": 35,
+  "y": 18,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/35/18.png"
+  ],
+  "context_tiles": [
+    "6/32/18.png",
+    "6/33/17.png",
+    "6/33/18.png",
+    "6/34/17.png",
+    "6/34/18.png",
+    "6/37/18.png",
+    "6/39/18.png"
+  ],
+  "features": [
+    {"id": "NE12-N-PH006", "kind": "city", "original": "Stockholm", "original_bbox": [50, 206, 119, 228], "source_url": "@source/3afde3a7e2cc4b77"}
+  ],
+  "translations": [
+    {"id": "NE12-N-PH006", "zh": "斯德哥尔摩", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "7832d7162f312b9257aacb2216bb54cee5d2806581006836b9329cd1b5045440", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NE12-N-PH006", "x": 94.0, "y": 217.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NE12-C-PH006", "feature_id": "NE12-N-PH006", "kind": "circle", "original_bbox": [50, 206, 59, 215], "x": 54.5, "y": 210.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

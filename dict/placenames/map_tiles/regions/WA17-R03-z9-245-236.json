@@ -1,0 +1,61 @@
+{
+  "id": "WA17-R03-z9-245-236",
+  "z": 9,
+  "x": 245,
+  "y": 236,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/245/236.png",
+    "9/246/236.png",
+    "9/247/236.png"
+  ],
+  "context_tiles": [
+    "9/247/235.png",
+    "9/248/236.png"
+  ],
+  "features": [
+    {"id": "WA17-N004", "kind": "city", "original": "Toubakoro", "original_bbox": [171, 10, 231, 26], "source_url": "@source/87849282746a8f99"},
+    {"id": "WA17-N007", "kind": "city", "original": "Madina Sacko", "original_bbox": [48, 35, 90, 69], "source_url": "@source/87849282746a8f99"},
+    {"id": "WA17-N010", "kind": "city", "original": "Sibila", "original_bbox": [660, 46, 693, 63], "source_url": "@source/f5c655476a04c1b5"},
+    {"id": "WA17-N015", "kind": "city", "original": "Markala", "original_bbox": [584, 81, 629, 97], "source_url": "@source/f5c655476a04c1b5"},
+    {"id": "WA17-N018", "kind": "city", "original": "Yolo", "original_bbox": [753, 99, 781, 115], "source_url": "@source/f5c655476a04c1b5"},
+    {"id": "WA17-N020", "kind": "city", "original": "Toukoroba", "original_bbox": [223, 109, 283, 125], "source_url": "@source/87849282746a8f99"},
+    {"id": "WA17-N024", "kind": "city", "original": "Banamba", "original_bbox": [76, 132, 134, 149], "source_url": "@source/87849282746a8f99"},
+    {"id": "WA17-N030", "kind": "city", "original": "Ségou", "original_bbox": [511, 170, 557, 195], "source_url": "@source/7128b858d63cf029"},
+    {"id": "WA17-N034", "kind": "city", "original": "Djenidie", "original_bbox": [104, 196, 151, 215], "source_url": "@source/87849282746a8f99"},
+    {"id": "WA17-N038", "kind": "city", "original": "Nyamina", "original_bbox": [249, 218, 299, 237], "source_url": "@source/87849282746a8f99"},
+    {"id": "WA17-N039", "kind": "city", "original": "N'Gara", "original_bbox": [429, 221, 467, 238], "source_url": "@source/7128b858d63cf029"}
+  ],
+  "translations": [
+    {"id": "WA17-N004", "zh": "图巴科罗", "status": "approved", "source": "@source/87849282746a8f99", "record_sha256": "27ab786f07005434ab8f9157731749264bee4b1411b1cbb8490aa2c2eee2f0e0", "review_notes": "@note/translations"},
+    {"id": "WA17-N007", "zh": "马迪纳·萨科", "status": "approved", "source": "@source/87849282746a8f99", "record_sha256": "7a966072a9b4ce78098cea37ac0aac5f22149a4ee76d79ffd8e5ab6b5daf539d", "review_notes": "@note/translations"},
+    {"id": "WA17-N010", "zh": "西比拉", "status": "approved", "source": "@source/f5c655476a04c1b5", "record_sha256": "7532073a64d619e968954438020ef492e34ffa484e396cec41090be775c2b1cd", "review_notes": "@note/translations"},
+    {"id": "WA17-N015", "zh": "马尔卡拉", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "1e9b9fb2307068d36912e79c7731d829d3c7da7e0a0a5e9c7a3232671004d48f", "review_notes": "@note/translations"},
+    {"id": "WA17-N018", "zh": "约洛", "status": "approved", "source": "@source/f5c655476a04c1b5", "record_sha256": "13c7cef85ca497687117aa2888ce39933a3df4177204c2b07cd583acecfd9830", "review_notes": "@note/translations"},
+    {"id": "WA17-N020", "zh": "图科罗巴", "status": "approved", "source": "@source/87849282746a8f99", "record_sha256": "46f5f5fdfc0f79ff32303c9487346cc9f570f0c47a37435d565f2c4a5f6d788b", "review_notes": "@note/translations"},
+    {"id": "WA17-N024", "zh": "巴南巴", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "9c8fd5a8ffa8f05012406fce5e4bb0efe2bba179ef8ba7cb6c241548f9e06924", "review_notes": "@note/translations"},
+    {"id": "WA17-N030", "zh": "塞古", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "12a17a2cf03e94c2ea5a565df78202299e6103cfffe4007ec29f8182fc4e40b2", "review_notes": "@note/translations"},
+    {"id": "WA17-N034", "zh": "杰尼迪耶", "status": "approved", "source": "@source/87849282746a8f99", "record_sha256": "1db37e59a4dee898cb2b1d86c046602a45fd2abec3bfb5dd23308c12edfff5db", "review_notes": "@note/translations"},
+    {"id": "WA17-N038", "zh": "尼亚米纳", "status": "approved", "source": "@source/87849282746a8f99", "record_sha256": "a9018654300b9622ea5088a3246b8b9f9579d74797efa6abeaa77847f5ef6ab9", "review_notes": "@note/translations"},
+    {"id": "WA17-N039", "zh": "恩加拉", "status": "approved", "source": "@source/7128b858d63cf029", "record_sha256": "cfc4132948bb58338061753b72f177b1ffbeb9641a564f3ac8d59da414f5d95e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WA17-N004", "x": 201.0, "y": 18.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N007", "x": 69.0, "y": 52.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N010", "x": 676.5, "y": 54.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N015", "x": 606.5, "y": 89.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N018", "x": 750.0, "y": 107.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N020", "x": 253.0, "y": 117.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N024", "x": 105.0, "y": 140.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N030", "x": 534.0, "y": 182.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N034", "x": 127.5, "y": 205.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N038", "x": 274.0, "y": 227.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N039", "x": 448.0, "y": 229.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "WA17-SH002", "owner_region": "WA-Sahel-z9-244-230", "feature_id": "WA9-129", "kind": "city", "original": "Doura", "original_bbox": [539, -10, 574, 6], "source_url": "@source/1e041608ecfd23bb", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

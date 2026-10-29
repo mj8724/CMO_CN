@@ -1,0 +1,58 @@
+{
+  "id": "OCEAN-z5-20-4",
+  "z": 5,
+  "x": 20,
+  "y": 4,
+  "width_tiles": 4,
+  "height_tiles": 4,
+  "original_tiles": [
+    "5/20/4.png",
+    "5/21/4.png",
+    "5/22/4.png",
+    "5/23/4.png",
+    "5/20/5.png",
+    "5/21/5.png",
+    "5/22/5.png",
+    "5/23/5.png",
+    "5/20/6.png",
+    "5/21/6.png",
+    "5/22/6.png",
+    "5/23/6.png",
+    "5/20/7.png",
+    "5/21/7.png",
+    "5/22/7.png",
+    "5/23/7.png"
+  ],
+  "context_tiles": [
+    "5/19/3.png",
+    "5/20/3.png",
+    "5/21/3.png",
+    "5/22/3.png",
+    "5/23/3.png",
+    "5/24/3.png",
+    "5/19/4.png",
+    "5/24/4.png",
+    "5/19/5.png",
+    "5/24/5.png",
+    "5/19/6.png",
+    "5/24/6.png",
+    "5/19/7.png",
+    "5/24/7.png",
+    "5/19/8.png",
+    "5/20/8.png",
+    "5/21/8.png",
+    "5/22/8.png",
+    "5/23/8.png",
+    "5/24/8.png"
+  ],
+  "features": [
+    {"id": "OCEAN-z5-20-4-kara-sea-1", "kind": "marine", "original": "Kara Sea", "original_bbox": [723, 230, 798, 246], "source_url": "@source/d3f1ff651e4d7bb3"}
+  ],
+  "translations": [
+    {"id": "OCEAN-z5-20-4-kara-sea-1", "zh": "喀拉海", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "75eb728624dc12c5293d8bbe6e2b1a2a42f2709d0ed29386a629ab26c7d748d3", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OCEAN-z5-20-4-kara-sea-1", "x": 760.5, "y": 238.0, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": []
+}

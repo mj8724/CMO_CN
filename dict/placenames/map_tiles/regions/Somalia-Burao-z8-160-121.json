@@ -1,0 +1,30 @@
+{
+  "id": "Somalia-Burao-z8-160-121",
+  "z": 8,
+  "x": 160,
+  "y": 121,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/160/121.png"
+  ],
+  "context_tiles": [
+    "8/162/121.png",
+    "8/163/121.png",
+    "8/164/120.png",
+    "8/162/122.png"
+  ],
+  "features": [
+    {"id": "SO8-000", "kind": "city", "original": "Burao", "original_bbox": [94, 45, 135, 66], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "SO8-000", "zh": "布拉奥", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e88378194275d54d90e536b2054bc5716236f0fd736e84a1d138b9ce5e82e503", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SO8-000", "x": 124.5, "y": 59.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SO8-000-circle", "feature_id": "SO8-000", "kind": "circle", "x": 98.5, "y": 49.5, "size": 7, "outline_width": 1, "original_bbox": [94, 45, 103, 54]}
+  ],
+  "shared_sources": []
+}

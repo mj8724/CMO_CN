@@ -1,0 +1,39 @@
+{
+  "z": 6,
+  "x": 60,
+  "y": 19,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "id": "AP-Kamchatka-z6-60-19",
+  "original_tiles": [
+    "6/60/19.png",
+    "6/61/19.png"
+  ],
+  "context_tiles": [
+    "6/59/18.png",
+    "6/60/18.png",
+    "6/61/18.png",
+    "6/62/18.png",
+    "6/59/19.png",
+    "6/62/19.png",
+    "6/59/20.png",
+    "6/60/20.png",
+    "6/61/20.png",
+    "6/62/20.png"
+  ],
+  "features": [
+    {"id": "AP-LR-006", "kind": "admin1", "original": "Kamchatka Krai", "original_bbox": [73, 123, 160, 151], "source_url": "@source/c99418598e3d79b5"},
+    {"id": "AP-LR-007", "kind": "city", "original": "Ust-Kamchatsk", "original_bbox": [225, 214, 285, 248], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "AP-LR-006", "zh": "堪察加边疆区", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "6f53fca00a889e7bdd14a9000a9ad8fdd3398fe8ba6a610aafe7355bbf48efea", "review_notes": "@note/translations"},
+    {"id": "AP-LR-007", "zh": "乌斯季堪察斯克", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "f0b10098fe8c3ccfe43a3b05a54802e4b8983e5112594d6df165846087bb75e9", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-LR-006", "x": 116.5, "y": 137.0, "font_size": 10, "font_style": "bold"},
+    {"id": "AP-LR-007", "x": 273.5, "y": 231.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-LR-007-circle", "feature_id": "AP-LR-007", "kind": "circle", "x": 229.5, "y": 218.5, "size": 7, "outline_width": 1, "original_bbox": [225, 214, 234, 223]}
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "EU-East-B-z6-39-21",
+  "z": 6,
+  "x": 39,
+  "y": 21,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/39/21.png",
+    "6/40/21.png"
+  ],
+  "context_tiles": [
+    "6/38/21.png"
+  ],
+  "features": [
+    {"id": "EE6-SARATOV", "kind": "city", "original": "Saratov", "original_bbox": [305, 70, 344, 85], "source_url": "@source/2b6f8fa95c0ebb35"},
+    {"id": "EE6-KRASNOARMEYSK", "kind": "city", "original": "Krasnoarmeysk", "original_bbox": [290, 107, 363, 124], "source_url": "@source/2b6f8fa95c0ebb35"}
+  ],
+  "translations": [
+    {"id": "EE6-SARATOV", "zh": "萨拉托夫", "source": "@source/2b6f8fa95c0ebb35", "status": "approved", "record_sha256": "e5ef9d44a9296679a6b21499a031f121378ab4cf9f0300e41cd8217e7081ec2c", "review_notes": "@note/translations"},
+    {"id": "EE6-KRASNOARMEYSK", "zh": "克拉斯诺阿尔梅斯克", "source": "@source/2b6f8fa95c0ebb35", "status": "approved", "record_sha256": "ddefab8c744989f59a9348f2b9f274424e9bb4add8081592ebb97e77ecef8b5d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EE6-SARATOV", "x": 324.5, "y": 85.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-KRASNOARMEYSK", "x": 326.5, "y": 122.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EE6-SARATOV-native", "feature_id": "EE6-SARATOV", "kind": "circle", "x": 303.5, "y": 70.5, "size": 9, "outline_width": 1, "original_bbox": [299, 66, 308, 75]},
+    {"id": "EE6-KRASNOARMEYSK-native", "feature_id": "EE6-KRASNOARMEYSK", "kind": "circle", "x": 287.5, "y": 107.5, "size": 9, "outline_width": 1, "original_bbox": [283, 103, 292, 112]}
+  ],
+  "shared_sources": [
+    {"id": "EE6-SH-VORONEZH", "owner_region": "EU-East-A-z6-37-20", "feature_id": "EE6-VORONEZH", "kind": "city", "original": "Voronezh", "source_url": "@source/1bd4da29178a58ba", "original_bbox": [-7, 61, 41, 76], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

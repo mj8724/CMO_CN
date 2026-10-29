@@ -1,0 +1,35 @@
+{
+  "z": 10,
+  "x": 839,
+  "y": 432,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "FJC17-z10-839-432-1x1",
+  "original_tiles": [
+    "10/839/432.png"
+  ],
+  "context_tiles": [
+    "10/839/433.png",
+    "10/840/432.png"
+  ],
+  "features": [
+    {"id": "FJC17-P032", "kind": "city", "original": "Futan", "original_bbox": [99, 30, 128, 45], "source_url": "@source/f152b574fcba4845"},
+    {"id": "FJC17-P034", "kind": "city", "original": "Futian", "original_bbox": [190, 186, 223, 201], "source_url": "@source/f152b574fcba4845"},
+    {"id": "FJC17-P035", "kind": "city", "original": "Guanxi", "original_bbox": [95, 240, 135, 257], "source_url": "@source/f152b574fcba4845"}
+  ],
+  "translations": [
+    {"id": "FJC17-P032", "zh": "富滩", "status": "approved", "source": "@source/65a815f464175305", "record_sha256": "19cbfe563e3feab92110d8d3d617858290972610c11b497677cd94dfb8ba0560", "review_notes": "@note/translations"},
+    {"id": "FJC17-P034", "zh": "富田", "status": "approved", "source": "@source/505392e9a8dbbb25", "record_sha256": "d146792a6b2bb759e5357a9d69f39b10a2064d595333b428634c1984edeb76e3", "review_notes": "@note/translations"},
+    {"id": "FJC17-P035", "zh": "灌溪", "status": "approved", "source": "@source/400fd34ae3c1531e", "record_sha256": "44f06034c6235683f1e1240e06e73fd6a992cc253cccc291c4f769568a26facb", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FJC17-P032", "x": 113.5, "y": 37.5, "font_size": 11, "font_style": "regular"},
+    {"id": "FJC17-P034", "x": 206.5, "y": 193.5, "font_size": 11, "font_style": "regular"},
+    {"id": "FJC17-P035", "x": 115.0, "y": 245.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "FJC17-AS-P033", "owner_region": "AP-Fujian-Inland-z10-840-432", "feature_id": "AP-I10-009", "kind": "city", "original": "Shuinan", "original_bbox": [223, 65, 270, 82], "source_url": "@source/213926698320d70d", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

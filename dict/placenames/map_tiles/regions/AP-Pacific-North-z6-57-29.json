@@ -1,0 +1,73 @@
+{
+  "id": "AP-Pacific-North-z6-57-29",
+  "z": 6,
+  "x": 57,
+  "y": 29,
+  "width_tiles": 7,
+  "height_tiles": 3,
+  "original_tiles": [
+    "6/57/29.png",
+    "6/57/30.png",
+    "6/57/31.png",
+    "6/58/29.png",
+    "6/58/30.png",
+    "6/58/31.png",
+    "6/59/29.png",
+    "6/59/30.png",
+    "6/59/31.png",
+    "6/60/29.png",
+    "6/60/30.png",
+    "6/60/31.png",
+    "6/61/29.png",
+    "6/61/30.png",
+    "6/61/31.png",
+    "6/62/29.png",
+    "6/62/30.png",
+    "6/62/31.png",
+    "6/63/29.png",
+    "6/63/30.png",
+    "6/63/31.png"
+  ],
+  "context_tiles": [
+    "6/56/28.png",
+    "6/56/29.png",
+    "6/56/30.png",
+    "6/56/31.png",
+    "6/56/32.png",
+    "6/57/28.png",
+    "6/57/32.png",
+    "6/58/28.png",
+    "6/58/32.png",
+    "6/59/28.png",
+    "6/59/32.png",
+    "6/60/28.png",
+    "6/60/32.png",
+    "6/61/28.png",
+    "6/61/32.png",
+    "6/62/28.png",
+    "6/62/32.png",
+    "6/63/28.png",
+    "6/63/32.png"
+  ],
+  "features": [
+    {"id": "AP-P6-000", "kind": "admin0", "original": "Marshall Islands", "original_bbox": [1216, 339, 1379, 389], "source_url": "@source/c99418598e3d79b5"},
+    {"id": "AP-P6-001", "kind": "admin0", "original": "Federated States of Micronesia", "original_bbox": [352, 389, 541, 466], "source_url": "@source/c99418598e3d79b5"},
+    {"id": "AP-P6-002", "kind": "city", "original": "Palikir", "original_bbox": [794, 448, 833, 467], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-P6-003", "kind": "admin0", "original": "Kiribati", "original_bbox": [1437, 736, 1571, 760], "source_url": "@source/ea9990d40022f156"}
+  ],
+  "translations": [
+    {"id": "AP-P6-000", "zh": "马绍尔群岛", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "04a5cbbb276b17f7df2b9aa1fb02fdfc84df18a37e561732412b209aed33276b", "review_notes": "@note/translations"},
+    {"id": "AP-P6-001", "zh": "密克罗尼西亚联邦", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "d4c8a130a5163d93d0f1e826f82f1f098be16b6f0c65a91a5c8f196e8fa6541f", "review_notes": "@note/translations"},
+    {"id": "AP-P6-002", "zh": "帕利基尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b75614d53d53d1c47fdc63c27263efdbc4b1824ed3822ecae0cec53b93e3deff", "review_notes": "@note/translations"},
+    {"id": "AP-P6-003", "zh": "基里巴斯", "status": "approved", "source": "@source/ea9990d40022f156", "record_sha256": "0e111a03895c6119f5ed958f5a9c7c3d843e687c841d87d1f2114bc0268eb6b0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-P6-000", "x": 1297.5, "y": 364.0, "font_size": 16, "font_style": "bold"},
+    {"id": "AP-P6-001", "x": 446.5, "y": 427.5, "font_size": 16, "font_style": "bold"},
+    {"id": "AP-P6-002", "x": 826.0, "y": 457.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-P6-003", "x": 1504.0, "y": 748.0, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "AP-P6-002-circle", "feature_id": "AP-P6-002", "kind": "circle", "x": 798.5, "y": 452.5, "size": 7, "outline_width": 1, "original_bbox": [794, 448, 803, 457]}
+  ]
+}

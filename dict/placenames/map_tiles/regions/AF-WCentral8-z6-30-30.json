@@ -1,0 +1,44 @@
+{
+  "id": "AF-WCentral8-z6-30-30",
+  "z": 6,
+  "x": 30,
+  "y": 30,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/30/30.png",
+    "6/30/31.png"
+  ],
+  "context_tiles": [
+    "6/29/30.png",
+    "6/31/30.png"
+  ],
+  "features": [
+    {"id": "AF28-024", "kind": "admin0", "original": "GUINEA", "original_bbox": [-32, 5, 82, 29], "source_url": "@source/c1eaac0ef4525daf"},
+    {"id": "AF28-026", "kind": "admin0", "original": "LIBERIA", "original_bbox": [27, 234, 147, 258], "source_url": "@source/c1eaac0ef4525daf"},
+    {"id": "AF28-027", "kind": "city", "original": "N'Zérékoré", "original_bbox": [106, 153, 166, 173], "source_url": "@source/c1eaac0ef4525daf"},
+    {"id": "AF28-053", "kind": "city", "original": "Greenville", "original_bbox": [96, 279, 152, 298], "source_url": "@source/22cb17052ab60559"}
+  ],
+  "translations": [
+    {"id": "AF28-024", "zh": "几内亚", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "8ea08874a1d68340505ae084804bd1cdb557620d3b90ff5b55be9e61f01caddd", "review_notes": "@note/translations"},
+    {"id": "AF28-026", "zh": "利比里亚", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "4feb4d64779c62a3ff7b5723220b9c051b7322e1d4bba0db62d825ceb8920bc8", "review_notes": "@note/translations"},
+    {"id": "AF28-027", "zh": "恩泽雷科雷", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b8fea41410fc26824dd37c3bc033098b52cc2548700b873b36c826e4bd257632", "review_notes": "@note/translations"},
+    {"id": "AF28-053", "zh": "格林维尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "d3346a71ce7c35f141d897fb089c90625e9073c5f4ebfac6936c3df62edeb655", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AF28-024", "x": 31.0, "y": 17.0, "font_size": 18, "font_style": "bold"},
+    {"id": "AF28-026", "x": 87.0, "y": 246.0, "font_size": 18, "font_style": "bold"},
+    {"id": "AF28-027", "x": 149.0, "y": 165.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-053", "x": 133.0, "y": 291.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AF28-027-circle", "feature_id": "AF28-027", "kind": "circle", "x": 110.5, "y": 157.5, "size": 9, "outline_width": 1, "original_bbox": [106, 153, 115, 162], "source_url": "@source/c1eaac0ef4525daf", "review_notes": "@note/symbols"},
+    {"id": "AF28-053-circle", "feature_id": "AF28-053", "kind": "circle", "x": 100.5, "y": 283.5, "size": 9, "outline_width": 1, "original_bbox": [96, 279, 105, 288], "source_url": "@source/22cb17052ab60559", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "AFC26-SH-04-AF28-023", "owner_region": "AF-WCentral8-z6-29-30", "feature_id": "AF28-023", "kind": "admin0", "original": "SIERRA LEONE", "original_bbox": [-81, 88, 28, 139], "source_url": "@source/6ae1bf701302bb30", "review_notes": "@note/shared_sources"},
+    {"id": "AFC26-SH-06-AF28-025", "owner_region": "AF-WCentral8-z6-29-30", "feature_id": "AF28-025", "kind": "city", "original": "Robertsport", "original_bbox": [-10, 200, 55, 221], "source_url": "@source/6ae1bf701302bb30", "review_notes": "@note/shared_sources"},
+    {"id": "AFC26-SH-07-AF28-028", "owner_region": "AF-WCentral8-z6-31-29", "feature_id": "AF28-028", "kind": "admin0", "original": "IVORY COAST", "original_bbox": [209, 118, 309, 169], "source_url": "@source/d3aa90eb150eec13", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

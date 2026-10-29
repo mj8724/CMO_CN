@@ -1,0 +1,37 @@
+{
+  "id": "EML13-R07",
+  "z": 9,
+  "x": 302,
+  "y": 202,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/302/202.png",
+    "9/303/202.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "EML13-N013", "kind": "city", "original": "Lefka", "original_bbox": [169, 147, 200, 163], "source_url": "@source/7dfbf096557bcad8"},
+    {"id": "EML13-N014", "kind": "city", "original": "Polis", "original_bbox": [16, 182, 45, 198], "source_url": "@source/7dfbf096557bcad8"},
+    {"id": "EML13-N015", "kind": "city", "original": "Kyrenia", "original_bbox": [331, 47, 379, 68], "source_url": "@source/a0c27b84f1f906f0"},
+    {"id": "EML13-N016", "kind": "city", "original": "Nicosia", "original_bbox": [346, 117, 397, 137], "source_url": "@source/a0c27b84f1f906f0"},
+    {"id": "EML13-N017", "kind": "city", "original": "Larnaca", "original_bbox": [442, 230, 491, 248], "source_url": "@source/a0c27b84f1f906f0"}
+  ],
+  "translations": [
+    {"id": "EML13-N013", "zh": "莱夫卡", "status": "approved", "source": "@source/7dfbf096557bcad8", "record_sha256": "9e0a895b285b2d08ccf0576c84caaf0449df213a8b2009f0b6c3087f72ae3cd3", "review_notes": "@note/translations"},
+    {"id": "EML13-N014", "zh": "波利斯", "status": "approved", "source": "@source/7dfbf096557bcad8", "record_sha256": "a253fa588bbecc25813f349fb193e01605252b0fad18e3179d9859e003b1d1c7", "review_notes": "@note/translations"},
+    {"id": "EML13-N015", "zh": "凯里尼亚", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e86558b27fe5bac9dd3a39e3e7a110abdf9ddeee78c75cf91b0d6d4338853de5", "review_notes": "@note/translations"},
+    {"id": "EML13-N016", "zh": "尼科西亚", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "30a319a02780eb43e51a73b238f6d734e8bcbcd93a14824c68db7e24ee29163b", "review_notes": "@note/translations"},
+    {"id": "EML13-N017", "zh": "拉纳卡", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "67d7745107f9aa8791312791ac8710b3ce867ebd7cfe6fc9a99e2459db49ba40", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EML13-N013", "x": 184.5, "y": 155.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N014", "x": 30.5, "y": 190.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N015", "x": 355.0, "y": 57.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N016", "x": 371.5, "y": 127.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N017", "x": 466.5, "y": 239.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

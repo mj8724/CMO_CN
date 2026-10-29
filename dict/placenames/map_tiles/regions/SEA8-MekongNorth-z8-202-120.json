@@ -1,0 +1,69 @@
+{
+  "id": "SEA8-MekongNorth-z8-202-120",
+  "z": 8,
+  "x": 202,
+  "y": 120,
+  "width_tiles": 4,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/202/120.png",
+    "8/203/120.png",
+    "8/204/120.png",
+    "8/205/120.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "SEA8-MekongNorth-z8-202-120-04-name", "kind": "city", "original": "Doun Kaev", "original_bbox": [127, 31, 165, 69], "source_url": "@source/fdf433390e9d8f7e"},
+    {"id": "SEA8-MekongNorth-z8-202-120-05-name", "kind": "city", "original": "Kampot", "original_bbox": [17, 99, 69, 123], "source_url": "@source/fdf433390e9d8f7e"},
+    {"id": "SEA8-MekongNorth-z8-202-120-06-name", "kind": "city", "original": "Châu Đốc", "original_bbox": [188, 82, 225, 121], "source_url": "@source/fdf433390e9d8f7e"},
+    {"id": "SEA8-MekongNorth-z8-202-120-07-name", "kind": "city", "original": "Long Xuyên", "original_bbox": [245, 142, 289, 183], "source_url": "@source/fdf433390e9d8f7e"},
+    {"id": "SEA8-MekongNorth-z8-202-120-08-name", "kind": "city", "original": "Rạch Giá", "original_bbox": [181, 212, 240, 235], "source_url": "@source/fdf433390e9d8f7e"},
+    {"id": "SEA8-MekongNorth-z8-202-120-09-name", "kind": "city", "original": "Tân An", "original_bbox": [423, 115, 470, 136], "source_url": "@source/4f5b380a0bfab3d3"},
+    {"id": "SEA8-MekongNorth-z8-202-120-10-name", "kind": "city", "original": "Mỹ Tho", "original_bbox": [415, 147, 467, 170], "source_url": "@source/4f5b380a0bfab3d3"},
+    {"id": "SEA8-MekongNorth-z8-202-120-11-name", "kind": "city", "original": "Cần Thơ", "original_bbox": [310, 207, 369, 228], "source_url": "@source/4f5b380a0bfab3d3"},
+    {"id": "SEA8-MekongNorth-z8-202-120-12-name", "kind": "city", "original": "Biên Hòa", "original_bbox": [498, 38, 556, 59], "source_url": "@source/4f5b380a0bfab3d3"},
+    {"id": "SEA8-MekongNorth-z8-202-120-13-name", "kind": "city", "original": "Ho Chi Minh City Saigon", "original_bbox": [476, 70, 546, 139], "source_url": "@source/4f5b380a0bfab3d3"},
+    {"id": "SEA8-MekongNorth-z8-202-120-14-name", "kind": "city", "original": "Phan Thiết", "original_bbox": [731, 41, 771, 80], "source_url": "@source/fe015a8a1fcd0f61"}
+  ],
+  "translations": [
+    {"id": "SEA8-MekongNorth-z8-202-120-04-name", "zh": "敦胶", "status": "approved", "source": "@source/fdf433390e9d8f7e", "record_sha256": "6cc1c4f27846c604a8262bc74bd5d0ddb45abe2a9819296b9b46b46683f73e2d", "review_notes": "@note/translations"},
+    {"id": "SEA8-MekongNorth-z8-202-120-05-name", "zh": "贡布", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "d2b7ca1df09498c40eeb0c5b6dcd8af4cc7cb2846990f4ab5618f1a41e75b61a", "review_notes": "@note/translations"},
+    {"id": "SEA8-MekongNorth-z8-202-120-06-name", "zh": "朱笃", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "f646f769d2bf1b9ba43fda44840804dbeb11bd63ef2b4b5fc4a8221713128d07", "review_notes": "@note/translations"},
+    {"id": "SEA8-MekongNorth-z8-202-120-07-name", "zh": "龙川", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "d32b45a1cb416c23967e2be015da4425f7bf586febb04fd9628950969e751ab3", "review_notes": "@note/translations"},
+    {"id": "SEA8-MekongNorth-z8-202-120-08-name", "zh": "迪石", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "567cc2e32925174fee8a08503be191bba698e642cbb0511a6727016fbaf1a93a", "review_notes": "@note/translations"},
+    {"id": "SEA8-MekongNorth-z8-202-120-09-name", "zh": "新安", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "6594c50c411abd4771ea009ee565d1dbb6982e63caa1223991a4d3282013d1d9", "review_notes": "@note/translations"},
+    {"id": "SEA8-MekongNorth-z8-202-120-10-name", "zh": "美湫", "status": "approved", "source": "@source/56520acfa1ac44a7", "record_sha256": "a11321a9c4856cd40a23404e62693eef845408a859597dcf254b4302acde3b25", "review_notes": "@note/translations"},
+    {"id": "SEA8-MekongNorth-z8-202-120-11-name", "zh": "芹苴", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "6a35d373154d2c808f01f8681877b919c3b4fad9c96b7a57363fb0cbedef528d", "review_notes": "@note/translations"},
+    {"id": "SEA8-MekongNorth-z8-202-120-12-name", "zh": "边和", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "b24fde347a867ed371fb2a13fa14fc105beadadd1e4e24df10900a5939ef933f", "review_notes": "@note/translations"},
+    {"id": "SEA8-MekongNorth-z8-202-120-13-name", "zh": "胡志明市（西贡）", "status": "approved", "source": "@source/39277d64d9194651", "record_sha256": "2e8949062d76c94299619b0752c61d448f2c5a3608176c8d13618f4a9aab95ec", "review_notes": "@note/translations"},
+    {"id": "SEA8-MekongNorth-z8-202-120-14-name", "zh": "潘切", "status": "approved", "source": "@source/28e1cca6310b0a48", "record_sha256": "5166281a562723bfda44dd185d5d2f717534a1bf8b21a7529f0a6eec79a86b08", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SEA8-MekongNorth-z8-202-120-04-name", "x": 156, "y": 45, "font_size": 12, "font_style": "regular"},
+    {"id": "SEA8-MekongNorth-z8-202-120-05-name", "x": 47, "y": 112, "font_size": 12, "font_style": "regular"},
+    {"id": "SEA8-MekongNorth-z8-202-120-06-name", "x": 217, "y": 95, "font_size": 12, "font_style": "regular"},
+    {"id": "SEA8-MekongNorth-z8-202-120-07-name", "x": 275, "y": 156, "font_size": 12, "font_style": "regular"},
+    {"id": "SEA8-MekongNorth-z8-202-120-08-name", "x": 212, "y": 225, "font_size": 12, "font_style": "regular"},
+    {"id": "SEA8-MekongNorth-z8-202-120-09-name", "x": 450, "y": 129, "font_size": 12, "font_style": "regular"},
+    {"id": "SEA8-MekongNorth-z8-202-120-10-name", "x": 443, "y": 161, "font_size": 12, "font_style": "regular"},
+    {"id": "SEA8-MekongNorth-z8-202-120-11-name", "x": 340, "y": 221, "font_size": 12, "font_style": "regular"},
+    {"id": "SEA8-MekongNorth-z8-202-120-12-name", "x": 525, "y": 53, "font_size": 12, "font_style": "regular"},
+    {"id": "SEA8-MekongNorth-z8-202-120-13-name", "x": 520, "y": 100, "font_size": 12, "font_style": "regular", "lines": ["胡志明市", "（西贡）"]},
+    {"id": "SEA8-MekongNorth-z8-202-120-14-name", "x": 761, "y": 56.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SEA8-MekongNorth-z8-202-120-04-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-04-name", "kind": "circle", "x": 131.5, "y": 35.5, "size": 9, "outline_width": 1, "original_bbox": [127, 31, 136, 40]},
+    {"id": "SEA8-MekongNorth-z8-202-120-05-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-05-name", "kind": "circle", "x": 21.5, "y": 103.5, "size": 9, "outline_width": 1, "original_bbox": [17, 99, 26, 108]},
+    {"id": "SEA8-MekongNorth-z8-202-120-06-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-06-name", "kind": "circle", "x": 192.5, "y": 86.5, "size": 9, "outline_width": 1, "original_bbox": [188, 82, 197, 91]},
+    {"id": "SEA8-MekongNorth-z8-202-120-07-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-07-name", "kind": "circle", "x": 249.5, "y": 146.5, "size": 9, "outline_width": 1, "original_bbox": [245, 142, 254, 151]},
+    {"id": "SEA8-MekongNorth-z8-202-120-08-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-08-name", "kind": "circle", "x": 185.5, "y": 216.5, "size": 9, "outline_width": 1, "original_bbox": [181, 212, 190, 221]},
+    {"id": "SEA8-MekongNorth-z8-202-120-09-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-09-name", "kind": "circle", "x": 427.5, "y": 119.5, "size": 9, "outline_width": 1, "original_bbox": [423, 115, 432, 124]},
+    {"id": "SEA8-MekongNorth-z8-202-120-10-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-10-name", "kind": "circle", "x": 419.5, "y": 151.5, "size": 9, "outline_width": 1, "original_bbox": [415, 147, 424, 156]},
+    {"id": "SEA8-MekongNorth-z8-202-120-11-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-11-name", "kind": "circle", "x": 314.0, "y": 211.5, "size": 8, "outline_width": 1, "original_bbox": [310, 207, 318, 216]},
+    {"id": "SEA8-MekongNorth-z8-202-120-12-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-12-name", "kind": "circle", "x": 502.5, "y": 42.5, "size": 9, "outline_width": 1, "original_bbox": [498, 38, 507, 47]},
+    {"id": "SEA8-MekongNorth-z8-202-120-13-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-13-name", "kind": "circle", "x": 480.5, "y": 74.5, "size": 9, "outline_width": 1, "original_bbox": [476, 70, 485, 79]},
+    {"id": "SEA8-MekongNorth-z8-202-120-14-name-circle", "feature_id": "SEA8-MekongNorth-z8-202-120-14-name", "kind": "circle", "x": 735.5, "y": 45.5, "size": 9, "outline_width": 1, "original_bbox": [731, 41, 740, 50]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

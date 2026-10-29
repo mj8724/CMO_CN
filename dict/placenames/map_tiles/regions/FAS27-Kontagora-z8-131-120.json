@@ -1,0 +1,27 @@
+{
+  "id": "FAS27-Kontagora-z8-131-120",
+  "z": 8,
+  "x": 131,
+  "y": 120,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "features": [
+    {"id": "FAS27-Kontagora", "kind": "city", "original": "Kontagora", "original_bbox": [230, 145, 280, 162], "source_url": "@source/89ac1f478e8add91"}
+  ],
+  "translations": [
+    {"id": "FAS27-Kontagora", "zh": "孔塔戈拉", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "df0542a32027009fb0aedb7c9de11fa6f57d2108ec2ca2b56ed640c1a9fdbee9", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Kontagora", "x": 261.0, "y": 153.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "FAS27-Kontagora-native", "feature_id": "FAS27-Kontagora", "kind": "circle", "original_bbox": [223, 140, 232, 149], "x": 227.5, "y": 144.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "8/131/120.png",
+    "8/132/120.png"
+  ],
+  "context_tiles": []
+}

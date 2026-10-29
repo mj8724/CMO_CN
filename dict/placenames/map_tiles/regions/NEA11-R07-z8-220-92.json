@@ -1,0 +1,31 @@
+{
+  "id": "NEA11-R07-z8-220-92",
+  "z": 8,
+  "x": 220,
+  "y": 92,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/220/92.png"
+  ],
+  "features": [
+    {"id": "NEA11-N011", "kind": "city", "original": "Mudanjiang", "original_bbox": [41, 134, 113, 158], "source_url": "@source/0d11ff09a2a556c3"},
+    {"id": "NEA11-N012", "kind": "city", "original": "Ning'an", "original_bbox": [11, 186, 62, 211], "source_url": "@source/0d11ff09a2a556c3"}
+  ],
+  "translations": [
+    {"id": "NEA11-N011", "zh": "牡丹江", "source_evidence_role": "NE_original_NAMEALT_and_GNID_CJK", "status": "approved", "source_identity_contract_sha256": "4af802f5b3ce316a4b6113b53a36fd02d24e043b6b39b665d84bde7eacc28cef", "source": "@source/de57b59c289acedb", "record_sha256": "4ef3f2ffa5154a49ec50c9969d84a9799b38bc1fabf6339843bc33f80c601508", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."},
+    {"id": "NEA11-N012", "zh": "宁安", "source_evidence_role": "NE_same_country_original_CJK", "status": "approved", "source_identity_contract_sha256": "6677a2cc2c0fdba50690c57c6f0d29db9b54320567c8a534b476f518e6187b32", "source": "@source/de57b59c289acedb", "record_sha256": "c458edc535cf51b8437f7631d0ff8f8f1880a294b7de4c8a61cf0e36f24aa7aa", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."}
+  ],
+  "layouts": [
+    {"id": "NEA11-N011", "x": 69, "y": 150, "font_size": 12, "font_style": "regular", "lines": ["牡丹江"]},
+    {"id": "NEA11-N012", "x": 33, "y": 202, "font_size": 12, "font_style": "regular", "lines": ["宁安"]}
+  ],
+  "symbols": [
+    {"id": "NEA11-N011-circle", "feature_id": "NEA11-N011", "kind": "circle", "size": 9, "outline_width": 1, "x": 45.5, "y": 138.5, "original_bbox": [41, 134, 50, 143]},
+    {"id": "NEA11-N012-circle", "feature_id": "NEA11-N012", "kind": "circle", "size": 9, "outline_width": 1, "x": 15.5, "y": 190.5, "original_bbox": [11, 186, 20, 195]}
+  ],
+  "canonical_captions": [],
+  "context_tiles": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

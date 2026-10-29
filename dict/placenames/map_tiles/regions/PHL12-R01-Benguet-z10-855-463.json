@@ -1,0 +1,32 @@
+{
+  "id": "PHL12-R01-Benguet-z10-855-463",
+  "z": 10,
+  "x": 855,
+  "y": 463,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/855/463.png"
+  ],
+  "context_tiles": [
+    "10/855/464.png"
+  ],
+  "features": [
+    {"id": "PHL12-N001", "kind": "region", "original": "Mankayan", "original_bbox": [123, 80, 181, 99], "source_url": "@source/8eeabaabdf88c2f3"},
+    {"id": "PHL12-N002", "kind": "region", "original": "Buguias", "original_bbox": [149, 122, 195, 142], "source_url": "@source/8eeabaabdf88c2f3"},
+    {"id": "PHL12-N003", "kind": "region", "original": "Atok", "original_bbox": [121, 254, 147, 269], "source_url": "@source/8eeabaabdf88c2f3"}
+  ],
+  "translations": [
+    {"id": "PHL12-N001", "zh": "曼卡延", "status": "approved", "source": "@source/8eeabaabdf88c2f3", "record_sha256": "4f211f6f958b0a8a9a058b6249828efb7af1342a691d8ec27114ecd0e4f1d257", "review_notes": "@note/translations"},
+    {"id": "PHL12-N002", "zh": "布吉亚斯", "status": "approved", "source": "@source/8eeabaabdf88c2f3", "record_sha256": "dab7fbb78e6c815fa4edddb323c4182a560bb1a47a53231d0f4e901d06c2b5c9", "review_notes": "@note/translations"},
+    {"id": "PHL12-N003", "zh": "阿托克", "status": "approved", "source": "@source/8eeabaabdf88c2f3", "record_sha256": "d69e36866a3742f46b571d2d389e2bd3d21e72b907e6bdcef1dcbde87f2ad079", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PHL12-N001", "x": 152.0, "y": 89.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N002", "x": 172.0, "y": 132.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N003", "x": 134.0, "y": 247.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

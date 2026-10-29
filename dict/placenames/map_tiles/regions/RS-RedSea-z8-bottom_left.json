@@ -1,0 +1,61 @@
+{
+  "id": "RS-RedSea-z8-bottom_left",
+  "z": 8,
+  "x": 152,
+  "y": 119,
+  "width_tiles": 4,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/152/119.png",
+    "8/153/119.png",
+    "8/154/119.png",
+    "8/155/119.png"
+  ],
+  "context_tiles": [
+    "8/151/118.png",
+    "8/152/118.png",
+    "8/153/118.png",
+    "8/154/118.png",
+    "8/155/118.png",
+    "8/156/118.png",
+    "8/151/119.png",
+    "8/156/119.png",
+    "8/151/120.png",
+    "8/152/120.png",
+    "8/153/120.png",
+    "8/154/120.png",
+    "8/155/120.png",
+    "8/156/120.png"
+  ],
+  "features": [
+    {"id": "RS8-040", "kind": "peak", "original": "Abuna Josef", "original_bbox": [921, 39, 994, 81], "source_url": "@source/632e30c5eb6a1e8d", "original_elevation_m": "4260"},
+    {"id": "RS8-042", "kind": "peak", "original": "Guna Terara", "original_bbox": [748, 119, 822, 161], "source_url": "@source/480443d63b297c86", "original_elevation_m": "4110"},
+    {"id": "RS8-043", "kind": "city", "original": "Ad-Damazin", "original_bbox": [108, 135, 164, 173], "source_url": "@source/8986993985f99633"},
+    {"id": "RS8-044", "kind": "city", "original": "Bahir Dar", "original_bbox": [658, 174, 699, 215], "source_url": "@source/55ba98bbbf383cb6"}
+  ],
+  "translations": [
+    {"id": "RS8-040", "zh": "阿布纳约瑟夫山", "status": "approved", "source": "@source/632e30c5eb6a1e8d", "record_sha256": "cb2d8b68e3acaf6cb808db14deaa7ade7c57d538897bc2eb91637b5d739d82da", "review_notes": "@note/translations"},
+    {"id": "RS8-042", "zh": "古纳山", "status": "approved", "source": "@source/2d382d19d69f1054", "record_sha256": "fc78d383e76596ea25c19ec4146e1bdbd6d8c745a3aac78844a0b6f121ad4ff9", "review_notes": "@note/translations"},
+    {"id": "RS8-043", "zh": "达马津", "status": "approved", "source": "@source/c579a3951d43ec95", "record_sha256": "7540ea2c8ea1b0bd03d10cac41c19a9b5f78481ac4fa98a5d81a63076053acd8", "review_notes": "@note/translations"},
+    {"id": "RS8-044", "zh": "巴赫达尔", "status": "approved", "source": "@source/33623828d3b3af7d", "record_sha256": "ff6c7fbe0126a61546e3381cb69357b265d92bd1a1ccc6fb906b6862787231cd", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "RS8-040", "x": 950.5, "y": 54.5, "font_size": 11, "font_style": "regular"},
+    {"id": "RS8-042", "x": 798.5, "y": 134.5, "font_size": 11, "font_style": "regular"},
+    {"id": "RS8-043", "x": 136.0, "y": 146.5, "font_size": 11, "font_style": "regular"},
+    {"id": "RS8-044", "x": 691.5, "y": 185.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "RS8-040-point", "feature_id": "RS8-040", "x": 989.0, "y": 76.5, "kind": "triangle", "size": 8, "outline_width": 1, "original_bbox": [984, 72, 994, 81]},
+    {"id": "RS8-042-point", "feature_id": "RS8-042", "x": 817.0, "y": 156.5, "kind": "triangle", "size": 8, "outline_width": 1, "original_bbox": [812, 152, 822, 161]},
+    {"id": "RS8-043-point", "feature_id": "RS8-043", "x": 112.5, "y": 139.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [108, 135, 117, 144]},
+    {"id": "RS8-044-point", "feature_id": "RS8-044", "x": 662.5, "y": 178.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [658, 174, 667, 183]}
+  ],
+  "shared_sources": [
+    {"id": "RS8-039-shared", "owner_region": "RS-RedSea-z8-top", "feature_id": "RS8-039", "kind": "city", "original": "Gonder", "source_url": "@source/98b992b4abb58da6", "original_bbox": [672, -15, 723, 7], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": [
+    {"feature_id": "RS8-043", "name": "达马津", "lat": 11.78909969329834, "lon": 34.35919952392578, "level": 1, "source": "@source/8986993985f99633", "review_notes": "@note/legacy_suppressions"},
+    {"feature_id": "RS8-044", "name": "巴赫达尔", "lat": 11.593640327453613, "lon": 37.390769958496094, "level": 1, "source": "@source/55ba98bbbf383cb6", "review_notes": "@note/legacy_suppressions"}
+  ]
+}

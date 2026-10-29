@@ -1,0 +1,32 @@
+{
+  "id": "GR7-WestBoundary-z9-283-191",
+  "z": 9,
+  "x": 283,
+  "y": 191,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "GR7-N-010", "kind": "city", "original": "Fushë-Krujë", "original_bbox": [236, 6, 301, 26], "source_url": "@source/f1890f684a2a7011"},
+    {"id": "GR7-N-028", "kind": "city", "original": "Durrës", "original_bbox": [148, 86, 189, 104], "source_url": "@source/f1890f684a2a7011"},
+    {"id": "GR7-N-035", "kind": "city", "original": "Kavajë", "original_bbox": [189, 149, 231, 170], "source_url": "@source/f1890f684a2a7011"}
+  ],
+  "translations": [
+    {"id": "GR7-N-010", "zh": "富舍克鲁亚", "status": "approved", "source": "@source/b85d28f7412b9dbf", "record_sha256": "03f7a0c8289605a1094e3034969091c95dc1b56823fac146e2db6d79688bc880", "review_notes": "@note/translations"},
+    {"id": "GR7-N-028", "zh": "都拉斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "f77be48b0dde59c10f5ff6273791170a35ab87f89269b163a1ca3dd024c7aa30", "review_notes": "@note/translations"},
+    {"id": "GR7-N-035", "zh": "卡瓦亚", "status": "approved", "source": "@source/c32d1312598cd817", "record_sha256": "6a35887facd8372007cad40338422b46479830d1b9befd16923f868dc6706d4b", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GR7-N-010", "x": 223.0, "y": 16.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-028", "x": 168.5, "y": 95.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-035", "x": 210.0, "y": 159.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/283/191.png"
+  ],
+  "context_tiles": [
+    "9/284/191.png"
+  ]
+}

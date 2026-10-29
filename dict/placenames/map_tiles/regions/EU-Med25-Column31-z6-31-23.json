@@ -1,0 +1,68 @@
+{
+  "id": "EU-Med25-Column31-z6-31-23",
+  "z": 6,
+  "x": 31,
+  "y": 23,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    "6/31/23.png",
+    "6/31/24.png",
+    "6/31/25.png"
+  ],
+  "context_tiles": [
+    "6/30/24.png",
+    "6/30/25.png",
+    "6/32/23.png",
+    "6/32/24.png"
+  ],
+  "features": [
+    {"id": "EM6-SRC-22", "kind": "city", "original": "Bordeaux", "original_bbox": [225, 11, 279, 31], "source_url": "@source/e61be11f36e01971"},
+    {"id": "EM6-SRC-30", "kind": "city", "original": "Bilbao", "original_bbox": [118, 111, 157, 131], "source_url": "@source/e61be11f36e01971"},
+    {"id": "EM6-SRC-43", "kind": "city", "original": "Madrid", "original_bbox": [83, 285, 132, 307], "source_url": "@source/2d7f289e2fc85145"},
+    {"id": "EM6-SRC-48", "kind": "admin0", "original": "SPAIN", "original_bbox": [-9, 339, 81, 363], "source_url": "@source/68e8a968a478da58"},
+    {"id": "EM6-SRC-49", "kind": "city", "original": "Valencia", "original_bbox": [234, 341, 283, 361], "source_url": "@source/2d7f289e2fc85145"},
+    {"id": "EM6-SRC-57", "kind": "city", "original": "Córdoba", "original_bbox": [34, 434, 82, 453], "source_url": "@source/2d7f289e2fc85145"},
+    {"id": "EM6-SRC-67", "kind": "city", "original": "Oran", "original_bbox": [222, 558, 254, 577], "source_url": "@source/7fa45c2f11af5911"},
+    {"id": "EM6-SRC-68", "kind": "city", "original": "Oujda", "original_bbox": [164, 615, 202, 637], "source_url": "@source/7fa45c2f11af5911"},
+    {"id": "EM6-SRC-69", "kind": "city", "original": "Fez", "original_bbox": [23, 650, 49, 670], "source_url": "@source/7fa45c2f11af5911"}
+  ],
+  "translations": [
+    {"id": "EM6-SRC-22", "zh": "波尔多", "source": "@source/a6f4cc1a7476df72", "status": "approved", "record_sha256": "5ca2316c57cc9fcf9dd5774edd2976fc2762a187a90c8f1e4ac019bfeee7a6fa", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-30", "zh": "毕尔巴鄂", "source": "@source/24cc545243c88f41", "status": "approved", "record_sha256": "f0a404e34db852bb645923738ed2be417f52f2a82906fe167a15db41294654e8", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-43", "zh": "马德里", "source": "@source/936e34a0c14b395e", "status": "approved", "record_sha256": "1dc59d2f29bbe400a23da03eafcf68c2a330195dc86a1875765446e32f19e828", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-48", "zh": "西班牙", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "a019a23127853c9e8558b09b11a5f2237b43b71f309508742c78d9949417b625", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-49", "zh": "巴伦西亚", "source": "@source/44025383f075becf", "status": "approved", "record_sha256": "d7ea3e147b69d38f8ad735fc52bc396b32d16ef16c50b86cc1837df2d02e4ad6", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-57", "zh": "科尔多瓦", "source": "@source/2ffda9fbf8f8e159", "status": "approved", "record_sha256": "a6079bdc672b8bba219c3abe261fbb6e5ec8c390ff9429b8717ff89b59ac0519", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-67", "zh": "奥兰", "source": "@source/1fd4de9100530ad5", "status": "approved", "record_sha256": "a772bf8da54c123c9c4cb90e4990b13032f1b27d7ca2d01486837e5adaf21562", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-68", "zh": "乌季达", "source": "@source/47b56d77960e6319", "status": "approved", "record_sha256": "88d97802ee496d1ad0a3af6febf30bdcba4920d09ea3b67e32910a29db8ee7c9", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-69", "zh": "非斯", "source": "@source/d8735c496e39c8c6", "status": "approved", "record_sha256": "588f38585a4aa4d2ec38014b19389afaf5309c58c12fed674c1ecded863d897c", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EM6-SRC-22", "x": 202.0, "y": 23.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-30", "x": 156.0, "y": 123.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-43", "x": 118.0, "y": 298.0, "font_size": 14, "font_style": "regular"},
+    {"id": "EM6-SRC-48", "x": 36.0, "y": 351.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-49", "x": 205.0, "y": 352.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-57", "x": 72.0, "y": 446.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-67", "x": 205.0, "y": 570.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-68", "x": 196.0, "y": 627.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-69", "x": 49.0, "y": 662.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EM6-SRC-22-NATIVE", "feature_id": "EM6-SRC-22", "kind": "circle", "original_bbox": [225, 11, 234, 20], "x": 229.5, "y": 15.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-30-NATIVE", "feature_id": "EM6-SRC-30", "kind": "circle", "original_bbox": [118, 111, 127, 120], "x": 122.5, "y": 115.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-43-NATIVE", "feature_id": "EM6-SRC-43", "kind": "circle", "original_bbox": [83, 285, 92, 294], "x": 87.5, "y": 289.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-49-NATIVE", "feature_id": "EM6-SRC-49", "kind": "circle", "original_bbox": [234, 341, 243, 350], "x": 238.5, "y": 345.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-57-NATIVE", "feature_id": "EM6-SRC-57", "kind": "circle", "original_bbox": [34, 434, 43, 443], "x": 38.5, "y": 438.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-67-NATIVE", "feature_id": "EM6-SRC-67", "kind": "circle", "original_bbox": [222, 558, 231, 567], "x": 226.5, "y": 562.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-68-NATIVE", "feature_id": "EM6-SRC-68", "kind": "circle", "original_bbox": [164, 615, 173, 624], "x": 168.5, "y": 619.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-69-NATIVE", "feature_id": "EM6-SRC-69", "kind": "circle", "original_bbox": [23, 650, 32, 659], "x": 27.5, "y": 654.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "EM25-SH-09", "owner_region": "EU-Med25-Column32-z6-32-22", "feature_id": "EM6-SRC-36", "kind": "admin0", "original": "ANDORRA", "original_bbox": [254, 145, 402, 169], "source_url": "@source/e61be11f36e01971", "review_notes": "@note/shared_sources"},
+    {"id": "EM25-SH-16", "owner_region": "EU-Med25-Column30-z6-30-23", "feature_id": "EM6-SRC-59", "kind": "city", "original": "Seville", "original_bbox": [-21, 462, 19, 482], "source_url": "@source/68e8a968a478da58", "review_notes": "@note/shared_sources"},
+    {"id": "EM25-SH-17", "owner_region": "EX23-Morocco-z6-30-25", "feature_id": "EX23-Morocco-z6-30-25-00-GIBRALTAR", "kind": "admin0", "original": "GIBRALTAR", "original_bbox": [-73, 523, 98, 547], "source_url": "@source/b532926e621d97a6", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

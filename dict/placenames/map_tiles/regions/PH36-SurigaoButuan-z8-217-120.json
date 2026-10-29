@@ -1,0 +1,39 @@
+{
+  "id": "PH36-SurigaoButuan-z8-217-120",
+  "z": 8,
+  "x": 217,
+  "y": 120,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "8/217/120.png",
+    "8/217/121.png"
+  ],
+  "context_tiles": [
+    "8/216/119.png",
+    "8/217/119.png",
+    "8/216/120.png",
+    "8/216/121.png"
+  ],
+  "features": [
+    {"id": "PH36-001", "kind": "city", "original": "Surigao City", "original_bbox": [57, 253, 108, 294], "source_url": "@source/fbed7b8c6c889e5b"},
+    {"id": "PH36-002", "kind": "city", "original": "Butuan", "original_bbox": [65, 408, 113, 429], "source_url": "@source/fbed7b8c6c889e5b"}
+  ],
+  "translations": [
+    {"id": "PH36-001", "zh": "苏里高", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "7d54d59623e095c114b9050b14afc6c390e130efe344c4667597b183c2f76fc0", "review_notes": "@note/translations"},
+    {"id": "PH36-002", "zh": "武端", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "f66097a80762f59ae2bc22c134659b5fbcd0d42b6a3a8fa78d0cf2e4774b28c0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PH36-001", "x": 89, "y": 273, "font_size": 12, "font_style": "regular"},
+    {"id": "PH36-002", "x": 96, "y": 421, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "PH36-001-circle", "feature_id": "PH36-001", "kind": "circle", "x": 61.5, "y": 257.5, "size": 9, "outline_width": 1, "original_bbox": [57, 253, 66, 262], "source_url": "@source/fbed7b8c6c889e5b", "review_notes": "@note/symbols"},
+    {"id": "PH36-002-circle", "feature_id": "PH36-002", "kind": "circle", "x": 69.5, "y": 412.5, "size": 9, "outline_width": 1, "original_bbox": [65, 408, 74, 417], "source_url": "@source/fbed7b8c6c889e5b", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "PH36-S-001", "owner_region": "REC-TaclobanNorth-z8-216-119", "feature_id": "REC-011", "kind": "city", "original": "Tacloban", "original_bbox": [-32, -17, 26, 4], "source_url": "@source/3ec267c6327f95ce", "review_notes": "@note/shared_sources"},
+    {"id": "PH36-S-002", "owner_region": "PH36-WestMindanao-z8-216-121", "feature_id": "PH36-003", "kind": "city", "original": "Gingoog", "original_bbox": [-14, 432, 40, 457], "source_url": "@source/01016b7df094957f", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

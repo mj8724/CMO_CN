@@ -1,0 +1,33 @@
+{
+  "id": "WGN-GazaSouth-z10-609-418",
+  "z": 10,
+  "x": 609,
+  "y": 418,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/609/418.png"
+  ],
+  "context_tiles": [
+    "10/608/418.png",
+    "10/609/417.png"
+  ],
+  "features": [
+    {"id": "WGN-003", "kind": "city", "original": "Khan Yunis", "original_bbox": [128, -12, 165, 26], "source_url": "@source/d8b9d1ad7b018d84"},
+    {"id": "WGN-006", "kind": "city", "original": "Rafah", "original_bbox": [94, 58, 132, 76], "source_url": "@source/912347c642f0ea5e"},
+    {"id": "WGN-007", "kind": "city", "original": "Sheikh Zuwayid", "original_bbox": [-18, 99, 32, 137], "source_url": "@source/912347c642f0ea5e"}
+  ],
+  "translations": [
+    {"id": "WGN-003", "zh": "汗尤尼斯", "source": "@source/50017738dd911d20", "status": "approved", "record_sha256": "52e7db7e81c4e8d85d265b67b70290cdece9a9b61cbadf419bdc07781bd7b554", "review_notes": "@note/translations"},
+    {"id": "WGN-006", "zh": "拉法", "source": "@source/6ab21fe7f513a8dc", "status": "approved", "record_sha256": "4d6894fecafdd956e0d1941d2c88f7c70c1ee9aa162b873b4dc67df6b2d4180b", "review_notes": "@note/translations"},
+    {"id": "WGN-007", "zh": "谢赫祖韦德", "source": "@source/2f943c5a03c5b2f4", "status": "approved", "record_sha256": "0b208d80a3af4c94625e50aada6ede0fbecb07e7cbfa88f50e94970d15adec99", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WGN-003", "x": 146.5, "y": 15.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WGN-006", "x": 113.0, "y": 67.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WGN-007", "x": 40.0, "y": 118.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

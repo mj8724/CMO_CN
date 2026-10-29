@@ -1,0 +1,29 @@
+{
+  "id": "UA20-BelarusEast-297-167",
+  "z": 9,
+  "x": 297,
+  "y": 167,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/297/167.png"
+  ],
+  "context_tiles": [
+    "9/296/167.png"
+  ],
+  "features": [
+    {"id": "UA20-N012", "kind": "city", "original": "Парычы", "original_bbox": [193, 56, 239, 75], "source_url": "@source/d08fc915cd0b2efe"},
+    {"id": "UA20-N029", "kind": "city", "original": "Акцябрскі", "original_bbox": [-10, 151, 47, 171], "source_url": "@source/d08fc915cd0b2efe"}
+  ],
+  "translations": [
+    {"id": "UA20-N012", "zh": "帕雷奇", "status": "approved", "source": "@source/d08fc915cd0b2efe", "record_sha256": "204caf68b619cdd51fb7ac0890462acdfac960773f9595937aac131accb02991", "review_notes": "@note/translations"},
+    {"id": "UA20-N029", "zh": "阿克齐亚布尔斯基", "status": "approved", "source": "@source/d08fc915cd0b2efe", "record_sha256": "8bdfc80f92d5cb4dbecd150a5416637c4df208c5a69a1950ac53714ba11ca55e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UA20-N012", "x": 216.0, "y": 65.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N029", "x": 54.0, "y": 161.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

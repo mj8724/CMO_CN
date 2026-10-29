@@ -1,0 +1,24 @@
+{
+  "id": "LZ12-Lincoln-z6-22-3",
+  "z": 6,
+  "x": 22,
+  "y": 3,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/22/3.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "LZ12-Lincoln-z6-22-3-LincolnSea", "kind": "marine", "original": "Lincoln Sea", "original_bbox": [29, 142, 139, 159], "source_url": "@source/14e61ffc9fc08643", "source_printed_lines": ["Lincoln Sea"]}
+  ],
+  "translations": [
+    {"id": "LZ12-Lincoln-z6-22-3-LincolnSea", "zh": "林肯海", "status": "approved", "source": "@source/9bfba455a9852e96", "record_sha256": "883bb84c883dc2cb7dbc310b33f0a1633fb4299a8e4ead8d276b602b328360d9", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LZ12-Lincoln-z6-22-3-LincolnSea", "x": 84.0, "y": 150.5, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

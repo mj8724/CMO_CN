@@ -1,0 +1,27 @@
+{
+  "id": "MedZ9-Closed-263-199",
+  "z": 9,
+  "x": 263,
+  "y": 199,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/263/199.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "GZ9-01-00", "kind": "city", "original": "Bejaia", "original_bbox": [32, 177, 72, 199], "source_url": "@source/dab841fc243d1d05"},
+    {"id": "GZ9-01-01", "kind": "city", "original": "Ziama Mansouriah", "original_bbox": [171, 205, 236, 239], "source_url": "@source/dab841fc243d1d05"}
+  ],
+  "translations": [
+    {"id": "GZ9-01-00", "zh": "贝贾亚", "source": "@source/b8fe173568a01e0d", "status": "approved", "record_sha256": "bfca29829059027f04c53716cd26424ff7a46efa66c76150eca9a5f092423897", "review_notes": "@note/translations"},
+    {"id": "GZ9-01-01", "zh": "齐亚马曼苏里亚", "source": "@source/41b5285ba42ca8b6", "status": "approved", "record_sha256": "de37baca95b1f61b4d1857e08ca0c1ca6866334c8dc2809de207c0f58800cdfe", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-01-00", "x": 52.0, "y": 188.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-01-01", "x": 203.5, "y": 222.0, "font_size": 12, "font_style": "regular", "lines": ["齐亚马", "曼苏里亚"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

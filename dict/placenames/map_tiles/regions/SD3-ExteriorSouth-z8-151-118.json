@@ -1,0 +1,38 @@
+{
+  "id": "SD3-ExteriorSouth-z8-151-118",
+  "z": 8,
+  "x": 151,
+  "y": 118,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "SD3-002-Kosti", "kind": "city", "original": "Kosti", "original_bbox": [55, 140, 92, 161], "source_url": "@source/18227a471b5afa31"}
+  ],
+  "translations": [
+    {"id": "SD3-002-Kosti", "zh": "科斯提", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "419d415fd60f594220ea89aa2219ffafb437909640eefac05ef81ca8fe591573", "review_notes": "Different actual TARGET FINAL by /root/fujian_target_author. Personally viewed all four complete original words, both complete new Chinese captions, all four complete source raw9frames and target circle9/outline1 frames, both new whole atlases, and independently rebuilt RAM joins for old Wad Madani/Sennar Chinese plus first shared circles and the Ed Dueim north/south internal alias. No missing glyphs, target clipping or collisions. All four target circles have positive73, retain all69 observed native source support pixels and the exact raster midpoint. Raw frames are unmasked composites: Kosti/Sennar each alpha81 includes exact1111 background10/9, foreground71/72 and nearby glyphs. Full old56 objects including reviews, encoded/count/RGBA/whole, all953 and original WWP4608 float32 remain exact. Wad stored diacritic and Sennar original URL are preserved. Only the exact selected RGBA1111 background is recognized; source bytes are untouched. Root2908 named private model accepted. This private TARGET signature does not select a cumulative Root21 document or grant formal/schedule READY."}
+  ],
+  "symbols": [
+    {"id": "SD3-C-Kosti", "kind": "circle", "original_bbox": [55, 140, 64, 149], "x": 59.5, "y": 144.5, "size": 9, "outline_width": 1, "feature_id": "SD3-002-Kosti", "review_notes": "PROPOSED Root private display model only: complete measured original9frame/midpoint unchanged; target9/outline1 requires Root selection and different actual TARGET review."},
+    {"id": "SD3-C-Sennar", "kind": "circle", "original_bbox": [226, 67, 235, 76], "x": 230.5, "y": 71.5, "size": 9, "outline_width": 1, "shared_source_id": "SD3-A-Sennar", "review_notes": "PROPOSED Root private display model only: complete measured original9frame/midpoint unchanged; target9/outline1 requires Root selection and different actual TARGET review."}
+  ],
+  "shared_sources": [
+    {"id": "SD3-A-Sennar", "owner_region": "RS-RedSea-z8-top", "feature_id": "RS8-031", "kind": "city", "original": "Sennar", "original_bbox": [226, 67, 273, 88], "source_url": "@source/25f622e5e1c1db92", "review_notes": "PROPOSED complete exact old normal alias. Old owner/feature/CN/layout/review unchanged; new full native rendered only by this borrower after distinct Root model selection and actual TARGET review."},
+    {"id": "SD3-A-EdDueim", "owner_region": "SD3-ExteriorNorth-z8-150-117", "feature_id": "SD3-001-EdDueim", "kind": "city", "original": "Ed Dueim", "source_url": "@source/80750db7e63eb05f", "original_bbox": [-11, -18, 34, 20], "review_notes": "PROPOSED complete same EdDueim original instance across L-shaped sourcecore; sole new normal and sole circle remain north, south borrows only the complete word identity and draws no duplicate native."}
+  ],
+  "source_backgrounds": [
+    {"x": 151, "y": 118, "sha256": "6b72a4211dcfac3bd318cba19b700d94a759c2d2e5cb4b490b5fe6286989dfea", "rgba": [1, 1, 1, 1], "source_url": "@source/18227a471b5afa31", "review_notes": "PROPOSED exact verified source_backgrounds record only: all64148 exactRGBA1111 flat pixels separately audited; no alpha threshold, no source reencoding, no glyph/native absorbed. Root selection and actual TARGET source ledger required."}
+  ],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "8/151/118.png"
+  ],
+  "context_tiles": [
+    "8/150/117.png",
+    "8/150/118.png",
+    "8/151/117.png",
+    "8/152/118.png"
+  ],
+  "layouts": [
+    {"id": "SD3-002-Kosti", "x": 86.0, "y": 144.5, "font_size": 12, "font_style": "regular"}
+  ]
+}

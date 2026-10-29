@@ -1,0 +1,35 @@
+{
+  "id": "CE19-France-z7-64-45",
+  "z": 7,
+  "x": 64,
+  "y": 45,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/64/45.png",
+    "7/65/45.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "CE7-SRC-37", "kind": "city", "original": "Limoges", "original_bbox": [111, 155, 160, 177], "source_url": "@source/5e0611385965d7ce"},
+    {"id": "CE7-SRC-39", "kind": "city", "original": "Lyon", "original_bbox": [435, 165, 468, 186], "source_url": "@source/beb3876996478f3a"},
+    {"id": "CE7-SRC-44", "kind": "city", "original": "Saint-Étienne", "original_bbox": [395, 206, 440, 241], "source_url": "@source/beb3876996478f3a"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-37", "zh": "利摩日", "source": "@source/0768a7fe96bf2e74", "status": "approved", "record_sha256": "e6e6b90ae0f06230384a7f0741e56b31a3c12977c96a2c0d3c489088fd9d2167", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-39", "zh": "里昂", "source": "@source/b41c0cff8ca399e8", "status": "approved", "record_sha256": "8d992da1d2ae3261fbc34f9b8dd21b743e8b6de62f3396647e1bd7f6110cf073", "review_notes": "@note/translations"},
+    {"id": "CE7-SRC-44", "zh": "圣艾蒂安", "source": "@source/8f813932ec2ea89b", "status": "approved", "record_sha256": "ab53b5886607ad149eb11c9c8d8feb566b413545aef98d24ed4807b492d8dca4", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-37", "x": 143.0, "y": 167.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-39", "x": 461.0, "y": 176.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CE7-SRC-44", "x": 433.0, "y": 218.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-37-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-37", "original_bbox": [111, 155, 120, 164], "x": 115.5, "y": 159.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-39-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-39", "original_bbox": [435, 165, 444, 174], "x": 439.5, "y": 169.5, "size": 9, "outline_width": 1},
+    {"id": "CE7-SRC-44-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-44", "original_bbox": [395, 206, 404, 215], "x": 399.5, "y": 210.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

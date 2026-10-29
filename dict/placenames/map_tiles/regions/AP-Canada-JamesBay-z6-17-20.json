@@ -1,0 +1,52 @@
+{
+  "id": "AP-Canada-JamesBay-z6-17-20",
+  "z": 6,
+  "x": 17,
+  "y": 20,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "6/17/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 2075},
+    {"path": "6/18/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 919}
+  ],
+  "context_tiles": [
+    {"path": "6/16/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 760},
+    {"path": "6/17/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/18/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 637},
+    {"path": "6/19/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/20/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 859},
+    {"path": "6/16/20.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/19/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 410},
+    {"path": "6/20/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 1382},
+    {"path": "6/16/21.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 769},
+    {"path": "6/17/21.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 699},
+    {"path": "6/18/21.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/19/21.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 313},
+    {"path": "6/20/21.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/16/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 891},
+    {"path": "6/17/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 2421},
+    {"path": "6/18/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 836},
+    {"path": "6/19/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 2912},
+    {"path": "6/20/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 4632}
+  ],
+  "features": [
+    {"id": "AP-CA6-000", "kind": "city", "original": "Kuujjuarapik", "original_bbox": [297, 35, 366, 57], "source_url": "@source/d5b2d66983d5c26c"},
+    {"id": "AP-CA6-001", "kind": "marine", "original": "James Bay", "original_bbox": [127, 182, 225, 202], "source_url": "@source/8c57abcda79aff50"},
+    {"id": "AP-CA6-002", "kind": "city", "original": "Attawapiskat", "original_bbox": [84, 218, 155, 240], "source_url": "@source/8c57abcda79aff50"}
+  ],
+  "translations": [
+    {"id": "AP-CA6-000", "zh": "库居阿尔阿皮克", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "7000950202fe3dc47963db0fc83b2e758cbef9c1db3fad906aad65645eb89461", "review_notes": "@note/translations"},
+    {"id": "AP-CA6-001", "zh": "詹姆斯湾", "status": "approved", "source": "@source/773d265c0a555aee", "record_sha256": "12b6943581178bada3af70ea95dbc2c69e06b8855b5cc5e8dba8e44ea676b054", "review_notes": "@note/translations"},
+    {"id": "AP-CA6-002", "zh": "阿塔瓦皮斯基特", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "f976f6b0bb8fb44c18752cc04eaabf4102540c188722d679a7e253a3bc12e503", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-CA6-000", "x": 348.5, "y": 48.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-CA6-001", "x": 176.0, "y": 192.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-CA6-002", "x": 135.5, "y": 231.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-CA6-000-circle", "feature_id": "AP-CA6-000", "x": 301.5, "y": 39.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [297, 35, 306, 44]},
+    {"id": "AP-CA6-002-circle", "feature_id": "AP-CA6-002", "x": 88.5, "y": 222.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [84, 218, 93, 227]}
+  ],
+  "shared_sources": []
+}

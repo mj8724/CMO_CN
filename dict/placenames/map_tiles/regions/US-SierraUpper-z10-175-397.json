@@ -1,0 +1,41 @@
+{
+  "id": "US-SierraUpper-z10-175-397",
+  "z": 10,
+  "x": 175,
+  "y": 397,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "10/175/397.png",
+    "10/175/398.png"
+  ],
+  "context_tiles": [
+    "10/174/398.png",
+    "10/174/399.png",
+    "10/174/400.png",
+    "10/175/399.png",
+    "10/175/400.png"
+  ],
+  "features": [
+    {"id": "US10-000", "kind": "city", "original": "Bishop", "original_bbox": [40, 62, 80, 81], "source_url": "@source/1f352660b84bb109"},
+    {"id": "US10-001", "kind": "peak", "original": "Split Mountain", "original_bbox": [-45, 345, 39, 377], "source_url": "@source/51a4523af1640ea6", "original_elevation_m": "4269"},
+    {"id": "US10-002", "kind": "peak", "original": "Mount Pinchot", "original_bbox": [-31, 413, 53, 444], "source_url": "@source/51a4523af1640ea6", "original_elevation_m": "4107"}
+  ],
+  "translations": [
+    {"id": "US10-000", "zh": "毕晓普", "status": "approved", "source": "@source/1f352660b84bb109", "record_sha256": "2d72ddde2b0c40b78ad791c9ba8e307c8f5f12b6dc23ae45ea4d963336a34428", "review_notes": "@note/translations"},
+    {"id": "US10-001", "zh": "斯普利特山", "status": "approved", "source": "@source/51a4523af1640ea6", "record_sha256": "1cc4ce00f0c28c7c2c010f0dff5275d1c3b466c762ebc889343a61530fcf2a85", "review_notes": "@note/translations"},
+    {"id": "US10-002", "zh": "平肖山", "status": "approved", "source": "@source/51a4523af1640ea6", "record_sha256": "1a91765c6146264a901b00506a37efc0ba2b3ed30215cf53f0fcd5776ffe51a3", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "US10-000", "x": 60.0, "y": 71.5, "font_size": 12, "font_style": "regular"},
+    {"id": "US10-001", "x": 33.0, "y": 361.0, "font_size": 12, "font_style": "regular"},
+    {"id": "US10-002", "x": 23.0, "y": 428.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "US10-001-triangle", "feature_id": "US10-001", "kind": "triangle", "x": 39.0, "y": 382.5, "size": 8, "outline_width": 1, "original_bbox": [34, 378, 44, 387]},
+    {"id": "US10-002-triangle", "feature_id": "US10-002", "kind": "triangle", "x": 52.0, "y": 449.5, "size": 8, "outline_width": 1, "original_bbox": [47, 445, 57, 454]}
+  ],
+  "shared_sources": [
+    {"id": "shared-US10-003", "owner_region": "US-SierraLower-z10-174-399", "feature_id": "US10-003", "kind": "peak", "original": "Mount Baxter", "source_url": "@source/34d7e67fc4625212", "original_bbox": [6, 491, 85, 522], "review_notes": "@note/shared_sources"}
+  ]
+}

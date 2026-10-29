@@ -1,0 +1,81 @@
+{
+  "id": "JP7-Column114-z7-114-45",
+  "z": 7,
+  "x": 114,
+  "y": 45,
+  "width_tiles": 1,
+  "height_tiles": 6,
+  "original_tiles": [
+    "7/114/45.png",
+    "7/114/46.png",
+    "7/114/47.png",
+    "7/114/48.png",
+    "7/114/49.png",
+    "7/114/50.png"
+  ],
+  "context_tiles": [
+    "7/113/48.png",
+    "7/113/49.png",
+    "7/113/50.png",
+    "7/115/47.png"
+  ],
+  "features": [
+    {"id": "JP7-YUZHNO-SAKHALINSK", "kind": "city", "original": "Yuzhno-Sakhalinsk", "original_bbox": [187, 6, 247, 41], "source_url": "@source/90ef5fadbb06c01a"},
+    {"id": "JP7-ASAHIKAWA", "kind": "city", "original": "Asahikawa", "original_bbox": [154, 419, 213, 439], "source_url": "@source/320015d47552109a"},
+    {"id": "JP7-SAPPORO", "kind": "city", "original": "Sapporo", "original_bbox": [62, 508, 116, 532], "source_url": "@source/320015d47552109a"},
+    {"id": "JP7-OBIHIRO", "kind": "city", "original": "Obihiro", "original_bbox": [230, 525, 274, 545], "source_url": "@source/d2d9cd388841cc2d"},
+    {"id": "JP7-TOMAKOMAI", "kind": "city", "original": "Tomakomai", "original_bbox": [85, 562, 148, 581], "source_url": "@source/d2d9cd388841cc2d"},
+    {"id": "JP7-MURORAN", "kind": "city", "original": "Muroran", "original_bbox": [27, 601, 76, 620], "source_url": "@source/d2d9cd388841cc2d"},
+    {"id": "JP7-HAKODATE", "kind": "city", "original": "Hakodate", "original_bbox": [5, 668, 59, 687], "source_url": "@source/d2d9cd388841cc2d"},
+    {"id": "JP7-AOMORI", "kind": "city", "original": "Aomori", "original_bbox": [7, 782, 50, 802], "source_url": "@source/eac5614143759a13"},
+    {"id": "JP7-HACHINOHE", "kind": "city", "original": "Hachinohe", "original_bbox": [74, 820, 133, 839], "source_url": "@source/eac5614143759a13"},
+    {"id": "JP7-MORIOKA", "kind": "city", "original": "Morioka", "original_bbox": [44, 916, 92, 935], "source_url": "@source/eac5614143759a13"},
+    {"id": "JP7-IWAKI", "kind": "city", "original": "Iwaki", "original_bbox": [19, 1224, 54, 1243], "source_url": "@source/3dbf97fa95b4ddb4"}
+  ],
+  "translations": [
+    {"id": "JP7-YUZHNO-SAKHALINSK", "zh": "南萨哈林斯克", "source": "@source/c970a69dc76f8a36", "status": "approved", "record_sha256": "2949f79ad34e3d8d4ec5435b8b29a0794ca2499b9aeae02a3cb444cc8af083e8", "review_notes": "@note/translations"},
+    {"id": "JP7-ASAHIKAWA", "zh": "旭川", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "3b69ee230d3f129d6c2728113e1a8c009f0c6d420fd006a23262ff7f67866c84", "review_notes": "@note/translations"},
+    {"id": "JP7-SAPPORO", "zh": "札幌", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "2544c6f4d2471b77bd0be825a1e3f54c051ff8bfca053a93774a37bb018b2ed9", "review_notes": "@note/translations"},
+    {"id": "JP7-OBIHIRO", "zh": "带广", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "ef0ea1327128f0ac39c215a260916c196ba14a9872233961148fe17260d21f97", "review_notes": "@note/translations"},
+    {"id": "JP7-TOMAKOMAI", "zh": "苫小牧", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "04d629130bc7396c9de4177d130ec87eba7510354872016a6d65c46212a7acf0", "review_notes": "@note/translations"},
+    {"id": "JP7-MURORAN", "zh": "室兰", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "68eef7107a55b57b78b5857523460195791990349845ebba4770412ba89adbf0", "review_notes": "@note/translations"},
+    {"id": "JP7-HAKODATE", "zh": "函馆", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "1a1d6dc5fb0f2ea5f36a741d5dbf723273ca2243603c778d2baf5116765667c4", "review_notes": "@note/translations"},
+    {"id": "JP7-AOMORI", "zh": "青森", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "cf190a0af8b796cb1b2c722feccd3cfab7f2d0f125551787714094beb445d637", "review_notes": "@note/translations"},
+    {"id": "JP7-HACHINOHE", "zh": "八户", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "daefea9478ca3a32640efec1c77501364d300566905ebe0d3dec7b6a78d46b3a", "review_notes": "@note/translations"},
+    {"id": "JP7-MORIOKA", "zh": "盛冈", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "6da9e80b986d72235a97addd0a8343a5b139d5d4731fbcada50023721239e3fb", "review_notes": "@note/translations"},
+    {"id": "JP7-IWAKI", "zh": "磐城", "source": "@source/2d89f511879bda95", "status": "approved", "record_sha256": "52564c225be67d7ba725f6774e8be297d3ba812e32ed96d8e1910193235fc3e0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "JP7-YUZHNO-SAKHALINSK", "x": 225.0, "y": 26.0, "font_size": 12, "font_style": "regular", "lines": ["南萨哈林", "斯克"]},
+    {"id": "JP7-ASAHIKAWA", "x": 180.0, "y": 431.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-SAPPORO", "x": 90.0, "y": 521.0, "font_size": 14, "font_style": "regular"},
+    {"id": "JP7-OBIHIRO", "x": 213.0, "y": 537.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-TOMAKOMAI", "x": 117.0, "y": 574.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-MURORAN", "x": 53.0, "y": 612.5, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-HAKODATE", "x": 31.0, "y": 680.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-AOMORI", "x": 33.0, "y": 794.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-HACHINOHE", "x": 100.0, "y": 832.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-MORIOKA", "x": 70.0, "y": 928.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-IWAKI", "x": 45.0, "y": 1236.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "JP7-YUZHNO-SAKHALINSK-NATIVE", "kind": "circle", "feature_id": "JP7-YUZHNO-SAKHALINSK", "original_bbox": [187, 6, 196, 15], "x": 191.5, "y": 10.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-ASAHIKAWA-NATIVE", "kind": "circle", "feature_id": "JP7-ASAHIKAWA", "original_bbox": [154, 419, 163, 428], "x": 158.5, "y": 423.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-SAPPORO-NATIVE", "kind": "circle", "feature_id": "JP7-SAPPORO", "original_bbox": [62, 508, 71, 517], "x": 66.5, "y": 512.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-OBIHIRO-NATIVE", "kind": "circle", "feature_id": "JP7-OBIHIRO", "original_bbox": [230, 525, 239, 534], "x": 234.5, "y": 529.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-TOMAKOMAI-NATIVE", "kind": "circle", "feature_id": "JP7-TOMAKOMAI", "original_bbox": [85, 562, 94, 571], "x": 89.5, "y": 566.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-MURORAN-NATIVE", "kind": "circle", "feature_id": "JP7-MURORAN", "original_bbox": [27, 601, 36, 610], "x": 31.5, "y": 605.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-HAKODATE-NATIVE", "kind": "circle", "feature_id": "JP7-HAKODATE", "original_bbox": [5, 668, 14, 677], "x": 9.5, "y": 672.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-AOMORI-NATIVE", "kind": "circle", "feature_id": "JP7-AOMORI", "original_bbox": [7, 782, 16, 791], "x": 11.5, "y": 786.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-HACHINOHE-NATIVE", "kind": "circle", "feature_id": "JP7-HACHINOHE", "original_bbox": [74, 820, 83, 829], "x": 78.5, "y": 824.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-MORIOKA-NATIVE", "kind": "circle", "feature_id": "JP7-MORIOKA", "original_bbox": [44, 916, 53, 925], "x": 48.5, "y": 920.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-IWAKI-NATIVE", "kind": "circle", "feature_id": "JP7-IWAKI", "original_bbox": [19, 1224, 28, 1233], "x": 23.5, "y": 1228.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "JP7-SH-01-HIROSAKI", "owner_region": "JP7-Column113-z7-113-48", "feature_id": "JP7-HIROSAKI", "kind": "city", "original": "Hirosaki", "original_bbox": [-19, 809, 28, 828], "source_url": "@source/f93fd3d06911b73d", "review_notes": "@note/shared_sources"},
+    {"id": "JP7-SH-02-YAMAGATA", "owner_region": "JP7-Column113-z7-113-48", "feature_id": "JP7-YAMAGATA", "kind": "city", "original": "Yamagata", "original_bbox": [-31, 1086, 25, 1108], "source_url": "@source/409205e2abe6a4df", "review_notes": "@note/shared_sources"},
+    {"id": "JP7-SH-03-FUKUSHIMA", "owner_region": "JP7-Column113-z7-113-48", "feature_id": "JP7-FUKUSHIMA", "kind": "city", "original": "Fukushima", "original_bbox": [-18, 1143, 42, 1162], "source_url": "@source/409205e2abe6a4df", "review_notes": "@note/shared_sources"},
+    {"id": "JP7-SH-04-MITO", "owner_region": "JP7-Column113-z7-113-48", "feature_id": "JP7-MITO", "kind": "city", "original": "Mito", "original_bbox": [-18, 1302, 13, 1321], "source_url": "@source/a7f6b6a5b28bb2d3", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

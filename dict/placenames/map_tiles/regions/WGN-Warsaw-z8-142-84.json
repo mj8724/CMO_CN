@@ -1,0 +1,27 @@
+{
+  "id": "WGN-Warsaw-z8-142-84",
+  "z": 8,
+  "x": 142,
+  "y": 84,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/142/84.png",
+    "8/143/84.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "WGN-000", "kind": "city", "original": "Warsaw", "original_bbox": [236, 70, 297, 94], "source_url": "@source/d7f7639371b4975b"}
+  ],
+  "translations": [
+    {"id": "WGN-000", "zh": "华沙", "source": "@source/8a99be2a8b2c2a86", "status": "approved", "record_sha256": "2d310724d963c272cdf15a3cbde530fe0032379f7ae1ea357a99d4f3e83fac16", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WGN-000", "x": 266.5, "y": 82.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "WGN-Warsaw-native", "feature_id": "WGN-000", "kind": "circle", "original_bbox": [236, 70, 245, 79], "x": 240.5, "y": 74.5, "size": 9, "outline_width": 1, "source_url": "@source/d7f7639371b4975b", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

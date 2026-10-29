@@ -1,0 +1,55 @@
+{
+  "id": "NEU-Baltic-z6-36-18",
+  "z": 6,
+  "x": 36,
+  "y": 18,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/36/18.png",
+    "6/36/19.png"
+  ],
+  "context_tiles": [
+    "6/35/18.png",
+    "6/35/19.png",
+    "6/35/20.png",
+    "6/36/20.png",
+    "6/37/18.png",
+    "6/37/19.png",
+    "6/37/20.png",
+    "6/38/18.png",
+    "6/38/19.png",
+    "6/38/20.png",
+    "6/39/18.png",
+    "6/39/19.png",
+    "6/39/20.png"
+  ],
+  "features": [
+    {"id": "NEU4-N001", "kind": "admin0", "original": "ESTONIA", "original_bbox": [64, 246, 195, 270], "source_url": "@source/10f3fd574cab8b6d"},
+    {"id": "NEU4-N002", "kind": "admin0", "original": "LATVIA", "original_bbox": [49, 410, 158, 433], "source_url": "@source/09035eba2ef25017"},
+    {"id": "NEU4-N005", "kind": "city", "original": "Tampere", "original_bbox": [53, 6, 103, 28], "source_url": "@source/10f3fd574cab8b6d"},
+    {"id": "NEU4-N006", "kind": "city", "original": "Helsinki", "original_bbox": [107, 130, 157, 151], "source_url": "@source/10f3fd574cab8b6d"},
+    {"id": "NEU4-N007", "kind": "city", "original": "Tallinn", "original_bbox": [98, 196, 140, 216], "source_url": "@source/10f3fd574cab8b6d"}
+  ],
+  "translations": [
+    {"id": "NEU4-N001", "zh": "爱沙尼亚", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "4cfda8d6c91f47a0080f325a7809a09258f479eca410b6b3b183d9c700d1e01d", "review_notes": "@note/translations"},
+    {"id": "NEU4-N002", "zh": "拉脱维亚", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "b156d00cc964344fcfcb1635c695cf4d01b12be42f73d80724b4c3cb62023a5b", "review_notes": "@note/translations"},
+    {"id": "NEU4-N005", "zh": "坦佩雷", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "f1dea6b5883fd973943c4f9b1c2c4fe4f6ce7ba42b402dae9a9c29741bc23c66", "review_notes": "@note/translations"},
+    {"id": "NEU4-N006", "zh": "赫尔辛基", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "92f6a742ffb4962d54fc2bb39609295cc140aee0de141235335442ce79748753", "review_notes": "@note/translations"},
+    {"id": "NEU4-N007", "zh": "塔林", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "c4711156b01c8d32c9a1f23496a86a8b2fd541e10f514b881521abc739f48d57", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEU4-N001", "x": 129.5, "y": 258.0, "font_size": 18, "font_style": "regular"},
+    {"id": "NEU4-N002", "x": 103.5, "y": 421.5, "font_size": 18, "font_style": "regular"},
+    {"id": "NEU4-N005", "x": 85.0, "y": 17.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEU4-N006", "x": 145.0, "y": 140.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NEU4-N007", "x": 124.0, "y": 206.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NEU4-C003", "feature_id": "NEU4-N005", "kind": "circle", "original_bbox": [53, 6, 62, 15], "x": 57.5, "y": 10.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "NEU4-C004", "feature_id": "NEU4-N006", "kind": "circle", "original_bbox": [107, 130, 116, 139], "x": 111.5, "y": 134.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "NEU4-C005", "feature_id": "NEU4-N007", "kind": "circle", "original_bbox": [98, 196, 107, 205], "x": 102.5, "y": 200.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

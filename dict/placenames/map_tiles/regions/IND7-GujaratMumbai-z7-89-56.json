@@ -1,0 +1,61 @@
+{
+  "z": 7,
+  "x": 89,
+  "y": 56,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "id": "IND7-GujaratMumbai-z7-89-56",
+  "original_tiles": [
+    "7/89/56.png",
+    "7/89/57.png"
+  ],
+  "context_tiles": [
+    "7/87/55.png",
+    "7/87/56.png",
+    "7/87/57.png",
+    "7/88/55.png",
+    "7/88/56.png",
+    "7/88/57.png",
+    "7/89/55.png",
+    "7/90/55.png",
+    "7/90/56.png",
+    "7/90/57.png",
+    "7/91/55.png",
+    "7/91/56.png",
+    "7/91/57.png",
+    "7/92/55.png",
+    "7/92/56.png",
+    "7/90/58.png",
+    "7/91/58.png",
+    "7/92/57.png"
+  ],
+  "features": [
+    {"id": "IND7-N001", "kind": "city", "original": "Bhavnagar", "original_bbox": [162, 12, 221, 34], "source_url": "@source/061707ed334a960c"},
+    {"id": "IND7-N004", "kind": "city", "original": "Surat", "original_bbox": [225, 67, 264, 89], "source_url": "@source/061707ed334a960c"},
+    {"id": "IND7-N009", "kind": "city", "original": "Daman", "original_bbox": [225, 144, 267, 164], "source_url": "@source/061707ed334a960c"},
+    {"id": "IND7-N012", "kind": "city", "original": "Bhiwandi", "original_bbox": [245, 252, 299, 272], "source_url": "@source/061707ed334a960c"},
+    {"id": "IND7-N013", "kind": "city", "original": "Mumbai", "original_bbox": [229, 274, 294, 299], "source_url": "@source/0764c8409cd2e4f7"}
+  ],
+  "translations": [
+    {"id": "IND7-N001", "zh": "巴夫那加尔", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "a99ce3927f9b98e9a379bc6e536041ffb7ba62667591b95cd043e346d87d0ab6", "review_notes": "@note/translations"},
+    {"id": "IND7-N004", "zh": "苏拉特", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "62d46a73b93536476c5b7794438d78e3d29a86b67730346be3501a66d24e627e", "review_notes": "@note/translations"},
+    {"id": "IND7-N009", "zh": "达曼", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "08db0198fbdbb11620bf5de577ced2ab974fc7ebae769406c7e3411d39b89a8e", "review_notes": "@note/translations"},
+    {"id": "IND7-N012", "zh": "皮文迪", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "74d1b7c53f1f5390d9276710c7404601f5e1363e3d0e2dc0cef99db551916b28", "review_notes": "@note/translations"},
+    {"id": "IND7-N013", "zh": "孟买", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "57d4dff50c0b98db970e701647fea39024529a14ecdc5ad55c7ccbbd38cde249", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "IND7-N001", "x": 211.5, "y": 31.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N004", "x": 231.0, "y": 86.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N009", "x": 237.0, "y": 163.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N012", "x": 231.0, "y": 241.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N013", "x": 237.0, "y": 293.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "IND7-C001", "feature_id": "IND7-N001", "kind": "circle", "original_bbox": [162, 12, 171, 21], "x": 166.5, "y": 16.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C004", "feature_id": "IND7-N004", "kind": "circle", "original_bbox": [225, 67, 234, 76], "x": 229.5, "y": 71.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C009", "feature_id": "IND7-N009", "kind": "circle", "original_bbox": [225, 144, 234, 153], "x": 229.5, "y": 148.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C012", "feature_id": "IND7-N012", "kind": "circle", "original_bbox": [245, 252, 254, 261], "x": 249.5, "y": 256.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C013", "feature_id": "IND7-N013", "kind": "circle", "original_bbox": [229, 274, 238, 283], "x": 233.5, "y": 278.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": []
+}

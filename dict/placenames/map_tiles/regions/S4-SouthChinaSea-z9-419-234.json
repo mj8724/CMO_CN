@@ -1,0 +1,24 @@
+{
+  "id": "S4-SouthChinaSea-z9-419-234",
+  "z": 9,
+  "x": 419,
+  "y": 234,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/419/234.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "S4-005", "kind": "marine", "original": "South China Sea", "original_bbox": [82, 80, 204, 127], "source_url": "@source/18238b1f75dc26a5"}
+  ],
+  "translations": [
+    {"id": "S4-005", "zh": "南海", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "031d1535e82c43e89def3801bdf9bda414e83da1eb7eed672a102dcf195e4ef8", "review_notes": "Different SOURCE/CJK qualified: DIRECT_RAW_NE_AND_GN_CHINESE_SAME_NAMED_MARINE_ENTITY_PROJECT_USE. Actually read both complete source lines South/China Sea. Raw NE marine polygon row12 English and Chinese 南海 and GN H/SEA original name/南海 alias support this same named water body. GN country VN is a database record field, not supplier admin or a territorial conclusion. Existing canonical record is a separate runtime/wording cross-check, not the evidence used to read the source. Historical dictionary URL retained as wording context only; no new HTTP or fresh official-name proof. SOURCE evidence is the frozen mandatory contract/raw original fields. All Target/model/layout/actual support approval remains pending Root selection and different TARGET reviewer. Root27eed exact finite model. Author /root/remaining_secondary_research actually viewed all four whole targets, five complete original/CJK pairs and two complete native frame boards. All CJK glyph/allalpha/positiveRGBA pristine, no clip/collision, no text move. Both source nominal observed native midpoints unchanged, project circle9/1 actual73; original mixedraw71/72 intersects70 each, adjacent glyph-contact differences explicitly recorded; no pure69/vector or zero source pixel difference claim. Only SELF_PRIVATE_MODEL_ONLY technical acceptance; different TARGET /root/northwest_mexico_source and Root integration remain pending. Independent /root/northwest_mexico_source actual TARGET audit under Root27eed: complete selected Chinese/pristine glyph RGBA and whole shown; inherited SOURCE/CJK grade and identity retained; no supplier vector/official wording claim."}
+  ],
+  "layouts": [
+    {"id": "S4-005", "x": 143, "y": 104, "font_size": 16, "font_style": "regular", "lines": ["南海"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

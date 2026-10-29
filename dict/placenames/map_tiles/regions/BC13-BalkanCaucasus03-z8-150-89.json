@@ -1,0 +1,26 @@
+{
+  "id": "BC13-BalkanCaucasus03-z8-150-89",
+  "z": 8,
+  "x": 150,
+  "y": 89,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/150/89.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "BC13-F-006", "kind": "city", "original": "Voznesensk", "original_bbox": [68, 110, 132, 129], "source_url": "@source/ff24288314e33e83"}
+  ],
+  "translations": [
+    {"id": "BC13-F-006", "zh": "沃兹涅先斯克", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "9a57b561fbc1bcaf2cbb09a06dff138beffefac219da18b05353d8d5066ecfde", "review_notes": "Original NE own toponym/NAME_ZH lexical text; modern GN identity context is separate from supplier PNG and native anchor; original_NE_NAME_ZH_lexeme_not_claimed_official. Supplier original PNG is feature/symbol evidence separately. Project translations are nonofficial; contextual GN IDs are not a Chinese lexeme or supplier/vector ID. Height-only4007米 is numeric transcription, not a name. Different actual Med TARGET pending. AUTHOR SELF ACTUAL VISUAL/TECHNICAL REVIEW ONLY by /root/remaining_secondary_research. Personally viewed all6 full source/target whole boards, six pages covering all24 full original-word/Chinese-height pairs, three pages of all24 complete source/native frames, and all7 internal new-core joins. All23 Chinese names and single4007米 caption are complete; five named peaks have name-only zh and one automatically appended original numeric-height米 line. All6 original height strings4364/4182/5054/4007/4261/4116 are retained, and the unnamed4007m has no invented toponym. Actual positive text/native RGBA equals pristine complete selected patches without collision. 18 selected circles9/1 retain original Source9frames/nominalpoints, target73 positives each and69/69 Source-role support at displaydelta[0,0]. Six triangles10/1.5 under Root effective94f5 and Catalog6278 retain original Source10x9 frames/nominalpoints, target90 positives each and68/68 Source-role support, with actual display-envelope center delta[0,-0.5]. This is selected project display, not original mixedRGBA, an unmixed mask or recovered vector. Original outline1 support1644/1650 and exact4 candidate measurements are preserved history, never erased or renamed success. 18NE/1GN original Chinese lexeme and4 explicit nonofficial project wordings retain mandatory typed URL roles; Karaugom/Komito GN references are context only and four project translations use complete supplier PNG evidence. Old4 complete owners/373tiles and953/WWP are readonly protection only, with no alias, old runtime or old preview. This author SELF is only the private producer technical qualification; different actual Med TARGET, standard check and Root future formal selection remain pending. Different actual TARGET peer /root/remaining_med_source independently read all complete original/CJK/height/native pages under effective Root94f5. This peer once13/actual complete patches, support1650, encoded tiles, full6whole and7 internal joins are separately verified; Source rawframes/heights/CJK provenance unchanged."}
+  ],
+  "layouts": [
+    {"id": "BC13-F-006", "x": 119.0, "y": 114.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "BC13-N-006", "feature_id": "BC13-F-006", "kind": "circle", "original_bbox": [68, 110, 77, 119], "x": 72.5, "y": 114.5, "size": 9, "outline_width": 1, "source_url": "@source/ff24288314e33e83", "review_notes": "Root effective94f5/Catalog6278 private local display only. Original Source frame/midpoint/numeric strings unchanged. Circle9/1 delta0 or triangle10/1.5 displaydelta[0,-0.5]. Prior outline1 six-point shortfall and exact4 probe remain frozen history. Actual whole Source-role support and different Med TARGET acceptance are separate."}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,49 @@
+{
+  "id": "UA20-PolandSouth-287-173",
+  "z": 9,
+  "x": 287,
+  "y": 173,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/287/173.png"
+  ],
+  "context_tiles": [
+    "9/287/172.png",
+    "9/287/174.png",
+    "9/288/173.png"
+  ],
+  "features": [
+    {"id": "UA20-N150", "kind": "city", "original": "Nowa Sarzyna", "original_bbox": [177, -35, 221, 2], "source_url": "@source/5440a6c40f4a022e"},
+    {"id": "UA20-N151", "kind": "city", "original": "Leżajsk", "original_bbox": [206, 7, 248, 27], "source_url": "@source/06cc10516341f4ac"},
+    {"id": "UA20-N153", "kind": "city", "original": "Głogów Małopolski", "original_bbox": [30, 61, 90, 98], "source_url": "@source/06cc10516341f4ac"},
+    {"id": "UA20-N156", "kind": "city", "original": "Łańcut", "original_bbox": [139, 116, 179, 133], "source_url": "@source/06cc10516341f4ac"},
+    {"id": "UA20-N158", "kind": "city", "original": "Rzeszów", "original_bbox": [49, 133, 104, 152], "source_url": "@source/06cc10516341f4ac"},
+    {"id": "UA20-N162", "kind": "city", "original": "Błażowa", "original_bbox": [87, 221, 135, 237], "source_url": "@source/06cc10516341f4ac"},
+    {"id": "UA20-N163", "kind": "city", "original": "Dubiecko", "original_bbox": [191, 255, 243, 271], "source_url": "@source/d0e726f942663f73"}
+  ],
+  "translations": [
+    {"id": "UA20-N150", "zh": "新萨日纳", "status": "approved", "source": "@source/7dd7ee85eb91b0a2", "record_sha256": "e04454e998495380d8184e9781bb89ebed1a512c5328f009ce0caed12cf34bea", "review_notes": "@note/translations"},
+    {"id": "UA20-N151", "zh": "莱扎伊斯克", "status": "approved", "source": "@source/e77bba3227b96728", "record_sha256": "124a8670df544f5957456405c7f6ffee6f6d7ccfdb6e17d72d692889649e8214", "review_notes": "@note/translations"},
+    {"id": "UA20-N153", "zh": "小波兰地区格沃古夫", "status": "approved", "source": "@source/141d2a7b01eb1fa5", "record_sha256": "8a1a8e88b7064d492ced1a2824ed326b06325f510d158b524f2d92bac132ec74", "review_notes": "@note/translations"},
+    {"id": "UA20-N156", "zh": "万楚特", "status": "approved", "source": "@source/883c5cf4b08a5adb", "record_sha256": "9c91f1b62833fa3a41e70bcc54e52ca44893eecb3f062bac8edd815b1a092622", "review_notes": "@note/translations"},
+    {"id": "UA20-N158", "zh": "热舒夫", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "935895c614fb38e9c59eb56b30ef6a6ee0b11eee99d3bc0f569bbf88348e48b6", "review_notes": "@note/translations"},
+    {"id": "UA20-N162", "zh": "布瓦若瓦", "status": "approved", "source": "@source/2c4919d1493957a6", "record_sha256": "b1d744fd39a1052951b59e4f1ffde575097d824a38a2cbd0c198d976e1632a95", "review_notes": "@note/translations"},
+    {"id": "UA20-N163", "zh": "杜别茨科", "status": "approved", "source": "@source/d0e726f942663f73", "record_sha256": "bb3ededa0a0e8cb5bc804f753e0cdef33bdb8b7161ac8a124be298fda9047cc8", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UA20-N150", "x": 199.0, "y": 12.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N151", "x": 220.0, "y": 29.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N153", "x": 60.0, "y": 79.5, "font_size": 12, "font_style": "regular", "lines": ["小波兰地区", "格沃古夫"]},
+    {"id": "UA20-N156", "x": 159.0, "y": 124.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N158", "x": 76.5, "y": 142.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N162", "x": 111.0, "y": 229.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N163", "x": 217.0, "y": 244.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "UA20-SH157", "kind": "city", "original": "Przeworsk", "original_bbox": [225, 122, 283, 138], "source_url": "@source/06cc10516341f4ac", "owner_region": "UA-West-z9-288-168", "feature_id": "UAW9-119", "review_notes": "@note/shared_sources"},
+    {"id": "UA20-SH161", "kind": "city", "original": "Pruchnik", "original_bbox": [238, 209, 287, 226], "source_url": "@source/54060171c2185884", "owner_region": "UA-West-z9-288-168", "feature_id": "UAW9-132", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

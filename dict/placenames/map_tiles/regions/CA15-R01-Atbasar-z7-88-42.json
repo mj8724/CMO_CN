@@ -1,0 +1,76 @@
+{
+  "id": "CA15-R01-Atbasar-z7-88-42",
+  "z": 7,
+  "x": 88,
+  "y": 42,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/88/42.png"
+  ],
+  "context_tiles": [
+    "7/100/43.png",
+    "7/100/44.png",
+    "7/101/43.png",
+    "7/101/44.png",
+    "7/102/43.png",
+    "7/102/44.png",
+    "7/103/43.png",
+    "7/103/44.png",
+    "7/87/41.png",
+    "7/87/42.png",
+    "7/87/43.png",
+    "7/87/44.png",
+    "7/87/45.png",
+    "7/87/46.png",
+    "7/87/47.png",
+    "7/87/48.png",
+    "7/88/41.png",
+    "7/88/43.png",
+    "7/88/44.png",
+    "7/88/45.png",
+    "7/88/46.png",
+    "7/88/47.png",
+    "7/88/48.png",
+    "7/89/47.png",
+    "7/89/48.png",
+    "7/90/47.png",
+    "7/90/48.png",
+    "7/91/47.png",
+    "7/91/48.png",
+    "7/92/47.png",
+    "7/92/48.png",
+    "7/93/47.png",
+    "7/93/48.png",
+    "7/94/47.png",
+    "7/94/48.png",
+    "7/95/47.png",
+    "7/95/48.png",
+    "7/96/47.png",
+    "7/96/48.png",
+    "7/97/46.png",
+    "7/97/47.png",
+    "7/97/48.png",
+    "7/98/43.png",
+    "7/98/44.png",
+    "7/98/46.png",
+    "7/98/47.png",
+    "7/98/48.png",
+    "7/99/43.png",
+    "7/99/44.png"
+  ],
+  "features": [
+    {"id": "CA15-N001", "kind": "city", "original": "Atbasar", "original_bbox": [74, 95, 119, 115], "source_url": "@source/f13f5a6a59deb44b"}
+  ],
+  "translations": [
+    {"id": "CA15-N001", "zh": "阿特巴萨尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e337edd30059e9f8755e6b69686e8d77b666483dcd85bf914ceb6ecf76afcfb8", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CA15-N001", "x": 118.0, "y": 105.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CA15-C001", "kind": "circle", "original_bbox": [74, 95, 83, 104], "x": 78.5, "y": 99.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols", "feature_id": "CA15-N001"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

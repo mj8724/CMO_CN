@@ -1,0 +1,32 @@
+{
+  "id": "EML13-R06",
+  "z": 8,
+  "x": 155,
+  "y": 89,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/155/89.png"
+  ],
+  "context_tiles": [
+    "8/154/88.png",
+    "8/154/89.png",
+    "8/155/88.png"
+  ],
+  "features": [
+    {"id": "EML13-N012", "kind": "city", "original": "Taganrog", "original_bbox": [170, 205, 229, 229], "source_url": "@source/4d3e8ec6aa058dc4"}
+  ],
+  "translations": [
+    {"id": "EML13-N012", "zh": "塔甘罗格", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8f1e34eeae4365d89f6612d40216d1b0f5047975f14e34980e1388024c3258db", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EML13-N012", "x": 211.5, "y": 225.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EML13-C010", "kind": "circle", "size": 9, "outline_width": 1, "x": 174.5, "y": 209.5, "original_bbox": [170, 205, 179, 214], "feature_id": "EML13-N012"}
+  ],
+  "shared_sources": [
+    {"id": "EML13-SH006", "owner_region": "UA-Northeast-z8-152-79", "feature_id": "UANE8-085", "kind": "city", "original": "Donetsk", "original_bbox": [-35, -11, 22, 10], "source_url": "@source/6980769fd9d39d17", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

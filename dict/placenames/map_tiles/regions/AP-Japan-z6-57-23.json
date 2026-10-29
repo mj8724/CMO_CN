@@ -1,0 +1,41 @@
+{
+  "id": "AP-Japan-z6-57-23",
+  "z": 6,
+  "x": 57,
+  "y": 23,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/57/23.png",
+    "6/57/24.png"
+  ],
+  "context_tiles": [
+    "6/56/23.png"
+  ],
+  "features": [
+    {"id": "AP-Japan-z6-57-23-00-Sapporo", "kind": "city", "original": "Sapporo", "original_bbox": [36, 128, 81, 147], "source_url": "@source/058ca3f96ecab3e4"},
+    {"id": "AP-Japan-z6-57-23-01-Kushiro", "kind": "city", "original": "Kushiro", "original_bbox": [174, 134, 212, 148], "source_url": "@source/058ca3f96ecab3e4"},
+    {"id": "AP-Japan-z6-57-23-02-Hakodate", "kind": "city", "original": "Hakodate", "original_bbox": [7, 208, 54, 223], "source_url": "@source/058ca3f96ecab3e4"},
+    {"id": "AP-Japan-z6-57-23-03-Sendai", "kind": "city", "original": "Sendai", "original_bbox": [13, 416, 47, 431], "source_url": "@source/294c9734aa4b4938"}
+  ],
+  "translations": [
+    {"id": "AP-Japan-z6-57-23-00-Sapporo", "zh": "札幌", "status": "approved", "source": "@source/ec8498af3f47b4c0", "record_sha256": "ae5cc60575e5ade336891b0fee1b6a4003b1f08cc30f347d4e8be8d7ea33b9bb", "review_notes": "@note/translations"},
+    {"id": "AP-Japan-z6-57-23-01-Kushiro", "zh": "钏路", "status": "approved", "source": "@source/d2372d92d8b30be3", "record_sha256": "567ba536e49435dd553d23ca2c8b8c305c583a0835598063848b6bdb4db8063c", "review_notes": "@note/translations"},
+    {"id": "AP-Japan-z6-57-23-02-Hakodate", "zh": "函馆", "status": "approved", "source": "@source/b83a8a3756afd0dd", "record_sha256": "5d8b8ab7709d7dff9b8a56687fde75b0e7cd223dc16fc158b8f7fe9fce015fff", "review_notes": "@note/translations"},
+    {"id": "AP-Japan-z6-57-23-03-Sendai", "zh": "仙台", "status": "approved", "source": "@source/db5c34d0425837ed", "record_sha256": "c5f8fa298b3a9795fd02adec77e75a9532eb762f003311d7554b210098f04419", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-Japan-z6-57-23-00-Sapporo", "x": 60.0, "y": 140.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-Japan-z6-57-23-01-Kushiro", "x": 194.0, "y": 144.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-Japan-z6-57-23-02-Hakodate", "x": 32.0, "y": 219.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-Japan-z6-57-23-03-Sendai", "x": 33.0, "y": 428.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-Japan-z6-57-23-00-Sapporo-circle", "feature_id": "AP-Japan-z6-57-23-00-Sapporo", "kind": "circle", "x": 33.5, "y": 128.5, "size": 9, "outline_width": 1, "original_bbox": [29, 124, 38, 133]},
+    {"id": "AP-Japan-z6-57-23-01-Kushiro-circle", "feature_id": "AP-Japan-z6-57-23-01-Kushiro", "kind": "circle", "x": 170.5, "y": 133.5, "size": 9, "outline_width": 1, "original_bbox": [166, 129, 175, 138]},
+    {"id": "AP-Japan-z6-57-23-02-Hakodate-circle", "feature_id": "AP-Japan-z6-57-23-02-Hakodate", "kind": "circle", "x": 4.5, "y": 208.5, "size": 9, "outline_width": 1, "original_bbox": [0, 204, 9, 213]},
+    {"id": "AP-Japan-z6-57-23-03-Sendai-circle", "feature_id": "AP-Japan-z6-57-23-03-Sendai", "kind": "circle", "x": 11.5, "y": 416.5, "size": 9, "outline_width": 1, "original_bbox": [7, 412, 16, 421]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

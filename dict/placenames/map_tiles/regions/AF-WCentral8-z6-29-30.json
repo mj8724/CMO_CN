@@ -1,0 +1,33 @@
+{
+  "id": "AF-WCentral8-z6-29-30",
+  "z": 6,
+  "x": 29,
+  "y": 30,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/29/30.png"
+  ],
+  "context_tiles": [
+    "6/30/30.png"
+  ],
+  "features": [
+    {"id": "AF28-023", "kind": "admin0", "original": "SIERRA LEONE", "original_bbox": [175, 88, 284, 139], "source_url": "@source/6ae1bf701302bb30"},
+    {"id": "AF28-025", "kind": "city", "original": "Robertsport", "original_bbox": [246, 200, 311, 221], "source_url": "@source/6ae1bf701302bb30"}
+  ],
+  "translations": [
+    {"id": "AF28-023", "zh": "塞拉利昂", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "cbd4ef8797e647dd1dee257ce91839d504d88a07e046a1bbc56bfe4e69923c46", "review_notes": "@note/translations"},
+    {"id": "AF28-025", "zh": "罗伯茨港", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "2c1384b8e555043998b68f29d8d59cde16335061c80c4b4238c8ac9c0102cb6a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AF28-023", "x": 216.0, "y": 114.0, "font_size": 18, "font_style": "bold"},
+    {"id": "AF28-025", "x": 228.0, "y": 219.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AF28-025-circle", "feature_id": "AF28-025", "kind": "circle", "x": 250.5, "y": 204.5, "size": 9, "outline_width": 1, "original_bbox": [246, 200, 255, 209], "source_url": "@source/6ae1bf701302bb30", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "AFC26-SH-05-AF28-024", "owner_region": "AF-WCentral8-z6-30-30", "feature_id": "AF28-024", "kind": "admin0", "original": "GUINEA", "original_bbox": [224, 5, 338, 29], "source_url": "@source/c1eaac0ef4525daf", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

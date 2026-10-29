@@ -1,0 +1,32 @@
+{
+  "id": "NE12-Leningrad-z6-37-18",
+  "z": 6,
+  "x": 37,
+  "y": 18,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/37/18.png"
+  ],
+  "context_tiles": [
+    "6/32/18.png",
+    "6/33/17.png",
+    "6/33/18.png",
+    "6/34/17.png",
+    "6/34/18.png",
+    "6/35/18.png",
+    "6/39/18.png"
+  ],
+  "features": [
+    {"id": "NE12-N-PH007", "kind": "admin1", "original": "LENINGRAD OBLAST", "original_bbox": [155, 117, 234, 145], "source_url": "@source/2102a24a4266e4bb"}
+  ],
+  "translations": [
+    {"id": "NE12-N-PH007", "zh": "列宁格勒州", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "bc0ef3d2daeb0de788b2d52e775d1478e97103851fa175d5e0ced877f0d65bbf", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NE12-N-PH007", "x": 194.5, "y": 131.0, "font_size": 16, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

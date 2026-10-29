@@ -1,0 +1,50 @@
+{
+  "id": "UA20-PolandNorth-287-169",
+  "z": 9,
+  "x": 287,
+  "y": 169,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "9/287/169.png",
+    "9/287/170.png"
+  ],
+  "context_tiles": [
+    "9/287/171.png",
+    "9/288/169.png",
+    "9/288/170.png"
+  ],
+  "features": [
+    {"id": "UA20-N113", "kind": "city", "original": "Stoczek Łukowski", "original_bbox": [36, 36, 89, 71], "source_url": "@source/db64393aaf8329f7"},
+    {"id": "UA20-N115", "kind": "city", "original": "Łuków", "original_bbox": [192, 64, 232, 80], "source_url": "@source/db64393aaf8329f7"},
+    {"id": "UA20-N116", "kind": "city", "original": "Żelechów", "original_bbox": [9, 133, 64, 151], "source_url": "@source/db64393aaf8329f7"},
+    {"id": "UA20-N118", "kind": "city", "original": "Kock", "original_bbox": [223, 236, 252, 252], "source_url": "@source/db64393aaf8329f7"},
+    {"id": "UA20-N120", "kind": "city", "original": "Dęblin", "original_bbox": [7, 280, 44, 299], "source_url": "@source/fea937948378a645"},
+    {"id": "UA20-N124", "kind": "city", "original": "Puławy", "original_bbox": [43, 365, 85, 384], "source_url": "@source/fea937948378a645"},
+    {"id": "UA20-N128", "kind": "city", "original": "Poniatowa", "original_bbox": [69, 496, 127, 512], "source_url": "@source/fea937948378a645"},
+    {"id": "UA20-N129", "kind": "city", "original": "Bełżyce", "original_bbox": [153, 506, 196, 525], "source_url": "@source/9149e7f8b5e5efa5"}
+  ],
+  "translations": [
+    {"id": "UA20-N113", "zh": "武库夫地区斯托切克", "status": "approved", "source": "@source/8bf85f67689c0999", "record_sha256": "bca66d25a0cb4ddd5f2d1919afdfc5997a8fbdc5eb1d966b2ffdb5416ddae011", "review_notes": "@note/translations"},
+    {"id": "UA20-N115", "zh": "武库夫", "status": "approved", "source": "@source/04ac8379c1750612", "record_sha256": "d7c786f9d185ef9fee4fd6b4d446a7af488d1e480eadf9b90f8ff8881f9985b3", "review_notes": "@note/translations"},
+    {"id": "UA20-N116", "zh": "热莱胡夫", "status": "approved", "source": "@source/fc2dc158382bbee6", "record_sha256": "dec5e81b13b5e75bfde106808101d25e452c26e1b6a8382716602395bc74fb53", "review_notes": "@note/translations"},
+    {"id": "UA20-N118", "zh": "科茨克", "status": "approved", "source": "@source/8d9b1a2ae8889d44", "record_sha256": "b56c4fa0bb3d4e125944865c3671de96328d63dc2347d73c2b0065ca5a6cd41e", "review_notes": "@note/translations"},
+    {"id": "UA20-N120", "zh": "登布林", "status": "approved", "source": "@source/8089b23739570096", "record_sha256": "c64e38444b3d212efb4f93fa0600ed0945f710606b2a2bcd46a2c438f8d672ce", "review_notes": "@note/translations"},
+    {"id": "UA20-N124", "zh": "普瓦维", "status": "approved", "source": "@source/2c9f7cd18ca2b8e5", "record_sha256": "bd7a5bb73952a1f5dbfe7bf55a8c34de37acb697eec4f302b3459293747e478c", "review_notes": "@note/translations"},
+    {"id": "UA20-N128", "zh": "波尼亚托瓦", "status": "approved", "source": "@source/a2e8dc45c95aee00", "record_sha256": "5fa4a198d9f53a9233e552b0a10629a7d8a2a80e851a5feeafd10aebf82746ac", "review_notes": "@note/translations"},
+    {"id": "UA20-N129", "zh": "贝乌日采", "status": "approved", "source": "@source/2acf066abaf101cd", "record_sha256": "1bbd8532353332561304d4593be4779e2b2b4b07c85f228aa6adbfce77b89072", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UA20-N113", "x": 62.5, "y": 53.5, "font_size": 12, "font_style": "regular", "lines": ["武库夫地区", "斯托切克"]},
+    {"id": "UA20-N115", "x": 212.0, "y": 72.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N116", "x": 36.5, "y": 142.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N118", "x": 232.0, "y": 244.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N120", "x": 25.5, "y": 289.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N124", "x": 64.0, "y": 374.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N128", "x": 98.0, "y": 500.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N129", "x": 174.5, "y": 500.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

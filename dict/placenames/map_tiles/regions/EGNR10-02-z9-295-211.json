@@ -1,0 +1,24 @@
+{
+  "id": "EGNR10-02-z9-295-211",
+  "z": 9,
+  "x": 295,
+  "y": 211,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/295/211.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "EGNR-PH-02", "kind": "region", "original": "Badr El Din", "original_bbox": [158, 113, 220, 130], "source_url": "@source/eddc68246b9d278b"}
+  ],
+  "translations": [
+    {"id": "EGNR-PH-02", "zh": "巴德尔丁", "status": "approved", "source": "@source/eddc68246b9d278b", "record_sha256": "591bbf439259a35cc7b8e4904483df0f9e5822972aed9cbf6afdf25773bc0682", "review_notes": "Different SOURCE/CJK qualified project_editorial_full_printed_literal_and_EG_context_not_official.  Original dataset6/project editorial5 are distinct roles. No exact candidate in this frozen cities500 and finite NE query only; not all GeoNames or all available world sources. No official naming-standard, supplier ID, native point, original city/admin status or font reconstruction is claimed. This is a metadata-only geographic plain-text region10 regular singleline TARGET proposal; Root selection, actual author SELF and different Target are still pending. Rootde428 exact region10regular11 singleline. Author Secondary personally viewed all11 complete Source/CJK glyph pairs,7wholes,3internaljoins; all-alpha and positiveRGBA pristine, no crop/collision/glyph loss, xy unchanged. Source9368/6original Chinese stems+5explicit project editorials, Farafra Oasis绿洲,歐→欧,DawmatGN−1 and Safaja/Suhaj distinct identities preserved. Only SELF_PRIVATE_MODEL_ONLY technical acceptance, different TARGET C3 and Root integration remain pending. Historicalaacc and f34 storage namespace are separate roles, no new current whole/canonical/native authority. Different actual TARGET reviewer /root/frontier_c3_source independently measured all11 complete Source/CJK pairs from saved encoded wire with direct Pillow regular10 all-alpha/positive-RGBA pristine patches and exact full7 whole compositions. Personally inspected all11 paired names,7 entire wholes and3 internal joins. Rootde428 region10regular/singleline is accepted with original xy unchanged; no missing glyph, cropping, overlap, or halo cut. All original full Source boxes,5px crops and9368 exact world points preserved, no native,height,alias,unprinted canonical or new rule. Six source-backed Chinese and five editorial project translations stay distinct; Farafra retains绿洲, explicit歐→欧 is preserved, Dawmat al Jandal literal remains intact, Safaja original GN358620 differs from Suhaj GN347796. Cities1208 Sohag matches printed Suhaj/索哈杰 and produces no duplicate canonical caption or new suppression. Author Secondary differs from this reviewer; Source author Casp and different Source Levant are disclosed. Historical8191 aacc and Root f34 selected snapshot namespace remain typed separate references, not current-structure/formal approval. Private finite component Target approval only; no formal apply,Source1/full21/canonical capability or global completion."}
+  ],
+  "layouts": [
+    {"id": "EGNR-PH-02", "x": 189.0, "y": 121.5, "font_size": 10, "font_style": "regular", "lines": ["巴德尔丁"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

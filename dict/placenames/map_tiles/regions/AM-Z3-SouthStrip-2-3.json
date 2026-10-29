@@ -1,0 +1,59 @@
+{
+  "id": "AM-Z3-SouthStrip-2-3",
+  "z": 3,
+  "x": 2,
+  "y": 3,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "3/2/3.png",
+    "3/2/4.png"
+  ],
+  "context_tiles": [
+    "3/1/3.png"
+  ],
+  "features": [
+    {"id": "AM-Z3-SouthStrip-2-3-00-Cuba", "kind": "admin0", "original": "CUBA", "original_bbox": [27, 111, 78, 127], "source_url": "@source/b054992bd4339145"},
+    {"id": "AM-Z3-SouthStrip-2-3-01-Haiti", "kind": "admin0", "original": "HAITI", "original_bbox": [75, 135, 126, 150], "source_url": "@source/b054992bd4339145"},
+    {"id": "AM-Z3-SouthStrip-2-3-02-Panama", "kind": "admin0", "original": "PANAMA", "original_bbox": [12, 197, 90, 213], "source_url": "@source/b054992bd4339145"},
+    {"id": "AM-Z3-SouthStrip-2-3-03-Colombia", "kind": "admin0", "original": "COLOMBIA", "original_bbox": [48, 222, 147, 238], "source_url": "@source/b054992bd4339145"},
+    {"id": "AM-Z3-SouthStrip-2-3-04-Ecuador", "kind": "admin0", "original": "ECUADOR", "original_bbox": [17, 253, 104, 269], "source_url": "@source/b054992bd4339145"},
+    {"id": "AM-Z3-SouthStrip-2-3-05-Peru", "kind": "admin0", "original": "PERU", "original_bbox": [62, 285, 109, 301], "source_url": "@source/8c400ae2c38df0ab"},
+    {"id": "AM-Z3-SouthStrip-2-3-06-Brazil", "kind": "admin0", "original": "BRAZIL", "original_bbox": [177, 305, 243, 321], "source_url": "@source/8c400ae2c38df0ab"},
+    {"id": "AM-Z3-SouthStrip-2-3-07-Bolivia", "kind": "admin0", "original": "BOLIVIA", "original_bbox": [105, 344, 181, 360], "source_url": "@source/8c400ae2c38df0ab"},
+    {"id": "AM-Z3-SouthStrip-2-3-08-Paraguay", "kind": "admin0", "original": "PARAGUAY", "original_bbox": [132, 382, 231, 398], "source_url": "@source/8c400ae2c38df0ab"},
+    {"id": "AM-Z3-SouthStrip-2-3-09-Chile", "kind": "admin0", "original": "CHILE", "original_bbox": [79, 437, 133, 452], "source_url": "@source/8c400ae2c38df0ab"},
+    {"id": "AM-Z3-SouthStrip-2-3-10-Argentina", "kind": "admin0", "original": "ARGENTINA", "original_bbox": [90, 459, 196, 474], "source_url": "@source/8c400ae2c38df0ab"}
+  ],
+  "translations": [
+    {"id": "AM-Z3-SouthStrip-2-3-00-Cuba", "zh": "古巴", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "321b8f925e0533a315f3fe57f09c23ae62f5cf58c05be8aede189493d47f171b", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-SouthStrip-2-3-01-Haiti", "zh": "海地", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "f9e5042ca2ddb83b789dfe92128018708e77a4be3efe3e478d23e45de6ae4a20", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-SouthStrip-2-3-02-Panama", "zh": "巴拿马", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "0998b16231e86c01c4128829d973a02d591b528e323d4048f0150a3fdf095f1d", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-SouthStrip-2-3-03-Colombia", "zh": "哥伦比亚", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "177aa797af72b62bae2052416ff0b3b165a53a0f82e81443f2e65b161d525d5c", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-SouthStrip-2-3-04-Ecuador", "zh": "厄瓜多尔", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "9aa6ced2b9b8f1dc64d23b9d7c1ec8991d086b56cfcddc3930628c9edc321452", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-SouthStrip-2-3-05-Peru", "zh": "秘鲁", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "804fc8cd4e04879c4557012bf5fcc8c3bb9323adf97cb6aa606f2d02e7a67b23", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-SouthStrip-2-3-06-Brazil", "zh": "巴西", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "27d05c9b2b5051d2bdd91269ee1c954a9a970636664d79cd8bf92ef83204d406", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-SouthStrip-2-3-07-Bolivia", "zh": "玻利维亚", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "a650d18112af4f6e1374b2b6cba34f178cdc16addb4f4fa660766e0fa4c7efff", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-SouthStrip-2-3-08-Paraguay", "zh": "巴拉圭", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "a3fe90d7a4c44cc3ad0dceb39af3570611b069b0b9e84cc93e61277862bf3671", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-SouthStrip-2-3-09-Chile", "zh": "智利", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "fa491d168d216613d5bdf049b0c0dcd1043aad33b86ab13ffdc7a19d29eec7a7", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-SouthStrip-2-3-10-Argentina", "zh": "阿根廷", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "7932610e9d985f5cf73c77c675abd69f35daf2e099b54f3a8bf8b170cbc49120", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AM-Z3-SouthStrip-2-3-00-Cuba", "x": 52.5, "y": 119.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-SouthStrip-2-3-01-Haiti", "x": 100.5, "y": 142.5, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-SouthStrip-2-3-02-Panama", "x": 51.0, "y": 205.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-SouthStrip-2-3-03-Colombia", "x": 97.5, "y": 230.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-SouthStrip-2-3-04-Ecuador", "x": 60.5, "y": 261.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-SouthStrip-2-3-05-Peru", "x": 85.5, "y": 293.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-SouthStrip-2-3-06-Brazil", "x": 210.0, "y": 313.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-SouthStrip-2-3-07-Bolivia", "x": 143.0, "y": 352.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-SouthStrip-2-3-08-Paraguay", "x": 181.5, "y": 390.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-SouthStrip-2-3-09-Chile", "x": 106.0, "y": 444.5, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-SouthStrip-2-3-10-Argentina", "x": 143.0, "y": 466.5, "font_size": 13, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "AM-Z3-SouthStrip-Guatemala-exactshared", "owner_region": "AM-Z3-NorthStrip-1-2", "feature_id": "AM-Z3-NorthStrip-1-2-03-Guatemala", "kind": "admin0", "original": "GUATEMALA", "source_url": "@source/33f07c8246ad8fd8", "original_bbox": [-58, 156, 55, 172], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

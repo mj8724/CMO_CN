@@ -1,0 +1,25 @@
+{
+  "id": "REC-Greenland-z5-11-4",
+  "z": 5,
+  "x": 11,
+  "y": 4,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/11/4.png",
+    "5/12/4.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "REC6-001", "kind": "admin0", "original": "GREENLAND", "original_bbox": [228, 162, 384, 183], "source_url": "@source/3445a9772ad6de1f"}
+  ],
+  "translations": [
+    {"id": "REC6-001", "zh": "格陵兰", "status": "approved", "source": "@source/7c536388a614af71", "record_sha256": "2d18514c6a5cbe8b0226a9e17f4f3f7b8a4bf277993a578d39b45e0b69bb09a6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "REC6-001", "x": 306.0, "y": 172.5, "font_size": 20, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

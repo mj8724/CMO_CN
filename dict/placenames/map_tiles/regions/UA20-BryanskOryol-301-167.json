@@ -1,0 +1,69 @@
+{
+  "id": "UA20-BryanskOryol-301-167",
+  "z": 9,
+  "x": 301,
+  "y": 167,
+  "width_tiles": 7,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/301/167.png",
+    "9/302/167.png",
+    "9/303/167.png",
+    "9/304/167.png",
+    "9/305/167.png",
+    "9/306/167.png",
+    "9/307/167.png"
+  ],
+  "context_tiles": [
+    "9/305/168.png",
+    "9/306/168.png",
+    "9/307/168.png"
+  ],
+  "features": [
+    {"id": "UA20-N007", "kind": "city", "original": "Shablykino", "original_bbox": [1263, 24, 1325, 44], "source_url": "@source/f98d18fbb1ae101a"},
+    {"id": "UA20-N009", "kind": "city", "original": "Unecha", "original_bbox": [360, 30, 402, 47], "source_url": "@source/d5a2b05b38a3d678"},
+    {"id": "UA20-N010", "kind": "city", "original": "Навля", "original_bbox": [1023, 41, 1059, 57], "source_url": "@source/4d61ae6d0b61a402"},
+    {"id": "UA20-N020", "kind": "city", "original": "Клинцы", "original_bbox": [196, 83, 241, 101], "source_url": "@source/278d0eb116a6f567"},
+    {"id": "UA20-N026", "kind": "city", "original": "Kromy", "original_bbox": [1484, 125, 1522, 144], "source_url": "@source/f98d18fbb1ae101a"},
+    {"id": "UA20-N028", "kind": "city", "original": "Zmiyevka", "original_bbox": [1699, 134, 1753, 153], "source_url": "@source/cb1938fc4b5ff6b6"},
+    {"id": "UA20-N033", "kind": "city", "original": "Стародуб", "original_bbox": [381, 186, 435, 206], "source_url": "@source/d5a2b05b38a3d678"},
+    {"id": "UA20-N034", "kind": "city", "original": "Trubchevsk", "original_bbox": [743, 188, 807, 204], "source_url": "@source/07ee5fe9f78ac878"},
+    {"id": "UA20-N036", "kind": "city", "original": "Lokot", "original_bbox": [1051, 194, 1085, 211], "source_url": "@source/4d61ae6d0b61a402"},
+    {"id": "UA20-N041", "kind": "city", "original": "Pogar", "original_bbox": [575, 205, 609, 225], "source_url": "@source/5c4e63ac3c657875"},
+    {"id": "UA20-N042", "kind": "city", "original": "Novozybkov", "original_bbox": [73, 215, 142, 234], "source_url": "@source/278d0eb116a6f567"},
+    {"id": "UA20-N048", "kind": "city", "original": "Glazunovka", "original_bbox": [1673, 237, 1737, 254], "source_url": "@source/cb1938fc4b5ff6b6"}
+  ],
+  "translations": [
+    {"id": "UA20-N007", "zh": "沙布雷基诺", "status": "approved", "source": "@source/f98d18fbb1ae101a", "record_sha256": "5fc0b6819dfe48883488d033297de1e076045095a6a41b4669265633f5c2356b", "review_notes": "@note/translations"},
+    {"id": "UA20-N009", "zh": "乌涅恰", "status": "approved", "source": "@source/d5a2b05b38a3d678", "record_sha256": "4de5be5ea38a0787f7da015e3d4c6b73eb81c60eeee0a2697f1e4f140d546b16", "review_notes": "@note/translations"},
+    {"id": "UA20-N010", "zh": "纳夫利亚", "status": "approved", "source": "@source/4d61ae6d0b61a402", "record_sha256": "50306898e0b16b887419c8b6b6bb295963a305963e9d82754fe2ded64d503101", "review_notes": "@note/translations"},
+    {"id": "UA20-N020", "zh": "克林齐", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "56667a97a8ef6b7cb4936e8258fa2048624f2bc2d8ee71d2d87d61ada8dcb0d1", "review_notes": "@note/translations"},
+    {"id": "UA20-N026", "zh": "克罗梅", "status": "approved", "source": "@source/f98d18fbb1ae101a", "record_sha256": "8dd09dd9a7fe207dde9d7a285f688147686a2500863b463f1c0a85313f3234fb", "review_notes": "@note/translations"},
+    {"id": "UA20-N028", "zh": "兹米耶夫卡", "status": "approved", "source": "@source/cb1938fc4b5ff6b6", "record_sha256": "561caf462818d059556bdfa0f6dbd66261e8e08ba657c063b3fefc05e0131400", "review_notes": "@note/translations"},
+    {"id": "UA20-N033", "zh": "斯塔罗杜布", "status": "approved", "source": "@source/339b09741bf4f1df", "record_sha256": "4a6b408bc49e67a34f1710d8f47c856b44e28ffb252a338ef05bc51d6bbe7cda", "review_notes": "@note/translations"},
+    {"id": "UA20-N034", "zh": "特鲁布切夫斯克", "status": "approved", "source": "@source/07ee5fe9f78ac878", "record_sha256": "71cb1a4543393e5c5fa18d6e9c8c9464e3b384aac3a6b4feffec034d5be2996b", "review_notes": "@note/translations"},
+    {"id": "UA20-N036", "zh": "洛科季", "status": "approved", "source": "@source/4d61ae6d0b61a402", "record_sha256": "157038a19c505f23e65233bddbc44c4b85a7ce475885c6023dfb83e56e8f3a4d", "review_notes": "@note/translations"},
+    {"id": "UA20-N041", "zh": "波加尔", "status": "approved", "source": "@source/5c4e63ac3c657875", "record_sha256": "30119c888f3a66e6d4344f7432ffc86f1a962a4ad649bd0ebb30afb024bab7c9", "review_notes": "@note/translations"},
+    {"id": "UA20-N042", "zh": "新济布科夫", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "6b91e167f099533486ea245479fa0a9d8a3efb5587fafe81a162c5fbaef48844", "review_notes": "@note/translations"},
+    {"id": "UA20-N048", "zh": "格拉祖诺夫卡", "status": "approved", "source": "@source/cb1938fc4b5ff6b6", "record_sha256": "9a21cee85614325c7c4062f9974da19ffc5f7d6e4210c50a411d7b4c3107c6fe", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UA20-N007", "x": 1294.0, "y": 34.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N009", "x": 381.0, "y": 38.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N010", "x": 1041.0, "y": 49.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N020", "x": 218.5, "y": 92.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N026", "x": 1503.0, "y": 134.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N028", "x": 1726.0, "y": 143.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N033", "x": 408.0, "y": 196.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N034", "x": 775.0, "y": 196.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N036", "x": 1068.0, "y": 202.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N041", "x": 592.0, "y": 215.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N042", "x": 107.5, "y": 224.5, "font_size": 12, "font_style": "regular"},
+    {"id": "UA20-N048", "x": 1705.0, "y": 244.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "UA20-SH045", "kind": "city", "original": "Dmitrovsk-Orlovskiy", "original_bbox": [1246, 223, 1307, 260], "source_url": "@source/4d61ae6d0b61a402", "owner_region": "UA-East-z9-304-168", "feature_id": "UAE9-000", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

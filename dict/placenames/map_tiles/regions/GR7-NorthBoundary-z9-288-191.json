@@ -1,0 +1,39 @@
+{
+  "id": "GR7-NorthBoundary-z9-288-191",
+  "z": 9,
+  "x": 288,
+  "y": 191,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "GR7-N-013", "kind": "city", "original": "Strumica", "original_bbox": [23, 24, 79, 43], "source_url": "@source/319b371ad151d3bb"},
+    {"id": "GR7-N-018", "kind": "city", "original": "Petrich", "original_bbox": [238, 47, 277, 63], "source_url": "@source/319b371ad151d3bb"},
+    {"id": "GR7-N-034", "kind": "city", "original": "Ηράκλεια", "original_bbox": [248, 147, 323, 167], "source_url": "@source/319b371ad151d3bb"},
+    {"id": "GR7-N-041", "kind": "city", "original": "Gevgelija", "original_bbox": [-27, 170, 30, 192], "source_url": "@source/ca0767d558f3fdf1"}
+  ],
+  "translations": [
+    {"id": "GR7-N-013", "zh": "斯特鲁米察", "status": "approved", "source": "@source/af51a8d0695fada3", "record_sha256": "c7fdc47fdb8bf50d8079dcaca67584a22bd728e84fe3894983e30694e5595a4f", "review_notes": "@note/translations"},
+    {"id": "GR7-N-018", "zh": "佩特里奇", "status": "approved", "source": "@source/3fe65e4bef29d4d4", "record_sha256": "7423310595d15ae20020a2b7711a2e148c4abc0e2194386e35a0e6eb368b08f1", "review_notes": "@note/translations"},
+    {"id": "GR7-N-034", "zh": "伊拉克利亚", "status": "approved", "source": "@source/d71f092549232b87", "record_sha256": "9f810558b34f5e700b6d15caba3374ef28f5fc365d5576349fcd48f51e944527", "review_notes": "@note/translations"},
+    {"id": "GR7-N-041", "zh": "盖夫盖利亚", "status": "approved", "source": "@source/32653ba838b8ab8f", "record_sha256": "f689a66cfc1561008cb34605bf0d2f71150a80b67b78e146af0a53da4dc408ef", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GR7-N-013", "x": 51.0, "y": 33.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-018", "x": 229.0, "y": 55.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-034", "x": 223.0, "y": 157.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-041", "x": 33.0, "y": 181.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "GR7-S-054", "owner_region": "GREECE-z9-288-192", "feature_id": "GR9-000", "kind": "city", "original": "Kilkis", "original_bbox": [119, 240, 155, 258], "source_url": "@source/b3b9e92d47b58a46", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/288/191.png"
+  ],
+  "context_tiles": [
+    "9/287/191.png",
+    "9/288/192.png",
+    "9/289/191.png"
+  ]
+}

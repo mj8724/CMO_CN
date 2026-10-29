@@ -1,0 +1,34 @@
+{
+  "id": "WA-Kindia-z8-118-120",
+  "z": 8,
+  "x": 118,
+  "y": 120,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/118/120.png"
+  ],
+  "context_tiles": [
+    "8/118/119.png",
+    "8/119/119.png",
+    "8/119/120.png",
+    "8/118/121.png",
+    "8/119/121.png"
+  ],
+  "features": [
+    {"id": "WA8-043", "kind": "city", "original": "Kindia", "original_bbox": [215, 205, 259, 226], "source_url": "@source/236b350722ddcdad"},
+    {"id": "WA8-045", "kind": "city", "original": "Fria", "original_bbox": [83, 147, 113, 168], "source_url": "@source/2a4f865a14c3b346"}
+  ],
+  "translations": [
+    {"id": "WA8-043", "zh": "金迪亚", "status": "approved", "source": "@source/0679cacc549225ff", "record_sha256": "08b6086dd93c7b79c22c5c40b4b9d97ee228221bc45dab64bbd6348ef56c6087", "review_notes": "@note/translations"},
+    {"id": "WA8-045", "zh": "弗里亚", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "3483b6d12a9bf0759a75f8a2f4ac4d7d9296ea41b45d1776df2dcfa230e0175a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WA8-043", "x": 194.5, "y": 216.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA8-045", "x": 112.5, "y": 158.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "WA8-043-point", "feature_id": "WA8-043", "x": 219.5, "y": 209.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [215, 205, 224, 214]},
+    {"id": "WA8-045-point", "feature_id": "WA8-045", "x": 87.5, "y": 151.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [83, 147, 92, 156]}
+  ]
+}

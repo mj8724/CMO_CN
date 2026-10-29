@@ -1,0 +1,47 @@
+{
+  "id": "PHL12-R05-Bicol-z10-861-472",
+  "z": 10,
+  "x": 861,
+  "y": 472,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/861/472.png",
+    "10/862/472.png",
+    "10/863/472.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "PHL12-N019", "kind": "region", "original": "Garchitorena", "original_bbox": [699, 23, 761, 38], "source_url": "@source/e5d869b92b3d9dc8"},
+    {"id": "PHL12-N022", "kind": "region", "original": "Ragay", "original_bbox": [52, 69, 84, 87], "source_url": "@source/146ac841a97e6828"},
+    {"id": "PHL12-N023", "kind": "region", "original": "Tinambac", "original_bbox": [434, 71, 484, 86], "source_url": "@source/6355132b49fff71e"},
+    {"id": "PHL12-N025", "kind": "region", "original": "Sipocot", "original_bbox": [184, 109, 229, 129], "source_url": "@source/146ac841a97e6828"},
+    {"id": "PHL12-N026", "kind": "region", "original": "Lagonoy", "original_bbox": [577, 133, 626, 153], "source_url": "@source/e5d869b92b3d9dc8"},
+    {"id": "PHL12-N027", "kind": "region", "original": "Calabanga", "original_bbox": [350, 152, 409, 173], "source_url": "@source/6355132b49fff71e"},
+    {"id": "PHL12-N028", "kind": "region", "original": "Libmanan", "original_bbox": [242, 163, 291, 178], "source_url": "@source/146ac841a97e6828"},
+    {"id": "PHL12-N030", "kind": "region", "original": "Naga", "original_bbox": [340, 215, 374, 237], "source_url": "@source/6355132b49fff71e"}
+  ],
+  "translations": [
+    {"id": "PHL12-N019", "zh": "加尔奇托雷纳", "status": "approved", "source": "@source/e5d869b92b3d9dc8", "record_sha256": "aef7af7949bc289ca2cde2ea6ee5cd5b4e3c486138ec8681736a50a3ea864e66", "review_notes": "@note/translations"},
+    {"id": "PHL12-N022", "zh": "拉盖", "status": "approved", "source": "@source/146ac841a97e6828", "record_sha256": "a91176b387051cabf2870a6ac7e0cc8a09fc934117f7bdc9be83aca6109ccb5b", "review_notes": "@note/translations"},
+    {"id": "PHL12-N023", "zh": "蒂南巴克", "status": "approved", "source": "@source/6355132b49fff71e", "record_sha256": "d81b8b22167b940343f684a3a8afe185718592534e3cff96cc0795884b9add64", "review_notes": "@note/translations"},
+    {"id": "PHL12-N025", "zh": "西波科特", "status": "approved", "source": "@source/146ac841a97e6828", "record_sha256": "fadd3c39ecd7687eff9941bae09c98446cac8720ac589a4c3b4bd11fb58d4c67", "review_notes": "@note/translations"},
+    {"id": "PHL12-N026", "zh": "拉戈诺伊", "status": "approved", "source": "@source/e5d869b92b3d9dc8", "record_sha256": "476fe2bf45d3952872dd0ab728787df70c524dc2d1caa251ff68ea7b2caa521e", "review_notes": "@note/translations"},
+    {"id": "PHL12-N027", "zh": "卡拉邦加", "status": "approved", "source": "@source/6355132b49fff71e", "record_sha256": "08b0a4ce03eec537fd85bc32869745c3f29a7c1e93dc8844162a0218b63970fb", "review_notes": "@note/translations"},
+    {"id": "PHL12-N028", "zh": "利布马南", "status": "approved", "source": "@source/146ac841a97e6828", "record_sha256": "8f8004e2509240cf8ae2cdae3034f869d12c2800ab3080b905cde4137d94e672", "review_notes": "@note/translations"},
+    {"id": "PHL12-N030", "zh": "那牙", "status": "approved", "source": "@source/6355132b49fff71e", "record_sha256": "d809cb91cc461e6213a1f7b64011c6dde783744a26bb3b7b00f12a57af88221b", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PHL12-N019", "x": 729.0, "y": 30.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N022", "x": 68.0, "y": 78.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N023", "x": 459.0, "y": 78.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N025", "x": 206.5, "y": 119.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N026", "x": 601.5, "y": 143.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N027", "x": 379.5, "y": 162.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N028", "x": 266.5, "y": 170.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PHL12-N030", "x": 357.0, "y": 226.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

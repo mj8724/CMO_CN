@@ -1,0 +1,36 @@
+{
+  "id": "MedZ9-Closed-269-199",
+  "z": 9,
+  "x": 269,
+  "y": 199,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/269/199.png"
+  ],
+  "context_tiles": [
+    "9/268/199.png",
+    "9/270/199.png"
+  ],
+  "features": [
+    {"id": "GZ9-05-12", "kind": "city", "original": "Matir", "original_bbox": [177, 48, 208, 64], "source_url": "@source/23a841915c5d1080"},
+    {"id": "GZ9-05-13", "kind": "city", "original": "Tebourba", "original_bbox": [228, 142, 282, 159], "source_url": "@source/23a841915c5d1080"},
+    {"id": "GZ9-05-14", "kind": "city", "original": "Béja", "original_bbox": [2, 189, 31, 212], "source_url": "@source/23a841915c5d1080"},
+    {"id": "GZ9-05-15", "kind": "city", "original": "Medjez El-Bab", "original_bbox": [153, 217, 194, 251], "source_url": "@source/23a841915c5d1080"}
+  ],
+  "translations": [
+    {"id": "GZ9-05-12", "zh": "马特尔", "source": "@source/f7b2a88b080254ba", "status": "approved", "record_sha256": "636d9092ac37e51e85f7b22ca49d60f32491624a13504c455b8421a63c54d4de", "review_notes": "@note/translations"},
+    {"id": "GZ9-05-13", "zh": "泰布尔巴", "source": "@source/25f2385d53233fab", "status": "approved", "record_sha256": "720489df882a76fc9fec12d1374281481f048e7103d2f3236d170cc84e55ddeb", "review_notes": "@note/translations"},
+    {"id": "GZ9-05-14", "zh": "巴杰", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "3fb47aa25a74962a99fbb647a791795ad82aa87cf9a2a382f546ab27f8c756e0", "review_notes": "@note/translations"},
+    {"id": "GZ9-05-15", "zh": "梅杰兹巴卜", "source": "@source/46759482f2beebc5", "status": "approved", "record_sha256": "c098d47576a8a76bedc613fea45ad6ed49313faaf147f7ef9780c546c7fbd7a0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-05-12", "x": 192.5, "y": 56.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-05-13", "x": 228.0, "y": 150.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-05-14", "x": 16.5, "y": 200.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-05-15", "x": 173.5, "y": 234.0, "font_size": 12, "font_style": "regular", "lines": ["梅杰兹", "巴卜"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

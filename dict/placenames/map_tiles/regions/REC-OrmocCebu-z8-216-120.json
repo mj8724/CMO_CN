@@ -1,0 +1,36 @@
+{
+  "id": "REC-OrmocCebu-z8-216-120",
+  "z": 8,
+  "x": 216,
+  "y": 120,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/216/120.png"
+  ],
+  "context_tiles": [
+    "8/216/119.png",
+    "8/217/119.png",
+    "8/217/120.png"
+  ],
+  "features": [
+    {"id": "REC-012", "kind": "city", "original": "Ormoc", "original_bbox": [152, 28, 198, 49], "source_url": "@source/c9cdceb9b78c076e"},
+    {"id": "REC-013", "kind": "city", "original": "Cebu City", "original_bbox": [23, 160, 62, 203], "source_url": "@source/c9cdceb9b78c076e"}
+  ],
+  "translations": [
+    {"id": "REC-012", "zh": "奥尔莫克", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "584ebad1ad4ba65dc77418c07c1565ce9122538280c43c1ca9b89ddd1f59183b", "review_notes": "@note/translations"},
+    {"id": "REC-013", "zh": "宿雾", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "5e98b5553e9eb9d6c12c555eff19a2473c3ddf416ab60eed04f4bfdf41cdc218", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "REC-012", "x": 189.0, "y": 40.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-013", "x": 48.0, "y": 172.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "REC-012-circle", "feature_id": "REC-012", "kind": "circle", "x": 156.5, "y": 32.5, "size": 9, "outline_width": 1, "original_bbox": [152, 28, 161, 37], "source_url": "@source/c9cdceb9b78c076e", "review_notes": "@note/symbols"},
+    {"id": "REC-013-circle", "feature_id": "REC-013", "kind": "circle", "x": 27.5, "y": 164.5, "size": 9, "outline_width": 1, "original_bbox": [23, 160, 32, 169], "source_url": "@source/c9cdceb9b78c076e", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "REC11-SH-01-REC-011", "owner_region": "REC-TaclobanNorth-z8-216-119", "feature_id": "REC-011", "kind": "city", "original": "Tacloban", "original_bbox": [224, -17, 282, 4], "source_url": "@source/3ec267c6327f95ce", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

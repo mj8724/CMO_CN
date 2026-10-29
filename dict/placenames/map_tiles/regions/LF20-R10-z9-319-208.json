@@ -1,0 +1,36 @@
+{
+  "id": "LF20-R10-z9-319-208",
+  "z": 9,
+  "x": 319,
+  "y": 208,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/319/208.png",
+    "9/320/208.png"
+  ],
+  "context_tiles": [
+    "9/319/207.png",
+    "9/320/207.png"
+  ],
+  "features": [
+    {"id": "LF20-N048", "kind": "city", "original": "Al-Hirah", "original_bbox": [46, 18, 93, 35], "source_url": "@source/497b290e733d0d90"},
+    {"id": "LF20-N049", "kind": "city", "original": "Al Qadisiyah", "original_bbox": [35, 89, 97, 130], "source_url": "@source/497b290e733d0d90"},
+    {"id": "LF20-N050", "kind": "city", "original": "Al Hamzah", "original_bbox": [218, 89, 278, 106], "source_url": "@source/497b290e733d0d90"}
+  ],
+  "translations": [
+    {"id": "LF20-N048", "zh": "阿尔希拉", "status": "approved", "source": "@source/497b290e733d0d90", "record_sha256": "55f6fff29012da95bf55c5f15a8d251fe6dc50bd7a901564fb916d6df0a2e6da", "review_notes": "@note/translations"},
+    {"id": "LF20-N049", "zh": "阿尔卡迪西亚", "status": "approved", "source": "@source/497b290e733d0d90", "record_sha256": "f6b040b9e826777f13c567349322692b4ac3fc5874f2182a60e590e5dc442069", "review_notes": "@note/translations"},
+    {"id": "LF20-N050", "zh": "阿尔哈姆扎", "status": "approved", "source": "@source/497b290e733d0d90", "record_sha256": "ee9f41a61f8485aa02d6f1f6f37c87c4253e5c2c3925ed7ffce44169b4ce9482", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LF20-N048", "x": 69.5, "y": 26.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N049", "x": 66.0, "y": 109.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N050", "x": 248.0, "y": 97.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "LF20-S011", "owner_region": "IRQ-West-z9-62-south", "feature_id": "IRQ9-103", "kind": "city", "original": "Ad Diwaniyah", "source_url": "@source/284f1c1815476941", "original_bbox": [196, -34, 262, 8], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

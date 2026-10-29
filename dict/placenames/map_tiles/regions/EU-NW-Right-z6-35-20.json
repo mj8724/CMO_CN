@@ -1,0 +1,35 @@
+{
+  "z": 6,
+  "x": 35,
+  "y": 20,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "EU-NW-Right-z6-35-20",
+  "original_tiles": [
+    "6/35/20.png"
+  ],
+  "context_tiles": [
+    "6/36/20.png"
+  ],
+  "features": [
+    {"id": "NW6-GDANSK", "kind": "city", "original": "Gdansk", "original_bbox": [77, 109, 121, 128], "source_url": "@source/eed24ff4ed8329a2"},
+    {"id": "NW6-KALININGRAD", "kind": "city", "original": "Kaliningrad", "original_bbox": [161, 81, 224, 103], "source_url": "@source/eed24ff4ed8329a2"},
+    {"id": "NW6-LITHUANIA", "kind": "admin0", "original": "LITHUANIA", "original_bbox": [231, 20, 397, 43], "source_url": "@source/eed24ff4ed8329a2"}
+  ],
+  "translations": [
+    {"id": "NW6-GDANSK", "zh": "格但斯克", "source": "@source/eed24ff4ed8329a2", "status": "approved", "record_sha256": "6a300acd1b3a5dde24552c92b31f8bc628ce600605bb544c9065a43ad8d02c18", "review_notes": "@note/translations"},
+    {"id": "NW6-KALININGRAD", "zh": "加里宁格勒", "source": "@source/eed24ff4ed8329a2", "status": "approved", "record_sha256": "feffcda0994e091a34ec1502563284360c0694903b056546eb17eb37ed0c5a2d", "review_notes": "@note/translations"},
+    {"id": "NW6-LITHUANIA", "zh": "立陶宛", "source": "@source/eed24ff4ed8329a2", "status": "approved", "record_sha256": "8f175562f97bb4a20290fd403939e779190f94313cee72ad8d8f1c4eabd40b85", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NW6-GDANSK", "x": 118.0, "y": 122.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-KALININGRAD", "x": 209.0, "y": 94.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-LITHUANIA", "x": 222.0, "y": 31.5, "font_size": 20, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "NW6-GDANSK-NATIVE", "kind": "circle", "feature_id": "NW6-GDANSK", "original_bbox": [77, 109, 86, 118], "x": 81.5, "y": 113.5, "size": 8, "outline_width": 1},
+    {"id": "NW6-KALININGRAD-NATIVE", "kind": "circle", "feature_id": "NW6-KALININGRAD", "original_bbox": [161, 81, 170, 90], "x": 165.5, "y": 85.5, "size": 8, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

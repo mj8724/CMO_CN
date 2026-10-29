@@ -1,0 +1,26 @@
+{
+  "id": "FAS27-Tambacounda-z8-118-118",
+  "z": 8,
+  "x": 118,
+  "y": 118,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "FAS27-Tambacounda", "kind": "city", "original": "Tambacounda", "original_bbox": [74, 29, 151, 45], "source_url": "@source/eec2e480707a71f2"}
+  ],
+  "translations": [
+    {"id": "FAS27-Tambacounda", "zh": "坦巴昆达", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "13e01b446351bab0d9cb4f14744128a428d5a1c091b0366bb0e88169ac458edc", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Tambacounda", "x": 112.5, "y": 37.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "FAS27-Tambacounda-native", "feature_id": "FAS27-Tambacounda", "kind": "circle", "original_bbox": [67, 24, 76, 33], "x": 71.5, "y": 28.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "8/118/118.png"
+  ],
+  "context_tiles": []
+}

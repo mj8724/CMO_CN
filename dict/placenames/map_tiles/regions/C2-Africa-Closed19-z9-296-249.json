@@ -1,0 +1,31 @@
+{
+  "z": 9,
+  "x": 296,
+  "y": 249,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "id": "C2-Africa-Closed19-z9-296-249",
+  "original_tiles": [
+    "9/296/249.png",
+    "9/296/250.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C2-G019", "kind": "city", "original": "Nzara", "original_bbox": [28, 91, 61, 108], "source_url": "@source/4f9e21dc5db73fdb"},
+    {"id": "C2-G020", "kind": "city", "original": "Yambio", "original_bbox": [75, 118, 124, 136], "source_url": "@source/4f9e21dc5db73fdb"},
+    {"id": "C2-G023", "kind": "city", "original": "Dungu", "original_bbox": [143, 465, 181, 485], "source_url": "@source/dece823b0220e211"}
+  ],
+  "translations": [
+    {"id": "C2-G019", "zh": "恩扎拉", "status": "approved", "source": "@source/4f9e21dc5db73fdb", "record_sha256": "8f4d08af8e6475d94aa0c375582cc0232b43d05e482ea470c602e3b0e7145622", "review_notes": "@note/translations"},
+    {"id": "C2-G020", "zh": "延比奥", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "ae24caa1b6c0012d0d34d398ccb9e77bbec0a54c3a21694955338bbd82e2b15a", "review_notes": "@note/translations"},
+    {"id": "C2-G023", "zh": "敦古", "status": "approved", "source": "@source/dece823b0220e211", "record_sha256": "5642fbcab2730a7619652deb5cd8fdea9c0ae798485b245b70c41f78b5a179fd", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C2-G019", "x": 44.5, "y": 99.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G020", "x": 99.5, "y": 127.0, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G023", "x": 162.0, "y": 475.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

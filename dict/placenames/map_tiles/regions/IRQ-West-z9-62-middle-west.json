@@ -1,0 +1,78 @@
+{
+  "id": "IRQ-West-z9-62-middle-west",
+  "z": 9,
+  "x": 312,
+  "y": 201,
+  "width_tiles": 5,
+  "height_tiles": 2,
+  "original_tiles": [
+    "9/312/201.png",
+    "9/313/201.png",
+    "9/314/201.png",
+    "9/315/201.png",
+    "9/316/201.png",
+    "9/312/202.png",
+    "9/313/202.png",
+    "9/314/202.png",
+    "9/315/202.png",
+    "9/316/202.png"
+  ],
+  "context_tiles": [
+    "9/311/200.png",
+    "9/312/200.png",
+    "9/313/200.png",
+    "9/314/200.png",
+    "9/315/200.png",
+    "9/316/200.png",
+    "9/317/200.png",
+    "9/311/201.png",
+    "9/317/201.png",
+    "9/311/202.png",
+    "9/317/202.png",
+    "9/311/203.png",
+    "9/312/203.png",
+    "9/313/203.png",
+    "9/314/203.png",
+    "9/315/203.png",
+    "9/316/203.png",
+    "9/317/203.png"
+  ],
+  "features": [
+    {"id": "IRQ9-028", "kind": "city", "original": "Al-Tall", "original_bbox": [1142, 29, 1181, 46], "source_url": "@source/fa0f64cd83f41bde"},
+    {"id": "IRQ9-032", "kind": "city", "original": "Ma‘adan", "original_bbox": [62, 116, 110, 132], "source_url": "@source/cb0a390004fd19f0"},
+    {"id": "IRQ9-037", "kind": "city", "original": "Al-Tabni", "original_bbox": [139, 183, 186, 200], "source_url": "@source/84d44e9ab8995038"},
+    {"id": "IRQ9-038", "kind": "city", "original": "Al Hadar", "original_bbox": [1199, 195, 1248, 212], "source_url": "@source/805f612bcba29278"},
+    {"id": "IRQ9-041", "kind": "city", "original": "As Suwar", "original_bbox": [440, 228, 494, 244], "source_url": "@source/1aaad54cc895a142"},
+    {"id": "IRQ9-045", "kind": "city", "original": "Deir Ez Zor", "original_bbox": [262, 294, 303, 332], "source_url": "@source/5ce1af4ed5ee8acf"},
+    {"id": "IRQ9-54a", "kind": "city", "original": "Al Mayadin", "original_bbox": [360, 445, 423, 465], "source_url": "@source/f563e6f963a0c5ab"},
+    {"id": "IRQ9-54b", "kind": "city", "original": "Al Qurayya", "original_bbox": [396, 469, 458, 489], "source_url": "@source/49f88d662155c81a"}
+  ],
+  "translations": [
+    {"id": "IRQ9-028", "zh": "泰勒", "status": "approved", "source": "@source/fa0f64cd83f41bde", "record_sha256": "5cf6253b3e10e927ec5bc66b36709a3cfabc8ca3f5a5f87c2d7be3ddde3cbbcb", "review_notes": "@note/translations"},
+    {"id": "IRQ9-032", "zh": "马阿丹", "status": "approved", "source": "@source/cb0a390004fd19f0", "record_sha256": "564a571039aa43aee9851bb73bce97eda67f6f04cfe7466ab5866a133fdfac9c", "review_notes": "@note/translations"},
+    {"id": "IRQ9-037", "zh": "提卜尼", "status": "approved", "source": "@source/84d44e9ab8995038", "record_sha256": "26b6a7001d92e6ca1fd4d059ac089efbf79db871caacc5495252a1a0c3e50940", "review_notes": "@note/translations"},
+    {"id": "IRQ9-038", "zh": "哈德尔", "status": "approved", "source": "@source/805f612bcba29278", "record_sha256": "ef89a7260c5d64e8f36f329b613398b090a23343a21b5651b9c77ba89b007a47", "review_notes": "@note/translations"},
+    {"id": "IRQ9-041", "zh": "苏瓦尔", "status": "approved", "source": "@source/1aaad54cc895a142", "record_sha256": "296fad37db1aefd9e0d4124be8a58763a35bc351e3a21ee4dc3a77051198df32", "review_notes": "@note/translations"},
+    {"id": "IRQ9-045", "zh": "代尔祖尔", "status": "approved", "source": "@source/5ce1af4ed5ee8acf", "record_sha256": "58741725c99846665c9ce87226d7a375602cb9ec017e370a49569aa206851a50", "review_notes": "@note/translations"},
+    {"id": "IRQ9-54a", "zh": "迈亚丁", "status": "approved", "source": "@source/67d5b5893a0eb3bc", "record_sha256": "764c1e4712e8fe116da58a2a49c6958b6b2661f182a5c5b8202ed0c1c4e462cc", "review_notes": "@note/translations"},
+    {"id": "IRQ9-54b", "zh": "古赖亚", "status": "approved", "source": "@source/49f88d662155c81a", "record_sha256": "b75eb0f311a6b75b655e48835c07f3db0c6a73876e60792e657893b7028af7d8", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "IRQ9-028", "x": 1161.5, "y": 37.5, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-032", "x": 86.0, "y": 124.0, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-037", "x": 162.5, "y": 191.5, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-038", "x": 1223.5, "y": 203.5, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-041", "x": 467.0, "y": 236.0, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-045", "x": 282.5, "y": 313.0, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-54a", "x": 391.5, "y": 455.0, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-54b", "x": 427.0, "y": 479.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "IRQ9-026-shared-1", "owner_region": "IRQ-West-z9-62-top", "feature_id": "IRQ9-026", "kind": "city", "original": "Ash Shaddaday", "source_url": "@source/02faed973819988f", "original_bbox": [464, -31, 526, 6], "review_notes": "@note/shared_sources"},
+    {"id": "IRQ9-027-shared-1", "owner_region": "IRQ-West-z9-62-top", "feature_id": "IRQ9-027", "kind": "city", "original": "Al Baaj", "source_url": "@source/d5d2308e46830b66", "original_bbox": [832, -16, 872, 4], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": [
+    {"feature_id": "IRQ9-045", "name": "代尔祖尔", "lat": 35.335880279541016, "lon": 40.140838623046875, "level": 1, "source": "@source/5ce1af4ed5ee8acf", "review_notes": "@note/legacy_suppressions"}
+  ]
+}

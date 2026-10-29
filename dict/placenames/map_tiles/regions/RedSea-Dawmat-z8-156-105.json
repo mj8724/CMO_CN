@@ -1,0 +1,36 @@
+{
+  "z": 8,
+  "x": 156,
+  "y": 105,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "RedSea-Dawmat-z8-156-105",
+  "original_tiles": [
+    "8/156/105.png"
+  ],
+  "context_tiles": [
+    "8/152/105.png",
+    "8/152/106.png",
+    "8/153/105.png",
+    "8/153/106.png",
+    "8/154/106.png",
+    "8/157/107.png",
+    "8/158/105.png",
+    "8/159/105.png",
+    "8/160/106.png",
+    "8/160/107.png"
+  ],
+  "features": [
+    {"id": "RS8-002", "kind": "city", "original": "Dawmat al Jandal", "original_bbox": [85, 195, 141, 233], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "RS8-002", "zh": "杜马詹达尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "70c94ec6142b97813620dd6a6332deb0d6b9e64ef5b88fe83bdd1f9b3e580c6e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "RS8-002", "x": 127.5, "y": 209.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "RS8-002-circle", "feature_id": "RS8-002", "kind": "circle", "x": 89.5, "y": 199.5, "size": 7, "outline_width": 1, "original_bbox": [85, 195, 94, 204]}
+  ],
+  "shared_sources": []
+}

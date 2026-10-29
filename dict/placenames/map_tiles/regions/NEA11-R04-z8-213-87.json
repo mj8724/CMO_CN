@@ -1,0 +1,32 @@
+{
+  "id": "NEA11-R04-z8-213-87",
+  "z": 8,
+  "x": 213,
+  "y": 87,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/213/87.png",
+    "8/214/87.png"
+  ],
+  "features": [
+    {"id": "NEA11-N005", "kind": "city", "original": "Hailar District", "original_bbox": [47, 165, 99, 206], "source_url": "@source/87937155b69b46e1"},
+    {"id": "NEA11-N006", "kind": "city", "original": "Yakeshi/ Yaysi", "original_bbox": [213, 151, 269, 192], "source_url": "@source/87937155b69b46e1"}
+  ],
+  "translations": [
+    {"id": "NEA11-N005", "zh": "海拉尔区", "source_evidence_role": "NE_same_country_original_CJK_District_retained", "status": "approved", "source_identity_contract_sha256": "c9bcfd115c9e6a4ae5568c8ca0483051eb653390cadc694e745038fd737e200b", "source": "@source/de57b59c289acedb", "record_sha256": "444025245fb99bc57f9c2da3d9acfcda2ddcc2697c9da7de038eef154ceaca06", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."},
+    {"id": "NEA11-N006", "zh": "牙克石", "source_evidence_role": "NE_original_CJK_plus_original_OSM_primary_alias_unification", "status": "approved", "source_identity_contract_sha256": "b2de040f8664301dfbbd7a58e3448e8ada166b954ecd5e555936e7f2ccf568f3", "source": "@source/be0b7cd6aeee1fd0", "record_sha256": "cae58061fa8c50940ae142cb9420f104893d3af4c0f637dd72af641b49365ae2", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."}
+  ],
+  "layouts": [
+    {"id": "NEA11-N005", "x": 81, "y": 181, "font_size": 12, "font_style": "regular", "lines": ["海拉尔区"]},
+    {"id": "NEA11-N006", "x": 241, "y": 167, "font_size": 12, "font_style": "regular", "lines": ["牙克石"]}
+  ],
+  "symbols": [
+    {"id": "NEA11-N005-circle", "feature_id": "NEA11-N005", "kind": "circle", "size": 9, "outline_width": 1, "x": 51.5, "y": 169.5, "original_bbox": [47, 165, 56, 174]},
+    {"id": "NEA11-N006-circle", "feature_id": "NEA11-N006", "kind": "circle", "size": 9, "outline_width": 1, "x": 217.5, "y": 155.5, "original_bbox": [213, 151, 222, 160]}
+  ],
+  "canonical_captions": [],
+  "context_tiles": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "REC-HendersonTail-z10-184-402",
+  "z": 10,
+  "x": 184,
+  "y": 402,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/184/402.png"
+  ],
+  "context_tiles": [
+    "10/184/401.png",
+    "10/185/401.png",
+    "10/185/402.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "REC11-SH-03-REC-024", "owner_region": "REC-Henderson-z10-184-401", "feature_id": "REC-024", "kind": "city", "original": "Henderson", "original_bbox": [207, -8, 275, 10], "source_url": "@source/54f6e8d4f851e98d", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,41 @@
+{
+  "id": "AS8-ShanxiHenanWest-z8-207-99",
+  "z": 8,
+  "x": 207,
+  "y": 99,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    "8/207/100.png",
+    "8/207/101.png",
+    "8/207/99.png"
+  ],
+  "context_tiles": [
+    "8/208/101.png"
+  ],
+  "features": [
+    {"id": "AS8-N-CC04", "kind": "city", "original": "Jiexiu", "original_bbox": [145, 153, 185, 174], "source_url": "@source/8f70195aa345d501"},
+    {"id": "AS8-N-CC06", "kind": "city", "original": "Linfen", "original_bbox": [72, 367, 115, 388], "source_url": "@source/b6e120fee3fa515f"},
+    {"id": "AS8-N-CC07", "kind": "city", "original": "Houma", "original_bbox": [45, 471, 95, 493], "source_url": "@source/b6e120fee3fa515f"}
+  ],
+  "translations": [
+    {"id": "AS8-N-CC04", "zh": "介休", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "23420c1eb0eccb9cb9ff61853e97ae013eedbea2bd42d30282e25a02f37430bb", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 3645, "field": "NAME_ZH", "raw_value": "介休", "raw_GEONAMESID": 1805833}},
+    {"id": "AS8-N-CC06", "zh": "临汾", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "7598802de5b2862ce76cbe9a515b2f577eabb4697fffa178436130eb1088c4b4", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 5222, "field": "NAME_ZH", "raw_value": "临汾", "raw_GEONAMESID": 1803567}},
+    {"id": "AS8-N-CC07", "zh": "侯马", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "150031335485f02835022ffb0fa7a9c3a1c4d99d9d1a2c13dd3c2dcd7ed2a292", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 6513, "field": "NAME_ZH", "raw_value": "侯马", "raw_GEONAMESID": -1}}
+  ],
+  "layouts": [
+    {"id": "AS8-N-CC04", "x": 173.0, "y": 165.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AS8-N-CC06", "x": 100.0, "y": 379.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AS8-N-CC07", "x": 73.0, "y": 483.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AS8-N-CC04-circle", "kind": "circle", "x": 149.5, "y": 157.5, "size": 9, "outline_width": 1, "original_bbox": [145, 153, 154, 162], "source_url": "@source/8f70195aa345d501", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC04"},
+    {"id": "AS8-N-CC06-circle", "kind": "circle", "x": 76.5, "y": 371.5, "size": 9, "outline_width": 1, "original_bbox": [72, 367, 81, 376], "source_url": "@source/b6e120fee3fa515f", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC06"},
+    {"id": "AS8-N-CC07-circle", "kind": "circle", "x": 49.5, "y": 475.5, "size": 9, "outline_width": 1, "original_bbox": [45, 471, 54, 480], "source_url": "@source/b6e120fee3fa515f", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC07"},
+    {"id": "AS8-SH-CC13-circle", "kind": "circle", "x": 246.5, "y": 699.5, "size": 9, "outline_width": 1, "original_bbox": [242, 695, 251, 704], "source_url": "@source/0d96fcba2777095f", "review_notes": "@note/symbols", "shared_source_id": "AS8-SH-CC13"}
+  ],
+  "shared_sources": [
+    {"id": "AS8-SH-CC13", "owner_region": "CN-CentralEast-z8-208-96", "feature_id": "CN-C8-066", "kind": "city", "original": "Luoyang", "source_url": "@source/31e3aa4903591a05", "original_bbox": [242, 695, 297, 719], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

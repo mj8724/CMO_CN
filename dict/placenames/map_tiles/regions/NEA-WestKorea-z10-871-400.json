@@ -1,0 +1,40 @@
+{
+  "id": "NEA-WestKorea-z10-871-400",
+  "z": 10,
+  "x": 871,
+  "y": 400,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    "10/871/400.png",
+    "10/871/401.png",
+    "10/871/402.png"
+  ],
+  "context_tiles": [
+    "10/872/400.png",
+    "10/872/401.png",
+    "10/872/402.png"
+  ],
+  "features": [
+    {"id": "NEA10-023", "kind": "city", "original": "Anmyeon-eup", "original_bbox": [82, 52, 133, 86], "source_url": "@source/67618e3b5456f61e"},
+    {"id": "NEA10-024", "kind": "city", "original": "Gonam-myeon", "original_bbox": [122, 139, 166, 177], "source_url": "@source/67618e3b5456f61e"},
+    {"id": "NEA10-027", "kind": "city", "original": "Okdo-myeon", "original_bbox": [138, 665, 177, 702], "source_url": "@source/279df63d433c7ee4"}
+  ],
+  "translations": [
+    {"id": "NEA10-023", "zh": "安眠邑", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "f726c2920cd72e24d8b78ebc78afe496b5121f6c1cb2b01e602d45ec8c1b1908", "review_notes": "@note/translations"},
+    {"id": "NEA10-024", "zh": "古南面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "8b85f25de914acde08dfb826bbc42b5d7d451203d1489481c16908618807a75d", "review_notes": "@note/translations"},
+    {"id": "NEA10-027", "zh": "沃岛面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "0fc7a1fbb8108272900efc8a4a2566a6c9892af9497afeb18b303c1d30d28d32", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA10-023", "x": 107.0, "y": 69.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-024", "x": 144.0, "y": 158.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-027", "x": 157.0, "y": 683.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "NEA11-SH-03-KR-S10-020", "owner_region": "KR-south-z10-872-400", "feature_id": "KR-S10-020", "kind": "city", "original": "Jugyo-myeon", "original_bbox": [225, 178, 265, 215], "source_url": "@source/bc0bd64b240d662b", "review_notes": "@note/shared_sources"},
+    {"id": "NEA11-SH-04-KR-S10-040", "owner_region": "KR-south-z10-872-400", "feature_id": "KR-S10-040", "kind": "city", "original": "Seo-myeon", "original_bbox": [219, 390, 283, 410], "source_url": "@source/ab9530848d151202", "review_notes": "@note/shared_sources"},
+    {"id": "NEA11-SH-05-KR-S10-067", "owner_region": "KR-south-z10-872-400", "feature_id": "KR-S10-067", "kind": "water", "original": "Saemangeum Lake", "original_bbox": [196, 688, 275, 714], "source_url": "@source/aa3eacb9e70ad937", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

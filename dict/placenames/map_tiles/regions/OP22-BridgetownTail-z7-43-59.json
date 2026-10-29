@@ -1,0 +1,22 @@
+{
+  "id": "OP22-BridgetownTail-z7-43-59",
+  "z": 7,
+  "x": 43,
+  "y": 59,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/43/59.png"
+  ],
+  "context_tiles": [
+    "7/42/59.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "OP24-A04", "owner_region": "AM-CaribbeanCentralAmerica-z7-30-54", "feature_id": "AM9-78-Bridgetown", "kind": "city", "original": "Bridgetown", "original_bbox": [-56, 72, 9, 96], "source_url": "@source/1ec5eb09fd31fb26", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

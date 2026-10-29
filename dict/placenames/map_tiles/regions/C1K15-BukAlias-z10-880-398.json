@@ -1,0 +1,22 @@
+{
+  "id": "C1K15-BukAlias-z10-880-398",
+  "z": 10,
+  "x": 880,
+  "y": 398,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/880/398.png"
+  ],
+  "context_tiles": [
+    "10/879/398.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "C1K15-SH009", "owner_region": "KR-z10-864-392-unified128", "feature_id": "KR-E10-111", "kind": "city", "original": "Buk-myeon", "original_bbox": [-63, 66, 1, 85], "source_url": "@source/c3410725407c6384", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

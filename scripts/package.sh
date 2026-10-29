@@ -43,6 +43,19 @@ echo "==> 地名审核语义门禁"
 
 bash "$ROOT/scripts/build.sh"
 
+MAP_SOURCE_ARGS=(--manifest "$ROOT/dict/placenames/tile_regions.json"
+  --asset "$ROOT/assets/placenames/ChineseMapTiles.dat")
+if [[ -n "${CMO_MAP_SOURCE_PACKAGE:-}" ]]; then
+  MAP_SOURCE_ARGS+=(--source-package "$CMO_MAP_SOURCE_PACKAGE")
+fi
+if [[ -n "${CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS:-}${CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS_SHA256:-}" ]]; then
+  : "${CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS:?original external approval file is required}"
+  : "${CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS_SHA256:?original external approval SHA256 is required}"
+  MAP_SOURCE_ARGS+=(--owner-native-source-approvals "$CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS"
+    --owner-native-source-approvals-sha256 "$CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS_SHA256")
+fi
+"$PY" "$ROOT/scripts/verify_map_tile_source_package.py" "${MAP_SOURCE_ARGS[@]}"
+
 # ── 发版回归硬门禁（台账 docs/BUG_REGISTRY.md 的 static 子集）：不通过则中止打包 ──
 # --no-report：不写 build/regression_report.json，避免把发版用的 live 报告覆盖掉
 echo "==> 回归门禁（static）"
@@ -56,6 +69,9 @@ cp "$OUT/CMOLocalizer.dll" "$PACK/"
 cp "$ROOT/dict/CMOLocalizer.json" "$PACK/"
 cp "$OUT/CMO_Updater.exe" "$PACK/"
 cp "$ROOT/assets/placenames/ChineseMapTiles.dat" "$PACK/"
+if [[ -n "${CMO_MAP_SOURCE_PACKAGE:-}" ]]; then
+  cp -R "$CMO_MAP_SOURCE_PACKAGE" "$PACK/地图瓦片源码"
+fi
 
 # 地图地名集：地图矢量地名层与 Stamen 标签瓦片重绘的数据源
 mkdir -p "$PACK/WW/PlacenameSets/Synoptic" "$PACK/WW/PlacenameSets/Cities"

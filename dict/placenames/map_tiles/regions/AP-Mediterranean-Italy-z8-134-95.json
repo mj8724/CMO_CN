@@ -1,0 +1,67 @@
+{
+  "id": "AP-Mediterranean-Italy-z8-134-95",
+  "z": 8,
+  "x": 134,
+  "y": 95,
+  "width_tiles": 7,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "8/134/95.png", "z": 8},
+    {"path": "8/135/95.png", "z": 8},
+    {"path": "8/136/95.png", "z": 8},
+    {"path": "8/137/95.png", "z": 8},
+    {"path": "8/138/95.png", "z": 8},
+    {"path": "8/139/95.png", "z": 8},
+    {"path": "8/140/95.png", "z": 8}
+  ],
+  "context_tiles": [
+    {"path": "8/133/95.png", "z": 8},
+    {"path": "8/133/96.png", "z": 8},
+    {"path": "8/134/96.png", "z": 8},
+    {"path": "8/135/96.png", "z": 8},
+    {"path": "8/136/96.png", "z": 8},
+    {"path": "8/137/96.png", "z": 8},
+    {"path": "8/138/96.png", "z": 8},
+    {"path": "8/139/96.png", "z": 8},
+    {"path": "8/140/96.png", "z": 8},
+    {"path": "8/141/95.png", "z": 8},
+    {"path": "8/141/96.png", "z": 8}
+  ],
+  "features": [
+    {"id": "AP-MED8-000", "kind": "city", "original": "Ajaccio", "original_bbox": [50, 22, 98, 46], "source_url": "@source/0e13900a98f9ac94"},
+    {"id": "AP-MED8-001", "kind": "city", "original": "Rome", "original_bbox": [732, 30, 784, 56], "source_url": "@source/c75c2b57c53a6efc"},
+    {"id": "AP-MED8-002", "kind": "city", "original": "Caserta", "original_bbox": [1069, 227, 1118, 248], "source_url": "@source/c2527cab2b440392"},
+    {"id": "AP-MED8-003", "kind": "city", "original": "Benevento", "original_bbox": [1151, 215, 1216, 236], "source_url": "@source/c2527cab2b440392"},
+    {"id": "AP-MED8-004", "kind": "city", "original": "Foggia", "original_bbox": [1289, 135, 1335, 159], "source_url": "@source/7bdb19a9b236a49f"},
+    {"id": "AP-MED8-005", "kind": "city", "original": "Barletta", "original_bbox": [1424, 169, 1476, 190], "source_url": "@source/7bdb19a9b236a49f"},
+    {"id": "AP-MED8-006", "kind": "city", "original": "Bari", "original_bbox": [1529, 216, 1560, 237], "source_url": "@source/7bdb19a9b236a49f"}
+  ],
+  "translations": [
+    {"id": "AP-MED8-000", "zh": "阿雅克肖", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "0e095723a89bcb8e9a38fa4bdd0454a4e35e1668c5ff3d8a6ddce45dfca3c994", "review_notes": "@note/translations"},
+    {"id": "AP-MED8-001", "zh": "罗马", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "9910460b00319e5a935fe25b75460ec3e66f97fce98d481ef93404f6c39bf829", "review_notes": "@note/translations"},
+    {"id": "AP-MED8-002", "zh": "卡塞塔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e9267986a1b87d0a7f410145f41dd79d6b56c60a3b07d5554a2d268f63dbbba5", "review_notes": "@note/translations"},
+    {"id": "AP-MED8-003", "zh": "贝内文托", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "19ffa8333b20d4f893cc37f2b7828e281f527b6ec3b55abab6aea7ef3601df81", "review_notes": "@note/translations"},
+    {"id": "AP-MED8-004", "zh": "福贾", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "ae6af2f358f40535d1f0347ec07fe2efcf4f601f0e4822c80699ff8280c1a815", "review_notes": "@note/translations"},
+    {"id": "AP-MED8-005", "zh": "巴列塔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e84baee9ec97d9cb07186363935567aed9232bd52d9f1f788cd2a39d0902c724", "review_notes": "@note/translations"},
+    {"id": "AP-MED8-006", "zh": "巴里", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "5f6a58a2caba441e0ad9d48c82420f40eb06fb5a81823ac8582da0a456607f31", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-MED8-000", "x": 85.0, "y": 36.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-MED8-001", "x": 758.0, "y": 45.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-MED8-002", "x": 1098.5, "y": 240.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-MED8-003", "x": 1186.0, "y": 228.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-MED8-004", "x": 1313.0, "y": 149.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-MED8-005", "x": 1453.5, "y": 182.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-MED8-006", "x": 1553.0, "y": 229.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-MED8-000-circle", "feature_id": "AP-MED8-000", "x": 54.5, "y": 26.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [50, 22, 59, 31]},
+    {"id": "AP-MED8-001-circle", "feature_id": "AP-MED8-001", "x": 736.5, "y": 34.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [732, 30, 741, 39]},
+    {"id": "AP-MED8-002-circle", "feature_id": "AP-MED8-002", "x": 1073.5, "y": 231.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [1069, 227, 1078, 236]},
+    {"id": "AP-MED8-003-circle", "feature_id": "AP-MED8-003", "x": 1155.5, "y": 219.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [1151, 215, 1160, 224]},
+    {"id": "AP-MED8-004-circle", "feature_id": "AP-MED8-004", "x": 1293.5, "y": 139.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [1289, 135, 1298, 144]},
+    {"id": "AP-MED8-005-circle", "feature_id": "AP-MED8-005", "x": 1428.5, "y": 173.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [1424, 169, 1433, 178]},
+    {"id": "AP-MED8-006-circle", "feature_id": "AP-MED8-006", "x": 1533.5, "y": 220.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [1529, 216, 1538, 225]}
+  ],
+  "shared_sources": []
+}

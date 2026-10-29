@@ -1,0 +1,50 @@
+{
+  "id": "CN9-R-z9-425-200-1-1",
+  "z": 9,
+  "x": 425,
+  "y": 200,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/425/200.png"
+  ],
+  "context_tiles": [
+    "9/419/215.png",
+    "9/420/215.png",
+    "9/421/215.png",
+    "9/422/215.png",
+    "9/423/215.png",
+    "9/424/200.png",
+    "9/424/215.png",
+    "9/425/191.png",
+    "9/425/215.png",
+    "9/426/215.png",
+    "9/426/216.png",
+    "9/427/215.png",
+    "9/428/215.png"
+  ],
+  "features": [
+    {"id": "CN9-N-032-0", "kind": "region", "original": "Qiaoguan", "original_bbox": [-7, 6, 47, 26], "source_url": "@source/42642d0f1c4dac7d"},
+    {"id": "CN9-N-035-0", "kind": "region", "original": "Xiashan", "original_bbox": [191, 27, 243, 45], "source_url": "@source/42642d0f1c4dac7d"},
+    {"id": "CN9-N-037-0", "kind": "region", "original": "Anqiu", "original_bbox": [121, 44, 160, 66], "source_url": "@source/42642d0f1c4dac7d"},
+    {"id": "CN9-N-040-0", "kind": "region", "original": "Shidui", "original_bbox": [156, 85, 193, 102], "source_url": "@source/42642d0f1c4dac7d"},
+    {"id": "CN9-N-043-0", "kind": "region", "original": "Dasheng", "original_bbox": [-15, 120, 33, 139], "source_url": "@source/42642d0f1c4dac7d"}
+  ],
+  "translations": [
+    {"id": "CN9-N-032-0", "zh": "乔官", "source": "@source/94390efd2ed7bbfc", "status": "approved", "record_sha256": "d7e484494277908f1cbe8f3b665d375a46e6d4377d51032895f3b3256d895a9b", "review_notes": "@note/translations"},
+    {"id": "CN9-N-035-0", "zh": "峡山", "source": "@source/b316bab8408b58cc", "status": "approved", "record_sha256": "ba1aa0a5189da9a7c9b25c167a5d24422e32ac36af0c4ee48516f51dc2982345", "review_notes": "@note/translations"},
+    {"id": "CN9-N-037-0", "zh": "安丘", "source": "@source/488c24c0f483ef30", "status": "approved", "record_sha256": "8b80a30a2288869207df054dbb2239895e3125214c0f11f5a32aa5638526bfc3", "review_notes": "@note/translations"},
+    {"id": "CN9-N-040-0", "zh": "石堆", "source": "@source/94390efd2ed7bbfc", "status": "approved", "record_sha256": "bbc3edb9c87edd25e382e53ea3b92b8dadb36681481fe6224d245f56259470c3", "review_notes": "@note/translations"},
+    {"id": "CN9-N-043-0", "zh": "大盛", "source": "@source/512d490e820b150e", "status": "approved", "record_sha256": "ddfb3b029bbcc2fed2d1bc028e6adccab5ba125ba631f58c6e429255a531029a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CN9-N-032-0", "x": 20.0, "y": 16.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-035-0", "x": 217.0, "y": 36.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-037-0", "x": 140.5, "y": 55.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-040-0", "x": 174.5, "y": 93.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-043-0", "x": 13.0, "y": 129.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

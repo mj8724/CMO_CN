@@ -1,0 +1,31 @@
+{
+  "id": "LZ12-Newfoundland-z6-22-21",
+  "z": 6,
+  "x": 22,
+  "y": 21,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/22/21.png",
+    "6/22/22.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "LZ12-Newfoundland-z6-22-21-Gander", "kind": "city", "original": "Gander", "original_bbox": [70, 249, 113, 268], "source_url": "@source/d1cfdbd2588793e3", "source_printed_lines": ["Gander"]},
+    {"id": "LZ12-Newfoundland-z6-22-21-StJohns", "kind": "city", "original": "St. John's", "original_bbox": [156, 344, 209, 364], "source_url": "@source/4a5629d1ae6db2af", "source_printed_lines": ["St. John's"]}
+  ],
+  "translations": [
+    {"id": "LZ12-Newfoundland-z6-22-21-Gander", "zh": "甘德", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e3c67b4bc16b2bcca73fe6135d9c6954bfdd05cb258342695f8bcaa52b33dc3a", "review_notes": "@note/translations"},
+    {"id": "LZ12-Newfoundland-z6-22-21-StJohns", "zh": "圣约翰斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "a3844bf7f876d99e6d4af284eb727b182ce0bccdb1f199e78f73f0e88bfd50d8", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LZ12-Newfoundland-z6-22-21-Gander", "x": 98.0, "y": 261.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LZ12-Newfoundland-z6-22-21-StJohns", "x": 196.5, "y": 357.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "LZ12-Newfoundland-z6-22-21-Gander-circle", "feature_id": "LZ12-Newfoundland-z6-22-21-Gander", "kind": "circle", "x": 74.5, "y": 253.5, "size": 9, "outline_width": 1, "original_bbox": [70, 249, 79, 258], "source_url": "@source/d1cfdbd2588793e3", "review_notes": "@note/symbols"},
+    {"id": "LZ12-Newfoundland-z6-22-21-StJohns-circle", "feature_id": "LZ12-Newfoundland-z6-22-21-StJohns", "kind": "circle", "x": 160.5, "y": 349.0, "size": 10, "outline_width": 1, "original_bbox": [156, 344, 165, 354], "source_url": "@source/4a5629d1ae6db2af", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

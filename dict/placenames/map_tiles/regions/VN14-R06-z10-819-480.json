@@ -1,0 +1,32 @@
+{
+  "id": "VN14-R06-z10-819-480",
+  "z": 10,
+  "x": 819,
+  "y": 480,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "10/819/480.png", "z": 10},
+    {"path": "10/820/480.png", "z": 10}
+  ],
+  "context_tiles": [
+    {"path": "10/820/479.png", "z": 10}
+  ],
+  "features": [
+    {"id": "VN14-N23", "kind": "region", "original": "Phan Thiết", "original_bbox": [106, 164, 145, 203], "source_url": "@source/22239df2cd950628"},
+    {"id": "VN14-N24", "kind": "region", "original": "Mũi Né", "original_bbox": [241, 173, 280, 189], "source_url": "@source/22239df2cd950628"}
+  ],
+  "translations": [
+    {"id": "VN14-N23", "zh": "潘切", "status": "approved", "source": "@source/28e1cca6310b0a48", "record_sha256": "e443e96c309b2ab301e74518338d517a9a9bfc1fac09c3877d22a9378d5cc1fd", "review_notes": "@note/translations"},
+    {"id": "VN14-N24", "zh": "美奈", "status": "approved", "source": "@source/22239df2cd950628", "record_sha256": "3720913722944dec440a9b0923db1fb74d72ef3f569014ba5b5d6a5c8435ab42", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "VN14-N23", "x": 125.5, "y": 183.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N24", "x": 260.5, "y": 181.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "VN14-S18", "owner_region": "AP-Vietnam-Central-z10-816-472", "feature_id": "AP-VC10-081", "kind": "city", "original": "Lương Sơn", "original_bbox": [288, -17, 349, 2], "source_url": "@source/6be7464e85d2ddaf", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

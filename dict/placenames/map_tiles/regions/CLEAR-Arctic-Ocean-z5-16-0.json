@@ -1,0 +1,16 @@
+{
+  "id": "CLEAR-Arctic-Ocean-z5-16-0",
+  "z": 5,
+  "x": 16,
+  "y": 0,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/16/0.png"
+  ],
+  "context_tiles": [],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": []
+}

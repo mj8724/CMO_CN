@@ -1,0 +1,26 @@
+{
+  "id": "C1K15-SouthSea-z10-876-408",
+  "z": 10,
+  "x": 876,
+  "y": 408,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/876/408.png"
+  ],
+  "context_tiles": [
+    "10/875/408.png"
+  ],
+  "features": [
+    {"id": "C1K15-N040", "kind": "marine", "original": "South Sea", "original_bbox": [2, 137, 135, 160], "source_url": "@source/f480b28529175386"}
+  ],
+  "translations": [
+    {"id": "C1K15-N040", "zh": "南海", "status": "approved", "source": "@source/f480b28529175386", "record_sha256": "a2a1397c4e257965f621f6df0b91845a08d9b5c16112c0f8154dfa52338820db", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C1K15-N040", "x": 68.5, "y": 148.5, "font_size": 14, "font_style": "regular", "lines": ["南海"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

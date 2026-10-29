@@ -1,0 +1,29 @@
+{
+  "id": "WA13-R06-z10-520-467",
+  "z": 10,
+  "x": 520,
+  "y": 467,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/520/467.png"
+  ],
+  "context_tiles": [
+    "10/520/466.png"
+  ],
+  "features": [
+    {"id": "WA13-G000", "kind": "region", "original": "Anuzagren", "original_bbox": [28, -15, 88, 5], "source_url": "@source/5e75ea7045e89ff6"},
+    {"id": "WA13-G001", "kind": "region", "original": "Anderamboukane", "original_bbox": [104, 143, 201, 160], "source_url": "@source/5e75ea7045e89ff6"}
+  ],
+  "translations": [
+    {"id": "WA13-G000", "zh": "阿努扎格伦", "status": "approved", "source": "@source/5e75ea7045e89ff6", "record_sha256": "c6fc0471797673c89f900d49c429fa85f324ca9ca5878def8858296a47106c12", "review_notes": "AUTHOR SELF candidate pending different Geo TARGET. SOURCE-qualified complete literal/CJK grade preserved; generic region is a renderer category, not supplier city/admin/type. Supplier GN_ID/admin/type/native are null; no circle/height/rule/alias. {\"Chinese_grade\": \"explicit_nonofficial_project_editorial\", \"Chinese_notes\": \"Existing project editorial caption at z9 reused as wording only; original supplier ID/admin/native remain null.\", \"Source_fullrow\": {\"JSON_pointer\": \"/exact_complete_words21/0\", \"canonical_complete_row_sha256\": \"b5e1880bdc8e4cbeae0f9df119406afeb3b83905ff0eb8deaa51df8204693caa\", \"container\": {\"bytes\": 197671, \"path\": \"C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-21\\\\cha\\\\work\\\\parallel_map\\\\research_WestAfrica_z10_exact13_SOURCE_after8021completed_20261025\\\\EFFECTIVE_full13_SOURCE_known50_current_roles_per_ID_contract_NOT_AUTHOR_GRANT.json\", \"sha256\": \"a5648cc911c10493328a5a93f8f4acc672a3b86ef1ddd8a78046e5fa3ff213d5\"}}, \"official_Chinese\": false, \"qualified_SOURCE\": {\"bytes\": 1210745, \"path\": \"C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-21\\\\cha\\\\work\\\\parallel_map\\\\reviews\\\\WestAfrica13_Geo_independent_SOURCE_CJK_peer_after8021completed_20261025\\\\future_mandatory_SOURCE_qualified_full13_21words_known50_NOT_AUTHOR_OR_TARGET_GRANT.json\", \"sha256\": \"0d61d442f996f6aaca7a31d01fee3932efd8aff23188afd352b818dbeeaa767b\"}} DIFFERENT ACTUAL TARGET: personally read complete CJK black/white and full-source instance under8da03/Root5c3fab; pristine complete glyph proof and once13 bound separately. CJK Source grade and supplier null roles unchanged."},
+    {"id": "WA13-G001", "zh": "安德朗布坎", "status": "approved", "source": "@source/5e75ea7045e89ff6", "record_sha256": "5e98f19132cf064f2ee38c803fd5bdeb7717a379e73603ca768cc3bf3742dfb4", "review_notes": "AUTHOR SELF candidate pending different Geo TARGET. SOURCE-qualified complete literal/CJK grade preserved; generic region is a renderer category, not supplier city/admin/type. Supplier GN_ID/admin/type/native are null; no circle/height/rule/alias. {\"Chinese_grade\": \"explicit_nonofficial_project_editorial\", \"Chinese_notes\": \"Existing project editorial caption at z9 reused as wording only; GN2461034 original aliases bridge spelling context, not a supplier ID or vector anchor.\", \"Source_fullrow\": {\"JSON_pointer\": \"/exact_complete_words21/1\", \"canonical_complete_row_sha256\": \"d77e2b0ce46eaec0d9f39042d73677103db7991e71872bd09ca9efe141a59af6\", \"container\": {\"bytes\": 197671, \"path\": \"C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-21\\\\cha\\\\work\\\\parallel_map\\\\research_WestAfrica_z10_exact13_SOURCE_after8021completed_20261025\\\\EFFECTIVE_full13_SOURCE_known50_current_roles_per_ID_contract_NOT_AUTHOR_GRANT.json\", \"sha256\": \"a5648cc911c10493328a5a93f8f4acc672a3b86ef1ddd8a78046e5fa3ff213d5\"}}, \"official_Chinese\": false, \"qualified_SOURCE\": {\"bytes\": 1210745, \"path\": \"C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-21\\\\cha\\\\work\\\\parallel_map\\\\reviews\\\\WestAfrica13_Geo_independent_SOURCE_CJK_peer_after8021completed_20261025\\\\future_mandatory_SOURCE_qualified_full13_21words_known50_NOT_AUTHOR_OR_TARGET_GRANT.json\", \"sha256\": \"0d61d442f996f6aaca7a31d01fee3932efd8aff23188afd352b818dbeeaa767b\"}} DIFFERENT ACTUAL TARGET: personally read complete CJK black/white and full-source instance under8da03/Root5c3fab; pristine complete glyph proof and once13 bound separately. CJK Source grade and supplier null roles unchanged."}
+  ],
+  "layouts": [
+    {"id": "WA13-G000", "x": 58.0, "y": 24, "font_size": 12, "font_style": "regular", "lines": ["阿努扎格伦"]},
+    {"id": "WA13-G001", "x": 152.5, "y": 151.5, "font_size": 12, "font_style": "regular", "lines": ["安德朗布坎"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

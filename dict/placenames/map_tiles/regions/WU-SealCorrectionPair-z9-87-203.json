@@ -1,0 +1,49 @@
+{
+  "id": "WU-SealCorrectionPair-z9-87-203",
+  "z": 9,
+  "x": 87,
+  "y": 203,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "9/87/203.png",
+    "9/87/204.png"
+  ],
+  "context_tiles": [
+    "9/87/205.png",
+    "9/88/203.png",
+    "9/88/204.png"
+  ],
+  "features": [
+    {"id": "WUS2-001", "kind": "city", "original": "Santa Clarita", "original_bbox": [80, 190, 121, 228], "source_url": "@source/841526ebb8d7b0c3"},
+    {"id": "WUS2-002", "kind": "city", "original": "Simi Valley", "original_bbox": [6, 254, 47, 295], "source_url": "@source/841526ebb8d7b0c3"},
+    {"id": "WUS2-003", "kind": "city", "original": "Los Angeles", "original_bbox": [182, 345, 244, 395], "source_url": "@source/cfd30665a676a8ef"},
+    {"id": "WUS2-004", "kind": "city", "original": "Santa Monica", "original_bbox": [100, 363, 146, 402], "source_url": "@source/cfd30665a676a8ef"},
+    {"id": "WUS2-005", "kind": "city", "original": "Torrance", "original_bbox": [150, 454, 205, 472], "source_url": "@source/cfd30665a676a8ef"},
+    {"id": "WUS2-006", "kind": "city", "original": "Rancho Palos Verdes", "original_bbox": [130, 485, 204, 518], "source_url": "@source/cfd30665a676a8ef"}
+  ],
+  "translations": [
+    {"id": "WUS2-001", "zh": "圣塔克拉利塔", "status": "approved", "source": "@source/5dfcfedc27d4a635", "record_sha256": "888acd6e952365d2b773d779bbe212a7ea12af5cf70ff021a929de6472a22232", "review_notes": "@note/translations"},
+    {"id": "WUS2-002", "zh": "西米谷", "status": "approved", "source": "@source/6fb35a24f9342941", "record_sha256": "159f24c888cb77244c78b6d6f29dea417fbb47eb9f1fa09f33f55806f8d6dc94", "review_notes": "@note/translations"},
+    {"id": "WUS2-003", "zh": "洛杉矶", "status": "approved", "source": "@source/0e0439bd36eb6905", "record_sha256": "d6879cdabe0a25f5ea5be023a9874bc62ccc4ccc18d7de13cd939558ff25f267", "review_notes": "@note/translations"},
+    {"id": "WUS2-004", "zh": "圣莫尼卡", "status": "approved", "source": "@source/6f977c10e39c27db", "record_sha256": "818ac109bd9f478b4f18047b2a00fb73edcd25fcfd54eace3ad153628e85e326", "review_notes": "@note/translations"},
+    {"id": "WUS2-005", "zh": "托兰斯", "status": "approved", "source": "@source/8d57ac6b92802adb", "record_sha256": "97dda84d79f315216c1e91746a8db3b4181de1e4aa94fedf79df74f51c95e6a0", "review_notes": "@note/translations"},
+    {"id": "WUS2-006", "zh": "兰乔帕洛斯弗迪斯", "status": "approved", "source": "@source/314d8cd3eb879742", "record_sha256": "11ed9ee6f3a9fabb206d3113e49d5283a7f2f298660bf5474611696d63170044", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WUS2-001", "x": 100.5, "y": 209.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WUS2-002", "x": 26.5, "y": 274.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WUS2-003", "x": 213.0, "y": 370.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WUS2-004", "x": 123.0, "y": 382.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WUS2-005", "x": 177.5, "y": 463.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WUS2-006", "x": 167.0, "y": 501.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "WUS2-SH-001", "owner_region": "AM-SoCalBorder-z9-88-200", "feature_id": "AM9-12-Rosamond", "kind": "city", "original": "Rosamond", "original_bbox": [212, 1, 273, 19], "source_url": "@source/d0f97d9dea571f25", "review_notes": "@note/shared_sources"},
+    {"id": "WUS2-SH-002", "owner_region": "AM-SoCalBorder-z9-88-200", "feature_id": "AM9-16-Lancaster", "kind": "city", "original": "Lancaster", "original_bbox": [222, 73, 283, 93], "source_url": "@source/d0f97d9dea571f25", "review_notes": "@note/shared_sources"},
+    {"id": "WUS2-SH-003", "owner_region": "AM-SoCalBorder-z9-88-200", "feature_id": "AM9-25-Pasadena", "kind": "city", "original": "Pasadena", "original_bbox": [219, 316, 280, 336], "source_url": "@source/a070a6cc8b3d5e65", "review_notes": "@note/shared_sources"},
+    {"id": "WUS2-SH-004", "owner_region": "AM-SoCalBorder-z9-88-200", "feature_id": "AM9-38-Seal-Beach", "kind": "city", "original": "Seal Beach", "original_bbox": [233, 495, 294, 512], "source_url": "@source/a070a6cc8b3d5e65", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

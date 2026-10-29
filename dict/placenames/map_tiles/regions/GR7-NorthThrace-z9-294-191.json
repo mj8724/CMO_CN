@@ -1,0 +1,48 @@
+{
+  "id": "GR7-NorthThrace-z9-294-191",
+  "z": 9,
+  "x": 294,
+  "y": 191,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "features": [
+    {"id": "GR7-N-012", "kind": "city", "original": "Saray", "original_bbox": [421, 23, 454, 43], "source_url": "@source/063c6a4f572008d9"},
+    {"id": "GR7-N-017", "kind": "city", "original": "Lüleburgaz", "original_bbox": [202, 43, 263, 62], "source_url": "@source/44645545c9cfe885"},
+    {"id": "GR7-N-024", "kind": "city", "original": "Pehlivanköy", "original_bbox": [40, 70, 107, 89], "source_url": "@source/44645545c9cfe885"},
+    {"id": "GR7-N-029", "kind": "city", "original": "Çerkezköy", "original_bbox": [438, 99, 495, 119], "source_url": "@source/063c6a4f572008d9"},
+    {"id": "GR7-N-032", "kind": "city", "original": "Hayrabolu", "original_bbox": [114, 135, 171, 153], "source_url": "@source/44645545c9cfe885"},
+    {"id": "GR7-N-037", "kind": "city", "original": "Muratlı", "original_bbox": [265, 155, 305, 171], "source_url": "@source/063c6a4f572008d9"},
+    {"id": "GR7-N-038", "kind": "city", "original": "Çorlu", "original_bbox": [380, 161, 411, 180], "source_url": "@source/063c6a4f572008d9"}
+  ],
+  "translations": [
+    {"id": "GR7-N-012", "zh": "萨赖", "status": "approved", "source": "@source/3cf74614b4145c2d", "record_sha256": "b8945e4983c1dcd16f02ccc7cfe1601b9baf7cddf5daa981d34b3ba7fe3a5865", "review_notes": "@note/translations"},
+    {"id": "GR7-N-017", "zh": "吕莱布尔加兹", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "378097a0bfd21188bcab9327c244bd171c6698aebd1dab0d7ab40888abe9748b", "review_notes": "@note/translations"},
+    {"id": "GR7-N-024", "zh": "佩赫利万柯伊", "status": "approved", "source": "@source/f618a6a3e8caeb76", "record_sha256": "88983e355beb4e17be45a1409386485e3a916210a6ab2823b132295c3dfbf1ce", "review_notes": "@note/translations"},
+    {"id": "GR7-N-029", "zh": "切尔克兹柯伊", "status": "approved", "source": "@source/326570ae5aacc443", "record_sha256": "d26ff198501fde5384a440cfdae96edfbf56fa5869538a1cacb911d9879f4127", "review_notes": "@note/translations"},
+    {"id": "GR7-N-032", "zh": "海拉博卢", "status": "approved", "source": "@source/d64caabe35ee3235", "record_sha256": "4197de361a7749be480efbe44a13b843528b40e9f89b39eac51c813b8af52bba", "review_notes": "@note/translations"},
+    {"id": "GR7-N-037", "zh": "穆拉特勒", "status": "approved", "source": "@source/6586ce9d2747384b", "record_sha256": "af05a68069f6f20e9b0e5877c02318ae00c3da3e55063b0852a5d500287c0a04", "review_notes": "@note/translations"},
+    {"id": "GR7-N-038", "zh": "乔尔卢", "status": "approved", "source": "@source/ee37bfe789c65e1b", "record_sha256": "b31ad73fa39b6304806c8bc49a4b73d68969bdfd02204c2a4b874d6e63d805bd", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GR7-N-012", "x": 437.5, "y": 33.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-017", "x": 232.5, "y": 52.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-024", "x": 73.5, "y": 79.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-029", "x": 466.5, "y": 109.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-032", "x": 142.5, "y": 144.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-037", "x": 285.0, "y": 163.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-038", "x": 395.5, "y": 170.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "GR7-S-057", "owner_region": "GREECE-z9-288-192", "feature_id": "GR9-002", "kind": "city", "original": "Tekirdağ", "original_bbox": [261, 247, 315, 270], "source_url": "@source/dfdf88f46d8b43a9", "review_notes": "@note/shared_sources"},
+    {"id": "GR7-S-058", "owner_region": "GREECE-z9-288-192", "feature_id": "GR9-003", "kind": "city", "original": "Marmaraereğlisi", "original_bbox": [407, 252, 494, 273], "source_url": "@source/99e0f353ce749664", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/294/191.png",
+    "9/295/191.png"
+  ],
+  "context_tiles": [
+    "9/295/192.png"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "PH8-NegrosPanay-z8-215-120",
+  "z": 8,
+  "x": 215,
+  "y": 120,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/215/120.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "PH11-002", "kind": "city", "original": "Cadiz", "original_bbox": [171, 37, 209, 58], "source_url": "@source/d993bb388d387170"},
+    {"id": "PH11-003", "kind": "city", "original": "Iloilo City", "original_bbox": [37, 85, 77, 129], "source_url": "@source/d993bb388d387170"},
+    {"id": "PH11-004", "kind": "city", "original": "Bacolod", "original_bbox": [106, 89, 159, 110], "source_url": "@source/d993bb388d387170"},
+    {"id": "PH11-005", "kind": "city", "original": "San Carlos", "original_bbox": [191, 124, 234, 162], "source_url": "@source/d993bb388d387170"}
+  ],
+  "translations": [
+    {"id": "PH11-002", "zh": "加的斯", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "886b09d7a3e7c2bd8e4c1331cc2ad14ccd3240d393ecf1dfe9aa52f012fb1709", "review_notes": "@note/translations"},
+    {"id": "PH11-003", "zh": "伊洛伊洛市", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "53181adbf60813e8187c44cef59f7074708781f8069669d63c638a5a9690d4d7", "review_notes": "@note/translations"},
+    {"id": "PH11-004", "zh": "描戈律", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "0fb5030bc2bf5eb5afab99e00c1f0f6da67a19cef68bcdf59e254ca6d92586f7", "review_notes": "@note/translations"},
+    {"id": "PH11-005", "zh": "圣卡洛斯", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "6b32bb4951ac074edbfae8c47d7268aa6ef6f41ed2188c454cea6af3086f430a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PH11-002", "x": 201.5, "y": 51, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-003", "x": 60, "y": 120, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-004", "x": 137, "y": 104, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-005", "x": 226, "y": 140, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "PH11-002-circle", "feature_id": "PH11-002", "kind": "circle", "x": 175.5, "y": 41.5, "size": 9, "outline_width": 1, "original_bbox": [171, 37, 180, 46]},
+    {"id": "PH11-003-circle", "feature_id": "PH11-003", "kind": "circle", "x": 41.5, "y": 89.5, "size": 9, "outline_width": 1, "original_bbox": [37, 85, 46, 94]},
+    {"id": "PH11-004-circle", "feature_id": "PH11-004", "kind": "circle", "x": 110.5, "y": 93.5, "size": 9, "outline_width": 1, "original_bbox": [106, 89, 115, 98]},
+    {"id": "PH11-005-circle", "feature_id": "PH11-005", "kind": "circle", "x": 195.5, "y": 128.5, "size": 9, "outline_width": 1, "original_bbox": [191, 124, 200, 133]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,55 @@
+{
+  "id": "VN14-R05-z10-815-477",
+  "z": 10,
+  "x": 815,
+  "y": 477,
+  "width_tiles": 1,
+  "height_tiles": 4,
+  "original_tiles": [
+    {"path": "10/815/477.png", "z": 10},
+    {"path": "10/815/478.png", "z": 10},
+    {"path": "10/815/479.png", "z": 10},
+    {"path": "10/815/480.png", "z": 10}
+  ],
+  "context_tiles": [
+    {"path": "10/816/479.png", "z": 10}
+  ],
+  "features": [
+    {"id": "VN14-N13", "kind": "region", "original": "Thanh Bình", "original_bbox": [171, 183, 229, 199], "source_url": "@source/a73d82f5725b5431"},
+    {"id": "VN14-N14", "kind": "region", "original": "Lộc Ninh", "original_bbox": [23, 261, 76, 282], "source_url": "@source/a358c80cea0281e4"},
+    {"id": "VN14-N15", "kind": "region", "original": "Tân Khai", "original_bbox": [45, 476, 90, 491], "source_url": "@source/a358c80cea0281e4"},
+    {"id": "VN14-N17", "kind": "region", "original": "Chơn Thành", "original_bbox": [49, 571, 86, 606], "source_url": "@source/f7ef968aff686b78"},
+    {"id": "VN14-N19", "kind": "region", "original": "Tân Bình", "original_bbox": [121, 757, 167, 768], "source_url": "@source/f7ef968aff686b78"},
+    {"id": "VN14-N20", "kind": "region", "original": "Bến Cát", "original_bbox": [39, 786, 87, 805], "source_url": "@source/7e915616fcef1f4e"},
+    {"id": "VN14-N21", "kind": "region", "original": "Thủ Dầu Một", "original_bbox": [65, 892, 125, 936], "source_url": "@source/7e915616fcef1f4e"},
+    {"id": "VN14-N22", "kind": "region", "original": "Biên Hòa", "original_bbox": [189, 927, 247, 946], "source_url": "@source/7e915616fcef1f4e"},
+    {"id": "VN14-N25", "kind": "region", "original": "Dĩ An", "original_bbox": [156, 970, 194, 989], "source_url": "@source/7e915616fcef1f4e"}
+  ],
+  "translations": [
+    {"id": "VN14-N13", "zh": "清平", "status": "approved", "source": "@source/a73d82f5725b5431", "record_sha256": "9f09f5aa65814d42d70e6af08558b91e6e8763b59e7c6c56628d9a56d74063ef", "review_notes": "@note/translations"},
+    {"id": "VN14-N14", "zh": "禄宁", "status": "approved", "source": "@source/a358c80cea0281e4", "record_sha256": "27c1346ca0dae818ab46201206e7dd834ca541aceac88c8c4ce5a1f4f7ef82d4", "review_notes": "@note/translations"},
+    {"id": "VN14-N15", "zh": "新开", "status": "approved", "source": "@source/a358c80cea0281e4", "record_sha256": "c0ed60375d5df61cdf80813426f1a6eb1675eb908eeabd89ce87960b59ffff7c", "review_notes": "@note/translations"},
+    {"id": "VN14-N17", "zh": "真诚", "status": "approved", "source": "@source/f7ef968aff686b78", "record_sha256": "4496c1a7cf64e9677dfb28468bdc7fc05ed9229036bb6208eda14884958909e0", "review_notes": "@note/translations"},
+    {"id": "VN14-N19", "zh": "新平", "status": "approved", "source": "@source/f7ef968aff686b78", "record_sha256": "af53aa84170ce2000bb62ef269548da8d15a039c48659073e5ac7a750d64fffa", "review_notes": "@note/translations"},
+    {"id": "VN14-N20", "zh": "槟吉", "status": "approved", "source": "@source/7e915616fcef1f4e", "record_sha256": "c0da5fe84702be2b7c111aa611f2532b7392b49d0e1379192ab0e055fb74b422", "review_notes": "@note/translations"},
+    {"id": "VN14-N21", "zh": "土龙木", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "dab97fea3868dba95a0da9ffefaba8af59197559692150720e55504c725985e8", "review_notes": "@note/translations"},
+    {"id": "VN14-N22", "zh": "边和", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "9ee08e0300da14408b706329d004f03f200477a95d0f6354472669963665f6b8", "review_notes": "@note/translations"},
+    {"id": "VN14-N25", "zh": "以安", "status": "approved", "source": "@source/7e915616fcef1f4e", "record_sha256": "21287671445f793ba22344d2482e2c478b7f82d16df2eed77cfa26fd2c96a1a8", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "VN14-N13", "x": 200.0, "y": 191.0, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N14", "x": 49.5, "y": 271.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N15", "x": 67.5, "y": 483.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N17", "x": 67.5, "y": 588.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N19", "x": 144.0, "y": 762.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N20", "x": 63.0, "y": 795.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N21", "x": 95.0, "y": 914.0, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N22", "x": 218.0, "y": 936.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N25", "x": 175.0, "y": 979.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "VN14-S16", "owner_region": "AP-Vietnam-Central-z10-816-472", "feature_id": "AP-VC10-074", "kind": "city", "original": "Tân Phú", "original_bbox": [232, 557, 274, 572], "source_url": "@source/f7ef968aff686b78", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

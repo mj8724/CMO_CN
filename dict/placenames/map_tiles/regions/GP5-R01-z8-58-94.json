@@ -1,0 +1,46 @@
+{
+  "id": "GP5-R01-z8-58-94",
+  "z": 8,
+  "x": 58,
+  "y": 94,
+  "width_tiles": 1,
+  "height_tiles": 5,
+  "original_tiles": [
+    "8/58/94.png",
+    "8/58/95.png",
+    "8/58/96.png",
+    "8/58/97.png",
+    "8/58/98.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "USGP5-PH-001", "kind": "city", "original": "Yankton", "original_bbox": [192, 50, 238, 66], "source_url": "@source/26de3016295ba305"},
+    {"id": "USGP5-PH-002", "kind": "city", "original": "Norfolk", "original_bbox": [189, 257, 231, 274], "source_url": "@source/26de3016295ba305"},
+    {"id": "USGP5-PH-003", "kind": "city", "original": "Grand Island", "original_bbox": [21, 525, 56, 559], "source_url": "@source/95d671527a7a7617"},
+    {"id": "USGP5-PH-004", "kind": "city", "original": "Salina", "original_bbox": [153, 1020, 189, 1036], "source_url": "@source/59c7b4db1e292dc0"},
+    {"id": "USGP5-PH-005", "kind": "city", "original": "Hutchinson", "original_bbox": [95, 1202, 158, 1218], "source_url": "@source/63fe4c4b7b8f3983"}
+  ],
+  "translations": [
+    {"id": "USGP5-PH-001", "zh": "扬克顿", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "5db03a6df3b502e723b7e69ee44b5263bb612cd183b6224c1ac4c93453862d6a", "review_notes": "AUTHOR SELF PRIVATE MODEL ONLY; different Casp TARGET pending. {\"Chinese_grade\": \"direct_original_NE_NAME_ZH_same_US_state_and_original_GN19_lexical_correspondence_NOT_government_official\", \"Source_fullrow\": {\"JSON_pointer\": \"/actual_rows5/0\", \"canonical_row_sha256\": \"ee4b5bad1214c4e9e95b3abb5b53d1e3ba6af2db25097f25115a5de2127f92e3\", \"container\": {\"bytes\": 628518, \"path\": \"C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-21\\\\cha\\\\work\\\\parallel_map\\\\reviews\\\\USGreatPlains_closed5_independent_SOURCE_CJK_peer_after8191applied_20261026\\\\future_mandatory_SOURCE5_contract_NOT_AUTHOR_OR_TARGET_GRANT.json\", \"sha256\": \"dcfe61e91b5200fbb766e29624a20620f0fd41bca36a255b96021056df62ad85\"}}, \"original_raw_native_composite_glyph_corner\": [[15040, 24117], [15041, 24116], [15041, 24117]], \"renderer_city_not_supplier_class\": true, \"supplier_ID\": null, \"supplier_admin\": null} Independent Casp TARGET actual complete Chinese and full positive RGBA inspected under Root bf647; original NE community lexical grade and state identity retained."},
+    {"id": "USGP5-PH-002", "zh": "诺福克", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "667d6276821da22ad2ea92b0413f7ecda47640d8b418d1933df6d42d2c57af96", "review_notes": "AUTHOR SELF PRIVATE MODEL ONLY; different Casp TARGET pending. {\"Chinese_grade\": \"direct_original_NE_NAME_ZH_same_US_state_and_original_GN19_lexical_correspondence_NOT_government_official\", \"Source_fullrow\": {\"JSON_pointer\": \"/actual_rows5/1\", \"canonical_row_sha256\": \"4be16c54bab138bf39cf91c05255f90a6178a9e814fb740864c3b593258e5b88\", \"container\": {\"bytes\": 628518, \"path\": \"C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-21\\\\cha\\\\work\\\\parallel_map\\\\reviews\\\\USGreatPlains_closed5_independent_SOURCE_CJK_peer_after8191applied_20261026\\\\future_mandatory_SOURCE5_contract_NOT_AUTHOR_OR_TARGET_GRANT.json\", \"sha256\": \"dcfe61e91b5200fbb766e29624a20620f0fd41bca36a255b96021056df62ad85\"}}, \"original_raw_native_composite_glyph_corner\": [[15037, 24324], [15037, 24325]], \"renderer_city_not_supplier_class\": true, \"supplier_ID\": null, \"supplier_admin\": null} Independent Casp TARGET actual complete Chinese and full positive RGBA inspected under Root bf647; original NE community lexical grade and state identity retained."},
+    {"id": "USGP5-PH-003", "zh": "格兰德艾兰", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "674d43278273dd4015ea58d91c9c80ab3f2cc8140ebb231504239dd073693da4", "review_notes": "AUTHOR SELF PRIVATE MODEL ONLY; different Casp TARGET pending. {\"Chinese_grade\": \"direct_original_NE_NAME_ZH_same_US_state_and_original_GN19_lexical_correspondence_NOT_government_official\", \"Source_fullrow\": {\"JSON_pointer\": \"/actual_rows5/2\", \"canonical_row_sha256\": \"87ddebd14e32bc1eca53b495cf4f5fe7d50eb595d14ac80a51c9e62bb37be77d\", \"container\": {\"bytes\": 628518, \"path\": \"C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-21\\\\cha\\\\work\\\\parallel_map\\\\reviews\\\\USGreatPlains_closed5_independent_SOURCE_CJK_peer_after8191applied_20261026\\\\future_mandatory_SOURCE5_contract_NOT_AUTHOR_OR_TARGET_GRANT.json\", \"sha256\": \"dcfe61e91b5200fbb766e29624a20620f0fd41bca36a255b96021056df62ad85\"}}, \"original_raw_native_composite_glyph_corner\": [[14869, 24592], [14869, 24593]], \"renderer_city_not_supplier_class\": true, \"supplier_ID\": null, \"supplier_admin\": null} Independent Casp TARGET actual complete Chinese and full positive RGBA inspected under Root bf647; original NE community lexical grade and state identity retained."},
+    {"id": "USGP5-PH-004", "zh": "萨利纳", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "6adde626f4515eca082a50c7281748a9d4705df7052b0a4d54d85c07ec753f12", "review_notes": "AUTHOR SELF PRIVATE MODEL ONLY; different Casp TARGET pending. {\"Chinese_grade\": \"direct_original_NE_NAME_ZH_same_US_state_and_original_GN19_lexical_correspondence_NOT_government_official\", \"Source_fullrow\": {\"JSON_pointer\": \"/actual_rows5/3\", \"canonical_row_sha256\": \"95faf3c691ef6523fecefbc448c27d0eb5e1b0b5492ab19cdae164b4180a78a0\", \"container\": {\"bytes\": 628518, \"path\": \"C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-21\\\\cha\\\\work\\\\parallel_map\\\\reviews\\\\USGreatPlains_closed5_independent_SOURCE_CJK_peer_after8191applied_20261026\\\\future_mandatory_SOURCE5_contract_NOT_AUTHOR_OR_TARGET_GRANT.json\", \"sha256\": \"dcfe61e91b5200fbb766e29624a20620f0fd41bca36a255b96021056df62ad85\"}}, \"original_raw_native_composite_glyph_corner\": [[15001, 25087], [15002, 25086], [15002, 25087]], \"renderer_city_not_supplier_class\": true, \"supplier_ID\": null, \"supplier_admin\": null} Independent Casp TARGET actual complete Chinese and full positive RGBA inspected under Root bf647; original NE community lexical grade and state identity retained."},
+    {"id": "USGP5-PH-005", "zh": "哈钦森", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "1bca2cac99376dafec4d3f98f9219e7d67a378baee84e05ad6e1a532b265ea00", "review_notes": "AUTHOR SELF PRIVATE MODEL ONLY; different Casp TARGET pending. {\"Chinese_grade\": \"direct_original_NE_NAME_ZH_same_US_state_and_original_GN19_lexical_correspondence_NOT_government_official\", \"Source_fullrow\": {\"JSON_pointer\": \"/actual_rows5/4\", \"canonical_row_sha256\": \"7cf79a7ae9513e5bb4ebbf6c1458d47f0e4b95f9c6a1938793e609e8c5b10fa9\", \"container\": {\"bytes\": 628518, \"path\": \"C:\\\\Users\\\\Administrator\\\\Documents\\\\Codex\\\\2026-10-21\\\\cha\\\\work\\\\parallel_map\\\\reviews\\\\USGreatPlains_closed5_independent_SOURCE_CJK_peer_after8191applied_20261026\\\\future_mandatory_SOURCE5_contract_NOT_AUTHOR_OR_TARGET_GRANT.json\", \"sha256\": \"dcfe61e91b5200fbb766e29624a20620f0fd41bca36a255b96021056df62ad85\"}}, \"original_raw_native_composite_glyph_corner\": [[14943, 25269], [14944, 25268], [14944, 25269]], \"renderer_city_not_supplier_class\": true, \"supplier_ID\": null, \"supplier_admin\": null} Independent Casp TARGET actual complete Chinese and full positive RGBA inspected under Root bf647; original NE community lexical grade and state identity retained."}
+  ],
+  "layouts": [
+    {"id": "USGP5-PH-001", "x": 220.0, "y": 58.0, "font_size": 12, "font_style": "regular", "lines": ["扬克顿"]},
+    {"id": "USGP5-PH-002", "x": 216.0, "y": 265.5, "font_size": 12, "font_style": "regular", "lines": ["诺福克"]},
+    {"id": "USGP5-PH-003", "x": 60.0, "y": 542.0, "font_size": 12, "font_style": "regular", "lines": ["格兰德艾兰"]},
+    {"id": "USGP5-PH-004", "x": 181.0, "y": 1028.0, "font_size": 12, "font_style": "regular", "lines": ["萨利纳"]},
+    {"id": "USGP5-PH-005", "x": 126.5, "y": 1210.0, "font_size": 12, "font_style": "regular", "lines": ["哈钦森"]}
+  ],
+  "symbols": [
+    {"id": "USGP5-PH-001-circle", "feature_id": "USGP5-PH-001", "kind": "circle", "size": 9, "outline_width": 1, "x": 189.5, "y": 49.5, "original_bbox": [185, 45, 194, 54]},
+    {"id": "USGP5-PH-002-circle", "feature_id": "USGP5-PH-002", "kind": "circle", "size": 9, "outline_width": 1, "x": 185.5, "y": 257.5, "original_bbox": [181, 253, 190, 262]},
+    {"id": "USGP5-PH-003-circle", "feature_id": "USGP5-PH-003", "kind": "circle", "size": 9, "outline_width": 1, "x": 17.5, "y": 525.5, "original_bbox": [13, 521, 22, 530]},
+    {"id": "USGP5-PH-004-circle", "feature_id": "USGP5-PH-004", "kind": "circle", "size": 9, "outline_width": 1, "x": 150.5, "y": 1019.5, "original_bbox": [146, 1015, 155, 1024]},
+    {"id": "USGP5-PH-005-circle", "feature_id": "USGP5-PH-005", "kind": "circle", "size": 9, "outline_width": 1, "x": 92.5, "y": 1201.5, "original_bbox": [88, 1197, 97, 1206]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "FAS27-Kembe-z9-287-249",
+  "z": 9,
+  "x": 287,
+  "y": 249,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "FAS27-Kemb", "kind": "city", "original": "Kembé", "original_bbox": [11, 103, 50, 119], "source_url": "@source/db9bb03dec38e032"}
+  ],
+  "translations": [
+    {"id": "FAS27-Kemb", "zh": "肯贝", "status": "approved", "source": "@source/0e26670e4a56f6d7", "record_sha256": "fdafe136c80541635bc47a73db04b65f42a9feeb83fdcac8c3f90c011660f11f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Kemb", "x": 30.5, "y": 111.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/287/249.png"
+  ],
+  "context_tiles": []
+}

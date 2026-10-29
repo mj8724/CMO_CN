@@ -1,0 +1,34 @@
+{
+  "id": "C1K15-Wando-z10-871-408",
+  "z": 10,
+  "x": 871,
+  "y": 408,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/871/408.png",
+    "10/872/408.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C1K15-N035", "kind": "city", "original": "Nohwa-eup", "original_bbox": [224, 85, 284, 103], "source_url": "@source/e9021533c52e8472"},
+    {"id": "C1K15-N036", "kind": "city", "original": "Cheongsan-myeon", "original_bbox": [449, 88, 507, 122], "source_url": "@source/c1ac72229796fa1e"},
+    {"id": "C1K15-N037", "kind": "city", "original": "Soan-myeon", "original_bbox": [294, 110, 333, 148], "source_url": "@source/c1ac72229796fa1e"},
+    {"id": "C1K15-N038", "kind": "city", "original": "Bogil-myeon", "original_bbox": [231, 119, 268, 154], "source_url": "@source/e9021533c52e8472"}
+  ],
+  "translations": [
+    {"id": "C1K15-N035", "zh": "芦花邑", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "2ff3f1a0b24fac7ce8f570b23c5bd012f6399369e0000a8b55d5eee2e37876cd", "review_notes": "@note/translations"},
+    {"id": "C1K15-N036", "zh": "靑山面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "df6476ce3b5f3a508cf4049af319765c69b46dc41106fb7b8f4446986e96798a", "review_notes": "@note/translations"},
+    {"id": "C1K15-N037", "zh": "所安面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "055a5b0cffa1f13e8e6e61543f85121f97c4ffd5c29436d1bec187e74518acb7", "review_notes": "@note/translations"},
+    {"id": "C1K15-N038", "zh": "甫吉面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "fb03cf8792536d10cb137c157eac64b9ae77c8a5a2525ea5ddb5a54a75e9a62e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C1K15-N035", "x": 254.0, "y": 94.0, "font_size": 12, "font_style": "regular", "lines": ["芦花邑"]},
+    {"id": "C1K15-N036", "x": 478.0, "y": 105.0, "font_size": 12, "font_style": "regular", "lines": ["靑山面"]},
+    {"id": "C1K15-N037", "x": 313.5, "y": 129.0, "font_size": 12, "font_style": "regular", "lines": ["所安面"]},
+    {"id": "C1K15-N038", "x": 249.5, "y": 136.5, "font_size": 12, "font_style": "regular", "lines": ["甫吉面"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

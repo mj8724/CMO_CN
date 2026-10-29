@@ -1,0 +1,38 @@
+{
+  "id": "OSNA11-N1-z6-19-23",
+  "z": 6,
+  "x": 19,
+  "y": 23,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/19/23.png"
+  ],
+  "context_tiles": [
+    "6/18/23.png",
+    "6/18/24.png",
+    "6/19/24.png"
+  ],
+  "features": [
+    {"id": "NA11-11-Augusta", "kind": "city", "original": "Augusta", "original_bbox": [148, 45, 196, 67], "source_url": "@source/c9ebcba92538a037"},
+    {"id": "NA11-21-NEW-HAMPSHIRE", "kind": "admin1", "original": "NEW HAMPSHIRE", "original_bbox": [27, 86, 108, 114], "source_url": "@source/c9ebcba92538a037"}
+  ],
+  "translations": [
+    {"id": "NA11-11-Augusta", "zh": "奥古斯塔", "status": "approved", "source": "@source/b264a83cb918e1f1", "record_sha256": "7e8bdc0a211fd74450a1fa828c40cf315dec42697fc4730461250659f79d154a", "review_notes": "@note/translations"},
+    {"id": "NA11-21-NEW-HAMPSHIRE", "zh": "新罕布什尔州", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "f15db7c68681ebe1768edb7bdc020637e3a1332ac5dd123420e698ff556cc364", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NA11-11-Augusta", "x": 188.0, "y": 57.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-21-NEW-HAMPSHIRE", "x": 67.5, "y": 100.0, "font_size": 14, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "NA11-11-Augusta-circle", "feature_id": "NA11-11-Augusta", "kind": "circle", "x": 152.5, "y": 49.5, "size": 9, "outline_width": 1, "original_bbox": [148, 45, 157, 54], "source_url": "@source/c9ebcba92538a037", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "OSNA11-N1-z6-19-23-old-AM6-148-Bridgeport", "owner_region": "AM-WestCentral-z6-9-22", "feature_id": "AM6-148-Bridgeport", "kind": "city", "original": "Bridgeport", "original_bbox": [-3, 243, 53, 265], "source_url": "@source/c9ebcba92538a037", "review_notes": "@note/shared_sources", "owner_native_source_refs": [{"symbol_id": "AM6-148-Bridgeport-point", "record_sha256": "bc512678d3bbfd69f7a91435cd9ac0334e3450c7af0f956fcc17c932730c55dc", "world_original_bbox": [4855, 6127, 4866, 6138], "source_rgba_sha256": "903bdcfd60a7fa84fcd2ad2bd8433f351595579e4d0cd65f0326ad941ce20ed6"}]},
+    {"id": "OSNA11-N1-z6-19-23-old-AM6-150-Vermont", "owner_region": "AM-WestCentral-z6-9-22", "feature_id": "AM6-150-Vermont", "kind": "admin1", "original": "Vermont", "original_bbox": [-7, 22, 64, 37], "source_url": "@source/c9ebcba92538a037", "review_notes": "@note/shared_sources"},
+    {"id": "OSNA11-N1-z6-19-23-old-AM6-151-Massachusetts", "owner_region": "AM-WestCentral-z6-9-22", "feature_id": "AM6-151-Massachusetts", "kind": "admin1", "original": "Massachusetts", "original_bbox": [-10, 162, 110, 176], "source_url": "@source/c9ebcba92538a037", "review_notes": "@note/shared_sources"},
+    {"id": "OSNA11-N1-z6-19-23-old-AM6-152-Connecticut", "owner_region": "AM-WestCentral-z6-9-22", "feature_id": "AM6-152-Connecticut", "kind": "admin1", "original": "Connecticut", "original_bbox": [-32, 206, 68, 221], "source_url": "@source/c9ebcba92538a037", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,46 @@
+{
+  "id": "Mali-Timbuktu-West-z10-500-462",
+  "z": 10,
+  "x": 500,
+  "y": 462,
+  "width_tiles": 4,
+  "height_tiles": 2,
+  "original_tiles": [
+    "10/500/463.png",
+    "10/501/463.png",
+    "10/502/463.png",
+    "10/503/462.png",
+    "10/503/463.png",
+    "10/500/462.png",
+    "10/501/462.png",
+    "10/502/462.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "ML10-000", "kind": "city", "original": "Agouni", "original_bbox": [868, 185, 910, 206], "source_url": "@source/b7ea54bac91598b7"},
+    {"id": "ML10-001", "kind": "city", "original": "Tin Aicha", "original_bbox": [119, 396, 173, 413], "source_url": "@source/a2efe14ee7bed619"},
+    {"id": "ML10-002", "kind": "city", "original": "Essakane", "original_bbox": [399, 394, 452, 410], "source_url": "@source/f4de04f8f5e31416"},
+    {"id": "ML10-003", "kind": "city", "original": "Timbuktu", "original_bbox": [847, 399, 915, 419], "source_url": "@source/539defd49ee64bab"},
+    {"id": "ML10-004", "kind": "city", "original": "Bourem-Inaly", "original_bbox": [974, 456, 1018, 488], "source_url": "@source/c6b248afe4b357bf"},
+    {"id": "ML10-005", "kind": "city", "original": "Toya", "original_bbox": [838, 489, 865, 506], "source_url": "@source/c6b248afe4b357bf"}
+  ],
+  "translations": [
+    {"id": "ML10-000", "zh": "阿古尼", "status": "approved", "source": "@source/b7ea54bac91598b7", "record_sha256": "0158d1f38dc79a60024f4c1706da090f1190c50e82341f5f692c6dd5acfeaa75", "review_notes": "@note/translations"},
+    {"id": "ML10-001", "zh": "廷艾沙", "status": "approved", "source": "@source/a2efe14ee7bed619", "record_sha256": "12b3a7556e3b1717b435b8a6d8886c90d89697c8cbe2e520231ebde69662ec92", "review_notes": "@note/translations"},
+    {"id": "ML10-002", "zh": "埃萨卡内", "status": "approved", "source": "@source/f4de04f8f5e31416", "record_sha256": "03266beb9d6b8f912859a86dbe1257dae22407d71ab7b65f430eaccb8f8c3cf0", "review_notes": "@note/translations"},
+    {"id": "ML10-003", "zh": "廷巴克图", "status": "approved", "source": "@source/539defd49ee64bab", "record_sha256": "af796e4bf3c3fe9bb443f2ffebc605c7ce60d2546d5bf64cc3c051ad4aece35f", "review_notes": "@note/translations"},
+    {"id": "ML10-004", "zh": "布雷姆伊纳利", "status": "approved", "source": "@source/c6b248afe4b357bf", "record_sha256": "035bb4b9b1eb8be5a9971be1fb7d60ac1035c957e59256ae0f9a5714a89bab0c", "review_notes": "@note/translations"},
+    {"id": "ML10-005", "zh": "托亚", "status": "approved", "source": "@source/c6b248afe4b357bf", "record_sha256": "8f919091303fa9b2939780e92069e19693a42946aa4d0c745ca6667d7e37634d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "ML10-000", "x": 889.0, "y": 195.5, "font_size": 11, "font_style": "regular"},
+    {"id": "ML10-001", "x": 146.0, "y": 404.5, "font_size": 11, "font_style": "regular"},
+    {"id": "ML10-002", "x": 425.5, "y": 402.0, "font_size": 11, "font_style": "regular"},
+    {"id": "ML10-003", "x": 881.0, "y": 409.0, "font_size": 11, "font_style": "regular"},
+    {"id": "ML10-004", "x": 987.0, "y": 472.0, "font_size": 11, "font_style": "regular"},
+    {"id": "ML10-005", "x": 851.5, "y": 497.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

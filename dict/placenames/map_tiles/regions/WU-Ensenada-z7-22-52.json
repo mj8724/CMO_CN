@@ -1,0 +1,26 @@
+{
+  "id": "WU-Ensenada-z7-22-52",
+  "z": 7,
+  "x": 22,
+  "y": 52,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/22/52.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "WUF-14", "kind": "city", "original": "Ensenada", "original_bbox": [134, 5, 188, 24], "source_url": "@source/d05458550a46d2f9"}
+  ],
+  "translations": [
+    {"id": "WUF-14", "zh": "恩森那达", "status": "approved", "source": "@source/46938bf4afa27c06", "record_sha256": "f360f3c8bea558b7cc8599d32517f5d5c7791710adf37e87390e09f23fbdc7d2", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WUF-14", "x": 172.0, "y": 17.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "WUF-14-circle", "feature_id": "WUF-14", "kind": "circle", "original_bbox": [134, 5, 143, 14], "x": 138.5, "y": 9.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

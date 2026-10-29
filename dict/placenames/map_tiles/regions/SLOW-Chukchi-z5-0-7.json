@@ -1,0 +1,33 @@
+{
+  "id": "SLOW-Chukchi-z5-0-7",
+  "z": 5,
+  "x": 0,
+  "y": 7,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/0/7.png"
+  ],
+  "context_tiles": [
+    "5/0/6.png",
+    "5/0/8.png",
+    "5/1/6.png",
+    "5/1/7.png",
+    "5/1/8.png",
+    "5/31/6.png",
+    "5/31/7.png",
+    "5/31/8.png"
+  ],
+  "features": [
+    {"id": "SLOW-003", "kind": "marine", "original": "Chukchi Sea", "original_bbox": [86, 96, 188, 112], "source_url": "@source/cf6c446c2ffe9ed9"}
+  ],
+  "translations": [
+    {"id": "SLOW-003", "zh": "楚科奇海", "status": "approved", "source": "@source/9a654fb3722d61bb", "record_sha256": "bd492aa701347c6bef0cb1be004aa7eb55b06f7237851ff43999e2da7c7a921a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SLOW-003", "x": 137.0, "y": 104.0, "font_size": 16, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

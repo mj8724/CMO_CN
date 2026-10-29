@@ -1,0 +1,36 @@
+{
+  "z": 10,
+  "x": 848,
+  "y": 431,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "FJC17-z10-848-431-1x1",
+  "original_tiles": [
+    "10/848/431.png"
+  ],
+  "context_tiles": [
+    "10/847/431.png",
+    "10/849/431.png"
+  ],
+  "features": [
+    {"id": "FJC17-P002", "kind": "city", "original": "Jianyang", "original_bbox": [-36, 21, 20, 43], "source_url": "@source/747877cc0f45313a"},
+    {"id": "FJC17-P010", "kind": "city", "original": "Longcun", "original_bbox": [247, 86, 290, 103], "source_url": "@source/d8df88c6efcc357a"},
+    {"id": "FJC17-P021", "kind": "city", "original": "Xudun", "original_bbox": [62, 184, 97, 199], "source_url": "@source/d8df88c6efcc357a"},
+    {"id": "FJC17-P026", "kind": "city", "original": "Dongfeng", "original_bbox": [248, 212, 296, 229], "source_url": "@source/d8df88c6efcc357a"}
+  ],
+  "translations": [
+    {"id": "FJC17-P002", "zh": "建阳", "status": "approved", "source": "@source/7050847928890c1a", "record_sha256": "67aa98c2a8086e86838f0fc7fece119da092cc23da74324ef5a0e64469edf49d", "review_notes": "@note/translations"},
+    {"id": "FJC17-P010", "zh": "龙村", "status": "approved", "source": "@source/c9e2c99cca18f352", "record_sha256": "20fdede7fdb52565289a6fed232421056a1eff5912f39c020b263686970273b4", "review_notes": "@note/translations"},
+    {"id": "FJC17-P021", "zh": "徐墩", "status": "approved", "source": "@source/5ba17469bc726886", "record_sha256": "4c1c040bad5bf1860ed36794e882020a6d372d9e9a7055b9d10ccdfa6e00e42e", "review_notes": "@note/translations"},
+    {"id": "FJC17-P026", "zh": "东峰", "status": "approved", "source": "@source/25c0d527c1798a91", "record_sha256": "4eccd2a05680d0fc280c8f4cd2e0cc728d8b0b78fd89ab5f30b12db1544ced51", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FJC17-P002", "x": 16.0, "y": 32.0, "font_size": 11, "font_style": "regular"},
+    {"id": "FJC17-P010", "x": 240.0, "y": 94.5, "font_size": 11, "font_style": "regular"},
+    {"id": "FJC17-P021", "x": 79.5, "y": 191.5, "font_size": 11, "font_style": "regular"},
+    {"id": "FJC17-P026", "x": 240.0, "y": 220.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

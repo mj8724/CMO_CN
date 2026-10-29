@@ -1,0 +1,38 @@
+{
+  "z": 9,
+  "x": 296,
+  "y": 243,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "id": "C2-Africa-Closed19-z9-296-243",
+  "original_tiles": [
+    "9/296/243.png",
+    "9/296/244.png"
+  ],
+  "context_tiles": [
+    "9/295/242.png",
+    "9/295/243.png",
+    "9/296/242.png"
+  ],
+  "features": [
+    {"id": "C2-G013", "kind": "city", "original": "Turalei", "original_bbox": [91, -5, 131, 11], "source_url": "@source/49ae132438e358af"},
+    {"id": "C2-G015", "kind": "city", "original": "Liet-Nhom", "original_bbox": [99, 176, 157, 193], "source_url": "@source/49ae132438e358af"},
+    {"id": "C2-G017", "kind": "city", "original": "Warrap", "original_bbox": [166, 365, 207, 384], "source_url": "@source/7fa20ceb00fe40c8"}
+  ],
+  "translations": [
+    {"id": "C2-G013", "zh": "图拉莱伊", "status": "approved", "source": "@source/49ae132438e358af", "record_sha256": "38e3d696d784a6431bbb8f994883532eb0eb522d84bb2380412919561d1ec829", "review_notes": "@note/translations"},
+    {"id": "C2-G015", "zh": "利耶特-恩霍姆", "status": "approved", "source": "@source/49ae132438e358af", "record_sha256": "4d7f59333f549d2cb7af14f6e6795cb0e85b5b6581b48ba0ff736fd7d7916e2c", "review_notes": "@note/translations"},
+    {"id": "C2-G017", "zh": "瓦拉普", "status": "approved", "source": "@source/7fa20ceb00fe40c8", "record_sha256": "22bd88de4b0bf4552cbc73b4eb62a675b9f6447f823581ee802fb6f9c3abf140", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C2-G013", "x": 111.0, "y": 12.0, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G015", "x": 128.0, "y": 184.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G017", "x": 186.5, "y": 374.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "C2-SH-G014", "owner_region": "CentralAfricaNorth-z9-288-240", "feature_id": "CAFN9-026-Akak", "original": "Akak", "kind": "city", "original_bbox": [-18, 4, 12, 21], "source_url": "@source/e7ed5edaad8c7c9b", "review_notes": "@note/shared_sources"},
+    {"id": "C2-SH-G016", "owner_region": "CentralAfricaNorth-z9-288-240", "feature_id": "CAFN9-032-Gogrial", "original": "Gogrial", "kind": "city", "original_bbox": [-30, 200, 12, 221], "source_url": "@source/e7ed5edaad8c7c9b", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

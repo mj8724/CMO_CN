@@ -1,0 +1,24 @@
+{
+  "id": "FAS27-Bria-z9-287-246",
+  "z": 9,
+  "x": 287,
+  "y": 246,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "FAS27-Bria", "kind": "city", "original": "Bria", "original_bbox": [57, 167, 84, 185], "source_url": "@source/3c233001129f7592"}
+  ],
+  "translations": [
+    {"id": "FAS27-Bria", "zh": "布里亚", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "2f8b00b7e83e0a926a5f493f72ddb119b0891794279bdadb747d2d6019cc2966", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Bria", "x": 70.5, "y": 176.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/287/246.png"
+  ],
+  "context_tiles": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "C1K15-Hwadae-z10-880-384",
+  "z": 10,
+  "x": 880,
+  "y": 384,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/880/384.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C1K15-N008", "kind": "city", "original": "Hwadae-eup", "original_bbox": [69, 121, 114, 154], "source_url": "@source/5ed5ef2f4c5b4a36"}
+  ],
+  "translations": [
+    {"id": "C1K15-N008", "zh": "花台邑", "status": "approved", "source": "@source/9b90e77d80f6dd75", "record_sha256": "a5c2bf6a0d14b298d688a3c08076ec76bea6b6b8635b5d7185da8788c3d8babf", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C1K15-N008", "x": 91.5, "y": 137.5, "font_size": 12, "font_style": "regular", "lines": ["花台邑"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

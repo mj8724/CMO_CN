@@ -1,0 +1,42 @@
+{
+  "id": "P9-Closed6-z9-263-201",
+  "z": 9,
+  "x": 263,
+  "y": 201,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/263/201.png"
+  ],
+  "context_tiles": [
+    "9/262/201.png",
+    "9/264/201.png"
+  ],
+  "features": [
+    {"id": "P9-PH-013", "kind": "city", "original": "Bordj Ghedir", "original_bbox": [-27, 43, 12, 76], "source_url": "@source/70c04dd49e795a1d"},
+    {"id": "P9-PH-014", "kind": "city", "original": "Ain Oulmane", "original_bbox": [111, 31, 162, 66], "source_url": "@source/70c04dd49e795a1d"},
+    {"id": "P9-PH-015", "kind": "city", "original": "Aïn Azal", "original_bbox": [191, 87, 239, 104], "source_url": "@source/70c04dd49e795a1d"},
+    {"id": "P9-PH-016", "kind": "city", "original": "Magra", "original_bbox": [48, 178, 84, 198], "source_url": "@source/70c04dd49e795a1d"},
+    {"id": "P9-PH-017", "kind": "city", "original": "Aïn Khadra", "original_bbox": [-13, 212, 49, 229], "source_url": "@source/70c04dd49e795a1d"}
+  ],
+  "translations": [
+    {"id": "P9-PH-013", "zh": "布尔吉盖迪尔", "status": "approved", "source": "@source/70c04dd49e795a1d", "record_sha256": "13519b3573d1325f60c428b396dd837972f00a1f236996ebcb6c3b2637a2c5e1", "review_notes": "@note/translations"},
+    {"id": "P9-PH-014", "zh": "艾因乌尔曼", "status": "approved", "source": "@source/70c04dd49e795a1d", "record_sha256": "10bc1546883334642ff66b1761fc2e45845a8bba88ab2840ce8f8e8f58e53b86", "review_notes": "@note/translations"},
+    {"id": "P9-PH-015", "zh": "艾因阿扎尔", "status": "approved", "source": "@source/70c04dd49e795a1d", "record_sha256": "554fef6758e587c72bef5788a27b24e3d74fb03c3f43052833070f465e119913", "review_notes": "@note/translations"},
+    {"id": "P9-PH-016", "zh": "马格拉", "status": "approved", "source": "@source/70c04dd49e795a1d", "record_sha256": "0dca46733bc9f0bc1652ec9860213c577832894fddbe59c4df3d40c14da67b47", "review_notes": "@note/translations"},
+    {"id": "P9-PH-017", "zh": "艾因哈德拉", "status": "approved", "source": "@source/70c04dd49e795a1d", "record_sha256": "36ada394417bff8b74493731d8edc73e8d941e6055209b74947e77580ebc3254", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P9-PH-013", "x": 42.0, "y": 59.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-014", "x": 136.5, "y": 48.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-015", "x": 215.0, "y": 95.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-016", "x": 66.0, "y": 188.0, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-017", "x": 36.0, "y": 220.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "P9-SH-018", "owner_region": "AM-NorthAfrica-z9-264-200", "feature_id": "AM28-59-N-Gaous", "kind": "city", "original": "N'Gaous", "original_bbox": [227, 204, 275, 223], "source_url": "@source/70c04dd49e795a1d", "review_notes": "@note/shared_sources"},
+    {"id": "P9-SH-019", "owner_region": "AM-NorthAfrica-z9-264-200", "feature_id": "AM28-58-Boumagueur", "kind": "city", "original": "Boumagueur", "original_bbox": [194, 227, 267, 249], "source_url": "@source/70c04dd49e795a1d", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

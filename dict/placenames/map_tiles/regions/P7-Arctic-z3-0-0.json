@@ -1,0 +1,24 @@
+{
+  "id": "P7-Arctic-z3-0-0",
+  "z": 3,
+  "x": 0,
+  "y": 0,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "3/0/0.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "P7-Arctic-z3-0-0-01-name", "kind": "marine", "original": "Arctic Ocean", "original_bbox": [0, 103, 116, 119], "source_url": "@source/d681c45e5beb9363"}
+  ],
+  "translations": [
+    {"id": "P7-Arctic-z3-0-0-01-name", "zh": "北冰洋", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "c7bc81ae3b7f59ef3f80da04230cf7c18132eeebc47e6f3ba8eb5bec1094ff41", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P7-Arctic-z3-0-0-01-name", "x": 58, "y": 111, "font_size": 14, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,44 @@
+{
+  "id": "RS-RedSea-z8-bati_closure",
+  "z": 8,
+  "x": 156,
+  "y": 119,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "8/156/119.png",
+    "8/156/120.png"
+  ],
+  "context_tiles": [
+    "8/155/118.png",
+    "8/156/118.png",
+    "8/157/118.png",
+    "8/155/119.png",
+    "8/157/119.png",
+    "8/155/120.png",
+    "8/157/120.png",
+    "8/155/121.png",
+    "8/156/121.png",
+    "8/157/121.png"
+  ],
+  "features": [
+    {"id": "RS8-046", "kind": "city", "original": "Bati", "original_bbox": [113, 249, 144, 270], "source_url": "@source/bcb2874bd9ac185e"},
+    {"id": "RS8-047", "kind": "city", "original": "Dessie", "original_bbox": [43, 262, 88, 283], "source_url": "@source/b967f24aed8115fd"}
+  ],
+  "translations": [
+    {"id": "RS8-046", "zh": "巴提", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "941848b55e898579f84c20dbac8532fed4f1269c14acdb4fb6ce0bf1d0951a9b", "review_notes": "@note/translations"},
+    {"id": "RS8-047", "zh": "德西", "status": "approved", "source": "@source/b967f24aed8115fd", "record_sha256": "029ce91010cd3ca8df2af70fa1bf5b4038aa1fc1f3a045ed91f1b69bf770f3a5", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "RS8-046", "x": 135.5, "y": 260.5, "font_size": 11, "font_style": "regular"},
+    {"id": "RS8-047", "x": 65.5, "y": 273.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "RS8-046-point", "feature_id": "RS8-046", "x": 117.5, "y": 253.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [113, 249, 122, 258]},
+    {"id": "RS8-047-point", "feature_id": "RS8-047", "x": 47.5, "y": 266.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [43, 262, 52, 271]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [
+    {"feature_id": "RS8-047", "name": "德西", "lat": 11.133330345153809, "lon": 39.633331298828125, "level": 1, "source": "@source/b967f24aed8115fd", "review_notes": "@note/legacy_suppressions"}
+  ]
+}

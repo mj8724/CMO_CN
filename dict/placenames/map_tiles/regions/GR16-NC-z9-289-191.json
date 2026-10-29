@@ -1,0 +1,67 @@
+{
+  "id": "GR16-NC-z9-289-191",
+  "z": 9,
+  "x": 289,
+  "y": 191,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "features": [
+    {"id": "GR16-N-003", "kind": "city", "original": "Hadzhidimovo", "original_bbox": [198, -12, 277, 4], "source_url": "@source/fd45773cdc0551a9"},
+    {"id": "GR16-N-006", "kind": "city", "original": "Madan", "original_bbox": [613, -3, 652, 13], "source_url": "@source/cc28c21d0a569b7e"},
+    {"id": "GR16-N-015", "kind": "city", "original": "Zlatograd", "original_bbox": [662, 54, 716, 73], "source_url": "@source/cc28c21d0a569b7e"},
+    {"id": "GR16-N-017", "kind": "city", "original": "Kato Nevrokopi", "original_bbox": [214, 63, 270, 99], "source_url": "@source/fd45773cdc0551a9"},
+    {"id": "GR16-N-021", "kind": "city", "original": "Echinos", "original_bbox": [622, 105, 667, 121], "source_url": "@source/cc28c21d0a569b7e"},
+    {"id": "GR16-N-022", "kind": "city", "original": "Sidirokastro", "original_bbox": [34, 124, 101, 141], "source_url": "@source/fd45773cdc0551a9"},
+    {"id": "GR16-N-026", "kind": "city", "original": "Drama", "original_bbox": [323, 165, 365, 183], "source_url": "@source/9f660122db2a7851"},
+    {"id": "GR16-N-029", "kind": "city", "original": "Xanthi", "original_bbox": [591, 171, 634, 189], "source_url": "@source/cc28c21d0a569b7e"},
+    {"id": "GR16-N-030", "kind": "city", "original": "Iasmos", "original_bbox": [702, 176, 742, 192], "source_url": "@source/cc28c21d0a569b7e"},
+    {"id": "GR16-N-033", "kind": "city", "original": "Serres", "original_bbox": [106, 193, 146, 211], "source_url": "@source/fd45773cdc0551a9"},
+    {"id": "GR16-N-036", "kind": "city", "original": "Alistrati", "original_bbox": [253, 206, 297, 223], "source_url": "@source/fd45773cdc0551a9"}
+  ],
+  "translations": [
+    {"id": "GR16-N-003", "zh": "哈吉季莫沃", "status": "approved", "source": "@source/3bab1cbe88a5e9fb", "record_sha256": "a0d8cf11357cf94e11c915a2a62dabd4a784938534b672bc6ab5f18d6108b32b", "review_notes": "@note/translations"},
+    {"id": "GR16-N-006", "zh": "马丹", "status": "approved", "source": "@source/e46d8f58cf011f3c", "record_sha256": "e1424ba1f3de3e916f2831047ac4e59108c6e5e1a005d45a8878dc714fb0f956", "review_notes": "@note/translations"},
+    {"id": "GR16-N-015", "zh": "兹拉托格勒", "status": "approved", "source": "@source/ecc63901f7e7c958", "record_sha256": "2349287be7fd2277aa9206b0ba037a24439317d10a4d99c6aad95cb96d1b1d6b", "review_notes": "@note/translations"},
+    {"id": "GR16-N-017", "zh": "卡托内夫罗科皮", "status": "approved", "source": "@source/c0f6e0ac5aef59db", "record_sha256": "2d16c3bc7a80b1f52269f8c76180aa46c273154b0c3cfb3d6b639cfd4dcaf6b3", "review_notes": "@note/translations"},
+    {"id": "GR16-N-021", "zh": "埃希诺斯", "status": "approved", "source": "@source/e11f581c64332a86", "record_sha256": "1b14cc462d67d1110ae53a56a7a5335b31da7e55840a7b259b5e95dcef5a7c41", "review_notes": "@note/translations"},
+    {"id": "GR16-N-022", "zh": "锡季罗卡斯特罗", "status": "approved", "source": "@source/0c1c6e7ce7d16954", "record_sha256": "9727f9d36e81ba42ec9bf2671038a0fa8d0203f562f99792717dc34459397d8d", "review_notes": "@note/translations"},
+    {"id": "GR16-N-026", "zh": "德拉马", "status": "approved", "source": "@source/fff2f36ce57408a9", "record_sha256": "8130991c524f950a70c043b3b01d76089b0fbd554e75d955fb3e5a5fcbfedc0e", "review_notes": "@note/translations"},
+    {"id": "GR16-N-029", "zh": "克桑西", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "81b86f7b02acaf8f69de179f2d810a63f928407a9150f0b4b2256d54140ba312", "review_notes": "@note/translations"},
+    {"id": "GR16-N-030", "zh": "亚斯莫斯", "status": "approved", "source": "@source/e6a90ba02c6abc21", "record_sha256": "e43d2a0ae5bd8477eb8e3ed6807c2c793443d56ee57f3e6dcb0c7d89cafc5a65", "review_notes": "@note/translations"},
+    {"id": "GR16-N-033", "zh": "塞雷", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "6620371b64a88329ff4338420f80ff3f960a1fa4a2b0eaa9b8e28841ffa885a2", "review_notes": "@note/translations"},
+    {"id": "GR16-N-036", "zh": "阿利斯特拉蒂", "status": "approved", "source": "@source/d2e12a85d14f176c", "record_sha256": "7730aa56eaf08fe9c34e0a95adcc8e4c3cc50e11d6a98e8a8de50d18626ce9e0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GR16-N-003", "x": 237.0, "y": 9.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-006", "x": 632.0, "y": 8.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-015", "x": 689.0, "y": 63.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-017", "x": 242.0, "y": 81.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-021", "x": 644.0, "y": 113.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-022", "x": 67.0, "y": 132.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-026", "x": 344.0, "y": 174.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-029", "x": 612.0, "y": 180.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-030", "x": 722.0, "y": 184.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-033", "x": 126.0, "y": 202.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-036", "x": 275.0, "y": 214.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "GR16-S-014", "owner_region": "GR7-NorthBoundary-z9-288-191", "feature_id": "GR7-N-018", "kind": "city", "original": "Petrich", "original_bbox": [-18, 47, 21, 63], "source_url": "@source/319b371ad151d3bb", "review_notes": "@note/shared_sources"},
+    {"id": "GR16-S-024", "owner_region": "GR7-NorthBoundary-z9-288-191", "feature_id": "GR7-N-034", "kind": "city", "original": "Ηράκλεια", "original_bbox": [-8, 147, 67, 167], "source_url": "@source/319b371ad151d3bb", "review_notes": "@note/shared_sources"},
+    {"id": "GR16-S-040", "owner_region": "GREECE-z9-288-192", "feature_id": "GR9-001", "kind": "city", "original": "Chrysoupoli", "original_bbox": [513, 245, 578, 264], "source_url": "@source/b0dcde521433f97a", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/289/191.png",
+    "9/290/191.png",
+    "9/291/191.png"
+  ],
+  "context_tiles": [
+    "9/288/191.png",
+    "9/289/190.png",
+    "9/290/190.png",
+    "9/290/192.png",
+    "9/291/190.png",
+    "9/291/192.png"
+  ]
+}

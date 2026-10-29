@@ -1,0 +1,38 @@
+{
+  "id": "REC-Yaxi-z10-860-397",
+  "z": 10,
+  "x": 860,
+  "y": 397,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/860/397.png"
+  ],
+  "context_tiles": [
+    "10/859/397.png",
+    "10/860/398.png"
+  ],
+  "features": [
+    {"id": "REC6-004", "kind": "city", "original": "Chengshan", "original_bbox": [118, 62, 180, 82], "source_url": "@source/f5c2a0a32ca3e30a"},
+    {"id": "REC6-005", "kind": "city", "original": "Yaxi", "original_bbox": [4, 165, 27, 179], "source_url": "@source/f5c2a0a32ca3e30a"},
+    {"id": "REC6-006", "kind": "city", "original": "Xiazhuang", "original_bbox": [44, 182, 104, 202], "source_url": "@source/f5c2a0a32ca3e30a"},
+    {"id": "REC6-007", "kind": "city", "original": "Lidao", "original_bbox": [159, 189, 188, 204], "source_url": "@source/f5c2a0a32ca3e30a"}
+  ],
+  "translations": [
+    {"id": "REC6-004", "zh": "成山", "status": "approved", "source": "@source/b5a2354f419e2cd2", "record_sha256": "4dece9c7abbb3af130fe6c7e5784c26a893742b39031160b605886d4a50ff83d", "review_notes": "@note/translations"},
+    {"id": "REC6-005", "zh": "崖西", "status": "approved", "source": "@source/29886a993a52c0db", "record_sha256": "460a0f82389e0446aede3e079621bfbee0961e1c456323370d2db0ca9e322318", "review_notes": "@note/translations"},
+    {"id": "REC6-006", "zh": "夏庄", "status": "approved", "source": "@source/f0a1f2a1e7d3542b", "record_sha256": "d1643eeaf5f15ba09fb4392a32a57bd7e06d8874d97128b79f41658a7eff6dd1", "review_notes": "@note/translations"},
+    {"id": "REC6-007", "zh": "俚岛", "status": "approved", "source": "@source/ac70158c1b5c0f77", "record_sha256": "14848030fae29b3b9d0528dd613a385b0f8adb3548ffa0e5d3ad65ea169b1cf7", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "REC6-004", "x": 149.0, "y": 72.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC6-005", "x": 15.5, "y": 172.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC6-006", "x": 74.0, "y": 192.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC6-007", "x": 173.5, "y": 196.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "REC6-SH-RONGCHENG", "owner_region": "NEA-RongchengSouth-z10-860-398", "feature_id": "NEA10-019", "kind": "city", "original": "Rongcheng", "source_url": "@source/394a3dab77947dc0", "original_bbox": [66, 243, 136, 265], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

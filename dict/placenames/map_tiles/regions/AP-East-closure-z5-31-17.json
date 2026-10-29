@@ -1,0 +1,32 @@
+{
+  "id": "AP-East-closure-z5-31-17",
+  "z": 5,
+  "x": 31,
+  "y": 17,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/31/17.png"
+  ],
+  "context_tiles": [
+    "5/30/16.png",
+    "5/31/16.png",
+    "5/30/17.png",
+    "5/30/18.png",
+    "5/31/18.png"
+  ],
+  "features": [
+    {"id": "AP-E5-Fiji", "kind": "admin0", "original": "Fiji", "original_bbox": [211, 150, 256, 171], "source_url": "@source/ea9990d40022f156"}
+  ],
+  "translations": [
+    {"id": "AP-E5-Fiji", "zh": "斐济", "status": "approved", "source": "@source/ea9990d40022f156", "record_sha256": "87a37ff5b3968292f0d5db92e6a6979192557ad7e53886421e93c6e8d0d587e5", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-E5-Fiji", "x": 233.5, "y": 160.5, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "shared-AP-U5-213", "owner_region": "AP-unified-z5-20-8", "feature_id": "AP-U5-213", "kind": "admin0", "original": "Vanuatu", "source_url": "@source/ea9990d40022f156", "original_bbox": [-78, 112, 47, 133], "review_notes": "@note/shared_sources"},
+    {"id": "shared-AP-U5-214", "owner_region": "AP-unified-z5-20-8", "feature_id": "AP-U5-214", "kind": "city", "original": "Port Vila", "source_url": "@source/de57b59c289acedb", "original_bbox": [-14, 150, 35, 169], "review_notes": "@note/shared_sources"}
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "FAS27-EastMali-z9-260-233",
+  "z": 9,
+  "x": 260,
+  "y": 233,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "features": [
+    {"id": "FAS27-Inekar", "kind": "city", "original": "Inekar", "original_bbox": [108, -3, 144, 13], "source_url": "@source/5bae415ef051e604"},
+    {"id": "FAS27-InChinnana", "kind": "city", "original": "In Chinnana", "original_bbox": [174, 126, 239, 142], "source_url": "@source/5bae415ef051e604"},
+    {"id": "FAS27-Anderamboukane", "kind": "city", "original": "Anderamboukane", "original_bbox": [29, 195, 124, 212], "source_url": "@source/5bae415ef051e604"},
+    {"id": "FAS27-Abala", "kind": "city", "original": "Abala", "original_bbox": [206, 379, 243, 398], "source_url": "@source/cac63e3f8c17ce3f"}
+  ],
+  "translations": [
+    {"id": "FAS27-Inekar", "zh": "伊内卡尔", "status": "approved", "source": "@source/08546069b58b5f6f", "record_sha256": "de35e4d7efcb1d0e4f8edd9fcbb8dee5c79e98c7292b4d7d0e080354671bc162", "review_notes": "@note/translations"},
+    {"id": "FAS27-InChinnana", "zh": "因钦纳纳", "status": "approved", "source": "@source/794241fd9afa0885", "record_sha256": "8e2ad1b13dbb21a52f829f5119a734ede657949b9af1b1134d04f2fb41be858a", "review_notes": "@note/translations"},
+    {"id": "FAS27-Anderamboukane", "zh": "安德朗布坎", "status": "approved", "source": "@source/3f4322c5ba5b87f2", "record_sha256": "9ca52ed8360d3ffb30f1872cdd9f9fb9aa3214a15ee80dedb428abb159a029e6", "review_notes": "@note/translations"},
+    {"id": "FAS27-Abala", "zh": "阿巴拉", "status": "approved", "source": "@source/51c56299547535ce", "record_sha256": "bfc5621d72ff3be6244306b9638d12c0e7f2bef5ecb103d8f30e2fac339a28cc", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Inekar", "x": 126.0, "y": 10.0, "font_size": 12, "font_style": "regular"},
+    {"id": "FAS27-InChinnana", "x": 206.5, "y": 134.0, "font_size": 12, "font_style": "regular"},
+    {"id": "FAS27-Anderamboukane", "x": 76.5, "y": 203.5, "font_size": 12, "font_style": "regular"},
+    {"id": "FAS27-Abala", "x": 224.5, "y": 388.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "FAS27-Anuzagren-exact-old-normal", "owner_region": "WA-Sahel-z9-244-230", "feature_id": "WA9-051", "kind": "city", "original": "Anuzagren", "original_bbox": [-1, 116, 59, 136], "source_url": "@source/84ccb6ff65b28842", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/260/233.png",
+    "9/260/234.png"
+  ],
+  "context_tiles": [
+    "9/259/233.png",
+    "9/260/232.png"
+  ]
+}

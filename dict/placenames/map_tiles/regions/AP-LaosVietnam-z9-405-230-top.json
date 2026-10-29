@@ -1,0 +1,67 @@
+{
+  "id": "AP-LaosVietnam-z9-405-230-top",
+  "z": 9,
+  "x": 405,
+  "y": 230,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "9/405/230.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 1936},
+    {"path": "9/406/230.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 1798},
+    {"path": "9/407/230.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 3183}
+  ],
+  "context_tiles": [
+    {"path": "9/404/229.png", "z": 9, "origin": "official frozen PNG single attempt", "source_alpha_count": 1102},
+    {"path": "9/405/229.png", "z": 9, "origin": "official frozen PNG single attempt", "source_alpha_count": 2715},
+    {"path": "9/406/229.png", "z": 9, "origin": "official frozen PNG single attempt", "source_alpha_count": 3255},
+    {"path": "9/407/229.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 1578},
+    {"path": "9/408/229.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 0},
+    {"path": "9/404/230.png", "z": 9, "origin": "official frozen PNG single attempt", "source_alpha_count": 3016},
+    {"path": "9/408/230.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 0},
+    {"path": "9/404/231.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 2750},
+    {"path": "9/405/231.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 439},
+    {"path": "9/406/231.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 887},
+    {"path": "9/407/231.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 2078},
+    {"path": "9/408/231.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 3136},
+    {"path": "9/404/232.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 4074},
+    {"path": "9/405/232.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 3534},
+    {"path": "9/406/232.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 2749},
+    {"path": "9/407/232.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 3125},
+    {"path": "9/408/232.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 2013}
+  ],
+  "features": [
+    {"id": "AP-LV9-000", "kind": "city", "original": "Dong Le Town", "original_bbox": [436, 19, 482, 52], "source_url": "@source/523048dfb1b36c13"},
+    {"id": "AP-LV9-001", "kind": "city", "original": "Ba Don", "original_bbox": [582, 77, 624, 93], "source_url": "@source/17465a9d02dd1f46"},
+    {"id": "AP-LV9-002", "kind": "city", "original": "Nakay", "original_bbox": [122, 92, 158, 111], "source_url": "@source/eecd402008e8bd1d"},
+    {"id": "AP-LV9-003", "kind": "city", "original": "Ca Giun", "original_bbox": [409, 108, 453, 125], "source_url": "@source/523048dfb1b36c13"},
+    {"id": "AP-LV9-004", "kind": "city", "original": "Tây Gát", "original_bbox": [509, 114, 554, 133], "source_url": "@source/17465a9d02dd1f46"},
+    {"id": "AP-LV9-005", "kind": "city", "original": "Hoàn Lão", "original_bbox": [618, 142, 671, 159], "source_url": "@source/17465a9d02dd1f46"},
+    {"id": "AP-LV9-006", "kind": "city", "original": "Đồng Hới", "original_bbox": [647, 174, 686, 214], "source_url": "@source/17465a9d02dd1f46"},
+    {"id": "AP-LV9-007", "kind": "city", "original": "Mahaxay", "original_bbox": [132, 207, 182, 226], "source_url": "@source/eecd402008e8bd1d"},
+    {"id": "AP-LV9-008", "kind": "city", "original": "Thakhek", "original_bbox": [-12, 214, 43, 232], "source_url": "@source/eecd402008e8bd1d"}
+  ],
+  "translations": [
+    {"id": "AP-LV9-000", "zh": "同黎镇", "status": "approved", "source": "@source/beb894dac06b261d", "record_sha256": "e987d19256c60ada7b4c7d465e0b8df95d1d17c2621acc3b77529ef53cdb206d", "review_notes": "@note/translations"},
+    {"id": "AP-LV9-001", "zh": "巴屯", "status": "approved", "source": "@source/cf02e75652c290be", "record_sha256": "6fafcd56aa185099aba5e7592acee59653cc2aa755b5e4e6d5e4cf4c71fa0889", "review_notes": "@note/translations"},
+    {"id": "AP-LV9-002", "zh": "纳凯", "status": "approved", "source": "@source/0783e69bfac89765", "record_sha256": "0c4c17ed02637a8a5d2d45ad5ccfe22f8edff8d056a328983aba1d1e89d3f17c", "review_notes": "@note/translations"},
+    {"id": "AP-LV9-003", "zh": "卡尊", "status": "approved", "source": "@source/30853df62e847b12", "record_sha256": "38bd25fd2eeaa1cdbfe52a865f3110c901956412af496309644cd0ddadde5fda", "review_notes": "@note/translations"},
+    {"id": "AP-LV9-004", "zh": "泰葛", "status": "approved", "source": "@source/69413f212bdd3619", "record_sha256": "b820224cba3a13fb232d0373b9cd36fd0f512e798120283f0d00d584ba91d8ae", "review_notes": "@note/translations"},
+    {"id": "AP-LV9-005", "zh": "霍安劳", "status": "approved", "source": "@source/c9c8194ce0f547fb", "record_sha256": "ee0fd7cd0bc3c71530878d49451f2e1c635340a5fa142d35063b4e0aaa0f5c58", "review_notes": "@note/translations"},
+    {"id": "AP-LV9-006", "zh": "洞海", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "242f3bc719fc6bf1909a825d4814d2a2a9586f2c61b689df8398e3eeb6054160", "review_notes": "@note/translations"},
+    {"id": "AP-LV9-007", "zh": "马哈赛", "status": "approved", "source": "@source/1b998bff0312c4ac", "record_sha256": "f64715bd081d7a45cb60d00d14587d7c1ab6b53bb76417486224356fd38bb5a0", "review_notes": "@note/translations"},
+    {"id": "AP-LV9-008", "zh": "他曲", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "6c82d8ca0ab104f5fd4fe7bd9bd21f0b377352688949531a3923064852cda60a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-LV9-000", "x": 459.0, "y": 35.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-LV9-001", "x": 603.0, "y": 85.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-LV9-002", "x": 140.0, "y": 101.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-LV9-003", "x": 431.0, "y": 116.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-LV9-004", "x": 531.5, "y": 123.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-LV9-005", "x": 644.5, "y": 150.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-LV9-006", "x": 666.5, "y": 194.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-LV9-007", "x": 157.0, "y": 216.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-LV9-008", "x": 16.0, "y": 223.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": []
+}

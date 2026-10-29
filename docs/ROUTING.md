@@ -283,10 +283,16 @@
 | `scripts/test_global_placenames.py` | 全量地名审核的一致性测试（4,287+321 逐点唯一命中、译名一致） |
 | `scripts/global_map_catalog.py` | 独立全球地图目录的来源/逐项中文审计及确定性二进制编译；缺译或来源/显示未验证时阻断输出 |
 | `scripts/test_global_map_catalog.py` | 全球地图目录门禁负例、集合分母、全中文、确定性和旧产物保留回归 |
-| `dict/placenames/tile_regions.json` | 原版逐区辨认、中文补译、符号/海拔/布局及实际像素审核的有限覆盖清单；不是全球完整目录 |
+| `dict/placenames/tile_regions.json` | 拆分地图源的公共设置与有序区域索引；具体内容在 map_tiles/regions，非全球完整目录 |
+| `dict/placenames/map_tiles/regions/*.json` | 按区域维护的原名、中文、布局、符号及原图引用；地图增量编辑对应区域，不重建巨型源文件 |
+| `dict/placenames/map_tiles/*.jsonl` | 去重原图索引、公共来源 URL 与精简审核表；保留必要来源、输入与 RGBA 指纹 |
+| `docs/MAP_TILE_SOURCES.md` | 拆分地图格式、编辑规则、临时展开、完整重建与历史指纹迁移边界 |
 | `assets/placenames/ChineseMapTiles.dat` | 已核验清单确定性编译的中文标签瓦片，安装器/绿色包/运行时共用；新增覆盖必须先通过来源与像素审核 |
-| `scripts/build_map_tile_pack.py` | 有限缓存区域的原图 alpha/来源/中文/字体/审核审计与离线 PNG 标签层、CMOTIL01 构建；未核验仅允许预览 |
-| `scripts/test_build_map_tile_pack.py` | 离线地图瓦片构建门禁负例、跨 tile 拼接、海拔保留、二进制契约和失败保留旧产物测试 |
+| `scripts/build_map_tile_pack.py` | 有限缓存区域的原图、中文、字体和审核审计；核对显式选择的原始 WWP 中文补绘，构建离线 PNG 标签层及 CMOTIL01/02；未核验仅允许预览 |
+| `scripts/map_tile_manifest.py` | 读取拆分地图源、解析公共引用和列举完整构建输入；支持 split/expand，无自动审批 |
+| `scripts/test_map_tile_manifest.py` | 拆分源语义往返、失效审批、引用拒绝及迁移后的独立源码包字节复现测试 |
+| `scripts/verify_map_tile_source_package.py` | 核验地图源码包的逐文件指纹与必需输入，确保发布包可按冻结来源复现 |
+| `scripts/test_build_map_tile_pack.py` | 离线地图瓦片门禁、跨 tile 拼接、海拔保留、原始 WWP 补绘与选择失配拒绝、二进制契约和失败保留旧产物测试 |
 | `scripts/requirements-map.txt` | 离线地图瓦片构建所需 Pillow/fontTools；运行时无需 Python，字体使用本机文件不复制入库 |
 | `scripts/import_stamen_map_catalog.py` | 从固定来源导出与中文候选构建独立全球目录输入；保留原图证实缩放、非连续范围及未决记录，默认阻断全量编译 |
 | `scripts/test_import_stamen_map_catalog.py` | 全球来源导入的身份审核、缩放分段、原图例外和未决分母保留回归 |

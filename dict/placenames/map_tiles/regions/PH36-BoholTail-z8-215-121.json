@@ -1,0 +1,22 @@
+{
+  "id": "PH36-BoholTail-z8-215-121",
+  "z": 8,
+  "x": 215,
+  "y": 121,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/215/121.png"
+  ],
+  "context_tiles": [
+    "8/216/121.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "PH36-S-003", "owner_region": "PH36-WestMindanao-z8-216-121", "feature_id": "PH36-004", "kind": "marine", "original": "Bohol Sea", "original_bbox": [246, 134, 358, 154], "source_url": "@source/01016b7df094957f", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,42 @@
+{
+  "id": "EU-Med25-Column30-z6-30-23",
+  "z": 6,
+  "x": 30,
+  "y": 23,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/30/23.png",
+    "6/30/24.png"
+  ],
+  "context_tiles": [
+    "6/31/24.png"
+  ],
+  "features": [
+    {"id": "EM6-SRC-38", "kind": "city", "original": "Vigo", "original_bbox": [110, 175, 142, 197], "source_url": "@source/a85b56020ba2c999"},
+    {"id": "EM6-SRC-47", "kind": "admin0", "original": "PORTUGAL", "original_bbox": [62, 319, 224, 343], "source_url": "@source/68e8a968a478da58"},
+    {"id": "EM6-SRC-51", "kind": "city", "original": "Lisbon", "original_bbox": [92, 386, 136, 407], "source_url": "@source/68e8a968a478da58"},
+    {"id": "EM6-SRC-59", "kind": "city", "original": "Seville", "original_bbox": [235, 462, 275, 482], "source_url": "@source/68e8a968a478da58"}
+  ],
+  "translations": [
+    {"id": "EM6-SRC-38", "zh": "维戈", "source": "@source/d23b8e8a3125088b", "status": "approved", "record_sha256": "27d676a33653c261e443b9ce73a10e18cf76c78ca4bcc7f317836af1830f07f8", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-47", "zh": "葡萄牙", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "de49c4266288d1bea6789995864cc9056f46cf1e7faa7ce178206d34be949122", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-51", "zh": "里斯本", "source": "@source/59d51e65bba8e4d9", "status": "approved", "record_sha256": "9c2486f6bba2c5a9853cec535344072ff2893ec81527dbff2b1de738411f091e", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-59", "zh": "塞维利亚", "source": "@source/4cc0fed000e39777", "status": "approved", "record_sha256": "255a30ee761ddbdde8428af7ddef869a602a693fbce9ea281434e2c6a419e1d6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EM6-SRC-38", "x": 136.0, "y": 187.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-47", "x": 143.0, "y": 331.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-51", "x": 127.0, "y": 399.0, "font_size": 14, "font_style": "regular"},
+    {"id": "EM6-SRC-59", "x": 206.0, "y": 474.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EM6-SRC-38-NATIVE", "feature_id": "EM6-SRC-38", "kind": "circle", "original_bbox": [110, 175, 119, 184], "x": 114.5, "y": 179.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-51-NATIVE", "feature_id": "EM6-SRC-51", "kind": "circle", "original_bbox": [92, 386, 101, 395], "x": 96.5, "y": 390.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-59-NATIVE", "feature_id": "EM6-SRC-59", "kind": "circle", "original_bbox": [235, 462, 244, 471], "x": 239.5, "y": 466.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "EM25-SH-13", "owner_region": "EU-Med25-Column31-z6-31-23", "feature_id": "EM6-SRC-48", "kind": "admin0", "original": "SPAIN", "original_bbox": [247, 339, 337, 363], "source_url": "@source/68e8a968a478da58", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

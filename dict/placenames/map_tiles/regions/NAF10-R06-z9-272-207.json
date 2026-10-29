@@ -1,0 +1,27 @@
+{
+  "id": "NAF10-R06-z9-272-207",
+  "z": 9,
+  "x": 272,
+  "y": 207,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "9/272/207.png", "z": 9}
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NAF10-N011", "kind": "region", "original": "Badr", "original_bbox": [93, 201, 121, 217], "source_url": "@source/967700fa930bc683"},
+    {"id": "NAF10-N012", "kind": "region", "original": "Tiji", "original_bbox": [30, 223, 50, 242], "source_url": "@source/967700fa930bc683"}
+  ],
+  "translations": [
+    {"id": "NAF10-N011", "zh": "巴德尔", "status": "approved", "source": "@source/967700fa930bc683", "record_sha256": "d10f47820e742abc15d4d32043bc2520d9f1e30c73235ca9a5adcdc50f80d497", "review_notes": "Signed Source78629/qual ae866 and Root37ee fix complete literal, all source bbox/RGBA/Chinese grade/URL roles. Region is neutral renderer category for printed geographical text, not city/country/admin/feature-class identity. Supplier PNG attests complete printed Latin literal only. Chinese is explicit nonofficial project phonetic caption, not official standard, recovered Han, or GN Chinese. Chinese grade=EXPLICIT_PROJECT_PHONETIC_TRANSCRIPTION_OF_COMPLETE_PRINTED_LITERAL_NOT_OFFICIAL_OR_GN_HAN. All supplier entity/country/admin/class/native/vector IDs null; no point or circle inferred. El Borma remains multiple distinct context records without provider/entity/country/class selection. Actual target pending author SELF and independent /root/remaining_catalog TARGET. Author actual SELF_PRIVATE_MODEL_ONLY accepted complete CJK/source5px/whole/join view; independent remaining_catalog TARGET remains pending. Not integration approval."},
+    {"id": "NAF10-N012", "zh": "提吉", "status": "approved", "source": "@source/967700fa930bc683", "record_sha256": "bd91baed3dbc14d65f52b05d482d48b9525e8f07b6e3975bf4a6d8f1e205d6a0", "review_notes": "Signed Source78629/qual ae866 and Root37ee fix complete literal, all source bbox/RGBA/Chinese grade/URL roles. Region is neutral renderer category for printed geographical text, not city/country/admin/feature-class identity. Supplier PNG attests complete printed Latin literal only. Chinese is explicit nonofficial project phonetic caption, not official standard, recovered Han, or GN Chinese. Chinese grade=EXPLICIT_PROJECT_PHONETIC_TRANSCRIPTION_OF_COMPLETE_PRINTED_LITERAL_NOT_OFFICIAL_OR_GN_HAN. All supplier entity/country/admin/class/native/vector IDs null; no point or circle inferred. El Borma remains multiple distinct context records without provider/entity/country/class selection. Actual target pending author SELF and independent /root/remaining_catalog TARGET. Author actual SELF_PRIVATE_MODEL_ONLY accepted complete CJK/source5px/whole/join view; independent remaining_catalog TARGET remains pending. Not integration approval."}
+  ],
+  "layouts": [
+    {"id": "NAF10-N011", "x": 107.0, "y": 209.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NAF10-N012", "x": 40.0, "y": 232.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

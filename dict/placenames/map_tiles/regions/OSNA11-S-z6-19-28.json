@@ -1,0 +1,49 @@
+{
+  "id": "OSNA11-S-z6-19-28",
+  "z": 6,
+  "x": 19,
+  "y": 28,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/19/28.png",
+    "6/20/28.png",
+    "6/21/28.png"
+  ],
+  "context_tiles": [
+    "6/18/27.png",
+    "6/18/28.png",
+    "6/19/27.png",
+    "6/20/29.png",
+    "6/21/29.png"
+  ],
+  "features": [
+    {"id": "NA11-14-Port-au-Prince", "kind": "city", "original": "Port-au-Prince", "original_bbox": [31, 160, 78, 195], "source_url": "@source/5956d2718175572f"},
+    {"id": "NA11-15-Santo-Domingo", "kind": "city", "original": "Santo Domingo", "original_bbox": [140, 163, 197, 204], "source_url": "@source/5956d2718175572f"},
+    {"id": "NA11-16-San-Juan", "kind": "city", "original": "San Juan", "original_bbox": [315, 164, 365, 183], "source_url": "@source/00b482989e3f3d7b"},
+    {"id": "NA11-26-ANGUILLA", "kind": "admin0", "original": "ANGUILLA", "original_bbox": [382, 166, 534, 190], "source_url": "@source/00b482989e3f3d7b"}
+  ],
+  "translations": [
+    {"id": "NA11-14-Port-au-Prince", "zh": "太子港", "status": "approved", "source": "@source/3e67c8bd77ec284d", "record_sha256": "9de3f5ca5d0f838735aa7831fb639289bc1c1522159d41a7e0585a8542630543", "review_notes": "@note/translations"},
+    {"id": "NA11-15-Santo-Domingo", "zh": "圣多明哥", "status": "approved", "source": "@source/52339dfa87044c32", "record_sha256": "6f4013e03cab22fb26b1b0409426c4693462ac8c9b2c77ecc239ac26efdf73a6", "review_notes": "@note/translations"},
+    {"id": "NA11-16-San-Juan", "zh": "圣胡安", "status": "approved", "source": "@source/afc343120063faef", "record_sha256": "33fff36577049739bc7b4252080b58ca5ddd60f41bfb39d81bfa34694c51e04d", "review_notes": "@note/translations"},
+    {"id": "NA11-26-ANGUILLA", "zh": "安圭拉", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "6e8c76e2392f83e0f45382fd88c20575b70e353f3a8a8ea76ad6d11e9e22dc2e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NA11-14-Port-au-Prince", "x": 65.0, "y": 172.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-15-Santo-Domingo", "x": 180.0, "y": 175.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-16-San-Juan", "x": 349.0, "y": 176.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-26-ANGUILLA", "x": 458.0, "y": 178.0, "font_size": 14, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "NA11-14-Port-au-Prince-circle", "feature_id": "NA11-14-Port-au-Prince", "kind": "circle", "x": 35.5, "y": 164.5, "size": 9, "outline_width": 1, "original_bbox": [31, 160, 40, 169], "source_url": "@source/5956d2718175572f", "review_notes": "@note/symbols"},
+    {"id": "NA11-15-Santo-Domingo-circle", "feature_id": "NA11-15-Santo-Domingo", "kind": "circle", "x": 144.5, "y": 167.5, "size": 9, "outline_width": 1, "original_bbox": [140, 163, 149, 172], "source_url": "@source/5956d2718175572f", "review_notes": "@note/symbols"},
+    {"id": "NA11-16-San-Juan-circle", "feature_id": "NA11-16-San-Juan", "kind": "circle", "x": 319.5, "y": 168.5, "size": 9, "outline_width": 1, "original_bbox": [315, 164, 324, 173], "source_url": "@source/00b482989e3f3d7b", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "OSNA11-S-z6-19-28-old-AM6-163-Turks-and-Caicos-Islands", "owner_region": "AM-WestCentral-z6-9-22", "feature_id": "AM6-163-Turks-and-Caicos-Islands", "kind": "admin0", "original": "Turks and Caicos Islands", "original_bbox": [-16, -31, 159, 46], "source_url": "@source/5956d2718175572f", "review_notes": "@note/shared_sources"},
+    {"id": "OSNA11-S-z6-19-28-old-AM6-165-Haiti", "owner_region": "AM-WestCentral-z6-9-22", "feature_id": "AM6-165-Haiti", "kind": "admin0", "original": "Haiti", "original_bbox": [-6, 121, 77, 144], "source_url": "@source/5956d2718175572f", "review_notes": "@note/shared_sources"},
+    {"id": "OSNA11-S-z6-19-28-old-AM31-1-MONTSERRAT", "owner_region": "AM-NorthSouthAmerica-z6-19-29", "feature_id": "AM31-1-MONTSERRAT", "kind": "admin0", "original": "MONTSERRAT", "original_bbox": [395, 234, 603, 260], "source_url": "@source/00b482989e3f3d7b", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": "PH36-WestMindanao-z8-216-121",
+  "z": 8,
+  "x": 216,
+  "y": 121,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/216/121.png"
+  ],
+  "context_tiles": [
+    "8/215/121.png",
+    "8/217/121.png",
+    "8/216/122.png"
+  ],
+  "features": [
+    {"id": "PH36-003", "kind": "city", "original": "Gingoog", "original_bbox": [242, 176, 296, 201], "source_url": "@source/01016b7df094957f"},
+    {"id": "PH36-004", "kind": "marine", "original": "Bohol Sea", "original_bbox": [-10, 134, 102, 154], "source_url": "@source/01016b7df094957f"},
+    {"id": "PH36-005", "kind": "city", "original": "Cagayan de Oro", "original_bbox": [158, 239, 212, 277], "source_url": "@source/01016b7df094957f"}
+  ],
+  "translations": [
+    {"id": "PH36-003", "zh": "欣奥奥格", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "5e3f344fb7b86720f5eb4a6eec8f833632d7c10e8d037b1804bdc716251cabdf", "review_notes": "@note/translations"},
+    {"id": "PH36-004", "zh": "保和海", "status": "approved", "source": "@source/408f271f5707dfc4", "record_sha256": "ef952c2523c81b88b0ae87da99f55760b48452374362220b4c6c69d798103c0f", "review_notes": "@note/translations"},
+    {"id": "PH36-005", "zh": "卡加延德奥罗", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "23375b8a128975a4ea58d59cca0418827340ec66ed816312932fd8c6e8aed848", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PH36-003", "x": 212, "y": 191, "font_size": 12, "font_style": "regular"},
+    {"id": "PH36-004", "x": 46, "y": 144, "font_size": 16, "font_style": "bold"},
+    {"id": "PH36-005", "x": 190, "y": 226, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "PH36-003-circle", "feature_id": "PH36-003", "kind": "circle", "x": 246.5, "y": 180.5, "size": 9, "outline_width": 1, "original_bbox": [242, 176, 251, 185], "source_url": "@source/01016b7df094957f", "review_notes": "@note/symbols"},
+    {"id": "PH36-005-circle", "feature_id": "PH36-005", "kind": "circle", "x": 162.5, "y": 243.5, "size": 9, "outline_width": 1, "original_bbox": [158, 239, 167, 248], "source_url": "@source/01016b7df094957f", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

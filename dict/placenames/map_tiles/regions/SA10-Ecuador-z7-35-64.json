@@ -1,0 +1,51 @@
+{
+  "id": "SA10-Ecuador-z7-35-64",
+  "z": 7,
+  "x": 35,
+  "y": 64,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/35/64.png",
+    "7/36/64.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "SA10-N-024", "kind": "city", "original": "Quito", "original_bbox": [273, 16, 309, 37], "source_url": "@source/9d2acb1efe273c33"},
+    {"id": "SA10-N-025", "kind": "city", "original": "Latacunga", "original_bbox": [264, 81, 321, 103], "source_url": "@source/9d2acb1efe273c33"},
+    {"id": "SA10-N-026", "kind": "city", "original": "Manta", "original_bbox": [72, 82, 111, 101], "source_url": "@source/61c55f7f6f1b08c5"},
+    {"id": "SA10-N-028", "kind": "city", "original": "Ambato", "original_bbox": [262, 109, 309, 128], "source_url": "@source/9d2acb1efe273c33"},
+    {"id": "SA10-N-029", "kind": "city", "original": "Riobamba", "original_bbox": [261, 148, 317, 167], "source_url": "@source/9d2acb1efe273c33"},
+    {"id": "SA10-N-030", "kind": "city", "original": "Babahoyo", "original_bbox": [180, 160, 236, 181], "source_url": "@source/61c55f7f6f1b08c5"},
+    {"id": "SA10-N-031", "kind": "city", "original": "Guayaquil", "original_bbox": [148, 195, 212, 219], "source_url": "@source/61c55f7f6f1b08c5"}
+  ],
+  "translations": [
+    {"id": "SA10-N-024", "zh": "基多", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "2f8f27ed333cef66cbb8dd8ffd57ced1afe5df71b2685bc587485862b6636ca5", "review_notes": "@note/translations"},
+    {"id": "SA10-N-025", "zh": "拉塔昆加", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "dd79d96740c758cdaa5626d7562cc068780b7bd3ef39ab6d6119b02da4f3d4a9", "review_notes": "@note/translations"},
+    {"id": "SA10-N-026", "zh": "曼塔", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "030afc2e7473e07c6d4b74c7962b95976833d023eb77205886caa1efe9fa0120", "review_notes": "@note/translations"},
+    {"id": "SA10-N-028", "zh": "安巴托", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "8802004568cef6fc6819d7541a552de6bb81a999f700c8e188e0cc63f6c7ab30", "review_notes": "@note/translations"},
+    {"id": "SA10-N-029", "zh": "里奥班巴", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "065f485eee1faed1fa50c331eb0cdd48cdafe12a7da4e6fd2eb3d15f9ace1ab6", "review_notes": "@note/translations"},
+    {"id": "SA10-N-030", "zh": "巴巴奥约", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "41dfb23cd741dc0448e9be8ef6954d91987859b43a858531889a5906429b618d", "review_notes": "@note/translations"},
+    {"id": "SA10-N-031", "zh": "瓜亚基尔", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "22cb3f0e9de4c54efca36a2af16d0d343402c14bb9a2962231461fb7ef48977d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SA10-N-024", "x": 298.0, "y": 21.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-025", "x": 301.0, "y": 85.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-026", "x": 97.0, "y": 87.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-028", "x": 293.0, "y": 113.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-029", "x": 298.0, "y": 153.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-030", "x": 217.0, "y": 165.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-031", "x": 185.0, "y": 199.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SA10-C-019", "feature_id": "SA10-N-024", "kind": "circle", "x": 277.5, "y": 20.5, "size": 9, "outline_width": 1, "original_bbox": [273, 16, 282, 25], "source_url": "@source/9d2acb1efe273c33", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-020", "feature_id": "SA10-N-025", "kind": "circle", "x": 268.5, "y": 85.5, "size": 9, "outline_width": 1, "original_bbox": [264, 81, 273, 90], "source_url": "@source/9d2acb1efe273c33", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-021", "feature_id": "SA10-N-026", "kind": "circle", "x": 76.5, "y": 86.5, "size": 9, "outline_width": 1, "original_bbox": [72, 82, 81, 91], "source_url": "@source/61c55f7f6f1b08c5", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-023", "feature_id": "SA10-N-028", "kind": "circle", "x": 266.5, "y": 113.5, "size": 9, "outline_width": 1, "original_bbox": [262, 109, 271, 118], "source_url": "@source/9d2acb1efe273c33", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-024", "feature_id": "SA10-N-029", "kind": "circle", "x": 265.5, "y": 152.5, "size": 9, "outline_width": 1, "original_bbox": [261, 148, 270, 157], "source_url": "@source/9d2acb1efe273c33", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-025", "feature_id": "SA10-N-030", "kind": "circle", "x": 184.5, "y": 164.5, "size": 9, "outline_width": 1, "original_bbox": [180, 160, 189, 169], "source_url": "@source/61c55f7f6f1b08c5", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-026", "feature_id": "SA10-N-031", "kind": "circle", "x": 152.5, "y": 199.5, "size": 9, "outline_width": 1, "original_bbox": [148, 195, 157, 204], "source_url": "@source/61c55f7f6f1b08c5", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

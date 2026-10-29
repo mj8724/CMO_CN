@@ -1,0 +1,41 @@
+{
+  "id": "AS8-MyanmarNorth-z8-195-111",
+  "z": 8,
+  "x": 195,
+  "y": 111,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/195/111.png",
+    "8/196/111.png",
+    "8/197/111.png"
+  ],
+  "context_tiles": [
+    "8/196/112.png"
+  ],
+  "features": [
+    {"id": "AS8-N-CC48", "kind": "city", "original": "Namtu", "original_bbox": [574, 24, 615, 44], "source_url": "@source/27a74886d7f3c5ad"},
+    {"id": "AS8-N-CC58", "kind": "city", "original": "Shwebo", "original_bbox": [265, 129, 318, 150], "source_url": "@source/e8c1a38c94967507"},
+    {"id": "AS8-N-CC62", "kind": "city", "original": "Monywa", "original_bbox": [162, 217, 217, 241], "source_url": "@source/f82dfb633a2065d1"}
+  ],
+  "translations": [
+    {"id": "AS8-N-CC48", "zh": "南渡", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "684a7086cfbaec58854684fb8b95045ff0593df4cfd14b4e76c7d921bcb03482", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 4782, "field": "NAME_ZH", "raw_value": "南渡", "raw_GEONAMESID": 1306349}},
+    {"id": "AS8-N-CC58", "zh": "瑞波", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b97eb096f5f36c58da4f10035dd6423335f5e094d01dd50fa2c9bf6e0a5f3f99", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 4784, "field": "NAME_ZH", "raw_value": "瑞波", "raw_GEONAMESID": 1296736}},
+    {"id": "AS8-N-CC62", "zh": "蒙育瓦", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "f4c25060d1daee0b1d4344c2026af6679d609212a2486e44686bb84d73784ac4", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 5612, "field": "NAME_ZH", "raw_value": "蒙育瓦", "raw_GEONAMESID": 1308522}}
+  ],
+  "layouts": [
+    {"id": "AS8-N-CC48", "x": 602.0, "y": 36.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AS8-N-CC58", "x": 293.0, "y": 141.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AS8-N-CC62", "x": 196.0, "y": 229.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AS8-N-CC48-circle", "kind": "circle", "x": 578.5, "y": 28.5, "size": 9, "outline_width": 1, "original_bbox": [574, 24, 583, 33], "source_url": "@source/27a74886d7f3c5ad", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC48"},
+    {"id": "AS8-N-CC58-circle", "kind": "circle", "x": 269.5, "y": 133.5, "size": 9, "outline_width": 1, "original_bbox": [265, 129, 274, 138], "source_url": "@source/e8c1a38c94967507", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC58"},
+    {"id": "AS8-N-CC62-circle", "kind": "circle", "x": 166.5, "y": 221.5, "size": 9, "outline_width": 1, "original_bbox": [162, 217, 171, 226], "source_url": "@source/f82dfb633a2065d1", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC62"},
+    {"id": "AS8-SH-CC64-circle", "kind": "circle", "x": 339.5, "y": 248.5, "size": 9, "outline_width": 1, "original_bbox": [335, 244, 344, 253], "source_url": "@source/e8c1a38c94967507", "review_notes": "@note/symbols", "shared_source_id": "AS8-SH-CC64"}
+  ],
+  "shared_sources": [
+    {"id": "AS8-SH-CC64", "owner_region": "AP-Myanmar-z8-192-112", "feature_id": "AP-M8-000", "kind": "city", "original": "Mandalay", "source_url": "@source/084fb7e0d3ca51dc", "original_bbox": [335, 244, 399, 269], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,29 @@
+{
+  "id": "NEA-RongchengSouth-z10-860-398",
+  "z": 10,
+  "x": 860,
+  "y": 398,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/860/398.png"
+  ],
+  "context_tiles": [
+    "10/860/397.png"
+  ],
+  "features": [
+    {"id": "NEA10-019", "kind": "city", "original": "Rongcheng", "original_bbox": [66, -13, 136, 9], "source_url": "@source/394a3dab77947dc0"},
+    {"id": "NEA10-020", "kind": "city", "original": "Ningjin", "original_bbox": [92, 151, 134, 171], "source_url": "@source/394a3dab77947dc0"}
+  ],
+  "translations": [
+    {"id": "NEA10-019", "zh": "荣成", "status": "approved", "source": "@source/aa6c1fa4e51055c9", "record_sha256": "5ecc3b0a9cd79b2b8ed832ca0efa6565ad90a220f6ab02eaef7d95bbdfd55f31", "review_notes": "@note/translations"},
+    {"id": "NEA10-020", "zh": "宁津", "status": "approved", "source": "@source/41f7c9378a939019", "record_sha256": "233fb7720aa2e83b0242eec519a04788fe95861b79d5b639fae97adc6b69d195", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA10-019", "x": 101.0, "y": 10.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-020", "x": 113.0, "y": 161.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,36 @@
+{
+  "id": "EML13-R05",
+  "z": 8,
+  "x": 151,
+  "y": 89,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/151/89.png",
+    "8/152/89.png",
+    "8/153/89.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "EML13-N010", "kind": "city", "original": "Kryvyi Rih", "original_bbox": [186, 17, 229, 55], "source_url": "@source/ef3031e5ed3913f5"},
+    {"id": "EML13-N011", "kind": "city", "original": "Zaporizhzhia", "original_bbox": [501, 33, 578, 57], "source_url": "@source/9609753ec80b19ed"},
+    {"id": "EML13-N021", "kind": "city", "original": "Nikopol", "original_bbox": [368, 109, 420, 133], "source_url": "@source/9609753ec80b19ed"}
+  ],
+  "translations": [
+    {"id": "EML13-N010", "zh": "克里沃罗格", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "3ed422b83864600fd8b5ca5e90529fda6261b2721533aca9d0fb4146b5ee37ba", "review_notes": "@note/translations"},
+    {"id": "EML13-N011", "zh": "扎波罗热", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "c0a7e0774eb95207f8f2031e09b049d3e75378b44b8b9ab628fcd59c20ef345a", "review_notes": "@note/translations"},
+    {"id": "EML13-N021", "zh": "尼科波尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "508127346ef78f0444a1ee3246f7e0a697b2718fb899f0964fb4884c0199efca", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EML13-N010", "x": 233.5, "y": 37.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N011", "x": 542.5, "y": 53.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N021", "x": 409.5, "y": 129.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EML13-C008", "kind": "circle", "size": 9, "outline_width": 1, "x": 190.5, "y": 21.5, "original_bbox": [186, 17, 195, 26], "feature_id": "EML13-N010"},
+    {"id": "EML13-C009", "kind": "circle", "size": 9, "outline_width": 1, "x": 505.5, "y": 37.5, "original_bbox": [501, 33, 510, 42], "feature_id": "EML13-N011"},
+    {"id": "EML13-C013", "kind": "circle", "size": 9, "outline_width": 1, "x": 372.5, "y": 113.5, "original_bbox": [368, 109, 377, 118], "feature_id": "EML13-N021"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

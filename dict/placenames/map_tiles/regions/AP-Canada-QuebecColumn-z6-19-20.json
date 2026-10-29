@@ -1,0 +1,60 @@
+{
+  "id": "AP-Canada-QuebecColumn-z6-19-20",
+  "z": 6,
+  "x": 19,
+  "y": 20,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    {"path": "6/19/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 410},
+    {"path": "6/19/21.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 313},
+    {"path": "6/19/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 2912}
+  ],
+  "context_tiles": [
+    {"path": "6/16/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 760},
+    {"path": "6/17/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/18/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 637},
+    {"path": "6/19/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/20/19.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 859},
+    {"path": "6/16/20.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/17/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 2075},
+    {"path": "6/18/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 919},
+    {"path": "6/20/20.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 1382},
+    {"path": "6/16/21.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 769},
+    {"path": "6/17/21.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 699},
+    {"path": "6/18/21.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/20/21.png", "z": 6, "origin": "official frozen PNG single attempt", "source_alpha_count": 0},
+    {"path": "6/16/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 891},
+    {"path": "6/17/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 2421},
+    {"path": "6/18/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 836},
+    {"path": "6/20/22.png", "z": 6, "origin": "already frozen canonical", "source_alpha_count": 4632}
+  ],
+  "features": [
+    {"id": "AP-CA6-003", "kind": "admin1", "original": "QUEBEC", "original_bbox": [31, 248, 87, 264], "source_url": "@source/7e5ac09867195732"},
+    {"id": "AP-CA6-005", "kind": "city", "original": "Dolbeau-Mistassini", "original_bbox": [36, 510, 92, 545], "source_url": "@source/13ce3929debe4d89"},
+    {"id": "AP-CA6-006", "kind": "city", "original": "Quebec", "original_bbox": [83, 651, 128, 672], "source_url": "@source/13ce3929debe4d89"},
+    {"id": "AP-CA6-007", "kind": "admin1", "original": "NEW BRUNSWICK", "original_bbox": [249, 660, 332, 688], "source_url": "@source/8f06336f1265dcda"},
+    {"id": "AP-CA6-008", "kind": "admin1", "original": "MAINE", "original_bbox": [172, 720, 217, 733], "source_url": "@source/13ce3929debe4d89"}
+  ],
+  "translations": [
+    {"id": "AP-CA6-003", "zh": "魁北克省", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "7d7b82bf43208d02241a5aa22d3bea52cb0de2004758d30ff90dedbea368cb68", "review_notes": "@note/translations"},
+    {"id": "AP-CA6-005", "zh": "多尔博-米斯塔西尼", "status": "approved", "source": "@source/5890cf91cfbb370f", "record_sha256": "6f95f306872c225b371a54105d5f3d0cac9b13ceccb51b98a76e0acaff5b835e", "review_notes": "@note/translations"},
+    {"id": "AP-CA6-006", "zh": "魁北克市", "status": "approved", "source": "@source/bf4d1a74c22ef99c", "record_sha256": "24912f15cf4d133c1ca4c8570fa28d691bc80d6379c2bbd365077b33f0c4f085", "review_notes": "@note/translations"},
+    {"id": "AP-CA6-007", "zh": "新不伦瑞克省", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "5908a8ae067cee933345c3df1ea4b0a3bd890f9b03b75fd48a0ed2b643ab6618", "review_notes": "@note/translations"},
+    {"id": "AP-CA6-008", "zh": "缅因州", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "ea7acee20f02645938c4a4f259a2c6351bb9a4f32de74ae8f99eb9dabfd09846", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-CA6-003", "x": 59.0, "y": 256.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-CA6-005", "x": 95.5, "y": 530.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-CA6-006", "x": 118.0, "y": 664.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-CA6-007", "x": 216.0, "y": 674.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-CA6-008", "x": 194.5, "y": 726.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-CA6-005-circle", "feature_id": "AP-CA6-005", "x": 40.5, "y": 514.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [36, 510, 45, 519]},
+    {"id": "AP-CA6-006-circle", "feature_id": "AP-CA6-006", "x": 87.5, "y": 655.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [83, 651, 92, 660]}
+  ],
+  "shared_sources": [
+    {"id": "AP-CA6-Montreal423-shared", "owner_region": "AM-WestCentral-z6-9-22", "feature_id": "AM6-147-Montreal", "kind": "city", "original": "Montreal", "original_bbox": [-20, 740, 33, 760], "source_url": "@source/13ce3929debe4d89", "review_notes": "@note/shared_sources"}
+  ]
+}

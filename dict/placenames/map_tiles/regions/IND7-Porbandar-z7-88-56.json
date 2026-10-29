@@ -1,0 +1,45 @@
+{
+  "z": 7,
+  "x": 88,
+  "y": 56,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "IND7-Porbandar-z7-88-56",
+  "original_tiles": [
+    "7/88/56.png"
+  ],
+  "context_tiles": [
+    "7/87/55.png",
+    "7/87/56.png",
+    "7/87/57.png",
+    "7/88/55.png",
+    "7/88/57.png",
+    "7/89/55.png",
+    "7/89/56.png",
+    "7/89/57.png",
+    "7/90/55.png",
+    "7/90/56.png",
+    "7/90/57.png",
+    "7/91/55.png",
+    "7/91/56.png",
+    "7/91/57.png",
+    "7/92/55.png",
+    "7/92/56.png",
+    "7/90/58.png",
+    "7/91/58.png",
+    "7/92/57.png"
+  ],
+  "features": [
+    {"id": "IND7-N002", "kind": "city", "original": "Porbandar", "original_bbox": [188, 25, 245, 44], "source_url": "@source/ccdeeeba36843a42"}
+  ],
+  "translations": [
+    {"id": "IND7-N002", "zh": "坡尔班达尔", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "8ab1a0754b58473c52d96b3b725ce7aa88c8f20e862d28c1cf88c5caa07845c8", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "IND7-N002", "x": 219.0, "y": 44.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "IND7-C002", "feature_id": "IND7-N002", "kind": "circle", "original_bbox": [188, 25, 197, 34], "x": 192.5, "y": 29.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "LZ12-OldBridgeportTail-z6-19-24",
+  "z": 6,
+  "x": 19,
+  "y": 24,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/19/24.png"
+  ],
+  "context_tiles": [
+    "6/18/23.png",
+    "6/18/24.png",
+    "6/19/23.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "LZ12-OldBridgeportTail-z6-19-24-AM6-148-Bridgeport", "owner_region": "AM-WestCentral-z6-9-22", "feature_id": "AM6-148-Bridgeport", "kind": "city", "original": "Bridgeport", "source_url": "@source/c9ebcba92538a037", "original_bbox": [-3, -13, 53, 9], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,40 @@
+{
+  "id": "AP-Kenya-EastAfrica-z8-topeast",
+  "z": 8,
+  "x": 157,
+  "y": 120,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "8/157/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/158/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1424}
+  ],
+  "context_tiles": [
+    {"path": "8/156/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 90},
+    {"path": "8/157/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/158/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1311},
+    {"path": "8/159/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/156/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 943},
+    {"path": "8/159/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 12},
+    {"path": "8/156/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1397},
+    {"path": "8/157/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 184},
+    {"path": "8/158/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 877},
+    {"path": "8/159/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 846}
+  ],
+  "features": [
+    {"id": "AP-KE8-000", "kind": "city", "original": "Ali Sabieh", "original_bbox": [346, 0, 402, 19], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-KE8-006", "kind": "city", "original": "Borama", "original_bbox": [433, 225, 484, 246], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "AP-KE8-000", "zh": "阿里萨比耶", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "bafe694f928e1c903df32dd5104b3e7bb96b800f3d978e66c24b2162465f2726", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-006", "zh": "博拉马", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "c751f1e0674aa92d0fe0a6641786bc338423e4832a73a8261f9bb6044064cc21", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-KE8-000", "x": 385.0, "y": 14.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-006", "x": 461.0, "y": 239.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-KE8-000-circle", "feature_id": "AP-KE8-000", "kind": "circle", "x": 350.5, "y": 4.5, "size": 7, "outline_width": 1, "original_bbox": [346, 0, 355, 9]},
+    {"id": "AP-KE8-006-circle", "feature_id": "AP-KE8-006", "kind": "circle", "x": 437.5, "y": 229.5, "size": 7, "outline_width": 1, "original_bbox": [433, 225, 442, 234]}
+  ]
+}

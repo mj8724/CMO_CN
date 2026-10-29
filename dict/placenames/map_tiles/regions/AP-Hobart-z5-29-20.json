@@ -1,0 +1,33 @@
+{
+  "id": "AP-Hobart-z5-29-20",
+  "z": 5,
+  "x": 29,
+  "y": 20,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/29/20.png"
+  ],
+  "context_tiles": [
+    "5/28/19.png",
+    "5/29/19.png",
+    "5/30/19.png",
+    "5/28/20.png",
+    "5/30/20.png",
+    "5/28/21.png",
+    "5/29/21.png",
+    "5/30/21.png"
+  ],
+  "features": [
+    {"id": "AP-NZ-2", "kind": "city", "original": "Hobart", "original_bbox": [20, 54, 62, 73], "source_url": "@source/3c4276b8c5614767"}
+  ],
+  "translations": [
+    {"id": "AP-NZ-2", "zh": "霍巴特", "status": "approved", "source": "@source/3c4276b8c5614767", "record_sha256": "b7ee1e105ea37494da7ca68d4eadd355112fccee6441672f80c215bb5afa50da", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-NZ-2", "x": 46.5, "y": 63.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-NZ-2-circle", "feature_id": "AP-NZ-2", "x": 24.5, "y": 58.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [20, 54, 29, 63]}
+  ]
+}

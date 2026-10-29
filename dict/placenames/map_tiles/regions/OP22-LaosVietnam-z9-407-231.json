@@ -1,0 +1,34 @@
+{
+  "id": "OP22-LaosVietnam-z9-407-231",
+  "z": 9,
+  "x": 407,
+  "y": 231,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/407/231.png"
+  ],
+  "context_tiles": [
+    "9/406/231.png",
+    "9/407/232.png",
+    "9/408/231.png"
+  ],
+  "features": [
+    {"id": "OP24-N24", "kind": "city", "original": "Phú Việt", "original_bbox": [204, 8, 255, 28], "source_url": "@source/2f84f1d60c7058ac"},
+    {"id": "OP24-N25", "kind": "city", "original": "Ba Xe Pu", "original_bbox": [123, 157, 173, 173], "source_url": "@source/2f84f1d60c7058ac"}
+  ],
+  "translations": [
+    {"id": "OP24-N24", "zh": "富越", "status": "approved", "source": "@source/2f84f1d60c7058ac", "record_sha256": "3b0fda9648fd88081ae804b31b9cdc5bfafab83f3a89fa9bfb30ce85acaa15c1", "review_notes": "@note/translations"},
+    {"id": "OP24-N25", "zh": "巴谢普", "status": "approved", "source": "@source/2f84f1d60c7058ac", "record_sha256": "813e17a79a47242b3c69a68c53bcf87d94ee557131c781313bdea8a68a8661c4", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N24", "x": 229.5, "y": 18.0, "font_size": 12, "font_style": "regular"},
+    {"id": "OP24-N25", "x": 148.0, "y": 165.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "OP24-A26", "owner_region": "AP-LaosVietnam-z9-405-231-bottom", "feature_id": "AP-LV9-010", "kind": "city", "original": "Xepon", "original_bbox": [-6, 224, 32, 243], "source_url": "@source/2f84f1d60c7058ac", "review_notes": "@note/shared_sources"},
+    {"id": "OP24-A27", "owner_region": "Indochina-West-z9-400-232", "feature_id": "ICW9-000", "kind": "city", "original": "Lao Bảo", "original_bbox": [125, 252, 181, 272], "source_url": "@source/4cbf870d205e5929", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

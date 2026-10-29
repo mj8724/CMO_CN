@@ -1,0 +1,33 @@
+{
+  "id": "AP-Simao-z7-99-55",
+  "z": 7,
+  "x": 99,
+  "y": 55,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "AP-S7-128", "kind": "city", "original": "Simao", "original_bbox": [227, 168, 266, 187], "source_url": "@source/6e25eb6a3c9f40fd"}
+  ],
+  "translations": [
+    {"id": "AP-S7-128", "zh": "思茅", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b1be97e0c61d1ee1ea9c53a9f6bfbdeb8dc95311679ca007bcfaa0fce452efb6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-S7-128", "x": 213, "y": 177.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-S7-128-circle", "feature_id": "AP-S7-128", "kind": "circle", "x": 231.5, "y": 172.5, "size": 7, "outline_width": 1, "original_bbox": [227, 168, 236, 177]}
+  ],
+  "original_tiles": [
+    "7/99/55.png"
+  ],
+  "context_tiles": [
+    "7/98/54.png",
+    "7/99/54.png",
+    "7/100/54.png",
+    "7/98/55.png",
+    "7/100/55.png",
+    "7/98/56.png",
+    "7/99/56.png",
+    "7/100/56.png"
+  ]
+}

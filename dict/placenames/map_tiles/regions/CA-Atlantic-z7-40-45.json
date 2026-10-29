@@ -1,0 +1,52 @@
+{
+  "id": "CA-Atlantic-z7-40-45",
+  "z": 7,
+  "x": 40,
+  "y": 45,
+  "width_tiles": 2,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/40/45.png",
+    "7/41/45.png",
+    "7/40/46.png",
+    "7/41/46.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "CA-New-Brunswick-province", "kind": "admin1", "original": "New Brunswick", "original_bbox": [11, 50, 127, 89], "source_url": "@source/98c784d6ab886143"},
+    {"id": "CA-Prince-Edward-Island-province", "kind": "admin1", "original": "Prince Edward Island", "original_bbox": [355, 61, 438, 121], "source_url": "@source/98c784d6ab886143"},
+    {"id": "CA-Nova-Scotia-province", "kind": "admin1", "original": "Nova Scotia", "original_bbox": [359, 220, 431, 259], "source_url": "@source/98c784d6ab886143"},
+    {"id": "CA-Fredericton-city", "kind": "city", "original": "Fredericton", "original_bbox": [80, 143, 135, 157], "source_url": "@source/375492b82097b84c"},
+    {"id": "CA-Moncton-city", "kind": "city", "original": "Moncton", "original_bbox": [247, 125, 292, 140], "source_url": "@source/de57b59c289acedb"},
+    {"id": "CA-Saint-John-city", "kind": "city", "original": "Saint John", "original_bbox": [133, 231, 161, 262], "source_url": "@source/de57b59c289acedb"},
+    {"id": "CA-Yarmouth-city", "kind": "city", "original": "Yarmouth", "original_bbox": [128, 416, 176, 430], "source_url": "@source/de57b59c289acedb"},
+    {"id": "CA-Halifax-city", "kind": "city", "original": "Halifax", "original_bbox": [358, 313, 395, 327], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "CA-New-Brunswick-province", "zh": "新不伦瑞克省", "status": "approved", "source": "@source/98c784d6ab886143", "record_sha256": "2feeee7ebafdc7d9c337c589b8e2057ed72f15f09672ddb32b04dbcf2fbb8e86", "review_notes": "@note/translations"},
+    {"id": "CA-Prince-Edward-Island-province", "zh": "爱德华王子岛省", "status": "approved", "source": "@source/98c784d6ab886143", "record_sha256": "b496d0f0165c1a60def821d7b217b043bae9a5e3d2f88df24b6525dea3f7d5b5", "review_notes": "@note/translations"},
+    {"id": "CA-Nova-Scotia-province", "zh": "新斯科舍省", "status": "approved", "source": "@source/98c784d6ab886143", "record_sha256": "2d1b95ee37f925d762738feac5e23cd3955619de87919ad7aad4412bfae5d980", "review_notes": "@note/translations"},
+    {"id": "CA-Fredericton-city", "zh": "弗雷德里克顿", "status": "approved", "source": "@source/375492b82097b84c", "record_sha256": "1ea04fc35bf46b6cb03dce2de1882c6361c3d73a7e739ad0b0987602d34593ca", "review_notes": "@note/translations"},
+    {"id": "CA-Moncton-city", "zh": "蒙克顿", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "2a3a156fa0b429e034c28f0c663fca551801ea48a1558871e1ebf11749f2e9a2", "review_notes": "@note/translations"},
+    {"id": "CA-Saint-John-city", "zh": "圣约翰", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "44b0338f7dca8969016b801edcda13c9700dba755ea0578c337fe23373343569", "review_notes": "@note/translations"},
+    {"id": "CA-Yarmouth-city", "zh": "雅茅斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e707dae1f9e99f1d7f20e2569304de7baab83cbe7315d7710d8a5dee606a3287", "review_notes": "@note/translations"},
+    {"id": "CA-Halifax-city", "zh": "哈利法克斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8af4ee5fefe1eff95d35d62280a97d6819f6dae82c32b10036d780942c6a8527", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CA-New-Brunswick-province", "x": 69, "y": 69.5, "font_size": 13, "font_style": "bold"},
+    {"id": "CA-Prince-Edward-Island-province", "x": 396.5, "y": 91, "font_size": 13, "font_style": "bold", "lines": ["爱德华", "王子岛省"]},
+    {"id": "CA-Nova-Scotia-province", "x": 395, "y": 239.5, "font_size": 13, "font_style": "bold"},
+    {"id": "CA-Fredericton-city", "x": 120, "y": 151, "font_size": 12, "font_style": "regular"},
+    {"id": "CA-Moncton-city", "x": 273, "y": 133, "font_size": 12, "font_style": "regular"},
+    {"id": "CA-Saint-John-city", "x": 157, "y": 248, "font_size": 12, "font_style": "regular"},
+    {"id": "CA-Yarmouth-city", "x": 152, "y": 423, "font_size": 12, "font_style": "regular"},
+    {"id": "CA-Halifax-city", "x": 395, "y": 321, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CA-Fredericton-point", "feature_id": "CA-Fredericton-city", "x": 78.5, "y": 142.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [74, 138, 83, 147]},
+    {"id": "CA-Moncton-point", "feature_id": "CA-Moncton-city", "x": 245.5, "y": 124.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [241, 120, 250, 129]},
+    {"id": "CA-Saint-John-point", "feature_id": "CA-Saint-John-city", "x": 131.5, "y": 231.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [127, 227, 136, 236]},
+    {"id": "CA-Yarmouth-point", "feature_id": "CA-Yarmouth-city", "x": 126.5, "y": 415.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [122, 411, 131, 420]},
+    {"id": "CA-Halifax-point", "feature_id": "CA-Halifax-city", "x": 356.5, "y": 312.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [352, 308, 361, 317]}
+  ]
+}

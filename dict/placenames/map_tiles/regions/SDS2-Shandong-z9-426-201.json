@@ -1,0 +1,35 @@
+{
+  "id": "SDS2-Shandong-z9-426-201",
+  "z": 9,
+  "x": 426,
+  "y": 201,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/426/201.png"
+  ],
+  "context_tiles": [
+    "9/425/201.png"
+  ],
+  "features": [
+    {"id": "SDS2-000", "kind": "city", "original": "Liuwang", "original_bbox": [67, 31, 115, 51], "source_url": "@source/8dde482fc482b3bc"},
+    {"id": "SDS2-001", "kind": "city", "original": "Cangnan", "original_bbox": [81, 114, 130, 134], "source_url": "@source/8dde482fc482b3bc"},
+    {"id": "SDS2-002", "kind": "city", "original": "Langya", "original_bbox": [96, 146, 137, 165], "source_url": "@source/8dde482fc482b3bc"},
+    {"id": "SDS2-003", "kind": "city", "original": "Haiqing", "original_bbox": [-9, 158, 34, 178], "source_url": "@source/8dde482fc482b3bc"}
+  ],
+  "translations": [
+    {"id": "SDS2-000", "zh": "六汪", "status": "approved", "source": "@source/8dde482fc482b3bc", "record_sha256": "3631740fb8feac941b4efc6f2798661f5458113b6d08d8e9a9ecd4ec04b9372e", "review_notes": "@note/translations"},
+    {"id": "SDS2-001", "zh": "藏南", "status": "approved", "source": "@source/22e93221c2b163ca", "record_sha256": "83827b01b6be5c5db1545329e5529c9d8cfbae741916d86010a4b76cac69c6f3", "review_notes": "@note/translations"},
+    {"id": "SDS2-002", "zh": "琅琊", "status": "approved", "source": "@source/caf154a3c075ec84", "record_sha256": "59351195cca0bb84015137405cccdc5f20dacd75d0f629fffb0078b72011f054", "review_notes": "@note/translations"},
+    {"id": "SDS2-003", "zh": "海青", "status": "approved", "source": "@source/8dde482fc482b3bc", "record_sha256": "696f53d1684f26b364074ba2fc16d652b10dbcd9303c81ce653799a4fc849c47", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SDS2-000", "x": 91.0, "y": 41.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SDS2-001", "x": 105.5, "y": 124.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SDS2-002", "x": 116.5, "y": 155.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SDS2-003", "x": 18, "y": 168.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

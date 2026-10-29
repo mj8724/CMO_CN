@@ -1,0 +1,38 @@
+{
+  "id": "UA-SouthBoundary-z9-293-176",
+  "z": 9,
+  "x": 293,
+  "y": 176,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/293/176.png"
+  ],
+  "context_tiles": [
+    "9/292/176.png"
+  ],
+  "features": [
+    {"id": "UAS16-010", "kind": "city", "original": "Borshchiv", "original_bbox": [-18, 58, 37, 74], "source_url": "@source/13c74f0ad4d59680"},
+    {"id": "UAS16-011", "kind": "city", "original": "Skala-Podilska", "original_bbox": [44, 24, 92, 59], "source_url": "@source/13c74f0ad4d59680"},
+    {"id": "UAS16-012", "kind": "city", "original": "Kamianets-Podilskyi", "original_bbox": [173, 116, 243, 157], "source_url": "@source/13c74f0ad4d59680"},
+    {"id": "UAS16-013", "kind": "city", "original": "Melnytsia-Podilska", "original_bbox": [25, 158, 84, 192], "source_url": "@source/13c74f0ad4d59680"},
+    {"id": "UAS16-014", "kind": "city", "original": "Khotyn", "original_bbox": [151, 221, 192, 240], "source_url": "@source/13c74f0ad4d59680"}
+  ],
+  "translations": [
+    {"id": "UAS16-010", "zh": "博尔希夫", "source": "@source/dc7ccfed9fb3cf11", "status": "approved", "record_sha256": "2f115ec3eed0ef513f7c76533a0c9e64b0788a6125a1a3a495ab99f533c56223", "review_notes": "@note/translations"},
+    {"id": "UAS16-011", "zh": "斯卡拉波迪利斯卡", "source": "@source/9b79881348845104", "status": "approved", "record_sha256": "1ff0a3372703cb1c430e356ccc67ce4203904c0ff5a03f969198931cbca2182f", "review_notes": "@note/translations"},
+    {"id": "UAS16-012", "zh": "卡缅涅茨-波多利斯基", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "24384bfcf31b7035064e7fa77a3def691ff3263615605f29e52b8e94785b940a", "review_notes": "@note/translations"},
+    {"id": "UAS16-013", "zh": "梅利尼察-波迪利斯卡", "source": "@source/dacfd725eb5efb97", "status": "approved", "record_sha256": "1e0fa7d06b1cdd2a1abe61a1774d037c86cc01749a956994eb46637cace13f68", "review_notes": "@note/translations"},
+    {"id": "UAS16-014", "zh": "霍京", "source": "@source/070947a15e40df43", "status": "approved", "record_sha256": "e7e87a1051293b81cdf964e0d7967503ed5409bbd87d07d902f2dfdf1c01005e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "UAS16-010", "x": 28.0, "y": 66.0, "font_size": 12, "font_style": "regular"},
+    {"id": "UAS16-011", "x": 68.0, "y": 41.5, "font_size": 12, "font_style": "regular", "lines": ["斯卡拉波", "迪利斯卡"]},
+    {"id": "UAS16-012", "x": 208.0, "y": 136.5, "font_size": 12, "font_style": "regular", "lines": ["卡缅涅茨-", "波多利斯基"]},
+    {"id": "UAS16-013", "x": 54.5, "y": 175.0, "font_size": 12, "font_style": "regular", "lines": ["梅利尼察-", "波迪利斯卡"]},
+    {"id": "UAS16-014", "x": 171.5, "y": 230.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

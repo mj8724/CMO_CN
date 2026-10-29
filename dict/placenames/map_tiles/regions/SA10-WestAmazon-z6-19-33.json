@@ -1,0 +1,43 @@
+{
+  "id": "SA10-WestAmazon-z6-19-33",
+  "z": 6,
+  "x": 19,
+  "y": 33,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/19/33.png"
+  ],
+  "context_tiles": [
+    "6/20/33.png"
+  ],
+  "features": [
+    {"id": "SA10-N-013", "kind": "city", "original": "Eirunepé", "original_bbox": [144, 43, 195, 65], "source_url": "@source/18eaa8035ee14539"},
+    {"id": "SA10-N-014", "kind": "city", "original": "Cruzeiro do Sul", "original_bbox": [16, 88, 64, 123], "source_url": "@source/18eaa8035ee14539"},
+    {"id": "SA10-N-015", "kind": "region", "original": "ACRE", "original_bbox": [100, 149, 137, 162], "source_url": "@source/18eaa8035ee14539"},
+    {"id": "SA10-N-016", "kind": "city", "original": "Sena Madureira", "original_bbox": [199, 154, 255, 189], "source_url": "@source/18eaa8035ee14539"},
+    {"id": "SA10-N-017", "kind": "city", "original": "Rio Branco", "original_bbox": [237, 196, 279, 231], "source_url": "@source/18eaa8035ee14539"}
+  ],
+  "translations": [
+    {"id": "SA10-N-013", "zh": "埃鲁内佩", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "36ac00ab5dbd6037b4a097fa0ca0dfa29e2d013cb6847ec336d43d03ba3ff104", "review_notes": "@note/translations"},
+    {"id": "SA10-N-014", "zh": "南克鲁赛罗", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "077258ff44b02dac8d8f5758ff0119638cb24e4dd4c920682b146c6dd6c73821", "review_notes": "@note/translations"},
+    {"id": "SA10-N-015", "zh": "阿克里州", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "6ca1822506ddca0da7a44333a4a54328ba7a929a128f762df1a8bac0d49f7e46", "review_notes": "@note/translations"},
+    {"id": "SA10-N-016", "zh": "塞纳马杜雷拉", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "3cec9eea78946bb290ee787d1f59a9223d275fdceea76836abfd0e51ee1e9d63", "review_notes": "@note/translations"},
+    {"id": "SA10-N-017", "zh": "里约布兰科", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "f6e66adc4bdf3a1426a5da84fd4333891259c5d019229bf9b69c0be3ed78aed7", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SA10-N-013", "x": 181.0, "y": 47.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-014", "x": 59.0, "y": 93.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-015", "x": 119.0, "y": 155.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-016", "x": 216.0, "y": 142.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-017", "x": 222.0, "y": 215.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SA10-C-009", "feature_id": "SA10-N-013", "kind": "circle", "x": 148.5, "y": 47.5, "size": 9, "outline_width": 1, "original_bbox": [144, 43, 153, 52], "source_url": "@source/18eaa8035ee14539", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-010", "feature_id": "SA10-N-014", "kind": "circle", "x": 20.5, "y": 92.5, "size": 9, "outline_width": 1, "original_bbox": [16, 88, 25, 97], "source_url": "@source/18eaa8035ee14539", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-011", "feature_id": "SA10-N-016", "kind": "circle", "x": 203.5, "y": 158.5, "size": 9, "outline_width": 1, "original_bbox": [199, 154, 208, 163], "source_url": "@source/18eaa8035ee14539", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-012", "feature_id": "SA10-N-017", "kind": "circle", "x": 241.5, "y": 200.5, "size": 9, "outline_width": 1, "original_bbox": [237, 196, 246, 205], "source_url": "@source/18eaa8035ee14539", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

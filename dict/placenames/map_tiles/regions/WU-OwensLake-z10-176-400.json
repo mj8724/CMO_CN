@@ -1,0 +1,24 @@
+{
+  "id": "WU-OwensLake-z10-176-400",
+  "z": 10,
+  "x": 176,
+  "y": 400,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/176/400.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "WUF-28", "kind": "water", "original": "Owens Lake", "original_bbox": [110, 149, 179, 162], "source_url": "@source/5de809f0fc06e5c9"}
+  ],
+  "translations": [
+    {"id": "WUF-28", "zh": "欧文斯湖", "status": "approved", "source": "@source/5de809f0fc06e5c9", "record_sha256": "20859b7ff0b93afdf93597ff675a9b23242c553f282e95ebc17fbabcf6e3616a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WUF-28", "x": 144.5, "y": 155.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

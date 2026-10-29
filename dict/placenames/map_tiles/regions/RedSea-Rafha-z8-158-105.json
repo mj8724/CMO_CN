@@ -1,0 +1,36 @@
+{
+  "z": 8,
+  "x": 158,
+  "y": 105,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "id": "RedSea-Rafha-z8-158-105",
+  "original_tiles": [
+    "8/158/105.png",
+    "8/159/105.png"
+  ],
+  "context_tiles": [
+    "8/152/105.png",
+    "8/152/106.png",
+    "8/153/105.png",
+    "8/153/106.png",
+    "8/154/106.png",
+    "8/156/105.png",
+    "8/157/107.png",
+    "8/160/106.png",
+    "8/160/107.png"
+  ],
+  "features": [
+    {"id": "RS8-003", "kind": "city", "original": "Rafha", "original_bbox": [238, 231, 278, 252], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "RS8-003", "zh": "拉夫哈", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "daef586baca0be954f199f6fc46980de34ef43d3496e9b60dd0c63d86139d91f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "RS8-003", "x": 268.5, "y": 245.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "RS8-003-circle", "feature_id": "RS8-003", "kind": "circle", "x": 242.5, "y": 235.5, "size": 7, "outline_width": 1, "original_bbox": [238, 231, 247, 240]}
+  ],
+  "shared_sources": []
+}

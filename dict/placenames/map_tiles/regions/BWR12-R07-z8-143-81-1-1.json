@@ -1,0 +1,26 @@
+{
+  "id": "BWR12-R07-z8-143-81-1-1",
+  "z": 8,
+  "x": 143,
+  "y": 81,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/143/81.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "BWR12-N-001", "kind": "city", "original": "Chernyakhovsk", "original_bbox": [126, 104, 215, 127], "source_url": "@source/14de0d81be45626a"}
+  ],
+  "translations": [
+    {"id": "BWR12-N-001", "zh": "切尔尼亚霍夫斯克", "status": "approved", "source": "@source/7480498defd8ef59", "record_sha256": "56c9be10ee0159c82d2c3b0179d78f7621c98a518c29c7e7e80a51938ffd619b", "review_notes": "SOURCE219d independent qualified full original instance. PROJECT_DISPLAY_SELECTED_FROM_OFFICIAL_PUBLISHER_2020_INDEXED_USAGE_NOT_OFFICIAL_STANDARD_CLAIM. Raw NE Chinese=车亚可夫斯克; displayed Chinese=切尔尼亚霍夫斯克. Supplier PNG and translation evidence URL have distinct roles. GN/NE are context, not supplier vector/native anchors; provider ID null. Author SELF PRIVATE_MODEL_ONLY only; Med different actual TARGET pending. Actual author SELF PRIVATE_MODEL_ONLY full Chinese patch/whole/association viewed and accepted. Different Med TARGET FINAL pending; this is not independent approval. SELF receipt C:\\Users\\Administrator\\Documents\\Codex\\2026-10-21\\cha\\work\\parallel_map\\BalticWestRussia12_author_after8021completed_20261025\\revision1\\author_SELF_PRIVATE_MODEL_ONLY_actual13words13native8whole4seams_review.json SHA 257d776653c8b3facb0a95fd71cfef1acf648dfc48c721759c93bdf4bd8241b2. Different TARGET /root/remaining_med_source independently read the full CJK/source and native detail pages. Root1eb0 display selected; actual finite12 and final whole/encoded/collision verification recorded separately in this peer. Source raw NE and indexed-article evidence roles preserved."}
+  ],
+  "layouts": [
+    {"id": "BWR12-N-001", "x": 186.5, "y": 113.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "BWR12-C-001", "feature_id": "BWR12-N-001", "kind": "circle", "x": 130.5, "y": 108.5, "size": 9, "outline_width": 1, "original_bbox": [126, 104, 135, 113]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

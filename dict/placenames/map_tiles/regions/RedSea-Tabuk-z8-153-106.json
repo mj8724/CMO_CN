@@ -1,0 +1,38 @@
+{
+  "z": 8,
+  "x": 153,
+  "y": 106,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "id": "RedSea-Tabuk-z8-153-106",
+  "original_tiles": [
+    "8/153/106.png",
+    "8/154/106.png"
+  ],
+  "context_tiles": [
+    "8/152/105.png",
+    "8/152/106.png",
+    "8/153/105.png",
+    "8/156/105.png",
+    "8/157/107.png",
+    "8/158/105.png",
+    "8/159/105.png",
+    "8/160/106.png",
+    "8/160/107.png"
+  ],
+  "features": [
+    {"id": "RS8-001", "kind": "city", "original": "Tabuk", "original_bbox": [252, 232, 298, 253], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "RS8-001", "zh": "塔布克", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "2e6553925ab0157959ab80fdcb082642a014ea3d69cb05cf7b5ccb0da4b4adac", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "RS8-001", "x": 282.5, "y": 246.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "RS8-001-circle", "feature_id": "RS8-001", "kind": "circle", "x": 256.5, "y": 236.0, "size": 7, "outline_width": 1, "original_bbox": [252, 232, 261, 240]}
+  ],
+  "shared_sources": [
+    {"id": "shared-RS8-000", "owner_region": "RedSea-Aqaba-z8-152-105", "feature_id": "RS8-000", "kind": "city", "original": "Aqaba", "source_url": "@source/de57b59c289acedb", "original_bbox": [-32, -3, 12, 21], "review_notes": "@note/shared_sources"}
+  ]
+}

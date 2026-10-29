@@ -1,0 +1,51 @@
+{
+  "id": "C1K15-NorthBorder-z10-869-383",
+  "z": 10,
+  "x": 869,
+  "y": 383,
+  "width_tiles": 5,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/869/383.png",
+    "10/870/383.png",
+    "10/871/383.png",
+    "10/872/383.png",
+    "10/873/383.png"
+  ],
+  "context_tiles": [
+    "10/868/383.png",
+    "10/872/384.png"
+  ],
+  "features": [
+    {"id": "C1K15-N000", "kind": "city", "original": "Erpengdianzi", "original_bbox": [-32, 55, 31, 72], "source_url": "@source/1bce012b4c2ec819"},
+    {"id": "C1K15-N001", "kind": "city", "original": "Manpo", "original_bbox": [546, 78, 591, 99], "source_url": "@source/2b804a5a01115f85"},
+    {"id": "C1K15-N002", "kind": "city", "original": "Ji'an", "original_bbox": [476, 108, 507, 126], "source_url": "@source/f917b89e0cfd5977"},
+    {"id": "C1K15-N003", "kind": "city", "original": "Sijung", "original_bbox": [611, 154, 644, 172], "source_url": "@source/2b804a5a01115f85"},
+    {"id": "C1K15-N004", "kind": "city", "original": "Sampho Workers' District", "original_bbox": [1156, 158, 1206, 211], "source_url": "@source/771e51ed68f3abfa"},
+    {"id": "C1K15-N005", "kind": "city", "original": "Janggang", "original_bbox": [818, 172, 872, 191], "source_url": "@source/4b4e03620be6829a"},
+    {"id": "C1K15-N006", "kind": "city", "original": "Shajianzi", "original_bbox": [-46, 215, 6, 235], "source_url": "@source/1bce012b4c2ec819"}
+  ],
+  "translations": [
+    {"id": "C1K15-N000", "zh": "二棚甸子", "status": "approved", "source": "@source/2f62d240b90dcb52", "record_sha256": "bc50b36113e7b8470f09682e90ab514fdd4b3fdfb609fa10bcd1b96d36b66c37", "review_notes": "@note/translations"},
+    {"id": "C1K15-N001", "zh": "满浦", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "474b342acaf141576804ae0f377f0b7f7509b77782647a42cec2a3e5750733b9", "review_notes": "@note/translations"},
+    {"id": "C1K15-N002", "zh": "集安", "status": "approved", "source": "@source/694534a13df2cae3", "record_sha256": "d33351afebf6bcca4c841bbc16c3fa873f6a519c67b016866445f5c3eaa38d65", "review_notes": "@note/translations"},
+    {"id": "C1K15-N003", "zh": "时中", "status": "approved", "source": "@source/67ead1d4cc3128ff", "record_sha256": "44e602a4bb328f3510d3e4bd8922fc0f11bfef49bf59185390e2f0211ab336a4", "review_notes": "@note/translations"},
+    {"id": "C1K15-N004", "zh": "萨姆波劳动者区", "status": "approved", "source": "@source/771e51ed68f3abfa", "record_sha256": "5071aab368a4e35d97c139523fd6f99a57f9da52091b490713611e1ed85fde6f", "review_notes": "@note/translations"},
+    {"id": "C1K15-N005", "zh": "长江", "status": "approved", "source": "@source/6f8e3b27af25fef5", "record_sha256": "126857f7c9863db8254c210689750923b948f67178221348a8bb758b01e4cc1b", "review_notes": "@note/translations"},
+    {"id": "C1K15-N006", "zh": "沙尖子", "status": "approved", "source": "@source/2f62d240b90dcb52", "record_sha256": "fbd1d4a144c29789235ad25997c66044590ca44a6a488ad33839f846c8760a40", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C1K15-N000", "x": 27.0, "y": 63.5, "font_size": 12, "font_style": "regular", "lines": ["二棚甸子"]},
+    {"id": "C1K15-N001", "x": 568.5, "y": 88.5, "font_size": 12, "font_style": "regular", "lines": ["满浦"]},
+    {"id": "C1K15-N002", "x": 491.5, "y": 117.0, "font_size": 12, "font_style": "regular", "lines": ["集安"]},
+    {"id": "C1K15-N003", "x": 627.5, "y": 163.0, "font_size": 12, "font_style": "regular", "lines": ["时中"]},
+    {"id": "C1K15-N004", "x": 1181.0, "y": 184.5, "font_size": 12, "font_style": "regular", "lines": ["萨姆波", "劳动者区"]},
+    {"id": "C1K15-N005", "x": 845.0, "y": 181.5, "font_size": 12, "font_style": "regular", "lines": ["长江"]},
+    {"id": "C1K15-N006", "x": 21.0, "y": 225.0, "font_size": 12, "font_style": "regular", "lines": ["沙尖子"]}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "C1K15-SH007", "owner_region": "KR-north-z10-872-384", "feature_id": "KR-N10-000", "kind": "city", "original": "Rangrim Workers' District", "original_bbox": [947, 247, 991, 293], "source_url": "@source/7fad026af0683660", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

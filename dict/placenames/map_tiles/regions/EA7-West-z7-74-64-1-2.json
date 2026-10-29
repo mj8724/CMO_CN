@@ -1,0 +1,88 @@
+{
+  "id": "EA7-West-z7-74-64-1-2",
+  "z": 7,
+  "x": 74,
+  "y": 64,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/74/64.png",
+    "7/74/65.png"
+  ],
+  "context_tiles": [
+    "7/74/63.png",
+    "7/75/63.png",
+    "7/75/64.png",
+    "7/76/63.png",
+    "7/76/64.png",
+    "7/77/63.png",
+    "7/77/64.png",
+    "7/78/63.png",
+    "7/78/64.png",
+    "7/79/63.png",
+    "7/79/64.png",
+    "7/80/63.png",
+    "7/80/64.png"
+  ],
+  "features": [
+    {"id": "EA7-N07", "kind": "city", "original": "Mbarara", "original_bbox": [226, 51, 273, 70], "source_url": "@source/de01ecea6435df93"},
+    {"id": "EA7-N15", "kind": "city", "original": "Musanze", "original_bbox": [133, 132, 184, 152], "source_url": "@source/de01ecea6435df93"},
+    {"id": "EA7-N16", "kind": "city", "original": "Goma", "original_bbox": [96, 147, 132, 167], "source_url": "@source/de01ecea6435df93"},
+    {"id": "EA7-N17", "kind": "city", "original": "Kigali", "original_bbox": [172, 173, 208, 195], "source_url": "@source/de01ecea6435df93"},
+    {"id": "EA7-N18", "kind": "city", "original": "Bukavu", "original_bbox": [62, 224, 107, 243], "source_url": "@source/de01ecea6435df93"},
+    {"id": "EA7-N19", "kind": "city", "original": "Huye", "original_bbox": [142, 233, 176, 254], "source_url": "@source/de01ecea6435df93"},
+    {"id": "EA7-N20", "kind": "city", "original": "Muyinga", "original_bbox": [197, 255, 247, 277], "source_url": "@source/de01ecea6435df93"},
+    {"id": "EA7-N21", "kind": "city", "original": "Bujumbura", "original_bbox": [109, 302, 169, 324], "source_url": "@source/739cc99cd6c8253e"},
+    {"id": "EA7-N22", "kind": "city", "original": "Bururi", "original_bbox": [132, 355, 169, 374], "source_url": "@source/739cc99cd6c8253e"},
+    {"id": "EA7-N23", "kind": "city", "original": "Kasulu", "original_bbox": [175, 413, 217, 432], "source_url": "@source/739cc99cd6c8253e"},
+    {"id": "EA7-N24", "kind": "city", "original": "Kigoma", "original_bbox": [134, 440, 180, 462], "source_url": "@source/739cc99cd6c8253e"}
+  ],
+  "translations": [
+    {"id": "EA7-N07", "zh": "姆巴拉拉", "status": "approved", "source": "@source/de01ecea6435df93", "record_sha256": "2c28f547c5315f81a0b65d9d6ac5c65f7a625b369724864c09e15415d5759020", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."},
+    {"id": "EA7-N15", "zh": "穆桑泽", "status": "approved", "source": "@source/de01ecea6435df93", "record_sha256": "368e6eda9bb1ea75bff2e1d5d76d3931272ffa01e31cd97237b938c7943780fd", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."},
+    {"id": "EA7-N16", "zh": "戈马", "status": "approved", "source": "@source/de01ecea6435df93", "record_sha256": "53471b30ea4ed4804be8bac8d31acb3e9a7e604ad99f1b4f3f586abb1c97bea6", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."},
+    {"id": "EA7-N17", "zh": "基加利", "status": "approved", "source": "@source/de01ecea6435df93", "record_sha256": "7e798615788737aaf6b894b370ef7b064ad4787d185eabfdcc2cba568989fe56", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."},
+    {"id": "EA7-N18", "zh": "布卡武", "status": "approved", "source": "@source/de01ecea6435df93", "record_sha256": "15a445a453f0c8dcbe04041a0bdfd66b7614df5ee46f19698b3e6a2d506efb07", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."},
+    {"id": "EA7-N19", "zh": "胡耶", "status": "approved", "source": "@source/de01ecea6435df93", "record_sha256": "3e905db3f08cb03c405981b507053bb27485e8a42552a361c13f6513c608d3eb", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."},
+    {"id": "EA7-N20", "zh": "穆因加", "status": "approved", "source": "@source/de01ecea6435df93", "record_sha256": "5d79d875f6475653ecde71eb2129ddcf5e43cb23c8db30a198758ffb5a8ed1d6", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."},
+    {"id": "EA7-N21", "zh": "布琼布拉", "status": "approved", "source": "@source/739cc99cd6c8253e", "record_sha256": "adee4b103cf0394f649736e32a5767027c0211cf6bcff0df86b504e67f7a50fe", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."},
+    {"id": "EA7-N22", "zh": "布鲁里", "status": "approved", "source": "@source/739cc99cd6c8253e", "record_sha256": "6383e1db072e4e0bf61bc4b95ec0c8e496f1bd0f3cb801112f5ad47a7a82bdd5", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."},
+    {"id": "EA7-N23", "zh": "卡苏卢", "status": "approved", "source": "@source/739cc99cd6c8253e", "record_sha256": "e4bb5d7a99e3e4c00b0a0e17e75d5801881891b8db528994267b32dec594e5c3", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."},
+    {"id": "EA7-N24", "zh": "基戈马", "status": "approved", "source": "@source/739cc99cd6c8253e", "record_sha256": "311ebbf6bb94cb21a3a5cebe43330d8601cc1d02d3f4effad8652f211f58af93", "review_notes": "Existing independent SOURCE/CJK qualification; supplier PNG is physical provenance, lexical grade/full original evidence is bound in the separate CJK table. No actual TARGET approval."}
+  ],
+  "layouts": [
+    {"id": "EA7-N07", "x": 198, "y": 65, "font_size": 12, "font_style": "regular"},
+    {"id": "EA7-N15", "x": 145, "y": 124, "font_size": 12, "font_style": "regular"},
+    {"id": "EA7-N16", "x": 108, "y": 139, "font_size": 12, "font_style": "regular"},
+    {"id": "EA7-N17", "x": 184, "y": 165, "font_size": 12, "font_style": "regular"},
+    {"id": "EA7-N18", "x": 74, "y": 216, "font_size": 12, "font_style": "regular"},
+    {"id": "EA7-N19", "x": 154, "y": 225, "font_size": 12, "font_style": "regular"},
+    {"id": "EA7-N20", "x": 209, "y": 247, "font_size": 12, "font_style": "regular"},
+    {"id": "EA7-N21", "x": 125, "y": 290, "font_size": 12, "font_style": "regular"},
+    {"id": "EA7-N22", "x": 144, "y": 347, "font_size": 12, "font_style": "regular"},
+    {"id": "EA7-N23", "x": 187, "y": 405, "font_size": 12, "font_style": "regular"},
+    {"id": "EA7-N24", "x": 146, "y": 432, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EA7-P07", "feature_id": "EA7-N07", "kind": "circle", "x": 230.5, "y": 55.5, "size": 9, "outline_width": 1, "original_bbox": [226, 51, 235, 60]},
+    {"id": "EA7-P15", "feature_id": "EA7-N15", "kind": "circle", "x": 137.5, "y": 136.5, "size": 9, "outline_width": 1, "original_bbox": [133, 132, 142, 141]},
+    {"id": "EA7-P16", "feature_id": "EA7-N16", "kind": "circle", "x": 100.5, "y": 151.5, "size": 9, "outline_width": 1, "original_bbox": [96, 147, 105, 156]},
+    {"id": "EA7-P17", "feature_id": "EA7-N17", "kind": "circle", "x": 176.5, "y": 177.5, "size": 9, "outline_width": 1, "original_bbox": [172, 173, 181, 182]},
+    {"id": "EA7-P18", "feature_id": "EA7-N18", "kind": "circle", "x": 66.5, "y": 228.5, "size": 9, "outline_width": 1, "original_bbox": [62, 224, 71, 233]},
+    {"id": "EA7-P19", "feature_id": "EA7-N19", "kind": "circle", "x": 146.5, "y": 237.5, "size": 9, "outline_width": 1, "original_bbox": [142, 233, 151, 242]},
+    {"id": "EA7-P20", "feature_id": "EA7-N20", "kind": "circle", "x": 201.5, "y": 259.5, "size": 9, "outline_width": 1, "original_bbox": [197, 255, 206, 264]},
+    {"id": "EA7-P21", "feature_id": "EA7-N21", "kind": "circle", "x": 113.5, "y": 306.5, "size": 9, "outline_width": 1, "original_bbox": [109, 302, 118, 311]},
+    {"id": "EA7-P22", "feature_id": "EA7-N22", "kind": "circle", "x": 136.5, "y": 359.5, "size": 9, "outline_width": 1, "original_bbox": [132, 355, 141, 364]},
+    {"id": "EA7-P23", "feature_id": "EA7-N23", "kind": "circle", "x": 179.5, "y": 417.5, "size": 9, "outline_width": 1, "original_bbox": [175, 413, 184, 422]},
+    {"id": "EA7-P24", "feature_id": "EA7-N24", "kind": "circle", "x": 138.5, "y": 444.5, "size": 9, "outline_width": 1, "original_bbox": [134, 440, 143, 449]}
+  ],
+  "shared_sources": [
+    {"id": "EA7-OLD-SH04", "owner_region": "AM-EastAfrica-z7-SouthMain", "feature_id": "AM22-92-Butembo", "kind": "city", "original": "Butembo", "source_url": "@source/f0fb465079bc299f", "original_bbox": [101, -17, 155, 3], "review_notes": "Exact existing sole owner; no second Chinese or native. Current f34 owner bindings are separate from immutable historical SOURCE/aacc fingerprints."}
+  ],
+  "legacy_suppressions": [],
+  "canonical_captions": [
+    {"id": "EA7-CAN-Synoptic-179", "origin": "canonical_wwp", "canonical_record": {"layer": "Synoptic", "wwp_file": {"path": "assets/placenames/Synoptic.wwp", "sha256": "3dfa0cc94649684dadadaee84f00c758b7d6bca10fa25175f0fb88aa32a41f53"}, "record_index_zero_based": 179, "original_Chinese_name": "卢旺达", "lat_f32_bits": 3221225472, "lon_f32_bits": 1106247680, "flags": 0, "level": 0}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "admin0", "layout": {"x": 112, "y": 200, "font_size": 16, "font_style": "bold", "lines": ["卢旺达"]}},
+    {"id": "EA7-CAN-Synoptic-22", "origin": "canonical_wwp", "canonical_record": {"layer": "Synoptic", "wwp_file": {"path": "assets/placenames/Synoptic.wwp", "sha256": "3dfa0cc94649684dadadaee84f00c758b7d6bca10fa25175f0fb88aa32a41f53"}, "record_index_zero_based": 22, "original_Chinese_name": "布隆迪", "lat_f32_bits": 3227516928, "lon_f32_bits": 1106247680, "flags": 0, "level": 0}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "admin0", "layout": {"x": 180, "y": 330, "font_size": 16, "font_style": "bold", "lines": ["布隆迪"]}},
+    {"id": "EA7-CAN-Cities-453", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 453, "original_Chinese_name": "乌维拉", "lat_f32_bits": 3227077952, "lon_f32_bits": 1105795634, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 28, "y": 286, "font_size": 14, "font_style": "regular", "lines": ["乌维拉"]}}
+  ]
+}

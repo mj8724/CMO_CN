@@ -1,0 +1,46 @@
+{
+  "id": "AP-Vietnam-Hainan-z9-held2-411-228",
+  "z": 9,
+  "x": 411,
+  "y": 228,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "9/411/228.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 6732}
+  ],
+  "context_tiles": [
+    {"path": "9/410/227.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 916},
+    {"path": "9/411/227.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 5778},
+    {"path": "9/412/227.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 5660},
+    {"path": "9/410/228.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 3187},
+    {"path": "9/412/228.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 6698},
+    {"path": "9/410/229.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "9/411/229.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 3144},
+    {"path": "9/412/229.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 3381}
+  ],
+  "features": [
+    {"id": "AP-VH9-080", "kind": "city", "original": "Baisha", "original_bbox": [148, 24, 190, 42], "source_url": "@source/7ef3580cdace7cc8"},
+    {"id": "AP-VH9-085", "kind": "city", "original": "Hon…", "original_bbox": [229, 97, 256, 117], "source_url": "@source/53e3bbc451093d90"},
+    {"id": "AP-VH9-087", "kind": "city", "original": "Fanyang", "original_bbox": [126, 159, 173, 179], "source_url": "@source/b4828a71e5cacec4"},
+    {"id": "AP-VH9-089", "kind": "city", "original": "Ledong Li Autonomous County", "original_bbox": [27, 187, 107, 247], "source_url": "@source/32fcac88470c61f3"}
+  ],
+  "translations": [
+    {"id": "AP-VH9-080", "zh": "白沙", "status": "approved", "source": "@source/7ef3580cdace7cc8", "record_sha256": "f3141c8ce73c92e2ffd4e6000c603d7e8aad08b69c087318e63ce2216d5553ef", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-085", "zh": "红毛", "status": "approved", "source": "@source/53f333623027b48b", "record_sha256": "88516e9e395b11a074d7fbc5cfb8107b954cfe55fd8c719c65cadfbad7830612", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-087", "zh": "番阳", "status": "approved", "source": "@source/b4828a71e5cacec4", "record_sha256": "a46b1cd1f6aec3fb5b4eaf92376d62434f211be708c4bff482f22300c86a4774", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-089", "zh": "乐东黎族自治县", "status": "approved", "source": "@source/32fcac88470c61f3", "record_sha256": "5872edfadebc7b5b3b35e42be072d2cfcedc671e5a55c11cc31fdac326c59015", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-VH9-080", "x": 169.0, "y": 33.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-085", "x": 242.0, "y": 107.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-087", "x": 149.5, "y": 169.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-089", "x": 67.0, "y": 217.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "AP-VH9-077-shared-held-228", "owner_region": "AP-Vietnam-Hainan-z9-62-bridge", "feature_id": "AP-VH9-077", "kind": "city", "original": "Changjiang Li Autonomous County", "original_bbox": [-17, -25, 66, 37], "source_url": "@source/b26ec7748a5382e0", "review_notes": "@note/shared_sources"},
+    {"id": "AP-VH9-086-shared-held-228", "owner_region": "AP-Vietnam-Hainan-z9-62-west", "feature_id": "AP-VH9-086", "kind": "city", "original": "Jiangbian", "original_bbox": [-31, 152, 22, 171], "source_url": "@source/faa3fbb0e9574c45", "review_notes": "@note/shared_sources"},
+    {"id": "AP-VH9-093-shared-held-228", "owner_region": "AP-Vietnam-Hainan-z9-62-east", "feature_id": "AP-VH9-093", "kind": "city", "original": "Baocheng", "original_bbox": [230, 249, 291, 271], "source_url": "@source/64aa6b93f10b1ac6", "review_notes": "@note/shared_sources"},
+    {"id": "AP-VH9-094-shared-held-228", "owner_region": "AP-Vietnam-Hainan-z9-62-bottom", "feature_id": "AP-VH9-094", "kind": "city", "original": "Zhizhong", "original_bbox": [74, 254, 127, 273], "source_url": "@source/d620340b30c773e6", "review_notes": "@note/shared_sources"}
+  ]
+}

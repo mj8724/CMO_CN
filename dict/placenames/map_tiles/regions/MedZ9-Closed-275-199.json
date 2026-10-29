@@ -1,0 +1,24 @@
+{
+  "id": "MedZ9-Closed-275-199",
+  "z": 9,
+  "x": 275,
+  "y": 199,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/275/199.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "GZ9-11-24", "kind": "city", "original": "Licata", "original_bbox": [194, 19, 228, 35], "source_url": "@source/6129b8207eb22369"}
+  ],
+  "translations": [
+    {"id": "GZ9-11-24", "zh": "利卡塔", "source": "@source/9ce629466dcbd94c", "status": "approved", "record_sha256": "b57517a9227acb8ee28c1b603ba2933e964d517d1502849371ae8bf8a5bd3bd1", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-11-24", "x": 211.0, "y": 27.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

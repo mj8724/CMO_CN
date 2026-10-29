@@ -1,0 +1,25 @@
+{
+  "id": "WU-Pahrump-z10-181-401",
+  "z": 10,
+  "x": 181,
+  "y": 401,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/181/401.png",
+    "10/182/401.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "WUF-30", "kind": "city", "original": "Pahrump", "original_bbox": [250, 87, 308, 108], "source_url": "@source/24ec93ad964b5c98"}
+  ],
+  "translations": [
+    {"id": "WUF-30", "zh": "帕朗", "status": "approved", "source": "@source/1b56bbc424de8091", "record_sha256": "fbba457977e22e1a112a788318b76b3df51c56ea1a49320e1c76aa96a22d4302", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WUF-30", "x": 279.0, "y": 97.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

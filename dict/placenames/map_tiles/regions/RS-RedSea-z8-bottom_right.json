@@ -1,0 +1,47 @@
+{
+  "id": "RS-RedSea-z8-bottom_right",
+  "z": 8,
+  "x": 157,
+  "y": 119,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/157/119.png",
+    "8/158/119.png",
+    "8/159/119.png"
+  ],
+  "context_tiles": [
+    "8/156/118.png",
+    "8/157/118.png",
+    "8/158/118.png",
+    "8/159/118.png",
+    "8/160/118.png",
+    "8/156/119.png",
+    "8/160/119.png",
+    "8/156/120.png",
+    "8/157/120.png",
+    "8/158/120.png",
+    "8/159/120.png",
+    "8/160/120.png"
+  ],
+  "features": [
+    {"id": "RS8-041", "kind": "city", "original": "Obock", "original_bbox": [453, 105, 492, 125], "source_url": "@source/66f6d6833dbe87db"},
+    {"id": "RS8-045", "kind": "city", "original": "Djibouti", "original_bbox": [426, 174, 481, 200], "source_url": "@source/a62d099137e539c6"}
+  ],
+  "translations": [
+    {"id": "RS8-041", "zh": "奥博克", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "71f10cd9dedcc938a1a02795d420ba6f92dc4c6ed0b694d3aeb4ef8449cd3e2f", "review_notes": "@note/translations"},
+    {"id": "RS8-045", "zh": "吉布提", "status": "approved", "source": "@source/83a5a42c9c0f69b6", "record_sha256": "576772f86fef303d5a18b8131e7859d147ea598dc4cfe2507eab6affe9770d99", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "RS8-041", "x": 481.0, "y": 116.5, "font_size": 11, "font_style": "regular"},
+    {"id": "RS8-045", "x": 454.0, "y": 185.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "RS8-041-point", "feature_id": "RS8-041", "x": 457.5, "y": 109.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [453, 105, 462, 114]},
+    {"id": "RS8-045-point", "feature_id": "RS8-045", "x": 430.5, "y": 178.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [426, 174, 435, 183]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [
+    {"feature_id": "RS8-045", "name": "吉布提", "lat": 11.589010238647461, "lon": 43.1450309753418, "level": 1, "source": "@source/a62d099137e539c6", "review_notes": "@note/legacy_suppressions"}
+  ]
+}

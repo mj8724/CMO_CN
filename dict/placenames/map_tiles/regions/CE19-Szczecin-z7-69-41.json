@@ -1,0 +1,26 @@
+{
+  "id": "CE19-Szczecin-z7-69-41",
+  "z": 7,
+  "x": 69,
+  "y": 41,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/69/41.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "CE7-SRC-16", "kind": "city", "original": "Szczecin", "original_bbox": [40, 108, 89, 128], "source_url": "@source/08c554d31dbfea50"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-16", "zh": "什切青", "source": "@source/16dded806b5af3fa", "status": "approved", "record_sha256": "9ad2d2cf33b0655f1aabf4a387fceeb0e4d46f480b9b0cc9640fd45c93036329", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-16", "x": 72.0, "y": 120.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-16-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-16", "original_bbox": [40, 108, 49, 117], "x": 44.5, "y": 112.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

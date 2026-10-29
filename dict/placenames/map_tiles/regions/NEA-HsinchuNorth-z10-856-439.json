@@ -1,0 +1,35 @@
+{
+  "id": "NEA-HsinchuNorth-z10-856-439",
+  "z": 10,
+  "x": 856,
+  "y": 439,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/856/439.png"
+  ],
+  "context_tiles": [
+    "10/855/439.png",
+    "10/856/438.png"
+  ],
+  "features": [
+    {"id": "NEA10-008", "kind": "city", "original": "Zhubei City", "original_bbox": [16, -3, 81, 16], "source_url": "@source/7ba5318085f320bd"},
+    {"id": "NEA10-011", "kind": "city", "original": "Guanxi", "original_bbox": [156, 35, 191, 51], "source_url": "@source/7ba5318085f320bd"},
+    {"id": "NEA10-013", "kind": "city", "original": "Zhudong", "original_bbox": [86, 80, 137, 100], "source_url": "@source/7ba5318085f320bd"}
+  ],
+  "translations": [
+    {"id": "NEA10-008", "zh": "竹北市", "status": "approved", "source": "@source/1cd1647e451f73ca", "record_sha256": "eb4cfdf9b3fd2529cc03f323c7492c711c67361ad6d8f5652af9fa415fd859ee", "review_notes": "@note/translations"},
+    {"id": "NEA10-011", "zh": "关西", "status": "approved", "source": "@source/4d442f501f0b5ac1", "record_sha256": "e564980b5add11177068ef403855fcc2452e99951c7a16db0b0d54f966cc9860", "review_notes": "@note/translations"},
+    {"id": "NEA10-013", "zh": "竹东", "status": "approved", "source": "@source/9c9ad80da067f8a4", "record_sha256": "614e1b206bdd8865fe0e71fd6c815e0cea3af6e3e7cec2f5d27abf619774b738", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA10-008", "x": 49.0, "y": 10.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-011", "x": 173.0, "y": 43.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-013", "x": 111.0, "y": 90.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "NEA11-SH-02-AP-F10-108", "owner_region": "AP-Taiwan-South6-z10-850-439", "feature_id": "AP-F10-108", "kind": "city", "original": "Hsinchu", "original_bbox": [-3, 23, 49, 41], "source_url": "@source/be7aa8d424129332", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

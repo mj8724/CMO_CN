@@ -1,0 +1,25 @@
+{
+  "id": "OP22-EastChinaSea-z8-216-106",
+  "z": 8,
+  "x": 216,
+  "y": 106,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/216/106.png",
+    "8/217/106.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N15", "kind": "marine", "original": "East China Sea", "original_bbox": [168, 87, 288, 131], "source_url": "@source/acd6eea49a2d9cc3"}
+  ],
+  "translations": [
+    {"id": "OP24-N15", "zh": "东海", "status": "approved", "source": "@source/98f1a766b282ca2d", "record_sha256": "e888493ec8fef07b7ca372ddb51274b60dfb8ae1adeda684b4e9ed7b8d33bd18", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N15", "x": 228.0, "y": 109.0, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

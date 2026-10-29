@@ -1,0 +1,35 @@
+{
+  "id": "EML13-R01",
+  "z": 10,
+  "x": 610,
+  "y": 416,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/610/416.png"
+  ],
+  "context_tiles": [
+    "10/610/415.png",
+    "10/610/417.png",
+    "10/611/415.png",
+    "10/611/416.png"
+  ],
+  "features": [
+    {"id": "EML13-N001", "kind": "city", "original": "Ashdod", "original_bbox": [121, 122, 170, 142], "source_url": "@source/4892efcdf3fbbdc8"},
+    {"id": "EML13-N002", "kind": "city", "original": "Ashkelon", "original_bbox": [57, 237, 117, 256], "source_url": "@source/4892efcdf3fbbdc8"}
+  ],
+  "translations": [
+    {"id": "EML13-N001", "zh": "阿什杜德", "status": "approved", "source": "@source/c2570cdaddd07389", "record_sha256": "940825fa3b9fd88c574c15e49a1f71aae721e034298278cfac3290327e01aaa5", "review_notes": "@note/translations"},
+    {"id": "EML13-N002", "zh": "阿什凯隆", "status": "approved", "source": "@source/4892efcdf3fbbdc8", "record_sha256": "512b2475aca2351259921ca349ff4f7bc89e625f5214f7e197aaeee2fe9b2179", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EML13-N001", "x": 145.5, "y": 132.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N002", "x": 87.0, "y": 245.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "EML13-SH001", "owner_region": "LEVANT-z10-608-408", "feature_id": "LEV10-096", "kind": "city", "original": "Rishon LeZion", "original_bbox": [238, -29, 283, 9], "source_url": "@source/adc39c1c0cfadb72", "review_notes": "@note/shared_sources"},
+    {"id": "EML13-SH002", "owner_region": "Levant-South-z10-611-416", "feature_id": "LS10-000", "kind": "city", "original": "Rehovot", "original_bbox": [234, 40, 288, 58], "source_url": "@source/95c51416e8de16be", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

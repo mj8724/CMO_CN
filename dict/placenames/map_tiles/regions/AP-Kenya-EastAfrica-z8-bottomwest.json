@@ -1,0 +1,64 @@
+{
+  "id": "AP-Kenya-EastAfrica-z8-bottomwest",
+  "z": 8,
+  "x": 152,
+  "y": 127,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "8/152/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 4687},
+    {"path": "8/153/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1093}
+  ],
+  "context_tiles": [
+    {"path": "8/151/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 766},
+    {"path": "8/152/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 524},
+    {"path": "8/153/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/154/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/151/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1814},
+    {"path": "8/154/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 938},
+    {"path": "8/151/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 230},
+    {"path": "8/152/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1863},
+    {"path": "8/153/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 2964},
+    {"path": "8/154/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 3459}
+  ],
+  "features": [
+    {"id": "AP-KE8-042", "kind": "peak", "original": "Wagagai", "original_bbox": [92, 15, 147, 56], "source_url": "@source/8cbc743554ee1fb1", "original_elevation_m": "4321"},
+    {"id": "AP-KE8-044", "kind": "city", "original": "Mbale City", "original_bbox": [73, 56, 116, 98], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-KE8-045", "kind": "city", "original": "Kitale", "original_bbox": [223, 66, 259, 85], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-KE8-046", "kind": "city", "original": "Tororo", "original_bbox": [74, 126, 114, 145], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-KE8-047", "kind": "city", "original": "Bungoma", "original_bbox": [143, 148, 197, 170], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-KE8-048", "kind": "city", "original": "Eldoret", "original_bbox": [273, 157, 324, 179], "source_url": "@source/0aa1a5bb0df6363f"},
+    {"id": "AP-KE8-049", "kind": "city", "original": "Kakamega", "original_bbox": [178, 200, 242, 224], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-KE8-051", "kind": "city", "original": "Eldama Ravine", "original_bbox": [355, 242, 398, 277], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "AP-KE8-042", "zh": "瓦加盖峰", "status": "approved", "source": "@source/8cbc743554ee1fb1", "record_sha256": "5ebc982009386d2b7a3d38c070b3da41a0814ec6600b5d8b6aef0c3f80bebf81", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-044", "zh": "姆巴莱市", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "752f16b3ee409f94f32b3cc92f1f6cb27dd634becf2805794cd6bbdf69dfdc77", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-045", "zh": "基塔莱", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "ed225cab5bfb275cd0b2fc1014ad2a9f26d76e29f2793d4dabdf22e55e1010f5", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-046", "zh": "托罗罗", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8bae9457d96ce903c5f4fe8abd8278e7f010abac4ad6af837e5212c46e6e3817", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-047", "zh": "奔戈马", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "0e028f159ba3f122179f0161a867e9f83f8f0d0f1825ba162bf1a33e9d7e1ed8", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-048", "zh": "埃尔多雷特", "status": "approved", "source": "@source/0aa1a5bb0df6363f", "record_sha256": "9fdcd2b67be83b3cfdf4c722be27c9fa793b01db40e68c42d61f09a230213550", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-049", "zh": "卡卡梅加", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "046a756080599e2a4b9b6ec289e4182bb35cf6ec5ac2f67f2145871a6a0a41eb", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-051", "zh": "埃尔达马勒温", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "d08c3c7b73a1262c549471f938be6fb1383761ef9270163e7916348ea4f5b45d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-KE8-042", "x": 119.5, "y": 27.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-044", "x": 106.5, "y": 70.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-045", "x": 251.0, "y": 80.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-046", "x": 102.0, "y": 140.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-047", "x": 171.0, "y": 162.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-048", "x": 311.5, "y": 171.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-049", "x": 211.0, "y": 214.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-051", "x": 399.5, "y": 246.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-KE8-042-triangle", "feature_id": "AP-KE8-042", "kind": "triangle", "x": 141.5, "y": 51.5, "size": 8, "outline_width": 1, "original_bbox": [136, 47, 147, 56]},
+    {"id": "AP-KE8-044-circle", "feature_id": "AP-KE8-044", "kind": "circle", "x": 77.5, "y": 60.5, "size": 7, "outline_width": 1, "original_bbox": [73, 56, 82, 65]},
+    {"id": "AP-KE8-045-circle", "feature_id": "AP-KE8-045", "kind": "circle", "x": 227.5, "y": 70.5, "size": 7, "outline_width": 1, "original_bbox": [223, 66, 232, 75]},
+    {"id": "AP-KE8-046-circle", "feature_id": "AP-KE8-046", "kind": "circle", "x": 78.5, "y": 130.5, "size": 7, "outline_width": 1, "original_bbox": [74, 126, 83, 135]},
+    {"id": "AP-KE8-047-circle", "feature_id": "AP-KE8-047", "kind": "circle", "x": 147.5, "y": 152.5, "size": 7, "outline_width": 1, "original_bbox": [143, 148, 152, 157]},
+    {"id": "AP-KE8-048-circle", "feature_id": "AP-KE8-048", "kind": "circle", "x": 277.0, "y": 161.5, "size": 7, "outline_width": 1, "original_bbox": [273, 157, 281, 166]},
+    {"id": "AP-KE8-049-circle", "feature_id": "AP-KE8-049", "kind": "circle", "x": 182.0, "y": 204.5, "size": 7, "outline_width": 1, "original_bbox": [178, 200, 186, 209]},
+    {"id": "AP-KE8-051-circle", "feature_id": "AP-KE8-051", "kind": "circle", "x": 359.5, "y": 246.5, "size": 7, "outline_width": 1, "original_bbox": [355, 242, 364, 251]}
+  ]
+}

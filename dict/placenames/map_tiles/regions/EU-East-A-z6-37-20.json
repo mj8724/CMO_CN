@@ -1,0 +1,86 @@
+{
+  "id": "EU-East-A-z6-37-20",
+  "z": 6,
+  "x": 37,
+  "y": 20,
+  "width_tiles": 2,
+  "height_tiles": 3,
+  "original_tiles": [
+    "6/37/20.png",
+    "6/38/20.png",
+    "6/37/21.png",
+    "6/38/21.png",
+    "6/37/22.png",
+    "6/38/22.png"
+  ],
+  "context_tiles": [
+    "6/36/20.png",
+    "6/36/22.png",
+    "6/39/21.png"
+  ],
+  "features": [
+    {"id": "EE6-SMOLENSK", "kind": "city", "original": "Smolensk", "original_bbox": [180, 79, 229, 94], "source_url": "@source/39643bf54e13c287"},
+    {"id": "EE6-BRYANSK", "kind": "city", "original": "Bryansk", "original_bbox": [287, 199, 327, 216], "source_url": "@source/6ee38b1cadfa5ab2"},
+    {"id": "EE6-CHORNOBYL", "kind": "city", "original": "Chornobyl", "original_bbox": [98, 345, 149, 363], "source_url": "@source/ab0f15c983d84a13"},
+    {"id": "EE6-ZHYTOMYR", "kind": "city", "original": "Zhytomyr", "original_bbox": [27, 418, 75, 435], "source_url": "@source/ab0f15c983d84a13"},
+    {"id": "EE6-KYIV", "kind": "city", "original": "Kyiv", "original_bbox": [112, 405, 140, 425], "source_url": "@source/ab0f15c983d84a13"},
+    {"id": "EE6-KHARKIV", "kind": "city", "original": "Kharkiv", "original_bbox": [371, 437, 410, 452], "source_url": "@source/1bd4da29178a58ba"},
+    {"id": "EE6-VORONEZH", "kind": "city", "original": "Voronezh", "original_bbox": [505, 317, 553, 332], "source_url": "@source/1bd4da29178a58ba"},
+    {"id": "EE6-DNIPRO", "kind": "city", "original": "Dnipro", "original_bbox": [317, 544, 352, 561], "source_url": "@source/30db06ea1512f034"},
+    {"id": "EE6-DONETSK", "kind": "city", "original": "Donetsk", "original_bbox": [443, 575, 484, 589], "source_url": "@source/30db06ea1512f034"},
+    {"id": "EE6-ODESA", "kind": "city", "original": "Odesa", "original_bbox": [121, 677, 153, 692], "source_url": "@source/d6a7d96913fdbc58"},
+    {"id": "EE6-MOSCOW-OBLAST", "kind": "admin1", "original": "MOSCOW OBLAST", "original_bbox": [420, 6, 483, 34], "source_url": "@source/6ee38b1cadfa5ab2"},
+    {"id": "EE6-UKRAINE", "kind": "admin0", "original": "UKRAINE", "original_bbox": [78, 457, 210, 481], "source_url": "@source/ab0f15c983d84a13"},
+    {"id": "EE6-MOLDOVA", "kind": "admin0", "original": "MOLDOVA", "original_bbox": [-54, 608, 97, 632], "source_url": "@source/6bd995ffac9267a3"},
+    {"id": "EE6-SEA-OF-AZOV", "kind": "marine", "original": "Sea of Azov", "original_bbox": [337, 687, 447, 707], "source_url": "@source/30db06ea1512f034"}
+  ],
+  "translations": [
+    {"id": "EE6-SMOLENSK", "zh": "斯摩棱斯克", "source": "@source/39643bf54e13c287", "status": "approved", "record_sha256": "c59dfe3c87bf265436a66a06206b33a5a08cbe13a807cd08fe4db6ec7230b678", "review_notes": "@note/translations"},
+    {"id": "EE6-BRYANSK", "zh": "布良斯克", "source": "@source/6ee38b1cadfa5ab2", "status": "approved", "record_sha256": "6209a179d0c0881b45b415de7dc7312e6152de8f4d899e0536888c87bb412d68", "review_notes": "@note/translations"},
+    {"id": "EE6-CHORNOBYL", "zh": "切尔诺贝利", "source": "@source/ab0f15c983d84a13", "status": "approved", "record_sha256": "51bdecb713dab25098937f288787abc8832f7f0e21d675aebb87246b3ed17ad8", "review_notes": "@note/translations"},
+    {"id": "EE6-ZHYTOMYR", "zh": "日托米尔", "source": "@source/ab0f15c983d84a13", "status": "approved", "record_sha256": "20baa86a2623ad18eca8836ad2605e73f186cc3af69e213b9cc259cac430e657", "review_notes": "@note/translations"},
+    {"id": "EE6-KYIV", "zh": "基辅", "source": "@source/ab0f15c983d84a13", "status": "approved", "record_sha256": "57e2cf0b6643afbe06a8479fe88a886f9fbbcaa159f53e6d8db3d45c605aed6b", "review_notes": "@note/translations"},
+    {"id": "EE6-KHARKIV", "zh": "哈尔科夫", "source": "@source/1bd4da29178a58ba", "status": "approved", "record_sha256": "cdfde519bdc71eaaa442cff639ccfb70cea2c70e6e0eefb8bc32cb0930be9634", "review_notes": "@note/translations"},
+    {"id": "EE6-VORONEZH", "zh": "沃罗涅日", "source": "@source/1bd4da29178a58ba", "status": "approved", "record_sha256": "517e7793e65b56ec3fd2829a21aa93da0c9c09257faf2262a584499d723a911c", "review_notes": "@note/translations"},
+    {"id": "EE6-DNIPRO", "zh": "第聂伯罗", "source": "@source/30db06ea1512f034", "status": "approved", "record_sha256": "1e09fa8fe953333fade410510b6ef1eeff072c6e338c8e07a3dc9e2ff90c7ddb", "review_notes": "@note/translations"},
+    {"id": "EE6-DONETSK", "zh": "顿涅茨克", "source": "@source/30db06ea1512f034", "status": "approved", "record_sha256": "ea8a850137d74951d8514bac53cf2b7c82f40318fbcbcd3724b2f80f2ea3b299", "review_notes": "@note/translations"},
+    {"id": "EE6-ODESA", "zh": "敖德萨", "source": "@source/d6a7d96913fdbc58", "status": "approved", "record_sha256": "d0a5a3fb00b1d1855f037603c8919bfa355facc6ec0d60d276a3e93ab4f32a57", "review_notes": "@note/translations"},
+    {"id": "EE6-MOSCOW-OBLAST", "zh": "莫斯科州", "source": "@source/6ee38b1cadfa5ab2", "status": "approved", "record_sha256": "1c81b73ed542e98c1821b07b6274789f647daa0a18e3d60a21ff47627e01dbb5", "review_notes": "@note/translations"},
+    {"id": "EE6-UKRAINE", "zh": "乌克兰", "source": "@source/ab0f15c983d84a13", "status": "approved", "record_sha256": "6152c8a2d3c6dedb863e76fca4418c16fcae49b0289688d140368455d77ab096", "review_notes": "@note/translations"},
+    {"id": "EE6-MOLDOVA", "zh": "摩尔多瓦", "source": "@source/6bd995ffac9267a3", "status": "approved", "record_sha256": "56213318ca69f814239c8456f3cdcc661ced1740360e4cd7c9e72288f5cf616c", "review_notes": "@note/translations"},
+    {"id": "EE6-SEA-OF-AZOV", "zh": "亚速海", "source": "@source/30db06ea1512f034", "status": "approved", "record_sha256": "9a036ae5a74fb88c901034a6f90e273face12903a9e5f94ef4574fcac8bd4d11", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EE6-SMOLENSK", "x": 204.5, "y": 94.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-BRYANSK", "x": 307.0, "y": 213.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-CHORNOBYL", "x": 123.5, "y": 360.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-ZHYTOMYR", "x": 51.0, "y": 433.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-KYIV", "x": 126.0, "y": 419.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-KHARKIV", "x": 390.5, "y": 452.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-VORONEZH", "x": 485.0, "y": 331.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-DNIPRO", "x": 334.5, "y": 558.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-DONETSK", "x": 463.5, "y": 589.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-ODESA", "x": 137.0, "y": 691.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-MOSCOW-OBLAST", "x": 451.5, "y": 20.0, "font_size": 14, "font_style": "bold"},
+    {"id": "EE6-UKRAINE", "x": 144.0, "y": 469.0, "font_size": 16, "font_style": "bold"},
+    {"id": "EE6-MOLDOVA", "x": 35.0, "y": 620.0, "font_size": 16, "font_style": "bold"},
+    {"id": "EE6-SEA-OF-AZOV", "x": 392.0, "y": 697.0, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "EE6-SMOLENSK-native", "feature_id": "EE6-SMOLENSK", "kind": "circle", "x": 178.5, "y": 79.5, "size": 9, "outline_width": 1, "original_bbox": [174, 75, 183, 84]},
+    {"id": "EE6-BRYANSK-native", "feature_id": "EE6-BRYANSK", "kind": "circle", "x": 284.5, "y": 198.5, "size": 9, "outline_width": 1, "original_bbox": [280, 194, 289, 203]},
+    {"id": "EE6-CHORNOBYL-native", "feature_id": "EE6-CHORNOBYL", "kind": "circle", "x": 95.5, "y": 345.5, "size": 9, "outline_width": 1, "original_bbox": [91, 341, 100, 350]},
+    {"id": "EE6-ZHYTOMYR-native", "feature_id": "EE6-ZHYTOMYR", "kind": "circle", "x": 24.5, "y": 418.5, "size": 9, "outline_width": 1, "original_bbox": [20, 414, 29, 423]},
+    {"id": "EE6-KYIV-native", "feature_id": "EE6-KYIV", "kind": "circle", "x": 109.5, "y": 404.5, "size": 9, "outline_width": 1, "original_bbox": [105, 400, 114, 409]},
+    {"id": "EE6-KHARKIV-native", "feature_id": "EE6-KHARKIV", "kind": "circle", "x": 368.5, "y": 437.5, "size": 9, "outline_width": 1, "original_bbox": [364, 433, 373, 442]},
+    {"id": "EE6-VORONEZH-native", "feature_id": "EE6-VORONEZH", "kind": "circle", "x": 503.5, "y": 316.5, "size": 9, "outline_width": 1, "original_bbox": [499, 312, 508, 321]},
+    {"id": "EE6-DNIPRO-native", "feature_id": "EE6-DNIPRO", "kind": "circle", "x": 314.5, "y": 543.5, "size": 9, "outline_width": 1, "original_bbox": [310, 539, 319, 548]},
+    {"id": "EE6-DONETSK-native", "feature_id": "EE6-DONETSK", "kind": "circle", "x": 440.5, "y": 574.5, "size": 9, "outline_width": 1, "original_bbox": [436, 570, 445, 579]},
+    {"id": "EE6-ODESA-native", "feature_id": "EE6-ODESA", "kind": "circle", "x": 118.5, "y": 676.5, "size": 9, "outline_width": 1, "original_bbox": [114, 672, 123, 681]}
+  ],
+  "shared_sources": [
+    {"id": "EE6-SH-MINSK", "owner_region": "EU-East-C-z6-36-20", "feature_id": "EE6-MINSK", "kind": "city", "original": "Minsk", "source_url": "@source/820130c7dc3f465f", "original_bbox": [-23, 148, 8, 163], "review_notes": "@note/shared_sources"},
+    {"id": "EE6-SH-BELARUS", "owner_region": "EU-East-C-z6-36-20", "feature_id": "EE6-BELARUS", "kind": "admin0", "original": "BELARUS", "source_url": "@source/820130c7dc3f465f", "original_bbox": [-87, 169, 49, 193], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

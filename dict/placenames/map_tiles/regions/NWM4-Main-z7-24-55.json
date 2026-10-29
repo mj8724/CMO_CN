@@ -1,0 +1,52 @@
+{
+  "id": "NWM4-Main-z7-24-55",
+  "z": 7,
+  "x": 24,
+  "y": 55,
+  "width_tiles": 4,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/24/55.png",
+    "7/25/55.png",
+    "7/26/55.png",
+    "7/27/55.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NWM4-N-01", "kind": "city", "original": "La Paz", "original_bbox": [195, 34, 234, 53], "source_url": "@source/9043908bd48c8c1b"},
+    {"id": "NWM4-N-02", "kind": "city", "original": "Cabo San Lucas", "original_bbox": [230, 158, 283, 193], "source_url": "@source/9043908bd48c8c1b"},
+    {"id": "NWM4-N-03", "kind": "city", "original": "Mazatlán", "original_bbox": [549, 125, 601, 144], "source_url": "@source/ecb25263c1b469d8"},
+    {"id": "NWM4-N-04", "kind": "city", "original": "Durango", "original_bbox": [710, 46, 759, 68], "source_url": "@source/ecb25263c1b469d8"},
+    {"id": "NWM4-N-05", "kind": "city", "original": "Fresnillo", "original_bbox": [872, 129, 921, 149], "source_url": "@source/69a2a0e3f1814216"},
+    {"id": "NWM4-N-06", "kind": "city", "original": "Zacatecas", "original_bbox": [899, 170, 954, 189], "source_url": "@source/69a2a0e3f1814216"}
+  ],
+  "translations": [
+    {"id": "NWM4-N-01", "zh": "拉巴斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "a9cd206dc3bd5deb96cc363d361ff951cb80f4ad2811e4f09a6daf7ef7a7df6c", "review_notes": "Qualified original NE Chinese/script-normalization source grade retained; not an official naming claim or supplier ID. TARGET model and font/layout acceptance remain pending. Actual author SELF private selected model only; different TARGET pending."},
+    {"id": "NWM4-N-02", "zh": "卡波圣卢卡斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "72ea75904e1643c1b8aa3bb64e7efd5ab282873883cb18fb6a310bbde5e625e5", "review_notes": "Qualified original NE Chinese/script-normalization source grade retained; not an official naming claim or supplier ID. TARGET model and font/layout acceptance remain pending. Actual author SELF private selected model only; different TARGET pending."},
+    {"id": "NWM4-N-03", "zh": "马萨特兰", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "5ff2ffce86dd0a38ccad8eb36507a128fd75fbc752c541ad6da317b336e6c628", "review_notes": "Qualified original NE Chinese/script-normalization source grade retained; not an official naming claim or supplier ID. TARGET model and font/layout acceptance remain pending. Actual author SELF private selected model only; different TARGET pending."},
+    {"id": "NWM4-N-04", "zh": "杜兰戈", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "a253a35dc54c427a6bb92c97b6ec755917f074c1c805f3777e10c9bca223f7d5", "review_notes": "Qualified original NE Chinese/script-normalization source grade retained; not an official naming claim or supplier ID. TARGET model and font/layout acceptance remain pending. Actual author SELF private selected model only; different TARGET pending."},
+    {"id": "NWM4-N-05", "zh": "弗雷斯尼约", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "ac9c609023c8386f72aaffd4a608fac009a1ad3a4d187bb926c9fd6154b63b87", "review_notes": "Qualified original NE Chinese/script-normalization source grade retained; not an official naming claim or supplier ID. TARGET model and font/layout acceptance remain pending. Actual author SELF private selected model only; different TARGET pending."},
+    {"id": "NWM4-N-06", "zh": "萨卡特卡斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "7dd4814d8727a0bb36d83b41ac5e91d31797380966fa38f3531b4d3fc20dce6e", "review_notes": "Qualified original NE Chinese/script-normalization source grade retained; not an official naming claim or supplier ID. TARGET model and font/layout acceptance remain pending. Actual author SELF private selected model only; different TARGET pending."}
+  ],
+  "layouts": [
+    {"id": "NWM4-N-01", "x": 226.5, "y": 46.5, "font_size": 12, "font_style": "regular", "lines": ["拉巴斯"]},
+    {"id": "NWM4-N-02", "x": 279.5, "y": 170.5, "font_size": 12, "font_style": "regular", "lines": ["卡波圣卢卡斯"]},
+    {"id": "NWM4-N-03", "x": 586.5, "y": 137.5, "font_size": 12, "font_style": "regular", "lines": ["马萨特兰"]},
+    {"id": "NWM4-N-04", "x": 741.5, "y": 58.5, "font_size": 12, "font_style": "regular", "lines": ["杜兰戈"]},
+    {"id": "NWM4-N-05", "x": 915.5, "y": 141.5, "font_size": 12, "font_style": "regular", "lines": ["弗雷斯尼约"]},
+    {"id": "NWM4-N-06", "x": 942.5, "y": 182.5, "font_size": 12, "font_style": "regular", "lines": ["萨卡特卡斯"]}
+  ],
+  "symbols": [
+    {"id": "NWM4-S-01", "feature_id": "NWM4-N-01", "kind": "circle", "x": 199.5, "y": 38.5, "size": 9, "outline_width": 1, "original_bbox": [195, 34, 204, 43]},
+    {"id": "NWM4-S-02", "feature_id": "NWM4-N-02", "kind": "circle", "x": 234.5, "y": 162.5, "size": 9, "outline_width": 1, "original_bbox": [230, 158, 239, 167]},
+    {"id": "NWM4-S-03", "feature_id": "NWM4-N-03", "kind": "circle", "x": 553.5, "y": 129.5, "size": 9, "outline_width": 1, "original_bbox": [549, 125, 558, 134]},
+    {"id": "NWM4-S-04", "feature_id": "NWM4-N-04", "kind": "circle", "x": 714.5, "y": 50.5, "size": 9, "outline_width": 1, "original_bbox": [710, 46, 719, 55]},
+    {"id": "NWM4-S-05", "feature_id": "NWM4-N-05", "kind": "circle", "x": 876.5, "y": 133.5, "size": 9, "outline_width": 1, "original_bbox": [872, 129, 881, 138]},
+    {"id": "NWM4-S-06", "feature_id": "NWM4-N-06", "kind": "circle", "x": 903.5, "y": 174.5, "size": 9, "outline_width": 1, "original_bbox": [899, 170, 908, 179]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "canonical_captions": [
+    {"id": "NWM4-CAN-Synoptic-000147", "origin": "canonical_wwp", "canonical_record": {"layer": "Synoptic", "wwp_file": {"path": "assets/placenames/Synoptic.wwp", "sha256": "3dfa0cc94649684dadadaee84f00c758b7d6bca10fa25175f0fb88aa32a41f53"}, "record_index_zero_based": 147, "original_Chinese_name": "墨西哥", "lat_f32_bits": 1102577664, "lon_f32_bits": 3268149248, "flags": 0, "level": 0}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "admin0", "layout": {"x": 970, "y": 112, "font_size": 18, "font_style": "regular", "lines": ["墨西哥"]}}
+  ]
+}

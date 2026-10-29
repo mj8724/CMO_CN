@@ -1,0 +1,54 @@
+{
+  "id": "AP-Kenya-EastAfrica-z8-topwest",
+  "z": 8,
+  "x": 152,
+  "y": 120,
+  "width_tiles": 4,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "8/152/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 548},
+    {"path": "8/153/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/154/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 2710},
+    {"path": "8/155/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1413}
+  ],
+  "context_tiles": [
+    {"path": "8/151/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/152/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1013},
+    {"path": "8/153/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/154/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1436},
+    {"path": "8/155/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 2662},
+    {"path": "8/156/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 90},
+    {"path": "8/151/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 87},
+    {"path": "8/156/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 943},
+    {"path": "8/151/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/152/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 796},
+    {"path": "8/153/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 57},
+    {"path": "8/154/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1066},
+    {"path": "8/155/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 2139},
+    {"path": "8/156/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1397}
+  ],
+  "features": [
+    {"id": "AP-KE8-001", "kind": "peak", "original": "Amba Farit", "original_bbox": [911, 4, 980, 46], "source_url": "@source/265b178b7b4f6281", "original_elevation_m": "4270"},
+    {"id": "AP-KE8-002", "kind": "peak", "original": "Mount Choke", "original_bbox": [670, 48, 750, 91], "source_url": "@source/d09477c3c168218f", "original_elevation_m": "4080"},
+    {"id": "AP-KE8-004", "kind": "city", "original": "Debre Markos", "original_bbox": [720, 152, 769, 190], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-KE8-005", "kind": "city", "original": "Asosa", "original_bbox": [140, 202, 181, 223], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "AP-KE8-001", "zh": "安巴法里特山", "status": "approved", "source": "@source/265b178b7b4f6281", "record_sha256": "5e82ffe92a95390eec1a093d5a5cac9cbd2ad933b536be9cf9ccba6f0d28cbf0", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-002", "zh": "乔克山", "status": "approved", "source": "@source/d09477c3c168218f", "record_sha256": "848c748971f43f526bdbfabe9483d09639b1723ca1e73b0bcb774fa1a160eb96", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-004", "zh": "德宝马曲思", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "680240a2f835792da855337bbff848227f26bed9913be0723cf0085ee0e77d5c", "review_notes": "@note/translations"},
+    {"id": "AP-KE8-005", "zh": "阿索萨", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "27bc04f842cad64197f78958a96ff89400966edb54528cfefb183b8d38f99a5e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-KE8-001", "x": 945.5, "y": 17.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-002", "x": 710.0, "y": 62.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-004", "x": 759.0, "y": 166.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-KE8-005", "x": 168.0, "y": 216.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-KE8-001-triangle", "feature_id": "AP-KE8-001", "kind": "triangle", "x": 975.0, "y": 41.5, "size": 8, "outline_width": 1, "original_bbox": [970, 37, 980, 46]},
+    {"id": "AP-KE8-002-triangle", "feature_id": "AP-KE8-002", "kind": "triangle", "x": 745.0, "y": 86.0, "size": 8, "outline_width": 1, "original_bbox": [740, 81, 750, 91]},
+    {"id": "AP-KE8-004-circle", "feature_id": "AP-KE8-004", "kind": "circle", "x": 724.5, "y": 156.5, "size": 7, "outline_width": 1, "original_bbox": [720, 152, 729, 161]},
+    {"id": "AP-KE8-005-circle", "feature_id": "AP-KE8-005", "kind": "circle", "x": 144.5, "y": 206.5, "size": 7, "outline_width": 1, "original_bbox": [140, 202, 149, 211]}
+  ]
+}

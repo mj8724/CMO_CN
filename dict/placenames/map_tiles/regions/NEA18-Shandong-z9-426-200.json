@@ -1,0 +1,55 @@
+{
+  "id": "NEA18-Shandong-z9-426-200",
+  "z": 9,
+  "x": 426,
+  "y": 200,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/426/200.png",
+    "9/427/200.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NEA18-030", "kind": "city", "original": "Jiangzhuang", "original_bbox": [57, 40, 126, 59], "source_url": "@source/0b6fd34a5328ae68"},
+    {"id": "NEA18-031", "kind": "city", "original": "Qiji", "original_bbox": [241, 42, 263, 62], "source_url": "@source/0b6fd34a5328ae68"},
+    {"id": "NEA18-032", "kind": "city", "original": "Jiaolai", "original_bbox": [176, 62, 212, 78], "source_url": "@source/0b6fd34a5328ae68"},
+    {"id": "NEA18-033", "kind": "city", "original": "Gaomi", "original_bbox": [78, 96, 118, 114], "source_url": "@source/0b6fd34a5328ae68"},
+    {"id": "NEA18-034", "kind": "city", "original": "Jiaozhou", "original_bbox": [153, 142, 208, 160], "source_url": "@source/0b6fd34a5328ae68"},
+    {"id": "NEA18-035", "kind": "city", "original": "Wangtai", "original_bbox": [148, 227, 195, 246], "source_url": "@source/0b6fd34a5328ae68"},
+    {"id": "NEA18-036", "kind": "city", "original": "Jinkou", "original_bbox": [413, 5, 451, 21], "source_url": "@source/2cff1a2b62bed052"},
+    {"id": "NEA18-037", "kind": "city", "original": "Huashan", "original_bbox": [345, 15, 394, 31], "source_url": "@source/2cff1a2b62bed052"},
+    {"id": "NEA18-038", "kind": "city", "original": "Jimo", "original_bbox": [349, 77, 381, 95], "source_url": "@source/2cff1a2b62bed052"},
+    {"id": "NEA18-039", "kind": "city", "original": "Chengyang", "original_bbox": [279, 123, 347, 146], "source_url": "@source/2cff1a2b62bed052"},
+    {"id": "NEA18-040", "kind": "city", "original": "Qingdao", "original_bbox": [279, 231, 339, 255], "source_url": "@source/2cff1a2b62bed052"}
+  ],
+  "translations": [
+    {"id": "NEA18-030", "zh": "姜庄", "status": "approved", "source": "@source/bd346fc8d97ac7ae", "record_sha256": "c35e6702b9c6f9a28ab82e761fa579b3586eeee40d40d2c8c19778b964c808a1", "review_notes": "@note/translations"},
+    {"id": "NEA18-031", "zh": "七级", "status": "approved", "source": "@source/deb2a4cfd78bf50f", "record_sha256": "af706a7c575943cd096a4d63e0aeebf61843bbca65d4cd86565304c6bea15ca5", "review_notes": "@note/translations"},
+    {"id": "NEA18-032", "zh": "胶莱", "status": "approved", "source": "@source/ee8546717418256b", "record_sha256": "63384c6892a97727c43e7ca6179fdf0dc94d373e2e5133faf52f94c76bc5b5f6", "review_notes": "@note/translations"},
+    {"id": "NEA18-033", "zh": "高密", "status": "approved", "source": "@source/5016d8e68876379c", "record_sha256": "3f75de6eecc5e1f678ae10c82e151b33ef171a06f018bec3e763202c404b1fd3", "review_notes": "@note/translations"},
+    {"id": "NEA18-034", "zh": "胶州", "status": "approved", "source": "@source/9b142acea806f754", "record_sha256": "9f671adef7e0628a821e2737a0731aa7917488b6017f34efcb7562dc41725eff", "review_notes": "@note/translations"},
+    {"id": "NEA18-035", "zh": "王台", "status": "approved", "source": "@source/426d26ffd13f692d", "record_sha256": "80aeaa4196c8119a8152ac56e93834c32fe0d7a886e08b1eccba1e61fe06945e", "review_notes": "@note/translations"},
+    {"id": "NEA18-036", "zh": "金口", "status": "approved", "source": "@source/209570446118f18e", "record_sha256": "0ffd9fb9494c4e99fb69422ad9ed34609348dae89fbd1d16e1e463ecd06514f0", "review_notes": "@note/translations"},
+    {"id": "NEA18-037", "zh": "华山", "status": "approved", "source": "@source/49dc5abecb3e89d4", "record_sha256": "f3472b9d6b863479015841d6d512f1c333594779b2d6f66e05d0a0f295b7bcfc", "review_notes": "@note/translations"},
+    {"id": "NEA18-038", "zh": "即墨", "status": "approved", "source": "@source/f95bdefd96df0450", "record_sha256": "4bb3b51887c7f5fec0feb6ff54f30db55678b13589c9ef4206757107fd18b1a3", "review_notes": "@note/translations"},
+    {"id": "NEA18-039", "zh": "城阳", "status": "approved", "source": "@source/6f51c4a0277f9860", "record_sha256": "408d46201f24888547539faee80758699b899a941ed94f72df22f0636fb2cfa8", "review_notes": "@note/translations"},
+    {"id": "NEA18-040", "zh": "青岛", "status": "approved", "source": "@source/a113b95641968c7b", "record_sha256": "92ec082edde4ae3bd775057af58586e8bbe02a7ddbf74aea0c61d25b82b801da", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA18-030", "x": 91.5, "y": 49.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-031", "x": 252.0, "y": 52.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-032", "x": 194.0, "y": 70.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-033", "x": 98.0, "y": 105.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-034", "x": 180.5, "y": 151.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-035", "x": 171.5, "y": 236.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-036", "x": 432.0, "y": 13.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-037", "x": 369.5, "y": 23.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-038", "x": 365.0, "y": 86.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-039", "x": 313.0, "y": 134.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-040", "x": 309.0, "y": 243.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

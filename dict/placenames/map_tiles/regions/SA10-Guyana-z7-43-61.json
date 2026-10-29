@@ -1,0 +1,38 @@
+{
+  "id": "SA10-Guyana-z7-43-61",
+  "z": 7,
+  "x": 43,
+  "y": 61,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/43/61.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "SA10-N-019", "kind": "city", "original": "Georgetown", "original_bbox": [77, 142, 143, 164], "source_url": "@source/a04b0db4d82b4e2f"},
+    {"id": "SA10-N-020", "kind": "city", "original": "Bartica", "original_bbox": [36, 179, 78, 199], "source_url": "@source/a04b0db4d82b4e2f"},
+    {"id": "SA10-N-021", "kind": "city", "original": "New Amsterdam", "original_bbox": [136, 194, 199, 229], "source_url": "@source/a04b0db4d82b4e2f"},
+    {"id": "SA10-N-022", "kind": "city", "original": "Linden", "original_bbox": [64, 215, 105, 235], "source_url": "@source/a04b0db4d82b4e2f"}
+  ],
+  "translations": [
+    {"id": "SA10-N-019", "zh": "乔治敦", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "6fcfb9f829a95b48370a557f86e1bad93d7f9f60df99b24859df746eb04a52f4", "review_notes": "@note/translations"},
+    {"id": "SA10-N-020", "zh": "巴蒂卡", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "a2142a72d0908d9742f74a2489cb7196501687648c79009a6ed1de91448b5bfb", "review_notes": "@note/translations"},
+    {"id": "SA10-N-021", "zh": "新阿姆斯特丹", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "c136819b15df4d9377140ba380bab4469a8103ced60f267e2f147878f95ba93f", "review_notes": "@note/translations"},
+    {"id": "SA10-N-022", "zh": "林登", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "918432b27072d0190880d589762552dbdd4c8cf53f9c29453e3a44dc2ad3aecf", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SA10-N-019", "x": 108.0, "y": 147.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-020", "x": 67.0, "y": 183.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-021", "x": 185.0, "y": 199.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-022", "x": 89.0, "y": 219.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SA10-C-014", "feature_id": "SA10-N-019", "kind": "circle", "x": 81.5, "y": 146.5, "size": 9, "outline_width": 1, "original_bbox": [77, 142, 86, 151], "source_url": "@source/a04b0db4d82b4e2f", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-015", "feature_id": "SA10-N-020", "kind": "circle", "x": 40.5, "y": 183.5, "size": 9, "outline_width": 1, "original_bbox": [36, 179, 45, 188], "source_url": "@source/a04b0db4d82b4e2f", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-016", "feature_id": "SA10-N-021", "kind": "circle", "x": 140.5, "y": 198.5, "size": 9, "outline_width": 1, "original_bbox": [136, 194, 145, 203], "source_url": "@source/a04b0db4d82b4e2f", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-017", "feature_id": "SA10-N-022", "kind": "circle", "x": 68.5, "y": 219.5, "size": 9, "outline_width": 1, "original_bbox": [64, 215, 73, 224], "source_url": "@source/a04b0db4d82b4e2f", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "USP4-Cambria-z9-83-201",
+  "z": 9,
+  "x": 83,
+  "y": 201,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/83/201.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "USP4-N01", "kind": "region", "original": "Cambria", "original_bbox": [181, 201, 227, 218], "source_url": "@source/f94e2c4fbcc0b1be"}
+  ],
+  "translations": [
+    {"id": "USP4-N01", "zh": "坎布里亚", "status": "approved", "source": "@source/f94e2c4fbcc0b1be", "record_sha256": "7c5eb1cd4d88b2cef8f31ca287e85be8cb31262d69bcb8359830b0752cdffba0", "review_notes": "Different SOURCE/CJK approved PROJECT_LITERAL_TRANSLITERATION_NOT_OFFICIAL. Cam-bri-a → 坎-布里-亚. Clear complete original literal; the California GN row is context only and contains no Chinese alias. This project spelling needs independent CJK acceptance, not a fabricated official/unique Chinese authority. Physical supplier raster URL and Chinese-wording evidence have separate roles. No supplier provider/country/admin/native identity is inferred. Target model and layout below are a metadata proposal, pending Root selection and actual independent Target review. Author actual SELF_PRIVATE_MODEL_ONLY accepted complete CJK/source5px/whole/joins. Different Secondary Target final and integration remain pending. Different actual TARGET reviewer /root/remaining_secondary_research personally viewed all8 complete Source/CJK pairs, all2 actual whole targets and all3 bounded new-tile joins; independently verified pristine glyph/all-alpha/positive-RGBA and full whole composition. Rootc868 selects generic geographic region/regular12, not supplier classification or native point. Source3NE4GN1Cambria project-only wording, exact original supplier URL/bbox and Chinese-source roles remain unchanged. No missing glyph, clipped label, collision, native/height/alias/rule/canonical caption or old runtime. Different TARGET author /root/remaining_catalog; this reviewer previously reviewed SOURCE independently and authored neither input. Private component acceptance only; no Root window, formal apply or global completion."}
+  ],
+  "layouts": [
+    {"id": "USP4-N01", "x": 204.0, "y": 209.5, "font_size": 12, "font_style": "regular", "lines": ["坎布里亚"]}
+  ],
+  "shared_sources": [],
+  "symbols": [],
+  "legacy_suppressions": []
+}

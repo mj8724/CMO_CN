@@ -1,0 +1,37 @@
+{
+  "id": "LA8-East-z8-83-120",
+  "z": 8,
+  "x": 83,
+  "y": 120,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/83/120.png",
+    "8/84/120.png"
+  ],
+  "context_tiles": [
+    "8/82/120.png"
+  ],
+  "features": [
+    {"id": "LA8-East-z8-83-120-Carupano", "kind": "city", "original": "Carupano", "original_bbox": [0, 94, 60, 117], "source_url": "@source/4f31429fa568aef4", "source_printed_lines": ["Carupano"]},
+    {"id": "LA8-East-z8-83-120-PortofSpain", "kind": "city", "original": "Port of Spain", "original_bbox": [317, 92, 366, 135], "source_url": "@source/92553384d957a221", "source_printed_lines": ["Port of", "Spain"]},
+    {"id": "LA8-East-z8-83-120-SanFernando", "kind": "city", "original": "San Fernando", "original_bbox": [326, 162, 385, 200], "source_url": "@source/92553384d957a221", "source_printed_lines": ["San", "Fernando"]}
+  ],
+  "translations": [
+    {"id": "LA8-East-z8-83-120-Carupano", "zh": "卡鲁帕诺", "status": "approved", "source": "@source/1fbb421311451f80", "record_sha256": "2fc2501875043ef1f333c2d1ae0ea78592b178a392098d3bfe7d1ea249e6da58", "review_notes": "@note/translations"},
+    {"id": "LA8-East-z8-83-120-PortofSpain", "zh": "西班牙港", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "7f63716b251e7e04f99804af75930dc1faf458e1f788bf8f426dfd145619ebf2", "review_notes": "@note/translations"},
+    {"id": "LA8-East-z8-83-120-SanFernando", "zh": "圣费尔南多", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "3042fae5c42e712b7fd40cc2f9dc48691614abe150c776694cad7982b849ee31", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LA8-East-z8-83-120-Carupano", "x": 40.0, "y": 106.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LA8-East-z8-83-120-PortofSpain", "x": 357.0, "y": 104.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LA8-East-z8-83-120-SanFernando", "x": 372.0, "y": 174.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "LA8-East-z8-83-120-Carupano-circle", "feature_id": "LA8-East-z8-83-120-Carupano", "kind": "circle", "x": 4.5, "y": 98.5, "size": 9, "outline_width": 1, "original_bbox": [0, 94, 9, 103], "source_url": "@source/4f31429fa568aef4", "review_notes": "@note/symbols"},
+    {"id": "LA8-East-z8-83-120-PortofSpain-circle", "feature_id": "LA8-East-z8-83-120-PortofSpain", "kind": "circle", "x": 321.5, "y": 96.5, "size": 9, "outline_width": 1, "original_bbox": [317, 92, 326, 101], "source_url": "@source/92553384d957a221", "review_notes": "@note/symbols"},
+    {"id": "LA8-East-z8-83-120-SanFernando-circle", "feature_id": "LA8-East-z8-83-120-SanFernando", "kind": "circle", "x": 330.5, "y": 166.5, "size": 9, "outline_width": 1, "original_bbox": [326, 162, 335, 171], "source_url": "@source/92553384d957a221", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

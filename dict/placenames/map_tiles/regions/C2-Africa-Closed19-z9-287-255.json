@@ -1,0 +1,34 @@
+{
+  "z": 9,
+  "x": 287,
+  "y": 255,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "id": "C2-Africa-Closed19-z9-287-255",
+  "original_tiles": [
+    "9/287/255.png",
+    "9/287/256.png"
+  ],
+  "context_tiles": [
+    "9/287/254.png",
+    "9/288/254.png",
+    "9/288/255.png"
+  ],
+  "features": [
+    {"id": "C2-G031", "kind": "city", "original": "Befori", "original_bbox": [203, 187, 237, 203], "source_url": "@source/7ecd1b37691c3cbd"},
+    {"id": "C2-G034", "kind": "city", "original": "Bokungu", "original_bbox": [163, 470, 213, 489], "source_url": "@source/174ca02d04ad421c"}
+  ],
+  "translations": [
+    {"id": "C2-G031", "zh": "贝福里", "status": "approved", "source": "@source/7ecd1b37691c3cbd", "record_sha256": "87635066fe27d683f88736699e9344946df4553a3558d11659a456c8efc4a3fc", "review_notes": "@note/translations"},
+    {"id": "C2-G034", "zh": "博昆古", "status": "approved", "source": "@source/174ca02d04ad421c", "record_sha256": "36d2839de64d9bd54958c7479dccb060e5714c84d54ffdb79ad96a9781edcff3", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C2-G031", "x": 220.0, "y": 195.0, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G034", "x": 188.0, "y": 479.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "C2-SH-G030", "owner_region": "DRCNorth-z9-288-248", "feature_id": "DRCN9-055-Djolu", "original": "Djolu", "kind": "city", "original_bbox": [226, 1, 258, 21], "source_url": "@source/7ecd1b37691c3cbd", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

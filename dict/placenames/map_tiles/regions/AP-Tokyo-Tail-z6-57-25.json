@@ -1,0 +1,28 @@
+{
+  "id": "AP-Tokyo-Tail-z6-57-25",
+  "z": 6,
+  "x": 57,
+  "y": 25,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/57/25.png"
+  ],
+  "context_tiles": [
+    "6/56/24.png",
+    "6/57/24.png",
+    "6/58/24.png",
+    "6/56/25.png",
+    "6/58/25.png",
+    "6/56/26.png",
+    "6/57/26.png",
+    "6/58/26.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "shared-AP-Z6C-T-000", "owner_region": "AP-China-Mongolia-z6-50-19", "feature_id": "AP-C6-086", "kind": "city", "original": "Tokyo", "source_url": "@source/7e95051ad07dd5c2", "original_bbox": [-43, 47, 6, 74], "review_notes": "@note/shared_sources"}
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "WU-CaliforniaSouth-z7-21-50",
+  "z": 7,
+  "x": 21,
+  "y": 50,
+  "width_tiles": 2,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/21/50.png",
+    "7/22/50.png",
+    "7/21/51.png",
+    "7/22/51.png"
+  ],
+  "context_tiles": [
+    "7/23/51.png"
+  ],
+  "features": [
+    {"id": "WUF-02", "kind": "city", "original": "Visalia", "original_bbox": [145, 26, 186, 45], "source_url": "@source/ad56e4b1198461a9"},
+    {"id": "WUF-03", "kind": "city", "original": "San Luis Obispo", "original_bbox": [21, 143, 70, 180], "source_url": "@source/ad56e4b1198461a9"},
+    {"id": "WUF-04", "kind": "city", "original": "Bakersfield", "original_bbox": [170, 133, 231, 153], "source_url": "@source/ad56e4b1198461a9"},
+    {"id": "WUF-05", "kind": "city", "original": "Lancaster", "original_bbox": [250, 208, 305, 228], "source_url": "@source/ad56e4b1198461a9"},
+    {"id": "WUF-06", "kind": "city", "original": "Santa Barbara", "original_bbox": [108, 239, 153, 274], "source_url": "@source/ad56e4b1198461a9"},
+    {"id": "WUF-07", "kind": "city", "original": "Los Angeles", "original_bbox": [241, 279, 305, 331], "source_url": "@source/a61adda33adf5f80"},
+    {"id": "WUF-08", "kind": "city", "original": "Barstow", "original_bbox": [352, 186, 400, 205], "source_url": "@source/0e63bd43819cfb7d"},
+    {"id": "WUF-09", "kind": "city", "original": "Victorville", "original_bbox": [327, 226, 384, 246], "source_url": "@source/0e63bd43819cfb7d"},
+    {"id": "WUF-10", "kind": "city", "original": "San Bernardino", "original_bbox": [328, 273, 388, 308], "source_url": "@source/6fb31b07f27842ad"},
+    {"id": "WUF-11", "kind": "city", "original": "Oceanside", "original_bbox": [319, 373, 377, 392], "source_url": "@source/6fb31b07f27842ad"},
+    {"id": "WUF-12", "kind": "city", "original": "San Diego", "original_bbox": [339, 425, 381, 467], "source_url": "@source/6fb31b07f27842ad"}
+  ],
+  "translations": [
+    {"id": "WUF-02", "zh": "维塞利亚", "status": "approved", "source": "@source/8eb1dfb450645f5c", "record_sha256": "f5d3c33afc01d7ca3a0aa8a03d5d0e27abec7c2e722e5d98d3aab94ddc6e52a7", "review_notes": "@note/translations"},
+    {"id": "WUF-03", "zh": "圣路易斯-奥比斯波", "status": "approved", "source": "@source/a071838f0fccdc94", "record_sha256": "bc969a03852fd9f01fc74b9f70129a664eb924d0bfb988ccf9aa8fe6838efa34", "review_notes": "@note/translations"},
+    {"id": "WUF-04", "zh": "贝克斯菲尔德", "status": "approved", "source": "@source/515a314fcb685c6b", "record_sha256": "5b24d1912937f9b5c50e5c168c10527274735520feadc428f006fc681ce17b66", "review_notes": "@note/translations"},
+    {"id": "WUF-05", "zh": "兰开斯特", "status": "approved", "source": "@source/6ba606a75b6431ee", "record_sha256": "7e148e4c4a0e8ce7ebd479048e14492793c2d36b3ad4e95710c07ca89b00f171", "review_notes": "@note/translations"},
+    {"id": "WUF-06", "zh": "圣巴巴拉", "status": "approved", "source": "@source/6811b6b744233035", "record_sha256": "f683598b3ea983828732fa0f03f4fe744d2aaba0d0ab64e74ee59cde6ff2935b", "review_notes": "@note/translations"},
+    {"id": "WUF-07", "zh": "洛杉矶", "status": "approved", "source": "@source/0e0439bd36eb6905", "record_sha256": "4d5b646b305d0641ac80de99b268e3e793d55ea462d365db569a8940336deff7", "review_notes": "@note/translations"},
+    {"id": "WUF-08", "zh": "巴斯托", "status": "approved", "source": "@source/15668db1af40d798", "record_sha256": "d221e58bc1cf5c3d64002e6c0093d137293d784d6743c937ac116ee60b9f11b4", "review_notes": "@note/translations"},
+    {"id": "WUF-09", "zh": "维克多维尔", "status": "approved", "source": "@source/63e8da5afb59f435", "record_sha256": "4e0e2bd111d2a6b73b07933bb4dbeeff8dd9cfb86e1f07593a22a59f1e71b78b", "review_notes": "@note/translations"},
+    {"id": "WUF-10", "zh": "圣贝纳迪诺", "status": "approved", "source": "@source/f5059dedade043b1", "record_sha256": "3d79fdd87642185beb8c117650215d701d66fcd39c33b77bbc7051b6e0bdc023", "review_notes": "@note/translations"},
+    {"id": "WUF-11", "zh": "欧申赛德", "status": "approved", "source": "@source/b66c49598aa7a3af", "record_sha256": "f699efbf2ff2c2098d511ee122e4dcba8c1ce54a263fe8ad850efd2b7f69d617", "review_notes": "@note/translations"},
+    {"id": "WUF-12", "zh": "圣地牙哥", "status": "approved", "source": "@source/085336c85af32039", "record_sha256": "9597291aa78492192d8412a2d41d7fb0642e66790e7dc0b5246aec2f0cb66327", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WUF-02", "x": 183.0, "y": 38.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WUF-03", "x": 86.0, "y": 155.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WUF-04", "x": 220.0, "y": 145.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WUF-05", "x": 288.0, "y": 220.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WUF-06", "x": 146.0, "y": 250.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WUF-07", "x": 276.0, "y": 292.0, "font_size": 14, "font_style": "regular"},
+    {"id": "WUF-08", "x": 384.0, "y": 197.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WUF-09", "x": 371.0, "y": 238.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WUF-10", "x": 371.0, "y": 285.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WUF-11", "x": 357.0, "y": 385.0, "font_size": 12, "font_style": "regular"},
+    {"id": "WUF-12", "x": 377.0, "y": 436.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "WUF-02-circle", "feature_id": "WUF-02", "kind": "circle", "original_bbox": [145, 26, 154, 35], "x": 149.5, "y": 30.5, "size": 9, "outline_width": 1},
+    {"id": "WUF-03-circle", "feature_id": "WUF-03", "kind": "circle", "original_bbox": [21, 143, 30, 152], "x": 25.5, "y": 147.5, "size": 9, "outline_width": 1},
+    {"id": "WUF-04-circle", "feature_id": "WUF-04", "kind": "circle", "original_bbox": [170, 133, 179, 142], "x": 174.5, "y": 137.5, "size": 9, "outline_width": 1},
+    {"id": "WUF-05-circle", "feature_id": "WUF-05", "kind": "circle", "original_bbox": [250, 208, 259, 217], "x": 254.5, "y": 212.5, "size": 9, "outline_width": 1},
+    {"id": "WUF-06-circle", "feature_id": "WUF-06", "kind": "circle", "original_bbox": [108, 239, 117, 248], "x": 112.5, "y": 243.5, "size": 9, "outline_width": 1},
+    {"id": "WUF-07-circle", "feature_id": "WUF-07", "kind": "circle", "original_bbox": [241, 279, 250, 288], "x": 245.5, "y": 283.5, "size": 9, "outline_width": 1},
+    {"id": "WUF-08-circle", "feature_id": "WUF-08", "kind": "circle", "original_bbox": [352, 186, 361, 195], "x": 356.5, "y": 190.5, "size": 9, "outline_width": 1},
+    {"id": "WUF-09-circle", "feature_id": "WUF-09", "kind": "circle", "original_bbox": [327, 226, 336, 235], "x": 331.5, "y": 230.5, "size": 9, "outline_width": 1},
+    {"id": "WUF-10-circle", "feature_id": "WUF-10", "kind": "circle", "original_bbox": [328, 273, 336, 282], "x": 332.0, "y": 277.5, "size": 8, "outline_width": 1},
+    {"id": "WUF-11-circle", "feature_id": "WUF-11", "kind": "circle", "original_bbox": [319, 373, 328, 382], "x": 323.5, "y": 377.5, "size": 9, "outline_width": 1},
+    {"id": "WUF-12-circle", "feature_id": "WUF-12", "kind": "circle", "original_bbox": [339, 425, 348, 434], "x": 343.5, "y": 429.5, "size": 9, "outline_width": 1},
+    {"id": "WUF-13-circle", "shared_source_id": "WU12-SH-02", "kind": "circle", "original_bbox": [493, 433, 502, 442], "x": 497.5, "y": 437.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "WU12-SH-02", "owner_region": "AM-SouthwestGulfMain-z7-23-50", "feature_id": "AM12-31-Mexicali", "kind": "city", "original": "Mexicali", "original_bbox": [492, 432, 542, 454], "source_url": "@source/d4e89922c1dc35f0", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

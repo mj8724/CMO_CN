@@ -1,0 +1,35 @@
+{
+  "id": "AU-NW2-z6-53-35",
+  "z": 6,
+  "x": 53,
+  "y": 35,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/53/35.png",
+    "6/54/35.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "AUNW2-N-001", "kind": "city", "original": "Derby", "original_bbox": [253, 32, 283, 49], "source_url": "@source/2d569a4885280b35"},
+    {"id": "AUNW2-N-002", "kind": "city", "original": "Broome", "original_bbox": [189, 63, 228, 78], "source_url": "@source/2d569a4885280b35"},
+    {"id": "AUNW2-N-003", "kind": "city", "original": "Port Hedland", "original_bbox": [23, 177, 65, 207], "source_url": "@source/2d569a4885280b35"}
+  ],
+  "translations": [
+    {"id": "AUNW2-N-001", "zh": "德比", "status": "approved", "source": "@source/2d569a4885280b35", "record_sha256": "315eb5b6f61d3de7d66823d35ac29cee968bf676c291e05872f20e970be0fb81", "review_notes": "@note/translations"},
+    {"id": "AUNW2-N-002", "zh": "布鲁姆", "status": "approved", "source": "@source/2d569a4885280b35", "record_sha256": "0c3145f67ee24cf8a7593f520d8a01e7e01bed2e049a3ca191f3cbfdf8e4905f", "review_notes": "@note/translations"},
+    {"id": "AUNW2-N-003", "zh": "黑德兰港", "status": "approved", "source": "@source/2d569a4885280b35", "record_sha256": "6e29f7a00a0d6c6e0ff39654d20063e4c9412ff25e81671e87e9f4d3dcf93b6c", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AUNW2-N-001", "x": 268.0, "y": 40.5, "font_size": 12, "font_style": "regular", "lines": ["德比"]},
+    {"id": "AUNW2-N-002", "x": 212.0, "y": 70.5, "font_size": 12, "font_style": "regular", "lines": ["布鲁姆"]},
+    {"id": "AUNW2-N-003", "x": 44.0, "y": 192.0, "font_size": 12, "font_style": "regular", "lines": ["黑德兰港"]}
+  ],
+  "symbols": [
+    {"id": "AUNW2-N-001-circle", "feature_id": "AUNW2-N-001", "kind": "circle", "x": 250.5, "y": 31.5, "size": 9, "outline_width": 1, "original_bbox": [246, 27, 255, 36]},
+    {"id": "AUNW2-N-002-circle", "feature_id": "AUNW2-N-002", "kind": "circle", "x": 186.5, "y": 63.5, "size": 9, "outline_width": 1, "original_bbox": [182, 59, 191, 68]},
+    {"id": "AUNW2-N-003-circle", "feature_id": "AUNW2-N-003", "kind": "circle", "x": 20.5, "y": 176.5, "size": 9, "outline_width": 1, "original_bbox": [16, 172, 25, 181]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

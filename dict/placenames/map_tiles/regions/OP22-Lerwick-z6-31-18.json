@@ -1,0 +1,26 @@
+{
+  "id": "OP22-Lerwick-z6-31-18",
+  "z": 6,
+  "x": 31,
+  "y": 18,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/31/18.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N01", "kind": "city", "original": "Lerwick", "original_bbox": [200, 131, 246, 151], "source_url": "@source/92fbd32269d291f4"}
+  ],
+  "translations": [
+    {"id": "OP24-N01", "zh": "勒威克", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "33ad0e95cfa2197522b7fdbb4f130f2bed6a23b8ac615e9d2991810fb47991d1", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N01", "x": 228.0, "y": 141.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "OP24-S01", "feature_id": "OP24-N01", "kind": "circle", "x": 204.0, "y": 135.5, "size": 8, "outline_width": 1, "original_bbox": [200, 131, 208, 140]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

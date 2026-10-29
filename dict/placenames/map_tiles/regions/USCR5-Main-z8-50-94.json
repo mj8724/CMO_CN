@@ -1,0 +1,42 @@
+{
+  "id": "USCR5-Main-z8-50-94",
+  "z": 8,
+  "x": 50,
+  "y": 94,
+  "width_tiles": 5,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/50/94.png",
+    "8/51/94.png",
+    "8/52/94.png",
+    "8/53/94.png",
+    "8/54/94.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "USCR5-F001", "kind": "city", "original": "Riverton", "original_bbox": [233, 6, 288, 28], "source_url": "@source/54653ce5af1339c0"},
+    {"id": "USCR5-F002", "kind": "city", "original": "Casper", "original_bbox": [608, 50, 656, 75], "source_url": "@source/4e0a7e647246f7c9"},
+    {"id": "USCR5-F003", "kind": "city", "original": "Douglas", "original_bbox": [779, 72, 826, 94], "source_url": "@source/45a0883f20f7e20e"},
+    {"id": "USCR5-F004", "kind": "city", "original": "Chadron", "original_bbox": [1213, 55, 1261, 74], "source_url": "@source/9b50389908fe3683"}
+  ],
+  "symbols": [
+    {"id": "USCR5-N001", "feature_id": "USCR5-F001", "kind": "circle", "x": 237.5, "y": 10.5, "size": 9, "outline_width": 1, "original_bbox": [233, 6, 242, 15]},
+    {"id": "USCR5-N002", "feature_id": "USCR5-F002", "kind": "circle", "x": 612.5, "y": 54.5, "size": 9, "outline_width": 1, "original_bbox": [608, 50, 617, 59]},
+    {"id": "USCR5-N003", "feature_id": "USCR5-F003", "kind": "circle", "x": 783.5, "y": 76.5, "size": 9, "outline_width": 1, "original_bbox": [779, 72, 788, 81]},
+    {"id": "USCR5-N004", "feature_id": "USCR5-F004", "kind": "circle", "x": 1217.5, "y": 59.5, "size": 9, "outline_width": 1, "original_bbox": [1213, 55, 1222, 64]}
+  ],
+  "translations": [
+    {"id": "USCR5-F001", "zh": "里弗顿", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8687cd4d94f9331ff465e228548a3c3837487ce9475eff21f64dd78490d7b994", "review_notes": "Different TARGET /root/identity_holds_research actually viewed complete CJK, native, whole and joins. SOURCE88535158 original NE community Chinese; not an official governmental name claim. Root e65 private frozen896 model accepted; historical aacc only, no current split-formal migration approval."},
+    {"id": "USCR5-F002", "zh": "卡斯珀", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "19e41805bf2c3f833bcafca8d90d24e1b5f55bbd2d121ba1250683e65b2d44ce", "review_notes": "Different TARGET /root/identity_holds_research actually viewed complete CJK, native, whole and joins. SOURCE88535158 original NE community Chinese; not an official governmental name claim. Root e65 private frozen896 model accepted; historical aacc only, no current split-formal migration approval."},
+    {"id": "USCR5-F003", "zh": "道格拉斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "22d3e64103e6e3eeaca34b2e1763ba9d63e9395ed2877dd3a52371c2ad084baa", "review_notes": "Different TARGET /root/identity_holds_research actually viewed complete CJK, native, whole and joins. SOURCE88535158 original NE community Chinese; not an official governmental name claim. Root e65 private frozen896 model accepted; historical aacc only, no current split-formal migration approval."},
+    {"id": "USCR5-F004", "zh": "沙德伦", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "6f1f295dd809a1389712faadebb5f075dd668344350fa3ca88c9902f76b9a0c7", "review_notes": "Different TARGET /root/identity_holds_research actually viewed complete CJK, native, whole and joins. SOURCE88535158 original NE community Chinese; not an official governmental name claim. Root e65 private frozen896 model accepted; historical aacc only, no current split-formal migration approval."}
+  ],
+  "layouts": [
+    {"id": "USCR5-F001", "x": 264.5, "y": 23.5, "font_size": 12, "font_style": "regular", "lines": ["里弗顿"]},
+    {"id": "USCR5-F002", "x": 639.5, "y": 67.5, "font_size": 12, "font_style": "regular", "lines": ["卡斯珀"]},
+    {"id": "USCR5-F003", "x": 816.5, "y": 89.5, "font_size": 12, "font_style": "regular", "lines": ["道格拉斯"]},
+    {"id": "USCR5-F004", "x": 1244.5, "y": 72.5, "font_size": 12, "font_style": "regular", "lines": ["沙德伦"]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,40 @@
+{
+  "id": "NEA18-Fujian-z10-847-440",
+  "z": 10,
+  "x": 847,
+  "y": 440,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/847/440.png"
+  ],
+  "context_tiles": [
+    "10/848/440.png"
+  ],
+  "features": [
+    {"id": "NEA18-000", "kind": "city", "original": "Longhai", "original_bbox": [3, 53, 55, 75], "source_url": "@source/d81d6b103191f62f"},
+    {"id": "NEA18-001", "kind": "city", "original": "Haicang", "original_bbox": [159, 22, 210, 44], "source_url": "@source/d81d6b103191f62f"},
+    {"id": "NEA18-002", "kind": "city", "original": "Siming", "original_bbox": [198, 53, 244, 76], "source_url": "@source/d81d6b103191f62f"},
+    {"id": "NEA18-003", "kind": "city", "original": "Maping", "original_bbox": [77, 213, 115, 231], "source_url": "@source/d81d6b103191f62f"},
+    {"id": "NEA18-004", "kind": "city", "original": "Longjiao", "original_bbox": [180, 209, 230, 229], "source_url": "@source/d81d6b103191f62f"}
+  ],
+  "translations": [
+    {"id": "NEA18-000", "zh": "龙海", "status": "approved", "source": "@source/ec75d11ea6d72b56", "record_sha256": "76126520a01d6d21c79399e38173845d10e6c7ef141028b39f8baf1ce735339f", "review_notes": "@note/translations"},
+    {"id": "NEA18-001", "zh": "海沧", "status": "approved", "source": "@source/8582649bbecd8513", "record_sha256": "61523798ddd1601325ea5940137943c4d351dfdc3c09092b3eb4895ad943d03b", "review_notes": "@note/translations"},
+    {"id": "NEA18-002", "zh": "思明", "status": "approved", "source": "@source/6a65d98067b35488", "record_sha256": "b65e76a9ddff6b937f3a8fd1e419424357ec5ece2546aac0b2a79dd68d39389e", "review_notes": "@note/translations"},
+    {"id": "NEA18-003", "zh": "马坪", "status": "approved", "source": "@source/8dbfbadb3ca02980", "record_sha256": "75383349af96fb54cedd764c027e2d199d839709fc78495955c410900c8aa370", "review_notes": "@note/translations"},
+    {"id": "NEA18-004", "zh": "隆教", "status": "approved", "source": "@source/f6b8f9d7e1beae9d", "record_sha256": "a8acb1d3869e7189da2623a54f6997ea78ef9e8b65971a1785be88cdf068f727", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA18-000", "x": 29.0, "y": 64.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-001", "x": 184.5, "y": 33.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-002", "x": 221.0, "y": 64.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-003", "x": 96.0, "y": 222.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA18-004", "x": 205.0, "y": 219.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"owner_region": "FTS-Fujian-Taiwan-South-z10-848-440", "feature_id": "FTS10-000", "kind": "city", "original": "Huli", "original_bbox": [255, 1, 282, 19], "source_url": "@source/023eab3374f269f2", "id": "NEA18-SH-000", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

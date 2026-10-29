@@ -1,0 +1,53 @@
+{
+  "id": "PH9-NorthLuzon-z9-428-231",
+  "z": 9,
+  "x": 428,
+  "y": 231,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/428/231.png",
+    "9/429/231.png",
+    "9/430/231.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "PH11-006", "kind": "city", "original": "Tumauini", "original_bbox": [291, 5, 344, 21], "source_url": "@source/19eb6f07521e5650"},
+    {"id": "PH11-007", "kind": "city", "original": "Tinglayan", "original_bbox": [49, 8, 105, 28], "source_url": "@source/63189c36b9668388"},
+    {"id": "PH11-008", "kind": "city", "original": "Paracelis", "original_bbox": [145, 41, 195, 57], "source_url": "@source/63189c36b9668388"},
+    {"id": "PH11-009", "kind": "city", "original": "Ilagan", "original_bbox": [327, 52, 366, 74], "source_url": "@source/19eb6f07521e5650"},
+    {"id": "PH11-010", "kind": "city", "original": "Palanan", "original_bbox": [521, 86, 566, 102], "source_url": "@source/269febb42449b9c3"},
+    {"id": "PH11-011", "kind": "city", "original": "San Mariano", "original_bbox": [369, 106, 415, 141], "source_url": "@source/19eb6f07521e5650"},
+    {"id": "PH11-012", "kind": "city", "original": "Alfonso Lista", "original_bbox": [178, 128, 222, 163], "source_url": "@source/63189c36b9668388"},
+    {"id": "PH11-013", "kind": "city", "original": "Cauayan", "original_bbox": [279, 133, 332, 155], "source_url": "@source/19eb6f07521e5650"},
+    {"id": "PH11-014", "kind": "city", "original": "Banaue", "original_bbox": [24, 143, 67, 159], "source_url": "@source/63189c36b9668388"},
+    {"id": "PH11-015", "kind": "city", "original": "Santiago", "original_bbox": [194, 225, 250, 248], "source_url": "@source/63189c36b9668388"}
+  ],
+  "translations": [
+    {"id": "PH11-006", "zh": "图毛伊尼", "status": "approved", "source": "@source/19eb6f07521e5650", "record_sha256": "276cfc43945275114125395cea93192d385f04636779e891b8aecb33c9f13872", "review_notes": "@note/translations"},
+    {"id": "PH11-007", "zh": "廷拉延", "status": "approved", "source": "@source/63189c36b9668388", "record_sha256": "821ed0fb632e716fa320acebc10ee01e1dc8a342b3f7bc4786a2ee40e9e12395", "review_notes": "@note/translations"},
+    {"id": "PH11-008", "zh": "帕拉塞利斯", "status": "approved", "source": "@source/63189c36b9668388", "record_sha256": "80b462968504121e15149fde69625049c132282b19603873b73b00d6963e0fd4", "review_notes": "@note/translations"},
+    {"id": "PH11-009", "zh": "伊拉甘", "status": "approved", "source": "@source/19eb6f07521e5650", "record_sha256": "8cb67d9a30556345554094223a53b4a9a1f14a8fce1efb0cb71b42f04996f334", "review_notes": "@note/translations"},
+    {"id": "PH11-010", "zh": "帕拉南", "status": "approved", "source": "@source/269febb42449b9c3", "record_sha256": "8d9f2c9fa30856ba177b565a909d8e2866e1cb3cab8be3c1f999aba00a6eb082", "review_notes": "@note/translations"},
+    {"id": "PH11-011", "zh": "圣马里亚诺", "status": "approved", "source": "@source/19eb6f07521e5650", "record_sha256": "6cae38bc7eba3fac3fdb7058b7f8dbe89cfdd5a105c97eed1a8bf51eb3eddbf1", "review_notes": "@note/translations"},
+    {"id": "PH11-012", "zh": "阿方索利斯塔", "status": "approved", "source": "@source/63189c36b9668388", "record_sha256": "412f8ef1552058a3dc9e0335659792197cd0ca0a2f4ee3bf36ae1273534c946a", "review_notes": "@note/translations"},
+    {"id": "PH11-013", "zh": "卡瓦延", "status": "approved", "source": "@source/19eb6f07521e5650", "record_sha256": "1a5b0446b0fcacb779bb9273a3a599dd94eb7f1ff76e71eb8a53845b4a01a4e4", "review_notes": "@note/translations"},
+    {"id": "PH11-014", "zh": "巴纳韦", "status": "approved", "source": "@source/63189c36b9668388", "record_sha256": "7b7cde8bb4914f19b20aae54b9cc6ebdac4a279014e4748687ce380eadc83a1a", "review_notes": "@note/translations"},
+    {"id": "PH11-015", "zh": "圣地亚哥", "status": "approved", "source": "@source/63189c36b9668388", "record_sha256": "0c91563720d1123ae93033020a2b30426ab84a0f85fa8d813e0bbaca0151fd15", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PH11-006", "x": 317.5, "y": 13.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-007", "x": 77.0, "y": 18.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-008", "x": 170.0, "y": 49.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-009", "x": 346.5, "y": 63.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-010", "x": 543.5, "y": 94.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-011", "x": 392.0, "y": 123.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-012", "x": 200.0, "y": 145.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-013", "x": 305.5, "y": 144.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-014", "x": 45.5, "y": 151.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-015", "x": 222.0, "y": 236.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

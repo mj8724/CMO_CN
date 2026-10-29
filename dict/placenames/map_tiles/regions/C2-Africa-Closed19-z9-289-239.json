@@ -1,0 +1,48 @@
+{
+  "z": 9,
+  "x": 289,
+  "y": 239,
+  "width_tiles": 4,
+  "height_tiles": 1,
+  "id": "C2-Africa-Closed19-z9-289-239",
+  "original_tiles": [
+    "9/289/239.png",
+    "9/290/239.png",
+    "9/291/239.png",
+    "9/292/239.png"
+  ],
+  "context_tiles": [
+    "9/290/240.png",
+    "9/291/240.png"
+  ],
+  "features": [
+    {"id": "C2-G003", "kind": "city", "original": "saliea", "original_bbox": [893, 64, 927, 80], "source_url": "@source/eaeb3df1a910ca97"},
+    {"id": "C2-G004", "kind": "city", "original": "Abu `Ajurah", "original_bbox": [502, 95, 568, 115], "source_url": "@source/7f31072c364bfc6b"},
+    {"id": "C2-G005", "kind": "city", "original": "Ed Al Fursan", "original_bbox": [386, 115, 424, 149], "source_url": "@source/7f31072c364bfc6b"},
+    {"id": "C2-G007", "kind": "city", "original": "Rahad al Bardi", "original_bbox": [226, 193, 269, 227], "source_url": "@source/d92e955b77109644"},
+    {"id": "C2-G008", "kind": "city", "original": "Manasis", "original_bbox": [796, 231, 842, 247], "source_url": "@source/eaeb3df1a910ca97"},
+    {"id": "C2-G009", "kind": "city", "original": "Abu Sellala", "original_bbox": [518, 233, 581, 250], "source_url": "@source/a2c9287a04f5831f"}
+  ],
+  "translations": [
+    {"id": "C2-G003", "zh": "萨利埃阿", "status": "approved", "source": "@source/eaeb3df1a910ca97", "record_sha256": "09e0fe4a6a1c002b870d43833eb6e0329641420867160b7e1449719d25559afc", "review_notes": "@note/translations"},
+    {"id": "C2-G004", "zh": "阿布·阿朱拉", "status": "approved", "source": "@source/7f31072c364bfc6b", "record_sha256": "bc7012e6c36f4d1914f6aee8dfe6aeadade407c35bda6d3b657c7f0c60df2aa7", "review_notes": "@note/translations"},
+    {"id": "C2-G005", "zh": "埃德·阿尔·富尔桑", "status": "approved", "source": "@source/7f31072c364bfc6b", "record_sha256": "1e598cec05fc85dd1546d97bf67664255b1b3caf9650106e1be94ca04adac4d2", "review_notes": "@note/translations"},
+    {"id": "C2-G007", "zh": "拉哈德·阿尔·巴尔迪", "status": "approved", "source": "@source/d92e955b77109644", "record_sha256": "372c4cf2c4b82c14973ab6e623c195afb2b6f7a5ae526e0d2446da4acd22c80c", "review_notes": "@note/translations"},
+    {"id": "C2-G008", "zh": "马纳西斯", "status": "approved", "source": "@source/eaeb3df1a910ca97", "record_sha256": "82aee7afbf0752935578ed2084ac820e8c03fef30caca9e9ed2052a6ba0549c3", "review_notes": "@note/translations"},
+    {"id": "C2-G009", "zh": "阿布·塞拉拉", "status": "approved", "source": "@source/a2c9287a04f5831f", "record_sha256": "7baf278499762b1d332f3d8b49e696c3fc5c79cbb82b48cb0d5a76742674bb5f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C2-G003", "x": 910.0, "y": 72.0, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G004", "x": 535.0, "y": 105.0, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G005", "x": 405.0, "y": 132.0, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G007", "x": 247.5, "y": 210.0, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G008", "x": 819.0, "y": 239.0, "font_size": 12, "font_style": "regular"},
+    {"id": "C2-G009", "x": 549.5, "y": 241.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "C2-SH-G010", "owner_region": "CentralAfricaNorth-z9-288-240", "feature_id": "CAFN9-002-Katayla", "original": "Katayla", "kind": "city", "original_bbox": [414, 242, 456, 261], "source_url": "@source/7f31072c364bfc6b", "review_notes": "@note/shared_sources"},
+    {"id": "C2-SH-G011", "owner_region": "CentralAfricaNorth-z9-288-240", "feature_id": "CAFN9-005-Zurq", "original": "Zurq", "kind": "city", "original_bbox": [689, 254, 717, 273], "source_url": "@source/a2c9287a04f5831f", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

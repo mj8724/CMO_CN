@@ -1,0 +1,39 @@
+{
+  "id": "AM-CaribbeanCoast-z9-156-238",
+  "z": 9,
+  "x": 156,
+  "y": 238,
+  "width_tiles": 6,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/156/238.png",
+    "9/157/238.png",
+    "9/158/238.png",
+    "9/159/238.png",
+    "9/160/238.png",
+    "9/161/238.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "AM35-1-Oranjestad", "kind": "city", "original": "Oranjestad", "original_bbox": [70, 1, 132, 23], "source_url": "@source/f58a9cdfe6647c80"},
+    {"id": "AM35-2-Tiraya", "kind": "city", "original": "Tiraya", "original_bbox": [148, 180, 186, 201], "source_url": "@source/f58a9cdfe6647c80"},
+    {"id": "AM35-3-Willemstad", "kind": "city", "original": "Willemstad", "original_bbox": [469, 158, 535, 176], "source_url": "@source/d645558abb75e04f"},
+    {"id": "AM35-4-Kralendijk", "kind": "city", "original": "Kralendijk", "original_bbox": [713, 143, 772, 164], "source_url": "@source/9b66ef41dc066fd5"},
+    {"id": "AM35-5-Gran-Roque", "kind": "city", "original": "Gran Roque", "original_bbox": [1291, 216, 1357, 238], "source_url": "@source/302738d5386310a6"}
+  ],
+  "translations": [
+    {"id": "AM35-1-Oranjestad", "zh": "奥拉涅斯塔德", "source": "@source/b8e81db4bf730e6b", "status": "approved", "record_sha256": "052e61829d79e1e1d9bd067bb5e95a34ea81180184616dbbd4682c89f32890e5", "review_notes": "@note/translations"},
+    {"id": "AM35-2-Tiraya", "zh": "提拉亚", "source": "@source/f58a9cdfe6647c80", "status": "approved", "record_sha256": "1f234c96402ae721b2b3cb9d351588078fdeba6aff5f893a124a535fdc7f153d", "review_notes": "@note/translations"},
+    {"id": "AM35-3-Willemstad", "zh": "威廉斯塔德", "source": "@source/b85472f5fc761a4b", "status": "approved", "record_sha256": "6dd562055e6d42cb9f752634f10ca5c84ffab4e92a06f1016332ccd0ea63dce8", "review_notes": "@note/translations"},
+    {"id": "AM35-4-Kralendijk", "zh": "克拉伦代克", "source": "@source/4ea2075260bd4f80", "status": "approved", "record_sha256": "2a4168a4ea63bf08b003701961532fb4c9f9b367a4b48ea83ebd55b068dc0894", "review_notes": "@note/translations"},
+    {"id": "AM35-5-Gran-Roque", "zh": "格兰罗克", "source": "@source/302738d5386310a6", "status": "approved", "record_sha256": "7dd8b7f7c60b946af8f78fa1d644c944009ae19ecc88f4aea23bf1310e22d1d7", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AM35-1-Oranjestad", "x": 101.0, "y": 12, "font_size": 12, "font_style": "regular"},
+    {"id": "AM35-2-Tiraya", "x": 167.0, "y": 190.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AM35-3-Willemstad", "x": 502.0, "y": 167.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AM35-4-Kralendijk", "x": 742.5, "y": 153.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AM35-5-Gran-Roque", "x": 1324.0, "y": 227.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": []
+}

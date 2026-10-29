@@ -1,0 +1,31 @@
+{
+  "z": 5,
+  "x": 0,
+  "y": 16,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "id": "AP-Tokelau-z5-0-16",
+  "original_tiles": [
+    "5/0/16.png",
+    "5/1/16.png"
+  ],
+  "context_tiles": [
+    "5/0/15.png",
+    "5/1/15.png",
+    "5/2/15.png",
+    "5/2/16.png",
+    "5/0/17.png",
+    "5/1/17.png",
+    "5/2/17.png"
+  ],
+  "features": [
+    {"id": "AP-LR-000", "kind": "admin0", "original": "Tokelau", "original_bbox": [125, 195, 246, 217], "source_url": "@source/8fefc628d8e2dea2"}
+  ],
+  "translations": [
+    {"id": "AP-LR-000", "zh": "托克劳", "status": "approved", "source": "@source/8fefc628d8e2dea2", "record_sha256": "ae475e712b4be68f21ce882b09d7b8cacab7d8bc1670617a7f11e45816e612a8", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-LR-000", "x": 185.5, "y": 206.0, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": []
+}

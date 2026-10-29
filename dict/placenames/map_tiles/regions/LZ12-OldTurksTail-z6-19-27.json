@@ -1,0 +1,24 @@
+{
+  "id": "LZ12-OldTurksTail-z6-19-27",
+  "z": 6,
+  "x": 19,
+  "y": 27,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/19/27.png"
+  ],
+  "context_tiles": [
+    "6/18/27.png",
+    "6/18/28.png",
+    "6/19/28.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "LZ12-OldTurksTail-z6-19-27-AM6-163-Turks-and-Caicos-Islands", "owner_region": "AM-WestCentral-z6-9-22", "feature_id": "AM6-163-Turks-and-Caicos-Islands", "kind": "admin0", "original": "Turks and Caicos Islands", "source_url": "@source/5956d2718175572f", "original_bbox": [-16, 225, 159, 302], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

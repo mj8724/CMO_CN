@@ -1,0 +1,46 @@
+{
+  "id": "OSNA11-N2-z6-20-22",
+  "z": 6,
+  "x": 20,
+  "y": 22,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/20/22.png",
+    "6/20/23.png"
+  ],
+  "context_tiles": [
+    "6/19/22.png",
+    "6/20/21.png"
+  ],
+  "features": [
+    {"id": "NA11-08-Gaspe", "kind": "city", "original": "Gaspé", "original_bbox": [133, 2, 171, 23], "source_url": "@source/8f06336f1265dcda"},
+    {"id": "NA11-10-Halifax", "kind": "city", "original": "Halifax", "original_bbox": [174, 280, 217, 299], "source_url": "@source/315ebc58f563e956"},
+    {"id": "NA11-12-Yarmouth", "kind": "city", "original": "Yarmouth", "original_bbox": [59, 331, 113, 351], "source_url": "@source/315ebc58f563e956"},
+    {"id": "NA11-18-PRINCE-EDWARD-ISLAND", "kind": "admin1", "original": "PRINCE EDWARD ISLAND", "original_bbox": [169, 151, 228, 195], "source_url": "@source/8f06336f1265dcda"},
+    {"id": "NA11-19-NOVA-SCOTIA", "kind": "admin1", "original": "NOVA SCOTIA", "original_bbox": [171, 233, 224, 262], "source_url": "@source/8f06336f1265dcda"}
+  ],
+  "translations": [
+    {"id": "NA11-08-Gaspe", "zh": "加斯佩", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "3be76ef36b6e395ba90eddbe77f45713b99e19c75cff465d8f053c0f7a831e10", "review_notes": "@note/translations"},
+    {"id": "NA11-10-Halifax", "zh": "哈利法克斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "2fca7efd84b469d0a31e3085440018764a221da864616b044b142a3974339aa6", "review_notes": "@note/translations"},
+    {"id": "NA11-12-Yarmouth", "zh": "雅茅斯", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "3e277e76e299274287f50ef47ed1b777efb47294372f2ab30a73493e8888ced1", "review_notes": "@note/translations"},
+    {"id": "NA11-18-PRINCE-EDWARD-ISLAND", "zh": "爱德华王子岛", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "c9362e6742783a2b84b44b24057bd3bfc4759d362a3ef1368f2624e2791dbadf", "review_notes": "@note/translations"},
+    {"id": "NA11-19-NOVA-SCOTIA", "zh": "新斯科舍", "status": "approved", "source": "@source/c99418598e3d79b5", "record_sha256": "7cc8a7121f3e02b27c2ed0fa3f6aa4c780b78cb41d92827c588ac5f3cb7c1570", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NA11-08-Gaspe", "x": 167.0, "y": 14.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-10-Halifax", "x": 220.0, "y": 292.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-12-Yarmouth", "x": 93.0, "y": 343.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-18-PRINCE-EDWARD-ISLAND", "x": 198.5, "y": 173.0, "font_size": 14, "font_style": "bold"},
+    {"id": "NA11-19-NOVA-SCOTIA", "x": 197.5, "y": 247.5, "font_size": 14, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "NA11-08-Gaspe-circle", "feature_id": "NA11-08-Gaspe", "kind": "circle", "x": 137.5, "y": 6.5, "size": 9, "outline_width": 1, "original_bbox": [133, 2, 142, 11], "source_url": "@source/8f06336f1265dcda", "review_notes": "@note/symbols"},
+    {"id": "NA11-10-Halifax-circle", "feature_id": "NA11-10-Halifax", "kind": "circle", "x": 178.5, "y": 284.5, "size": 9, "outline_width": 1, "original_bbox": [174, 280, 183, 289], "source_url": "@source/315ebc58f563e956", "review_notes": "@note/symbols"},
+    {"id": "NA11-12-Yarmouth-circle", "feature_id": "NA11-12-Yarmouth", "kind": "circle", "x": 63.5, "y": 335.5, "size": 9, "outline_width": 1, "original_bbox": [59, 331, 68, 340], "source_url": "@source/315ebc58f563e956", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "OSNA11-N2-z6-20-22-old-AP-CA6-007", "owner_region": "AP-Canada-QuebecColumn-z6-19-20", "feature_id": "AP-CA6-007", "kind": "admin1", "original": "NEW BRUNSWICK", "original_bbox": [-7, 148, 76, 176], "source_url": "@source/8f06336f1265dcda", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

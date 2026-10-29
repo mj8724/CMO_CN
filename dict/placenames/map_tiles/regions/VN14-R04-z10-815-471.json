@@ -1,0 +1,29 @@
+{
+  "id": "VN14-R04-z10-815-471",
+  "z": 10,
+  "x": 815,
+  "y": 471,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    {"path": "10/815/471.png", "z": 10},
+    {"path": "10/815/472.png", "z": 10},
+    {"path": "10/815/473.png", "z": 10}
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "VN14-N11", "kind": "region", "original": "Veun Sai", "original_bbox": [185, 211, 236, 228], "source_url": "@source/8c0f6a27b58efac2"},
+    {"id": "VN14-N12", "kind": "region", "original": "Koun Mom", "original_bbox": [151, 505, 212, 521], "source_url": "@source/ca1c18c00e9a6c08"}
+  ],
+  "translations": [
+    {"id": "VN14-N11", "zh": "韦恩赛", "status": "approved", "source": "@source/8c0f6a27b58efac2", "record_sha256": "8566dca7aa06c7dfca9e232fbafed9cd783bda3b12f1862ec70f930670010a38", "review_notes": "@note/translations"},
+    {"id": "VN14-N12", "zh": "贡蒙", "status": "approved", "source": "@source/ca1c18c00e9a6c08", "record_sha256": "ee147fff9e657d30d4d78d546f6f5a868a620be354ae634c781edc8e9c0781a1", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "VN14-N11", "x": 210.5, "y": 219.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N12", "x": 181.5, "y": 513.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

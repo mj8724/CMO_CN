@@ -1,0 +1,53 @@
+{
+  "id": "EU-MedNorth-East-z7-66-45",
+  "z": 7,
+  "x": 66,
+  "y": 45,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/66/45.png",
+    "7/66/46.png"
+  ],
+  "context_tiles": [
+    "7/65/46.png",
+    "7/67/46.png"
+  ],
+  "features": [
+    {"id": "MEDN7-005-Bern", "kind": "city", "original": "Bern", "original_bbox": [162, 8, 193, 27], "source_url": "@source/445de7001dc8927b"},
+    {"id": "MEDN7-006-Lausanne", "kind": "city", "original": "Lausanne", "original_bbox": [87, 64, 141, 84], "source_url": "@source/445de7001dc8927b"},
+    {"id": "MEDN7-007-Geneva", "kind": "city", "original": "Geneva", "original_bbox": [43, 107, 98, 130], "source_url": "@source/445de7001dc8927b"},
+    {"id": "MEDN7-008-Grenoble", "kind": "city", "original": "Grenoble", "original_bbox": [6, 239, 57, 258], "source_url": "@source/445de7001dc8927b"},
+    {"id": "MEDN7-009-Turin", "kind": "city", "original": "Turin", "original_bbox": [183, 254, 217, 274], "source_url": "@source/445de7001dc8927b"},
+    {"id": "MEDN7-010-Nice", "kind": "city", "original": "Nice", "original_bbox": [145, 428, 175, 448], "source_url": "@source/9ccead0d2c26715d"}
+  ],
+  "translations": [
+    {"id": "MEDN7-005-Bern", "zh": "伯尔尼", "status": "approved", "source": "@source/f6708530d10a8b47", "record_sha256": "1908b407afd54b1f87d07a22f2228278be72096b1536db2938a3c8ae7a9d3b2a", "review_notes": "@note/translations"},
+    {"id": "MEDN7-006-Lausanne", "zh": "洛桑", "status": "approved", "source": "@source/555e9d32f32384eb", "record_sha256": "9ee7e557269bbc8cf16abed4fc93f0f91a579de55276da5f6fcfcc547a694174", "review_notes": "@note/translations"},
+    {"id": "MEDN7-007-Geneva", "zh": "日内瓦", "status": "approved", "source": "@source/35bcd5a0df37bb85", "record_sha256": "15f622dc08560ff64ec6bd85684e66b09dcb74f400f594e5e57511943abadb74", "review_notes": "@note/translations"},
+    {"id": "MEDN7-008-Grenoble", "zh": "格勒诺布尔", "status": "approved", "source": "@source/2c75319d6a51aa93", "record_sha256": "05c7c1d5b3773e6874d0924db35a2df4d46a7e66148a419382b8d0867c4131f0", "review_notes": "@note/translations"},
+    {"id": "MEDN7-009-Turin", "zh": "都灵", "status": "approved", "source": "@source/d2ac9fba5962fb75", "record_sha256": "7202aa8106db6f76cb583099b6220663adc3253c152ed44565eb88218835eb1c", "review_notes": "@note/translations"},
+    {"id": "MEDN7-010-Nice", "zh": "尼斯", "status": "approved", "source": "@source/5f8bf9262d2ee4c0", "record_sha256": "709d4cef2bcfb2e38ec027f6070e08aad9a9649f209482627bb0fb93afe50a73", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "MEDN7-005-Bern", "x": 193.0, "y": 20.0, "font_size": 12, "font_style": "regular"},
+    {"id": "MEDN7-006-Lausanne", "x": 112.0, "y": 76.0, "font_size": 12, "font_style": "regular"},
+    {"id": "MEDN7-007-Geneva", "x": 74.0, "y": 119.0, "font_size": 12, "font_style": "regular"},
+    {"id": "MEDN7-008-Grenoble", "x": 49.0, "y": 251.0, "font_size": 12, "font_style": "regular"},
+    {"id": "MEDN7-009-Turin", "x": 208.0, "y": 266.0, "font_size": 12, "font_style": "regular"},
+    {"id": "MEDN7-010-Nice", "x": 170.0, "y": 440.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "MEDN7-005-Bern-point", "feature_id": "MEDN7-005-Bern", "kind": "circle", "x": 166.5, "y": 12.5, "size": 9, "outline_width": 1, "original_bbox": [162, 8, 171, 17], "source_url": "@source/445de7001dc8927b", "review_notes": "@note/symbols"},
+    {"id": "MEDN7-006-Lausanne-point", "feature_id": "MEDN7-006-Lausanne", "kind": "circle", "x": 91.5, "y": 68.5, "size": 9, "outline_width": 1, "original_bbox": [87, 64, 96, 73], "source_url": "@source/445de7001dc8927b", "review_notes": "@note/symbols"},
+    {"id": "MEDN7-007-Geneva-point", "feature_id": "MEDN7-007-Geneva", "kind": "circle", "x": 47.5, "y": 111.5, "size": 9, "outline_width": 1, "original_bbox": [43, 107, 52, 116], "source_url": "@source/445de7001dc8927b", "review_notes": "@note/symbols"},
+    {"id": "MEDN7-008-Grenoble-point", "feature_id": "MEDN7-008-Grenoble", "kind": "circle", "x": 10.5, "y": 243.5, "size": 9, "outline_width": 1, "original_bbox": [6, 239, 15, 248], "source_url": "@source/445de7001dc8927b", "review_notes": "@note/symbols"},
+    {"id": "MEDN7-009-Turin-point", "feature_id": "MEDN7-009-Turin", "kind": "circle", "x": 187.5, "y": 258.5, "size": 9, "outline_width": 1, "original_bbox": [183, 254, 192, 263], "source_url": "@source/445de7001dc8927b", "review_notes": "@note/symbols"},
+    {"id": "MEDN7-010-Nice-point", "feature_id": "MEDN7-010-Nice", "kind": "circle", "x": 149.5, "y": 432.5, "size": 9, "outline_width": 1, "original_bbox": [145, 428, 154, 437], "source_url": "@source/9ccead0d2c26715d", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "MEDN7-SH-Marseille", "owner_region": "EU-MedNorth-West-z7-64-46", "feature_id": "MEDN7-004-Marseille", "kind": "city", "original": "Marseille", "original_bbox": [-28, 479, 24, 498], "source_url": "@source/ef49d9db123de3a5", "review_notes": "@note/shared_sources"},
+    {"id": "MEDN7-SH-Ligurian-Sea", "owner_region": "MED-z7-67-46-6-2", "feature_id": "MED7-001-Ligurian-Sea", "kind": "marine", "original": "Ligurian Sea", "original_bbox": [241, 446, 373, 469], "source_url": "@source/d3f1ff651e4d7bb3", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

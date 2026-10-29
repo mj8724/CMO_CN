@@ -1,0 +1,43 @@
+{
+  "id": "REC-NorthLuzon-z9-427-231",
+  "z": 9,
+  "x": 427,
+  "y": 231,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/427/231.png"
+  ],
+  "context_tiles": [
+    "9/426/231.png",
+    "9/426/232.png",
+    "9/427/230.png",
+    "9/427/232.png"
+  ],
+  "features": [
+    {"id": "REC-015", "kind": "city", "original": "Luba", "original_bbox": [154, -11, 182, 5], "source_url": "@source/1b1b04494c5e1c0f"},
+    {"id": "REC-016", "kind": "city", "original": "Candon", "original_bbox": [54, 34, 102, 53], "source_url": "@source/d2321312d35ccc1c"},
+    {"id": "REC-017", "kind": "city", "original": "Santa Cruz", "original_bbox": [50, 77, 110, 93], "source_url": "@source/d2321312d35ccc1c"},
+    {"id": "REC-018", "kind": "city", "original": "Mankayan", "original_bbox": [176, 164, 233, 183], "source_url": "@source/d2321312d35ccc1c"},
+    {"id": "REC-019", "kind": "city", "original": "Balaoan", "original_bbox": [39, 178, 84, 194], "source_url": "@source/d2321312d35ccc1c"}
+  ],
+  "translations": [
+    {"id": "REC-015", "zh": "卢巴", "status": "approved", "source": "@source/3be1c35af2245749", "record_sha256": "0fb0fbb5bdb01c49bf02fdaa61891437963af8842ef8a35a790e0ceaf9b127e9", "review_notes": "@note/translations"},
+    {"id": "REC-016", "zh": "坎东", "status": "approved", "source": "@source/45db19f5e5d1809a", "record_sha256": "6c492786e0a48874a5293463229536b7ea9360db39595d892af4502ce67bb2d8", "review_notes": "@note/translations"},
+    {"id": "REC-017", "zh": "圣克鲁斯", "status": "approved", "source": "@source/d1166558d452f6a4", "record_sha256": "11c3532d3e1d188949c746e4880699819f22ef40f566f97894c29807d42c51bc", "review_notes": "@note/translations"},
+    {"id": "REC-018", "zh": "曼卡延", "status": "approved", "source": "@source/ebfe8aaeb1fd042e", "record_sha256": "43ecb5879ba91dd08a7277c7ddfc873259358616e48ef35f54502487dd9169f4", "review_notes": "@note/translations"},
+    {"id": "REC-019", "zh": "巴劳安", "status": "approved", "source": "@source/245a23bc18d73e7c", "record_sha256": "034a6b5427f4a07a90b8af037cc469244bb981fff1e182b335168951327a4804", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "REC-015", "x": 168.0, "y": 10.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-016", "x": 78.0, "y": 43.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-017", "x": 80.0, "y": 85.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-018", "x": 205.0, "y": 173.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-019", "x": 61.0, "y": 186.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "REC11-SH-02-PH9-000", "owner_region": "PHILIPPINES-z9-424-232", "feature_id": "PH9-000", "kind": "city", "original": "San Fernando", "original_bbox": [1, 244, 60, 283], "source_url": "@source/085730bc2b8c3516", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

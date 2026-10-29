@@ -1,0 +1,48 @@
+{
+  "id": "AF-WCentral8-z6-33-32",
+  "z": 6,
+  "x": 33,
+  "y": 32,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/33/32.png",
+    "6/34/32.png"
+  ],
+  "context_tiles": [
+    "6/33/31.png",
+    "6/34/31.png",
+    "6/35/31.png",
+    "6/35/32.png"
+  ],
+  "features": [
+    {"id": "AF28-067", "kind": "admin0", "original": "REPUBLIC OF THE CONGO", "original_bbox": [383, -9, 530, 67], "source_url": "@source/0543bb9cbe522b59"},
+    {"id": "AF28-080", "kind": "city", "original": "Port-Gentil", "original_bbox": [139, 28, 177, 63], "source_url": "@source/3f97c5422c9c5373"},
+    {"id": "AF28-081", "kind": "admin0", "original": "GABON", "original_bbox": [224, 25, 328, 49], "source_url": "@source/0543bb9cbe522b59"},
+    {"id": "AF28-082", "kind": "city", "original": "Pointe-Noire", "original_bbox": [279, 214, 322, 249], "source_url": "@source/0543bb9cbe522b59"},
+    {"id": "AF28-083", "kind": "city", "original": "Kinshasa", "original_bbox": [436, 192, 496, 214], "source_url": "@source/0543bb9cbe522b59"}
+  ],
+  "translations": [
+    {"id": "AF28-067", "zh": "刚果共和国", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "8c9cafaaf1047cb53c1b3fab8e98e9a39412a8f7f1302adbac28c7fb0bd1e64d", "review_notes": "@note/translations"},
+    {"id": "AF28-080", "zh": "让蒂尔港", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "0b73de151be69c1bdbc777aba0039062a1a7bfefb7bc841b0ef444de1f94ddd0", "review_notes": "@note/translations"},
+    {"id": "AF28-081", "zh": "加蓬", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "2178741653c1dcb9c97fee3eb973aea1ec1a6ee3a5106ea65cf5c2db07105d2d", "review_notes": "@note/translations"},
+    {"id": "AF28-082", "zh": "黑角", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "3db33e3d8d99155f1c487beb5ab9449e881d2ec6a33f4cdc6be7e64eb5d628c5", "review_notes": "@note/translations"},
+    {"id": "AF28-083", "zh": "金沙萨", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "c4429f79c52cb87917eb9825803787c66d73ef837efa4500899a2e03ad174b51", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AF28-067", "x": 456.0, "y": 29.0, "font_size": 18, "font_style": "bold"},
+    {"id": "AF28-081", "x": 276.0, "y": 37.0, "font_size": 18, "font_style": "bold"},
+    {"id": "AF28-080", "x": 176.0, "y": 40.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-083", "x": 467.0, "y": 204.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-082", "x": 304.0, "y": 226.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AF28-080-circle", "feature_id": "AF28-080", "kind": "circle", "x": 143.5, "y": 32.5, "size": 9, "outline_width": 1, "original_bbox": [139, 28, 148, 37], "source_url": "@source/3f97c5422c9c5373", "review_notes": "@note/symbols"},
+    {"id": "AF28-082-circle", "feature_id": "AF28-082", "kind": "circle", "x": 283.5, "y": 218.5, "size": 9, "outline_width": 1, "original_bbox": [279, 214, 288, 223], "source_url": "@source/0543bb9cbe522b59", "review_notes": "@note/symbols"},
+    {"id": "AF28-083-circle", "feature_id": "AF28-083", "kind": "circle", "x": 440.5, "y": 196.5, "size": 9, "outline_width": 1, "original_bbox": [436, 192, 445, 201], "source_url": "@source/0543bb9cbe522b59", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "AFC26-SH-10-AF28-058", "owner_region": "AF-WCentral8-z6-31-29", "feature_id": "AF28-058", "kind": "city", "original": "São Tomé", "original_bbox": [46, -20, 82, 15], "source_url": "@source/560c10329f9a7168", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

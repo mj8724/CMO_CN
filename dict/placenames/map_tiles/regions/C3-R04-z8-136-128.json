@@ -1,0 +1,36 @@
+{
+  "id": "C3-R04-z8-136-128",
+  "z": 8,
+  "x": 136,
+  "y": 128,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/136/128.png",
+    "8/137/128.png",
+    "8/138/128.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C3-N017", "kind": "city", "original": "Okondja", "original_bbox": [438, 115, 493, 139], "source_url": "@source/b0c83ce1230c13b0"},
+    {"id": "C3-N019", "kind": "city", "original": "Ewo", "original_bbox": [645, 155, 675, 174], "source_url": "@source/d18588877ca94f55"},
+    {"id": "C3-N021", "kind": "city", "original": "Koulamoutou", "original_bbox": [217, 202, 298, 223], "source_url": "@source/d7585c5118591ef2"}
+  ],
+  "translations": [
+    {"id": "C3-N017", "zh": "奥孔贾", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "be873284bfa291ffe18d242683ef0b1edcfbb9e02d11a4d9b6f3f76bf647ef2d", "review_notes": "@note/translations"},
+    {"id": "C3-N019", "zh": "埃沃", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b57450aa0b90a43da84250203aecd968a44ba3560f74aa5eed2c8957a3a39d50", "review_notes": "@note/translations"},
+    {"id": "C3-N021", "zh": "库拉穆图", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "eab4d113fc5f67535eaa7335e5a407a8518947c09936a76310a143a2ad28fc20", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C3-N017", "x": 473.5, "y": 135.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N019", "x": 674.5, "y": 175.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N021", "x": 258.5, "y": 222.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "C3-C017", "feature_id": "C3-N017", "kind": "circle", "original_bbox": [438, 115, 447, 124], "x": 442.5, "y": 119.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C019", "feature_id": "C3-N019", "kind": "circle", "original_bbox": [645, 155, 654, 164], "x": 649.5, "y": 159.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C021", "feature_id": "C3-N021", "kind": "circle", "original_bbox": [217, 202, 226, 211], "x": 221.5, "y": 206.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

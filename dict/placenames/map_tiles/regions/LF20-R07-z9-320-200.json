@@ -1,0 +1,33 @@
+{
+  "id": "LF20-R07-z9-320-200",
+  "z": 9,
+  "x": 320,
+  "y": 200,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/320/200.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "LF20-N034", "kind": "city", "original": "Rabat", "original_bbox": [185, 168, 220, 184], "source_url": "@source/77f377c74d3a2471"},
+    {"id": "LF20-N035", "kind": "city", "original": "Sardasht", "original_bbox": [150, 191, 200, 208], "source_url": "@source/77f377c74d3a2471"},
+    {"id": "LF20-N036", "kind": "city", "original": "Qaladiza", "original_bbox": [21, 180, 70, 199], "source_url": "@source/77f377c74d3a2471"},
+    {"id": "LF20-N038", "kind": "city", "original": "Hero", "original_bbox": [89, 206, 117, 222], "source_url": "@source/77f377c74d3a2471"}
+  ],
+  "translations": [
+    {"id": "LF20-N034", "zh": "拉巴特", "status": "approved", "source": "@source/77f377c74d3a2471", "record_sha256": "38db39466d34ea1504414c3338a7267a1a8949fbc15a034fae01e523d2f5bcb7", "review_notes": "@note/translations"},
+    {"id": "LF20-N035", "zh": "萨尔达什特", "status": "approved", "source": "@source/77f377c74d3a2471", "record_sha256": "60559cac2690aeeff80c177bd5e841d9d43d55fae2626f8a7a51e6941d1489c7", "review_notes": "@note/translations"},
+    {"id": "LF20-N036", "zh": "卡拉迪扎", "status": "approved", "source": "@source/77f377c74d3a2471", "record_sha256": "61b3546a54f9e278e12254602b5d6c69023675edab854f193616dbf90fbd71ff", "review_notes": "@note/translations"},
+    {"id": "LF20-N038", "zh": "赫罗", "status": "approved", "source": "@source/77f377c74d3a2471", "record_sha256": "384fcf9d6900488eb57f43e19439f71581594b667ee4f48214b632e5e18a4562", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LF20-N034", "x": 202.5, "y": 176.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N035", "x": 175.0, "y": 199.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N036", "x": 45.5, "y": 189.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N038", "x": 103.0, "y": 214.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,25 @@
+{
+  "id": "SEA8-GulfThailand-z8-200-120",
+  "z": 8,
+  "x": 200,
+  "y": 120,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "8/200/120.png",
+    "8/200/121.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "SEA8-GulfThailand-z8-200-120-03-name", "kind": "marine", "original": "Gulf of Thailand", "original_bbox": [61, 241, 159, 285], "source_url": "@source/889dc0ea6fbaf816"}
+  ],
+  "translations": [
+    {"id": "SEA8-GulfThailand-z8-200-120-03-name", "zh": "泰国湾", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "dfe0e5bec44684602af7baeb3b09f730de7d8f5f68210e3e583a813e633fc01f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SEA8-GulfThailand-z8-200-120-03-name", "x": 110, "y": 263, "font_size": 14, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

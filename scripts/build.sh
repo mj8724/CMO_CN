@@ -13,6 +13,25 @@ mkdir -p "$OUT"
 W() { cygpath -w "$1"; }
 PY="${PY:-C:/Users/admin/Desktop/ga-admin-portable-windows-amd64-v0.2.29/python/python.exe}"
 
+# Rebuilding map pixels is explicit. The ordinary prebuilt-map build is unchanged.
+if [[ -n "${CMO_MAP_MANIFEST:-}" ]]; then
+  : "${CMO_MAP_ORIGINAL_ROOT:?map source root is required}"
+  : "${CMO_MAP_FONT:?regular map font is required}"
+  : "${CMO_MAP_BOLD_FONT:?bold map font is required}"
+  : "${CMO_MAP_SOURCE_PACKAGE:?fresh source package directory is required}"
+  MAP_ARGS=(--manifest "$CMO_MAP_MANIFEST" --original-root "$CMO_MAP_ORIGINAL_ROOT"
+    --font "$CMO_MAP_FONT" --bold-font "$CMO_MAP_BOLD_FONT"
+    --output "$ROOT/assets/placenames/ChineseMapTiles.dat" --report "$OUT/map_tile_build_report.json"
+    --source-package-dir "$CMO_MAP_SOURCE_PACKAGE")
+  if [[ -n "${CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS:-}${CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS_SHA256:-}" ]]; then
+    : "${CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS:?external approval file is required}"
+    : "${CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS_SHA256:?external approval SHA256 is required}"
+    MAP_ARGS+=(--owner-native-source-approvals "$CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS"
+      --owner-native-source-approvals-sha256 "$CMO_MAP_OWNER_NATIVE_SOURCE_APPROVALS_SHA256")
+  fi
+  "$PY" "$ROOT/scripts/build_map_tile_pack.py" "${MAP_ARGS[@]}"
+fi
+
 echo "==> building CMOLocalizer.dll"
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$(W "$ROOT/scripts/build.ps1")"
 if [[ "${1:-}" == "--engine-only" ]]; then exit 0; fi

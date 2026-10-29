@@ -1,0 +1,52 @@
+{
+  "id": "AP-Benxi-Bridge-z8-215-95",
+  "z": 8,
+  "x": 215,
+  "y": 95,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "8/215/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 2535},
+    {"path": "8/216/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 1288}
+  ],
+  "context_tiles": [
+    {"path": "8/214/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 477},
+    {"path": "8/215/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 84},
+    {"path": "8/216/94.png", "origin": "readonly Steam original cache", "source_alpha_count": 640},
+    {"path": "8/214/95.png", "origin": "readonly Steam original cache", "source_alpha_count": 1355},
+    {"path": "8/214/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 301},
+    {"path": "8/215/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 420},
+    {"path": "8/216/96.png", "origin": "readonly Steam original cache", "source_alpha_count": 739},
+    {"path": "8/217/94.png", "origin": "bounded circle-closure context", "source_alpha_count": 2466},
+    {"path": "8/217/95.png", "origin": "bounded circle-closure context", "source_alpha_count": 2499},
+    {"path": "8/217/96.png", "origin": "bounded circle-closure context", "source_alpha_count": 0}
+  ],
+  "features": [
+    {"id": "AP-NE8-021", "kind": "city", "original": "Shenyang", "original_bbox": [193, 52, 264, 80], "source_url": "@source/32b4ea360d9716a8"},
+    {"id": "AP-NE8-024", "kind": "city", "original": "Benxi", "original_bbox": [253, 176, 293, 197], "source_url": "@source/44f7be73518a2958"},
+    {"id": "AP-NE8-025", "kind": "city", "original": "Liaoyang", "original_bbox": [146, 180, 203, 205], "source_url": "@source/36b1b49cac0ab0a7"},
+    {"id": "AP-NE8-028", "kind": "city", "original": "Anshan", "original_bbox": [113, 221, 165, 243], "source_url": "@source/eacccb49c8a69f18"},
+    {"id": "AP-NE8-030", "kind": "city", "original": "Fushun", "original_bbox": [283, 36, 332, 57], "source_url": "@source/a337baa7b6f11c60"}
+  ],
+  "translations": [
+    {"id": "AP-NE8-021", "zh": "沈阳", "status": "approved", "source": "@source/32b4ea360d9716a8", "record_sha256": "1c8fedb3a4ceace610f9771a18852223b9700aa76c6d3d6a4c1b6808e7dc9c64", "review_notes": "@note/translations"},
+    {"id": "AP-NE8-024", "zh": "本溪", "status": "approved", "source": "@source/44f7be73518a2958", "record_sha256": "a050928a80eb0a5e91907d248e8d7cc8d4ee672b96f3ef8106641d40d3086c14", "review_notes": "@note/translations"},
+    {"id": "AP-NE8-025", "zh": "辽阳", "status": "approved", "source": "@source/36b1b49cac0ab0a7", "record_sha256": "cd75c67990661c747f17359be01bc8efbc9e66a109e77be2b2b92ad219619e2e", "review_notes": "@note/translations"},
+    {"id": "AP-NE8-028", "zh": "鞍山", "status": "approved", "source": "@source/eacccb49c8a69f18", "record_sha256": "fcb1c31b73d5eae20f544ee649ddc34d9a18277d5bc9d35608e9be8e1de61fc6", "review_notes": "@note/translations"},
+    {"id": "AP-NE8-030", "zh": "抚顺", "status": "approved", "source": "@source/a337baa7b6f11c60", "record_sha256": "9b3b5ced6204b548161a9d5fdbdbf81b55d0f274ad58bfc5bb601c1cded799b9", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-NE8-021", "x": 215.0, "y": 66.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NE8-024", "x": 275.0, "y": 190.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NE8-025", "x": 168.0, "y": 194.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NE8-028", "x": 135.0, "y": 235.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-NE8-030", "x": 305.0, "y": 50.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-NE8-021-circle", "feature_id": "AP-NE8-021", "kind": "circle", "x": 197.5, "y": 56.5, "size": 7, "outline_width": 1, "original_bbox": [193, 52, 202, 61]},
+    {"id": "AP-NE8-024-circle", "feature_id": "AP-NE8-024", "kind": "circle", "x": 257.5, "y": 180.5, "size": 7, "outline_width": 1, "original_bbox": [253, 176, 262, 185]},
+    {"id": "AP-NE8-025-circle", "feature_id": "AP-NE8-025", "kind": "circle", "x": 150.5, "y": 184.5, "size": 7, "outline_width": 1, "original_bbox": [146, 180, 155, 189]},
+    {"id": "AP-NE8-028-circle", "feature_id": "AP-NE8-028", "kind": "circle", "x": 117.5, "y": 225.5, "size": 7, "outline_width": 1, "original_bbox": [113, 221, 122, 230]},
+    {"id": "AP-NE8-030-circle", "feature_id": "AP-NE8-030", "kind": "circle", "x": 287.5, "y": 40.5, "size": 7, "outline_width": 1, "original_bbox": [283, 36, 292, 45]}
+  ]
+}

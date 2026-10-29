@@ -1,0 +1,85 @@
+{
+  "id": "OS12-A-z6-37-23",
+  "z": 6,
+  "x": 37,
+  "y": 23,
+  "width_tiles": 2,
+  "height_tiles": 3,
+  "original_tiles": [
+    "6/37/23.png",
+    "6/37/24.png",
+    "6/37/25.png",
+    "6/38/23.png",
+    "6/38/24.png",
+    "6/38/25.png"
+  ],
+  "context_tiles": [
+    "6/38/26.png",
+    "6/39/23.png",
+    "6/39/25.png"
+  ],
+  "features": [
+    {"id": "OS12-01-Sevastopol", "kind": "city", "original": "Sevastopol", "original_bbox": [241, 26, 302, 48], "source_url": "@source/47ea3f9c0db57b91"},
+    {"id": "OS12-02-Constant-a", "kind": "city", "original": "Constanţa", "original_bbox": [19, 54, 75, 76], "source_url": "@source/47ea3f9c0db57b91"},
+    {"id": "OS12-03-Samsun", "kind": "city", "original": "Samsun", "original_bbox": [369, 233, 416, 252], "source_url": "@source/2682679db688c3eb"},
+    {"id": "OS12-04-Istanbul", "kind": "city", "original": "Istanbul", "original_bbox": [34, 250, 95, 274], "source_url": "@source/47ea3f9c0db57b91"},
+    {"id": "OS12-05-Bursa", "kind": "city", "original": "Bursa", "original_bbox": [38, 299, 74, 319], "source_url": "@source/9e80a3e583376f61"},
+    {"id": "OS12-06-Ankara", "kind": "city", "original": "Ankara", "original_bbox": [211, 315, 256, 335], "source_url": "@source/9e80a3e583376f61"},
+    {"id": "OS12-07-Konya", "kind": "city", "original": "Konya", "original_bbox": [194, 435, 233, 456], "source_url": "@source/9e80a3e583376f61"},
+    {"id": "OS12-08-Adana", "kind": "city", "original": "Adana", "original_bbox": [323, 485, 362, 505], "source_url": "@source/ae67b092cce94239"},
+    {"id": "OS12-10-Aleppo", "kind": "city", "original": "Aleppo", "original_bbox": [407, 530, 453, 553], "source_url": "@source/20ff616c05b05905"},
+    {"id": "OS12-14-Tel-Aviv", "kind": "city", "original": "Tel Aviv", "original_bbox": [298, 756, 350, 777], "source_url": "@source/20ff616c05b05905"},
+    {"id": "OS12-22-TURKEY", "kind": "admin0", "original": "TURKEY", "original_bbox": [250, 360, 370, 384], "source_url": "@source/9e80a3e583376f61"},
+    {"id": "OS12-23-NORTHERN-CYPRUS", "kind": "admin0", "original": "NORTHERN CYPRUS", "original_bbox": [169, 560, 333, 610], "source_url": "@source/cd6c999e91095e35"},
+    {"id": "OS12-24-SYRIA", "kind": "admin0", "original": "SYRIA", "original_bbox": [452, 606, 543, 630], "source_url": "@source/20ff616c05b05905"},
+    {"id": "OS12-25-LEBANON", "kind": "admin0", "original": "LEBANON", "original_bbox": [281, 648, 422, 672], "source_url": "@source/20ff616c05b05905"}
+  ],
+  "translations": [
+    {"id": "OS12-01-Sevastopol", "zh": "塞瓦斯托波尔", "status": "approved", "source": "@source/011357b7a5cd2ab9", "record_sha256": "17da11050a0100b2e38c661c07381f4f7139e3691a28324d7cd2d84bb17a30d3", "review_notes": "@note/translations"},
+    {"id": "OS12-02-Constant-a", "zh": "康斯坦察", "status": "approved", "source": "@source/d5328342cce0cf7e", "record_sha256": "2d0a384586a51dbc223590c288313f14fc96583c34108fb0ee365740447cacae", "review_notes": "@note/translations"},
+    {"id": "OS12-03-Samsun", "zh": "萨姆松", "status": "approved", "source": "@source/47647c5365187bc3", "record_sha256": "7ef3ca545df7cc368a7091df2697beaf237358c7720659996495f84c8b9578a4", "review_notes": "@note/translations"},
+    {"id": "OS12-04-Istanbul", "zh": "伊斯坦布尔", "status": "approved", "source": "@source/8edb743a12483483", "record_sha256": "2f50d5e37c15b27825e7d52d0316f0d0c4454d96c70fcc56673426698eed02eb", "review_notes": "@note/translations"},
+    {"id": "OS12-05-Bursa", "zh": "布尔萨", "status": "approved", "source": "@source/4a08e01de36c2d71", "record_sha256": "4b02a7eaa707c47c52ea86703fa1042a1a3bc9a3d669c4587fd7e7a9855e24b3", "review_notes": "@note/translations"},
+    {"id": "OS12-06-Ankara", "zh": "安卡拉", "status": "approved", "source": "@source/628abb3478c284e2", "record_sha256": "663d328b464b9d08356c52c7cb5af10ee42924d73c96a259f32a1da9f40be914", "review_notes": "@note/translations"},
+    {"id": "OS12-07-Konya", "zh": "科尼亚", "status": "approved", "source": "@source/80bcfdaae3a7126f", "record_sha256": "18708c39e2698019a036258ec3e69db2d05110612202189c3c66d1fd46485381", "review_notes": "@note/translations"},
+    {"id": "OS12-08-Adana", "zh": "阿达纳", "status": "approved", "source": "@source/7c850e4eb2e4b33a", "record_sha256": "de255586e068e270b0e5925b9bae1a5ec5d59b8eae19573cd246f08c74bbfee4", "review_notes": "@note/translations"},
+    {"id": "OS12-10-Aleppo", "zh": "阿勒颇", "status": "approved", "source": "@source/38b37b2bd08116c3", "record_sha256": "33b74bbb300143dc39fd323367deb1956cd53ab5388660a328f778778207a21e", "review_notes": "@note/translations"},
+    {"id": "OS12-14-Tel-Aviv", "zh": "特拉维夫", "status": "approved", "source": "@source/476ff305d7b6de92", "record_sha256": "32cda45b2b1a48221c5e80109d08a2f3fd138346e2313101f74d948b676f7368", "review_notes": "@note/translations"},
+    {"id": "OS12-22-TURKEY", "zh": "土耳其", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "d19b2a8ec5aa033838961f40f07639c73c6eb186481be48f7e8dc25f5c96c5a2", "review_notes": "@note/translations"},
+    {"id": "OS12-23-NORTHERN-CYPRUS", "zh": "北塞浦路斯土耳其共和国", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "c276782afaac2babc4ff07982d205bb27c64f09265cafc9ea52d577223eeb4f1", "review_notes": "@note/translations"},
+    {"id": "OS12-24-SYRIA", "zh": "叙利亚", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "0e8723811d94e50efeef10e4334393c04b28ea328c50c74daf4a6b45c1cac0a1", "review_notes": "@note/translations"},
+    {"id": "OS12-25-LEBANON", "zh": "黎巴嫩", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "981d884aa640b4ba25274e8268069b22d7d4f8afc2ed39ae9ff1098727b623c5", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OS12-01-Sevastopol", "x": 293.0, "y": 38.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-02-Constant-a", "x": 59.0, "y": 66.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-03-Samsun", "x": 403.0, "y": 245.0, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-04-Istanbul", "x": 80.0, "y": 262.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-05-Bursa", "x": 72.0, "y": 311.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-06-Ankara", "x": 245.0, "y": 327.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-07-Konya", "x": 228.0, "y": 447.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-08-Adana", "x": 357.0, "y": 497.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-10-Aleppo", "x": 441.0, "y": 542.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-14-Tel-Aviv", "x": 338.0, "y": 758.0, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-22-TURKEY", "x": 310.0, "y": 372.0, "font_size": 14, "font_style": "bold"},
+    {"id": "OS12-23-NORTHERN-CYPRUS", "x": 251.0, "y": 585.0, "font_size": 14, "font_style": "bold"},
+    {"id": "OS12-24-SYRIA", "x": 487.0, "y": 618.0, "font_size": 14, "font_style": "bold"},
+    {"id": "OS12-25-LEBANON", "x": 351.5, "y": 660.0, "font_size": 14, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "OS12-01-Sevastopol-circle", "feature_id": "OS12-01-Sevastopol", "kind": "circle", "x": 245.5, "y": 30.5, "size": 9, "outline_width": 1, "original_bbox": [241, 26, 250, 35], "source_url": "@source/47ea3f9c0db57b91", "review_notes": "@note/symbols"},
+    {"id": "OS12-02-Constant-a-circle", "feature_id": "OS12-02-Constant-a", "kind": "circle", "x": 23.5, "y": 58.5, "size": 9, "outline_width": 1, "original_bbox": [19, 54, 28, 63], "source_url": "@source/47ea3f9c0db57b91", "review_notes": "@note/symbols"},
+    {"id": "OS12-03-Samsun-circle", "feature_id": "OS12-03-Samsun", "kind": "circle", "x": 373.5, "y": 237.0, "size": 9, "outline_width": 1, "original_bbox": [369, 233, 378, 241], "source_url": "@source/2682679db688c3eb", "review_notes": "@note/symbols"},
+    {"id": "OS12-04-Istanbul-circle", "feature_id": "OS12-04-Istanbul", "kind": "circle", "x": 38.5, "y": 254.5, "size": 9, "outline_width": 1, "original_bbox": [34, 250, 43, 259], "source_url": "@source/47ea3f9c0db57b91", "review_notes": "@note/symbols"},
+    {"id": "OS12-05-Bursa-circle", "feature_id": "OS12-05-Bursa", "kind": "circle", "x": 42.5, "y": 303.5, "size": 9, "outline_width": 1, "original_bbox": [38, 299, 47, 308], "source_url": "@source/9e80a3e583376f61", "review_notes": "@note/symbols"},
+    {"id": "OS12-06-Ankara-circle", "feature_id": "OS12-06-Ankara", "kind": "circle", "x": 215.5, "y": 319.5, "size": 9, "outline_width": 1, "original_bbox": [211, 315, 220, 324], "source_url": "@source/9e80a3e583376f61", "review_notes": "@note/symbols"},
+    {"id": "OS12-07-Konya-circle", "feature_id": "OS12-07-Konya", "kind": "circle", "x": 198.5, "y": 439.5, "size": 9, "outline_width": 1, "original_bbox": [194, 435, 203, 444], "source_url": "@source/9e80a3e583376f61", "review_notes": "@note/symbols"},
+    {"id": "OS12-08-Adana-circle", "feature_id": "OS12-08-Adana", "kind": "circle", "x": 327.5, "y": 489.5, "size": 9, "outline_width": 1, "original_bbox": [323, 485, 332, 494], "source_url": "@source/ae67b092cce94239", "review_notes": "@note/symbols"},
+    {"id": "OS12-10-Aleppo-circle", "feature_id": "OS12-10-Aleppo", "kind": "circle", "x": 411.5, "y": 534.5, "size": 9, "outline_width": 1, "original_bbox": [407, 530, 416, 539], "source_url": "@source/20ff616c05b05905", "review_notes": "@note/symbols"},
+    {"id": "OS12-14-Tel-Aviv-circle", "feature_id": "OS12-14-Tel-Aviv", "kind": "circle", "x": 302.5, "y": 760.5, "size": 9, "outline_width": 1, "original_bbox": [298, 756, 307, 765], "source_url": "@source/20ff616c05b05905", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "OS12-A-z6-37-23-old-EAB6-Republic-of-Adygea", "owner_region": "EU-Caspian-Bridge-z6-39-22", "feature_id": "EAB6-Republic-of-Adygea", "kind": "admin1", "original": "Republic of Adygea", "original_bbox": [507, 9, 588, 38], "source_url": "@source/c99418598e3d79b5", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

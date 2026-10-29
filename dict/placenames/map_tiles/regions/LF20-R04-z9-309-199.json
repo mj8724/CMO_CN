@@ -1,0 +1,47 @@
+{
+  "id": "LF20-R04-z9-309-199",
+  "z": 9,
+  "x": 309,
+  "y": 199,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/309/199.png",
+    "9/310/199.png"
+  ],
+  "context_tiles": [
+    "9/310/200.png"
+  ],
+  "features": [
+    {"id": "LF20-N005", "kind": "city", "original": "Gaziantep", "original_bbox": [11, 35, 72, 56], "source_url": "@source/0988551d9e9270ae"},
+    {"id": "LF20-N011", "kind": "city", "original": "Birecik", "original_bbox": [241, 51, 281, 67], "source_url": "@source/f5cfedf241505a93"},
+    {"id": "LF20-N012", "kind": "city", "original": "Nizip", "original_bbox": [177, 59, 208, 79], "source_url": "@source/0988551d9e9270ae"},
+    {"id": "LF20-N014", "kind": "city", "original": "Suruç", "original_bbox": [405, 76, 439, 95], "source_url": "@source/f5cfedf241505a93"},
+    {"id": "LF20-N017", "kind": "city", "original": "Kobani", "original_bbox": [376, 116, 416, 132], "source_url": "@source/f5cfedf241505a93"},
+    {"id": "LF20-N021", "kind": "city", "original": "Jarabulus", "original_bbox": [244, 148, 297, 164], "source_url": "@source/f5cfedf241505a93"},
+    {"id": "LF20-N029", "kind": "city", "original": "Elbeyli", "original_bbox": [54, 213, 92, 232], "source_url": "@source/0988551d9e9270ae"}
+  ],
+  "translations": [
+    {"id": "LF20-N005", "zh": "加济安泰普", "status": "approved", "source": "@source/e8c60cbf23e567ea", "record_sha256": "5ffd1637deab0d6ce39dedfa1aa0484131f6bc9279b0e6aba2ed74b34b1bd498", "review_notes": "@note/translations"},
+    {"id": "LF20-N011", "zh": "比雷吉克", "status": "approved", "source": "@source/f5cfedf241505a93", "record_sha256": "d61ab993fee431617f967bf39b56d0695dae18e70c911007d13e4746be88d53a", "review_notes": "@note/translations"},
+    {"id": "LF20-N012", "zh": "尼济普", "status": "approved", "source": "@source/793a411b64d974b7", "record_sha256": "316138a58b2aae2f99d962368f15ebc89b04aefb20db590b8c63d6595c1a2a44", "review_notes": "@note/translations"},
+    {"id": "LF20-N014", "zh": "苏鲁奇", "status": "approved", "source": "@source/55d740288fc0a874", "record_sha256": "7a822920f3abbe258bcd9ae6ae30076884973618269a4e851ef1f7930670bf62", "review_notes": "@note/translations"},
+    {"id": "LF20-N017", "zh": "科巴尼", "status": "approved", "source": "@source/12211b57906c6783", "record_sha256": "408baa9d826b5db82c48b022e623a2135fdd24ff093bcf4d813bc36568f35795", "review_notes": "@note/translations"},
+    {"id": "LF20-N021", "zh": "杰拉布卢斯", "status": "approved", "source": "@source/83aa9d2fbc14b0f6", "record_sha256": "d70006b66261d8ee4098e76b3ec9834871f1c0d5f198f2dfba90ef57d66d2fd4", "review_notes": "@note/translations"},
+    {"id": "LF20-N029", "zh": "埃尔贝伊利", "status": "approved", "source": "@source/0988551d9e9270ae", "record_sha256": "b1a27b43172775b11c4a7a87a04bb4a6388e4c721f3c4094c95fe43f13840cfe", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LF20-N005", "x": 41.5, "y": 45.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N011", "x": 261.0, "y": 59.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N012", "x": 192.5, "y": 69.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N014", "x": 422.0, "y": 85.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N017", "x": 396.0, "y": 124.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N021", "x": 270.5, "y": 156.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N029", "x": 73.0, "y": 222.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "LF20-S002", "owner_region": "LEVANT-z9-304-200", "feature_id": "LEV9-001", "kind": "city", "original": "Sirrin ash Shamaliyah", "source_url": "@source/9931c4081ba9dff6", "original_bbox": [345, 245, 410, 282], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

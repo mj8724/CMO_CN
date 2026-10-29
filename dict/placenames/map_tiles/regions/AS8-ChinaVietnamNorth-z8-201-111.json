@@ -1,0 +1,52 @@
+{
+  "id": "AS8-ChinaVietnamNorth-z8-201-111",
+  "z": 8,
+  "x": 201,
+  "y": 111,
+  "width_tiles": 6,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/201/111.png",
+    "8/202/111.png",
+    "8/203/111.png",
+    "8/204/111.png",
+    "8/205/111.png",
+    "8/206/111.png"
+  ],
+  "context_tiles": [
+    "8/205/112.png"
+  ],
+  "features": [
+    {"id": "AS8-N-CC52", "kind": "city", "original": "Hà Giang", "original_bbox": [419, 78, 477, 102], "source_url": "@source/c69ad4603a844b1f"},
+    {"id": "AS8-N-CC53", "kind": "city", "original": "Nanning", "original_bbox": [1034, 79, 1097, 107], "source_url": "@source/d4db3bee0fe4ba3b"},
+    {"id": "AS8-N-CC56", "kind": "city", "original": "Yulin", "original_bbox": [1364, 111, 1404, 133], "source_url": "@source/914cae6ff150dc03"},
+    {"id": "AS8-N-CC59", "kind": "city", "original": "Lào Cai", "original_bbox": [234, 142, 282, 163], "source_url": "@source/f499bba96809cfe8"},
+    {"id": "AS8-N-CC63", "kind": "city", "original": "Pingxiang", "original_bbox": [743, 221, 805, 246], "source_url": "@source/9b6258d108f4ca10"}
+  ],
+  "translations": [
+    {"id": "AS8-N-CC52", "zh": "河江", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "eda7eaed54f9b4c39d611d99571846a6629dd6bcb58a7ec7eed73817b7f6c6f1", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 2311, "field": "NAME_ZH", "raw_value": "河江", "raw_GEONAMESID": 1581349}},
+    {"id": "AS8-N-CC53", "zh": "南宁", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "48632cb1c9c93561481667708e2e23d76114b804a978c7ba21cbbe9d428020fd", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 7149, "field": "NAME_ZH", "raw_value": "南宁", "raw_GEONAMESID": 1799869}},
+    {"id": "AS8-N-CC56", "zh": "玉林", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "46027f8cacec09f6413e39932f356ca830efd3ed6b50ff878cc67d1ab5ea32fe", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 6464, "field": "NAME_ZH", "raw_value": "玉林", "raw_GEONAMESID": 1785781}},
+    {"id": "AS8-N-CC59", "zh": "老街", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "928ba9bd1f7eafa82f6426a8ed9f1bae0dabbc2e0c9c607fe709dda6e81e7cc9", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 2285, "field": "NAME_ZH", "raw_value": "老街", "raw_GEONAMESID": 1576303}},
+    {"id": "AS8-N-CC63", "zh": "凭祥", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "9ec104fdcc58460a183cfdfcdcd863d9c6a12809a5f4b076d8e5a137fbe508bf", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 3399, "field": "NAME_ZH", "raw_value": "凭祥", "raw_GEONAMESID": 1798655}}
+  ],
+  "layouts": [
+    {"id": "AS8-N-CC52", "x": 447.0, "y": 90.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AS8-N-CC53", "x": 1062.0, "y": 91.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AS8-N-CC56", "x": 1392.0, "y": 123.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AS8-N-CC59", "x": 262.0, "y": 154.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AS8-N-CC63", "x": 771.0, "y": 233.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AS8-N-CC52-circle", "kind": "circle", "x": 423.5, "y": 82.5, "size": 9, "outline_width": 1, "original_bbox": [419, 78, 428, 87], "source_url": "@source/c69ad4603a844b1f", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC52"},
+    {"id": "AS8-N-CC53-circle", "kind": "circle", "x": 1038.5, "y": 83.5, "size": 9, "outline_width": 1, "original_bbox": [1034, 79, 1043, 88], "source_url": "@source/d4db3bee0fe4ba3b", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC53"},
+    {"id": "AS8-N-CC56-circle", "kind": "circle", "x": 1368.5, "y": 115.5, "size": 9, "outline_width": 1, "original_bbox": [1364, 111, 1373, 120], "source_url": "@source/914cae6ff150dc03", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC56"},
+    {"id": "AS8-N-CC59-circle", "kind": "circle", "x": 238.5, "y": 146.5, "size": 9, "outline_width": 1, "original_bbox": [234, 142, 243, 151], "source_url": "@source/f499bba96809cfe8", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC59"},
+    {"id": "AS8-N-CC63-circle", "kind": "circle", "x": 747.5, "y": 225.5, "size": 9, "outline_width": 1, "original_bbox": [743, 221, 752, 230], "source_url": "@source/9b6258d108f4ca10", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC63"},
+    {"id": "AS8-SH-CC65-circle", "kind": "circle", "x": 1085.5, "y": 251.5, "size": 9, "outline_width": 1, "original_bbox": [1081, 247, 1090, 256], "source_url": "@source/d4db3bee0fe4ba3b", "review_notes": "@note/symbols", "shared_source_id": "AS8-SH-CC65"}
+  ],
+  "shared_sources": [
+    {"id": "AS8-SH-CC65", "owner_region": "AP-Indochina-z8-200-112", "feature_id": "AP-I8-000", "kind": "city", "original": "Qinzhou", "source_url": "@source/8c0b16c66534f7f0", "original_bbox": [1081, 247, 1136, 271], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

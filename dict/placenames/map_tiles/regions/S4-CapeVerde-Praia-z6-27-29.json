@@ -1,0 +1,31 @@
+{
+  "id": "S4-CapeVerde-Praia-z6-27-29",
+  "z": 6,
+  "x": 27,
+  "y": 29,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/27/29.png"
+  ],
+  "context_tiles": [
+    "6/27/28.png"
+  ],
+  "features": [
+    {"id": "S4-002", "kind": "admin0", "original": "CAPE VERDE", "original_bbox": [138, 1, 236, 51], "source_url": "@source/8f0ad82d2618daaa"},
+    {"id": "S4-003", "kind": "city", "original": "Praia", "original_bbox": [205, 77, 239, 96], "source_url": "@source/8f0ad82d2618daaa"}
+  ],
+  "translations": [
+    {"id": "S4-002", "zh": "佛得角", "status": "approved", "source": "@source/ea9990d40022f156", "record_sha256": "439f11857fb90f3f1d4f3d2eddadae9d0746add2540e70c44651b55fb14c168d", "review_notes": "Different SOURCE/CJK qualified: DIRECT_RAW_GN_AND_NE_CHINESE_COUNTRY_PROJECT_USE. Two complete uppercase source lines CAPE/VERDE are the Atlantic country label. GN A/PCLI CV has exact Cape Verde alias and 佛得角; NE country row221 has English Cape Verde and Chinese 佛得角. NUL padding is preserved in raw DBF fields and stripped only in comparison/display evidence. Brazil Cabo Verde ADM2 and Mindelo city are counter/context records, not this source entity. Historical dictionary URL retained as wording context only; no new HTTP or fresh official-name proof. SOURCE evidence is the frozen mandatory contract/raw original fields. All Target/model/layout/actual support approval remains pending Root selection and different TARGET reviewer. Root27eed exact finite model. Author /root/remaining_secondary_research actually viewed all four whole targets, five complete original/CJK pairs and two complete native frame boards. All CJK glyph/allalpha/positiveRGBA pristine, no clip/collision, no text move. Both source nominal observed native midpoints unchanged, project circle9/1 actual73; original mixedraw71/72 intersects70 each, adjacent glyph-contact differences explicitly recorded; no pure69/vector or zero source pixel difference claim. Only SELF_PRIVATE_MODEL_ONLY technical acceptance; different TARGET /root/northwest_mexico_source and Root integration remain pending. Independent /root/northwest_mexico_source actual TARGET audit under Root27eed: complete selected Chinese/pristine glyph RGBA and whole shown; inherited SOURCE/CJK grade and identity retained; no supplier vector/official wording claim."},
+    {"id": "S4-003", "zh": "普拉亚", "status": "approved", "source": "@source/c5cc0b67f76dbbde", "record_sha256": "315d804c40b813f8b905a9b3039480abda92290357c8453e439ab800e60ed2fa", "review_notes": "Different SOURCE/CJK qualified: PROJECT_WORDING_INHERITED_EXACT_CANONICAL_DICTIONARY_PRIOR_GOVERNMENT_RESEARCH_NOT_NEW_HTTP. Printed Praia is complete, with its own observed original circle in Cape Verde. GN P/PPLC CV and NE Admin-0 capital/Praia/Cape Verde identify the city context; no GN-to-supplier ID or vector-anchor join. Raw GN/NE Chinese 培亞 is explicitly retained as a documented alternative. Proposed 普拉亚 follows the existing exact same-entity Cities1022 dictionary and its historical MFA research record. This round did not retrieve/read that MFA body and does not claim a fresh official-name proof; it is an explicit project wording candidate for different SOURCE review. Historical dictionary URL retained as wording context only; no new HTTP or fresh official-name proof. SOURCE evidence is the frozen mandatory contract/raw original fields. All Target/model/layout/actual support approval remains pending Root selection and different TARGET reviewer. Root27eed exact finite model. Author /root/remaining_secondary_research actually viewed all four whole targets, five complete original/CJK pairs and two complete native frame boards. All CJK glyph/allalpha/positiveRGBA pristine, no clip/collision, no text move. Both source nominal observed native midpoints unchanged, project circle9/1 actual73; original mixedraw71/72 intersects70 each, adjacent glyph-contact differences explicitly recorded; no pure69/vector or zero source pixel difference claim. Only SELF_PRIVATE_MODEL_ONLY technical acceptance; different TARGET /root/northwest_mexico_source and Root integration remain pending. Independent /root/northwest_mexico_source actual TARGET audit under Root27eed: complete selected Chinese/pristine glyph RGBA and whole shown; inherited SOURCE/CJK grade and identity retained; no supplier vector/official wording claim."}
+  ],
+  "layouts": [
+    {"id": "S4-002", "x": 187, "y": 26, "font_size": 18, "font_style": "bold", "lines": ["佛得角"]},
+    {"id": "S4-003", "x": 229, "y": 96, "font_size": 12, "font_style": "regular", "lines": ["普拉亚"]}
+  ],
+  "symbols": [
+    {"id": "S4-003-N", "feature_id": "S4-003", "kind": "circle", "original_bbox": [205, 77, 214, 86], "x": 209.5, "y": 81.5, "size": 9, "outline_width": 1, "source_url": "@source/8f0ad82d2618daaa"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

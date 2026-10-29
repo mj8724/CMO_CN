@@ -1,0 +1,31 @@
+{
+  "id": "NE12-Tver-z7-76-39",
+  "z": 7,
+  "x": 76,
+  "y": 39,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/76/39.png"
+  ],
+  "context_tiles": [
+    "7/78/39.png",
+    "7/79/39.png",
+    "7/80/39.png",
+    "7/81/39.png"
+  ],
+  "features": [
+    {"id": "NE12-N-PH010", "kind": "city", "original": "Tver", "original_bbox": [193, 74, 224, 93], "source_url": "@source/a2ffccd582c57f0c"}
+  ],
+  "translations": [
+    {"id": "NE12-N-PH010", "zh": "特维尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "40d92805d7df31905de149a5786b3db23a4decb8214b62631172082d440c6d0b", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NE12-N-PH010", "x": 225.0, "y": 83.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NE12-C-PH010", "feature_id": "NE12-N-PH010", "kind": "circle", "original_bbox": [193, 74, 202, 83], "x": 197.5, "y": 78.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

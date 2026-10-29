@@ -1,0 +1,26 @@
+{
+  "id": "FAS27-Rafai-z10-580-497",
+  "z": 10,
+  "x": 580,
+  "y": 497,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "FAS27-Rafa", "kind": "city", "original": "Rafaï", "original_bbox": [4, 207, 35, 224], "source_url": "@source/19c1b93ac454b844"}
+  ],
+  "translations": [
+    {"id": "FAS27-Rafa", "zh": "拉法伊", "status": "approved", "source": "@source/42af5eebf8117593", "record_sha256": "ee401f4aedd3b3238191bb6ac04f5dd5dca361f162ff247d0486b0d9db614d63", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Rafa", "x": 19.5, "y": 215.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "10/580/497.png"
+  ],
+  "context_tiles": [
+    "10/579/497.png"
+  ]
+}

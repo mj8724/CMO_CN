@@ -1,0 +1,34 @@
+{
+  "id": "TR-IR-KhoyVan-z7-79-49",
+  "z": 7,
+  "x": 79,
+  "y": 49,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/79/49.png"
+  ],
+  "context_tiles": [
+    "7/80/49.png"
+  ],
+  "features": [
+    {"id": "IG7-010-Khoy", "kind": "city", "original": "Khoy", "original_bbox": [247, 27, 281, 49], "source_url": "@source/1625fd1906af245c"},
+    {"id": "KV7-001-Van", "kind": "city", "original": "Van", "original_bbox": [105, 33, 133, 52], "source_url": "@source/1625fd1906af245c"}
+  ],
+  "translations": [
+    {"id": "IG7-010-Khoy", "zh": "霍伊", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "5fb02168ed459d4d9d0a53e437374ec1de78aec0ad9e3ea465559e119b173741", "review_notes": "@note/translations"},
+    {"id": "KV7-001-Van", "zh": "凡城", "status": "approved", "source": "@source/5658dfca954575c5", "record_sha256": "1ca5ce37d4103315776fc9e61e85542624ed1f783e0f41dbccba176100091773", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "IG7-010-Khoy", "x": 231.0, "y": 38.0, "font_size": 12, "font_style": "regular"},
+    {"id": "KV7-001-Van", "x": 130.0, "y": 48.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "IG7-010-Khoy-point", "feature_id": "IG7-010-Khoy", "kind": "circle", "x": 251.5, "y": 31.5, "size": 7, "outline_width": 1, "original_bbox": [247, 27, 256, 36]},
+    {"id": "KV7-001-Van-point", "feature_id": "KV7-001-Van", "kind": "circle", "x": 109.5, "y": 37.5, "size": 7, "outline_width": 1, "original_bbox": [105, 33, 114, 42]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [
+    {"feature_id": "IG7-010-Khoy", "name": "霍伊", "lat": 38.55030059814453, "lon": 44.95209884643555, "level": 1, "source": "@source/590a1830f45b29c0", "review_notes": "@note/legacy_suppressions"}
+  ]
+}

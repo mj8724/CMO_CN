@@ -1,0 +1,24 @@
+{
+  "id": "AP-Kara-z4-11-2",
+  "z": 4,
+  "x": 11,
+  "y": 2,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "4/11/2.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "AP-Kara-z4-11-2-name", "kind": "marine", "original": "Kara Sea", "original_bbox": [92, 111, 157, 125], "source_url": "@source/902e4be947fea3ff"}
+  ],
+  "translations": [
+    {"id": "AP-Kara-z4-11-2-name", "zh": "喀拉海", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "6b8a45cc11abce9a5e1bee40915b34b6ccbd1bc4b25de6c0830f6b5da130803d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-Kara-z4-11-2-name", "x": 124.5, "y": 118.0, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,76 @@
+{
+  "id": "CA15-R02-Jezqazgan-z7-88-44",
+  "z": 7,
+  "x": 88,
+  "y": 44,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/88/44.png"
+  ],
+  "context_tiles": [
+    "7/100/43.png",
+    "7/100/44.png",
+    "7/101/43.png",
+    "7/101/44.png",
+    "7/102/43.png",
+    "7/102/44.png",
+    "7/103/43.png",
+    "7/103/44.png",
+    "7/87/41.png",
+    "7/87/42.png",
+    "7/87/43.png",
+    "7/87/44.png",
+    "7/87/45.png",
+    "7/87/46.png",
+    "7/87/47.png",
+    "7/87/48.png",
+    "7/88/41.png",
+    "7/88/42.png",
+    "7/88/43.png",
+    "7/88/45.png",
+    "7/88/46.png",
+    "7/88/47.png",
+    "7/88/48.png",
+    "7/89/47.png",
+    "7/89/48.png",
+    "7/90/47.png",
+    "7/90/48.png",
+    "7/91/47.png",
+    "7/91/48.png",
+    "7/92/47.png",
+    "7/92/48.png",
+    "7/93/47.png",
+    "7/93/48.png",
+    "7/94/47.png",
+    "7/94/48.png",
+    "7/95/47.png",
+    "7/95/48.png",
+    "7/96/47.png",
+    "7/96/48.png",
+    "7/97/46.png",
+    "7/97/47.png",
+    "7/97/48.png",
+    "7/98/43.png",
+    "7/98/44.png",
+    "7/98/46.png",
+    "7/98/47.png",
+    "7/98/48.png",
+    "7/99/43.png",
+    "7/99/44.png"
+  ],
+  "features": [
+    {"id": "CA15-N006", "kind": "city", "original": "Jezqazgan", "original_bbox": [15, 149, 71, 171], "source_url": "@source/61e72c8b81c1c2bd"}
+  ],
+  "translations": [
+    {"id": "CA15-N006", "zh": "杰兹卡兹甘", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "d94e3708b98b09dfa93fff819907459edae4169fb5a18229d6bf25038253511d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CA15-N006", "x": 59.0, "y": 160.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CA15-C006", "kind": "circle", "original_bbox": [15, 149, 24, 158], "x": 19.5, "y": 153.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols", "feature_id": "CA15-N006"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

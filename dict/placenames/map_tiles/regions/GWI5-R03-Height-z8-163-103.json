@@ -1,0 +1,39 @@
+{
+  "id": "GWI5-R03-Height-z8-163-103",
+  "z": 8,
+  "x": 163,
+  "y": 103,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/163/103.png"
+  ],
+  "context_tiles": [
+    "8/162/102.png",
+    "8/162/103.png",
+    "8/163/102.png"
+  ],
+  "features": [
+    {"id": "GWI5-N-05", "kind": "peak", "original": "4070 m", "original_bbox": [3, -4, 54, 21], "source_url": "@source/8c13a7f92a375426", "elevation_only": true, "original_elevation_m": "4070"},
+    {"id": "GWI5-N-06", "kind": "peak", "original": "4019 m", "original_bbox": [93, 51, 144, 77], "source_url": "@source/401f2ce633b3a35c", "elevation_only": true, "original_elevation_m": "4019"},
+    {"id": "GWI5-N-07", "kind": "peak", "original": "4213 m", "original_bbox": [110, 146, 161, 171], "source_url": "@source/401f2ce633b3a35c", "elevation_only": true, "original_elevation_m": "4213"}
+  ],
+  "translations": [
+    {"id": "GWI5-N-05", "zh": "4070米", "status": "approved", "source": "@source/8c13a7f92a375426", "record_sha256": "d0fcf199f27f018b5125de334f0d7432db38719187c7359d9fd7a1ff56a30fa0", "review_notes": "Combined metadata proposal only; no Root actual model selection/render/Target approval. Qualified Source2db68 full physical/CJK body preserved in complete per12 contract. Original numeric height only, 米 unit translation, no named peak or modern elevation or canonical record. Actual author direct SELF model only; different TARGET pending."},
+    {"id": "GWI5-N-06", "zh": "4019米", "status": "approved", "source": "@source/401f2ce633b3a35c", "record_sha256": "bd7161466f26ce19874f1d2f937bcd96d99c6a852033ab5509097981f16affc3", "review_notes": "Combined metadata proposal only; no Root actual model selection/render/Target approval. Qualified Source2db68 full physical/CJK body preserved in complete per12 contract. Original numeric height only, 米 unit translation, no named peak or modern elevation or canonical record. Actual author direct SELF model only; different TARGET pending."},
+    {"id": "GWI5-N-07", "zh": "4213米", "status": "approved", "source": "@source/401f2ce633b3a35c", "record_sha256": "fc083a4935006d6fbf7f79b515dc7f850cb8d176f62288195510fe30e9d7204d", "review_notes": "Combined metadata proposal only; no Root actual model selection/render/Target approval. Qualified Source2db68 full physical/CJK body preserved in complete per12 contract. Original numeric height only, 米 unit translation, no named peak or modern elevation or canonical record. Actual author direct SELF model only; different TARGET pending."}
+  ],
+  "layouts": [
+    {"id": "GWI5-N-05", "x": 92.0, "y": 16.5, "font_size": 12, "font_style": "regular", "lines": ["4070米"]},
+    {"id": "GWI5-N-06", "x": 182.0, "y": 72.0, "font_size": 12, "font_style": "regular", "lines": ["4019米"]},
+    {"id": "GWI5-N-07", "x": 199.0, "y": 166.5, "font_size": 12, "font_style": "regular", "lines": ["4213米"]}
+  ],
+  "symbols": [
+    {"id": "GWI5-S-05", "feature_id": "GWI5-N-05", "kind": "triangle", "x": 49.0, "y": 16.5, "size": 10, "outline_width": 1, "original_bbox": [44, 12, 54, 21]},
+    {"id": "GWI5-S-06", "feature_id": "GWI5-N-06", "kind": "triangle", "x": 139.0, "y": 72.0, "size": 10, "outline_width": 1, "original_bbox": [134, 67, 144, 77]},
+    {"id": "GWI5-S-07", "feature_id": "GWI5-N-07", "kind": "triangle", "x": 156.0, "y": 166.5, "size": 10, "outline_width": 1, "original_bbox": [151, 162, 161, 171]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "canonical_captions": []
+}

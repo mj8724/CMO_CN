@@ -1,0 +1,21 @@
+{
+  "id": "EX23-OldShared-CapeVerde-z5-13-14",
+  "z": 5,
+  "x": 13,
+  "y": 14,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/13/14.png"
+  ],
+  "context_tiles": [
+    "5/14/14.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"owner_region": "AF-West-z5-14-14", "feature_id": "WA5-Cape-Verde", "kind": "admin0", "original": "Cape Verde", "source_url": "@source/ea9990d40022f156", "original_bbox": [178, 118, 264, 162], "id": "EX23-SHARED-001", "review_notes": "@note/shared_sources"}
+  ]
+}

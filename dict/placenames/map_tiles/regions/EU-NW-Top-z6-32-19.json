@@ -1,0 +1,43 @@
+{
+  "z": 6,
+  "x": 32,
+  "y": 19,
+  "width_tiles": 4,
+  "height_tiles": 1,
+  "id": "EU-NW-Top-z6-32-19",
+  "original_tiles": [
+    "6/32/19.png",
+    "6/33/19.png",
+    "6/34/19.png",
+    "6/35/19.png"
+  ],
+  "context_tiles": [
+    "6/33/20.png",
+    "6/34/20.png"
+  ],
+  "features": [
+    {"id": "NW6-NORTH-SEA", "kind": "marine", "original": "North Sea", "original_bbox": [73, 164, 166, 182], "source_url": "@source/15f53c0a115dccfe"},
+    {"id": "NW6-KRISTIANSAND", "kind": "city", "original": "Kristiansand", "original_bbox": [359, 54, 426, 73], "source_url": "@source/7eb46ca371b4afd5"},
+    {"id": "NW6-KATTEGAT", "kind": "marine", "original": "Kattegat", "original_bbox": [480, 157, 562, 178], "source_url": "@source/7eb46ca371b4afd5"},
+    {"id": "NW6-BALTIC-SEA", "kind": "marine", "original": "Baltic Sea", "original_bbox": [772, 227, 868, 244], "source_url": "@source/980dd51db76231a2"}
+  ],
+  "translations": [
+    {"id": "NW6-NORTH-SEA", "zh": "北海", "source": "@source/15f53c0a115dccfe", "status": "approved", "record_sha256": "353150eeeedd88ade7b0ee4edb089c7542839c1e3233eacd645b2788b629ff9b", "review_notes": "@note/translations"},
+    {"id": "NW6-KRISTIANSAND", "zh": "克里斯蒂安桑", "source": "@source/7eb46ca371b4afd5", "status": "approved", "record_sha256": "94549d332da4663d12a92b58b3902fb5b295e894ce4dd3d78c9ea000be2ec4e7", "review_notes": "@note/translations"},
+    {"id": "NW6-KATTEGAT", "zh": "卡特加特海峡", "source": "@source/7eb46ca371b4afd5", "status": "approved", "record_sha256": "2f8a0a7a7f4041299d12cd1c0cb33ebe9e2729b1737a9d629e1c87f1c1c0c1da", "review_notes": "@note/translations"},
+    {"id": "NW6-BALTIC-SEA", "zh": "波罗的海", "source": "@source/980dd51db76231a2", "status": "approved", "record_sha256": "8f0dd38f646e6b0e24e46bc8c31467d430d53fcb6cb8c933c317581a3ec94745", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NW6-NORTH-SEA", "x": 119.5, "y": 173.0, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-KRISTIANSAND", "x": 414.0, "y": 67.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-KATTEGAT", "x": 521.0, "y": 167.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-BALTIC-SEA", "x": 820.0, "y": 235.5, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NW6-KRISTIANSAND-NATIVE", "kind": "circle", "feature_id": "NW6-KRISTIANSAND", "original_bbox": [359, 54, 368, 63], "x": 363.5, "y": 58.5, "size": 8, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "NW6-SH-00-DENMARK", "owner_region": "EU-NW-Main-z6-33-20", "feature_id": "NW6-DENMARK", "kind": "admin0", "original": "DENMARK", "original_bbox": [398, 249, 545, 273], "source_url": "@source/5a42b1852e7d4608", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

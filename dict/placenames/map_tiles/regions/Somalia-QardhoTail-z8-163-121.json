@@ -1,0 +1,24 @@
+{
+  "id": "Somalia-QardhoTail-z8-163-121",
+  "z": 8,
+  "x": 163,
+  "y": 121,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/163/121.png"
+  ],
+  "context_tiles": [
+    "8/160/121.png",
+    "8/162/121.png",
+    "8/164/120.png",
+    "8/162/122.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "shared-SO8-001", "owner_region": "Somalia-QardhoGaroowe-z8-162-121", "feature_id": "SO8-001", "kind": "city", "original": "Qardho", "source_url": "@source/de57b59c289acedb", "original_bbox": [-28, 49, 21, 72], "review_notes": "@note/shared_sources"}
+  ]
+}

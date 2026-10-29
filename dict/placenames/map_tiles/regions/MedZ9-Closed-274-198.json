@@ -1,0 +1,33 @@
+{
+  "id": "MedZ9-Closed-274-198",
+  "z": 9,
+  "x": 274,
+  "y": 198,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/274/198.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "GZ9-09-20", "kind": "city", "original": "Castelvetrano", "original_bbox": [14, 8, 88, 25], "source_url": "@source/72daf9f176240a74"},
+    {"id": "GZ9-09-21", "kind": "city", "original": "Menfi", "original_bbox": [97, 43, 130, 60], "source_url": "@source/72daf9f176240a74"},
+    {"id": "GZ9-09-22", "kind": "city", "original": "Sciacca", "original_bbox": [134, 89, 176, 106], "source_url": "@source/72daf9f176240a74"},
+    {"id": "GZ9-09-23", "kind": "city", "original": "Ribera", "original_bbox": [204, 91, 241, 107], "source_url": "@source/72daf9f176240a74"}
+  ],
+  "translations": [
+    {"id": "GZ9-09-20", "zh": "卡斯泰尔韦特拉诺", "source": "@source/b512a181bba8ddf4", "status": "approved", "record_sha256": "199364f5c81a9da1a28fee1eab27f73e8568536fe9d805b5faf55aba63f13b0e", "review_notes": "@note/translations"},
+    {"id": "GZ9-09-21", "zh": "门菲", "source": "@source/6ef4b8246e359da2", "status": "approved", "record_sha256": "f490c97118ed334376cac21a5fb2645386aa1555c1e70cda21d2489fc56fa045", "review_notes": "@note/translations"},
+    {"id": "GZ9-09-22", "zh": "夏卡", "source": "@source/2b08249f9c069c99", "status": "approved", "record_sha256": "4f8a3e6f51de6180f334da4b27b82214f0ffe50cbdc4f873d8de3d15badfcfe7", "review_notes": "@note/translations"},
+    {"id": "GZ9-09-23", "zh": "里贝拉", "source": "@source/eabc2c23831c48cb", "status": "approved", "record_sha256": "68f478ec24c8ee534bab8b3559090ae7df2adfd7f99efddd7f74b6c0094d321d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-09-20", "x": 52.0, "y": 16.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-09-21", "x": 113.5, "y": 51.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-09-22", "x": 155.0, "y": 97.5, "font_size": 12, "font_style": "regular"},
+    {"id": "GZ9-09-23", "x": 222.5, "y": 99.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

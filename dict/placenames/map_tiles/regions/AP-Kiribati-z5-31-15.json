@@ -1,0 +1,33 @@
+{
+  "id": "AP-Kiribati-z5-31-15",
+  "z": 5,
+  "x": 31,
+  "y": 15,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/31/15.png"
+  ],
+  "context_tiles": [
+    "5/30/14.png",
+    "5/30/15.png",
+    "5/30/16.png",
+    "5/31/14.png",
+    "5/31/16.png",
+    "5/0/14.png",
+    "5/0/15.png",
+    "5/0/16.png"
+  ],
+  "features": [
+    {"id": "AP-Kiribati-z5-31-15-name", "kind": "admin0", "original": "KIRIBATI", "original_bbox": [54, 234, 171, 256], "source_url": "@source/49f0f6662ff29a1d"}
+  ],
+  "translations": [
+    {"id": "AP-Kiribati-z5-31-15-name", "zh": "基里巴斯", "status": "approved", "source": "@source/ea9990d40022f156", "record_sha256": "b10c914ea03d43ed774a895bdfc3e2b91fa2e51c39f7ee0f59d6a5c7c4a00b02", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-Kiribati-z5-31-15-name", "x": 112.5, "y": 244.0, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

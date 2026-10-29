@@ -1,0 +1,24 @@
+{
+  "id": "NAF10-R03-z9-264-208",
+  "z": 9,
+  "x": 264,
+  "y": 208,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "9/264/208.png", "z": 9}
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NAF10-N008", "kind": "region", "original": "Hassi Messaoud", "original_bbox": [131, 93, 187, 127], "source_url": "@source/3f4b469b87340743"}
+  ],
+  "translations": [
+    {"id": "NAF10-N008", "zh": "哈西迈萨乌德", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8d4e638cd2e2e7fc9975c9887744e1bc4d2380969e057a12a94fb8f2f76ee9f1", "review_notes": "Signed Source78629/qual ae866 and Root37ee fix complete literal, all source bbox/RGBA/Chinese grade/URL roles. Region is neutral renderer category for printed geographical text, not city/country/admin/feature-class identity. Original Natural Earth Chinese lexeme only; supplier entity/class/country/native not selected. Chinese grade=EXACT_ORIGINAL_NE_CHINESE_LEXEME_ONLY_NOT_SUPPLIER_CLASS_OR_OFFICIAL_STANDARD. All supplier entity/country/admin/class/native/vector IDs null; no point or circle inferred. El Borma remains multiple distinct context records without provider/entity/country/class selection. Actual target pending author SELF and independent /root/remaining_catalog TARGET. Author actual SELF_PRIVATE_MODEL_ONLY accepted complete CJK/source5px/whole/join view; independent remaining_catalog TARGET remains pending. Not integration approval."}
+  ],
+  "layouts": [
+    {"id": "NAF10-N008", "x": 159.0, "y": 110.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

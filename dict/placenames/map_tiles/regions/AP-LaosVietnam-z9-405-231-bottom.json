@@ -1,0 +1,49 @@
+{
+  "id": "AP-LaosVietnam-z9-405-231-bottom",
+  "z": 9,
+  "x": 405,
+  "y": 231,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "9/405/231.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 439},
+    {"path": "9/406/231.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 887}
+  ],
+  "context_tiles": [
+    {"path": "9/404/229.png", "z": 9, "origin": "official frozen PNG single attempt", "source_alpha_count": 1102},
+    {"path": "9/405/229.png", "z": 9, "origin": "official frozen PNG single attempt", "source_alpha_count": 2715},
+    {"path": "9/406/229.png", "z": 9, "origin": "official frozen PNG single attempt", "source_alpha_count": 3255},
+    {"path": "9/407/229.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 1578},
+    {"path": "9/408/229.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 0},
+    {"path": "9/404/230.png", "z": 9, "origin": "official frozen PNG single attempt", "source_alpha_count": 3016},
+    {"path": "9/405/230.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 1936},
+    {"path": "9/406/230.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 1798},
+    {"path": "9/407/230.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 3183},
+    {"path": "9/408/230.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 0},
+    {"path": "9/404/231.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 2750},
+    {"path": "9/407/231.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 2078},
+    {"path": "9/408/231.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 3136},
+    {"path": "9/404/232.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 4074},
+    {"path": "9/405/232.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 3534},
+    {"path": "9/406/232.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 2749},
+    {"path": "9/407/232.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 3125},
+    {"path": "9/408/232.png", "z": 9, "origin": "already frozen canonical", "source_alpha_count": 2013}
+  ],
+  "features": [
+    {"id": "AP-LV9-009", "kind": "city", "original": "Vilabouly", "original_bbox": [404, 120, 458, 139], "source_url": "@source/26c163381bce0fd5"},
+    {"id": "AP-LV9-010", "kind": "city", "original": "Xepon", "original_bbox": [506, 224, 544, 243], "source_url": "@source/2f84f1d60c7058ac"},
+    {"id": "AP-LV9-011", "kind": "city", "original": "Seno", "original_bbox": [57, 231, 87, 248], "source_url": "@source/769e32f4230d3513"}
+  ],
+  "translations": [
+    {"id": "AP-LV9-009", "zh": "维拉布利", "status": "approved", "source": "@source/0a6f06fb4f3acbdb", "record_sha256": "b4c9d60282326ce71c184e8f1245a67dd61f5517d9c0f6d1a6ca874135e744c9", "review_notes": "@note/translations"},
+    {"id": "AP-LV9-010", "zh": "色奔", "status": "approved", "source": "@source/0bfe21ce88d1e81e", "record_sha256": "8053bcc4ab9235a9d9944d0c001980d47a81577c39736a36e4c57cc2551c049e", "review_notes": "@note/translations"},
+    {"id": "AP-LV9-011", "zh": "色诺", "status": "approved", "source": "@source/2e955314a57155b1", "record_sha256": "b3a490d8befeac040cd5398bff4ce91b81dcbf0811b845e22e37974601c3aa64", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-LV9-009", "x": 431.0, "y": 129.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-LV9-010", "x": 496.0, "y": 233.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AP-LV9-011", "x": 72.0, "y": 239.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": []
+}

@@ -1,0 +1,21 @@
+{
+  "id": "EX23-OldShared-PhilippineSea-z7-112-56",
+  "z": 7,
+  "x": 112,
+  "y": 56,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/112/56.png"
+  ],
+  "context_tiles": [
+    "7/111/56.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"owner_region": "AP-Southeast-Asia-z7-108-56-top", "feature_id": "AP-SA7-000", "kind": "marine", "original": "Philippine Sea", "source_url": "@source/edfcc617959db4d0", "original_bbox": [-53, 167, 53, 207], "id": "EX23-SHARED-002", "review_notes": "@note/shared_sources"}
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "PH10-LuzonGap-z10-855-467",
+  "z": 10,
+  "x": 855,
+  "y": 467,
+  "width_tiles": 1,
+  "height_tiles": 4,
+  "original_tiles": [
+    "10/855/467.png",
+    "10/855/468.png",
+    "10/855/469.png",
+    "10/855/470.png"
+  ],
+  "context_tiles": [
+    "10/854/467.png",
+    "10/854/468.png",
+    "10/854/469.png",
+    "10/854/470.png",
+    "10/856/467.png",
+    "10/856/468.png",
+    "10/856/469.png",
+    "10/856/470.png"
+  ],
+  "features": [
+    {"id": "PH11-022", "kind": "city", "original": "San Fernando [Pampanga]", "original_bbox": [49, 429, 109, 468], "source_url": "@source/56a261f9edfbc596"},
+    {"id": "PH11-023", "kind": "city", "original": "Baliwag", "original_bbox": [204, 496, 255, 518], "source_url": "@source/56a261f9edfbc596"},
+    {"id": "PH11-024", "kind": "city", "original": "Malolos", "original_bbox": [139, 579, 190, 597], "source_url": "@source/6dbdbee316618d06"},
+    {"id": "PH11-025", "kind": "marine", "original": "Manila Bay", "original_bbox": [103, 777, 170, 791], "source_url": "@source/89b094c92ac0e9a5"}
+  ],
+  "translations": [
+    {"id": "PH11-022", "zh": "圣费尔南多", "status": "approved", "source": "@source/c64731540610a0a8", "record_sha256": "30fadc8abf4982710f81945db69133dfe656c24fc8ae9bf9fce11270a930b732", "review_notes": "@note/translations"},
+    {"id": "PH11-023", "zh": "巴利瓦格", "status": "approved", "source": "@source/56a261f9edfbc596", "record_sha256": "72de4f2751b9c38b6cd5ffbd9924586b78eb58e1987db2f5c3878adee33372f5", "review_notes": "@note/translations"},
+    {"id": "PH11-024", "zh": "马洛洛斯", "status": "approved", "source": "@source/6dbdbee316618d06", "record_sha256": "0865dc06d80b60f87f8a53ef83e9507cd23d307b56cafcbc002b4c335df79315", "review_notes": "@note/translations"},
+    {"id": "PH11-025", "zh": "马尼拉湾", "status": "approved", "source": "@source/89b094c92ac0e9a5", "record_sha256": "3bb67ae401369e39d6288dfd2881e31146d1d19bf3eaa2126d925a56670b82d5", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PH11-022", "x": 79.0, "y": 448.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-023", "x": 226, "y": 507, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-024", "x": 164.5, "y": 588.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-025", "x": 136.5, "y": 784.0, "font_size": 14, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "PH11-SH-001", "owner_region": "AM-Luzon-z10-856-464", "feature_id": "AM23-17-Talavera", "kind": "city", "original": "Talavera", "source_url": "@source/bdac85043bd05bfc", "original_bbox": [219, 21, 264, 38], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-002", "owner_region": "AM-Luzon-z10-856-464", "feature_id": "AM23-20-Cabanatuan", "kind": "city", "original": "Cabanatuan", "source_url": "@source/49ccc67492774070", "original_bbox": [241, 89, 317, 110], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-003", "owner_region": "AM-Luzon-z10-856-464", "feature_id": "AM23-23-Gapan", "kind": "city", "original": "Gapan", "source_url": "@source/49ccc67492774070", "original_bbox": [242, 224, 286, 248], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-004", "owner_region": "AM-Luzon-z10-856-464", "feature_id": "AM23-32-Valenzuela", "kind": "city", "original": "Valenzuela", "source_url": "@source/4d61ae0bbd68e8ca", "original_bbox": [243, 692, 315, 713], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-005", "owner_region": "AM-Luzon-z10-856-464", "feature_id": "AM23-33-Caloocan", "kind": "city", "original": "Caloocan", "source_url": "@source/4d61ae0bbd68e8ca", "original_bbox": [252, 722, 312, 743], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-006", "owner_region": "AM-Luzon-z10-856-464", "feature_id": "AM23-43-Bacoor", "kind": "city", "original": "Bacoor", "source_url": "@source/3243646737ca20ba", "original_bbox": [249, 868, 297, 888], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-007", "owner_region": "AM-Luzon-z10-856-464", "feature_id": "AM23-45-Dasmari-as", "kind": "city", "original": "Dasmariñas", "source_url": "@source/3243646737ca20ba", "original_bbox": [218, 966, 294, 987], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-008", "owner_region": "AM-LuzonWest-z10-853-467", "feature_id": "AM30-3-Tarlac-City", "kind": "city", "original": "Tarlac City", "source_url": "@source/bdac85043bd05bfc", "original_bbox": [-19, 83, 24, 127], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-009", "owner_region": "AM-LuzonWest-z10-853-467", "feature_id": "AM30-7-Mabalacat", "kind": "city", "original": "Mabalacat", "source_url": "@source/05596d66c9c41dc2", "original_bbox": [-42, 290, 25, 311], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-010", "owner_region": "AM-LuzonWest-z10-853-467", "feature_id": "AM30-8-Angeles", "kind": "city", "original": "Angeles", "source_url": "@source/56a261f9edfbc596", "original_bbox": [-26, 355, 28, 380], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-011", "owner_region": "AM-LuzonWest-z10-853-467", "feature_id": "AM30-12-Lubao", "kind": "city", "original": "Lubao", "source_url": "@source/6dbdbee316618d06", "original_bbox": [-8, 508, 30, 526], "review_notes": "@note/shared_sources"},
+    {"id": "PH11-SH-012", "owner_region": "AM-LuzonWest-z10-853-467", "feature_id": "AM30-17-Limay", "kind": "city", "original": "Limay", "source_url": "@source/89b094c92ac0e9a5", "original_bbox": [-10, 792, 24, 811], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

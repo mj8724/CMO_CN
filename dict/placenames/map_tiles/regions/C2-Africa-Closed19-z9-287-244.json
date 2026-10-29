@@ -1,0 +1,24 @@
+{
+  "z": 9,
+  "x": 287,
+  "y": 244,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "C2-Africa-Closed19-z9-287-244",
+  "original_tiles": [
+    "9/287/244.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C2-G018", "kind": "city", "original": "Ouadda", "original_bbox": [196, 115, 241, 132], "source_url": "@source/6d38124d1d1c97ab"}
+  ],
+  "translations": [
+    {"id": "C2-G018", "zh": "瓦达", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "53fab5d3bf326acb56dc0df215d524b2c1ba4b2025397ed2553afd4694f0aad2", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C2-G018", "x": 218.5, "y": 123.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

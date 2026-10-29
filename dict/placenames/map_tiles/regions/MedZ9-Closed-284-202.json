@@ -1,0 +1,24 @@
+{
+  "id": "MedZ9-Closed-284-202",
+  "z": 9,
+  "x": 284,
+  "y": 202,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/284/202.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "GZ9-14-26", "kind": "marine", "original": "Mediterranean Sea", "original_bbox": [26, 179, 202, 226], "source_url": "@source/b843377614fde81d"}
+  ],
+  "translations": [
+    {"id": "GZ9-14-26", "zh": "地中海", "source": "@source/b843377614fde81d", "status": "approved", "record_sha256": "00364f25f843b871a14cf04fc7f51fb4235c17b8db31cd2f7458c95b1da817c6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-14-26", "x": 114.0, "y": 202.5, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

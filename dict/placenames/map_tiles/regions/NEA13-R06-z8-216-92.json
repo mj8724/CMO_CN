@@ -1,0 +1,51 @@
+{
+  "id": "NEA13-R06-z8-216-92",
+  "z": 8,
+  "x": 216,
+  "y": 92,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/216/92.png",
+    "8/217/92.png",
+    "8/218/92.png"
+  ],
+  "features": [
+    {"id": "NEA11-N008", "kind": "city", "original": "Nong'an", "original_bbox": [253, 164, 307, 189], "source_url": "@source/358ca5e1ac9b9faf"},
+    {"id": "NEA11-N009", "kind": "city", "original": "Jiutai", "original_bbox": [376, 235, 413, 256], "source_url": "@source/3fcc5da3ff97b4b3"},
+    {"id": "NEA11-N010", "kind": "city", "original": "Shulan", "original_bbox": [576, 170, 623, 191], "source_url": "@source/60fa7900c3f4a202"},
+    {"id": "NEA13-N016", "kind": "city", "original": "Changling", "original_bbox": [37, 205, 100, 229], "source_url": "@source/358ca5e1ac9b9faf"}
+  ],
+  "translations": [
+    {"id": "NEA11-N008", "zh": "农安", "source_evidence_role": "GN_original_own_Chinese_alias", "status": "approved", "source_identity_contract_sha256": "07a1e9eeede784332f33efd9becdf7688f08897fa4bf48d5e1851a9d8c15abc6", "source": "@source/5fbecb0369ccd811", "record_sha256": "85c54f11286bad0166a3f4fc03cd8855bc86e3fd5252eaec9b0d193940cee174", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."},
+    {"id": "NEA11-N009", "zh": "九台", "source_evidence_role": "GN_original_own_Chinese_alias", "status": "approved", "source_identity_contract_sha256": "712c7a3a766eb8c124b2b3f7c6a2c3a14654524352677cdcb4bfc6fabc835998", "source": "@source/8bc3b26060c09006", "record_sha256": "ec0ff4243fbe48e05b07f7b6a9aab67a5d8e83b5a7733b8640e68197fff0168b", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."},
+    {"id": "NEA11-N010", "zh": "舒兰", "source_evidence_role": "NE_same_country_original_CJK", "status": "approved", "source_identity_contract_sha256": "abb0b43136a04e4bb14665f284666f2b7ece16f1e9f049eff804b6d8f544de9b", "source": "@source/de57b59c289acedb", "record_sha256": "205fc3a7c41e14d98c21f94ceb9150928953e7e6fc67c5aa3eb09efdcc204cea", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."},
+    {"id": "NEA13-N016", "zh": "长岭", "status": "approved", "source_evidence_role": "original_GN_own_Chinese_no_absent_county_suffix", "source_identity_contract_sha256": "85b7ee5d39741eeb9db85a3e5ee28b06de337a7b482e6180be1b51b5672a774b", "source": "@source/88a31c7dab58f7de", "record_sha256": "f21397030102d27313b51f6ed54578843a5605e06dc3088c03ce1deee18d15f8", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."}
+  ],
+  "layouts": [
+    {"id": "NEA11-N008", "x": 275, "y": 180, "font_size": 12, "font_style": "regular", "lines": ["农安"]},
+    {"id": "NEA11-N009", "x": 398, "y": 242, "font_size": 12, "font_style": "regular", "lines": ["九台"]},
+    {"id": "NEA11-N010", "x": 598, "y": 186, "font_size": 12, "font_style": "regular", "lines": ["舒兰"]},
+    {"id": "NEA13-N016", "x": 75, "y": 223, "font_size": 12, "font_style": "regular", "lines": ["长岭"]}
+  ],
+  "symbols": [
+    {"id": "NEA11-N008-circle", "feature_id": "NEA11-N008", "kind": "circle", "size": 9, "outline_width": 1, "x": 257.5, "y": 168.5, "original_bbox": [253, 164, 262, 173]},
+    {"id": "NEA11-N009-circle", "feature_id": "NEA11-N009", "kind": "circle", "size": 9, "outline_width": 1, "x": 380.5, "y": 239.5, "original_bbox": [376, 235, 385, 244]},
+    {"id": "NEA11-N010-circle", "feature_id": "NEA11-N010", "kind": "circle", "size": 9, "outline_width": 1, "x": 580.5, "y": 174.5, "original_bbox": [576, 170, 585, 179]},
+    {"id": "NEA13-N016-circle", "feature_id": "NEA13-N016", "kind": "circle", "size": 9, "outline_width": 1, "x": 41.5, "y": 209.5, "original_bbox": [37, 205, 46, 214]}
+  ],
+  "canonical_captions": [
+    {"id": "NEA11-Cities-863", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 863, "original_Chinese_name": "榆树", "lat_f32_bits": 1110651699, "lon_f32_bits": 1123881233, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 506.6903, "y": 74.3406, "font_size": 12, "font_style": "regular", "lines": ["榆树"]}},
+    {"id": "NEA11-Cities-901", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 901, "original_Chinese_name": "吉舒", "lat_f32_bits": 1110524997, "lon_f32_bits": 1123916186, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 555.2361000000001, "y": 197.8266, "font_size": 12, "font_style": "regular", "lines": ["吉舒"]}},
+    {"id": "NEA11-Cities-930", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 930, "original_Chinese_name": "德惠", "lat_f32_bits": 1110581793, "lon_f32_bits": 1123772006, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 354.98609999999996, "y": 142.599, "font_size": 12, "font_style": "regular", "lines": ["德惠"]}}
+  ],
+  "context_tiles": [
+    "8/216/91.png",
+    "8/217/91.png",
+    "8/217/93.png"
+  ],
+  "shared_sources": [
+    {"id": "NEA13-INTERNAL-SongyuanSouth247", "owner_region": "NEA13-R09-z8-216-91", "feature_id": "NEA13-N015", "kind": "city", "original": "Songyuan", "source_url": "@source/e231109951f78250", "original_bbox": [190, -17, 252, 7], "review_notes": "PROPOSAL ONLY: exact same complete physical Songyuan word as sole upper normal; south247 glyph tail, no second Chinese or circle. Whole source bbox/URL immutable; different actual TARGET required."}
+  ],
+  "legacy_suppressions": []
+}

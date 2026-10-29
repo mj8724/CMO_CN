@@ -1,0 +1,38 @@
+{
+  "id": "AF-WCentral8-z6-35-29",
+  "z": 6,
+  "x": 35,
+  "y": 29,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/35/29.png",
+    "6/36/29.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "AF28-016", "kind": "admin0", "original": "CHAD", "original_bbox": [57, 33, 138, 57], "source_url": "@source/6760237d3e75200f"},
+    {"id": "AF28-017", "kind": "city", "original": "Abéché", "original_bbox": [175, 128, 219, 147], "source_url": "@source/6760237d3e75200f"},
+    {"id": "AF28-018", "kind": "city", "original": "El Geneina", "original_bbox": [249, 146, 296, 181], "source_url": "@source/6760237d3e75200f"},
+    {"id": "AF28-019", "kind": "city", "original": "Nyala", "original_bbox": [360, 211, 396, 233], "source_url": "@source/bc5e3c03648d1b0d"}
+  ],
+  "translations": [
+    {"id": "AF28-016", "zh": "乍得", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "9bf0e8f12d8f1b3a994d33a7c0ebdcd245cf74e2ec33c8d45f1c84164c1c896d", "review_notes": "@note/translations"},
+    {"id": "AF28-017", "zh": "阿贝歇", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "9dce92204f2ec59e7902e9e5c0f1629ac740a2b58acb46a0a281f8afbd03e3d6", "review_notes": "@note/translations"},
+    {"id": "AF28-018", "zh": "朱奈纳", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "5f6a2cabeaaaf5ab54685421458ebaef3951b1e77819b32a911cb0de33360d45", "review_notes": "@note/translations"},
+    {"id": "AF28-019", "zh": "尼亚拉", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "de9232a5003b36377bf200bcb61f547c6af1281189dad68ab7717449e959f205", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AF28-016", "x": 97.0, "y": 45.0, "font_size": 18, "font_style": "bold"},
+    {"id": "AF28-017", "x": 206.0, "y": 140.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-018", "x": 280.0, "y": 158.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-019", "x": 391.0, "y": 223.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AF28-017-circle", "feature_id": "AF28-017", "kind": "circle", "x": 179.5, "y": 132.5, "size": 9, "outline_width": 1, "original_bbox": [175, 128, 184, 137], "source_url": "@source/6760237d3e75200f", "review_notes": "@note/symbols"},
+    {"id": "AF28-018-circle", "feature_id": "AF28-018", "kind": "circle", "x": 253.5, "y": 150.5, "size": 9, "outline_width": 1, "original_bbox": [249, 146, 258, 155], "source_url": "@source/6760237d3e75200f", "review_notes": "@note/symbols"},
+    {"id": "AF28-019-circle", "feature_id": "AF28-019", "kind": "circle", "x": 364.5, "y": 215.5, "size": 9, "outline_width": 1, "original_bbox": [360, 211, 369, 220], "source_url": "@source/bc5e3c03648d1b0d", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

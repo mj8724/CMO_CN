@@ -1,0 +1,36 @@
+{
+  "id": "AP-Kenya-EastAfrica-z8-BerberaBridge",
+  "z": 8,
+  "x": 159,
+  "y": 120,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "8/159/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 12},
+    {"path": "8/160/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 725}
+  ],
+  "context_tiles": [
+    {"path": "8/158/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1311},
+    {"path": "8/159/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/160/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/158/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1424},
+    {"path": "8/158/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 877},
+    {"path": "8/159/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 846},
+    {"path": "8/160/121.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 535},
+    {"path": "8/161/119.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1852},
+    {"path": "8/161/120.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/161/121.png", "z": 8, "origin": "readonly Steam original cache", "source_alpha_count": 0}
+  ],
+  "features": [
+    {"id": "AP-KE8-003", "kind": "city", "original": "Berbera", "original_bbox": [254, 133, 307, 155], "source_url": "@source/5d45cbf2b72c23b9"}
+  ],
+  "translations": [
+    {"id": "AP-KE8-003", "zh": "柏培拉", "status": "approved", "source": "@source/5d45cbf2b72c23b9", "record_sha256": "0cfe1214275e4e2596614d9e304667a719a61cff78443b3d211eb31b782bfca8", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-KE8-003", "x": 282.0, "y": 147.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-KE8-003-circle", "feature_id": "AP-KE8-003", "kind": "circle", "x": 258.5, "y": 137.5, "size": 7, "outline_width": 1, "original_bbox": [254, 133, 263, 142]}
+  ]
+}

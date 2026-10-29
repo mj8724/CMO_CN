@@ -1,0 +1,24 @@
+{
+  "z": 9,
+  "x": 290,
+  "y": 256,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "C2-Africa-Closed19-z9-290-256",
+  "original_tiles": [
+    "9/290/256.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "C2-G033", "kind": "city", "original": "Opala", "original_bbox": [101, 177, 135, 196], "source_url": "@source/cee6283c28180d84"}
+  ],
+  "translations": [
+    {"id": "C2-G033", "zh": "奥帕拉", "status": "approved", "source": "@source/cee6283c28180d84", "record_sha256": "4fd98c80e34883c088d1b1d2737eee515c6d525d0d89a86e05814d41a005d236", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C2-G033", "x": 118.0, "y": 186.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

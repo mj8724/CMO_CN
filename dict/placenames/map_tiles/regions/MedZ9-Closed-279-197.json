@@ -1,0 +1,26 @@
+{
+  "id": "MedZ9-Closed-279-197",
+  "z": 9,
+  "x": 279,
+  "y": 197,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/279/197.png"
+  ],
+  "context_tiles": [
+    "9/279/196.png"
+  ],
+  "features": [
+    {"id": "GZ9-13-25", "kind": "city", "original": "Siderno", "original_bbox": [24, -10, 68, 6], "source_url": "@source/f205c4165a2862c5"}
+  ],
+  "translations": [
+    {"id": "GZ9-13-25", "zh": "锡德尔诺", "source": "@source/0fbddfb58dedcf1f", "status": "approved", "record_sha256": "8ac6dca3e374e28205c238757983172cbb897606426be1ae68747178f6acfb69", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-13-25", "x": 46.0, "y": 10.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

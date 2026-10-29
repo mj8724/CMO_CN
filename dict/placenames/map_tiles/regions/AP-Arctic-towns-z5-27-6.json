@@ -1,0 +1,56 @@
+{
+  "id": "AP-Arctic-towns-z5-27-6",
+  "z": 5,
+  "x": 27,
+  "y": 6,
+  "width_tiles": 5,
+  "height_tiles": 2,
+  "original_tiles": [
+    "5/27/6.png",
+    "5/28/6.png",
+    "5/29/6.png",
+    "5/30/6.png",
+    "5/31/6.png",
+    "5/27/7.png",
+    "5/28/7.png",
+    "5/29/7.png",
+    "5/30/7.png",
+    "5/31/7.png"
+  ],
+  "context_tiles": [
+    "5/26/5.png",
+    "5/27/5.png",
+    "5/28/5.png",
+    "5/29/5.png",
+    "5/30/5.png",
+    "5/31/5.png",
+    "5/26/6.png",
+    "5/26/7.png",
+    "5/26/8.png",
+    "5/27/8.png",
+    "5/28/8.png",
+    "5/29/8.png",
+    "5/30/8.png",
+    "5/31/8.png"
+  ],
+  "features": [
+    {"id": "AP-N5-00", "kind": "city", "original": "Tiksi", "original_bbox": [112, 180, 143, 199], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-N5-01", "kind": "city", "original": "Chokurdakh", "original_bbox": [545, 251, 610, 270], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-N5-02", "kind": "city", "original": "Batagay", "original_bbox": [243, 441, 290, 463], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "AP-N5-00", "zh": "季克西", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "12eabcf45e944ab0142935217cdb193c7511f975121af0749728f565d367e17d", "review_notes": "@note/translations"},
+    {"id": "AP-N5-01", "zh": "乔库尔达赫", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "c3611340eab08bac0e094e075263261589407d7e129b668a869317d5f3ffdb28", "review_notes": "@note/translations"},
+    {"id": "AP-N5-02", "zh": "巴塔盖", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "c4328834568930ea07b14af2fa385b2812962751f11e980ed1263e2b92efc5e6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-N5-00", "x": 138.5, "y": 189.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-N5-01", "x": 582.5, "y": 260.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-N5-02", "x": 269.5, "y": 452.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-N5-00-circle", "feature_id": "AP-N5-00", "x": 116.5, "y": 184.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [112, 180, 121, 189]},
+    {"id": "AP-N5-01-circle", "feature_id": "AP-N5-01", "x": 549.5, "y": 255.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [545, 251, 554, 260]},
+    {"id": "AP-N5-02-circle", "feature_id": "AP-N5-02", "x": 247.5, "y": 445.5, "kind": "circle", "size": 7, "outline_width": 1, "original_bbox": [243, 441, 252, 450]}
+  ]
+}

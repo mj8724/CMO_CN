@@ -1,0 +1,74 @@
+{
+  "id": "EU-Med25-Column35-z6-35-21",
+  "z": 6,
+  "x": 35,
+  "y": 21,
+  "width_tiles": 1,
+  "height_tiles": 4,
+  "original_tiles": [
+    "6/35/21.png",
+    "6/35/22.png",
+    "6/35/23.png",
+    "6/35/24.png"
+  ],
+  "context_tiles": [
+    "6/34/22.png",
+    "6/34/23.png",
+    "6/36/23.png",
+    "6/36/24.png"
+  ],
+  "features": [
+    {"id": "EM6-SRC-00", "kind": "admin0", "original": "POLAND", "original_bbox": [43, 4, 164, 28], "source_url": "@source/64fe7e3b57a21e31"},
+    {"id": "EM6-SRC-01", "kind": "city", "original": "Warsaw", "original_bbox": [184, 14, 235, 35], "source_url": "@source/64fe7e3b57a21e31"},
+    {"id": "EM6-SRC-03", "kind": "city", "original": "Krakow", "original_bbox": [135, 172, 180, 191], "source_url": "@source/64fe7e3b57a21e31"},
+    {"id": "EM6-SRC-05", "kind": "admin0", "original": "SLOVAKIA", "original_bbox": [42, 253, 194, 277], "source_url": "@source/64fe7e3b57a21e31"},
+    {"id": "EM6-SRC-11", "kind": "admin0", "original": "HUNGARY", "original_bbox": [48, 359, 193, 383], "source_url": "@source/932e17f27edf96e7"},
+    {"id": "EM6-SRC-23", "kind": "city", "original": "Belgrade", "original_bbox": [158, 525, 209, 547], "source_url": "@source/a96a329ca4e7c613"},
+    {"id": "EM6-SRC-26", "kind": "admin0", "original": "SERBIA", "original_bbox": [113, 556, 223, 580], "source_url": "@source/a96a329ca4e7c613"},
+    {"id": "EM6-SRC-28", "kind": "city", "original": "Sarajevo", "original_bbox": [64, 586, 114, 609], "source_url": "@source/a96a329ca4e7c613"},
+    {"id": "EM6-SRC-35", "kind": "admin0", "original": "KOSOVO", "original_bbox": [121, 654, 246, 678], "source_url": "@source/a96a329ca4e7c613"},
+    {"id": "EM6-SRC-39", "kind": "admin0", "original": "NORTH MACEDONIA", "original_bbox": [131, 700, 312, 751], "source_url": "@source/a96a329ca4e7c613"},
+    {"id": "EM6-SRC-50", "kind": "admin0", "original": "GREECE", "original_bbox": [176, 870, 290, 894], "source_url": "@source/d4365caab74c6b86"},
+    {"id": "EM6-SRC-55", "kind": "marine", "original": "Ionian Sea", "original_bbox": [41, 942, 140, 959], "source_url": "@source/d4365caab74c6b86"}
+  ],
+  "translations": [
+    {"id": "EM6-SRC-00", "zh": "波兰", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "4277198b1ad79b021a0f3803b608ad834e13c34761c554deb111e091104c3171", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-01", "zh": "华沙", "source": "@source/8a99be2a8b2c2a86", "status": "approved", "record_sha256": "fc78d24d721ebb619be36113e248c1e982eadb19b11c32cdf0d1f3737c2ca57b", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-03", "zh": "克拉科夫", "source": "@source/6c4cc10ca45cab47", "status": "approved", "record_sha256": "07fd873a8e3b5f9158b178d58091a9964e26cd4697f1738c572bad8bd9dc1e20", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-05", "zh": "斯洛伐克", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "daf083bdee402b00cafdb0c915d49d188669344e4534887a2ee995cc1607f2ee", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-11", "zh": "匈牙利", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "e4a94cc7432fb80dd5c4a02c5aa80214178e731bd671fee56b1e5d273d03374d", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-23", "zh": "贝尔格莱德", "source": "@source/c4a884c86ce6677f", "status": "approved", "record_sha256": "4c0336152cc1c99a33d1cecf2e1665506d5104bea54ee16ee567595573d8f444", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-26", "zh": "塞尔维亚", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "36f04b5927870d393649e809eff7cae0ab1b37a9471840eeea54836b727a35f3", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-28", "zh": "萨拉热窝", "source": "@source/5d15311818f4632a", "status": "approved", "record_sha256": "a465d63253c83b9f644bff47fa5e45efff8d7c03e62d282199beeb61d0bc17c4", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-35", "zh": "科索沃", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "d9efc2766417a364627152cbb11f0a447fb546d09ca5f26826cb2a09745f48f7", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-39", "zh": "北马其顿", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "6b15d50de3bd738a0cad927b959c3afde8e9141d63145aba850fe713711136db", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-50", "zh": "希腊", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "02875c890e02cf5763abe20da15089b60e53cc326635fe7babc2cfbc979b8ed1", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-55", "zh": "爱奥尼亚海", "source": "@source/98f1a766b282ca2d", "status": "approved", "record_sha256": "f2bcbcd5a5fe684394bfaa44c3d85d0fe4d3cf0901a52649661f4cf2992a39d0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EM6-SRC-00", "x": 103.5, "y": 16.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-01", "x": 212.0, "y": 27.0, "font_size": 14, "font_style": "regular"},
+    {"id": "EM6-SRC-03", "x": 173.0, "y": 184.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-05", "x": 118.0, "y": 265.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-11", "x": 120.5, "y": 371.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-23", "x": 202.0, "y": 537.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-26", "x": 168.0, "y": 568.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-28", "x": 102.0, "y": 598.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-35", "x": 183.5, "y": 666.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-39", "x": 216.0, "y": 725.5, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-50", "x": 233.0, "y": 882.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-55", "x": 90.5, "y": 950.5, "font_size": 18, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EM6-SRC-01-NATIVE", "feature_id": "EM6-SRC-01", "kind": "circle", "original_bbox": [184, 14, 193, 23], "x": 188.5, "y": 18.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-03-NATIVE", "feature_id": "EM6-SRC-03", "kind": "circle", "original_bbox": [135, 172, 144, 181], "x": 139.5, "y": 176.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-23-NATIVE", "feature_id": "EM6-SRC-23", "kind": "circle", "original_bbox": [158, 525, 167, 534], "x": 162.5, "y": 529.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-28-NATIVE", "feature_id": "EM6-SRC-28", "kind": "circle", "original_bbox": [64, 586, 73, 595], "x": 68.5, "y": 590.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "EM25-SH-01", "owner_region": "EU-Med25-Column34-z6-34-22", "feature_id": "EM6-SRC-07", "kind": "city", "original": "Vienna", "original_bbox": [-27, 301, 21, 322], "source_url": "@source/85e1db9e82a40c39", "review_notes": "@note/shared_sources"},
+    {"id": "EM25-SH-04", "owner_region": "EU-Med25-Column34-z6-34-22", "feature_id": "EM6-SRC-19", "kind": "admin0", "original": "CROATIA", "original_bbox": [-122, 478, 12, 502], "source_url": "@source/85e1db9e82a40c39", "review_notes": "@note/shared_sources"},
+    {"id": "EM25-SH-08", "owner_region": "EU-Med25-Column34-z6-34-22", "feature_id": "EM6-SRC-31", "kind": "marine", "original": "Adriatic Sea", "original_bbox": [-97, 648, 19, 665], "source_url": "@source/6e1eafede2d74ffe", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

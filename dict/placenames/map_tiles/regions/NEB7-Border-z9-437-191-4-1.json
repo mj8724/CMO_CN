@@ -1,0 +1,70 @@
+{
+  "id": "NEB7-Border-z9-437-191-4-1",
+  "z": 9,
+  "x": 437,
+  "y": 191,
+  "width_tiles": 4,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/437/191.png",
+    "9/438/191.png",
+    "9/439/191.png",
+    "9/440/191.png"
+  ],
+  "context_tiles": [
+    "9/429/191.png",
+    "9/429/192.png",
+    "9/430/191.png",
+    "9/430/192.png",
+    "9/431/191.png",
+    "9/431/192.png",
+    "9/432/191.png",
+    "9/432/192.png",
+    "9/433/191.png",
+    "9/433/192.png",
+    "9/434/191.png",
+    "9/434/192.png",
+    "9/435/191.png",
+    "9/435/192.png",
+    "9/436/191.png",
+    "9/436/192.png",
+    "9/437/192.png",
+    "9/438/192.png",
+    "9/439/192.png",
+    "9/440/192.png",
+    "9/441/192.png",
+    "9/430/190.png",
+    "9/437/190.png"
+  ],
+  "features": [
+    {"id": "NEB7-N19", "kind": "city", "original": "Baoquanshan", "original_bbox": [33, -11, 108, 8], "source_url": "@source/fc5c41bb9028ed75"},
+    {"id": "NEB7-N20", "kind": "city", "original": "Shisidaogou", "original_bbox": [204, 18, 273, 38], "source_url": "@source/f569e445f6232aea"},
+    {"id": "NEB7-N21", "kind": "city", "original": "Orang", "original_bbox": [854, 20, 889, 40], "source_url": "@source/fdfd5f648d813ff0"},
+    {"id": "NEB7-N22", "kind": "city", "original": "Hyesan", "original_bbox": [309, 42, 356, 63], "source_url": "@source/e03ec71c8ab1371a"},
+    {"id": "NEB7-N23", "kind": "city", "original": "Rokrim Workers’ District", "original_bbox": [-9, 66, 80, 99], "source_url": "@source/c0b501d4602fc4af"},
+    {"id": "NEB7-N24", "kind": "city", "original": "Paekam-rodongjagu", "original_bbox": [528, 111, 591, 148], "source_url": "@source/baaddc24a6a970bc"},
+    {"id": "NEB7-N25", "kind": "city", "original": "Myonggan", "original_bbox": [784, 113, 842, 132], "source_url": "@source/fdfd5f648d813ff0"}
+  ],
+  "translations": [
+    {"id": "NEB7-N19", "zh": "宝泉山", "status": "approved", "source": "@source/fc5c41bb9028ed75", "record_sha256": "42c53bb839b8fbc66d38180bc16fd18dbc2bf87fb1a89f42496093a5865ff24b", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N20", "zh": "十四道沟", "status": "approved", "source": "@source/f569e445f6232aea", "record_sha256": "62eec2337d2eb90a575aab7d567bcdfdb221195c2a5557ca69651bd9806fe6e8", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N21", "zh": "渔郎", "status": "approved", "source": "@source/fdfd5f648d813ff0", "record_sha256": "3352fdddcad1e0448271c9b720477c544b6c35dcd72b03fbb4d45087b0fe31ef", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N22", "zh": "惠山", "status": "approved", "source": "@source/e03ec71c8ab1371a", "record_sha256": "fca08394ffa22348bc2a78012f2d6f11f9074e6519009f9395b4bf5df3406fc3", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N23", "zh": "罗克里姆劳动者区", "status": "approved", "source": "@source/c0b501d4602fc4af", "record_sha256": "dd06f424db2ef164c7e3e845825b8be0a84979db25b917a7053dc41a1e20d872", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N24", "zh": "白岩劳动者区", "status": "approved", "source": "@source/baaddc24a6a970bc", "record_sha256": "d6c9774636f8262fc9c429d2639bca27a61fc343f18b36ca406cec8c52359b1a", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N25", "zh": "明涧", "status": "approved", "source": "@source/fdfd5f648d813ff0", "record_sha256": "6b9fc8c049c850c53919641e86f3303acbdd34b75eeb4631a38e5d66bea11b6e", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."}
+  ],
+  "layouts": [
+    {"id": "NEB7-N19", "x": 33, "y": 12, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N20", "x": 204, "y": 18, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N21", "x": 854, "y": 20, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N22", "x": 309, "y": 42, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N23", "x": 54, "y": 66, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N24", "x": 528, "y": 111, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N25", "x": 784, "y": 113, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "canonical_captions": []
+}

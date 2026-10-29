@@ -1,0 +1,27 @@
+{
+  "id": "WA17-R01-z9-243-233",
+  "z": 9,
+  "x": 243,
+  "y": 233,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/243/233.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "WA17-N001", "kind": "city", "original": "Tindérik", "original_bbox": [24, 77, 71, 94], "source_url": "@source/cf48b4965c56422f"},
+    {"id": "WA17-N002", "kind": "city", "original": "Djiguenni", "original_bbox": [143, 77, 203, 99], "source_url": "@source/cf48b4965c56422f"}
+  ],
+  "translations": [
+    {"id": "WA17-N001", "zh": "廷德里克", "status": "approved", "source": "@source/cf48b4965c56422f", "record_sha256": "4fa5e1181286b9cbaa009699b0806e7180cbe3b09204d69e8db9bb7a5acf2424", "review_notes": "@note/translations"},
+    {"id": "WA17-N002", "zh": "吉盖尼", "status": "approved", "source": "@source/cf48b4965c56422f", "record_sha256": "76ef24af8d2ba3d9a0415d795921196d66ed67b0075cd8af5322748a8a74c0f0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WA17-N001", "x": 47.5, "y": 85.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N002", "x": 173.0, "y": 88.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

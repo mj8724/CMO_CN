@@ -1,0 +1,24 @@
+{
+  "id": "EML13-R08",
+  "z": 9,
+  "x": 314,
+  "y": 209,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/314/209.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "EML13-N018", "kind": "city", "original": "`Ar`ar", "original_bbox": [68, 149, 105, 167], "source_url": "@source/ba3fa0ee3c0314bf"}
+  ],
+  "translations": [
+    {"id": "EML13-N018", "zh": "阿尔阿尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "2df4591387933a6142a8a4c19282a1021e5711e3760f1ef0881b5276bbbb3887", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EML13-N018", "x": 86.5, "y": 158.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,45 @@
+{
+  "id": "RZQ2-Shandong-z9-425-202",
+  "z": 9,
+  "x": 425,
+  "y": 202,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/425/202.png",
+    "9/426/202.png"
+  ],
+  "context_tiles": [
+    "9/424/202.png"
+  ],
+  "features": [
+    {"id": "RZQ2-000", "kind": "city", "original": "Rizhao", "original_bbox": [231, 10, 274, 28], "source_url": "@source/981e18f406f09a78"},
+    {"id": "RZQ2-001", "kind": "city", "original": "Wentuan", "original_bbox": [51, 47, 101, 63], "source_url": "@source/981e18f406f09a78"},
+    {"id": "RZQ2-002", "kind": "city", "original": "Junan", "original_bbox": [-18, 118, 20, 136], "source_url": "@source/981e18f406f09a78"},
+    {"id": "RZQ2-003", "kind": "city", "original": "Tuanlin", "original_bbox": [87, 143, 131, 159], "source_url": "@source/981e18f406f09a78"},
+    {"id": "RZQ2-004", "kind": "city", "original": "Lanshan", "original_bbox": [151, 142, 203, 160], "source_url": "@source/981e18f406f09a78"},
+    {"id": "RZQ2-005", "kind": "marine", "original": "Haizhou Bay", "original_bbox": [95, 224, 248, 248], "source_url": "@source/981e18f406f09a78"},
+    {"id": "RZQ2-006", "kind": "city", "original": "Qiansandao", "original_bbox": [362, 134, 427, 154], "source_url": "@source/eee14e4337b43fb2"}
+  ],
+  "translations": [
+    {"id": "RZQ2-000", "zh": "日照", "status": "approved", "source": "@source/85a8b3fe4172e9bc", "record_sha256": "57911c3cbfef76362652a125f93242fb4fc3700ba8223e46f509f93f2b59bd92", "review_notes": "@note/translations"},
+    {"id": "RZQ2-001", "zh": "文疃", "status": "approved", "source": "@source/4d419d122d2d267c", "record_sha256": "51c8b2101ccf92640fe1ed791ecbe5d648c5998c9dd28bf36b5f153c39a70d75", "review_notes": "@note/translations"},
+    {"id": "RZQ2-002", "zh": "莒南", "status": "approved", "source": "@source/981e18f406f09a78", "record_sha256": "a69ba98025ae3a7ee2bda29f5a955ce27ba3a016340fde328fa4ee26362bf98b", "review_notes": "@note/translations"},
+    {"id": "RZQ2-003", "zh": "团林", "status": "approved", "source": "@source/981e18f406f09a78", "record_sha256": "ed1f5166d81263481cc84b8660cef3f12e69448c5c401d733afb0161c9b8f507", "review_notes": "@note/translations"},
+    {"id": "RZQ2-004", "zh": "岚山", "status": "approved", "source": "@source/d3da0fac947f8181", "record_sha256": "f320eeb4e6ed930780f52f9f3cb41c2b2bdee4322b2429b2ce196654aa4daf80", "review_notes": "@note/translations"},
+    {"id": "RZQ2-005", "zh": "海州湾", "status": "approved", "source": "@source/981e18f406f09a78", "record_sha256": "e45b7351854c8f5a4f02a1fef05690e711f030adaa242a0420213c8decd96dda", "review_notes": "@note/translations"},
+    {"id": "RZQ2-006", "zh": "前三岛", "status": "approved", "source": "@source/eee14e4337b43fb2", "record_sha256": "e06b7de00b3222e86f7e482566934705692166e028ed75a39b32dc6e952afab4", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "RZQ2-000", "x": 252.5, "y": 19, "font_size": 12, "font_style": "regular"},
+    {"id": "RZQ2-001", "x": 76, "y": 55, "font_size": 12, "font_style": "regular"},
+    {"id": "RZQ2-002", "x": 18, "y": 127, "font_size": 12, "font_style": "regular"},
+    {"id": "RZQ2-003", "x": 109, "y": 151, "font_size": 12, "font_style": "regular"},
+    {"id": "RZQ2-004", "x": 177, "y": 151, "font_size": 12, "font_style": "regular"},
+    {"id": "RZQ2-005", "x": 171.5, "y": 236, "font_size": 16, "font_style": "bold"},
+    {"id": "RZQ2-006", "x": 394.5, "y": 144, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

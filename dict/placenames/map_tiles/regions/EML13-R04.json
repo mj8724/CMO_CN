@@ -1,0 +1,39 @@
+{
+  "id": "EML13-R04",
+  "z": 8,
+  "x": 146,
+  "y": 89,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/146/89.png",
+    "8/147/89.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "EML13-N007", "kind": "city", "original": "Botoșani", "original_bbox": [241, 62, 297, 86], "source_url": "@source/160ed6f2793b281b"},
+    {"id": "EML13-N008", "kind": "city", "original": "Bălți", "original_bbox": [472, 57, 506, 82], "source_url": "@source/9cf7d6149e4294a3"},
+    {"id": "EML13-N009", "kind": "city", "original": "Iași", "original_bbox": [409, 219, 439, 244], "source_url": "@source/9cf7d6149e4294a3"},
+    {"id": "EML13-N020", "kind": "city", "original": "Suceava", "original_bbox": [167, 88, 220, 110], "source_url": "@source/160ed6f2793b281b"}
+  ],
+  "translations": [
+    {"id": "EML13-N007", "zh": "博托沙尼", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "80b97bacae9f2cb5e7055100eb53fcc7a8c2f11dce3ffc86a0e6e00db716fd70", "review_notes": "@note/translations"},
+    {"id": "EML13-N008", "zh": "伯尔兹", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "00bcfd2bf7d6cb31df5d0b260430261b58b83d3475268b0ca3a24df5be50a731", "review_notes": "@note/translations"},
+    {"id": "EML13-N009", "zh": "雅西", "status": "approved", "source": "@source/184c16c6009f8054", "record_sha256": "c3d4dee3f280199966f8179ccc742a7d5ce08267fe44b7395df3df9dfb3acf94", "review_notes": "@note/translations"},
+    {"id": "EML13-N020", "zh": "苏恰瓦", "status": "approved", "source": "@source/f1ed933dd33e410d", "record_sha256": "c8a24850e8f0b894f40b45a9f208b8ca677497251330f16412f49fb290f2abe6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EML13-N007", "x": 282.5, "y": 82.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N008", "x": 489.0, "y": 77.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N009", "x": 438.5, "y": 239.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N020", "x": 202.5, "y": 109.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EML13-C005", "kind": "circle", "size": 9, "outline_width": 1, "x": 245.5, "y": 66.5, "original_bbox": [241, 62, 250, 71], "feature_id": "EML13-N007"},
+    {"id": "EML13-C006", "kind": "circle", "size": 9, "outline_width": 1, "x": 476.5, "y": 61.5, "original_bbox": [472, 57, 481, 66], "feature_id": "EML13-N008"},
+    {"id": "EML13-C007", "kind": "circle", "size": 9, "outline_width": 1, "x": 413.5, "y": 223.5, "original_bbox": [409, 219, 418, 228], "feature_id": "EML13-N009"},
+    {"id": "EML13-C012", "kind": "circle", "size": 9, "outline_width": 1, "x": 171.5, "y": 93.0, "original_bbox": [167, 88, 176, 98], "feature_id": "EML13-N020"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,35 @@
+{
+  "id": "BWR12-R02-z8-156-78-2-1",
+  "z": 8,
+  "x": 156,
+  "y": 78,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/156/78.png",
+    "8/157/78.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "BWR12-N-011", "kind": "city", "original": "Rostov", "original_bbox": [5, 43, 47, 62], "source_url": "@source/74f96e1f5f21e36c"},
+    {"id": "BWR12-N-012", "kind": "city", "original": "Vichuga", "original_bbox": [460, 31, 506, 53], "source_url": "@source/d4f4b43221badd33"},
+    {"id": "BWR12-N-013", "kind": "city", "original": "Ivanovo", "original_bbox": [287, 106, 338, 127], "source_url": "@source/d4f4b43221badd33"}
+  ],
+  "translations": [
+    {"id": "BWR12-N-011", "zh": "罗斯托夫", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e048f6c00a09b9424aed97d91561166e894a87e340338df9cdc4d5fc92bc5957", "review_notes": "SOURCE219d independent qualified full original instance. ORIGINAL_NE_NAME_ZH_FIELD_SAME_ENTITY_PROJECT_DISPLAY_NOT_CLAIMED_OFFICIAL. Raw NE Chinese=罗斯托夫; displayed Chinese=罗斯托夫. Supplier PNG and translation evidence URL have distinct roles. GN/NE are context, not supplier vector/native anchors; provider ID null. Author SELF PRIVATE_MODEL_ONLY only; Med different actual TARGET pending. Actual author SELF PRIVATE_MODEL_ONLY full Chinese patch/whole/association viewed and accepted. Different Med TARGET FINAL pending; this is not independent approval. SELF receipt C:\\Users\\Administrator\\Documents\\Codex\\2026-10-21\\cha\\work\\parallel_map\\BalticWestRussia12_author_after8021completed_20261025\\revision1\\author_SELF_PRIVATE_MODEL_ONLY_actual13words13native8whole4seams_review.json SHA 257d776653c8b3facb0a95fd71cfef1acf648dfc48c721759c93bdf4bd8241b2. Different TARGET /root/remaining_med_source independently read the full CJK/source and native detail pages. Root1eb0 display selected; actual finite12 and final whole/encoded/collision verification recorded separately in this peer. Source raw NE and indexed-article evidence roles preserved."},
+    {"id": "BWR12-N-012", "zh": "维丘加", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "cc9a2186823452b81c21e88c3a59165ae16d3124c6c30c2c7508f7313d732850", "review_notes": "SOURCE219d independent qualified full original instance. ORIGINAL_NE_NAME_ZH_FIELD_SAME_ENTITY_PROJECT_DISPLAY_NOT_CLAIMED_OFFICIAL. Raw NE Chinese=维丘加; displayed Chinese=维丘加. Supplier PNG and translation evidence URL have distinct roles. GN/NE are context, not supplier vector/native anchors; provider ID null. Author SELF PRIVATE_MODEL_ONLY only; Med different actual TARGET pending. Actual author SELF PRIVATE_MODEL_ONLY full Chinese patch/whole/association viewed and accepted. Different Med TARGET FINAL pending; this is not independent approval. SELF receipt C:\\Users\\Administrator\\Documents\\Codex\\2026-10-21\\cha\\work\\parallel_map\\BalticWestRussia12_author_after8021completed_20261025\\revision1\\author_SELF_PRIVATE_MODEL_ONLY_actual13words13native8whole4seams_review.json SHA 257d776653c8b3facb0a95fd71cfef1acf648dfc48c721759c93bdf4bd8241b2. Different TARGET /root/remaining_med_source independently read the full CJK/source and native detail pages. Root1eb0 display selected; actual finite12 and final whole/encoded/collision verification recorded separately in this peer. Source raw NE and indexed-article evidence roles preserved."},
+    {"id": "BWR12-N-013", "zh": "伊万诺沃", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "f15ca9f53b4f067237e09c0e53cb6369a26874f4ea2e0925b7b31ac2c601a670", "review_notes": "SOURCE219d independent qualified full original instance. ORIGINAL_NE_NAME_ZH_FIELD_SAME_ENTITY_PROJECT_DISPLAY_NOT_CLAIMED_OFFICIAL. Raw NE Chinese=伊万诺沃; displayed Chinese=伊万诺沃. Supplier PNG and translation evidence URL have distinct roles. GN/NE are context, not supplier vector/native anchors; provider ID null. Author SELF PRIVATE_MODEL_ONLY only; Med different actual TARGET pending. Actual author SELF PRIVATE_MODEL_ONLY full Chinese patch/whole/association viewed and accepted. Different Med TARGET FINAL pending; this is not independent approval. SELF receipt C:\\Users\\Administrator\\Documents\\Codex\\2026-10-21\\cha\\work\\parallel_map\\BalticWestRussia12_author_after8021completed_20261025\\revision1\\author_SELF_PRIVATE_MODEL_ONLY_actual13words13native8whole4seams_review.json SHA 257d776653c8b3facb0a95fd71cfef1acf648dfc48c721759c93bdf4bd8241b2. Different TARGET /root/remaining_med_source independently read the full CJK/source and native detail pages. Root1eb0 display selected; actual finite12 and final whole/encoded/collision verification recorded separately in this peer. Source raw NE and indexed-article evidence roles preserved."}
+  ],
+  "layouts": [
+    {"id": "BWR12-N-011", "x": 41.5, "y": 52.5, "font_size": 12, "font_style": "regular"},
+    {"id": "BWR12-N-012", "x": 438.5, "y": 40.5, "font_size": 12, "font_style": "regular"},
+    {"id": "BWR12-N-013", "x": 323.0, "y": 115.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "BWR12-C-011", "feature_id": "BWR12-N-011", "kind": "circle", "x": 9.5, "y": 47.5, "size": 9, "outline_width": 1, "original_bbox": [5, 43, 14, 52]},
+    {"id": "BWR12-C-012", "feature_id": "BWR12-N-012", "kind": "circle", "x": 464.5, "y": 35.5, "size": 9, "outline_width": 1, "original_bbox": [460, 31, 469, 40]},
+    {"id": "BWR12-C-013", "feature_id": "BWR12-N-013", "kind": "circle", "x": 291.0, "y": 110.5, "size": 9, "outline_width": 1, "original_bbox": [287, 106, 295, 115]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,32 @@
+{
+  "id": "NEA-Yilan-z10-858-439",
+  "z": 10,
+  "x": 858,
+  "y": 439,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/858/439.png"
+  ],
+  "context_tiles": [
+    "10/858/438.png"
+  ],
+  "features": [
+    {"id": "NEA10-009", "kind": "city", "original": "Jiaoxi Township", "original_bbox": [67, 1, 123, 38], "source_url": "@source/538ba0c1f0c92a08"},
+    {"id": "NEA10-012", "kind": "city", "original": "Yilan City", "original_bbox": [55, 67, 109, 87], "source_url": "@source/538ba0c1f0c92a08"},
+    {"id": "NEA10-014", "kind": "city", "original": "Luodong", "original_bbox": [70, 129, 114, 146], "source_url": "@source/538ba0c1f0c92a08"}
+  ],
+  "translations": [
+    {"id": "NEA10-009", "zh": "礁溪乡", "status": "approved", "source": "@source/dc358a5366765fe5", "record_sha256": "6e010606293f0fcd9846bbf0dfef3251aef710e2a75e8102c49db6996a6068ae", "review_notes": "@note/translations"},
+    {"id": "NEA10-012", "zh": "宜兰市", "status": "approved", "source": "@source/5f33ecf633286bea", "record_sha256": "384296c03b6aed5098e8d669e275b43f4415c9f49ee842bbd9f2c22409234370", "review_notes": "@note/translations"},
+    {"id": "NEA10-014", "zh": "罗东", "status": "approved", "source": "@source/7e3b3ac5c6238751", "record_sha256": "95d3f5f6fe1ea06ed51741fefcc05e8388d2325a47ef0c8ed33918aacc1be331", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA10-009", "x": 95.0, "y": 19.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-012", "x": 82.0, "y": 77.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NEA10-014", "x": 92.0, "y": 137.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,27 @@
+{
+  "id": "WA17-R02-z9-243-236",
+  "z": 9,
+  "x": 243,
+  "y": 236,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/243/236.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "WA17-N029", "kind": "city", "original": "Kotouba", "original_bbox": [128, 159, 175, 176], "source_url": "@source/55dd311270468d27"},
+    {"id": "WA17-N033", "kind": "city", "original": "Madina", "original_bbox": [81, 188, 123, 204], "source_url": "@source/55dd311270468d27"}
+  ],
+  "translations": [
+    {"id": "WA17-N029", "zh": "科图巴", "status": "approved", "source": "@source/55dd311270468d27", "record_sha256": "bfdcbc1fd515c94b99a9c0116bca29b541a1f9d156ea856b0ea673adfc02a5fe", "review_notes": "@note/translations"},
+    {"id": "WA17-N033", "zh": "马迪纳", "status": "approved", "source": "@source/55dd311270468d27", "record_sha256": "ad84e08d45d13f3c0ca04b0d64cef3d2fdc46c9e95a3cf43f04ef9747e17a680", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WA17-N029", "x": 151.5, "y": 167.5, "font_size": 12, "font_style": "regular"},
+    {"id": "WA17-N033", "x": 102.0, "y": 196.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

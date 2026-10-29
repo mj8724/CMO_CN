@@ -1,0 +1,69 @@
+{
+  "id": "EU-Med25-Column33-z6-33-22",
+  "z": 6,
+  "x": 33,
+  "y": 22,
+  "width_tiles": 1,
+  "height_tiles": 4,
+  "original_tiles": [
+    "6/33/22.png",
+    "6/33/23.png",
+    "6/33/24.png",
+    "6/33/25.png"
+  ],
+  "context_tiles": [
+    "6/32/23.png",
+    "6/34/22.png",
+    "6/34/23.png",
+    "6/34/24.png",
+    "6/34/25.png"
+  ],
+  "features": [
+    {"id": "EM6-SRC-13", "kind": "admin0", "original": "LIECHTENSTEIN", "original_bbox": [61, 105, 297, 129], "source_url": "@source/de5bc5607592386f"},
+    {"id": "EM6-SRC-16", "kind": "city", "original": "Geneva", "original_bbox": [19, 179, 70, 201], "source_url": "@source/de5bc5607592386f"},
+    {"id": "EM6-SRC-20", "kind": "city", "original": "Milan", "original_bbox": [158, 227, 197, 248], "source_url": "@source/de5bc5607592386f"},
+    {"id": "EM6-SRC-27", "kind": "admin0", "original": "MONACO", "original_bbox": [17, 327, 148, 351], "source_url": "@source/aa96f0aaf7e3a5fb"},
+    {"id": "EM6-SRC-60", "kind": "city", "original": "Annaba", "original_bbox": [92, 746, 137, 766], "source_url": "@source/e2804d964bc8f219"},
+    {"id": "EM6-SRC-61", "kind": "city", "original": "Tunis", "original_bbox": [203, 752, 239, 771], "source_url": "@source/e2804d964bc8f219"},
+    {"id": "EM6-SRC-63", "kind": "city", "original": "Constantine", "original_bbox": [40, 777, 105, 796], "source_url": "@source/da2deb50c17df5fc"},
+    {"id": "EM6-SRC-66", "kind": "city", "original": "Sousse", "original_bbox": [224, 807, 266, 826], "source_url": "@source/da2deb50c17df5fc"},
+    {"id": "EM6-SRC-70", "kind": "admin0", "original": "TUNISIA", "original_bbox": [110, 906, 235, 930], "source_url": "@source/da2deb50c17df5fc"}
+  ],
+  "translations": [
+    {"id": "EM6-SRC-13", "zh": "列支敦士登", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "545c320967f4f8d6a7128e7d486d508926d85febc7c6d490c6f6c1a4bd6af5f8", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-16", "zh": "日内瓦", "source": "@source/35bcd5a0df37bb85", "status": "approved", "record_sha256": "b61f6d716dfef815ae940ee76bfe1c7285f2d70fdf51cdb88e1ca5f9b307b8e4", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-20", "zh": "米兰", "source": "@source/cef12ab22d734bf9", "status": "approved", "record_sha256": "cc6295ef675fb30996cad5e8443ebef0adb65a9298856b9271b146932dcea696", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-27", "zh": "摩纳哥", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "d6c18a6b3959b648636aea07c139ceda65ec4a71ca90e1a2ddff319766797321", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-60", "zh": "安纳巴", "source": "@source/b017ed3b08a5c0ce", "status": "approved", "record_sha256": "913745bf2b40aeb4bca73aee6a7e950c4bf3729be75500ebe0aa2c0a39d18932", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-61", "zh": "突尼斯", "source": "@source/dc85bde1c2118c82", "status": "approved", "record_sha256": "84af29ad56539fcbe6e82e36154f04c7dbb747e9ddc5ae864f9aef65c719b65c", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-63", "zh": "君士坦丁", "source": "@source/df9f57d1a995c9e4", "status": "approved", "record_sha256": "48783c01be4ea6a316f21ed33d58f6a092b0dfd9c071e54919ac4447a913c530", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-66", "zh": "苏斯", "source": "@source/763880f90475c742", "status": "approved", "record_sha256": "22f5f6eef3dd69e03d59af29403e4f8bef43eb14668b7fd0020f9caec22cbdc7", "review_notes": "@note/translations"},
+    {"id": "EM6-SRC-70", "zh": "突尼斯", "source": "@source/c96c84a1c9558d58", "status": "approved", "record_sha256": "f72a41554650f30a4a240dff4d9718467efd239a7936c5548b0dc5ad9b24727c", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EM6-SRC-13", "x": 179.0, "y": 117.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-16", "x": 51.0, "y": 191.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-20", "x": 184.0, "y": 238.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-27", "x": 82.5, "y": 339.0, "font_size": 18, "font_style": "regular"},
+    {"id": "EM6-SRC-60", "x": 124.0, "y": 758.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-61", "x": 180.0, "y": 764.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-63", "x": 78.0, "y": 789.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-66", "x": 207.0, "y": 819.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EM6-SRC-70", "x": 172.5, "y": 918.0, "font_size": 18, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EM6-SRC-16-NATIVE", "feature_id": "EM6-SRC-16", "kind": "circle", "original_bbox": [19, 179, 28, 188], "x": 23.5, "y": 183.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-20-NATIVE", "feature_id": "EM6-SRC-20", "kind": "circle", "original_bbox": [158, 227, 167, 236], "x": 162.5, "y": 231.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-60-NATIVE", "feature_id": "EM6-SRC-60", "kind": "circle", "original_bbox": [92, 746, 101, 755], "x": 96.5, "y": 750.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-61-NATIVE", "feature_id": "EM6-SRC-61", "kind": "circle", "original_bbox": [203, 752, 212, 761], "x": 207.5, "y": 756.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-63-NATIVE", "feature_id": "EM6-SRC-63", "kind": "circle", "original_bbox": [40, 777, 49, 786], "x": 44.5, "y": 781.5, "size": 9, "outline_width": 1},
+    {"id": "EM6-SRC-66-NATIVE", "feature_id": "EM6-SRC-66", "kind": "circle", "original_bbox": [224, 807, 233, 816], "x": 228.5, "y": 811.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "EM25-SH-06", "owner_region": "EU-Med25-Column34-z6-34-22", "feature_id": "EM6-SRC-25", "kind": "admin0", "original": "SAN MARINO", "original_bbox": [251, 300, 372, 350], "source_url": "@source/aa96f0aaf7e3a5fb", "review_notes": "@note/shared_sources"},
+    {"id": "EM25-SH-07", "owner_region": "EU-Med25-Column32-z6-32-22", "feature_id": "EM6-SRC-29", "kind": "city", "original": "Marseille", "original_bbox": [-16, 365, 36, 385], "source_url": "@source/5291c17556da0fcc", "review_notes": "@note/shared_sources"},
+    {"id": "EM25-SH-10", "owner_region": "EU-Med25-Column34-z6-34-22", "feature_id": "EM6-SRC-37", "kind": "admin0", "original": "VATICAN CITY", "original_bbox": [244, 427, 377, 477], "source_url": "@source/aa96f0aaf7e3a5fb", "review_notes": "@note/shared_sources"},
+    {"id": "EM25-SH-12", "owner_region": "EU-Med25-Column34-z6-34-22", "feature_id": "EM6-SRC-44", "kind": "marine", "original": "Tyrrhenian Sea", "original_bbox": [241, 550, 340, 587], "source_url": "@source/e2804d964bc8f219", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

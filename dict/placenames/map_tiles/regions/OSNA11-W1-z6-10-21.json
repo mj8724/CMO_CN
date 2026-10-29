@@ -1,0 +1,35 @@
+{
+  "id": "OSNA11-W1-z6-10-21",
+  "z": 6,
+  "x": 10,
+  "y": 21,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/10/21.png",
+    "6/11/21.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NA11-02-Banff", "kind": "city", "original": "Banff", "original_bbox": [368, 92, 403, 111], "source_url": "@source/5bb1b47ed43b07f5"},
+    {"id": "NA11-03-Calgary", "kind": "city", "original": "Calgary", "original_bbox": [437, 101, 481, 123], "source_url": "@source/5bb1b47ed43b07f5"},
+    {"id": "NA11-07-Vancouver", "kind": "city", "original": "Vancouver", "original_bbox": [24, 228, 93, 250], "source_url": "@source/24d0c1931b1c0bad"}
+  ],
+  "translations": [
+    {"id": "NA11-02-Banff", "zh": "班夫", "status": "approved", "source": "@source/6c953bfbbd7b9f66", "record_sha256": "f3ec05fcdbe65e8123e261e7bad666e00db5db5c5335e48bd13c0d2a130d5d1d", "review_notes": "@note/translations"},
+    {"id": "NA11-03-Calgary", "zh": "卡尔加里", "status": "approved", "source": "@source/5f632762b3917f37", "record_sha256": "683e62ab697d6a3d5845bd207739747fca8a8f06d0207d26d11d42ac781594c1", "review_notes": "@note/translations"},
+    {"id": "NA11-07-Vancouver", "zh": "温哥华", "status": "approved", "source": "@source/ebfc0925ead9c3a8", "record_sha256": "56bb10e759f05320a3b5dd9bafcf941fb7eac0d3e1410c9abcb6b6fc5f726345", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NA11-02-Banff", "x": 396.0, "y": 104.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-03-Calgary", "x": 477.0, "y": 113.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-07-Vancouver", "x": 58.0, "y": 240.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NA11-02-Banff-circle", "feature_id": "NA11-02-Banff", "kind": "circle", "x": 372.5, "y": 96.5, "size": 9, "outline_width": 1, "original_bbox": [368, 92, 377, 101], "source_url": "@source/5bb1b47ed43b07f5", "review_notes": "@note/symbols"},
+    {"id": "NA11-03-Calgary-circle", "feature_id": "NA11-03-Calgary", "kind": "circle", "x": 441.5, "y": 105.5, "size": 9, "outline_width": 1, "original_bbox": [437, 101, 446, 110], "source_url": "@source/5bb1b47ed43b07f5", "review_notes": "@note/symbols"},
+    {"id": "NA11-07-Vancouver-circle", "feature_id": "NA11-07-Vancouver", "kind": "circle", "x": 28.5, "y": 232.5, "size": 9, "outline_width": 1, "original_bbox": [24, 228, 33, 237], "source_url": "@source/24d0c1931b1c0bad", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

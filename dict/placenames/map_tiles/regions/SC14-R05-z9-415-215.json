@@ -1,0 +1,75 @@
+{
+  "id": "SC14-R05-z9-415-215",
+  "z": 9,
+  "x": 415,
+  "y": 215,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    "9/415/215.png",
+    "9/415/216.png",
+    "9/415/217.png"
+  ],
+  "context_tiles": [
+    "9/414/215.png",
+    "9/414/216.png",
+    "9/416/216.png"
+  ],
+  "features": [
+    {"id": "SC14-N004", "kind": "city", "original": "Shuangfeng", "original_bbox": [99, 83, 173, 105], "source_url": "@source/d10399ff1e7e4f62"},
+    {"id": "SC14-N007", "kind": "city", "original": "Shaodong", "original_bbox": [-55, 162, 8, 185], "source_url": "@source/347835ce5c8874c2"},
+    {"id": "SC14-N008", "kind": "city", "original": "Liuze", "original_bbox": [12, 152, 43, 168], "source_url": "@source/d10399ff1e7e4f62"},
+    {"id": "SC14-N009", "kind": "city", "original": "Jinxi", "original_bbox": [184, 154, 211, 170], "source_url": "@source/d10399ff1e7e4f62"},
+    {"id": "SC14-N012", "kind": "city", "original": "Shuangfeng", "original_bbox": [-61, 237, 5, 257], "source_url": "@source/347835ce5c8874c2"},
+    {"id": "SC14-N013", "kind": "city", "original": "Hengyang", "original_bbox": [172, 281, 241, 305], "source_url": "@source/0d1e0315f4e1a1f7"},
+    {"id": "SC14-N014", "kind": "city", "original": "Quanhu", "original_bbox": [156, 335, 201, 354], "source_url": "@source/0d1e0315f4e1a1f7"},
+    {"id": "SC14-N015", "kind": "city", "original": "Zhuantang", "original_bbox": [-44, 342, 15, 362], "source_url": "@source/d308a97747a4b5b1"},
+    {"id": "SC14-N016", "kind": "city", "original": "Qidong", "original_bbox": [82, 352, 128, 374], "source_url": "@source/0d1e0315f4e1a1f7"},
+    {"id": "SC14-N017", "kind": "city", "original": "Panshi", "original_bbox": [71, 481, 109, 497], "source_url": "@source/0d1e0315f4e1a1f7"},
+    {"id": "SC14-N018", "kind": "city", "original": "Changning", "original_bbox": [185, 505, 250, 527], "source_url": "@source/0d1e0315f4e1a1f7"},
+    {"id": "SC14-N019", "kind": "city", "original": "Babao", "original_bbox": [87, 535, 123, 551], "source_url": "@source/932d21d8d5446435"},
+    {"id": "SC14-N020", "kind": "city", "original": "Yangquan", "original_bbox": [140, 562, 196, 582], "source_url": "@source/932d21d8d5446435"},
+    {"id": "SC14-N021", "kind": "city", "original": "Xintian", "original_bbox": [120, 712, 167, 729], "source_url": "@source/932d21d8d5446435"},
+    {"id": "SC14-N022", "kind": "city", "original": "Lixi", "original_bbox": [88, 717, 110, 733], "source_url": "@source/932d21d8d5446435"}
+  ],
+  "translations": [
+    {"id": "SC14-N004", "zh": "双峰", "status": "approved", "source": "@source/d10399ff1e7e4f62", "record_sha256": "b4c17991c7aa7d2fa965fe1270d37564ff4aca8ba021d7f1e124b9b1757283a5", "review_notes": "@note/translations"},
+    {"id": "SC14-N007", "zh": "邵东", "status": "approved", "source": "@source/347835ce5c8874c2", "record_sha256": "098038ae57cbba02c94fc79d3b91a5268ac6ad8a0102a466bc313df0947e07c2", "review_notes": "@note/translations"},
+    {"id": "SC14-N008", "zh": "流泽", "status": "approved", "source": "@source/d10399ff1e7e4f62", "record_sha256": "dc2097fde61d8f155cd8dd9fc2cf11b632065148cc01f6c3b8d90969a390d12d", "review_notes": "@note/translations"},
+    {"id": "SC14-N009", "zh": "金溪", "status": "approved", "source": "@source/d10399ff1e7e4f62", "record_sha256": "618906470253e8dddbef36a9ead3813d7c6d000bcea102b18353607806e32c17", "review_notes": "@note/translations"},
+    {"id": "SC14-N012", "zh": "双凤", "status": "approved", "source": "@source/347835ce5c8874c2", "record_sha256": "fce21181184bbf0ce7c09cf756a492815192b2349b4050ff7be5850c2b276f0a", "review_notes": "@note/translations"},
+    {"id": "SC14-N013", "zh": "衡阳", "status": "approved", "source": "@source/0d1e0315f4e1a1f7", "record_sha256": "61e9675ebb87c6c77741d36ffa19139c0faf6d1a6906c671e9bca62ccfa90da2", "review_notes": "@note/translations"},
+    {"id": "SC14-N014", "zh": "泉湖", "status": "approved", "source": "@source/0d1e0315f4e1a1f7", "record_sha256": "c411ba8d8239930b5303b3c088c7ddda9b1a5d07fcb0c14e41dfb28f2562538d", "review_notes": "@note/translations"},
+    {"id": "SC14-N015", "zh": "砖塘", "status": "approved", "source": "@source/d308a97747a4b5b1", "record_sha256": "fc8d8ee41ed288915196bd21b8dacf696092aee4eab8a76dc68114da79f031cf", "review_notes": "@note/translations"},
+    {"id": "SC14-N016", "zh": "祁东", "status": "approved", "source": "@source/0d1e0315f4e1a1f7", "record_sha256": "d5cdc4c7681e4ac6b6229dfa167276e6807b64ec87e72138e97afa3615d819df", "review_notes": "@note/translations"},
+    {"id": "SC14-N017", "zh": "潘市", "status": "approved", "source": "@source/0d1e0315f4e1a1f7", "record_sha256": "a4654a21be68ef5cae971312bc6e311b4fc6f27efeeec3ae85bd1a02026559d7", "review_notes": "@note/translations"},
+    {"id": "SC14-N018", "zh": "常宁", "status": "approved", "source": "@source/0d1e0315f4e1a1f7", "record_sha256": "7757604d9a5a30f0fd66689984e23ea97706f11c43b1d2a6e4416b04f96791c2", "review_notes": "@note/translations"},
+    {"id": "SC14-N019", "zh": "八宝", "status": "approved", "source": "@source/932d21d8d5446435", "record_sha256": "dbfee9a860a8d930dfd01794ade3e04216b8d6412b0fbb0b5a45e269e602fbd7", "review_notes": "@note/translations"},
+    {"id": "SC14-N020", "zh": "洋泉", "status": "approved", "source": "@source/932d21d8d5446435", "record_sha256": "fbcef06f17224bd06b36929628057bb797e205465f86c6ccd249865aa28731b6", "review_notes": "@note/translations"},
+    {"id": "SC14-N021", "zh": "新田", "status": "approved", "source": "@source/932d21d8d5446435", "record_sha256": "d8e19c93592e364fbc10a3b860821d9398af70f026941baa0411ed7ffcedbc6c", "review_notes": "@note/translations"},
+    {"id": "SC14-N022", "zh": "鲤溪镇", "status": "approved", "source": "@source/932d21d8d5446435", "record_sha256": "3c0296dee1a55abf2a5aaa3bc132e88c9eb648ad75edb18b63d61aa5e12faaa9", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SC14-N004", "x": 136.0, "y": 94.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N007", "x": 16.0, "y": 173.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N008", "x": 27.5, "y": 160.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N009", "x": 197.5, "y": 162.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N012", "x": 16.0, "y": 247.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N013", "x": 206.5, "y": 293.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N014", "x": 178.5, "y": 344.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N015", "x": 16.0, "y": 352.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N016", "x": 105.0, "y": 363.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N017", "x": 90.0, "y": 489.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N018", "x": 217.5, "y": 516.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N019", "x": 105.0, "y": 543.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N020", "x": 168.0, "y": 572.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N021", "x": 143.5, "y": 720.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SC14-N022", "x": 99.0, "y": 725.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "SC14-S001", "owner_region": "CN-SOUTH-z9-416-216", "feature_id": "CNS9-013", "kind": "city", "original": "Hengyang", "original_bbox": [246, 312, 315, 336], "source_url": "@source/803e4f2fa776c9da", "review_notes": "@note/shared_sources"},
+    {"id": "SC14-S002", "owner_region": "CN-SOUTH-z9-416-216", "feature_id": "CNS9-041", "kind": "city", "original": "Baifang", "original_bbox": [226, 456, 269, 475], "source_url": "@source/bb748a7b26501a81", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

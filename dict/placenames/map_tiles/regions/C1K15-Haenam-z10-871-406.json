@@ -1,0 +1,38 @@
+{
+  "id": "C1K15-Haenam-z10-871-406",
+  "z": 10,
+  "x": 871,
+  "y": 406,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "10/871/406.png",
+    "10/871/407.png"
+  ],
+  "context_tiles": [
+    "10/872/406.png"
+  ],
+  "features": [
+    {"id": "C1K15-N028", "kind": "city", "original": "Mokpo-si", "original_bbox": [102, 66, 152, 104], "source_url": "@source/be430b5bab2f4f02"},
+    {"id": "C1K15-N030", "kind": "city", "original": "Sani-myeon", "original_bbox": [131, 195, 198, 215], "source_url": "@source/be430b5bab2f4f02"},
+    {"id": "C1K15-N031", "kind": "city", "original": "Hwasan-myeon", "original_bbox": [183, 339, 227, 372], "source_url": "@source/5c712c83814e695b"},
+    {"id": "C1K15-N032", "kind": "city", "original": "Uisin-myeon", "original_bbox": [40, 396, 79, 433], "source_url": "@source/5c712c83814e695b"}
+  ],
+  "translations": [
+    {"id": "C1K15-N028", "zh": "木浦市", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "111154892921c5757313dfa2a2166c7e9d289be411d93da5cf4f987ed90829e2", "review_notes": "@note/translations"},
+    {"id": "C1K15-N030", "zh": "山二面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "6d943378e6d4196076b654be5bd74f2fa5a143660b3d3cee8aa26ab97503ce9f", "review_notes": "@note/translations"},
+    {"id": "C1K15-N031", "zh": "花山面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "f2946ce8801df6758f816cfe1d28f90c37efaf05f82bdc250bc2034ac5503695", "review_notes": "@note/translations"},
+    {"id": "C1K15-N032", "zh": "义新面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "89c123b5aacc77014c3c65778fceec0141c79a701b0d9bb8f57e8643b422c165", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C1K15-N028", "x": 127.0, "y": 85.0, "font_size": 12, "font_style": "regular", "lines": ["木浦市"]},
+    {"id": "C1K15-N030", "x": 164.5, "y": 205.0, "font_size": 12, "font_style": "regular", "lines": ["山二面"]},
+    {"id": "C1K15-N031", "x": 205.0, "y": 355.5, "font_size": 12, "font_style": "regular", "lines": ["花山面"]},
+    {"id": "C1K15-N032", "x": 59.5, "y": 414.5, "font_size": 12, "font_style": "regular", "lines": ["义新面"]}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "C1K15-SH029", "owner_region": "KR-south-z10-872-400", "feature_id": "KR-S10-148", "kind": "city", "original": "Miam-myeon", "original_bbox": [242, 147, 277, 180], "source_url": "@source/107f5a8c10389769", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

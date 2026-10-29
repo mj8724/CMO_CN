@@ -1,0 +1,26 @@
+{
+  "id": "NEA-YellowSea-z10-864-402",
+  "z": 10,
+  "x": 864,
+  "y": 402,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/864/402.png"
+  ],
+  "context_tiles": [
+    "10/865/402.png"
+  ],
+  "features": [
+    {"id": "NEA10-022", "kind": "marine", "original": "Yellow Sea", "original_bbox": [112, 13, 255, 36], "source_url": "@source/01d43eeb69fe12cf"}
+  ],
+  "translations": [
+    {"id": "NEA10-022", "zh": "黄海", "status": "approved", "source": "@source/98f1a766b282ca2d", "record_sha256": "29dbcf2fee3897d96ba3dc1fd4abb241c77bd571dd50e636ad15e3af2b204d66", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA10-022", "x": 183.0, "y": 25.0, "font_size": 16, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

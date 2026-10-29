@@ -1,0 +1,25 @@
+{
+  "id": "FAS27-Kidal-z9-257-229",
+  "z": 9,
+  "x": 257,
+  "y": 229,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "features": [
+    {"id": "FAS27-Kidal", "kind": "city", "original": "Kidal", "original_bbox": [240, 70, 274, 88], "source_url": "@source/b0e99c657fa7ee81"}
+  ],
+  "translations": [
+    {"id": "FAS27-Kidal", "zh": "基达尔", "status": "approved", "source": "@source/afccafc1b3c882fa", "record_sha256": "ce844019f50f60cd39baad422ad252780727d281440dc4e2253c27841b7fdd89", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Kidal", "x": 257.0, "y": 79.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/257/229.png",
+    "9/258/229.png"
+  ],
+  "context_tiles": []
+}

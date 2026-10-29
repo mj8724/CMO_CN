@@ -1,0 +1,40 @@
+{
+  "id": "C3-R03-z8-136-119",
+  "z": 8,
+  "x": 136,
+  "y": 119,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/136/119.png",
+    "8/137/119.png",
+    "8/138/119.png"
+  ],
+  "context_tiles": [
+    "8/135/119.png"
+  ],
+  "features": [
+    {"id": "C3-N002", "kind": "city", "original": "N'Djamena", "original_bbox": [687, 77, 758, 102], "source_url": "@source/f94d1121a4bb9afd"},
+    {"id": "C3-N004", "kind": "city", "original": "Maiduguri", "original_bbox": [342, 129, 408, 154], "source_url": "@source/b71ae653c3ba6e35"},
+    {"id": "C3-N005", "kind": "city", "original": "Bama", "original_bbox": [440, 187, 476, 207], "source_url": "@source/b71ae653c3ba6e35"}
+  ],
+  "translations": [
+    {"id": "C3-N002", "zh": "恩贾梅纳", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "6bb8c66df967b253a0fd8af92fb88466da54e34d38a77648ab77bb154d6a1182", "review_notes": "@note/translations"},
+    {"id": "C3-N004", "zh": "迈杜古里", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "884c1646e4f7d5187225e7a445c0bb6a2f5ac0e342dd15e2fc93cf9aeb1cc7d3", "review_notes": "@note/translations"},
+    {"id": "C3-N005", "zh": "巴马", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "20dabebdff28d23597588d6b4575669a7c767e5b3a15c49aac517648eaac1e58", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C3-N002", "x": 728.5, "y": 97.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N004", "x": 383.5, "y": 149.5, "font_size": 12, "font_style": "regular"},
+    {"id": "C3-N005", "x": 469.5, "y": 207.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "C3-C002", "feature_id": "C3-N002", "kind": "circle", "original_bbox": [687, 77, 696, 86], "x": 691.5, "y": 81.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C004", "feature_id": "C3-N004", "kind": "circle", "original_bbox": [342, 129, 351, 138], "x": 346.5, "y": 133.5, "size": 9, "outline_width": 1},
+    {"id": "C3-C005", "feature_id": "C3-N005", "kind": "circle", "original_bbox": [440, 187, 449, 196], "x": 444.5, "y": 191.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "C3-SH001", "owner_region": "WCA-WestCentralAfrica-z8-main", "feature_id": "WCA8-023", "kind": "city", "original": "Potiskum", "original_bbox": [-36, 152, 23, 173], "source_url": "@source/0b2515f7abfaf19f", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

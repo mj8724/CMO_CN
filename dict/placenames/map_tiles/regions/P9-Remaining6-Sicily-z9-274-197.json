@@ -1,0 +1,45 @@
+{
+  "id": "P9-Remaining6-Sicily-z9-274-197",
+  "z": 9,
+  "x": 274,
+  "y": 197,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/274/197.png",
+    "9/275/197.png"
+  ],
+  "context_tiles": [
+    "9/276/197.png"
+  ],
+  "features": [
+    {"id": "P9-PH-020", "kind": "city", "original": "Palermo", "original_bbox": [225, 65, 283, 85], "source_url": "@source/1ced209c4c822c04"},
+    {"id": "P9-PH-021", "kind": "city", "original": "Misilmeri", "original_bbox": [264, 102, 315, 118], "source_url": "@source/1ced209c4c822c04"},
+    {"id": "P9-PH-022", "kind": "city", "original": "Termini Imerese", "original_bbox": [356, 117, 401, 151], "source_url": "@source/1ced209c4c822c04"},
+    {"id": "P9-PH-023", "kind": "city", "original": "Cefalù", "original_bbox": [480, 101, 517, 118], "source_url": "@source/1ced209c4c822c04"},
+    {"id": "P9-PH-024", "kind": "city", "original": "Corleone", "original_bbox": [210, 204, 260, 221], "source_url": "@source/1ced209c4c822c04"},
+    {"id": "P9-COMP-Carini", "kind": "city", "original": "Carini", "original_bbox": [175, 57, 208, 74], "source_url": "@source/cb4e374a7fde7743"},
+    {"id": "P9-COMP-Alcamo", "kind": "city", "original": "Alcamo", "original_bbox": [90, 128, 133, 145], "source_url": "@source/cb4e374a7fde7743"}
+  ],
+  "translations": [
+    {"id": "P9-PH-020", "zh": "巴勒莫", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "ce6ff378b120972a51cfee5190b9b5a15f25cfcf93d4876a6eec30e0447d7a8f", "review_notes": "@note/translations"},
+    {"id": "P9-PH-021", "zh": "米西尔梅里", "status": "approved", "source": "@source/1ced209c4c822c04", "record_sha256": "bd5ddf755a5b44bd2f05ea267d58437945c0b50ef792aec9dd2af4b242fe7975", "review_notes": "@note/translations"},
+    {"id": "P9-PH-022", "zh": "泰尔米尼伊梅雷塞", "status": "approved", "source": "@source/1ced209c4c822c04", "record_sha256": "a22802cdde735feb1d9eaabb9a4231a4eb5ce0bd29daf3ff582284cd99577609", "review_notes": "@note/translations"},
+    {"id": "P9-PH-023", "zh": "切法卢", "status": "approved", "source": "@source/1ced209c4c822c04", "record_sha256": "eb6870c7e2990ac29b58a77d3a8937c0ed18e7fa7b087542ba46849a5df58c2d", "review_notes": "@note/translations"},
+    {"id": "P9-PH-024", "zh": "科尔莱奥内", "status": "approved", "source": "@source/1ced209c4c822c04", "record_sha256": "9febc9058ff599d988478bf3f2d6eeab01963f4b14babfc51468d68a0b9cfd74", "review_notes": "@note/translations"},
+    {"id": "P9-COMP-Carini", "zh": "卡里尼", "status": "approved", "source": "@source/cb4e374a7fde7743", "record_sha256": "a58a450b84ea5339a50216c86cf01b5dbf1c64995e1b8edf38a4b93afe44c528", "review_notes": "@note/translations"},
+    {"id": "P9-COMP-Alcamo", "zh": "阿尔卡莫", "status": "approved", "source": "@source/cb4e374a7fde7743", "record_sha256": "f50d6d28065f9dcb20002843693ecd5e2de24d0d58adc3830c57e9b434df3ac1", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P9-PH-020", "x": 254.0, "y": 75.0, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-021", "x": 289.5, "y": 110.0, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-022", "x": 378.5, "y": 134.0, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-023", "x": 488.0, "y": 109.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-024", "x": 235.0, "y": 212.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-COMP-Carini", "x": 191.5, "y": 65.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-COMP-Alcamo", "x": 111.5, "y": 136.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

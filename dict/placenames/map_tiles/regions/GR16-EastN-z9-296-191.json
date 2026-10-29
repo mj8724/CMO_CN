@@ -1,0 +1,66 @@
+{
+  "id": "GR16-EastN-z9-296-191",
+  "z": 9,
+  "x": 296,
+  "y": 191,
+  "width_tiles": 1,
+  "height_tiles": 4,
+  "features": [
+    {"id": "GR16-N-027", "kind": "city", "original": "Çatalca", "original_bbox": [102, 168, 143, 188], "source_url": "@source/ea09d2c7aad6437c"},
+    {"id": "GR16-N-035", "kind": "city", "original": "Silivri", "original_bbox": [28, 202, 61, 219], "source_url": "@source/ea09d2c7aad6437c"},
+    {"id": "GR16-N-039", "kind": "city", "original": "Küçükçekmece", "original_bbox": [195, 242, 276, 261], "source_url": "@source/ea09d2c7aad6437c"},
+    {"id": "GR16-N-042", "kind": "city", "original": "Armutlu", "original_bbox": [232, 468, 279, 485], "source_url": "@source/d98ab879ad95febb"},
+    {"id": "GR16-N-043", "kind": "city", "original": "Mudanya", "original_bbox": [251, 538, 302, 557], "source_url": "@source/b7aad46eef0df5d4"},
+    {"id": "GR16-N-044", "kind": "city", "original": "Karacabey", "original_bbox": [58, 616, 115, 635], "source_url": "@source/b7aad46eef0df5d4"},
+    {"id": "GR16-N-045", "kind": "city", "original": "Mustafakemalpaşa", "original_bbox": [55, 700, 156, 719], "source_url": "@source/b7aad46eef0df5d4"},
+    {"id": "GR16-N-047", "kind": "city", "original": "Büyükorhan", "original_bbox": [244, 826, 310, 845], "source_url": "@source/2d76308d50a38a49"},
+    {"id": "GR16-N-049", "kind": "city", "original": "Dursunbey", "original_bbox": [153, 912, 212, 931], "source_url": "@source/2d76308d50a38a49"}
+  ],
+  "translations": [
+    {"id": "GR16-N-027", "zh": "恰塔尔贾", "status": "approved", "source": "@source/21dd0876d3dc6084", "record_sha256": "8ef492cbc606484bbbc687f8c128b93d76aef5e68531a9ecea16fd8c30b6a664", "review_notes": "@note/translations"},
+    {"id": "GR16-N-035", "zh": "锡利夫里", "status": "approved", "source": "@source/61d5c092c5d97ec0", "record_sha256": "59db71b06a8d7dce7f843b075985e29a2fd8d9a58e83ca4547386c015f6c3d73", "review_notes": "@note/translations"},
+    {"id": "GR16-N-039", "zh": "屈曲克切克梅杰", "status": "approved", "source": "@source/9319813098a46071", "record_sha256": "3a96f7be5fbf265e79b5bd258d91f0e205c8180f40f6986716fabcd0cff3eee8", "review_notes": "@note/translations"},
+    {"id": "GR16-N-042", "zh": "阿尔穆特卢", "status": "approved", "source": "@source/d74964aa309f8666", "record_sha256": "8dcbab699c77239d2760a9f7e04fd280e6371b9d443fe921972ee476b7cfdfe6", "review_notes": "@note/translations"},
+    {"id": "GR16-N-043", "zh": "穆达尼亚", "status": "approved", "source": "@source/4c4db37c09fb1c26", "record_sha256": "3715ceb7f2727002b0718965f966ea4e4b5f884786f276a7f70a0580cec39b20", "review_notes": "@note/translations"},
+    {"id": "GR16-N-044", "zh": "卡拉贾贝伊", "status": "approved", "source": "@source/89f20fe77f556e14", "record_sha256": "07ac54610778c692e5effa365cf9fcdcfb612f0958a73a2f564063b93d009e43", "review_notes": "@note/translations"},
+    {"id": "GR16-N-045", "zh": "穆斯塔法凯末尔帕夏", "status": "approved", "source": "@source/1c0ba663b4aff5bd", "record_sha256": "d8429edfb2f2a483f371b33095d747bf612b8d01557ea721286ee0af108f72d0", "review_notes": "@note/translations"},
+    {"id": "GR16-N-047", "zh": "比于克奥尔汉", "status": "approved", "source": "@source/2551468de3580dbb", "record_sha256": "c1dd1e77d9bc912768b8432bb001d3ab6c36c912fa06d6bc586ddcee44e18b16", "review_notes": "@note/translations"},
+    {"id": "GR16-N-049", "zh": "杜尔孙贝伊", "status": "approved", "source": "@source/958024efeb6f5774", "record_sha256": "31f13a92d9288583595824a35f47411c3f1f1a5da97fddd3748e351ad705ed8f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GR16-N-027", "x": 122.0, "y": 178.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-035", "x": 44.0, "y": 210.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-039", "x": 211.0, "y": 251.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-042", "x": 223.0, "y": 476.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-043", "x": 229.0, "y": 547.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-044", "x": 86.0, "y": 625.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-045", "x": 105.0, "y": 709.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-047", "x": 217.0, "y": 835.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-049", "x": 182.0, "y": 921.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "GR16-S-041", "owner_region": "GREECE-z9-288-192", "feature_id": "GR9-015", "kind": "marine", "original": "Sea of Marmara", "original_bbox": [-27, 372, 78, 420], "source_url": "@source/d98ab879ad95febb", "review_notes": "@note/shared_sources"},
+    {"id": "GR16-S-046", "owner_region": "GREECE-z9-288-192", "feature_id": "GR9-046", "kind": "city", "original": "Susurluk", "original_bbox": [-13, 757, 37, 774], "source_url": "@source/5c1107239deb99bc", "review_notes": "@note/shared_sources"},
+    {"id": "GR16-S-048", "owner_region": "GREECE-z9-288-192", "feature_id": "GR9-053", "kind": "city", "original": "Kepsut", "original_bbox": [-9, 864, 31, 883], "source_url": "@source/3d88467aa4a8f7e2", "review_notes": "@note/shared_sources"},
+    {"id": "GR16-S-050", "owner_region": "GREECE-z9-288-192", "feature_id": "GR9-061", "kind": "city", "original": "Bigadiç", "original_bbox": [-18, 1005, 25, 1024], "source_url": "@source/7d290caf91a9137b", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/296/191.png",
+    "9/296/192.png",
+    "9/296/193.png",
+    "9/296/194.png"
+  ],
+  "context_tiles": [
+    "9/295/192.png",
+    "9/295/193.png",
+    "9/295/194.png",
+    "9/295/195.png",
+    "9/296/195.png",
+    "9/297/191.png",
+    "9/297/192.png",
+    "9/297/193.png",
+    "9/297/194.png"
+  ]
+}

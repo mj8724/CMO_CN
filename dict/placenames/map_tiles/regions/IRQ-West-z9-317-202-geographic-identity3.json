@@ -1,0 +1,38 @@
+{
+  "id": "IRQ-West-z9-317-202-geographic-identity3",
+  "z": 9,
+  "x": 317,
+  "y": 202,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/317/202.png"
+  ],
+  "context_tiles": [
+    "9/316/201.png",
+    "9/317/201.png",
+    "9/318/201.png",
+    "9/316/202.png",
+    "9/318/202.png",
+    "9/316/203.png",
+    "9/317/203.png",
+    "9/318/203.png"
+  ],
+  "features": [
+    {"id": "IRQ9-048", "kind": "city", "original": "Al A…", "original_bbox": [230, 74, 256, 91], "source_url": "@source/ef67e2eeed6929ae"},
+    {"id": "IRQ9-050", "kind": "city", "original": "Az Zab", "original_bbox": [184, 78, 223, 94], "source_url": "@source/8ebfff89b7159f4d"},
+    {"id": "IRQ9-055", "kind": "city", "original": "Baiji", "original_bbox": [205, 227, 234, 249], "source_url": "@source/9bd69f665e7f540a"}
+  ],
+  "translations": [
+    {"id": "IRQ9-048", "zh": "阿巴西", "status": "approved", "source": "@source/f5bc3930fe0361a9", "record_sha256": "6ea3fed9500d593f227e7ae760f8f5dec9568e9c1b99df0f86c55f35d673a456", "review_notes": "@note/translations"},
+    {"id": "IRQ9-050", "zh": "扎布", "status": "approved", "source": "@source/a6c01e9c74bfd6e9", "record_sha256": "6543ca1f11132548a4c1c2ddbc96b8391a29e11fa8819145c89e1a0608156d7c", "review_notes": "@note/translations"},
+    {"id": "IRQ9-055", "zh": "拜伊吉", "status": "approved", "source": "@source/c2e1f3b0c3682aa2", "record_sha256": "1419416953ce4e3005f778319d11f3b2db9ff6d7dd6fb23630b5eb39aeabcf5d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "IRQ9-048", "x": 236.5, "y": 82.5, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-050", "x": 203.5, "y": 86.0, "font_size": 11, "font_style": "regular"},
+    {"id": "IRQ9-055", "x": 219.5, "y": 238.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": []
+}

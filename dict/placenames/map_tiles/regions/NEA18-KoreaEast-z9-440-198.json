@@ -1,0 +1,31 @@
+{
+  "id": "NEA18-KoreaEast-z9-440-198",
+  "z": 9,
+  "x": 440,
+  "y": 198,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "9/440/198.png",
+    "9/440/199.png"
+  ],
+  "context_tiles": [
+    "9/439/198.png",
+    "9/439/199.png"
+  ],
+  "features": [
+    {"id": "NEA18-041", "kind": "city", "original": "Hupo-myeon", "original_bbox": [1, 457, 40, 493], "source_url": "@source/4106a26ec48a857b"}
+  ],
+  "translations": [
+    {"id": "NEA18-041", "zh": "厚浦面", "status": "approved", "source": "@source/a9bac667c951705d", "record_sha256": "46687a89c261d540e255e1502a06e4a84a47bd777cd25e656716a787cbbe8144", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA18-041", "x": 22.0, "y": 475.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"owner_region": "KR-peninsula-z9-432-192", "feature_id": "KR-P9-167", "kind": "city", "original": "Wondeok-eup", "original_bbox": [-56, 227, 2, 263], "source_url": "@source/d5498504e7a5da31", "id": "NEA18-SH-005", "review_notes": "@note/shared_sources"},
+    {"owner_region": "KR-peninsula-z9-432-192", "feature_id": "KR-P9-173", "kind": "city", "original": "Buk-myeon", "original_bbox": [-47, 285, 16, 304], "source_url": "@source/c3410725407c6384", "id": "NEA18-SH-006", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

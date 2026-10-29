@@ -1,0 +1,24 @@
+{
+  "id": "VN14-R02-z10-815-467",
+  "z": 10,
+  "x": 815,
+  "y": 467,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "10/815/467.png", "z": 10}
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "VN14-N08", "kind": "region", "original": "Xekong", "original_bbox": [119, 198, 169, 220], "source_url": "@source/9813fb15b51cdf9c"}
+  ],
+  "translations": [
+    {"id": "VN14-N08", "zh": "色贡", "status": "approved", "source": "@source/9813fb15b51cdf9c", "record_sha256": "c6a87bdc1380b3d90a31343f61ce1ce2abf77a9f51fc6c78e446ad889cbd8557", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "VN14-N08", "x": 144.0, "y": 209.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

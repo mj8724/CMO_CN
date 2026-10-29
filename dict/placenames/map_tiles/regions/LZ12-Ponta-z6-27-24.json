@@ -1,0 +1,26 @@
+{
+  "id": "LZ12-Ponta-z6-27-24",
+  "z": 6,
+  "x": 27,
+  "y": 24,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/27/24.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "LZ12-Ponta-z6-27-24-PontaDelgada", "kind": "city", "original": "Ponta Delgada", "original_bbox": [107, 186, 155, 224], "source_url": "@source/e0cfef401c1e4584", "source_printed_lines": ["Ponta", "Delgada"]}
+  ],
+  "translations": [
+    {"id": "LZ12-Ponta-z6-27-24-PontaDelgada", "zh": "蓬塔德尔加达", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "898e685f70b229f9893c20d2f45f3dba02530924bca8d608f15723a8cc8c0b81", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LZ12-Ponta-z6-27-24-PontaDelgada", "x": 147.0, "y": 209.0, "font_size": 12, "font_style": "regular", "lines": ["蓬塔", "德尔加达"]}
+  ],
+  "symbols": [
+    {"id": "LZ12-Ponta-z6-27-24-PontaDelgada-circle", "feature_id": "LZ12-Ponta-z6-27-24-PontaDelgada", "kind": "circle", "x": 111.5, "y": 190.5, "size": 9, "outline_width": 1, "original_bbox": [107, 186, 116, 195], "source_url": "@source/e0cfef401c1e4584", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

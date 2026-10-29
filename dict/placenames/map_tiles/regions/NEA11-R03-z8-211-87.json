@@ -1,0 +1,29 @@
+{
+  "id": "NEA11-R03-z8-211-87",
+  "z": 8,
+  "x": 211,
+  "y": 87,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/211/87.png"
+  ],
+  "features": [
+    {"id": "NEA11-N004", "kind": "city", "original": "Manzhouli", "original_bbox": [128, 65, 192, 86], "source_url": "@source/ed5d2b1f308028c3"}
+  ],
+  "translations": [
+    {"id": "NEA11-N004", "zh": "满洲里", "source_evidence_role": "NE_same_country_original_CJK", "status": "approved", "source_identity_contract_sha256": "b3325dd088df0c8d2bf1f487cca6a90cf250628d97c47df4b5d8b422c2176ab4", "source": "@source/de57b59c289acedb", "record_sha256": "c8ec38ed310f9bc70a6a7a5d1402fa092f647767c9235ade3ad512b38fd66d36", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."}
+  ],
+  "layouts": [
+    {"id": "NEA11-N004", "x": 156, "y": 81, "font_size": 12, "font_style": "regular", "lines": ["满洲里"]}
+  ],
+  "symbols": [
+    {"id": "NEA11-N004-circle", "feature_id": "NEA11-N004", "kind": "circle", "size": 9, "outline_width": 1, "x": 132.5, "y": 69.5, "original_bbox": [128, 65, 137, 74]}
+  ],
+  "canonical_captions": [
+    {"id": "NEA11-Cities-908", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 908, "original_Chinese_name": "扎赉诺尔", "lat_f32_bits": 1111870669, "lon_f32_bits": 1122723430, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 178.6306, "y": 109.0758, "font_size": 12, "font_style": "regular", "lines": ["扎赉诺尔"]}}
+  ],
+  "context_tiles": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

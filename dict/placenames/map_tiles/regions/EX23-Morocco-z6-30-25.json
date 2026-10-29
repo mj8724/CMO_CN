@@ -1,0 +1,39 @@
+{
+  "id": "EX23-Morocco-z6-30-25",
+  "z": 6,
+  "x": 30,
+  "y": 25,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/30/25.png"
+  ],
+  "context_tiles": [
+    "6/31/25.png"
+  ],
+  "features": [
+    {"id": "EX23-Morocco-z6-30-25-00-GIBRALTAR", "kind": "admin0", "original": "GIBRALTAR", "original_bbox": [183, 11, 354, 35], "source_url": "@source/b532926e621d97a6"},
+    {"id": "EX23-Morocco-z6-30-25-01-Rabat", "kind": "city", "original": "Rabat", "original_bbox": [197, 139, 234, 158], "source_url": "@source/b532926e621d97a6"},
+    {"id": "EX23-Morocco-z6-30-25-02-Casablanca", "kind": "city", "original": "Casablanca", "original_bbox": [161, 163, 232, 185], "source_url": "@source/b532926e621d97a6"},
+    {"id": "EX23-Morocco-z6-30-25-03-Safi", "kind": "city", "original": "Safi", "original_bbox": [87, 233, 114, 252], "source_url": "@source/b532926e621d97a6"}
+  ],
+  "translations": [
+    {"id": "EX23-Morocco-z6-30-25-00-GIBRALTAR", "zh": "直布罗陀", "status": "approved", "source": "@source/b532926e621d97a6", "record_sha256": "dc51781cd22ea238857631241408ea93d225c09159a9401a4cbf28d04fbefaf1", "review_notes": "@note/translations"},
+    {"id": "EX23-Morocco-z6-30-25-01-Rabat", "zh": "拉巴特", "status": "approved", "source": "@source/b532926e621d97a6", "record_sha256": "de52212576611c1102e9e358c1306e1b57098bdb82520197fd4ff696b0eafa41", "review_notes": "@note/translations"},
+    {"id": "EX23-Morocco-z6-30-25-02-Casablanca", "zh": "卡萨布兰卡", "status": "approved", "source": "@source/b532926e621d97a6", "record_sha256": "87152cac7912d8ebd47c945b2ea399039a401f4276e75b99918eeb0f65de79bd", "review_notes": "@note/translations"},
+    {"id": "EX23-Morocco-z6-30-25-03-Safi", "zh": "萨菲", "status": "approved", "source": "@source/b532926e621d97a6", "record_sha256": "2d048475089ad08ee09513988922a1f6f7e91fb9cccc3cc430fd5332dbb2f8e0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EX23-Morocco-z6-30-25-00-GIBRALTAR", "x": 210, "y": 23, "font_size": 15, "font_style": "bold"},
+    {"id": "EX23-Morocco-z6-30-25-01-Rabat", "x": 218, "y": 157, "font_size": 12, "font_style": "regular"},
+    {"id": "EX23-Morocco-z6-30-25-02-Casablanca", "x": 196, "y": 182, "font_size": 12, "font_style": "regular"},
+    {"id": "EX23-Morocco-z6-30-25-03-Safi", "x": 116, "y": 246, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EX23-Morocco-z6-30-25-01-Rabat-circle", "feature_id": "EX23-Morocco-z6-30-25-01-Rabat", "kind": "circle", "x": 201.5, "y": 143.5, "size": 8, "outline_width": 1, "original_bbox": [197, 139, 206, 148]},
+    {"id": "EX23-Morocco-z6-30-25-02-Casablanca-circle", "feature_id": "EX23-Morocco-z6-30-25-02-Casablanca", "kind": "circle", "x": 165.5, "y": 167.5, "size": 8, "outline_width": 1, "original_bbox": [161, 163, 170, 172]},
+    {"id": "EX23-Morocco-z6-30-25-03-Safi-circle", "feature_id": "EX23-Morocco-z6-30-25-03-Safi", "kind": "circle", "x": 91.5, "y": 237.5, "size": 8, "outline_width": 1, "original_bbox": [87, 233, 96, 242]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

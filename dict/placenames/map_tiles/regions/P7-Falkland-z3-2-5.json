@@ -1,0 +1,24 @@
+{
+  "id": "P7-Falkland-z3-2-5",
+  "z": 3,
+  "x": 2,
+  "y": 5,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "3/2/5.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "P7-Falkland-z3-2-5-02-name", "kind": "admin0", "original": "FALKLAND ISLANDS", "original_bbox": [126, 73, 221, 105], "source_url": "@source/16fd6a7d364f5cec"}
+  ],
+  "translations": [
+    {"id": "P7-Falkland-z3-2-5-02-name", "zh": "福克兰群岛", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "ed9f42d8c3ad541f75180ea39e18aff477449f0a120f07e07f1def4e5e8ec286", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P7-Falkland-z3-2-5-02-name", "x": 173.5, "y": 89, "font_size": 14, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

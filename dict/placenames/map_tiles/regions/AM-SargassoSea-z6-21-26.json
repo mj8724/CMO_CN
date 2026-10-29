@@ -1,0 +1,24 @@
+{
+  "id": "AM-SargassoSea-z6-21-26",
+  "z": 6,
+  "x": 21,
+  "y": 26,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/21/26.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "AM-SargassoSea-z6-21-26-name", "kind": "marine", "original": "Sargasso Sea", "original_bbox": [24, 92, 147, 114], "source_url": "@source/5236121a6131fc1e"}
+  ],
+  "translations": [
+    {"id": "AM-SargassoSea-z6-21-26-name", "zh": "马尾藻海", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "495a27c7f6b214e1d44ac4c9c201e06b076f96ac6ff26007017550d91b5fa94d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AM-SargassoSea-z6-21-26-name", "x": 85.5, "y": 103.0, "font_size": 15, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

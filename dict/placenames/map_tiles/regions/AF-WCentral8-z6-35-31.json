@@ -1,0 +1,75 @@
+{
+  "id": "AF-WCentral8-z6-35-31",
+  "z": 6,
+  "x": 35,
+  "y": 31,
+  "width_tiles": 2,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/35/31.png",
+    "6/35/32.png",
+    "6/36/31.png",
+    "6/36/32.png"
+  ],
+  "context_tiles": [
+    "6/34/31.png",
+    "6/34/32.png",
+    "6/35/30.png"
+  ],
+  "features": [
+    {"id": "AF28-068", "kind": "city", "original": "Mbandaka", "original_bbox": [58, 249, 116, 269], "source_url": "@source/be068cb155c029b8"},
+    {"id": "AF28-069", "kind": "city", "original": "Bangui", "original_bbox": [73, 53, 115, 75], "source_url": "@source/be068cb155c029b8"},
+    {"id": "AF28-070", "kind": "city", "original": "Bumba", "original_bbox": [250, 152, 293, 171], "source_url": "@source/be068cb155c029b8"},
+    {"id": "AF28-071", "kind": "city", "original": "Bondo", "original_bbox": [306, 78, 346, 97], "source_url": "@source/595e07ab72667b34"},
+    {"id": "AF28-072", "kind": "city", "original": "Kisangani", "original_bbox": [375, 228, 429, 250], "source_url": "@source/595e07ab72667b34"},
+    {"id": "AF28-073", "kind": "city", "original": "Obo", "original_bbox": [433, 6, 463, 25], "source_url": "@source/595e07ab72667b34"},
+    {"id": "AF28-084", "kind": "city", "original": "Bandundu", "original_bbox": [18, 403, 75, 422], "source_url": "@source/840df19fa86d8c16"},
+    {"id": "AF28-085", "kind": "city", "original": "Inongo", "original_bbox": [60, 339, 102, 361], "source_url": "@source/840df19fa86d8c16"},
+    {"id": "AF28-086", "kind": "city", "original": "Kikwit", "original_bbox": [84, 481, 124, 500], "source_url": "@source/840df19fa86d8c16"},
+    {"id": "AF28-087", "kind": "admin0", "original": "DEMOCRATIC REPUBLIC OF THE CONGO", "original_bbox": [217, 350, 417, 426], "source_url": "@source/8d69cb20353b7489"},
+    {"id": "AF28-088", "kind": "city", "original": "Kasongo", "original_bbox": [441, 453, 491, 475], "source_url": "@source/8d69cb20353b7489"}
+  ],
+  "translations": [
+    {"id": "AF28-068", "zh": "姆班达卡", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "ceeec0b90479cff7cfe5fc6e988a89691078fcc8da331ab33b283f02f19286cf", "review_notes": "@note/translations"},
+    {"id": "AF28-069", "zh": "班基", "status": "approved", "source": "@source/057a07807f78a8db", "record_sha256": "ca65d2771d760aad9cc69a2b2555074576c053992f322de0586901799d038e65", "review_notes": "@note/translations"},
+    {"id": "AF28-070", "zh": "奔巴", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "0ad102ff44da1c73224a3d3f94e914b359d1365b6b9f7ea13fd8c3cf88b47504", "review_notes": "@note/translations"},
+    {"id": "AF28-071", "zh": "邦多", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "ee3085c1c7360156a9c5962d01b2f0a20e9b8749528f3a03816b9fb918a47d70", "review_notes": "@note/translations"},
+    {"id": "AF28-072", "zh": "基桑加尼", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "d0ad159cc070e3885d05e063b5f6de26e051260b1c1bfd26085f2c98a43549b7", "review_notes": "@note/translations"},
+    {"id": "AF28-073", "zh": "奥博", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "299dc6f96f18b059f11c772895106ab894d43ba8abe78a429897bba1f9462643", "review_notes": "@note/translations"},
+    {"id": "AF28-084", "zh": "班顿杜", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "109788f51d0db7998f879cab80c014f913d4f85b873b3eca980cbbd64ab6a8e9", "review_notes": "@note/translations"},
+    {"id": "AF28-085", "zh": "伊农戈", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8319ce615b065bf88b03f599620dba4484026abb382ecc1e855f8b3ab2185793", "review_notes": "@note/translations"},
+    {"id": "AF28-086", "zh": "基奎特", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "e584c3486be3a662ea3b70a2d796f8fd2135603d433cc92b23cde06e3b08a8d2", "review_notes": "@note/translations"},
+    {"id": "AF28-087", "zh": "刚果民主共和国", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "ced8862cc14d4cd50429ab325e85e018bc26017006a2e423339bdeb329fa7944", "review_notes": "@note/translations"},
+    {"id": "AF28-088", "zh": "卡松戈", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "958989586df54e15e6e6ec6281b399804855c27954e8b17f1fd8403f916a558e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AF28-087", "x": 317.0, "y": 388.0, "font_size": 18, "font_style": "bold"},
+    {"id": "AF28-073", "x": 458.0, "y": 18.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-069", "x": 98.0, "y": 65.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-071", "x": 331.0, "y": 90.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-070", "x": 275.0, "y": 164.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-072", "x": 412.0, "y": 240.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-068", "x": 95.0, "y": 261.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-085", "x": 91.0, "y": 351.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-084", "x": 49.0, "y": 415.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-088", "x": 472.0, "y": 465.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-086", "x": 115.0, "y": 493.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AF28-068-circle", "feature_id": "AF28-068", "kind": "circle", "x": 62.5, "y": 253.5, "size": 9, "outline_width": 1, "original_bbox": [58, 249, 67, 258], "source_url": "@source/be068cb155c029b8", "review_notes": "@note/symbols"},
+    {"id": "AF28-069-circle", "feature_id": "AF28-069", "kind": "circle", "x": 77.5, "y": 57.5, "size": 9, "outline_width": 1, "original_bbox": [73, 53, 82, 62], "source_url": "@source/be068cb155c029b8", "review_notes": "@note/symbols"},
+    {"id": "AF28-070-circle", "feature_id": "AF28-070", "kind": "circle", "x": 254.5, "y": 156.5, "size": 9, "outline_width": 1, "original_bbox": [250, 152, 259, 161], "source_url": "@source/be068cb155c029b8", "review_notes": "@note/symbols"},
+    {"id": "AF28-071-circle", "feature_id": "AF28-071", "kind": "circle", "x": 310.5, "y": 82.5, "size": 9, "outline_width": 1, "original_bbox": [306, 78, 315, 87], "source_url": "@source/595e07ab72667b34", "review_notes": "@note/symbols"},
+    {"id": "AF28-072-circle", "feature_id": "AF28-072", "kind": "circle", "x": 379.5, "y": 232.5, "size": 9, "outline_width": 1, "original_bbox": [375, 228, 384, 237], "source_url": "@source/595e07ab72667b34", "review_notes": "@note/symbols"},
+    {"id": "AF28-073-circle", "feature_id": "AF28-073", "kind": "circle", "x": 437.5, "y": 10.5, "size": 9, "outline_width": 1, "original_bbox": [433, 6, 442, 15], "source_url": "@source/595e07ab72667b34", "review_notes": "@note/symbols"},
+    {"id": "AF28-084-circle", "feature_id": "AF28-084", "kind": "circle", "x": 22.5, "y": 407.5, "size": 9, "outline_width": 1, "original_bbox": [18, 403, 27, 412], "source_url": "@source/840df19fa86d8c16", "review_notes": "@note/symbols"},
+    {"id": "AF28-085-circle", "feature_id": "AF28-085", "kind": "circle", "x": 64.5, "y": 343.5, "size": 9, "outline_width": 1, "original_bbox": [60, 339, 69, 348], "source_url": "@source/840df19fa86d8c16", "review_notes": "@note/symbols"},
+    {"id": "AF28-086-circle", "feature_id": "AF28-086", "kind": "circle", "x": 88.5, "y": 485.5, "size": 9, "outline_width": 1, "original_bbox": [84, 481, 93, 490], "source_url": "@source/840df19fa86d8c16", "review_notes": "@note/symbols"},
+    {"id": "AF28-088-circle", "feature_id": "AF28-088", "kind": "circle", "x": 445.5, "y": 457.5, "size": 9, "outline_width": 1, "original_bbox": [441, 453, 450, 462], "source_url": "@source/8d69cb20353b7489", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "AFC26-SH-09-AF28-050", "owner_region": "AF-WCentral8-z6-35-30", "feature_id": "AF28-050", "kind": "city", "original": "Bambari", "original_bbox": [168, -11, 216, 8], "source_url": "@source/1352281982ecb3e1", "review_notes": "@note/shared_sources"},
+    {"id": "AFC26-SH-12-AF28-067", "owner_region": "AF-WCentral8-z6-33-32", "feature_id": "AF28-067", "kind": "admin0", "original": "REPUBLIC OF THE CONGO", "original_bbox": [-129, 247, 18, 323], "source_url": "@source/0543bb9cbe522b59", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

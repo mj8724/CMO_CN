@@ -1,0 +1,34 @@
+{
+  "id": "AP-Arafura-Closure-z6-56-33",
+  "z": 6,
+  "x": 56,
+  "y": 33,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/56/33.png"
+  ],
+  "context_tiles": [
+    "6/55/32.png",
+    "6/56/32.png",
+    "6/57/32.png",
+    "6/55/33.png",
+    "6/57/33.png",
+    "6/55/34.png",
+    "6/56/34.png",
+    "6/57/34.png"
+  ],
+  "features": [
+    {"id": "AP-Z6C-A-000", "kind": "admin1", "original": "South Papua", "original_bbox": [175, 24, 224, 53], "source_url": "@source/92bc4655cb27e4af"},
+    {"id": "AP-Z6C-A-001", "kind": "marine", "original": "Arafura Sea", "original_bbox": [-10, 160, 99, 181], "source_url": "@source/d3f1ff651e4d7bb3"}
+  ],
+  "translations": [
+    {"id": "AP-Z6C-A-000", "zh": "南巴布亚省", "status": "approved", "source": "@source/92bc4655cb27e4af", "record_sha256": "e29fdc8512fa5e739721a11bf1abe389d9d6485e5db3044b487434501c560a0d", "review_notes": "@note/translations"},
+    {"id": "AP-Z6C-A-001", "zh": "阿拉弗拉海", "status": "approved", "source": "@source/d3f1ff651e4d7bb3", "record_sha256": "ddba946140dc8d9c1c9bef4e3ea33e32e8b1e955ff59d4c60da8e31ecae4cf4a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-Z6C-A-000", "x": 199.5, "y": 38.5, "font_size": 10, "font_style": "bold"},
+    {"id": "AP-Z6C-A-001", "x": 44.5, "y": 170.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": []
+}

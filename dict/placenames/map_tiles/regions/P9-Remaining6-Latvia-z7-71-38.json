@@ -1,0 +1,31 @@
+{
+  "id": "P9-Remaining6-Latvia-z7-71-38",
+  "z": 7,
+  "x": 71,
+  "y": 38,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/71/38.png",
+    "7/71/39.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "P9-PH-002", "kind": "city", "original": "Ventspils", "original_bbox": [166, 241, 219, 262], "source_url": "@source/adf704501c039370"},
+    {"id": "P9-PH-003", "kind": "city", "original": "Liepaja", "original_bbox": [116, 388, 159, 411], "source_url": "@source/adf704501c039370"}
+  ],
+  "translations": [
+    {"id": "P9-PH-002", "zh": "文茨皮尔斯", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "42a513e1329e8ae417d035cb22a8a9296cb1bcaad4d31bd6f25d1ffefc61d88e", "review_notes": "@note/translations"},
+    {"id": "P9-PH-003", "zh": "利耶帕亚", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "2f10bfc23a7e41ad9fa54a12bd93ce77806afd44a7fb7a25013ba0065fcae098", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P9-PH-002", "x": 210.0, "y": 251.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-003", "x": 154.0, "y": 399.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "P9-REM-N002", "feature_id": "P9-PH-002", "kind": "circle", "original_bbox": [166, 241, 175, 250], "x": 170.5, "y": 245.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "P9-REM-N003", "feature_id": "P9-PH-003", "kind": "circle", "original_bbox": [116, 388, 125, 397], "x": 120.5, "y": 392.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

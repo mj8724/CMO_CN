@@ -1,0 +1,38 @@
+{
+  "id": "NE12-VelskVologda-z6-39-18",
+  "z": 6,
+  "x": 39,
+  "y": 18,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/39/18.png"
+  ],
+  "context_tiles": [
+    "6/32/18.png",
+    "6/33/17.png",
+    "6/33/18.png",
+    "6/34/17.png",
+    "6/34/18.png",
+    "6/35/18.png",
+    "6/37/18.png"
+  ],
+  "features": [
+    {"id": "NE12-N-PH008", "kind": "city", "original": "Vel'sk", "original_bbox": [119, 46, 157, 65], "source_url": "@source/2dcf3289626c73ab"},
+    {"id": "NE12-N-PH009", "kind": "city", "original": "Vologda", "original_bbox": [19, 216, 67, 238], "source_url": "@source/2dcf3289626c73ab"}
+  ],
+  "translations": [
+    {"id": "NE12-N-PH008", "zh": "韦利斯克", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "02a3aa0a3afa90ed4e8361fbb1c07424715f04e8e945ae9a4a69beb8819a058c", "review_notes": "@note/translations"},
+    {"id": "NE12-N-PH009", "zh": "沃洛格达", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "80a484d68b6096d7daa14d63c3c700e0cf8a869e0195c1dd7daedddaef6554f6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NE12-N-PH008", "x": 157.0, "y": 55.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NE12-N-PH009", "x": 57.0, "y": 227.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NE12-C-PH008", "feature_id": "NE12-N-PH008", "kind": "circle", "original_bbox": [119, 46, 128, 55], "x": 123.5, "y": 50.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "NE12-C-PH009", "feature_id": "NE12-N-PH009", "kind": "circle", "original_bbox": [19, 216, 28, 225], "x": 23.5, "y": 220.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,61 @@
+{
+  "id": "JP7-Column112-z7-112-50",
+  "z": 7,
+  "x": 112,
+  "y": 50,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/112/50.png",
+    "7/112/51.png"
+  ],
+  "context_tiles": [
+    "7/113/50.png"
+  ],
+  "features": [
+    {"id": "JP7-KANAZAWA", "kind": "city", "original": "Kanazawa", "original_bbox": [146, 0, 203, 19], "source_url": "@source/c2ce891e85b7dcb8"},
+    {"id": "JP7-FUKUI", "kind": "city", "original": "Fukui", "original_bbox": [107, 56, 142, 75], "source_url": "@source/c2ce891e85b7dcb8"},
+    {"id": "JP7-MAIZURU", "kind": "city", "original": "Maizuru", "original_bbox": [27, 122, 74, 142], "source_url": "@source/c2ce891e85b7dcb8"},
+    {"id": "JP7-NAGOYA", "kind": "city", "original": "Nagoya", "original_bbox": [168, 154, 213, 176], "source_url": "@source/c2ce891e85b7dcb8"},
+    {"id": "JP7-KYOTO", "kind": "city", "original": "Kyoto", "original_bbox": [64, 173, 102, 194], "source_url": "@source/c2ce891e85b7dcb8"},
+    {"id": "JP7-TSU", "kind": "city", "original": "Tsu", "original_bbox": [133, 204, 160, 224], "source_url": "@source/c2ce891e85b7dcb8"},
+    {"id": "JP7-HAMAMATSU", "kind": "city", "original": "Hamamatsu", "original_bbox": [244, 207, 308, 226], "source_url": "@source/c2ce891e85b7dcb8"},
+    {"id": "JP7-OSAKA", "kind": "city", "original": "Osaka", "original_bbox": [41, 209, 89, 232], "source_url": "@source/c2ce891e85b7dcb8"},
+    {"id": "JP7-WAKAYAMA", "kind": "city", "original": "Wakayama", "original_bbox": [12, 260, 72, 281], "source_url": "@source/acc4dcb14f938e56"}
+  ],
+  "translations": [
+    {"id": "JP7-KANAZAWA", "zh": "金泽", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "8761982109c946a6c64080fe2d9dad971f61b3014b8c1c9695c1d629a50b511e", "review_notes": "@note/translations"},
+    {"id": "JP7-FUKUI", "zh": "福井", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "16886c52b5b409f1fc3bcce42082e70654eb01650e09edc7762e9a066e9aaee3", "review_notes": "@note/translations"},
+    {"id": "JP7-MAIZURU", "zh": "舞鹤", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "d94c5b6c0e64d2ee50ae85674f06c6e8586b7f01185f55a6f5864564615c72e3", "review_notes": "@note/translations"},
+    {"id": "JP7-NAGOYA", "zh": "名古屋", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "4b43087145bf12578791393a70498670897490bf0a19bf13994d1d4c1f3487be", "review_notes": "@note/translations"},
+    {"id": "JP7-KYOTO", "zh": "京都", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "b1e68429ce56711443b8232cb456b7fead3a90d0953a2fe5acf471ee0c7827a2", "review_notes": "@note/translations"},
+    {"id": "JP7-TSU", "zh": "津", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "aafc40eb08f3451fd9e4e393b1aaf8052b34c06e0c4f8140631ff4d6ee8cc30a", "review_notes": "@note/translations"},
+    {"id": "JP7-HAMAMATSU", "zh": "滨松", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "a144e8cdf138e1436f699d3624063eae494c2fc7194b81145d057f1320aacbc0", "review_notes": "@note/translations"},
+    {"id": "JP7-OSAKA", "zh": "大阪", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "d8cdd1c08a6636e37484312a2b9e5b9e77068e20e988eb30aac001419ac5eb7e", "review_notes": "@note/translations"},
+    {"id": "JP7-WAKAYAMA", "zh": "和歌山", "source": "@source/db9f978ccc6590cd", "status": "approved", "record_sha256": "eb924cbe584692556df1da788edbc25900c21533c33c01ed65e0b8f9afcd56bc", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "JP7-KANAZAWA", "x": 172.0, "y": 12.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-FUKUI", "x": 133.0, "y": 68.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-MAIZURU", "x": 53.0, "y": 134.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-NAGOYA", "x": 200.0, "y": 166.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-KYOTO", "x": 90.0, "y": 185.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-TSU", "x": 153.0, "y": 216.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-HAMAMATSU", "x": 227.0, "y": 219.0, "font_size": 12, "font_style": "regular"},
+    {"id": "JP7-OSAKA", "x": 69.0, "y": 221.5, "font_size": 14, "font_style": "bold"},
+    {"id": "JP7-WAKAYAMA", "x": 44.0, "y": 272.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "JP7-KANAZAWA-NATIVE", "kind": "circle", "feature_id": "JP7-KANAZAWA", "original_bbox": [146, 0, 155, 9], "x": 150.5, "y": 4.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-FUKUI-NATIVE", "kind": "circle", "feature_id": "JP7-FUKUI", "original_bbox": [107, 56, 116, 65], "x": 111.5, "y": 60.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-MAIZURU-NATIVE", "kind": "circle", "feature_id": "JP7-MAIZURU", "original_bbox": [27, 122, 36, 131], "x": 31.5, "y": 126.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-NAGOYA-NATIVE", "kind": "circle", "feature_id": "JP7-NAGOYA", "original_bbox": [168, 154, 177, 163], "x": 172.5, "y": 158.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-KYOTO-NATIVE", "kind": "circle", "feature_id": "JP7-KYOTO", "original_bbox": [64, 173, 73, 182], "x": 68.5, "y": 177.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-TSU-NATIVE", "kind": "circle", "feature_id": "JP7-TSU", "original_bbox": [133, 204, 142, 213], "x": 137.5, "y": 208.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-HAMAMATSU-NATIVE", "kind": "circle", "feature_id": "JP7-HAMAMATSU", "original_bbox": [244, 207, 253, 216], "x": 248.5, "y": 211.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-OSAKA-NATIVE", "kind": "circle", "feature_id": "JP7-OSAKA", "original_bbox": [41, 209, 50, 218], "x": 45.5, "y": 213.5, "size": 9, "outline_width": 1},
+    {"id": "JP7-WAKAYAMA-NATIVE", "kind": "circle", "feature_id": "JP7-WAKAYAMA", "original_bbox": [12, 260, 21, 269], "x": 16.5, "y": 264.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

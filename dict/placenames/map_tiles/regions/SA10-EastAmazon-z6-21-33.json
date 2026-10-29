@@ -1,0 +1,37 @@
+{
+  "id": "SA10-EastAmazon-z6-21-33",
+  "z": 6,
+  "x": 21,
+  "y": 33,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/21/33.png"
+  ],
+  "context_tiles": [
+    "6/21/32.png",
+    "6/22/33.png"
+  ],
+  "features": [
+    {"id": "SA10-N-011", "kind": "city", "original": "Manicoré", "original_bbox": [22, 4, 75, 23], "source_url": "@source/e7c975abb078ccde"},
+    {"id": "SA10-N-012", "kind": "city", "original": "Jacareacanga", "original_bbox": [183, 23, 252, 45], "source_url": "@source/e7c975abb078ccde"},
+    {"id": "SA10-N-018", "kind": "city", "original": "Aripuanã", "original_bbox": [106, 205, 157, 227], "source_url": "@source/e7c975abb078ccde"}
+  ],
+  "translations": [
+    {"id": "SA10-N-011", "zh": "马尼科雷", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "28fbc5131d7729d18d3783ebf052ff5eae2186dce0a4e4954592a906694fd71a", "review_notes": "@note/translations"},
+    {"id": "SA10-N-012", "zh": "雅卡雷阿坎加", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "4b4f9b3c214469eb3fc17302dfbb71fa7570e56ad2b27fb066d87118d4475415", "review_notes": "@note/translations"},
+    {"id": "SA10-N-018", "zh": "阿里普阿南", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "2c961f707831463f95b6b648506891ef87f91559717e67f2582d07f86fea1434", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SA10-N-011", "x": 59.0, "y": 10.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-012", "x": 216.0, "y": 43.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-018", "x": 149.0, "y": 209.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SA10-C-007", "feature_id": "SA10-N-011", "kind": "circle", "x": 26.5, "y": 8.5, "size": 9, "outline_width": 1, "original_bbox": [22, 4, 31, 13], "source_url": "@source/e7c975abb078ccde", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-008", "feature_id": "SA10-N-012", "kind": "circle", "x": 187.5, "y": 27.5, "size": 9, "outline_width": 1, "original_bbox": [183, 23, 192, 32], "source_url": "@source/e7c975abb078ccde", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-013", "feature_id": "SA10-N-018", "kind": "circle", "x": 110.5, "y": 209.5, "size": 9, "outline_width": 1, "original_bbox": [106, 205, 115, 214], "source_url": "@source/e7c975abb078ccde", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

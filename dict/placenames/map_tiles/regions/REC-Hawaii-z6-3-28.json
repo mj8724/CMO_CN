@@ -1,0 +1,31 @@
+{
+  "id": "REC-Hawaii-z6-3-28",
+  "z": 6,
+  "x": 3,
+  "y": 28,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/3/28.png",
+    "6/4/28.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "REC6-002", "kind": "city", "original": "Honolulu", "original_bbox": [235, 27, 292, 47], "source_url": "@source/1ebdd3b65f44ccb1"},
+    {"id": "REC6-003", "kind": "city", "original": "Hilo", "original_bbox": [362, 104, 391, 124], "source_url": "@source/d23b8c0ade067cd0"}
+  ],
+  "translations": [
+    {"id": "REC6-002", "zh": "檀香山", "status": "approved", "source": "@source/feb0c21a22cd49f2", "record_sha256": "9fa043b1ac3d4ba9de96476f847b884d13586b5455b50c3fd5ee48083baba734", "review_notes": "@note/translations"},
+    {"id": "REC6-003", "zh": "希洛", "status": "approved", "source": "@source/feb0c21a22cd49f2", "record_sha256": "77213c648e45c526ebfc95b020001a22644bccfc839478e6b817f222067d9865", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "REC6-002", "x": 265.5, "y": 38.5, "font_size": 12, "font_style": "regular"},
+    {"id": "REC6-003", "x": 386.5, "y": 115.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "REC6-002-circle", "feature_id": "REC6-002", "kind": "circle", "x": 239.5, "y": 31.5, "size": 9, "outline_width": 1, "original_bbox": [235, 27, 244, 36], "source_url": "@source/1ebdd3b65f44ccb1", "review_notes": "@note/symbols"},
+    {"id": "REC6-003-circle", "feature_id": "REC6-003", "kind": "circle", "x": 366.5, "y": 108.5, "size": 9, "outline_width": 1, "original_bbox": [362, 104, 371, 113], "source_url": "@source/d23b8c0ade067cd0", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

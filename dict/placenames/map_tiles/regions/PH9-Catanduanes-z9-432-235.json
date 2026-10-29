@@ -1,0 +1,40 @@
+{
+  "id": "PH9-Catanduanes-z9-432-235",
+  "z": 9,
+  "x": 432,
+  "y": 235,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "9/432/235.png",
+    "9/432/236.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "PH11-016", "kind": "city", "original": "Pandan", "original_bbox": [132, 201, 174, 217], "source_url": "@source/869ca535d6dcc104"},
+    {"id": "PH11-017", "kind": "city", "original": "Caramoran", "original_bbox": [110, 225, 170, 241], "source_url": "@source/869ca535d6dcc104"},
+    {"id": "PH11-018", "kind": "city", "original": "Viga", "original_bbox": [189, 267, 217, 287], "source_url": "@source/bd75267657bd0492"},
+    {"id": "PH11-019", "kind": "city", "original": "Caramoan", "original_bbox": [14, 305, 69, 322], "source_url": "@source/bd75267657bd0492"},
+    {"id": "PH11-020", "kind": "city", "original": "San Andres", "original_bbox": [95, 369, 158, 386], "source_url": "@source/bd75267657bd0492"},
+    {"id": "PH11-021", "kind": "city", "original": "Virac", "original_bbox": [160, 377, 191, 393], "source_url": "@source/bd75267657bd0492"}
+  ],
+  "translations": [
+    {"id": "PH11-016", "zh": "潘丹", "status": "approved", "source": "@source/869ca535d6dcc104", "record_sha256": "43831b3f776104f33f79ac54971190424649a8fb4e714dbcc12f3d5fbc28c31e", "review_notes": "@note/translations"},
+    {"id": "PH11-017", "zh": "卡拉莫兰", "status": "approved", "source": "@source/869ca535d6dcc104", "record_sha256": "2a81646f73940d6a4b5ceca5f1b94cd8597f792c4e5efa65d35bc4ffdd985113", "review_notes": "@note/translations"},
+    {"id": "PH11-018", "zh": "维加", "status": "approved", "source": "@source/bd75267657bd0492", "record_sha256": "d881a5d388e8852de65233cb68f9a6ba3fccea527021e0e87b5bec652a6600d9", "review_notes": "@note/translations"},
+    {"id": "PH11-019", "zh": "卡拉莫安", "status": "approved", "source": "@source/bd75267657bd0492", "record_sha256": "7f0f8191f1d4d79d96661a0f333aa7d531fe0aa37b82b4dd9b44814157cbb18f", "review_notes": "@note/translations"},
+    {"id": "PH11-020", "zh": "圣安德烈斯", "status": "approved", "source": "@source/bd75267657bd0492", "record_sha256": "d2916ff4913912b5b35fdcf39fa57a7f05d9525f90e337b1fc33c4701eb04981", "review_notes": "@note/translations"},
+    {"id": "PH11-021", "zh": "比拉克", "status": "approved", "source": "@source/bd75267657bd0492", "record_sha256": "39c818a08f45b61d115b87bb389bf98cf0dd590ae85230d31bb5474a6cfefbf1", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PH11-016", "x": 153.0, "y": 209.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-017", "x": 140.0, "y": 233.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-018", "x": 203.0, "y": 277.0, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-019", "x": 41.5, "y": 313.5, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-020", "x": 123, "y": 375, "font_size": 12, "font_style": "regular"},
+    {"id": "PH11-021", "x": 185, "y": 395, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

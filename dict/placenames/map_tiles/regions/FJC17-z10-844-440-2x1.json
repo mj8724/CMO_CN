@@ -1,0 +1,44 @@
+{
+  "z": 10,
+  "x": 844,
+  "y": 440,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "id": "FJC17-z10-844-440-2x1",
+  "original_tiles": [
+    "10/844/440.png",
+    "10/845/440.png"
+  ],
+  "context_tiles": [
+    "10/845/439.png"
+  ],
+  "features": [
+    {"id": "FJC17-P049", "kind": "city", "original": "Hushan", "original_bbox": [94, 38, 132, 53], "source_url": "@source/2e0422b01b269f65"},
+    {"id": "FJC17-P053", "kind": "city", "original": "Pinghe", "original_bbox": [408, 120, 453, 142], "source_url": "@source/6b332d5699ac8e87"},
+    {"id": "FJC17-P055", "kind": "city", "original": "Changle", "original_bbox": [136, 177, 182, 197], "source_url": "@source/2e0422b01b269f65"},
+    {"id": "FJC17-P056", "kind": "city", "original": "Fenglang", "original_bbox": [38, 205, 83, 223], "source_url": "@source/2e0422b01b269f65"},
+    {"id": "FJC17-P058", "kind": "city", "original": "Jiufeng", "original_bbox": [195, 211, 237, 230], "source_url": "@source/2e0422b01b269f65"},
+    {"id": "FJC17-P059", "kind": "city", "original": "Nansheng", "original_bbox": [439, 229, 488, 247], "source_url": "@source/6b332d5699ac8e87"}
+  ],
+  "translations": [
+    {"id": "FJC17-P049", "zh": "湖山", "status": "approved", "source": "@source/9d513446f3a1ad97", "record_sha256": "558bef3a859373f69fd8d3e25726503cbb2fc2412faef27e4311d336e83ef492", "review_notes": "@note/translations"},
+    {"id": "FJC17-P053", "zh": "平和", "status": "approved", "source": "@source/ca36cf2f976a762d", "record_sha256": "84ac147af30290c77357d57ff879b7a9ad6eefdefd0be563431b21f6dda6e796", "review_notes": "@note/translations"},
+    {"id": "FJC17-P055", "zh": "长乐", "status": "approved", "source": "@source/6c879b564176c3bf", "record_sha256": "e9fff5c0ef29696868f5541b2fcefd3e11a8081494a734a1667a0a2676473246", "review_notes": "@note/translations"},
+    {"id": "FJC17-P056", "zh": "枫朗", "status": "approved", "source": "@source/f2e260dc7d14e46e", "record_sha256": "1894b6536702674f3fba6640b6e93cd60857ae8e9f8c3e235547008f579d79f5", "review_notes": "@note/translations"},
+    {"id": "FJC17-P058", "zh": "九峰", "status": "approved", "source": "@source/62b7c262e0dad2f2", "record_sha256": "4cf5223f3425ef8427a4cba1be68404a88ffb7bd45115f747b4ea7264544c7ff", "review_notes": "@note/translations"},
+    {"id": "FJC17-P059", "zh": "南胜", "status": "approved", "source": "@source/4d11b14c38400289", "record_sha256": "cc1a0d784bb00954430248f9010d407645d901fd7d5825d35a89182099321b51", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FJC17-P049", "x": 113.0, "y": 45.5, "font_size": 11, "font_style": "regular"},
+    {"id": "FJC17-P053", "x": 430.5, "y": 131.0, "font_size": 11, "font_style": "regular"},
+    {"id": "FJC17-P055", "x": 159.0, "y": 187.0, "font_size": 11, "font_style": "regular"},
+    {"id": "FJC17-P056", "x": 60.5, "y": 214.0, "font_size": 11, "font_style": "regular"},
+    {"id": "FJC17-P058", "x": 216.0, "y": 220.5, "font_size": 11, "font_style": "regular"},
+    {"id": "FJC17-P059", "x": 463.5, "y": 238.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "FJC17-AS-P043", "owner_region": "AP-Fujian-Inland-z10-840-432", "feature_id": "AP-I10-190", "kind": "city", "original": "Nanjing", "original_bbox": [437, -2, 486, 21], "source_url": "@source/277ed5515fe3b3da", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

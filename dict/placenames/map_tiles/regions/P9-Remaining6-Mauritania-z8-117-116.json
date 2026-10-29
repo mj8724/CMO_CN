@@ -1,0 +1,34 @@
+{
+  "id": "P9-Remaining6-Mauritania-z8-117-116",
+  "z": 8,
+  "x": 117,
+  "y": 116,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/117/116.png",
+    "8/118/116.png"
+  ],
+  "context_tiles": [
+    "8/117/115.png",
+    "8/118/115.png"
+  ],
+  "features": [
+    {"id": "P9-PH-004", "kind": "city", "original": "Bogué", "original_bbox": [216, 3, 260, 28], "source_url": "@source/8ba5a098d54440d0"},
+    {"id": "P9-PH-005", "kind": "city", "original": "Kaédi", "original_bbox": [353, 87, 394, 109], "source_url": "@source/8ba5a098d54440d0"}
+  ],
+  "translations": [
+    {"id": "P9-PH-004", "zh": "鲍埃", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "502ce5bf0dc5fde9fd1711ada11af1388aabf6fe57c1e6bf12a8e9ae411e4ea0", "review_notes": "@note/translations"},
+    {"id": "P9-PH-005", "zh": "卡埃迪", "status": "approved", "source": "@source/88cca85d1e16bf88", "record_sha256": "76b25514001c028363a3ec9830ac96dedd7d4c8a68e788543d7182f51dcda0f1", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P9-PH-004", "x": 242.0, "y": 15.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-005", "x": 385.0, "y": 98.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "P9-REM-N004", "feature_id": "P9-PH-004", "kind": "circle", "original_bbox": [216, 3, 225, 12], "x": 220.5, "y": 7.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "P9-REM-N005", "feature_id": "P9-PH-005", "kind": "circle", "original_bbox": [353, 87, 362, 96], "x": 357.5, "y": 91.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

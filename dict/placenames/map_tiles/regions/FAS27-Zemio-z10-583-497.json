@@ -1,0 +1,24 @@
+{
+  "id": "FAS27-Zemio-z10-583-497",
+  "z": 10,
+  "x": 583,
+  "y": 497,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "FAS27-Zemio", "kind": "city", "original": "Zemio", "original_bbox": [104, 168, 141, 185], "source_url": "@source/54a6ec86f66e7dea"}
+  ],
+  "translations": [
+    {"id": "FAS27-Zemio", "zh": "泽米奥", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "439f34f037c6651193514ba49cdd77d8eeccff6f861b6986cf06847d5fa9045a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Zemio", "x": 122.5, "y": 176.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "10/583/497.png"
+  ],
+  "context_tiles": []
+}

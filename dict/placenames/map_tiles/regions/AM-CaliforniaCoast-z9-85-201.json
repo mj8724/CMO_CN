@@ -1,0 +1,44 @@
+{
+  "id": "AM-CaliforniaCoast-z9-85-201",
+  "z": 9,
+  "x": 85,
+  "y": 201,
+  "width_tiles": 2,
+  "height_tiles": 3,
+  "original_tiles": [
+    "9/85/201.png",
+    "9/85/202.png",
+    "9/85/203.png",
+    "9/86/201.png",
+    "9/86/202.png",
+    "9/86/203.png"
+  ],
+  "context_tiles": [
+    "9/87/202.png"
+  ],
+  "features": [
+    {"id": "AM34-1-Delano", "kind": "city", "original": "Delano", "original_bbox": [339, 109, 381, 127], "source_url": "@source/af9146968947d4ed"},
+    {"id": "AM34-2-Wasco", "kind": "city", "original": "Wasco", "original_bbox": [305, 187, 345, 205], "source_url": "@source/af9146968947d4ed"},
+    {"id": "AM34-3-Bakersfield", "kind": "city", "original": "Bakersfield", "original_bbox": [407, 285, 478, 305], "source_url": "@source/099a5b6d2529ab10"},
+    {"id": "AM34-4-Arvin", "kind": "city", "original": "Arvin", "original_bbox": [495, 358, 529, 377], "source_url": "@source/fc25bbd9efe8fc1d"},
+    {"id": "AM34-5-Santa-Barbara", "kind": "city", "original": "Santa Barbara", "original_bbox": [166, 695, 222, 739], "source_url": "@source/49d5c6cf63935892"},
+    {"id": "AM34-6-Santa-Paula", "kind": "city", "original": "Santa Paula", "original_bbox": [394, 737, 462, 756], "source_url": "@source/046550ae13b56f12"}
+  ],
+  "translations": [
+    {"id": "AM34-1-Delano", "zh": "德拉诺", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "e30cf4fd2864b8c2be4ea3e78378078d6617ae4052437153e882b0a465cd0521", "review_notes": "@note/translations"},
+    {"id": "AM34-2-Wasco", "zh": "沃斯科", "source": "@source/6eef44be9930955d", "status": "approved", "record_sha256": "955d9093234d6078d0beb7accd127245d4b45ba424e9da54fd9d5f30e06d24a8", "review_notes": "@note/translations"},
+    {"id": "AM34-3-Bakersfield", "zh": "贝克斯菲尔德", "source": "@source/515a314fcb685c6b", "status": "approved", "record_sha256": "90b6f77877c666178b568f8f6285a89f221a7448b0bdf6a40020fd6b7bbfb067", "review_notes": "@note/translations"},
+    {"id": "AM34-4-Arvin", "zh": "阿文", "source": "@source/1a2c10b7703522a1", "status": "approved", "record_sha256": "08ae268df5c9901ceb34628d0240782cb7b3ae9702b384b91784cb336c3e3ac6", "review_notes": "@note/translations"},
+    {"id": "AM34-5-Santa-Barbara", "zh": "圣巴巴拉", "source": "@source/07f29a8fbfcffab8", "status": "approved", "record_sha256": "52dfbcc2993e37bdc3fb0c8e5949e3370e24269cbd32325697f77020e3faf6ba", "review_notes": "@note/translations"},
+    {"id": "AM34-6-Santa-Paula", "zh": "圣保拉", "source": "@source/7b0519f961477d36", "status": "approved", "record_sha256": "18ea486d6a9bac24c6872e7fc73d3a5a422a23df35ba3d01c710e6218352ba71", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AM34-1-Delano", "x": 360.0, "y": 118.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AM34-2-Wasco", "x": 325.0, "y": 196.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AM34-3-Bakersfield", "x": 442.5, "y": 295.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AM34-4-Arvin", "x": 495.0, "y": 367.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AM34-5-Santa-Barbara", "x": 194.0, "y": 717.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AM34-6-Santa-Paula", "x": 428.0, "y": 746.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": []
+}

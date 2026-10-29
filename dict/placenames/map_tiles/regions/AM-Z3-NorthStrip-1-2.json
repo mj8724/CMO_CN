@@ -1,0 +1,40 @@
+{
+  "id": "AM-Z3-NorthStrip-1-2",
+  "z": 3,
+  "x": 1,
+  "y": 2,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "3/1/2.png",
+    "3/1/3.png"
+  ],
+  "context_tiles": [
+    "3/2/3.png",
+    "3/1/4.png"
+  ],
+  "features": [
+    {"id": "AM-Z3-NorthStrip-1-2-00-Canada", "kind": "admin0", "original": "CANADA", "original_bbox": [116, 60, 192, 76], "source_url": "@source/87562172591cb113"},
+    {"id": "AM-Z3-NorthStrip-1-2-01-United-States", "kind": "admin0", "original": "UNITED STATES", "original_bbox": [162, 247, 231, 278], "source_url": "@source/87562172591cb113"},
+    {"id": "AM-Z3-NorthStrip-1-2-02-Mexico", "kind": "admin0", "original": "MEXICO", "original_bbox": [152, 363, 224, 379], "source_url": "@source/33f07c8246ad8fd8"},
+    {"id": "AM-Z3-NorthStrip-1-2-03-Guatemala", "kind": "admin0", "original": "GUATEMALA", "original_bbox": [198, 412, 311, 428], "source_url": "@source/33f07c8246ad8fd8"},
+    {"id": "AM-Z3-NorthStrip-1-2-04-Pacific-Ocean", "kind": "marine", "original": "Pacific Ocean", "original_bbox": [47, 498, 113, 530], "source_url": "@source/33f07c8246ad8fd8"}
+  ],
+  "translations": [
+    {"id": "AM-Z3-NorthStrip-1-2-00-Canada", "zh": "加拿大", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "25ea92ebea50f6ce2e635854a640f4c279237bbd263053248478483403237e50", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-NorthStrip-1-2-01-United-States", "zh": "美国", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "2fbcde36c65b1222e5fd52106939d0e5748be1f18f109199e0dec9de9ec4c458", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-NorthStrip-1-2-02-Mexico", "zh": "墨西哥", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "1517c98a0b3dd5bb542dbbe5e1a0c6edf07596352c664cbfd6e068ee1dc7b106", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-NorthStrip-1-2-03-Guatemala", "zh": "危地马拉", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "42fdc8732e0b530ff18c4c99fcfd6bd8cb4e2aa7f13a1e641907579605148932", "review_notes": "@note/translations"},
+    {"id": "AM-Z3-NorthStrip-1-2-04-Pacific-Ocean", "zh": "太平洋", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "3d4b3beb8ba56bfe8cb0e5b940dd75bfee6b0f7f63bc6b183c55b13d83ea1a95", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AM-Z3-NorthStrip-1-2-00-Canada", "x": 154.0, "y": 68.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-NorthStrip-1-2-01-United-States", "x": 196.5, "y": 262.5, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-NorthStrip-1-2-02-Mexico", "x": 188.0, "y": 371.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-NorthStrip-1-2-03-Guatemala", "x": 224.0, "y": 420.0, "font_size": 13, "font_style": "bold"},
+    {"id": "AM-Z3-NorthStrip-1-2-04-Pacific-Ocean", "x": 80.0, "y": 496.0, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

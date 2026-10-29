@@ -1,0 +1,26 @@
+{
+  "id": "AS8-Chattogram-z8-193-111",
+  "z": 8,
+  "x": 193,
+  "y": 111,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/193/111.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "AS8-N-CC60", "kind": "city", "original": "Chattogram", "original_bbox": [74, 175, 157, 203], "source_url": "@source/9e31327a1aa507c2"}
+  ],
+  "translations": [
+    {"id": "AS8-N-CC60", "zh": "吉大港", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "d03f1dce21432659511aaba759b31434911cfbed247211c88ba9f48f863cea46", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 7216, "field": "NAME_ZH", "raw_value": "吉大港", "raw_GEONAMESID": 1205733}}
+  ],
+  "layouts": [
+    {"id": "AS8-N-CC60", "x": 108.0, "y": 187.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AS8-N-CC60-circle", "kind": "circle", "x": 78.5, "y": 179.5, "size": 9, "outline_width": 1, "original_bbox": [74, 175, 83, 184], "source_url": "@source/9e31327a1aa507c2", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC60"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

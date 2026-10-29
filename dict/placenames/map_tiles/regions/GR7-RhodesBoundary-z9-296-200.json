@@ -1,0 +1,29 @@
+{
+  "id": "GR7-RhodesBoundary-z9-296-200",
+  "z": 9,
+  "x": 296,
+  "y": 200,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "GR7-N-170", "kind": "city", "original": "Rhodes", "original_bbox": [14, 61, 62, 79], "source_url": "@source/39cb80b965985759"}
+  ],
+  "translations": [
+    {"id": "GR7-N-170", "zh": "罗得", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "f0fa041a348f481817f6bab9b656d6acbe5c09adce421cf4fea1015939e60514", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GR7-N-170", "x": 38.0, "y": 70.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "GR7-S-171", "owner_region": "AM-CreteLibya-z9-288-200", "feature_id": "AM17-3-Archangelos", "kind": "city", "original": "Archangelos", "original_bbox": [-38, 163, 32, 185], "source_url": "@source/18e014482c3c78e9", "review_notes": "@note/shared_sources"},
+    {"id": "GR7-S-172", "owner_region": "AM-CreteLibya-z9-288-200", "feature_id": "AM17-4-Lindos", "kind": "city", "original": "Lindos", "original_bbox": [-34, 220, 6, 238], "source_url": "@source/18e014482c3c78e9", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/296/200.png"
+  ],
+  "context_tiles": [
+    "9/295/200.png"
+  ]
+}

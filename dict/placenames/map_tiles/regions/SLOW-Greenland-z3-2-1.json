@@ -1,0 +1,36 @@
+{
+  "id": "SLOW-Greenland-z3-2-1",
+  "z": 3,
+  "x": 2,
+  "y": 1,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "3/2/1.png",
+    "3/3/1.png"
+  ],
+  "context_tiles": [
+    "3/1/0.png",
+    "3/1/1.png",
+    "3/1/2.png",
+    "3/2/0.png",
+    "3/2/2.png",
+    "3/3/0.png",
+    "3/3/2.png",
+    "3/4/0.png",
+    "3/4/1.png",
+    "3/4/2.png"
+  ],
+  "features": [
+    {"id": "SLOW-002", "kind": "admin0", "original": "GREENLAND", "original_bbox": [214, 34, 323, 50], "source_url": "@source/1a52e93aaaabb5e8"}
+  ],
+  "translations": [
+    {"id": "SLOW-002", "zh": "格陵兰", "status": "approved", "source": "@source/7c536388a614af71", "record_sha256": "5f90ffc874bdc8b11f752eff2d231aa6cdf0cd5a2893ec83115d369d32256298", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SLOW-002", "x": 268.5, "y": 42.0, "font_size": 18, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "FAS27-Tarkint-z10-512-461",
+  "z": 10,
+  "x": 512,
+  "y": 461,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "FAS27-Tarkint", "kind": "city", "original": "Tarkint", "original_bbox": [63, 118, 105, 134], "source_url": "@source/bb89efba52334ccf"}
+  ],
+  "translations": [
+    {"id": "FAS27-Tarkint", "zh": "塔尔金特", "status": "approved", "source": "@source/c30a8b3079b82feb", "record_sha256": "f45b1d223ced65cad867792e8a5762812b5eb95a88f8afc30a596eff7925e834", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "FAS27-Tarkint", "x": 84.0, "y": 126.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "10/512/461.png"
+  ],
+  "context_tiles": []
+}

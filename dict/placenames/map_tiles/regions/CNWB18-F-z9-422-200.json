@@ -1,0 +1,39 @@
+{
+  "id": "CNWB18-F-z9-422-200",
+  "z": 9,
+  "x": 422,
+  "y": 200,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/422/200.png"
+  ],
+  "context_tiles": [
+    "9/421/200.png",
+    "9/423/200.png"
+  ],
+  "features": [
+    {"id": "CNWB18-CNG-106", "kind": "city", "original": "Changqing", "original_bbox": [-23, 10, 43, 33], "source_url": "@source/625f0a34a70f8a1b"},
+    {"id": "CNWB18-CNG-112", "kind": "city", "original": "Duozhuang", "original_bbox": [227, 38, 289, 58], "source_url": "@source/625f0a34a70f8a1b"},
+    {"id": "CNWB18-CNG-139", "kind": "city", "original": "Fanton", "original_bbox": [223, 166, 262, 182], "source_url": "@source/625f0a34a70f8a1b"},
+    {"id": "CNWB18-CNG-141", "kind": "city", "original": "Tai'an", "original_bbox": [112, 171, 152, 189], "source_url": "@source/625f0a34a70f8a1b"},
+    {"id": "CNWB18-CNG-143", "kind": "city", "original": "Feicheng", "original_bbox": [-11, 178, 45, 200], "source_url": "@source/625f0a34a70f8a1b"}
+  ],
+  "translations": [
+    {"id": "CNWB18-CNG-106", "zh": "长清", "status": "approved", "source": "@source/43233c687f794ae7", "record_sha256": "0af01ca33f6a47b0188c8f1d5a07ba388c8767176acfaf8b90955376a415210e", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-112", "zh": "垛庄", "status": "approved", "source": "@source/acd673e7f8a9ae7c", "record_sha256": "c7ed2438ab7b689bff8d114e0cccd1c2f7b191192506f06adc985c386766a279", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-139", "zh": "凡顿", "status": "approved", "source": "@source/625f0a34a70f8a1b", "record_sha256": "1dd7cdc6fe241f40e6a7c2937f95a3bc066abb0d6dc113cea2263f3a73ef33be", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-141", "zh": "泰安", "status": "approved", "source": "@source/d5fff61aa49be833", "record_sha256": "7eb2c474cf37ae080ed2398d408faabec22289d100c0be281b6f76c3e5627bb8", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-143", "zh": "肥城", "status": "approved", "source": "@source/c112bf9129704dfd", "record_sha256": "2d74d98bfb6148bc227808ac8740634b71243f929638a627fad475cf2d58b856", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CNWB18-CNG-106", "x": 18, "y": 21.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-112", "x": 238, "y": 48.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-139", "x": 238, "y": 174.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-141", "x": 132.0, "y": 180.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-143", "x": 18, "y": 189.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

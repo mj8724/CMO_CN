@@ -1,0 +1,53 @@
+{
+  "id": "CN9-R-z9-420-215-1-1",
+  "z": 9,
+  "x": 420,
+  "y": 215,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/420/215.png"
+  ],
+  "context_tiles": [
+    "9/419/215.png",
+    "9/421/215.png",
+    "9/422/215.png",
+    "9/423/215.png",
+    "9/424/200.png",
+    "9/424/215.png",
+    "9/425/191.png",
+    "9/425/200.png",
+    "9/425/215.png",
+    "9/426/215.png",
+    "9/426/216.png",
+    "9/427/215.png",
+    "9/428/215.png"
+  ],
+  "features": [
+    {"id": "CN9-N-052-0", "kind": "region", "original": "Shandang", "original_bbox": [150, 13, 205, 33], "source_url": "@source/419df175c3cfe49b"},
+    {"id": "CN9-N-054-0", "kind": "region", "original": "Xiajiang", "original_bbox": [-27, 31, 25, 53], "source_url": "@source/419df175c3cfe49b"},
+    {"id": "CN9-N-072-0", "kind": "region", "original": "Le'an", "original_bbox": [170, 95, 204, 113], "source_url": "@source/419df175c3cfe49b"},
+    {"id": "CN9-N-076-0", "kind": "region", "original": "Gugang", "original_bbox": [229, 114, 272, 134], "source_url": "@source/419df175c3cfe49b"},
+    {"id": "CN9-N-082-0", "kind": "region", "original": "Yongfeng", "original_bbox": [8, 141, 68, 162], "source_url": "@source/419df175c3cfe49b"},
+    {"id": "CN9-N-095-0", "kind": "region", "original": "Guanshan", "original_bbox": [23, 232, 78, 248], "source_url": "@source/419df175c3cfe49b"}
+  ],
+  "translations": [
+    {"id": "CN9-N-052-0", "zh": "山砀", "source": "@source/ec6668f212956a2a", "status": "approved", "record_sha256": "35bd45926a5336965257dec5ac6355568dd231fc8c77ec0e62e31d9c38190528", "review_notes": "@note/translations"},
+    {"id": "CN9-N-054-0", "zh": "峡江", "source": "@source/45d2607e94eb2b1b", "status": "approved", "record_sha256": "c8f072ab3804e9ec2163a1c6a39adc774f3790b3ffda122113990ddd7e44b5bb", "review_notes": "@note/translations"},
+    {"id": "CN9-N-072-0", "zh": "乐安", "source": "@source/4099e2d638595047", "status": "approved", "record_sha256": "1bb29f5c7f2bf25e1958f33a7f7e9088fb58e1e6668d492adecbd21c58398d91", "review_notes": "@note/translations"},
+    {"id": "CN9-N-076-0", "zh": "谷岗", "source": "@source/58ebb88e502b9446", "status": "approved", "record_sha256": "a5229a3ab4c2067edb8b4a325f0364c3ae79ad34494ef45db2271ba99795dbab", "review_notes": "@note/translations"},
+    {"id": "CN9-N-082-0", "zh": "永丰", "source": "@source/717c7fa85d40be6d", "status": "approved", "record_sha256": "01e210ea8ae2ba945c3543ee1fa1b7a6df0d6273ec4ab9137a2e6f29518c1c64", "review_notes": "@note/translations"},
+    {"id": "CN9-N-095-0", "zh": "冠山", "source": "@source/7cac07911735944c", "status": "approved", "record_sha256": "6a9bf2eebef0eaebd0f1b35c7983aa18877d4af07e5b2efeedd87d2c33648923", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CN9-N-052-0", "x": 177.5, "y": 23.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-054-0", "x": 13.0, "y": 42.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-072-0", "x": 187.0, "y": 104.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-076-0", "x": 243.0, "y": 124.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-082-0", "x": 38.0, "y": 151.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CN9-N-095-0", "x": 50.5, "y": 240.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

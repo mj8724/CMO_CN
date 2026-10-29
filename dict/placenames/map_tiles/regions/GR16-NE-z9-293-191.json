@@ -1,0 +1,35 @@
+{
+  "id": "GR16-NE-z9-293-191",
+  "z": 9,
+  "x": 293,
+  "y": 191,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "GR16-N-001", "kind": "city", "original": "Ivaylovgrad", "original_bbox": [7, -16, 72, 3], "source_url": "@source/26ff6a8ca8d9d693"},
+    {"id": "GR16-N-005", "kind": "city", "original": "Orestiada", "original_bbox": [162, -6, 215, 11], "source_url": "@source/26ff6a8ca8d9d693"},
+    {"id": "GR16-N-018", "kind": "city", "original": "Didymoticho", "original_bbox": [140, 69, 210, 88], "source_url": "@source/26ff6a8ca8d9d693"},
+    {"id": "GR16-N-023", "kind": "city", "original": "Soufli", "original_bbox": [87, 144, 121, 161], "source_url": "@source/26ff6a8ca8d9d693"}
+  ],
+  "translations": [
+    {"id": "GR16-N-001", "zh": "伊瓦伊洛夫格勒", "status": "approved", "source": "@source/71105d86bad8585b", "record_sha256": "adb2252d9b0a71f13b35e9675f5a3dfb3582b0c3ad566761995b29eba2c13c21", "review_notes": "@note/translations"},
+    {"id": "GR16-N-005", "zh": "奥雷斯蒂亚达", "status": "approved", "source": "@source/ce2906c4c26493e0", "record_sha256": "3e98237a8c6cac4e421d40c75b0973fa437fbeda4a10496de4b15ba3d7dda622", "review_notes": "@note/translations"},
+    {"id": "GR16-N-018", "zh": "迪迪莫蒂霍", "status": "approved", "source": "@source/26ff6a8ca8d9d693", "record_sha256": "af3da4c1d27dfabf789cf77b6cdffe1571d07446768702ed31ec8e1aa13d7e7a", "review_notes": "@note/translations"},
+    {"id": "GR16-N-023", "zh": "苏夫利", "status": "approved", "source": "@source/92adfc3e6698784c", "record_sha256": "b510ab92533e7b0907f88ebc0215791a5ba15f03997eee3aff92c9e7ff420726", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GR16-N-001", "x": 45.0, "y": 9.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-005", "x": 188.0, "y": 9.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-018", "x": 175.0, "y": 78.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR16-N-023", "x": 104.0, "y": 152.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/293/191.png"
+  ],
+  "context_tiles": [
+    "9/293/190.png"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "NEB7-Liaoning-z9-430-191-1-1",
+  "z": 9,
+  "x": 430,
+  "y": 191,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/430/191.png"
+  ],
+  "context_tiles": [
+    "9/429/191.png",
+    "9/429/192.png",
+    "9/430/192.png",
+    "9/431/191.png",
+    "9/431/192.png",
+    "9/432/191.png",
+    "9/432/192.png",
+    "9/433/191.png",
+    "9/433/192.png",
+    "9/434/191.png",
+    "9/434/192.png",
+    "9/435/191.png",
+    "9/435/192.png",
+    "9/436/191.png",
+    "9/436/192.png",
+    "9/437/191.png",
+    "9/437/192.png",
+    "9/438/191.png",
+    "9/438/192.png",
+    "9/439/191.png",
+    "9/439/192.png",
+    "9/440/191.png",
+    "9/440/192.png",
+    "9/441/192.png",
+    "9/430/190.png",
+    "9/437/190.png"
+  ],
+  "features": [
+    {"id": "NEB7-N01", "kind": "city", "original": "Liaozhong", "original_bbox": [108, -11, 172, 11], "source_url": "@source/c3fa0fa5e9745a1e"},
+    {"id": "NEB7-N02", "kind": "city", "original": "Daniu", "original_bbox": [82, 52, 116, 68], "source_url": "@source/1285dcea05b6a1cb"},
+    {"id": "NEB7-N03", "kind": "city", "original": "Taian", "original_bbox": [12, 54, 49, 72], "source_url": "@source/1285dcea05b6a1cb"},
+    {"id": "NEB7-N04", "kind": "city", "original": "Liuhao", "original_bbox": [171, 118, 210, 134], "source_url": "@source/1285dcea05b6a1cb"},
+    {"id": "NEB7-N05", "kind": "city", "original": "Liaoyang", "original_bbox": [243, 138, 299, 160], "source_url": "@source/1285dcea05b6a1cb"},
+    {"id": "NEB7-N06", "kind": "city", "original": "Gaotuo", "original_bbox": [94, 171, 135, 188], "source_url": "@source/1285dcea05b6a1cb"},
+    {"id": "NEB7-N07", "kind": "city", "original": "Anshan", "original_bbox": [209, 184, 262, 204], "source_url": "@source/1285dcea05b6a1cb"}
+  ],
+  "translations": [
+    {"id": "NEB7-N01", "zh": "辽中", "status": "approved", "source": "@source/c3fa0fa5e9745a1e", "record_sha256": "5838136ef5334da03bad392521a87cbbb1074247e30ac4ec24cecc827e43cea9", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N02", "zh": "达牛", "status": "approved", "source": "@source/1285dcea05b6a1cb", "record_sha256": "73a0b6ee0d11c3b24f4fb3a2681fbfef526fd4cd3a62c7ee248c02b603dfe107", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N03", "zh": "台安", "status": "approved", "source": "@source/1285dcea05b6a1cb", "record_sha256": "1fe7b95c406be37adb6340e183b7010a697a424b30800f7749ee038a6cf0fb4b", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N04", "zh": "柳壕", "status": "approved", "source": "@source/1285dcea05b6a1cb", "record_sha256": "8459b079d0fce551017eec162a280e39cbd939bda498abd1bee36d7b03d42d5d", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N05", "zh": "辽阳", "status": "approved", "source": "@source/1285dcea05b6a1cb", "record_sha256": "011f61161163f706fc334f0ee254622b615b59915b462df86423f33a4363ea63", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N06", "zh": "高坨", "status": "approved", "source": "@source/1285dcea05b6a1cb", "record_sha256": "ac9aa80f74bbc095603da075e3f5c645a25473fb3aaaf759fcf6a678acf67e23", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."},
+    {"id": "NEB7-N07", "zh": "鞍山", "status": "approved", "source": "@source/1285dcea05b6a1cb", "record_sha256": "d13b39e6202a0fd50e6062d805b0f18cb9fe9170a09a34f20399468436517c30", "review_notes": "Existing independent SOURCE/CJK only; full original lexical grade and evidence are in the separate bound CJK table. Not a TARGET approval or supplier vector identity. Actual author SELF selected private model only; full original CJK grading retained separately; different TARGET pending."}
+  ],
+  "layouts": [
+    {"id": "NEB7-N01", "x": 108, "y": 12, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N02", "x": 82, "y": 52, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N03", "x": 18, "y": 54, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N04", "x": 171, "y": 118, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N05", "x": 222, "y": 138, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N06", "x": 94, "y": 171, "font_size": 12, "font_style": "regular"},
+    {"id": "NEB7-N07", "x": 209, "y": 184, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "canonical_captions": [
+    {"id": "NEB7-CAN-Cities-000900", "origin": "canonical_wwp", "canonical_record": {"layer": "Cities", "wwp_file": {"path": "assets/placenames/Cities.wwp", "sha256": "f4913b5a3d77798c51db16ff5bc5d4c6d1c789ac40bed144c4eed3f4d5f3034a"}, "record_index_zero_based": 900, "original_Chinese_name": "旧堡", "lat_f32_bits": 1109673029, "lon_f32_bits": 1123411558, "flags": 0, "level": 1}, "source_bbox": null, "source_png": null, "source_native": null, "kind": "region", "layout": {"x": 196, "y": 218, "font_size": 12, "font_style": "regular", "lines": ["旧堡"]}}
+  ]
+}

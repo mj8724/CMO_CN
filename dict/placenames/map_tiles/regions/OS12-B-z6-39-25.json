@@ -1,0 +1,60 @@
+{
+  "id": "OS12-B-z6-39-25",
+  "z": 6,
+  "x": 39,
+  "y": 25,
+  "width_tiles": 2,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/39/25.png",
+    "6/39/26.png",
+    "6/40/25.png",
+    "6/40/26.png"
+  ],
+  "context_tiles": [
+    "6/38/25.png"
+  ],
+  "features": [
+    {"id": "OS12-09-Mosul", "kind": "city", "original": "Mosul", "original_bbox": [166, 10, 205, 29], "source_url": "@source/0c38532e5e769638"},
+    {"id": "OS12-11-Kirkuk", "kind": "city", "original": "Kirkuk", "original_bbox": [224, 59, 264, 78], "source_url": "@source/0c38532e5e769638"},
+    {"id": "OS12-12-Hamedan", "kind": "city", "original": "Hamedan", "original_bbox": [411, 96, 465, 116], "source_url": "@source/cc68a908ac7ac034"},
+    {"id": "OS12-13-Baghdad", "kind": "city", "original": "Baghdad", "original_bbox": [224, 178, 283, 204], "source_url": "@source/0c38532e5e769638"},
+    {"id": "OS12-15-Al-Najaf", "kind": "city", "original": "Al-Najaf", "original_bbox": [221, 249, 269, 271], "source_url": "@source/0c38532e5e769638"},
+    {"id": "OS12-17-Ahvaz", "kind": "city", "original": "Ahvaz", "original_bbox": [419, 285, 460, 304], "source_url": "@source/41e123e0c634fab5"},
+    {"id": "OS12-18-Basra", "kind": "city", "original": "Basra", "original_bbox": [379, 329, 415, 348], "source_url": "@source/41e123e0c634fab5"},
+    {"id": "OS12-27-KUWAIT", "kind": "admin0", "original": "KUWAIT", "original_bbox": [311, 383, 430, 406], "source_url": "@source/41e123e0c634fab5"}
+  ],
+  "translations": [
+    {"id": "OS12-09-Mosul", "zh": "摩苏尔", "status": "approved", "source": "@source/ee70ca22f9e640fb", "record_sha256": "36fdf36327675f4ad2a99ccd415ab1ea6d119e653698b0b7136907450f201d2c", "review_notes": "@note/translations"},
+    {"id": "OS12-11-Kirkuk", "zh": "基尔库克", "status": "approved", "source": "@source/42ade158b44ddb10", "record_sha256": "c0fa956dc4e2b5b8d822a32ec5ff4a8c643c679f6d0636c82ccafe7d0bf1e795", "review_notes": "@note/translations"},
+    {"id": "OS12-12-Hamedan", "zh": "哈马丹", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "02d61e299895a7a1f3adcd613b15bee5ce0dbd8077dd778c07615cc1291a831c", "review_notes": "@note/translations"},
+    {"id": "OS12-13-Baghdad", "zh": "巴格达", "status": "approved", "source": "@source/433c02805f5c4c5f", "record_sha256": "73d3c961a04c457d2a95bad97df9a44f21763ed7f2939f69a6bb501fd37e7bcd", "review_notes": "@note/translations"},
+    {"id": "OS12-15-Al-Najaf", "zh": "纳杰夫", "status": "approved", "source": "@source/c7b02b6ed8ee36a4", "record_sha256": "ff697d1c1af18e375105dc5695987650972ad0771243b46fc5dc8a28f8a9b692", "review_notes": "@note/translations"},
+    {"id": "OS12-17-Ahvaz", "zh": "阿瓦士", "status": "approved", "source": "@source/ae739eb991d31f5e", "record_sha256": "f1ea69cb2dc5abc0be867f69d56c017e295b32782d20becf9e8a008ec818916c", "review_notes": "@note/translations"},
+    {"id": "OS12-18-Basra", "zh": "巴士拉", "status": "approved", "source": "@source/09c08e1b337d2e28", "record_sha256": "6f4cd872f46ee13bd72becd92d3524a88231df452dde77f70d5c7713cf991bc0", "review_notes": "@note/translations"},
+    {"id": "OS12-27-KUWAIT", "zh": "科威特", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "c52601f6c139eb90e52436650ac27f397cf04859983ced934ac325b0db3eb627", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OS12-09-Mosul", "x": 200.0, "y": 22.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-11-Kirkuk", "x": 264.0, "y": 71.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-12-Hamedan", "x": 445.0, "y": 108.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-13-Baghdad", "x": 258.0, "y": 190.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-15-Al-Najaf", "x": 255.0, "y": 261.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-17-Ahvaz", "x": 453.0, "y": 297.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-18-Basra", "x": 413.0, "y": 341.5, "font_size": 12, "font_style": "regular"},
+    {"id": "OS12-27-KUWAIT", "x": 370.5, "y": 394.5, "font_size": 14, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "OS12-09-Mosul-circle", "feature_id": "OS12-09-Mosul", "kind": "circle", "x": 170.5, "y": 14.5, "size": 9, "outline_width": 1, "original_bbox": [166, 10, 175, 19], "source_url": "@source/0c38532e5e769638", "review_notes": "@note/symbols"},
+    {"id": "OS12-11-Kirkuk-circle", "feature_id": "OS12-11-Kirkuk", "kind": "circle", "x": 228.5, "y": 63.5, "size": 9, "outline_width": 1, "original_bbox": [224, 59, 233, 68], "source_url": "@source/0c38532e5e769638", "review_notes": "@note/symbols"},
+    {"id": "OS12-12-Hamedan-circle", "feature_id": "OS12-12-Hamedan", "kind": "circle", "x": 415.5, "y": 100.5, "size": 9, "outline_width": 1, "original_bbox": [411, 96, 420, 105], "source_url": "@source/cc68a908ac7ac034", "review_notes": "@note/symbols"},
+    {"id": "OS12-13-Baghdad-circle", "feature_id": "OS12-13-Baghdad", "kind": "circle", "x": 228.5, "y": 182.5, "size": 9, "outline_width": 1, "original_bbox": [224, 178, 233, 187], "source_url": "@source/0c38532e5e769638", "review_notes": "@note/symbols"},
+    {"id": "OS12-15-Al-Najaf-circle", "feature_id": "OS12-15-Al-Najaf", "kind": "circle", "x": 225.5, "y": 253.5, "size": 9, "outline_width": 1, "original_bbox": [221, 249, 230, 258], "source_url": "@source/0c38532e5e769638", "review_notes": "@note/symbols"},
+    {"id": "OS12-17-Ahvaz-circle", "feature_id": "OS12-17-Ahvaz", "kind": "circle", "x": 423.5, "y": 289.5, "size": 9, "outline_width": 1, "original_bbox": [419, 285, 428, 294], "source_url": "@source/41e123e0c634fab5", "review_notes": "@note/symbols"},
+    {"id": "OS12-18-Basra-circle", "feature_id": "OS12-18-Basra", "kind": "circle", "x": 383.5, "y": 333.5, "size": 9, "outline_width": 1, "original_bbox": [379, 329, 388, 338], "source_url": "@source/41e123e0c634fab5", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "OS12-B-z6-39-25-from-A-OS12-24-SYRIA", "owner_region": "OS12-A-z6-37-23", "feature_id": "OS12-24-SYRIA", "kind": "admin0", "original": "SYRIA", "original_bbox": [-60, 94, 31, 118], "source_url": "@source/20ff616c05b05905", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

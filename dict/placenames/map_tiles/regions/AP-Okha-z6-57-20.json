@@ -1,0 +1,37 @@
+{
+  "z": 6,
+  "x": 57,
+  "y": 20,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "AP-Okha-z6-57-20",
+  "original_tiles": [
+    "6/57/20.png"
+  ],
+  "context_tiles": [
+    "6/56/19.png",
+    "6/57/19.png",
+    "6/58/19.png",
+    "6/56/20.png",
+    "6/58/20.png",
+    "6/56/21.png",
+    "6/57/21.png",
+    "6/58/21.png"
+  ],
+  "features": [
+    {"id": "AP-LR-004", "kind": "city", "original": "Okha", "original_bbox": [101, 168, 136, 187], "source_url": "@source/de57b59c289acedb"},
+    {"id": "AP-LR-005", "kind": "city", "original": "Nikolayevsk-on-Amur", "original_bbox": [0, 202, 69, 237], "source_url": "@source/d9992e5a055ecc15"}
+  ],
+  "translations": [
+    {"id": "AP-LR-004", "zh": "奥哈", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "ac72c1b7c857b179173cdbbf4434ea78555830d3b257071f785e737d767d38eb", "review_notes": "@note/translations"},
+    {"id": "AP-LR-005", "zh": "阿穆尔河畔尼古拉耶夫斯克（庙街）", "status": "approved", "source": "@source/d9992e5a055ecc15", "record_sha256": "2acaee3b1c2662698c58938b65ade418860b4ce8a1a31c90cf22561a5311a664", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-LR-004", "x": 122.0, "y": 177.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-LR-005", "x": 98.0, "y": 219.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-LR-004-circle", "feature_id": "AP-LR-004", "kind": "circle", "x": 105.5, "y": 172.5, "size": 7, "outline_width": 1, "original_bbox": [101, 168, 110, 177]},
+    {"id": "AP-LR-005-circle", "feature_id": "AP-LR-005", "kind": "circle", "x": 4.5, "y": 206.5, "size": 7, "outline_width": 1, "original_bbox": [0, 202, 9, 211]}
+  ]
+}

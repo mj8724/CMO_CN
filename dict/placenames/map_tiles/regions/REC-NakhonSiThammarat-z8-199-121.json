@@ -1,0 +1,28 @@
+{
+  "id": "REC-NakhonSiThammarat-z8-199-121",
+  "z": 8,
+  "x": 199,
+  "y": 121,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/199/121.png"
+  ],
+  "context_tiles": [
+    "8/199/122.png"
+  ],
+  "features": [
+    {"id": "REC6-008", "kind": "city", "original": "Nakhon Si Thammarat", "original_bbox": [17, 247, 88, 285], "source_url": "@source/574bf4db1b2429d6"}
+  ],
+  "translations": [
+    {"id": "REC6-008", "zh": "那空是贪玛叻", "status": "approved", "source": "@source/04591016b78ac840", "record_sha256": "4dd577fcb8f1521707932017faf60b17c7024953619f58094ac3dcfaad343e2e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "REC6-008", "x": 65.5, "y": 239.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "REC6-008-circle", "feature_id": "REC6-008", "kind": "circle", "x": 21.5, "y": 251.5, "size": 9, "outline_width": 1, "original_bbox": [17, 247, 26, 256], "source_url": "@source/574bf4db1b2429d6", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

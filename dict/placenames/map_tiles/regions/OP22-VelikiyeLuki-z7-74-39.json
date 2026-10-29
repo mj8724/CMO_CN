@@ -1,0 +1,27 @@
+{
+  "id": "OP22-VelikiyeLuki-z7-74-39",
+  "z": 7,
+  "x": 74,
+  "y": 39,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/74/39.png",
+    "7/75/39.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N06", "kind": "city", "original": "Velikiye Luki", "original_bbox": [214, 159, 261, 194], "source_url": "@source/6197ca0a48e03682"}
+  ],
+  "translations": [
+    {"id": "OP24-N06", "zh": "大卢基", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "6b1b610c06da8654594d01a5312818f6a15231b5b65f5498329f69bdf6b35232", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N06", "x": 243.0, "y": 176.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "OP24-S06", "feature_id": "OP24-N06", "kind": "circle", "x": 218.5, "y": 163.5, "size": 9, "outline_width": 1, "original_bbox": [214, 159, 223, 168]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

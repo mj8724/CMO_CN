@@ -1,0 +1,61 @@
+{
+  "id": "AP-Vietnam-Hainan-z9-62-bridge",
+  "z": 9,
+  "x": 411,
+  "y": 225,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    {"path": "9/411/225.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 1036},
+    {"path": "9/411/226.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 0},
+    {"path": "9/411/227.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 5778}
+  ],
+  "context_tiles": [
+    {"path": "9/410/224.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 2796},
+    {"path": "9/411/224.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 5067},
+    {"path": "9/412/224.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 4331},
+    {"path": "9/410/225.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 0},
+    {"path": "9/412/225.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 5956},
+    {"path": "9/410/226.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 0},
+    {"path": "9/412/226.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 1999},
+    {"path": "9/410/227.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 916},
+    {"path": "9/412/227.png", "z": 9, "origin": "official frozen tile HTTP", "source_alpha_count": 5660},
+    {"path": "9/410/228.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 3187},
+    {"path": "9/411/228.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 6732},
+    {"path": "9/412/228.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 6698}
+  ],
+  "features": [
+    {"id": "AP-VH9-046", "kind": "city", "original": "Weizhou", "original_bbox": [24, 89, 73, 105], "source_url": "@source/68657628cf733150"},
+    {"id": "AP-VH9-063", "kind": "city", "original": "Lingao County", "original_bbox": [233, 517, 278, 558], "source_url": "@source/1bc3c600fd017b53"},
+    {"id": "AP-VH9-065", "kind": "city", "original": "Guangcun", "original_bbox": [152, 563, 207, 583], "source_url": "@source/e738b138d8862422"},
+    {"id": "AP-VH9-069", "kind": "city", "original": "Nanbao", "original_bbox": [200, 616, 243, 633], "source_url": "@source/8468c8f40d9eb6ec"},
+    {"id": "AP-VH9-070", "kind": "city", "original": "Paipu", "original_bbox": [48, 633, 80, 652], "source_url": "@source/afaa2ad04c31d6a5"},
+    {"id": "AP-VH9-071", "kind": "city", "original": "Danzhou City", "original_bbox": [186, 669, 241, 710], "source_url": "@source/66ba094b9608b538"},
+    {"id": "AP-VH9-074", "kind": "city", "original": "Dacheng", "original_bbox": [126, 683, 174, 703], "source_url": "@source/8587fa79245d27bd"},
+    {"id": "AP-VH9-077", "kind": "city", "original": "Changjiang Li Autonomous County", "original_bbox": [-17, 743, 66, 805], "source_url": "@source/b26ec7748a5382e0"}
+  ],
+  "translations": [
+    {"id": "AP-VH9-046", "zh": "涠洲", "status": "approved", "source": "@source/68657628cf733150", "record_sha256": "70ee16e5f5e368b453ad21bf27d189f550ede31699919d1a9af83862e89c3137", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-063", "zh": "临高县", "status": "approved", "source": "@source/1bc3c600fd017b53", "record_sha256": "e63e422762f4f979e22b12cc28ab44392b1779834e599a320b253028645f7ff3", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-065", "zh": "光村", "status": "approved", "source": "@source/e738b138d8862422", "record_sha256": "9f5e34fc43cf5b9a0a6bf717fd6079607751361cf71948bcdee6366a8829c99a", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-069", "zh": "南宝", "status": "approved", "source": "@source/8468c8f40d9eb6ec", "record_sha256": "06e04d88227b161c2fe137e4418af9288057ae43ffed74b487baa4af41a0e15d", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-070", "zh": "排浦", "status": "approved", "source": "@source/afaa2ad04c31d6a5", "record_sha256": "c954d00524589873bcb3213b2669559230494ae16b2841f49d854ac6a9298ef2", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-071", "zh": "儋州市", "status": "approved", "source": "@source/66ba094b9608b538", "record_sha256": "9c2aa14d928260481e9a250184e030857cd13bc215741f37a81ce526a678ccd8", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-074", "zh": "大成", "status": "approved", "source": "@source/8587fa79245d27bd", "record_sha256": "fc949fbe33d81bf4c44a791180d1977e35cd5199adb9ee0e5fc1ac9ad4948256", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-077", "zh": "昌江黎族自治县", "status": "approved", "source": "@source/b26ec7748a5382e0", "record_sha256": "a4440b31a54c4e2d06b90ef121ba4f852e49e831ae82a28493e32384fe3380ac", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-VH9-046", "x": 48.5, "y": 97.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-063", "x": 235.5, "y": 537.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-065", "x": 179.5, "y": 573.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-069", "x": 221.5, "y": 624.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-070", "x": 64.0, "y": 642.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-071", "x": 213.5, "y": 689.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-074", "x": 150.0, "y": 693.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-077", "x": 42.5, "y": 758.5, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "AP-VH9-047-shared-bridge", "owner_region": "AP-Vietnam-Hainan-z9-62-east", "feature_id": "AP-VH9-047", "kind": "city", "original": "Jianghong", "original_bbox": [233, 95, 290, 115], "source_url": "@source/6eac21053a522f55", "review_notes": "@note/shared_sources"}
+  ]
+}

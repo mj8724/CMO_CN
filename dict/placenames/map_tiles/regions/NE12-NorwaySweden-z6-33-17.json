@@ -1,0 +1,54 @@
+{
+  "id": "NE12-NorwaySweden-z6-33-17",
+  "z": 6,
+  "x": 33,
+  "y": 17,
+  "width_tiles": 2,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/33/17.png",
+    "6/33/18.png",
+    "6/34/17.png",
+    "6/34/18.png"
+  ],
+  "context_tiles": [
+    "6/32/18.png",
+    "6/35/18.png",
+    "6/37/18.png",
+    "6/39/18.png"
+  ],
+  "features": [
+    {"id": "NE12-N-PH002", "kind": "admin0", "original": "NORWAY", "original_bbox": [79, 283, 210, 307], "source_url": "@source/0739dbaceb1cdb0b"},
+    {"id": "NE12-N-PH003", "kind": "city", "original": "Lillehammer", "original_bbox": [216, 298, 283, 318], "source_url": "@source/0739dbaceb1cdb0b"},
+    {"id": "NE12-N-PH004", "kind": "city", "original": "Oslo", "original_bbox": [228, 409, 262, 430], "source_url": "@source/0739dbaceb1cdb0b"},
+    {"id": "NE12-N-PH005", "kind": "admin0", "original": "SWEDEN", "original_bbox": [343, 420, 467, 444], "source_url": "@source/ff5083f7c9babaca"},
+    {"id": "NE12-N-NEW2001", "kind": "city", "original": "Molde", "original_bbox": [65, 141, 104, 161], "source_url": "@source/d290439d5718f3f7"},
+    {"id": "NE12-N-NEW2002", "kind": "city", "original": "Trondheim", "original_bbox": [213, 72, 273, 91], "source_url": "@source/d290439d5718f3f7"}
+  ],
+  "translations": [
+    {"id": "NE12-N-PH002", "zh": "挪威", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "b0ec9f0216511aebb2f59b12254c29af30877d7eb831943a0dd5d612c6384445", "review_notes": "@note/translations"},
+    {"id": "NE12-N-PH003", "zh": "利勒哈默尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "dd9be38ffe6f0cabceaff5f1c4d2a3b04dfa765282e660d62331de27e152bd78", "review_notes": "@note/translations"},
+    {"id": "NE12-N-PH004", "zh": "奥斯陆", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b0f35d9e08d6035d4c66f70707952eff506b3f1fd4dd10f9dabb20a0a0f55d36", "review_notes": "@note/translations"},
+    {"id": "NE12-N-PH005", "zh": "瑞典", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "11137b1ebf7df3c6f30804a346401085e1af1888d88f00df6902c05a58d8c45b", "review_notes": "@note/translations"},
+    {"id": "NE12-N-NEW2001", "zh": "莫尔德", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "2b8d242906b403370d582a2412cc32e642712bca687758ad70d18d6cd72a9d7d", "review_notes": "@note/translations"},
+    {"id": "NE12-N-NEW2002", "zh": "特隆赫姆", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "63b271b8b789367cbd89b4829ab126674791c03f646670238c92d979c5bf4a01", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NE12-N-PH002", "x": 144.5, "y": 295.0, "font_size": 18, "font_style": "regular"},
+    {"id": "NE12-N-PH003", "x": 260.0, "y": 308.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NE12-N-PH004", "x": 260.0, "y": 419.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NE12-N-PH005", "x": 405.0, "y": 432.0, "font_size": 18, "font_style": "regular"},
+    {"id": "NE12-N-NEW2001", "x": 97.0, "y": 151.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NE12-N-NEW2002", "x": 251.0, "y": 81.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NE12-C-PH003", "feature_id": "NE12-N-PH003", "kind": "circle", "original_bbox": [216, 298, 225, 307], "x": 220.5, "y": 302.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "NE12-C-PH004", "feature_id": "NE12-N-PH004", "kind": "circle", "original_bbox": [228, 409, 237, 418], "x": 232.5, "y": 413.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "NE12-C-NEW2001", "feature_id": "NE12-N-NEW2001", "kind": "circle", "original_bbox": [65, 141, 74, 150], "x": 69.5, "y": 145.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "NE12-C-NEW2002", "feature_id": "NE12-N-NEW2002", "kind": "circle", "original_bbox": [213, 72, 222, 81], "x": 217.5, "y": 76.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "NE12-A-Bergen-internal", "owner_region": "NE12-Bergen-z6-32-18", "feature_id": "NE12-N-PH001", "kind": "city", "original": "Bergen", "original_bbox": [-18, 365, 24, 387], "source_url": "@source/040362f673f88e62", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

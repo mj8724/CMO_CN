@@ -1,0 +1,64 @@
+{
+  "id": "AM-CanadaEast-z7-40-43",
+  "z": 7,
+  "x": 40,
+  "y": 43,
+  "width_tiles": 6,
+  "height_tiles": 2,
+  "original_tiles": [
+    "7/40/43.png",
+    "7/40/44.png",
+    "7/43/43.png",
+    "7/43/44.png",
+    "7/44/43.png",
+    "7/45/44.png",
+    "7/41/43.png",
+    "7/41/44.png",
+    "7/42/43.png",
+    "7/42/44.png",
+    "7/44/44.png",
+    "7/45/43.png"
+  ],
+  "context_tiles": [
+    "7/39/42.png",
+    "7/39/43.png",
+    "7/39/44.png",
+    "7/39/45.png",
+    "7/40/42.png",
+    "7/40/45.png",
+    "7/41/45.png",
+    "7/42/45.png"
+  ],
+  "features": [
+    {"id": "AM32-1-Sept--les", "kind": "city", "original": "Sept-Îles", "original_bbox": [96, 70, 149, 93], "source_url": "@source/3ec6de8bbcaa1ebe"},
+    {"id": "AM32-2-Gasp", "kind": "city", "original": "Gaspé", "original_bbox": [269, 263, 309, 287], "source_url": "@source/48f614063f5e3a8e"},
+    {"id": "AM32-3-Corner-Brook", "kind": "city", "original": "Corner Brook", "original_bbox": [864, 246, 907, 283], "source_url": "@source/42cfe800c5c55980"},
+    {"id": "AM32-4-Gander", "kind": "city", "original": "Gander", "original_bbox": [1167, 245, 1212, 267], "source_url": "@source/39028ef18ecf59fe"},
+    {"id": "AM32-5-Bathurst", "kind": "city", "original": "Bathurst", "original_bbox": [163, 428, 214, 449], "source_url": "@source/8696abe24e1bf492"},
+    {"id": "AM32-6-St--John-s", "kind": "city", "original": "St. John's", "original_bbox": [1340, 436, 1395, 458], "source_url": "@source/2ef0d0193776aca1"}
+  ],
+  "translations": [
+    {"id": "AM32-1-Sept--les", "zh": "七岛", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "10fe7afae7a3d75081acd072c3db534e0427b9f5cd6d244297ef89269abfed20", "review_notes": "@note/translations"},
+    {"id": "AM32-2-Gasp", "zh": "加斯佩", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "9b09dd60cb5e9285128e4dd1cc90920ee7fcc563143100c8403b4211a9290826", "review_notes": "@note/translations"},
+    {"id": "AM32-3-Corner-Brook", "zh": "科纳布鲁克", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "8f7170fffc6cb6ec2196ee37c63fd1d0f1785d264cba24ab1fabf5a8f53610c0", "review_notes": "@note/translations"},
+    {"id": "AM32-4-Gander", "zh": "甘德", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "b50532bd1a4985c88b7b54f4ffc65d4f36b601305b50e5befb51547a5579826c", "review_notes": "@note/translations"},
+    {"id": "AM32-5-Bathurst", "zh": "巴瑟斯特", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "1de30ec135c4a50b805180c0e9148747852df273b00d548385a9ddbbe5eae81f", "review_notes": "@note/translations"},
+    {"id": "AM32-6-St--John-s", "zh": "圣约翰斯", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "593d6657d4ba928c8f5046c5360d8a9173fb71c6c22cda6a0b6ab8e3c9b0e03c", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AM32-1-Sept--les", "x": 119.5, "y": 85.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AM32-2-Gasp", "x": 298.5, "y": 278.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AM32-3-Corner-Brook", "x": 905.5, "y": 261.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AM32-4-Gander", "x": 1190.5, "y": 260.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AM32-5-Bathurst", "x": 198.0, "y": 443.5, "font_size": 12, "font_style": "regular"},
+    {"id": "AM32-6-St--John-s", "x": 1375.5, "y": 451.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AM32-1-Sept--les-point", "feature_id": "AM32-1-Sept--les", "kind": "circle", "x": 101.5, "y": 75.5, "size": 7, "outline_width": 1, "original_bbox": [97, 71, 106, 80]},
+    {"id": "AM32-2-Gasp-point", "feature_id": "AM32-2-Gasp", "kind": "circle", "x": 274.5, "y": 268.5, "size": 7, "outline_width": 1, "original_bbox": [270, 264, 279, 273]},
+    {"id": "AM32-3-Corner-Brook-point", "feature_id": "AM32-3-Corner-Brook", "kind": "circle", "x": 869.5, "y": 251.5, "size": 7, "outline_width": 1, "original_bbox": [865, 247, 874, 256]},
+    {"id": "AM32-4-Gander-point", "feature_id": "AM32-4-Gander", "kind": "circle", "x": 1172.5, "y": 250.5, "size": 7, "outline_width": 1, "original_bbox": [1168, 246, 1177, 255]},
+    {"id": "AM32-5-Bathurst-point", "feature_id": "AM32-5-Bathurst", "kind": "circle", "x": 168.0, "y": 433.5, "size": 7, "outline_width": 1, "original_bbox": [164, 429, 172, 438]},
+    {"id": "AM32-6-St--John-s-point", "feature_id": "AM32-6-St--John-s", "kind": "circle", "x": 1345.5, "y": 441.5, "size": 7, "outline_width": 1, "original_bbox": [1341, 437, 1350, 446]}
+  ]
+}

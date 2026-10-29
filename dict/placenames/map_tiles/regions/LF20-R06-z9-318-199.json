@@ -1,0 +1,45 @@
+{
+  "id": "LF20-R06-z9-318-199",
+  "z": 9,
+  "x": 318,
+  "y": 199,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/318/199.png",
+    "9/319/199.png"
+  ],
+  "context_tiles": [
+    "9/317/199.png"
+  ],
+  "features": [
+    {"id": "LF20-N003", "kind": "city", "original": "Derecik", "original_bbox": [241, 28, 284, 44], "source_url": "@source/1242200de024057e"},
+    {"id": "LF20-N006", "kind": "city", "original": "Deraluk", "original_bbox": [-2, 40, 43, 56], "source_url": "@source/fee8bac461fbc938"},
+    {"id": "LF20-N016", "kind": "city", "original": "Barzan", "original_bbox": [143, 97, 182, 113], "source_url": "@source/fee8bac461fbc938"},
+    {"id": "LF20-N020", "kind": "city", "original": "Mergesor", "original_bbox": [234, 139, 287, 159], "source_url": "@source/1242200de024057e"},
+    {"id": "LF20-N026", "kind": "city", "original": "Akre", "original_bbox": [89, 187, 116, 204], "source_url": "@source/fee8bac461fbc938"},
+    {"id": "LF20-N028", "kind": "city", "original": "Simelan", "original_bbox": [391, 210, 437, 227], "source_url": "@source/1242200de024057e"},
+    {"id": "LF20-N031", "kind": "city", "original": "Soran", "original_bbox": [327, 222, 361, 239], "source_url": "@source/1242200de024057e"}
+  ],
+  "translations": [
+    {"id": "LF20-N003", "zh": "德雷吉克", "status": "approved", "source": "@source/1242200de024057e", "record_sha256": "6a12f7c65427d065bb7632f86234b99efdeb7f0a0008235eeb613bdbea0fc73c", "review_notes": "@note/translations"},
+    {"id": "LF20-N006", "zh": "德拉卢克", "status": "approved", "source": "@source/fee8bac461fbc938", "record_sha256": "c049b28cd2108312c6aecf82ebcc1d73040fa1c916d1b803971aec303494a799", "review_notes": "@note/translations"},
+    {"id": "LF20-N016", "zh": "巴尔赞", "status": "approved", "source": "@source/fee8bac461fbc938", "record_sha256": "5e1e1b3f6adf8f384b5c40df8bd62fb3906af01f4dfa24aa9639ee89243b8140", "review_notes": "@note/translations"},
+    {"id": "LF20-N020", "zh": "梅尔盖索尔", "status": "approved", "source": "@source/1242200de024057e", "record_sha256": "e847097391de6ec2735978835543f14486e3f1302b1b6f87cb7b9cb9a3d99e7d", "review_notes": "@note/translations"},
+    {"id": "LF20-N026", "zh": "阿克雷", "status": "approved", "source": "@source/fee8bac461fbc938", "record_sha256": "9250ea28a85bfef736f8964861f85fdf94bf91c6023f6c774f1818274cf6ba7c", "review_notes": "@note/translations"},
+    {"id": "LF20-N028", "zh": "西梅兰", "status": "approved", "source": "@source/1242200de024057e", "record_sha256": "297999c4e0af6c3c4d464cfe5a401d4ad31dbcd1bf5d0bbea55c997328ebded1", "review_notes": "@note/translations"},
+    {"id": "LF20-N031", "zh": "索兰", "status": "approved", "source": "@source/1242200de024057e", "record_sha256": "4bd17c9f72acb5aa75ee5527e3aa311e082e7f38856aedfbe79a64ab73f4cf99", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LF20-N003", "x": 262.5, "y": 36.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N006", "x": 28.0, "y": 48.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N016", "x": 162.5, "y": 105.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N020", "x": 260.5, "y": 149.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N026", "x": 102.5, "y": 195.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N028", "x": 414.0, "y": 218.5, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N031", "x": 344.0, "y": 230.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

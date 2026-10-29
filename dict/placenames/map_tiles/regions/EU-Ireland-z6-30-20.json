@@ -1,0 +1,35 @@
+{
+  "z": 6,
+  "x": 30,
+  "y": 20,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "EU-Ireland-z6-30-20",
+  "original_tiles": [
+    "6/30/20.png"
+  ],
+  "context_tiles": [
+    "6/31/20.png"
+  ],
+  "features": [
+    {"id": "NW6-BELFAST", "kind": "city", "original": "Belfast", "original_bbox": [238, 90, 280, 109], "source_url": "@source/40ca8089e826b36a"},
+    {"id": "NW6-DUBLIN", "kind": "city", "original": "Dublin", "original_bbox": [223, 186, 267, 207], "source_url": "@source/40ca8089e826b36a"},
+    {"id": "NW6-IRELAND", "kind": "admin0", "original": "IRELAND", "original_bbox": [84, 211, 214, 235], "source_url": "@source/40ca8089e826b36a"}
+  ],
+  "translations": [
+    {"id": "NW6-BELFAST", "zh": "贝尔法斯特", "source": "@source/40ca8089e826b36a", "status": "approved", "record_sha256": "9b1179fa5e8d88e42cb73af0854fb23aa8368b17edb2b2982c9b11039a8ad21d", "review_notes": "@note/translations"},
+    {"id": "NW6-DUBLIN", "zh": "都柏林", "source": "@source/40ca8089e826b36a", "status": "approved", "record_sha256": "1d5b9650d350559962a5205f40fead34788619e2036bbb7a2f70b6d91fd704f1", "review_notes": "@note/translations"},
+    {"id": "NW6-IRELAND", "zh": "爱尔兰", "source": "@source/40ca8089e826b36a", "status": "approved", "record_sha256": "d1509019051f093dbc18f30447f006212e97357878d010ba9e0e1f83973b93ee", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NW6-BELFAST", "x": 198.0, "y": 103.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-DUBLIN", "x": 197.0, "y": 199.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-IRELAND", "x": 149.0, "y": 223.0, "font_size": 20, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "NW6-BELFAST-NATIVE", "kind": "circle", "feature_id": "NW6-BELFAST", "original_bbox": [238, 90, 247, 99], "x": 242.5, "y": 94.5, "size": 8, "outline_width": 1},
+    {"id": "NW6-DUBLIN-NATIVE", "kind": "circle", "feature_id": "NW6-DUBLIN", "original_bbox": [223, 186, 232, 195], "x": 227.5, "y": 190.5, "size": 8, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

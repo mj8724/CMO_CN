@@ -1,0 +1,69 @@
+{
+  "id": "DZ-SetifBlida-z7-64-50",
+  "z": 7,
+  "x": 64,
+  "y": 50,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/64/50.png",
+    "7/65/50.png"
+  ],
+  "context_tiles": [
+    "7/63/49.png",
+    "7/63/50.png",
+    "7/63/51.png",
+    "7/64/49.png",
+    "7/64/51.png",
+    "7/65/49.png",
+    "7/65/51.png",
+    "7/66/49.png",
+    "7/66/50.png",
+    "7/66/51.png"
+  ],
+  "features": [
+    {"id": "DZSB7-000-Blida", "kind": "city", "original": "Blida", "original_bbox": [253, 10, 287, 29], "source_url": "@source/aedf450c83f6d585"},
+    {"id": "DZSB7-001-Medea", "kind": "city", "original": "Medea", "original_bbox": [247, 33, 288, 52], "source_url": "@source/cc63afe4275d3fc1"},
+    {"id": "DZSB7-002-Chlef", "kind": "city", "original": "Chlef", "original_bbox": [117, 44, 151, 64], "source_url": "@source/0c22343b636d9432"},
+    {"id": "DZSB7-003-Mostaganem", "kind": "city", "original": "Mostaganem", "original_bbox": [4, 71, 73, 93], "source_url": "@source/0dedc562c9f60756"},
+    {"id": "DZSB7-004-Mascara", "kind": "city", "original": "Mascara", "original_bbox": [8, 131, 56, 150], "source_url": "@source/3dc0801ef9decd4e"},
+    {"id": "DZSB7-005-Tiaret", "kind": "city", "original": "Tiaret", "original_bbox": [116, 134, 153, 153], "source_url": "@source/9ea00a8a713399e0"},
+    {"id": "DZSB7-006-Saida", "kind": "city", "original": "Saida", "original_bbox": [9, 194, 45, 213], "source_url": "@source/c3b5c8e79fc9ae7f"},
+    {"id": "DZSB7-007-Djelfa", "kind": "city", "original": "Djelfa", "original_bbox": [292, 211, 329, 233], "source_url": "@source/93b662ab39d82894"},
+    {"id": "MED7-170-Setif", "kind": "city", "original": "Setif", "original_bbox": [493, 43, 519, 61], "source_url": "@source/214ab611426e84f5"}
+  ],
+  "translations": [
+    {"id": "DZSB7-000-Blida", "zh": "卜利达", "source": "@source/aedf450c83f6d585", "review_notes": "@note/translations", "status": "approved", "record_sha256": "896ca9b70e3da6a997c6bbacf20cc172f2905df91fd3f5bd8660cf75c174e62c"},
+    {"id": "DZSB7-001-Medea", "zh": "麦迪亚", "source": "@source/cc63afe4275d3fc1", "review_notes": "@note/translations", "status": "approved", "record_sha256": "da2f5375578a7abd4d996958dc1b36053587f20644e50e70636de89b18a6a9ee"},
+    {"id": "DZSB7-002-Chlef", "zh": "谢利夫", "source": "@source/0c22343b636d9432", "review_notes": "@note/translations", "status": "approved", "record_sha256": "0eb67882899bbace5c405ec1511efe215a199c6dbe7259ae87bcbc5470def329"},
+    {"id": "DZSB7-003-Mostaganem", "zh": "穆斯塔加奈姆", "source": "@source/0dedc562c9f60756", "review_notes": "@note/translations", "status": "approved", "record_sha256": "fdd94fd069612d2f428895104a18af1d694dca5e7a6d58640942096422e3a8ff"},
+    {"id": "DZSB7-004-Mascara", "zh": "穆阿斯凯尔", "source": "@source/3dc0801ef9decd4e", "review_notes": "@note/translations", "status": "approved", "record_sha256": "3d4d06900ff89757bb8f943aa1f1ee86602a6fb586190e6c4a4c3b0a00d1d71e"},
+    {"id": "DZSB7-005-Tiaret", "zh": "提亚雷特", "source": "@source/9ea00a8a713399e0", "review_notes": "@note/translations", "status": "approved", "record_sha256": "b741c0c00ff4fb78afdb0f5f7bbfda589a4461bb8f16466b1847c243b665d15c"},
+    {"id": "DZSB7-006-Saida", "zh": "塞伊达", "source": "@source/c3b5c8e79fc9ae7f", "review_notes": "@note/translations", "status": "approved", "record_sha256": "a2f57cd592b19d9a2c036e2108c6d5dfac8fb4d3255d1a2ea11639e1241fd958"},
+    {"id": "DZSB7-007-Djelfa", "zh": "杰勒法", "source": "@source/93b662ab39d82894", "review_notes": "@note/translations", "status": "approved", "record_sha256": "41e55c9d5dd5b462eef83ada481e7732508ce6ed41be2df978189564d13a07d3"},
+    {"id": "MED7-170-Setif", "zh": "塞提夫", "status": "approved", "source": "@source/214ab611426e84f5", "record_sha256": "ca44075089dff5ff64aa8c9c87a6517326028bd9b8e2235c2fb72803ff2b0c83", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "DZSB7-000-Blida", "x": 283.5, "y": 24.5, "font_size": 12, "font_style": "regular"},
+    {"id": "DZSB7-001-Medea", "x": 277.5, "y": 47.5, "font_size": 12, "font_style": "regular"},
+    {"id": "DZSB7-002-Chlef", "x": 147.5, "y": 58.5, "font_size": 12, "font_style": "regular"},
+    {"id": "DZSB7-003-Mostaganem", "x": 52.5, "y": 85.5, "font_size": 12, "font_style": "regular"},
+    {"id": "DZSB7-004-Mascara", "x": 50.5, "y": 145.5, "font_size": 12, "font_style": "regular"},
+    {"id": "DZSB7-005-Tiaret", "x": 152.5, "y": 148.5, "font_size": 12, "font_style": "regular"},
+    {"id": "DZSB7-006-Saida", "x": 39.5, "y": 208.5, "font_size": 12, "font_style": "regular"},
+    {"id": "DZSB7-007-Djelfa", "x": 322.5, "y": 225.5, "font_size": 12, "font_style": "regular"},
+    {"id": "MED7-170-Setif", "x": 491.0, "y": 60.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "DZSB7-000-Blida-circle", "feature_id": "DZSB7-000-Blida", "kind": "circle", "x": 257.5, "y": 14.5, "size": 7, "outline_width": 1, "original_bbox": [253, 10, 262, 19]},
+    {"id": "DZSB7-001-Medea-circle", "feature_id": "DZSB7-001-Medea", "kind": "circle", "x": 251.5, "y": 37.5, "size": 7, "outline_width": 1, "original_bbox": [247, 33, 256, 42]},
+    {"id": "DZSB7-002-Chlef-circle", "feature_id": "DZSB7-002-Chlef", "kind": "circle", "x": 121.5, "y": 48.5, "size": 7, "outline_width": 1, "original_bbox": [117, 44, 126, 53]},
+    {"id": "DZSB7-003-Mostaganem-circle", "feature_id": "DZSB7-003-Mostaganem", "kind": "circle", "x": 8.5, "y": 75.5, "size": 7, "outline_width": 1, "original_bbox": [4, 71, 13, 80]},
+    {"id": "DZSB7-004-Mascara-circle", "feature_id": "DZSB7-004-Mascara", "kind": "circle", "x": 12.5, "y": 135.5, "size": 7, "outline_width": 1, "original_bbox": [8, 131, 17, 140]},
+    {"id": "DZSB7-005-Tiaret-circle", "feature_id": "DZSB7-005-Tiaret", "kind": "circle", "x": 120.5, "y": 138.5, "size": 7, "outline_width": 1, "original_bbox": [116, 134, 125, 143]},
+    {"id": "DZSB7-006-Saida-circle", "feature_id": "DZSB7-006-Saida", "kind": "circle", "x": 13.5, "y": 198.5, "size": 7, "outline_width": 1, "original_bbox": [9, 194, 18, 203]},
+    {"id": "DZSB7-007-Djelfa-circle", "feature_id": "DZSB7-007-Djelfa", "kind": "circle", "x": 296.5, "y": 215.5, "size": 7, "outline_width": 1, "original_bbox": [292, 211, 301, 220]},
+    {"id": "MED7-170-Setif-circle", "feature_id": "MED7-170-Setif", "kind": "circle", "x": 491.5, "y": 46.5, "size": 7, "outline_width": 1, "original_bbox": [487, 42, 496, 51]}
+  ],
+  "shared_sources": []
+}

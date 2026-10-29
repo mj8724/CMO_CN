@@ -1,0 +1,24 @@
+{
+  "id": "WU-Tonopah-z10-178-394",
+  "z": 10,
+  "x": 178,
+  "y": 394,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/178/394.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "WUF-29", "kind": "city", "original": "Tonopah", "original_bbox": [114, 181, 165, 200], "source_url": "@source/0604578edb54ce41"}
+  ],
+  "translations": [
+    {"id": "WUF-29", "zh": "托诺帕", "status": "approved", "source": "@source/12f6ce6849c025d4", "record_sha256": "09ae364e6b1b4ae87b5cccbdbf5b33aaceeedc8e240fe92e88d036f038626a7f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WUF-29", "x": 139.5, "y": 190.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,26 @@
+{
+  "id": "OP22-Mindelo-z7-55-57",
+  "z": 7,
+  "x": 55,
+  "y": 57,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/55/57.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N05", "kind": "city", "original": "Mindelo", "original_bbox": [25, 228, 73, 247], "source_url": "@source/2b46dacdf461cc4a"}
+  ],
+  "translations": [
+    {"id": "OP24-N05", "zh": "明德卢", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "4fa94883ba60ac17a4f3b33624d8b2bf192910d1d3e8ba5027c9ababad20eaef", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N05", "x": 54.0, "y": 237.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "OP24-S05", "feature_id": "OP24-N05", "kind": "circle", "x": 29.5, "y": 232.5, "size": 9, "outline_width": 1, "original_bbox": [25, 228, 34, 237]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

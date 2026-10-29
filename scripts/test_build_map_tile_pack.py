@@ -1128,5 +1128,66 @@ class TilePackBuilderTests(unittest.TestCase):
         borrower["symbols"][0]["shared_source_id"] = "changed"
         self.rejected("region_fingerprint")
 
+
+class CanonicalCaptionTests(unittest.TestCase):
+    def setUp(self):
+        spec = importlib.util.spec_from_file_location("canonical_tile_builder", SCRIPT)
+        self.builder = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(self.builder)
+        from wwp import load
+        path = SCRIPT.parent.parent / "assets/placenames/Cities.wwp"
+        point = load(path)[0]
+        bits = lambda value: struct.unpack("<I", struct.pack("<f", value))[0]
+        self.caption = dict(id="original-city", origin="canonical_wwp", source_bbox=None,
+            source_png=None, source_native=None, kind="region",
+            canonical_record=dict(layer="Cities", wwp_file=dict(path="assets/placenames/Cities.wwp", sha256=sha(path)),
+                record_index_zero_based=0, original_Chinese_name=point["name"], lat_f32_bits=bits(point["lat"]),
+                lon_f32_bits=bits(point["lon"]), flags=point["flags"], level=1),
+            layout=dict(x=128, y=128, font_style="regular", font_size=12, lines=[point["name"]]))
+        self.region = dict(id="canonical-fixture", z=3, x=0, y=0, width_tiles=8, height_tiles=8,
+                           canonical_captions=[self.caption])
+
+    def selection(self):
+        return dict(schema="explicit-canonical-WWP-caption-selection-v1", role="TEST_ONLY",
+            instances=[dict(region=self.region["id"], z=3, caption_id=self.caption["id"],
+                caption_body_sha256=record_fingerprint(self.caption))])
+
+    def test_original_member_is_separate_from_source_and_native(self):
+        captions, sources = self.builder.audit_canonical_captions([self.region], self.selection())
+        self.assertEqual(self.caption, captions[self.region["id"]][self.caption["id"]])
+        self.assertEqual([dict(file="Cities.wwp", sha256=self.caption["canonical_record"]["wwp_file"]["sha256"], level=1)], sources)
+
+    def test_canonical_caption_requires_exact_external_selection(self):
+        with self.assertRaises(ValueError):
+            self.builder.audit_canonical_captions([self.region], None)
+        selection = self.selection()
+        self.caption["layout"]["x"] += 1
+        with self.assertRaisesRegex(ValueError, "selection must exactly equal"):
+            self.builder.audit_canonical_captions([self.region], selection)
+
+    def test_original_name_float_bits_and_flags_cannot_be_rewritten(self):
+        original = copy.deepcopy(self.caption["canonical_record"])
+        for key, value in (("original_Chinese_name", "错误地名"),
+                           ("lat_f32_bits", original["lat_f32_bits"] ^ 1), ("flags", original["flags"] ^ 1)):
+            with self.subTest(field=key):
+                self.caption["canonical_record"] = dict(original, **{key: value})
+                with self.assertRaisesRegex(ValueError, "exact selected original WWP member"):
+                    self.builder.audit_canonical_captions([self.region], self.selection())
+
+    def test_canonical_caption_cannot_claim_supplier_ink_or_native(self):
+        for key in ("source_bbox", "source_png", "source_native"):
+            with self.subTest(field=key):
+                self.caption[key] = [0, 0, 1, 1]
+                with self.assertRaisesRegex(ValueError, "null Source fields"):
+                    self.builder.audit_canonical_captions([self.region], self.selection())
+                self.caption[key] = None
+
+    def test_full_current_selection_requires_all_four_evidence_roles(self):
+        selection = self.selection()
+        selection.update(schema="root-approved-canonical-WWP-caption-v1", role="full_current")
+        selection["instances"][0]["evidence"] = dict(model_selection=None, manifest=None, review=None, target_signature=None)
+        with self.assertRaisesRegex(ValueError, "exact original canonical evidence reference"):
+            self.builder.audit_canonical_captions([self.region], selection)
+
 if __name__ == "__main__":
     unittest.main()

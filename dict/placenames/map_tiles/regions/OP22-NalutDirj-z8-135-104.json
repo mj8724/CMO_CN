@@ -1,0 +1,35 @@
+{
+  "id": "OP22-NalutDirj-z8-135-104",
+  "z": 8,
+  "x": 135,
+  "y": 104,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "8/135/104.png",
+    "8/135/105.png"
+  ],
+  "context_tiles": [
+    "8/135/103.png"
+  ],
+  "features": [
+    {"id": "OP24-N10", "kind": "city", "original": "Nalut", "original_bbox": [203, 14, 242, 36], "source_url": "@source/660f20bc516adce2"},
+    {"id": "OP24-N11", "kind": "city", "original": "Dirj", "original_bbox": [107, 376, 133, 398], "source_url": "@source/b3208004b9fc7ea3"}
+  ],
+  "translations": [
+    {"id": "OP24-N10", "zh": "纳鲁特", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "88b74408adc2762374b54381718dab36a27ab53fb2305f5b8efa9b6954effc2a", "review_notes": "@note/translations"},
+    {"id": "OP24-N11", "zh": "代赖季", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "7c7465fef07246139424815f39b7957075ad07a25ef225cc8f0863764dbd8689", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N10", "x": 232.0, "y": 25.0, "font_size": 12, "font_style": "regular"},
+    {"id": "OP24-N11", "x": 136.0, "y": 387.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "OP24-S10", "feature_id": "OP24-N10", "kind": "circle", "x": 207.5, "y": 18.5, "size": 9, "outline_width": 1, "original_bbox": [203, 14, 212, 23]},
+    {"id": "OP24-S11", "feature_id": "OP24-N11", "kind": "circle", "x": 111.5, "y": 380.5, "size": 9, "outline_width": 1, "original_bbox": [107, 376, 116, 385]}
+  ],
+  "shared_sources": [
+    {"id": "OP24-A09", "owner_region": "AM-AlgeriaTunisia-z8-SouthEast", "feature_id": "AM19-45-Dhehiba", "kind": "city", "original": "Dhehiba", "original_bbox": [150, -18, 200, 3], "source_url": "@source/db0405f374970310", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

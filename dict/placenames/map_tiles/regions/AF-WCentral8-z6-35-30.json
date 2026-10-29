@@ -1,0 +1,38 @@
+{
+  "id": "AF-WCentral8-z6-35-30",
+  "z": 6,
+  "x": 35,
+  "y": 30,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/35/30.png"
+  ],
+  "context_tiles": [
+    "6/34/30.png",
+    "6/35/31.png"
+  ],
+  "features": [
+    {"id": "AF28-048", "kind": "admin0", "original": "CENTRAL AFRICAN REPUBLIC", "original_bbox": [69, 149, 216, 226], "source_url": "@source/1352281982ecb3e1"},
+    {"id": "AF28-049", "kind": "city", "original": "Ndélé", "original_bbox": [167, 123, 204, 143], "source_url": "@source/1352281982ecb3e1"},
+    {"id": "AF28-050", "kind": "city", "original": "Bambari", "original_bbox": [168, 245, 216, 264], "source_url": "@source/1352281982ecb3e1"}
+  ],
+  "translations": [
+    {"id": "AF28-048", "zh": "中非共和国", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "9dee72015d1d92405477f9c25b506d125a265bbd26f2317cb95226e09a5a42a1", "review_notes": "@note/translations"},
+    {"id": "AF28-049", "zh": "恩代莱", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8c031a600d07242fc71b22f5e889a8a83da26283ff47fbdb7b93b4d3031e759a", "review_notes": "@note/translations"},
+    {"id": "AF28-050", "zh": "班巴里", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "b8fa9a3f3c090878a71287e9776c776fe70150933b231db5de3953996ed67b23", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AF28-048", "x": 142.0, "y": 188.0, "font_size": 18, "font_style": "bold"},
+    {"id": "AF28-049", "x": 198.0, "y": 135.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-050", "x": 199.0, "y": 246.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AF28-049-circle", "feature_id": "AF28-049", "kind": "circle", "x": 171.5, "y": 127.5, "size": 9, "outline_width": 1, "original_bbox": [167, 123, 176, 132], "source_url": "@source/1352281982ecb3e1", "review_notes": "@note/symbols"},
+    {"id": "AF28-050-circle", "feature_id": "AF28-050", "kind": "circle", "x": 172.5, "y": 249.0, "size": 9, "outline_width": 1, "original_bbox": [168, 245, 177, 253], "source_url": "@source/1352281982ecb3e1", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "AFC26-SH-08-AF28-047", "owner_region": "AF-WCentral8-z6-31-29", "feature_id": "AF28-047", "kind": "city", "original": "Moundou", "original_bbox": [-41, 116, 13, 136], "source_url": "@source/2757f4eb57c2f7bd", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

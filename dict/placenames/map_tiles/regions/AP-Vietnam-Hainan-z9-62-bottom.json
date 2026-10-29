@@ -1,0 +1,46 @@
+{
+  "id": "AP-Vietnam-Hainan-z9-62-bottom",
+  "z": 9,
+  "x": 411,
+  "y": 229,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "original_tiles": [
+    {"path": "9/411/229.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 3144},
+    {"path": "9/411/230.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "9/411/231.png", "z": 9, "origin": "already frozen original", "source_alpha_count": 0}
+  ],
+  "context_tiles": [
+    {"path": "9/410/228.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 3187},
+    {"path": "9/411/228.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 6732},
+    {"path": "9/412/228.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 6698},
+    {"path": "9/410/229.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "9/412/229.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 3381},
+    {"path": "9/410/230.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "9/412/230.png", "z": 9, "origin": "readonly Steam original cache", "source_alpha_count": 0},
+    {"path": "9/410/231.png", "z": 9, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "9/412/231.png", "z": 9, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "9/410/232.png", "z": 9, "origin": "already frozen original", "source_alpha_count": 118},
+    {"path": "9/411/232.png", "z": 9, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "9/412/232.png", "z": 9, "origin": "already frozen original", "source_alpha_count": 0}
+  ],
+  "features": [
+    {"id": "AP-VH9-094", "kind": "city", "original": "Zhizhong", "original_bbox": [74, -2, 127, 17], "source_url": "@source/d620340b30c773e6"},
+    {"id": "AP-VH9-096", "kind": "city", "original": "Yazhou District", "original_bbox": [43, 91, 91, 129], "source_url": "@source/1ab1ae1c18f1d091"},
+    {"id": "AP-VH9-097", "kind": "city", "original": "Sanya", "original_bbox": [169, 141, 209, 163], "source_url": "@source/dff0bb738463b3d0"}
+  ],
+  "translations": [
+    {"id": "AP-VH9-094", "zh": "志仲", "status": "approved", "source": "@source/d620340b30c773e6", "record_sha256": "b388b66625367b19cde83a2b455014d095a3a2c061b20c060d78a842cb0f82aa", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-096", "zh": "崖州区", "status": "approved", "source": "@source/1ab1ae1c18f1d091", "record_sha256": "0d09eec2a1ea489237495ad55fb057f37b39dae1ed0aca3825f6dc3d5674dd9b", "review_notes": "@note/translations"},
+    {"id": "AP-VH9-097", "zh": "三亚", "status": "approved", "source": "@source/dff0bb738463b3d0", "record_sha256": "222dc8ab5fae686063acc246babdc1a587649806db411fe916c06823c1439c61", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-VH9-094", "x": 100.5, "y": 9.5, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-096", "x": 67.0, "y": 110.0, "font_size": 11, "font_style": "regular"},
+    {"id": "AP-VH9-097", "x": 189.0, "y": 152.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "AP-VH9-093-shared-bottom", "owner_region": "AP-Vietnam-Hainan-z9-62-east", "feature_id": "AP-VH9-093", "kind": "city", "original": "Baocheng", "original_bbox": [230, -7, 291, 15], "source_url": "@source/64aa6b93f10b1ac6", "review_notes": "@note/shared_sources"}
+  ]
+}

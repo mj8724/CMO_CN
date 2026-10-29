@@ -1,0 +1,39 @@
+{
+  "id": "OSNA11-W2-z6-13-21",
+  "z": 6,
+  "x": 13,
+  "y": 21,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/13/21.png",
+    "6/14/21.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NA11-01-Saskatoon", "kind": "city", "original": "Saskatoon", "original_bbox": [5, 22, 63, 41], "source_url": "@source/14ec62e196ebed3d"},
+    {"id": "NA11-04-Regina", "kind": "city", "original": "Regina", "original_bbox": [98, 144, 140, 166], "source_url": "@source/14ec62e196ebed3d"},
+    {"id": "NA11-05-Winnipeg", "kind": "city", "original": "Winnipeg", "original_bbox": [439, 183, 492, 206], "source_url": "@source/0d872b306a0689b8"},
+    {"id": "NA11-06-Brandon", "kind": "city", "original": "Brandon", "original_bbox": [310, 187, 359, 206], "source_url": "@source/0d872b306a0689b8"}
+  ],
+  "translations": [
+    {"id": "NA11-01-Saskatoon", "zh": "萨斯卡通", "status": "approved", "source": "@source/ae3384b06b905fda", "record_sha256": "3a0ea7539c4cba719dd6dca48f27ea5291ddb03b45c6f5e90832304b4c318ceb", "review_notes": "@note/translations"},
+    {"id": "NA11-04-Regina", "zh": "里贾纳", "status": "approved", "source": "@source/c9bdf331f017c9ef", "record_sha256": "667f06ad60e9008f1c78f2712902d31f0e3276d1c70756fae17ea05fdaa2f223", "review_notes": "@note/translations"},
+    {"id": "NA11-05-Winnipeg", "zh": "温尼伯", "status": "approved", "source": "@source/50a3c5dd5687fe0a", "record_sha256": "8b917a1dd3a47f54f2b0b2a9fb40adeb99873091c1f6b8874042e37c1f3a07d4", "review_notes": "@note/translations"},
+    {"id": "NA11-06-Brandon", "zh": "布兰登", "status": "approved", "source": "@source/177783293aa3efe1", "record_sha256": "9900ab2458467364487b5d04020858b3743bbea053602a610ade105b98e5d0a9", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NA11-01-Saskatoon", "x": 45.0, "y": 34.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-04-Regina", "x": 132.0, "y": 156.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-05-Winnipeg", "x": 473.0, "y": 195.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NA11-06-Brandon", "x": 344.0, "y": 199.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NA11-01-Saskatoon-circle", "feature_id": "NA11-01-Saskatoon", "kind": "circle", "x": 9.5, "y": 26.5, "size": 9, "outline_width": 1, "original_bbox": [5, 22, 14, 31], "source_url": "@source/14ec62e196ebed3d", "review_notes": "@note/symbols"},
+    {"id": "NA11-04-Regina-circle", "feature_id": "NA11-04-Regina", "kind": "circle", "x": 102.5, "y": 148.5, "size": 9, "outline_width": 1, "original_bbox": [98, 144, 107, 153], "source_url": "@source/14ec62e196ebed3d", "review_notes": "@note/symbols"},
+    {"id": "NA11-05-Winnipeg-circle", "feature_id": "NA11-05-Winnipeg", "kind": "circle", "x": 443.5, "y": 187.5, "size": 9, "outline_width": 1, "original_bbox": [439, 183, 448, 192], "source_url": "@source/0d872b306a0689b8", "review_notes": "@note/symbols"},
+    {"id": "NA11-06-Brandon-circle", "feature_id": "NA11-06-Brandon", "kind": "circle", "x": 314.5, "y": 191.5, "size": 9, "outline_width": 1, "original_bbox": [310, 187, 319, 196], "source_url": "@source/0d872b306a0689b8", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

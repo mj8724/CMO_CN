@@ -1,0 +1,38 @@
+{
+  "id": "EU-East-C-z6-36-20",
+  "z": 6,
+  "x": 36,
+  "y": 20,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/36/20.png"
+  ],
+  "context_tiles": [
+    "6/35/20.png",
+    "6/37/20.png"
+  ],
+  "features": [
+    {"id": "EE6-MINSK", "kind": "city", "original": "Minsk", "original_bbox": [233, 148, 264, 163], "source_url": "@source/820130c7dc3f465f"},
+    {"id": "EE6-BELARUS", "kind": "admin0", "original": "BELARUS", "original_bbox": [169, 169, 305, 193], "source_url": "@source/820130c7dc3f465f"},
+    {"id": "EE6-VILNIUS", "kind": "city", "original": "Vilnius", "original_bbox": [128, 87, 164, 102], "source_url": "@source/820130c7dc3f465f"}
+  ],
+  "translations": [
+    {"id": "EE6-MINSK", "zh": "明斯克市", "source": "@source/820130c7dc3f465f", "status": "approved", "record_sha256": "bd8005cacf82da3b14d18cb4aefe96ecfe6e3ac5a1d9722688c2834756dec2cf", "review_notes": "@note/translations"},
+    {"id": "EE6-BELARUS", "zh": "白俄罗斯", "source": "@source/820130c7dc3f465f", "status": "approved", "record_sha256": "1be5a37c95ef6c55c4e18e9c0a615691077af6f2cabc22fbce2f2b8babb16756", "review_notes": "@note/translations"},
+    {"id": "EE6-VILNIUS", "zh": "维尔纽斯", "source": "@source/820130c7dc3f465f", "status": "approved", "record_sha256": "aa23ba8767709dc7becaf05d57689b08d6aa78a960f9308ac5c57a34dca546ef", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EE6-MINSK", "x": 229.0, "y": 163.0, "font_size": 12, "font_style": "regular"},
+    {"id": "EE6-BELARUS", "x": 221.0, "y": 181.0, "font_size": 16, "font_style": "bold"},
+    {"id": "EE6-VILNIUS", "x": 146.0, "y": 101.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EE6-MINSK-native", "feature_id": "EE6-MINSK", "kind": "circle", "x": 230.5, "y": 148.5, "size": 9, "outline_width": 1, "original_bbox": [226, 144, 235, 153]},
+    {"id": "EE6-VILNIUS-native", "feature_id": "EE6-VILNIUS", "kind": "circle", "x": 126.5, "y": 86.5, "size": 9, "outline_width": 1, "original_bbox": [122, 82, 131, 91]}
+  ],
+  "shared_sources": [
+    {"id": "EE6-SH-LITHUANIA", "owner_region": "EU-NW-Right-z6-35-20", "feature_id": "NW6-LITHUANIA", "kind": "admin0", "original": "LITHUANIA", "source_url": "@source/eed24ff4ed8329a2", "original_bbox": [-25, 20, 141, 43], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

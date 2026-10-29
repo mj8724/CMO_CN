@@ -1,0 +1,27 @@
+{
+  "id": "NEA11-R01-z8-207-93",
+  "z": 8,
+  "x": 207,
+  "y": 93,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/207/93.png"
+  ],
+  "features": [
+    {"id": "NEA11-N001", "kind": "city", "original": "Erenhot", "original_bbox": [150, 108, 202, 129], "source_url": "@source/93189502d71a7076"}
+  ],
+  "translations": [
+    {"id": "NEA11-N001", "zh": "二连浩特", "source_evidence_role": "NE_same_country_original_CJK", "status": "approved", "source_identity_contract_sha256": "7636fad55ae46e668fed0f7eb4ba3a685f961ec421b962b08571614e4a118808", "source": "@source/de57b59c289acedb", "record_sha256": "406d3514fa65b50ad811099145a619bc5ceb9c94d239f6a26942ed8d0f587bff", "review_notes": "Qualified original SOURCE identity and Chinese; author actually viewed complete Source/native/CJK/whole/joins under Root f994. AUTHOR_SELF_PRIVATE_MODEL_ONLY; NW different TARGET and full-current permission remain pending."}
+  ],
+  "layouts": [
+    {"id": "NEA11-N001", "x": 184, "y": 124, "font_size": 12, "font_style": "regular", "lines": ["二连浩特"]}
+  ],
+  "symbols": [
+    {"id": "NEA11-N001-circle", "feature_id": "NEA11-N001", "kind": "circle", "size": 9, "outline_width": 1, "x": 154.5, "y": 112.5, "original_bbox": [150, 108, 159, 117]}
+  ],
+  "canonical_captions": [],
+  "context_tiles": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

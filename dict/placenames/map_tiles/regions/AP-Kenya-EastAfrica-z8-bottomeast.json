@@ -1,0 +1,45 @@
+{
+  "id": "AP-Kenya-EastAfrica-z8-bottomeast",
+  "z": 8,
+  "x": 155,
+  "y": 127,
+  "width_tiles": 5,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "8/155/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/156/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/157/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/158/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 537},
+    {"path": "8/159/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0}
+  ],
+  "context_tiles": [
+    {"path": "8/154/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/155/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 702},
+    {"path": "8/156/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 448},
+    {"path": "8/157/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/158/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/159/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1549},
+    {"path": "8/160/126.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 1672},
+    {"path": "8/154/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 938},
+    {"path": "8/160/127.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/154/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 3459},
+    {"path": "8/155/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 577},
+    {"path": "8/156/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 668},
+    {"path": "8/157/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/158/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 887},
+    {"path": "8/159/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0},
+    {"path": "8/160/128.png", "z": 8, "origin": "already frozen original", "source_alpha_count": 0}
+  ],
+  "features": [
+    {"id": "AP-KE8-050", "kind": "city", "original": "Jamame", "original_bbox": [866, 238, 918, 259], "source_url": "@source/09b748c839827d19"}
+  ],
+  "translations": [
+    {"id": "AP-KE8-050", "zh": "贾马梅", "status": "approved", "source": "@source/09b748c839827d19", "record_sha256": "9a6c0966a808adc371cc963609114a1abbb169cf5e53f6cc97e83484cf86e628", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AP-KE8-050", "x": 894.0, "y": 246.0, "font_size": 11, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AP-KE8-050-circle", "feature_id": "AP-KE8-050", "kind": "circle", "x": 870.5, "y": 242.5, "size": 7, "outline_width": 1, "original_bbox": [866, 238, 875, 247]}
+  ]
+}

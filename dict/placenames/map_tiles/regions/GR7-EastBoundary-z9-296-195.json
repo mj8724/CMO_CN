@@ -1,0 +1,27 @@
+{
+  "id": "GR7-EastBoundary-z9-296-195",
+  "z": 9,
+  "x": 296,
+  "y": 195,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "features": [
+    {"id": "GR7-N-126", "kind": "city", "original": "Demirci", "original_bbox": [173, 143, 216, 159], "source_url": "@source/b0ff8b6b7e2c9499"},
+    {"id": "GR7-N-127", "kind": "city", "original": "Gördes", "original_bbox": [40, 195, 80, 212], "source_url": "@source/b0ff8b6b7e2c9499"}
+  ],
+  "translations": [
+    {"id": "GR7-N-126", "zh": "德米尔吉", "status": "approved", "source": "@source/f2c3dce4eaab76f7", "record_sha256": "752b6fdb14a82d093fa6afcf5095971ad611bae3cbe38bee6ae3f3d00aea2ade", "review_notes": "@note/translations"},
+    {"id": "GR7-N-127", "zh": "格尔代斯", "status": "approved", "source": "@source/5dc5a3ff89977fce", "record_sha256": "b7fe64a4b8874775950eee760f1f4011cb3f50176820d1b05ecca11954eb94c3", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GR7-N-126", "x": 194.5, "y": 151.0, "font_size": 12, "font_style": "regular"},
+    {"id": "GR7-N-127", "x": 60.0, "y": 203.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": [],
+  "original_tiles": [
+    "9/296/195.png"
+  ],
+  "context_tiles": []
+}

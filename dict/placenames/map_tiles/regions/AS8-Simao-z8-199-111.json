@@ -1,0 +1,26 @@
+{
+  "id": "AS8-Simao-z8-199-111",
+  "z": 8,
+  "x": 199,
+  "y": 111,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/199/111.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "AS8-N-CC54", "kind": "city", "original": "Simao", "original_bbox": [202, 85, 245, 106], "source_url": "@source/5cb5652a3301f59d"}
+  ],
+  "translations": [
+    {"id": "AS8-N-CC54", "zh": "思茅", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "4eb617cf82d1b251c7077feefe5ffb1b0172d1226d8ef0a3de5dd80accd66082", "review_notes": "@note/translations", "cached_raw_NE_Chinese_context": {"dataset": "NaturalEarth10mPopulatedPlaces", "row_index": 3662, "field": "NAME_ZH", "raw_value": "思茅", "raw_GEONAMESID": -1}}
+  ],
+  "layouts": [
+    {"id": "AS8-N-CC54", "x": 230.0, "y": 97.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AS8-N-CC54-circle", "kind": "circle", "x": 206.5, "y": 89.5, "size": 9, "outline_width": 1, "original_bbox": [202, 85, 211, 94], "source_url": "@source/5cb5652a3301f59d", "review_notes": "@note/symbols", "feature_id": "AS8-N-CC54"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

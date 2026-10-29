@@ -1,0 +1,24 @@
+{
+  "id": "white-mountain-z10",
+  "z": 10,
+  "x": 175,
+  "y": 396,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/175/396.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "white-mountain-peak", "kind": "peak", "original": "White Mountain Peak", "original_bbox": [42, 40, 162, 71], "source_url": "@source/d29b05f512df9d1a", "original_elevation_m": "4344"}
+  ],
+  "translations": [
+    {"id": "white-mountain-peak", "zh": "白山峰", "status": "approved", "source": "@source/d29b05f512df9d1a", "record_sha256": "acbbba650401df08227a5582460b59f04a9e0508645201a90575d1af8adc8ada", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "white-mountain-peak", "x": 117, "y": 54, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "white-mountain-peak-symbol", "feature_id": "white-mountain-peak", "x": 161.0, "y": 77.5, "kind": "triangle", "size": 8, "outline_width": 1, "original_bbox": [156, 73, 166, 82]}
+  ]
+}

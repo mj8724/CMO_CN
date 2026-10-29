@@ -1,0 +1,57 @@
+{
+  "id": "NAIN2-Inland-z7-33-48",
+  "z": 7,
+  "x": 33,
+  "y": 48,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/33/48.png",
+    "7/34/48.png"
+  ],
+  "context_tiles": [
+    "7/33/47.png"
+  ],
+  "features": [
+    {"id": "NAIN2-N-001", "kind": "region", "original": "INDIANA", "original_bbox": [52, 67, 134, 85], "source_url": "@source/7f449928d2483cce"},
+    {"id": "NAIN2-N-002", "kind": "region", "original": "OHIO", "original_bbox": [384, 79, 435, 97], "source_url": "@source/8463e5ea6613e69a"},
+    {"id": "NAIN2-N-003", "kind": "city", "original": "Muncie", "original_bbox": [159, 90, 203, 109], "source_url": "@source/7f449928d2483cce"},
+    {"id": "NAIN2-N-004", "kind": "city", "original": "Columbus", "original_bbox": [377, 117, 433, 137], "source_url": "@source/8463e5ea6613e69a"},
+    {"id": "NAIN2-N-005", "kind": "city", "original": "Indianapolis", "original_bbox": [89, 140, 156, 162], "source_url": "@source/7f449928d2483cce"},
+    {"id": "NAIN2-N-006", "kind": "city", "original": "Dayton", "original_bbox": [268, 141, 311, 163], "source_url": "@source/8463e5ea6613e69a"},
+    {"id": "NAIN2-N-007", "kind": "city", "original": "Bloomington", "original_bbox": [55, 211, 125, 233], "source_url": "@source/7f449928d2483cce"},
+    {"id": "NAIN2-N-008", "kind": "city", "original": "Cincinnati", "original_bbox": [239, 219, 294, 238], "source_url": "@source/7f449928d2483cce"}
+  ],
+  "translations": [
+    {"id": "NAIN2-N-001", "zh": "印第安纳州", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "9234ca5c7ca80b351c45f67070dda4ee7d7cd900caf5a8943c4a433e969eaaa1", "review_notes": "@note/translations"},
+    {"id": "NAIN2-N-002", "zh": "俄亥俄州", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "1123f4530cdac5f75c3f204f8b5611cb254cac0b9aed391d6a95c04a9044f770", "review_notes": "@note/translations"},
+    {"id": "NAIN2-N-003", "zh": "蒙夕", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "6d321aaf2fa2db463bc403d04215776c90e9aaddf19f4bf5d863f3bab77df583", "review_notes": "@note/translations"},
+    {"id": "NAIN2-N-004", "zh": "哥伦布", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "12eac0ec623883a2670b5ce8648fc261af26d724d99d114099792f2a7188cb3e", "review_notes": "@note/translations"},
+    {"id": "NAIN2-N-005", "zh": "印第安纳波利斯", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "f5ae221896ddc489614a9091a78e80595e6b6521fd92a417241380157107051e", "review_notes": "@note/translations"},
+    {"id": "NAIN2-N-006", "zh": "代顿", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "8849182ba52ebba19f84c8728bc08b98c8dd634476aa406b55a871b7d2f477df", "review_notes": "@note/translations"},
+    {"id": "NAIN2-N-007", "zh": "布卢明顿", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "d16348e5ac8422291035c48bca2ef85f213060d2fc9e2c3b1a36fa3e9cf5d030", "review_notes": "@note/translations"},
+    {"id": "NAIN2-N-008", "zh": "辛辛那提", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "7db34c8dc4034131259b57dc8abe4ce8184e213d1f1eb4ceaeea99d831054bfc", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NAIN2-N-001", "x": 93.0, "y": 76.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NAIN2-N-002", "x": 409.5, "y": 88.0, "font_size": 12, "font_style": "regular"},
+    {"id": "NAIN2-N-003", "x": 184.0, "y": 94.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NAIN2-N-004", "x": 408.0, "y": 121.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NAIN2-N-005", "x": 144.0, "y": 144.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NAIN2-N-006", "x": 293.0, "y": 145.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NAIN2-N-007", "x": 92.0, "y": 215.5, "font_size": 12, "font_style": "regular"},
+    {"id": "NAIN2-N-008", "x": 276.0, "y": 223.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NAIN2-C-001", "feature_id": "NAIN2-N-003", "kind": "circle", "x": 163.5, "y": 94.5, "size": 9, "outline_width": 1, "original_bbox": [159, 90, 168, 99], "source_url": "@source/7f449928d2483cce", "review_notes": "@note/symbols"},
+    {"id": "NAIN2-C-002", "feature_id": "NAIN2-N-004", "kind": "circle", "x": 381.5, "y": 121.5, "size": 9, "outline_width": 1, "original_bbox": [377, 117, 386, 126], "source_url": "@source/8463e5ea6613e69a", "review_notes": "@note/symbols"},
+    {"id": "NAIN2-C-003", "feature_id": "NAIN2-N-005", "kind": "circle", "x": 93.5, "y": 144.5, "size": 9, "outline_width": 1, "original_bbox": [89, 140, 98, 149], "source_url": "@source/7f449928d2483cce", "review_notes": "@note/symbols"},
+    {"id": "NAIN2-C-004", "feature_id": "NAIN2-N-006", "kind": "circle", "x": 272.5, "y": 145.5, "size": 9, "outline_width": 1, "original_bbox": [268, 141, 277, 150], "source_url": "@source/8463e5ea6613e69a", "review_notes": "@note/symbols"},
+    {"id": "NAIN2-C-005", "feature_id": "NAIN2-N-007", "kind": "circle", "x": 59.5, "y": 215.5, "size": 9, "outline_width": 1, "original_bbox": [55, 211, 64, 220], "source_url": "@source/7f449928d2483cce", "review_notes": "@note/symbols"},
+    {"id": "NAIN2-C-006", "feature_id": "NAIN2-N-008", "kind": "circle", "x": 243.5, "y": 223.5, "size": 9, "outline_width": 1, "original_bbox": [239, 219, 248, 228], "source_url": "@source/7f449928d2483cce", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "NAIN2-SH-001", "owner_region": "AM-CanadaEastGreatLakes-z7-32-40", "feature_id": "AM10-73-Fort-Wayne", "kind": "city", "original": "Fort Wayne", "original_bbox": [181, -18, 224, 21], "source_url": "@source/8e2735a7b2cdaac6", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

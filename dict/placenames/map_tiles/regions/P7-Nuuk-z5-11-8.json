@@ -1,0 +1,26 @@
+{
+  "id": "P7-Nuuk-z5-11-8",
+  "z": 5,
+  "x": 11,
+  "y": 8,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/11/8.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "P7-Nuuk-z5-11-8-03-name", "kind": "city", "original": "Nuuk", "original_bbox": [98, 123, 133, 142], "source_url": "@source/5666cb298b24a48c"}
+  ],
+  "translations": [
+    {"id": "P7-Nuuk-z5-11-8-03-name", "zh": "努克", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "ac612fcf62baf7bc40caa225dc729aaab95bd299059d5291f180405a75eec5fe", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P7-Nuuk-z5-11-8-03-name", "x": 124, "y": 136, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "P7-Nuuk-z5-11-8-03-name-circle", "feature_id": "P7-Nuuk-z5-11-8-03-name", "kind": "circle", "x": 102.5, "y": 127.5, "size": 9, "outline_width": 1, "original_bbox": [98, 123, 107, 132]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

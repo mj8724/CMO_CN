@@ -1,0 +1,28 @@
+{
+  "id": "WU-SoCalWest-z9-87-202",
+  "z": 9,
+  "x": 87,
+  "y": 202,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/87/202.png"
+  ],
+  "context_tiles": [
+    "9/86/202.png"
+  ],
+  "features": [
+    {"id": "WUF-16", "kind": "city", "original": "Tehachapi", "original_bbox": [109, 138, 166, 157], "source_url": "@source/fc25bbd9efe8fc1d"}
+  ],
+  "translations": [
+    {"id": "WUF-16", "zh": "特哈查比", "status": "approved", "source": "@source/a3f56256691f7b08", "record_sha256": "a11ed2ec93d8f190a3d0cffc9b65e44393cb760decb6224f1b8d9824bc3ba37f", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "WUF-16", "x": 137.5, "y": 147.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "WU12-SH-03", "owner_region": "AM-CaliforniaCoast-z9-85-201", "feature_id": "AM34-4-Arvin", "kind": "city", "original": "Arvin", "original_bbox": [-17, 102, 17, 121], "source_url": "@source/fc25bbd9efe8fc1d", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

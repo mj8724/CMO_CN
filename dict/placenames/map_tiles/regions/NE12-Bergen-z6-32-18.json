@@ -1,0 +1,34 @@
+{
+  "id": "NE12-Bergen-z6-32-18",
+  "z": 6,
+  "x": 32,
+  "y": 18,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/32/18.png"
+  ],
+  "context_tiles": [
+    "6/33/17.png",
+    "6/33/18.png",
+    "6/34/17.png",
+    "6/34/18.png",
+    "6/35/18.png",
+    "6/37/18.png",
+    "6/39/18.png"
+  ],
+  "features": [
+    {"id": "NE12-N-PH001", "kind": "city", "original": "Bergen", "original_bbox": [238, 109, 280, 131], "source_url": "@source/040362f673f88e62"}
+  ],
+  "translations": [
+    {"id": "NE12-N-PH001", "zh": "卑尔根", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "326456b82c2859b5a33e869fbe65623ce38ae784599a3522b157b3670e68a3d7", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NE12-N-PH001", "x": 215.0, "y": 120.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NE12-C-PH001", "feature_id": "NE12-N-PH001", "kind": "circle", "original_bbox": [238, 109, 247, 118], "x": 242.5, "y": 113.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

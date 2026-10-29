@@ -1,0 +1,26 @@
+{
+  "id": "PH8-PuertoPrincesa-z8-212-121",
+  "z": 8,
+  "x": 212,
+  "y": 121,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/212/121.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "PH11-001", "kind": "city", "original": "Puerto Princesa", "original_bbox": [106, 6, 160, 45], "source_url": "@source/25fef343d713ca20"}
+  ],
+  "translations": [
+    {"id": "PH11-001", "zh": "普林塞萨港", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "0b572a1defb7e63d466c545d9203165784f6bf9b2a0a16de61ec0e5ed2a9e8ad", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "PH11-001", "x": 150.5, "y": 29, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "PH11-001-circle", "feature_id": "PH11-001", "kind": "circle", "x": 110.5, "y": 10.5, "size": 9, "outline_width": 1, "original_bbox": [106, 6, 115, 15]}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

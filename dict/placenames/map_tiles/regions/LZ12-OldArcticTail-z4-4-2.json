@@ -1,0 +1,26 @@
+{
+  "id": "LZ12-OldArcticTail-z4-4-2",
+  "z": 4,
+  "x": 4,
+  "y": 2,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "4/4/2.png",
+    "4/5/2.png"
+  ],
+  "context_tiles": [
+    "4/4/3.png",
+    "4/5/3.png",
+    "4/6/2.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [],
+  "shared_sources": [
+    {"id": "LZ12-OldArcticTail-z4-4-2-AM4-104-Baffin-Bay", "owner_region": "AM-All-z4-0-3", "feature_id": "AM4-104-Baffin-Bay", "kind": "marine", "original": "Baffin Bay", "source_url": "@source/31fb21cd40ef5a9e", "original_bbox": [212, 239, 303, 264], "review_notes": "@note/shared_sources"},
+    {"id": "LZ12-OldArcticTail-z4-4-2-EA-Greenland", "owner_region": "EU-Greenland-z4-6-0", "feature_id": "EA-Greenland", "kind": "admin0", "original": "Greenland", "source_url": "@source/c96c84a1c9558d58", "original_bbox": [470, 76, 603, 94], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

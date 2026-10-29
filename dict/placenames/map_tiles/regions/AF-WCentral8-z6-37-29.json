@@ -1,0 +1,43 @@
+{
+  "id": "AF-WCentral8-z6-37-29",
+  "z": 6,
+  "x": 37,
+  "y": 29,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "6/37/29.png",
+    "6/37/30.png"
+  ],
+  "context_tiles": [
+    "6/38/29.png"
+  ],
+  "features": [
+    {"id": "AF28-020", "kind": "admin0", "original": "SUDAN", "original_bbox": [11, 81, 113, 105], "source_url": "@source/70c5e0e3cfb24dc9"},
+    {"id": "AF28-021", "kind": "city", "original": "Al-Ubayyid", "original_bbox": [91, 158, 139, 195], "source_url": "@source/70c5e0e3cfb24dc9"},
+    {"id": "AF28-022", "kind": "city", "original": "Khartoum", "original_bbox": [196, 46, 256, 67], "source_url": "@source/70c5e0e3cfb24dc9"},
+    {"id": "AF28-051", "kind": "admin0", "original": "SOUTH SUDAN", "original_bbox": [19, 380, 121, 430], "source_url": "@source/005ca252f820f7c1"},
+    {"id": "AF28-052", "kind": "city", "original": "Malakal", "original_bbox": [156, 327, 203, 347], "source_url": "@source/005ca252f820f7c1"}
+  ],
+  "translations": [
+    {"id": "AF28-020", "zh": "苏丹", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "57239d83422801438bf08e8c655d4999eb7cfaffe158dbc2d579452aaef2a070", "review_notes": "@note/translations"},
+    {"id": "AF28-021", "zh": "欧拜伊德", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "48ab51649b2a29f77d76386f5355615f0ab8d6642b7f5b26c3ffa4f71624c9fd", "review_notes": "@note/translations"},
+    {"id": "AF28-022", "zh": "喀土穆", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "d8f03ddbcbcfd2af4ccf8765cf20dae36a2d06c9c6bf090db05efa31cd937113", "review_notes": "@note/translations"},
+    {"id": "AF28-051", "zh": "南苏丹", "status": "approved", "source": "@source/c96c84a1c9558d58", "record_sha256": "29ac423fb4038a7b26576115e110365642ec9629d02525e5147ee5c4f5bdca35", "review_notes": "@note/translations"},
+    {"id": "AF28-052", "zh": "马拉卡尔", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "dcc4de613480c537ac3328450edeb0102929cba91bc98bac3f74c04a1ddd3d8d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "AF28-020", "x": 62.0, "y": 93.0, "font_size": 18, "font_style": "bold"},
+    {"id": "AF28-051", "x": 70.0, "y": 405.0, "font_size": 18, "font_style": "bold"},
+    {"id": "AF28-022", "x": 227.0, "y": 58.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-021", "x": 128.0, "y": 170.0, "font_size": 12, "font_style": "regular"},
+    {"id": "AF28-052", "x": 193.0, "y": 339.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "AF28-021-circle", "feature_id": "AF28-021", "kind": "circle", "x": 95.5, "y": 162.5, "size": 9, "outline_width": 1, "original_bbox": [91, 158, 100, 167], "source_url": "@source/70c5e0e3cfb24dc9", "review_notes": "@note/symbols"},
+    {"id": "AF28-022-circle", "feature_id": "AF28-022", "kind": "circle", "x": 200.5, "y": 50.5, "size": 9, "outline_width": 1, "original_bbox": [196, 46, 205, 55], "source_url": "@source/70c5e0e3cfb24dc9", "review_notes": "@note/symbols"},
+    {"id": "AF28-052-circle", "feature_id": "AF28-052", "kind": "circle", "x": 160.5, "y": 331.5, "size": 9, "outline_width": 1, "original_bbox": [156, 327, 165, 336], "source_url": "@source/005ca252f820f7c1", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

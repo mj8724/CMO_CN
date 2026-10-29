@@ -1,0 +1,56 @@
+{
+  "z": 6,
+  "x": 31,
+  "y": 19,
+  "width_tiles": 1,
+  "height_tiles": 3,
+  "id": "EU-UK-Vertical-z6-31-19",
+  "original_tiles": [
+    "6/31/19.png",
+    "6/31/20.png",
+    "6/31/21.png"
+  ],
+  "context_tiles": [
+    "6/30/20.png",
+    "6/32/21.png"
+  ],
+  "features": [
+    {"id": "NW6-WICK", "kind": "city", "original": "Wick", "original_bbox": [111, 28, 144, 47], "source_url": "@source/d486733b62389764"},
+    {"id": "NW6-GLASGOW", "kind": "city", "original": "Glasgow", "original_bbox": [58, 245, 108, 267], "source_url": "@source/d486733b62389764"},
+    {"id": "NW6-UNITED-KINGDOM", "kind": "admin0", "original": "UNITED KINGDOM", "original_bbox": [36, 313, 177, 363], "source_url": "@source/937917355b53f884"},
+    {"id": "NW6-MANCHESTER", "kind": "city", "original": "Manchester", "original_bbox": [149, 432, 213, 451], "source_url": "@source/937917355b53f884"},
+    {"id": "NW6-BIRMINGHAM", "kind": "city", "original": "Birmingham", "original_bbox": [165, 508, 231, 530], "source_url": "@source/937917355b53f884"},
+    {"id": "NW6-LONDON", "kind": "city", "original": "London", "original_bbox": [246, 580, 304, 603], "source_url": "@source/32c70ee1fec17185"},
+    {"id": "NW6-GUERNSEY", "kind": "admin0", "original": "GUERNSEY", "original_bbox": [59, 715, 219, 739], "source_url": "@source/32c70ee1fec17185"}
+  ],
+  "translations": [
+    {"id": "NW6-WICK", "zh": "威克", "source": "@source/d486733b62389764", "status": "approved", "record_sha256": "55a1fcc9b56d909919ad2e5e218d24dc5a9aabc6766f00ae61cc36daf2cef600", "review_notes": "@note/translations"},
+    {"id": "NW6-GLASGOW", "zh": "格拉斯哥", "source": "@source/d486733b62389764", "status": "approved", "record_sha256": "d75794b13658d3623532a4a93429b0bbd01331a3933217708bdd8d4e67534d7c", "review_notes": "@note/translations"},
+    {"id": "NW6-UNITED-KINGDOM", "zh": "英国", "source": "@source/937917355b53f884", "status": "approved", "record_sha256": "8b0f63fc76edb71a5bbca5b3b25a28f3ccef571a4b662c111106a8c3060696c6", "review_notes": "@note/translations"},
+    {"id": "NW6-MANCHESTER", "zh": "曼彻斯特", "source": "@source/937917355b53f884", "status": "approved", "record_sha256": "f6f95ab23ed0b6ac82bba925839bb7f2b8d8b8533906d1bb0bd94ff4f6d7f579", "review_notes": "@note/translations"},
+    {"id": "NW6-BIRMINGHAM", "zh": "伯明翰", "source": "@source/937917355b53f884", "status": "approved", "record_sha256": "a741bde347893585b1d978c13c80f87f6e7a9a5237791a1413bf9eda54835af3", "review_notes": "@note/translations"},
+    {"id": "NW6-LONDON", "zh": "伦敦", "source": "@source/32c70ee1fec17185", "status": "approved", "record_sha256": "119d4527d4fdda609159bedcab35904da943a726de2ce07f0b78eb094dbe5dad", "review_notes": "@note/translations"},
+    {"id": "NW6-GUERNSEY", "zh": "根西岛", "source": "@source/32c70ee1fec17185", "status": "approved", "record_sha256": "54c994e0c383bb1b914a91eca86ff3847b1235abd81a2d8f3e3c416cec7089aa", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NW6-WICK", "x": 138.0, "y": 41.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-GLASGOW", "x": 99.0, "y": 258.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-UNITED-KINGDOM", "x": 106.5, "y": 338.0, "font_size": 20, "font_style": "bold"},
+    {"id": "NW6-MANCHESTER", "x": 190.0, "y": 445.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-BIRMINGHAM", "x": 199.0, "y": 521.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-LONDON", "x": 227.0, "y": 593.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-GUERNSEY", "x": 139.0, "y": 727.0, "font_size": 20, "font_style": "bold"}
+  ],
+  "symbols": [
+    {"id": "NW6-WICK-NATIVE", "kind": "circle", "feature_id": "NW6-WICK", "original_bbox": [111, 28, 120, 37], "x": 115.5, "y": 32.5, "size": 8, "outline_width": 1},
+    {"id": "NW6-GLASGOW-NATIVE", "kind": "circle", "feature_id": "NW6-GLASGOW", "original_bbox": [58, 245, 67, 254], "x": 62.5, "y": 249.5, "size": 8, "outline_width": 1},
+    {"id": "NW6-MANCHESTER-NATIVE", "kind": "circle", "feature_id": "NW6-MANCHESTER", "original_bbox": [149, 432, 158, 441], "x": 153.5, "y": 436.5, "size": 8, "outline_width": 1},
+    {"id": "NW6-BIRMINGHAM-NATIVE", "kind": "circle", "feature_id": "NW6-BIRMINGHAM", "original_bbox": [165, 508, 174, 517], "x": 169.5, "y": 512.5, "size": 8, "outline_width": 1},
+    {"id": "NW6-LONDON-NATIVE", "kind": "circle", "feature_id": "NW6-LONDON", "original_bbox": [246, 580, 255, 589], "x": 250.5, "y": 584.5, "size": 8, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "NW6-SH-04-BELFAST", "owner_region": "EU-Ireland-z6-30-20", "feature_id": "NW6-BELFAST", "kind": "city", "original": "Belfast", "original_bbox": [-18, 346, 24, 365], "source_url": "@source/40ca8089e826b36a", "review_notes": "@note/shared_sources"},
+    {"id": "NW6-SH-05-DUBLIN", "owner_region": "EU-Ireland-z6-30-20", "feature_id": "NW6-DUBLIN", "kind": "city", "original": "Dublin", "original_bbox": [-33, 442, 11, 463], "source_url": "@source/40ca8089e826b36a", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

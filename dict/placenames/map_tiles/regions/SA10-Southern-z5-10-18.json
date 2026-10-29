@@ -1,0 +1,71 @@
+{
+  "id": "SA10-Southern-z5-10-18",
+  "z": 5,
+  "x": 10,
+  "y": 18,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    "5/10/18.png",
+    "5/11/18.png",
+    "5/12/18.png"
+  ],
+  "context_tiles": [
+    "5/10/19.png",
+    "5/11/17.png",
+    "5/12/17.png"
+  ],
+  "features": [
+    {"id": "SA10-N-001", "kind": "region", "original": "PARAGUAY", "original_bbox": [143, 20, 284, 41], "source_url": "@source/69e8dbd1ea40153e"},
+    {"id": "SA10-N-002", "kind": "city", "original": "São Paulo", "original_bbox": [470, 35, 513, 76], "source_url": "@source/074168064dd367c9"},
+    {"id": "SA10-N-003", "kind": "region", "original": "PARANÁ", "original_bbox": [337, 56, 377, 66], "source_url": "@source/074168064dd367c9"},
+    {"id": "SA10-N-004", "kind": "city", "original": "Asunción", "original_bbox": [220, 78, 272, 98], "source_url": "@source/69e8dbd1ea40153e"},
+    {"id": "SA10-N-005", "kind": "city", "original": "Curitiba", "original_bbox": [410, 82, 458, 102], "source_url": "@source/074168064dd367c9"},
+    {"id": "SA10-N-006", "kind": "region", "original": "SANTA CATARINA", "original_bbox": [348, 117, 398, 137], "source_url": "@source/074168064dd367c9"},
+    {"id": "SA10-N-007", "kind": "city", "original": "Posadas", "original_bbox": [260, 131, 307, 151], "source_url": "@source/074168064dd367c9"},
+    {"id": "SA10-N-008", "kind": "city", "original": "Florianópolis", "original_bbox": [427, 137, 497, 159], "source_url": "@source/074168064dd367c9"},
+    {"id": "SA10-N-009", "kind": "region", "original": "RIO GRANDE DO SUL", "original_bbox": [282, 189, 343, 209], "source_url": "@source/074168064dd367c9"},
+    {"id": "SA10-N-010", "kind": "city", "original": "Porto Alegre", "original_bbox": [366, 201, 407, 239], "source_url": "@source/074168064dd367c9"},
+    {"id": "SA10-N-033", "kind": "city", "original": "Córdoba", "original_bbox": [71, 237, 119, 256], "source_url": "@source/69e8dbd1ea40153e"}
+  ],
+  "translations": [
+    {"id": "SA10-N-001", "zh": "巴拉圭", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "f17dacb818537c066e0400a105140cbcadb74febb4ad5187e5f70dcf2b903536", "review_notes": "@note/translations"},
+    {"id": "SA10-N-002", "zh": "圣保罗", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "abbeaea9f9238ceaf04fda99f36e0a9589d143d10e03b0af537e0e83d70858a0", "review_notes": "@note/translations"},
+    {"id": "SA10-N-003", "zh": "巴拉那州", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "42349b196713260dad792af6366c9f179142f54e850ff22364c22fdd9576866a", "review_notes": "@note/translations"},
+    {"id": "SA10-N-004", "zh": "亚松森", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "1d6fd182a47b9ff1124851eac7a9a2da4fb1f72479d404e103f9bdc6db7aed92", "review_notes": "@note/translations"},
+    {"id": "SA10-N-005", "zh": "库里奇巴", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "a40c76544d401a1c389a992eeab7e8ae6f4dacd7de43d8a8e89ab46070b9a3a4", "review_notes": "@note/translations"},
+    {"id": "SA10-N-006", "zh": "圣卡塔琳娜州", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "6b2e1e1cae9874234add52ee52322246ea927acc33ae333c7b8863f19fb5e0d2", "review_notes": "@note/translations"},
+    {"id": "SA10-N-007", "zh": "波萨达斯", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "1dc15cbc12cc4df2539ef83ead50784cfe8b446e677809077ebdd26597595be9", "review_notes": "@note/translations"},
+    {"id": "SA10-N-008", "zh": "弗洛里亚诺波利斯", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "7d972dc72e9799b7a34e4e86088f78f1a5e07c35e57444302dffdb33fcf67870", "review_notes": "@note/translations"},
+    {"id": "SA10-N-009", "zh": "南里奥格兰德州", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "24f93670c643e46c399dbbdffd22945b038a97bce13ae5c853fccef85437317b", "review_notes": "@note/translations"},
+    {"id": "SA10-N-010", "zh": "阿雷格里港", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "9aee8ae7bb12d79892cd92e299d8eeebfce53dbf904ed5cc7008271a66ec2227", "review_notes": "@note/translations"},
+    {"id": "SA10-N-033", "zh": "科尔多瓦", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "0e9368d5a45fcba79037a8e87d53ce3b5204eb5455b2ce1f8cf8de89a2fe2f53", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "SA10-N-001", "x": 213.0, "y": 30.5, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-002", "x": 501.0, "y": 39.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-003", "x": 357.0, "y": 61.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-004", "x": 251.0, "y": 83.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-005", "x": 447.0, "y": 87.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-006", "x": 373.0, "y": 127.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-007", "x": 297.0, "y": 135.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-008", "x": 488.0, "y": 141.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-009", "x": 313.0, "y": 199.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-010", "x": 409.0, "y": 205.0, "font_size": 12, "font_style": "regular"},
+    {"id": "SA10-N-033", "x": 108.0, "y": 241.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "SA10-C-001", "feature_id": "SA10-N-002", "kind": "circle", "x": 474.5, "y": 39.5, "size": 9, "outline_width": 1, "original_bbox": [470, 35, 479, 44], "source_url": "@source/074168064dd367c9", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-002", "feature_id": "SA10-N-004", "kind": "circle", "x": 224.5, "y": 82.5, "size": 9, "outline_width": 1, "original_bbox": [220, 78, 229, 87], "source_url": "@source/69e8dbd1ea40153e", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-003", "feature_id": "SA10-N-005", "kind": "circle", "x": 414.5, "y": 86.5, "size": 9, "outline_width": 1, "original_bbox": [410, 82, 419, 91], "source_url": "@source/074168064dd367c9", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-004", "feature_id": "SA10-N-007", "kind": "circle", "x": 264.5, "y": 135.5, "size": 9, "outline_width": 1, "original_bbox": [260, 131, 269, 140], "source_url": "@source/074168064dd367c9", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-005", "feature_id": "SA10-N-008", "kind": "circle", "x": 431.5, "y": 141.5, "size": 9, "outline_width": 1, "original_bbox": [427, 137, 436, 146], "source_url": "@source/074168064dd367c9", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-006", "feature_id": "SA10-N-010", "kind": "circle", "x": 370.5, "y": 205.5, "size": 9, "outline_width": 1, "original_bbox": [366, 201, 375, 210], "source_url": "@source/074168064dd367c9", "review_notes": "@note/symbols"},
+    {"id": "SA10-C-028", "feature_id": "SA10-N-033", "kind": "circle", "x": 75.5, "y": 241.5, "size": 9, "outline_width": 1, "original_bbox": [71, 237, 80, 246], "source_url": "@source/69e8dbd1ea40153e", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "SA10-SH-001", "owner_region": "EA-Amazon-z5-11-15-1-3", "feature_id": "EAA5-046-SA-O-PAULO", "kind": "admin1", "original": "SÃO PAULO", "original_bbox": [417, -9, 451, 12], "source_url": "@source/dbd13431705998a5", "review_notes": "@note/shared_sources"},
+    {"id": "SA10-SH-002", "owner_region": "EA-Amazon-z5-12-16-2-2", "feature_id": "EAA5-047-RIO-DE-JANEIRO", "kind": "admin1", "original": "RIO DE JANEIRO", "original_bbox": [549, -3, 592, 17], "source_url": "@source/14f78b1984e5cbd8", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

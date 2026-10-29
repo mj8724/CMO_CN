@@ -1,0 +1,49 @@
+{
+  "id": "VN14-R01-z10-815-463",
+  "z": 10,
+  "x": 815,
+  "y": 463,
+  "width_tiles": 3,
+  "height_tiles": 1,
+  "original_tiles": [
+    {"path": "10/815/463.png", "z": 10},
+    {"path": "10/816/463.png", "z": 10},
+    {"path": "10/817/463.png", "z": 10}
+  ],
+  "context_tiles": [
+    {"path": "10/816/464.png", "z": 10}
+  ],
+  "features": [
+    {"id": "VN14-N00", "kind": "region", "original": "Giêm Hà", "original_bbox": [441, 19, 489, 36], "source_url": "@source/7d42a4e131a3e8cc"},
+    {"id": "VN14-N01", "kind": "region", "original": "Gio Linh", "original_bbox": [381, 21, 423, 36], "source_url": "@source/7d42a4e131a3e8cc"},
+    {"id": "VN14-N02", "kind": "region", "original": "Cửa Việt", "original_bbox": [456, 41, 504, 60], "source_url": "@source/7d42a4e131a3e8cc"},
+    {"id": "VN14-N03", "kind": "region", "original": "Ba.Xe Pu", "original_bbox": [14, 66, 65, 82], "source_url": "@source/2acb9a936565fc7b"},
+    {"id": "VN14-N04", "kind": "region", "original": "Đông Hà", "original_bbox": [392, 108, 449, 131], "source_url": "@source/7d42a4e131a3e8cc"},
+    {"id": "VN14-N05", "kind": "region", "original": "Quang Tri", "original_bbox": [457, 157, 513, 177], "source_url": "@source/7d42a4e131a3e8cc"},
+    {"id": "VN14-N06", "kind": "region", "original": "Thế Chí Tây", "original_bbox": [651, 228, 712, 247], "source_url": "@source/58e0ca1421684fbd"},
+    {"id": "VN14-N07", "kind": "region", "original": "Đá Nổi", "original_bbox": [349, 243, 387, 256], "source_url": "@source/7d42a4e131a3e8cc"}
+  ],
+  "translations": [
+    {"id": "VN14-N00", "zh": "吉耶姆哈", "status": "approved", "source": "@source/7d42a4e131a3e8cc", "record_sha256": "c4afea53b3e791dd6e960c8def56a9603b7b42cf872b9a94bd608a81a8862d2a", "review_notes": "@note/translations"},
+    {"id": "VN14-N01", "zh": "由灵", "status": "approved", "source": "@source/7d42a4e131a3e8cc", "record_sha256": "95178d8dcd822bff699efc2725b9d643024619b8bb4dc0d7c5e1a0f400e3b458", "review_notes": "@note/translations"},
+    {"id": "VN14-N02", "zh": "越门", "status": "approved", "source": "@source/7d42a4e131a3e8cc", "record_sha256": "a2cfb22a1eec58059513688ac09705c7577b77c2e847e71045a8f5997ee73b6d", "review_notes": "@note/translations"},
+    {"id": "VN14-N03", "zh": "巴谢普", "status": "approved", "source": "@source/2acb9a936565fc7b", "record_sha256": "a1ff68a9eb3df8e393c20b1479bc911953e6459ba846a8dcc56bd4143ea69b16", "review_notes": "@note/translations"},
+    {"id": "VN14-N04", "zh": "东河", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "11afc5379a2a24a7eddc7c82b3689c46c7287d5421b35e164a20ef8787106465", "review_notes": "@note/translations"},
+    {"id": "VN14-N05", "zh": "广治", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "7d94073bb97784b81de0fe66f7c617398df2280c54d418ef8172e411be81dffc", "review_notes": "@note/translations"},
+    {"id": "VN14-N06", "zh": "世志西", "status": "approved", "source": "@source/58e0ca1421684fbd", "record_sha256": "bf6b5b81c24b9a3c48fd08340bf4759ccbcc2daa22c7be75bf4d0830edf88c1b", "review_notes": "@note/translations"},
+    {"id": "VN14-N07", "zh": "达诺伊", "status": "approved", "source": "@source/7d42a4e131a3e8cc", "record_sha256": "1233c1d71b0c75382225a98d61d9a9a0d16d58276d5b8cc33eac730bd9160096", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "VN14-N00", "x": 465.0, "y": 27.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N01", "x": 402.0, "y": 28.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N02", "x": 480.0, "y": 50.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N03", "x": 39.5, "y": 74.0, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N04", "x": 420.5, "y": 119.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N05", "x": 485.0, "y": 167.0, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N06", "x": 681.5, "y": 237.5, "font_size": 12, "font_style": "regular"},
+    {"id": "VN14-N07", "x": 368.0, "y": 249.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

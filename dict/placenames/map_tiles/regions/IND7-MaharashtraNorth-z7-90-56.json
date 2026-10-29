@@ -1,0 +1,72 @@
+{
+  "z": 7,
+  "x": 90,
+  "y": 56,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "id": "IND7-MaharashtraNorth-z7-90-56",
+  "original_tiles": [
+    "7/90/56.png",
+    "7/91/56.png"
+  ],
+  "context_tiles": [
+    "7/87/55.png",
+    "7/87/56.png",
+    "7/87/57.png",
+    "7/88/55.png",
+    "7/88/56.png",
+    "7/88/57.png",
+    "7/89/55.png",
+    "7/89/56.png",
+    "7/89/57.png",
+    "7/90/55.png",
+    "7/90/57.png",
+    "7/91/55.png",
+    "7/91/57.png",
+    "7/92/55.png",
+    "7/92/56.png",
+    "7/90/58.png",
+    "7/91/58.png",
+    "7/92/57.png"
+  ],
+  "features": [
+    {"id": "IND7-N003", "kind": "city", "original": "Burhanpur", "original_bbox": [278, 57, 337, 79], "source_url": "@source/fe66da84e28b2641"},
+    {"id": "IND7-N005", "kind": "city", "original": "Amravati", "original_bbox": [417, 94, 468, 114], "source_url": "@source/fe66da84e28b2641"},
+    {"id": "IND7-N006", "kind": "city", "original": "Dhule", "original_bbox": [145, 98, 183, 117], "source_url": "@source/e712d4ed142b21d3"},
+    {"id": "IND7-N007", "kind": "city", "original": "Akola", "original_bbox": [348, 116, 385, 135], "source_url": "@source/fe66da84e28b2641"},
+    {"id": "IND7-N008", "kind": "city", "original": "Malegaon", "original_bbox": [123, 131, 178, 153], "source_url": "@source/e712d4ed142b21d3"},
+    {"id": "IND7-N010", "kind": "city", "original": "Nashik", "original_bbox": [56, 184, 98, 203], "source_url": "@source/e712d4ed142b21d3"},
+    {"id": "IND7-N011", "kind": "city", "original": "Aurangabad", "original_bbox": [197, 197, 262, 219], "source_url": "@source/e712d4ed142b21d3"}
+  ],
+  "translations": [
+    {"id": "IND7-N003", "zh": "布尔汉普尔", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "4eb3e4a082f1144684fccff2f05691d48e40db7b61efef9a11643cfcd2b4354a", "review_notes": "@note/translations"},
+    {"id": "IND7-N005", "zh": "阿姆劳蒂", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "ea7627bcc031b9ec7905db101243d186a3622172047a05af11536aa74627e1e0", "review_notes": "@note/translations"},
+    {"id": "IND7-N006", "zh": "图莱", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "6045b33289596edb1983f0a444ecc545916292f4043657c6da8c929cdc14a832", "review_notes": "@note/translations"},
+    {"id": "IND7-N007", "zh": "阿科拉", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "8037c0ac53c376c077237f2aadd287ac8aee56b35362d4fbe24ebaae97518c10", "review_notes": "@note/translations"},
+    {"id": "IND7-N008", "zh": "马莱冈", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "62e225e80f211993ee6268de1e78d6969dfc83ff0de69cca8a02c0a49468ce41", "review_notes": "@note/translations"},
+    {"id": "IND7-N010", "zh": "纳西克", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "d70520aeecbb9047be08c2c971bf842e17df438bea74379821914b5893dd7d6f", "review_notes": "@note/translations"},
+    {"id": "IND7-N011", "zh": "奥郎加巴德", "source": "@source/de57b59c289acedb", "status": "approved", "record_sha256": "593ba2aba1fed44e0de6640065f990b79d6c65a38fe9f432dfba1bd5473fe94e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "IND7-N003", "x": 327.5, "y": 76.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N005", "x": 460.5, "y": 113.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N006", "x": 176.5, "y": 117.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N007", "x": 385.5, "y": 135.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N008", "x": 160.5, "y": 150.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N010", "x": 93.5, "y": 203.5, "font_size": 12, "font_style": "regular"},
+    {"id": "IND7-N011", "x": 246.5, "y": 216.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "IND7-C003", "feature_id": "IND7-N003", "kind": "circle", "original_bbox": [278, 57, 287, 66], "x": 282.5, "y": 61.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C005", "feature_id": "IND7-N005", "kind": "circle", "original_bbox": [417, 94, 426, 103], "x": 421.5, "y": 98.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C006", "feature_id": "IND7-N006", "kind": "circle", "original_bbox": [145, 98, 154, 107], "x": 149.5, "y": 102.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C007", "feature_id": "IND7-N007", "kind": "circle", "original_bbox": [348, 116, 357, 125], "x": 352.5, "y": 120.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C008", "feature_id": "IND7-N008", "kind": "circle", "original_bbox": [123, 131, 132, 140], "x": 127.5, "y": 135.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C010", "feature_id": "IND7-N010", "kind": "circle", "original_bbox": [56, 184, 65, 193], "x": 60.5, "y": 188.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"},
+    {"id": "IND7-C011", "feature_id": "IND7-N011", "kind": "circle", "original_bbox": [197, 197, 206, 206], "x": 201.5, "y": 201.5, "size": 9, "outline_width": 1, "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "IND7-A-Surat", "owner_region": "IND7-GujaratMumbai-z7-89-56", "feature_id": "IND7-N004", "kind": "city", "original": "Surat", "original_bbox": [-31, 67, 8, 89], "source_url": "@source/061707ed334a960c", "review_notes": "@note/shared_sources"},
+    {"id": "IND7-A-Daman", "owner_region": "IND7-GujaratMumbai-z7-89-56", "feature_id": "IND7-N009", "kind": "city", "original": "Daman", "original_bbox": [-31, 144, 11, 164], "source_url": "@source/061707ed334a960c", "review_notes": "@note/shared_sources"}
+  ]
+}

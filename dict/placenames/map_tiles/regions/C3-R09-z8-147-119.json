@@ -1,0 +1,28 @@
+{
+  "id": "C3-R09-z8-147-119",
+  "z": 8,
+  "x": 147,
+  "y": 119,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/147/119.png"
+  ],
+  "context_tiles": [
+    "8/148/119.png"
+  ],
+  "features": [
+    {"id": "C3-N006", "kind": "city", "original": "Babanusah", "original_bbox": [194, 223, 262, 244], "source_url": "@source/8b745466cad11940"}
+  ],
+  "translations": [
+    {"id": "C3-N006", "zh": "巴巴努萨", "status": "approved", "source": "@source/69d17b70620eaaab", "record_sha256": "389d8fedc1bdf224a5a6af1d43d512385e11171c0c6a0859bbb1d94e8a01fbe0", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "C3-N006", "x": 227.0, "y": 243.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "C3-C006", "feature_id": "C3-N006", "kind": "circle", "original_bbox": [194, 223, 203, 232], "x": 198.5, "y": 227.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

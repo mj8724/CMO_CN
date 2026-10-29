@@ -1,0 +1,36 @@
+{
+  "z": 8,
+  "x": 160,
+  "y": 106,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "id": "RedSea-Hafar-z8-160-106",
+  "original_tiles": [
+    "8/160/106.png",
+    "8/160/107.png"
+  ],
+  "context_tiles": [
+    "8/152/105.png",
+    "8/152/106.png",
+    "8/153/105.png",
+    "8/153/106.png",
+    "8/154/106.png",
+    "8/156/105.png",
+    "8/157/107.png",
+    "8/158/105.png",
+    "8/159/105.png"
+  ],
+  "features": [
+    {"id": "RS8-004", "kind": "city", "original": "Hafar Al-Batin", "original_bbox": [171, 225, 227, 263], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "RS8-004", "zh": "哈费尔巴廷", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "8bd3f5358cdeeba26fda303e6f38b4e3aaa5b19d187591b894f33e959a3ecce1", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "RS8-004", "x": 213.5, "y": 239.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "RS8-004-circle", "feature_id": "RS8-004", "kind": "circle", "x": 175.5, "y": 229.5, "size": 7, "outline_width": 1, "original_bbox": [171, 225, 180, 234]}
+  ],
+  "shared_sources": []
+}

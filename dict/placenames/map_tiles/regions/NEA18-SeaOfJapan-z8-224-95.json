@@ -1,0 +1,24 @@
+{
+  "id": "NEA18-SeaOfJapan-z8-224-95",
+  "z": 8,
+  "x": 224,
+  "y": 95,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/224/95.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "NEA18-029", "kind": "marine", "original": "Sea of Japan", "original_bbox": [76, 103, 217, 127], "source_url": "@source/97fe9d6e4a5f9dd7"}
+  ],
+  "translations": [
+    {"id": "NEA18-029", "zh": "日本海", "status": "approved", "source": "@source/98f1a766b282ca2d", "record_sha256": "31f82b6ab5a3adf00127be4a731b76194086cebf9c2a7718d8163130ff3adb1b", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NEA18-029", "x": 146.5, "y": 115.0, "font_size": 18, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

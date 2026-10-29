@@ -1,0 +1,36 @@
+{
+  "z": 8,
+  "x": 157,
+  "y": 107,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "id": "RedSea-Hail-z8-157-107",
+  "original_tiles": [
+    "8/157/107.png"
+  ],
+  "context_tiles": [
+    "8/152/105.png",
+    "8/152/106.png",
+    "8/153/105.png",
+    "8/153/106.png",
+    "8/154/106.png",
+    "8/156/105.png",
+    "8/158/105.png",
+    "8/159/105.png",
+    "8/160/106.png",
+    "8/160/107.png"
+  ],
+  "features": [
+    {"id": "RS8-005", "kind": "city", "original": "Ha'il", "original_bbox": [162, 157, 197, 178], "source_url": "@source/de57b59c289acedb"}
+  ],
+  "translations": [
+    {"id": "RS8-005", "zh": "哈伊勒", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "5ed09d393e614b953610903903116f4eb91aa1d7c4b61f32e2e4645fc3c473ba", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "RS8-005", "x": 192.5, "y": 171.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "RS8-005-circle", "feature_id": "RS8-005", "kind": "circle", "x": 166.5, "y": 161.5, "size": 7, "outline_width": 1, "original_bbox": [162, 157, 171, 166]}
+  ],
+  "shared_sources": []
+}

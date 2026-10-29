@@ -1,0 +1,64 @@
+{
+  "id": "REC-LatinMiddle-z8-79-120",
+  "z": 8,
+  "x": 79,
+  "y": 120,
+  "width_tiles": 4,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/79/120.png",
+    "8/80/120.png",
+    "8/81/120.png",
+    "8/82/120.png"
+  ],
+  "context_tiles": [
+    "8/80/121.png",
+    "8/81/121.png"
+  ],
+  "features": [
+    {"id": "REC-001", "kind": "city", "original": "Puerto Cabello", "original_bbox": [152, 127, 202, 166], "source_url": "@source/af31313e62ac72f5"},
+    {"id": "REC-002", "kind": "city", "original": "Valencia", "original_bbox": [160, 182, 218, 204], "source_url": "@source/af31313e62ac72f5"},
+    {"id": "REC-003", "kind": "city", "original": "Maracay", "original_bbox": [235, 170, 289, 194], "source_url": "@source/af31313e62ac72f5"},
+    {"id": "REC-004", "kind": "city", "original": "Caracas", "original_bbox": [358, 120, 419, 145], "source_url": "@source/bfaf62211c01f5a4"},
+    {"id": "REC-005", "kind": "city", "original": "Ocumare del Tuy", "original_bbox": [383, 193, 441, 234], "source_url": "@source/bfaf62211c01f5a4"},
+    {"id": "REC-006", "kind": "city", "original": "Altagracia de Orituco", "original_bbox": [459, 239, 524, 278], "source_url": "@source/bfaf62211c01f5a4"},
+    {"id": "REC-007", "kind": "city", "original": "Barcelona", "original_bbox": [765, 189, 826, 210], "source_url": "@source/cb04e2b43f3c2735"},
+    {"id": "REC-008", "kind": "city", "original": "Cumana", "original_bbox": [860, 131, 912, 152], "source_url": "@source/c3aebae742a9c71b"},
+    {"id": "REC-009", "kind": "city", "original": "Porlamar", "original_bbox": [917, 35, 975, 56], "source_url": "@source/c3aebae742a9c71b"}
+  ],
+  "translations": [
+    {"id": "REC-001", "zh": "卡贝略港", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "d402b19157baef8923ce1b18497c4db30a83bbcaf14e2a97ae1cee701d9b4d75", "review_notes": "@note/translations"},
+    {"id": "REC-002", "zh": "巴伦西亚", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "33e0dbc15107125a3a6706eda523743ef87ceee8fc17c0bc2013c05809ebaf39", "review_notes": "@note/translations"},
+    {"id": "REC-003", "zh": "马拉凯", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "833478286d18b385e30a25fcfbee33968591cc5848ea4aabc8101fefe37399b3", "review_notes": "@note/translations"},
+    {"id": "REC-004", "zh": "加拉加斯", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "0e863ea37bc86abc6b7810e0e5beff89a8208d7bfbe2fe20b4bb948e7555da5a", "review_notes": "@note/translations"},
+    {"id": "REC-005", "zh": "图伊河畔奥库马雷", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "ebb7bfc5939f6fca27a6c8adc58271318fd2017f39910fc26d5dee39dc2b1fd4", "review_notes": "@note/translations"},
+    {"id": "REC-006", "zh": "奥里图科河畔阿尔塔格拉西亚", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "6e27aecb4516c1e3d86558faf169632cbd3eb5671523c2e96b611a9ff3b10ecd", "review_notes": "@note/translations"},
+    {"id": "REC-007", "zh": "巴塞罗那", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "1df9e1dc6bbf4b5776e2c856641611036b9d08c6c6abb537f9e541c24a4caf66", "review_notes": "@note/translations"},
+    {"id": "REC-008", "zh": "库马纳", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "86a7e73bcf93d436a5765423fcbb99eb1378f1037cfc1cd5687bf30656ba8099", "review_notes": "@note/translations"},
+    {"id": "REC-009", "zh": "波拉马尔", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "7b0e15d9bbcb903f32f93529804d9619b0ca6de335dba8b37611b4697f8767e6", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "REC-009", "x": 954.0, "y": 47.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-004", "x": 395.0, "y": 132.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-001", "x": 189.0, "y": 139.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-008", "x": 891.0, "y": 143.5, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-003", "x": 266.0, "y": 182.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-002", "x": 197.0, "y": 193.5, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-007", "x": 802.0, "y": 201.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-005", "x": 420.0, "y": 213.0, "font_size": 12, "font_style": "regular", "lines": ["图伊河畔", "奥库马雷"]},
+    {"id": "REC-006", "x": 514.0, "y": 238.0, "font_size": 12, "font_style": "regular", "lines": ["奥里图科河畔", "阿尔塔格拉西亚"]}
+  ],
+  "symbols": [
+    {"id": "REC-001-circle", "feature_id": "REC-001", "kind": "circle", "x": 156.5, "y": 131.5, "size": 9, "outline_width": 1, "original_bbox": [152, 127, 161, 136], "source_url": "@source/af31313e62ac72f5", "review_notes": "@note/symbols"},
+    {"id": "REC-002-circle", "feature_id": "REC-002", "kind": "circle", "x": 164.5, "y": 186.5, "size": 9, "outline_width": 1, "original_bbox": [160, 182, 169, 191], "source_url": "@source/af31313e62ac72f5", "review_notes": "@note/symbols"},
+    {"id": "REC-003-circle", "feature_id": "REC-003", "kind": "circle", "x": 239.5, "y": 174.5, "size": 9, "outline_width": 1, "original_bbox": [235, 170, 244, 179], "source_url": "@source/af31313e62ac72f5", "review_notes": "@note/symbols"},
+    {"id": "REC-004-circle", "feature_id": "REC-004", "kind": "circle", "x": 362.5, "y": 124.5, "size": 9, "outline_width": 1, "original_bbox": [358, 120, 367, 129], "source_url": "@source/bfaf62211c01f5a4", "review_notes": "@note/symbols"},
+    {"id": "REC-005-circle", "feature_id": "REC-005", "kind": "circle", "x": 387.5, "y": 197.5, "size": 9, "outline_width": 1, "original_bbox": [383, 193, 392, 202], "source_url": "@source/bfaf62211c01f5a4", "review_notes": "@note/symbols"},
+    {"id": "REC-006-circle", "feature_id": "REC-006", "kind": "circle", "x": 463.5, "y": 243.5, "size": 9, "outline_width": 1, "original_bbox": [459, 239, 468, 248], "source_url": "@source/bfaf62211c01f5a4", "review_notes": "@note/symbols"},
+    {"id": "REC-007-circle", "feature_id": "REC-007", "kind": "circle", "x": 769.5, "y": 193.5, "size": 9, "outline_width": 1, "original_bbox": [765, 189, 774, 198], "source_url": "@source/cb04e2b43f3c2735", "review_notes": "@note/symbols"},
+    {"id": "REC-008-circle", "feature_id": "REC-008", "kind": "circle", "x": 864.5, "y": 135.5, "size": 9, "outline_width": 1, "original_bbox": [860, 131, 869, 140], "source_url": "@source/c3aebae742a9c71b", "review_notes": "@note/symbols"},
+    {"id": "REC-009-circle", "feature_id": "REC-009", "kind": "circle", "x": 921.5, "y": 39.5, "size": 9, "outline_width": 1, "original_bbox": [917, 35, 926, 44], "source_url": "@source/c3aebae742a9c71b", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

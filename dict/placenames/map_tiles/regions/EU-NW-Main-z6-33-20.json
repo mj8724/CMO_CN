@@ -1,0 +1,66 @@
+{
+  "z": 6,
+  "x": 33,
+  "y": 20,
+  "width_tiles": 2,
+  "height_tiles": 2,
+  "id": "EU-NW-Main-z6-33-20",
+  "original_tiles": [
+    "6/33/20.png",
+    "6/34/20.png",
+    "6/33/21.png",
+    "6/34/21.png"
+  ],
+  "context_tiles": [
+    "6/32/21.png",
+    "6/33/19.png",
+    "6/34/19.png"
+  ],
+  "features": [
+    {"id": "NW6-DENMARK", "kind": "admin0", "original": "DENMARK", "original_bbox": [142, -7, 289, 17], "source_url": "@source/5a42b1852e7d4608"},
+    {"id": "NW6-COPENHAGEN", "kind": "city", "original": "Copenhagen", "original_bbox": [312, 3, 384, 27], "source_url": "@source/b1d816f4618cbc9c"},
+    {"id": "NW6-HAMBURG", "kind": "city", "original": "Hamburg", "original_bbox": [195, 171, 251, 195], "source_url": "@source/5a42b1852e7d4608"},
+    {"id": "NW6-BERLIN", "kind": "city", "original": "Berlin", "original_bbox": [349, 249, 392, 271], "source_url": "@source/b1d816f4618cbc9c"},
+    {"id": "NW6-GERMANY", "kind": "admin0", "original": "GERMANY", "original_bbox": [146, 337, 294, 361], "source_url": "@source/5a73dc82dc94bbe0"},
+    {"id": "NW6-DRESDEN", "kind": "city", "original": "Dresden", "original_bbox": [365, 357, 413, 376], "source_url": "@source/1e244df993241216"},
+    {"id": "NW6-CZECHIA", "kind": "admin0", "original": "CZECHIA", "original_bbox": [378, 439, 507, 463], "source_url": "@source/1e244df993241216"},
+    {"id": "NW6-NETHERLANDS", "kind": "admin0", "original": "NETHERLANDS", "original_bbox": [-108, 258, 110, 282], "source_url": "@source/5a73dc82dc94bbe0"},
+    {"id": "NW6-LUXEMBOURG", "kind": "admin0", "original": "LUXEMBOURG", "original_bbox": [-81, 434, 128, 458], "source_url": "@source/5a73dc82dc94bbe0"},
+    {"id": "NW6-FRANKFURT", "kind": "city", "original": "Frankfurt", "original_bbox": [135, 424, 191, 445], "source_url": "@source/5a73dc82dc94bbe0"}
+  ],
+  "translations": [
+    {"id": "NW6-DENMARK", "zh": "丹麦", "source": "@source/5a42b1852e7d4608", "status": "approved", "record_sha256": "0acc830c791bad49dd9f5b3893cb1b4b94866bd0a02dfe60c2d6c9408e41e2cb", "review_notes": "@note/translations"},
+    {"id": "NW6-COPENHAGEN", "zh": "哥本哈根", "source": "@source/b1d816f4618cbc9c", "status": "approved", "record_sha256": "2b42ff23db59cc4461ad3fae9f00951239e9790ed9b3f3d04217e97c5c60f08e", "review_notes": "@note/translations"},
+    {"id": "NW6-HAMBURG", "zh": "汉堡", "source": "@source/5a42b1852e7d4608", "status": "approved", "record_sha256": "9c009567f43de0b6ea40febbf922a089dc60540a310e90b76122670ac1a39ed1", "review_notes": "@note/translations"},
+    {"id": "NW6-BERLIN", "zh": "柏林", "source": "@source/b1d816f4618cbc9c", "status": "approved", "record_sha256": "01e6227a543613c8d4d680b91e439521b76ac7bb75390462c0f29998dca5bc09", "review_notes": "@note/translations"},
+    {"id": "NW6-GERMANY", "zh": "德国", "source": "@source/5a73dc82dc94bbe0", "status": "approved", "record_sha256": "985db09b3be1b533936e391e77b6780152171f9367f31533e57f9912eed1e6a9", "review_notes": "@note/translations"},
+    {"id": "NW6-DRESDEN", "zh": "德累斯顿", "source": "@source/1e244df993241216", "status": "approved", "record_sha256": "f36435381789b95af335811c2ca755fb49cdfad5f6c6231f5012947c4557f351", "review_notes": "@note/translations"},
+    {"id": "NW6-CZECHIA", "zh": "捷克", "source": "@source/1e244df993241216", "status": "approved", "record_sha256": "21d8b5dc0346018bd64ee8c26420aba3f61156e9c9eb4400797a5214c2dd3966", "review_notes": "@note/translations"},
+    {"id": "NW6-NETHERLANDS", "zh": "荷兰", "source": "@source/5a73dc82dc94bbe0", "status": "approved", "record_sha256": "f13f48a96546e71a5cfa786bde44ea281fec2668d405ab68dc2b50236b601971", "review_notes": "@note/translations"},
+    {"id": "NW6-LUXEMBOURG", "zh": "卢森堡", "source": "@source/5a73dc82dc94bbe0", "status": "approved", "record_sha256": "a8843b5e5c1d022beea8e45f283f4d73d56ab66897d450ee56af07c8f3484993", "review_notes": "@note/translations"},
+    {"id": "NW6-FRANKFURT", "zh": "法兰克福", "source": "@source/5a73dc82dc94bbe0", "status": "approved", "record_sha256": "7470386e899d80c97fa781df18fd001d51a7160326e363c0b5f0ee090e94f33a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "NW6-DENMARK", "x": 215.5, "y": 14.0, "font_size": 20, "font_style": "bold"},
+    {"id": "NW6-COPENHAGEN", "x": 353.0, "y": 16.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-HAMBURG", "x": 222.0, "y": 184.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-BERLIN", "x": 376.0, "y": 262.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-GERMANY", "x": 220.0, "y": 349.0, "font_size": 20, "font_style": "bold"},
+    {"id": "NW6-DRESDEN", "x": 406.0, "y": 370.5, "font_size": 14, "font_style": "regular"},
+    {"id": "NW6-CZECHIA", "x": 442.5, "y": 451.0, "font_size": 20, "font_style": "bold"},
+    {"id": "NW6-NETHERLANDS", "x": 24.0, "y": 270.0, "font_size": 20, "font_style": "bold"},
+    {"id": "NW6-LUXEMBOURG", "x": 34.0, "y": 446.0, "font_size": 20, "font_style": "bold"},
+    {"id": "NW6-FRANKFURT", "x": 176.0, "y": 437.5, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "NW6-COPENHAGEN-NATIVE", "kind": "circle", "feature_id": "NW6-COPENHAGEN", "original_bbox": [312, 3, 321, 12], "x": 316.5, "y": 7.5, "size": 8, "outline_width": 1},
+    {"id": "NW6-HAMBURG-NATIVE", "kind": "circle", "feature_id": "NW6-HAMBURG", "original_bbox": [195, 171, 204, 180], "x": 199.5, "y": 175.5, "size": 8, "outline_width": 1},
+    {"id": "NW6-BERLIN-NATIVE", "kind": "circle", "feature_id": "NW6-BERLIN", "original_bbox": [349, 249, 358, 258], "x": 353.5, "y": 253.5, "size": 8, "outline_width": 1},
+    {"id": "NW6-DRESDEN-NATIVE", "kind": "circle", "feature_id": "NW6-DRESDEN", "original_bbox": [365, 357, 374, 366], "x": 369.5, "y": 361.5, "size": 8, "outline_width": 1},
+    {"id": "NW6-FRANKFURT-NATIVE", "kind": "circle", "feature_id": "NW6-FRANKFURT", "original_bbox": [135, 424, 144, 433], "x": 139.5, "y": 428.5, "size": 8, "outline_width": 1}
+  ],
+  "shared_sources": [
+    {"id": "NW6-SH-02-BELGIUM", "owner_region": "EU-Channel-z6-32-21", "feature_id": "NW6-BELGIUM", "kind": "admin0", "original": "BELGIUM", "original_bbox": [-110, 375, 23, 399], "source_url": "@source/6b719077311ca17b", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

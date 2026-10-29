@@ -1,0 +1,30 @@
+{
+  "id": "OP22-Hurghada-z8-152-107",
+  "z": 8,
+  "x": 152,
+  "y": 107,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/152/107.png"
+  ],
+  "context_tiles": [
+    "8/151/107.png"
+  ],
+  "features": [
+    {"id": "OP24-N14", "kind": "city", "original": "Hurghada", "original_bbox": [10, 218, 71, 243], "source_url": "@source/4669112f2d27bea8"}
+  ],
+  "translations": [
+    {"id": "OP24-N14", "zh": "古尔代盖", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "4f06e14f0ae88cf9b4f4ad8da42ed202901a9837fbe2e00944e9dcf652162ece", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N14", "x": 45.0, "y": 230.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "OP24-S14", "feature_id": "OP24-N14", "kind": "circle", "x": 14.5, "y": 222.5, "size": 9, "outline_width": 1, "original_bbox": [10, 218, 19, 227]}
+  ],
+  "shared_sources": [
+    {"id": "OP24-A13", "owner_region": "EL-z8-144-104-8-8", "feature_id": "EL8-019-At-Tur", "kind": "city", "original": "At Tur", "original_bbox": [-27, 9, 16, 30], "source_url": "@source/54b114b4313bc5ff", "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,24 @@
+{
+  "id": "S4-LincolnSea-z6-21-3",
+  "z": 6,
+  "x": 21,
+  "y": 3,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "6/21/3.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "S4-001", "kind": "marine", "original": "Lincoln Sea", "original_bbox": [122, 126, 232, 144], "source_url": "@source/cacecf0b01ae3586"}
+  ],
+  "translations": [
+    {"id": "S4-001", "zh": "林肯海", "status": "approved", "source": "@source/9bfba455a9852e96", "record_sha256": "927f195b1d623cfc38dd30c0f868fa2200889b6d4a68b565ac21528ebc274963", "review_notes": "Different SOURCE/CJK qualified: DIRECT_RAW_NE_CHINESE_SAME_NAMED_MARINE_ENTITY_PROJECT_USE. Actually read complete Lincoln Sea in the high Arctic. GN H/SEA Lincoln Sea/GL and raw NE sea row113 match this named water body; GN country tag is not supplier admin. Separate existing z6/22/3 print is a distinct physical occurrence, not a tail/alias. Raw NE 林肯海 and existing project primary-research name agree. Historical dictionary URL retained as wording context only; no new HTTP or fresh official-name proof. SOURCE evidence is the frozen mandatory contract/raw original fields. All Target/model/layout/actual support approval remains pending Root selection and different TARGET reviewer. Root27eed exact finite model. Author /root/remaining_secondary_research actually viewed all four whole targets, five complete original/CJK pairs and two complete native frame boards. All CJK glyph/allalpha/positiveRGBA pristine, no clip/collision, no text move. Both source nominal observed native midpoints unchanged, project circle9/1 actual73; original mixedraw71/72 intersects70 each, adjacent glyph-contact differences explicitly recorded; no pure69/vector or zero source pixel difference claim. Only SELF_PRIVATE_MODEL_ONLY technical acceptance; different TARGET /root/northwest_mexico_source and Root integration remain pending. Independent /root/northwest_mexico_source actual TARGET audit under Root27eed: complete selected Chinese/pristine glyph RGBA and whole shown; inherited SOURCE/CJK grade and identity retained; no supplier vector/official wording claim."}
+  ],
+  "layouts": [
+    {"id": "S4-001", "x": 177, "y": 135, "font_size": 14, "font_style": "regular", "lines": ["林肯海"]}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

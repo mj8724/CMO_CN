@@ -1,0 +1,27 @@
+{
+  "id": "LF20-R02-z9-303-200",
+  "z": 9,
+  "x": 303,
+  "y": 200,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/303/200.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "LF20-N033", "kind": "city", "original": "Gülnar", "original_bbox": [110, 109, 148, 125], "source_url": "@source/2e2903098bd69916"},
+    {"id": "LF20-N037", "kind": "city", "original": "Aydıncık", "original_bbox": [76, 196, 125, 216], "source_url": "@source/2e2903098bd69916"}
+  ],
+  "translations": [
+    {"id": "LF20-N033", "zh": "居尔纳尔", "status": "approved", "source": "@source/2e2903098bd69916", "record_sha256": "de34f119e71283af5ab85ed63337f75088aceae1f43e1743c29a8201d62a4689", "review_notes": "@note/translations"},
+    {"id": "LF20-N037", "zh": "阿伊登哲克", "status": "approved", "source": "@source/d5756df832ffd1f9", "record_sha256": "b78e57d8568c697633adec02df88fa5a715d069001d2437910f8e3fcb294d2a8", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "LF20-N033", "x": 129.0, "y": 117.0, "font_size": 12, "font_style": "regular"},
+    {"id": "LF20-N037", "x": 100.5, "y": 206.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

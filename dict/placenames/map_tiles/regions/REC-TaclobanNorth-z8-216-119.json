@@ -1,0 +1,34 @@
+{
+  "id": "REC-TaclobanNorth-z8-216-119",
+  "z": 8,
+  "x": 216,
+  "y": 119,
+  "width_tiles": 2,
+  "height_tiles": 1,
+  "original_tiles": [
+    "8/216/119.png",
+    "8/217/119.png"
+  ],
+  "context_tiles": [
+    "8/216/120.png",
+    "8/217/120.png"
+  ],
+  "features": [
+    {"id": "REC-010", "kind": "city", "original": "Calbayog", "original_bbox": [149, 86, 207, 111], "source_url": "@source/3ec267c6327f95ce"},
+    {"id": "REC-011", "kind": "city", "original": "Tacloban", "original_bbox": [224, 239, 282, 260], "source_url": "@source/3ec267c6327f95ce"}
+  ],
+  "translations": [
+    {"id": "REC-010", "zh": "甲描育", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "70947334a1343fb809b045e335d92b785c8f3062f7e73c0a6676037fd8145dd7", "review_notes": "@note/translations"},
+    {"id": "REC-011", "zh": "独鲁万", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "6571361f88c9f5079173ce40192a586ad90a398654c5fa2c3e22638ffbf98027", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "REC-010", "x": 180.0, "y": 98.0, "font_size": 12, "font_style": "regular"},
+    {"id": "REC-011", "x": 255.0, "y": 246.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "REC-010-circle", "feature_id": "REC-010", "kind": "circle", "x": 153.5, "y": 90.5, "size": 9, "outline_width": 1, "original_bbox": [149, 86, 158, 95], "source_url": "@source/3ec267c6327f95ce", "review_notes": "@note/symbols"},
+    {"id": "REC-011-circle", "feature_id": "REC-011", "kind": "circle", "x": 228.5, "y": 243.5, "size": 9, "outline_width": 1, "original_bbox": [224, 239, 233, 248], "source_url": "@source/3ec267c6327f95ce", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

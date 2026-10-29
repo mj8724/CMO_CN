@@ -1,0 +1,24 @@
+{
+  "id": "OP22-Xisha-z10-831-463",
+  "z": 10,
+  "x": 831,
+  "y": 463,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "10/831/463.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "OP24-N30", "kind": "region", "original": "Xisha", "original_bbox": [116, 98, 154, 116], "source_url": "@source/4d697646e532909f"}
+  ],
+  "translations": [
+    {"id": "OP24-N30", "zh": "西沙", "status": "approved", "source": "@source/4d697646e532909f", "record_sha256": "d3e9dbdbd0358e54dd9df3ce9535d044f73a45f40d9b2dc3f928072091b521de", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "OP24-N30", "x": 135.0, "y": 107.0, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,38 @@
+{
+  "id": "P9-Closed6-z9-261-200",
+  "z": 9,
+  "x": 261,
+  "y": 200,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/261/200.png"
+  ],
+  "context_tiles": [
+    "9/260/200.png"
+  ],
+  "features": [
+    {"id": "P9-PH-008", "kind": "city", "original": "Lakhdaria", "original_bbox": [3, 7, 57, 23], "source_url": "@source/3ed61834183c126b"},
+    {"id": "P9-PH-009", "kind": "city", "original": "Boghni", "original_bbox": [141, 18, 181, 37], "source_url": "@source/3ed61834183c126b"},
+    {"id": "P9-PH-010", "kind": "city", "original": "Bouira", "original_bbox": [122, 93, 159, 109], "source_url": "@source/3ed61834183c126b"},
+    {"id": "P9-PH-011", "kind": "city", "original": "Aïn Bessem", "original_bbox": [25, 129, 90, 146], "source_url": "@source/3ed61834183c126b"},
+    {"id": "P9-PH-012", "kind": "city", "original": "Sour El-Ghozlane", "original_bbox": [39, 186, 90, 221], "source_url": "@source/3ed61834183c126b"}
+  ],
+  "translations": [
+    {"id": "P9-PH-008", "zh": "拉赫达里亚", "status": "approved", "source": "@source/3ed61834183c126b", "record_sha256": "0d414cff52e9f1ca41f09eb3c115fd2a481d7ad129b7542d9ba4b71a82d8aadd", "review_notes": "@note/translations"},
+    {"id": "P9-PH-009", "zh": "博格尼", "status": "approved", "source": "@source/3ed61834183c126b", "record_sha256": "b1fff36efc2590b34ebd1a43dd39e3559bc6aa435cd777223072c5eb2ab15b17", "review_notes": "@note/translations"},
+    {"id": "P9-PH-010", "zh": "布维拉", "status": "approved", "source": "@source/07f29a8fbfcffab8", "record_sha256": "022b4dea5f1c3af3781213cefb9fecd4fa6a1719455626db2dbd35eac1b2ef60", "review_notes": "@note/translations"},
+    {"id": "P9-PH-011", "zh": "艾因贝塞姆", "status": "approved", "source": "@source/3ed61834183c126b", "record_sha256": "e04aba2a1811e0749b995609f553d36430bf19fc0fe2aa51b9b88e24b1cc1b46", "review_notes": "@note/translations"},
+    {"id": "P9-PH-012", "zh": "苏尔盖兹兰", "status": "approved", "source": "@source/3ed61834183c126b", "record_sha256": "7b42d52de7f368a358a08fcb3e5fb81c07d851bb46d267d6777ea96aa8fda14d", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "P9-PH-008", "x": 36.0, "y": 15.0, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-009", "x": 161.0, "y": 27.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-010", "x": 140.5, "y": 101.0, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-011", "x": 57.5, "y": 137.5, "font_size": 12, "font_style": "regular"},
+    {"id": "P9-PH-012", "x": 64.5, "y": 203.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

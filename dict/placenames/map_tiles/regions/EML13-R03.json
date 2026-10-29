@@ -1,0 +1,39 @@
+{
+  "id": "EML13-R03",
+  "z": 8,
+  "x": 127,
+  "y": 97,
+  "width_tiles": 1,
+  "height_tiles": 2,
+  "original_tiles": [
+    "8/127/97.png",
+    "8/127/98.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "EML13-N004", "kind": "peak", "original": "Penya Alta / 6678 m", "original_bbox": [152, 221, 218, 263], "source_url": "@source/e4c8541b9952ebb0", "original_elevation_m": "6678"},
+    {"id": "EML13-N005", "kind": "city", "original": "Alicante", "original_bbox": [163, 363, 215, 384], "source_url": "@source/8e6e8c2a252fd0bc"},
+    {"id": "EML13-N006", "kind": "city", "original": "Murcia", "original_bbox": [46, 444, 92, 465], "source_url": "@source/8e6e8c2a252fd0bc"},
+    {"id": "EML13-N019", "kind": "city", "original": "Valencia", "original_bbox": [183, 100, 240, 122], "source_url": "@source/e4c8541b9952ebb0"}
+  ],
+  "translations": [
+    {"id": "EML13-N004", "zh": "佩尼亚阿尔塔", "status": "approved", "source": "@source/e4c8541b9952ebb0", "record_sha256": "e56cb9605c95cd40d7a49e34da38ffdf3bfa56c98cc22a973e340a0e872e0f5c", "review_notes": "@note/translations"},
+    {"id": "EML13-N005", "zh": "阿利坎特", "status": "approved", "source": "@source/de57b59c289acedb", "record_sha256": "18ec169b65d8d827d5bdea930c98a42d03b509ecaf2678b38ef4bdf297d67ae3", "review_notes": "@note/translations"},
+    {"id": "EML13-N006", "zh": "穆尔西亚", "status": "approved", "source": "@source/3c3c94fb7deba88a", "record_sha256": "54acbf03e3613761b7f402cd003f649b63a9fb83f409d1e391ad25237b0051da", "review_notes": "@note/translations"},
+    {"id": "EML13-N019", "zh": "瓦伦西亚", "status": "approved", "source": "@source/44025383f075becf", "record_sha256": "1027815fc5ab0cfadb2c0fa366115876cc051a21a2ea0edbd2c0edb4dcdf310a", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "EML13-N004", "x": 185, "y": 228, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N005", "x": 204.5, "y": 383.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N006", "x": 87.5, "y": 464.5, "font_size": 12, "font_style": "regular"},
+    {"id": "EML13-N019", "x": 224.5, "y": 120.5, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "EML13-C002", "kind": "triangle", "size": 9, "outline_width": 1, "x": 213.0, "y": 258.5, "original_bbox": [208, 254, 218, 263], "feature_id": "EML13-N004"},
+    {"id": "EML13-C003", "kind": "circle", "size": 9, "outline_width": 1, "x": 167.5, "y": 367.5, "original_bbox": [163, 363, 172, 372], "feature_id": "EML13-N005"},
+    {"id": "EML13-C004", "kind": "circle", "size": 9, "outline_width": 1, "x": 50.5, "y": 448.5, "original_bbox": [46, 444, 55, 453], "feature_id": "EML13-N006"},
+    {"id": "EML13-C011", "kind": "circle", "size": 9, "outline_width": 1, "x": 187.5, "y": 104.5, "original_bbox": [183, 100, 192, 109], "feature_id": "EML13-N019"}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

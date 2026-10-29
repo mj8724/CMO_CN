@@ -1,0 +1,26 @@
+{
+  "id": "CE19-Copenhagen-z7-68-40",
+  "z": 7,
+  "x": 68,
+  "y": 40,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/68/40.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "CE7-SRC-12", "kind": "city", "original": "Copenhagen", "original_bbox": [116, 10, 191, 35], "source_url": "@source/e8b7db85bc76dbcb"}
+  ],
+  "translations": [
+    {"id": "CE7-SRC-12", "zh": "哥本哈根", "source": "@source/1a438680b8d80d2d", "status": "approved", "record_sha256": "80fc9e69914313c7f92eec6cc1e4c6d674fff9684256c9ce4c6d62a81565834e", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CE7-SRC-12", "x": 158.0, "y": 23.0, "font_size": 14, "font_style": "regular"}
+  ],
+  "symbols": [
+    {"id": "CE7-SRC-12-NATIVE", "kind": "circle", "feature_id": "CE7-SRC-12", "original_bbox": [116, 10, 125, 19], "x": 120.5, "y": 14.5, "size": 9, "outline_width": 1}
+  ],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

@@ -1,0 +1,50 @@
+{
+  "id": "CNWB18-D-z9-415-200",
+  "z": 9,
+  "x": 415,
+  "y": 200,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/415/200.png"
+  ],
+  "context_tiles": [
+    "9/414/199.png",
+    "9/414/200.png",
+    "9/415/199.png",
+    "9/416/200.png"
+  ],
+  "features": [
+    {"id": "CNWB18-CNG-104", "kind": "city", "original": "Huozhou", "original_bbox": [-52, 3, 4, 21], "source_url": "@source/55339b5867cd6f65"},
+    {"id": "CNWB18-CNG-108", "kind": "city", "original": "Beiping", "original_bbox": [78, 18, 121, 38], "source_url": "@source/55339b5867cd6f65"},
+    {"id": "CNWB18-CNG-111", "kind": "city", "original": "Qinyuan", "original_bbox": [170, 35, 223, 57], "source_url": "@source/55339b5867cd6f65"},
+    {"id": "CNWB18-CNG-133", "kind": "city", "original": "Gu", "original_bbox": [34, 142, 53, 160], "source_url": "@source/55339b5867cd6f65"},
+    {"id": "CNWB18-CNG-134", "kind": "city", "original": "Hechuan", "original_bbox": [135, 143, 184, 159], "source_url": "@source/55339b5867cd6f65"},
+    {"id": "CNWB18-CNG-147", "kind": "city", "original": "Yongle", "original_bbox": [84, 194, 125, 213], "source_url": "@source/55339b5867cd6f65"},
+    {"id": "CNWB18-CNG-148", "kind": "city", "original": "Anze", "original_bbox": [146, 195, 179, 214], "source_url": "@source/55339b5867cd6f65"},
+    {"id": "CNWB18-CNG-152", "kind": "city", "original": "Ducun", "original_bbox": [227, 227, 264, 243], "source_url": "@source/55339b5867cd6f65"}
+  ],
+  "translations": [
+    {"id": "CNWB18-CNG-104", "zh": "霍州", "status": "approved", "source": "@source/7052b9d24bfd8ca8", "record_sha256": "b400703ba69eecd0f7220688d3ba6c208d483278685098602100054309771e8d", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-108", "zh": "北平", "status": "approved", "source": "@source/eab15f51e960165c", "record_sha256": "7bd16463769cc7b8993395fb87c8a0801ea43921b6cffc4aeaa6e66c6afbcf26", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-111", "zh": "沁源", "status": "approved", "source": "@source/98b558c80b889862", "record_sha256": "f1c32cacab008147770b5e41bd41519a28d284e49804db84127e58c8ce6be739", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-133", "zh": "古县", "status": "approved", "source": "@source/e34f2bcfaee6a1ad", "record_sha256": "e1bb797bc75cea71072382aeb6f9c5c8c53d9fdb8279d46ea0355597ba7a0af3", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-134", "zh": "赫川", "status": "approved", "source": "@source/55339b5867cd6f65", "record_sha256": "3db6992617e37bf9c60cf8f5a481f81bf3031f0b6c34898312da8ff7a7fe2479", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-147", "zh": "永勒", "status": "approved", "source": "@source/55339b5867cd6f65", "record_sha256": "e2f1b63f7f3cd97be4c1982719bd659e13c9daa3f4a44cf9871bbe07b85e22d1", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-148", "zh": "安泽", "status": "approved", "source": "@source/7684efad5e8358e3", "record_sha256": "82a88f6c05949ba26fab7483fe7bc0a52c51ae069010d41098bebc2abed9ce23", "review_notes": "@note/translations"},
+    {"id": "CNWB18-CNG-152", "zh": "杜村", "status": "approved", "source": "@source/482f73437086e933", "record_sha256": "ccf0f8e159f5f09b01e019f51a87096a74ad0e84e42f645eb06c9a56af4b2868", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "CNWB18-CNG-104", "x": 18, "y": 14, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-108", "x": 99.5, "y": 28.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-111", "x": 196.5, "y": 46.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-133", "x": 43.5, "y": 151.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-134", "x": 159.5, "y": 151.0, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-147", "x": 104.5, "y": 203.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-148", "x": 162.5, "y": 204.5, "font_size": 12, "font_style": "regular"},
+    {"id": "CNWB18-CNG-152", "x": 238, "y": 235.0, "font_size": 12, "font_style": "regular"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}

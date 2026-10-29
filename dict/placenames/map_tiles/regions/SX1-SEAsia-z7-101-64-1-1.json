@@ -1,0 +1,32 @@
+{
+  "id": "SX1-SEAsia-z7-101-64-1-1",
+  "z": 7,
+  "x": 101,
+  "y": 64,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "7/101/64.png"
+  ],
+  "context_tiles": [
+    "7/100/63.png",
+    "7/100/64.png",
+    "7/101/63.png",
+    "7/101/65.png",
+    "7/102/63.png",
+    "7/102/64.png",
+    "7/102/65.png"
+  ],
+  "features": [],
+  "translations": [],
+  "layouts": [],
+  "symbols": [
+    {"id": "SX1-C002-Pangkalpinang", "kind": "circle", "original_bbox": [182, 189, 191, 198], "x": 186.5, "y": 193.5, "size": 9, "outline_width": 1, "shared_source_id": "SX1-SH002", "review_notes": "@note/symbols"}
+  ],
+  "shared_sources": [
+    {"id": "SX1-SH001", "owner_region": "EA-SEAsia-z7-99-58-3-6", "feature_id": "SEA7-085-RIAU-ISLANDS", "kind": "admin1", "original": "RIAU ISLANDS", "source_url": "@source/bef0894fcddeb693", "original_bbox": [6, -8, 89, 31], "review_notes": "@note/shared_sources"},
+    {"id": "SX1-SH002", "owner_region": "EA-SEAsia-z7-102-58-1-7", "feature_id": "SEA7-091-Pangkalpinang", "kind": "city", "original": "Pangkalpinang", "source_url": "@source/963b51eb30fbd7c3", "original_bbox": [182, 189, 260, 211], "review_notes": "@note/shared_sources"},
+    {"id": "SX1-SH003", "owner_region": "EA-SEAsia-z7-102-58-1-7", "feature_id": "SEA7-092-BANGKA-BELITUNG", "kind": "admin1", "original": "BANGKA BELITUNG", "source_url": "@source/963b51eb30fbd7c3", "original_bbox": [161, 224, 258, 263], "review_notes": "@note/shared_sources"}
+  ],
+  "legacy_suppressions": []
+}

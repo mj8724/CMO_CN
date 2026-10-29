@@ -1,0 +1,24 @@
+{
+  "id": "MedZ9-Closed-287-204",
+  "z": 9,
+  "x": 287,
+  "y": 204,
+  "width_tiles": 1,
+  "height_tiles": 1,
+  "original_tiles": [
+    "9/287/204.png"
+  ],
+  "context_tiles": [],
+  "features": [
+    {"id": "GZ9-15-27", "kind": "marine", "original": "Libyan Sea", "original_bbox": [79, 7, 213, 33], "source_url": "@source/1ab22fa67304c424"}
+  ],
+  "translations": [
+    {"id": "GZ9-15-27", "zh": "利比亚海", "source": "@source/1ab22fa67304c424", "status": "approved", "record_sha256": "822f40b98b6736cb9166ea7e3a72496896a54c4a5f332dd948f64cd35f4eea32", "review_notes": "@note/translations"}
+  ],
+  "layouts": [
+    {"id": "GZ9-15-27", "x": 146.0, "y": 20.0, "font_size": 16, "font_style": "bold"}
+  ],
+  "symbols": [],
+  "shared_sources": [],
+  "legacy_suppressions": []
+}
