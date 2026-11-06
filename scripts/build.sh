@@ -74,6 +74,17 @@ elif [[ ! -f "$OUT/Scenarios_HTML.zip" ]]; then
   echo "ERROR: missing Scenarios_HTML.zip; candidate fixtures must provide their own bundle" >&2
   exit 1
 fi
+# Quick Battle form pages: generated from dict/quickbattle_html.json, then embedded
+# the same way as the scenario briefings. Without this the game renders the English
+# originals straight from QuickBattle/<entry>/Form.html in a WebBrowser.
+if [[ -d "${GAME_DIR:-G:/soft/steam/steamapps/common/Command - Modern Operations}/QuickBattle" ]]; then
+  GAME_DIR="${GAME_DIR:-G:/soft/steam/steamapps/common/Command - Modern Operations}"     QB_BUILD_DIR="$OUT" "$PY" "$ROOT/scripts/quickbattle_html.py" build
+else
+  [[ -f "$OUT/QuickBattle_HTML.zip" ]] || {
+    echo "ERROR: missing QuickBattle_HTML.zip; candidate fixtures must provide their own bundle" >&2
+    exit 1
+  }
+fi
 
 echo "==> building CMO_Updater.exe"
 "$CSC" -nologo -langversion:5 -target:winexe -platform:anycpu -optimize+ \
@@ -128,6 +139,7 @@ for t in "$ROOT"/assets/db_templates/*.html; do
 done
 # The verified coverage manifest records which text is translated or still English.
 RES+=(-resource:"$(W "$OUT/Scenarios_HTML.zip")",SCEN_HTML_ZIP)
+RES+=(-resource:"$(W "$OUT/QuickBattle_HTML.zip")",QB_HTML_ZIP)
 "$CSC" -nologo -langversion:5 -target:winexe -platform:anycpu -optimize+ \
   -out:"$(W "$OUT/$SETUP_EXE")" \
   -reference:System.dll -reference:System.Core.dll \

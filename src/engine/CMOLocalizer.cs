@@ -2331,7 +2331,11 @@ namespace CMOLocalizer
             else if (ctrl is WebBrowser)
             {
                 WebBrowser wb = (WebBrowser)ctrl;
-                TranslateWebBrowser(wb);
+                // 富文本简报（阵营简报/想定说明）是 HtmlEditorControl 里的内部浏览器，
+                // 内容是一整篇 HTML；它需要的不是「英文 + 【中文】」标注，而是把
+                // 叶子节点的正文整段换成中文（词典里已有数千条简报行）。
+                if (IsHtmlEditorBrowser(wb)) TranslateHtmlEditorBrowser(wb);
+                else TranslateWebBrowser(wb);
             }
             else if (ctrl.GetType().Name.IndexOf("WebView2", StringComparison.OrdinalIgnoreCase) >= 0)
             {
@@ -2686,6 +2690,118 @@ namespace CMOLocalizer
             catch { }
         }
 
+        /// <summary>
+        /// 这个 WebBrowser 是不是富文本编辑器（MSDN HtmlEditorControl）内部的浏览器。
+        /// 判据看控件名与祖先类型：editorWebBrowser / HtmlEditorControl。
+        /// </summary>
+        private static bool IsHtmlEditorBrowser(WebBrowser wb)
+        {
+            try
+            {
+                if (wb == null) return false;
+                if ((wb.Name ?? "").IndexOf("editorWebBrowser", StringComparison.OrdinalIgnoreCase) >= 0)
+                    return true;
+                Control parent = wb.Parent;
+                for (int depth = 0; parent != null && depth < 6; depth++)
+                {
+                    if ((parent.GetType().Name ?? "").IndexOf("HtmlEditor", StringComparison.OrdinalIgnoreCase) >= 0)
+                        return true;
+                    parent = parent.Parent;
+                }
+            }
+            catch { }
+            return false;
+        }
+
+        /// <summary>
+        /// 把富文本简报的正文整段换成中文（不是双语标注）。
+        /// 只写叶子元素（它唯一的子节点是 #text），否则会把嵌套结构吃掉；
+        /// 先收集再回写，避免边遍历边改 DOM。
+        /// </summary>
+        private static void TranslateHtmlEditorBrowser(WebBrowser wb)
+        {
+            if (wb == null) return;
+            try
+            {
+                if (wb.Document == null || wb.Document.Body == null) return;
+                HtmlElementCollection all = wb.Document.Body.All;
+                if (all == null) return;
+                List<HtmlElement> targets = new List<HtmlElement>();
+                List<string> sources = new List<string>();
+                bool byHtml = false;
+                // ① 叶子元素（唯一子节点是 #text）：这是最常见形态，实测有效。
+                for (int i = 0; i < all.Count; i++)
+                {
+                    HtmlElement el = all[i];
+                    if (el == null) continue;
+                    HtmlElement first = el.FirstChild;
+                    if (first != null && first.TagName != "#text") continue;
+                    string text = null;
+                    try { text = el.InnerText; } catch { }
+                    if (!WantsBriefingTranslation(text)) continue;
+                    string translated = TranslateBriefingText(text);
+                    if (string.IsNullOrEmpty(translated) || translated == text) continue;
+                    if (!ContainsChinese(translated)) continue;
+                    targets.Add(el);
+                    sources.Add(translated);
+                }
+                // ② 混排父元素里的直接文本节点（「· <SPAN>·</SPAN> 617 Sqn RAF - …」）。
+                //    #text 节点不能用 InnerText 读写（实测无效），改走 InnerHtml + 转义。
+                for (int i = 0; i < all.Count; i++)
+                {
+                    HtmlElement el = all[i];
+                    if (el == null) continue;
+                    HtmlElementCollection kids = null;
+                    try { kids = el.Children; } catch { }
+                    if (kids == null || kids.Count == 0) continue;
+                    for (int k = 0; k < kids.Count; k++)
+                    {
+                        HtmlElement node = kids[k];
+                        if (node == null || node.TagName != "#text") continue;
+                        string text = null;
+                        try { text = node.InnerHtml; } catch { }
+                        if (!WantsBriefingTranslation(text)) continue;
+                        string translated = TranslateBriefingText(text);
+                        if (string.IsNullOrEmpty(translated) || translated == text) continue;
+                        if (!ContainsChinese(translated)) continue;
+                        targets.Add(node);
+                        sources.Add(EscapeHtmlText(translated));
+                        byHtml = true;
+                    }
+                }
+                for (int i = 0; i < targets.Count; i++)
+                {
+                    try
+                    {
+                        HtmlElement node = targets[i];
+                        if (node.TagName == "#text") node.InnerHtml = sources[i];
+                        else node.InnerText = sources[i];
+                    }
+                    catch { }
+                }
+                if (targets.Count > 0)
+                    Log("Briefing HTML translated: " + targets.Count + " nodes (" + wb.Name
+                        + (byHtml ? ", html mode" : "") + ")");
+            }
+            catch { }
+        }
+
+        /// <summary>简报文本是否值得送翻译：有字母、且不是「已中文且残留英文不超过 1 个词」。</summary>
+        private static bool WantsBriefingTranslation(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return false;
+            if (!HasAsciiLetter(text)) return false;
+            if (ContainsChinese(text) && Regex.Matches(text, @"[A-Za-z]{2,}").Count < 2) return false;
+            return true;
+        }
+
+        /// <summary>写回 #text 节点的 InnerHtml 前做最小转义，避免 &lt; &amp; 破坏结构。</summary>
+        private static string EscapeHtmlText(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return text;
+            return text.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;");
+        }
+
         private static void TranslateWebBrowser(WebBrowser wb)
         {
             if (wb == null) return;
@@ -2701,6 +2817,10 @@ namespace CMOLocalizer
                         {
                             // 针对实时生成的 HTML (如数据库详情/简报)，动态替换英文字段
                             string html = wb.Document.Body.InnerHtml;
+                            // 已经是纯中文的页面直接收手：本仓库随包发布的「快速战斗」
+                            // Form.html 本身就是中文，这里再插「英文 + 【中文】」只会把
+                            // 英文塞回中文里（且属性值也可能被子串替换误伤）。
+                            if (LooksLocalizedChinese(html)) return;
                             if (!string.IsNullOrEmpty(html) && !html.Contains("<!-- CMO_ZH_INJECTED -->"))
                             {
                                 // 替换常见数据库英文字段
@@ -2763,6 +2883,30 @@ namespace CMOLocalizer
                     catch { }
                 };
             }
+        }
+
+        /// <summary>
+        /// 页面是否已翻译成中文（决定是否跳过【】双语注入）。
+        /// 判据是**汉字占绝对多数**：快速战斗页面是纯中文正文加少量型号代号，
+        /// 而数据库/简报的英文页面即使被我们加过几个中文标签，汉字也不会占多数。
+        /// </summary>
+        private static bool LooksLocalizedChinese(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return false;
+            int han = 0;
+            int latinWords = 0;
+            bool inWord = false;
+            for (int i = 0; i < text.Length; i++)
+            {
+                char c = text[i];
+                if (c >= '\u4e00' && c <= '\u9fff') { han++; inWord = false; }
+                else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+                {
+                    if (!inWord) { latinWords++; inWord = true; }
+                }
+                else inWord = false;
+            }
+            return han > 20 && han > latinWords * 2;
         }
 
         private static string TranslateMilitaryUnitName(string raw)
@@ -6081,6 +6225,98 @@ namespace CMOLocalizer
             return null;
         }
 
+        /// <summary>
+        /// BRIEFING_DUMP：导出富文本简报正文到 CMOLocalizer_Briefing.txt，并返回
+        /// 字符数/汉字数/英文行数与英文行样本。只读：不修改任何控件。
+        /// </summary>
+        private static string HandleBriefingDump()
+        {
+            WebBrowser target = null;
+            string formName = "";
+            foreach (Form f in OpenFormsSnapshot())
+            {
+                if (f == null || f.IsDisposed) continue;
+                WebBrowser wb = FindHtmlEditorBrowser(f);
+                if (wb == null) continue;
+                target = wb;
+                formName = f.Name;
+                break;
+            }
+            if (target == null) return "{\"status\":\"error\",\"message\":\"no briefing editor open\"}";
+            string text = "";
+            try
+            {
+                target.Invoke((MethodInvoker)delegate
+                {
+                    try
+                    {
+                        if (target.Document != null && target.Document.Body != null)
+                            text = target.Document.Body.InnerText ?? "";
+                    }
+                    catch { }
+                });
+            }
+            catch { }
+            string outFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CMOLocalizer_Briefing.txt");
+            try { File.WriteAllText(outFile, text, new UTF8Encoding(false)); } catch { }
+
+            int han = 0, latinWords = 0;
+            bool inWord = false;
+            for (int i = 0; i < text.Length; i++)
+            {
+                char c = text[i];
+                if (c >= '\u4e00' && c <= '\u9fff') { han++; inWord = false; }
+                else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+                {
+                    if (!inWord) { latinWords++; inWord = true; }
+                }
+                else inWord = false;
+            }
+            List<string> englishLines = new List<string>();
+            string[] lines = text.Replace("\r", "").Split('\n');
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i].Trim();
+                if (line.Length < 4) continue;
+                if (ContainsChinese(line)) continue;
+                if (!HasAsciiLetter(line)) continue;
+                englishLines.Add(line);
+            }
+            StringBuilder jb = new StringBuilder();
+            jb.Append("{\"status\":\"ok\",\"form\":\"").Append(JsonEsc(formName)).Append('"');
+            jb.Append(",\"file\":\"").Append(JsonEsc(outFile)).Append('"');
+            jb.Append(",\"chars\":").Append(text.Length);
+            jb.Append(",\"han\":").Append(han);
+            jb.Append(",\"latinWords\":").Append(latinWords);
+            jb.Append(",\"englishLines\":").Append(englishLines.Count);
+            jb.Append(",\"samples\":[");
+            for (int i = 0; i < englishLines.Count && i < 8; i++)
+            {
+                if (i > 0) jb.Append(',');
+                jb.Append('"').Append(JsonEsc(englishLines[i])).Append('"');
+            }
+            jb.Append("]}");
+            return jb.ToString();
+        }
+
+        /// <summary>在窗体里找富文本简报的内部浏览器（editorWebBrowser / HtmlEditorControl 里）。</summary>
+        private static WebBrowser FindHtmlEditorBrowser(Control root)
+        {
+            if (root == null) return null;
+            try
+            {
+                WebBrowser wb = root as WebBrowser;
+                if (wb != null && IsHtmlEditorBrowser(wb)) return wb;
+                foreach (Control child in root.Controls)
+                {
+                    WebBrowser found = FindHtmlEditorBrowser(child);
+                    if (found != null) return found;
+                }
+            }
+            catch { }
+            return null;
+        }
+
         private static void CollectControlTexts(Control ctrl, List<string> list)
         {
             if (ctrl == null || ctrl.IsDisposed) return;
@@ -6321,6 +6557,13 @@ namespace CMOLocalizer
                     try { found.PerformClick(); } catch { }
                 });
                 return "{\"status\":\"ok\",\"action\":\"CLICK_MENU\",\"name\":\"" + JsonEsc(foundName) + "\",\"text\":\"" + JsonEsc(foundText) + "\"}";
+            }
+
+            if (cmd == "BRIEFING_DUMP")
+            {
+                // 只读诊断：把当前打开的富文本简报（阵营简报/想定说明）正文导出，
+                // 并报出「还剩多少英文行」。没有这个数字，简报汉化就只能靠肉眼截图判断。
+                return HandleBriefingDump();
             }
 
             if (cmd == "DUMP_OPEN_FORMS")

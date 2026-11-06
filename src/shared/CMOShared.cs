@@ -27,13 +27,13 @@ namespace CMOShared
     /// </summary>
     public static class ReleaseConstants
     {
-        public const string Version = "4.2.5";
+        public const string Version = "4.3.0";
         /// <summary>
         /// 本汉化适配的游戏内部版本（构建号，例如 1900.23）。它与 Version 一起必须出现在
         /// 安装器标题、更新助手提示、发版说明与 README 里；游戏更新（构建号变化）时我们的
         /// Version 加 0.1。单一来源：仓库根目录 GAME_BUILD（verify_all 校验两者一致）。
         /// </summary>
-        public const string GameBuild = "1900.23";
+        public const string GameBuild = "1900.24";
         public const string RegPath = @"Software\CMOChinese";
         public const string RunKeyName = "CMOChineseUpdater";
         public const string RepoApi = "https://api.github.com/repos/mj8724/CMO_CN/releases/latest";

@@ -2202,3 +2202,209 @@ python scripts/perf_probe.py          # 游戏已在想定里
   2. 改守卫后**必须对比构建产物的增/减**：第一版改动让 `exact` 少了 6,958 条，
      如果只看「缺口从 152 降到 149」就会把大面积回退当成改进。
   3. 中文全角括号不是结构差异；判据要用**不平衡度**这种语义量，不要用逐字形计数。
+
+## R77 「快速战斗」整块未汉化：界面是磁盘 HTML，不走在词典/池注入链路上（v4.2.5 后）
+
+- **来源**：用户反馈「快速战斗里面翻译不完整，好多都没翻译」，同时反映
+  「DLC 系列战役没有全部汉化完」。
+
+- **现象（实测，不是感觉）**
+  - 「快速战斗」的词条名（主菜单按钮）是中文，点进去整页是英文表单。
+  - 20 个 `QuickBattle/<条目>/Form.html` 共 **5,826 处可见文本**：整串命中词典的只有
+    **13.7%**，60% 只能靠 `TranslateWebBrowser` 的「英文 + 【中文】」子串擦写，**24.3%
+    （1,418 处 / 302 个不同串）一个中文字都没有**。
+  - 侧栏 20 个条目名（取自文件夹名）**19 个无词条**（只有 `South China Clash` 撞上）。
+  - 逐战役盘点（`scripts/audit_campaign_text.py`）：内嵌 `<ScenDescription>` 散文里
+    **50 段完全没有译文**（Standalone 30、Falklands 6、Red Tide 6、Shifting Sands 5、
+    Kashmir Fire 3），**Desert Storm 另有 14 段英文正文在 5 个 HTML 页**（`Assets/Intro.html`
+    9 段里 8 段未译 = 整个战役导言），Tutorials 4 段 AIM-120C-7 描述。
+
+- **根因**
+  1. `Command.QuickBattle` 窗体不显示词典字符串，而是把 `QuickBattlesRootPath` 下的
+     `Form.html` 丢进 WinForms `WebBrowser`（`theBrowser`）渲染。要汉化只能**换文件**，
+     而 `package.sh` / 安装器只处理 `Scenarios/**.html` 与 `DB/Templates/*.html`，
+     `QuickBattle/` 完全不在清单里。
+  2. `localize_html_files.py` 把 `<select>`/`<option>` 列为 PROTECTED（想定简报需要），
+     于是即使跑也翻不到那 774 个下拉项。
+  3. 战役简报的另一半在 `.scen` 的 `<ScenDescription>` 里（外部用 `[LOADDOC]x.html` 引用），
+     只能走词典；缺口段落从未进过任何 `dict/src/*_message.json`。
+  4. 两层叠加的假象：`TranslateWebBrowser` 会把英文原文后面插【中文】，所以「看起来翻过」，
+     实际玩家读到的仍是英文句子。
+
+- **修**
+  - 快速战斗：`scripts/quickbattle_html.py`（work / hints / import / build / verify 单入口）
+    + 译文源 `dict/quickbattle_html.json`（**刻意不放进 `dict/src/`**：`build_dict` 会 glob
+    `dict/src/*.json` 全部并入 `exact`，长句会污染界面翻译）。929 个片段全部译完，
+    渲染只改标签之间的文本，`name`/`value` 属性在构造上不可触碰。
+  - 离线组合被实测否掉：503 个含括号片段里只有 2 个两半都已有审定译名（自动拼装最多覆盖
+    0.2%），改为把 43,612 条已审定译名按 8-gram 剪枝作为**硬性术语**随批次下发。
+  - 发布链路：`build.sh` 打 `QuickBattle_HTML.zip` 并嵌入 `QB_HTML_ZIP`；安装器新增
+    `DeployQuickBattleHtml`（越界校验 + `.orig` 永不覆盖 + 卸载还原）；`package.sh` 绿色包
+    加清单校验；`deploy.sh` 开发期落地。
+  - 引擎：`TranslateWebBrowser` 先判页面语言（`LooksLocalizedChinese`），中文页直接收手，
+    否则纯中文页会被塞回英文。
+  - 条目名：19 条进 `dict/src/labels.json`（UI 层专表，永不注入池；文件夹名是
+    `Script.lua`/`QuickBattlesRootPath` 的数据契约，绝不能改）。
+  - 战役缺口：95 段内嵌散文按**原归属**写回各自 `*_message.json`；
+    Desert Storm 5 个页面走 HTML 流水线；Tutorials 4 段同文一次替换。
+
+- **度量**
+  | 指标 | 改动前 | 改动后 |
+  |---|---|---|
+  | QuickBattle 页面覆盖 | 13.7% 整串命中 / 24.3% 无中文 | **20 页 3,294 段全译，0 残留英文**，`value=` 指纹与原文逐字一致 |
+  | QuickBattle 条目名 | 1/20 有词条 | **20/20** |
+  | 战役内嵌散文缺口 | 50 段 | **0 段** |
+  | 战役 HTML 英文正文段 | 18 段（Desert Storm 14 + Tutorials 4） | **0 段** |
+
+- **门禁**：`R77-static-quickbattle-terms`（条目名已汉化且未走池通道，含两个负向）、
+  `R77-static-quickbattle-pages`（属性指纹 + 无残留英文）、
+  `R77-static-webbrowser-injection`（中文页跳过 / 英文页照旧 6 条判据）、
+  `R77-static-webbrowser-wiring`（守卫接线存在）、
+  `R77-static-campaign-text`（各战役 0 残留英文 + 0 断裂 `[LOADDOC]`）。
+  **负向验证**：改坏 bundle 里一个 `value="691_2158"` → 门禁立刻红；删一条条目名词条 →
+  条目名用例红；把词典换成空表 → 战役审计报出 95 段未译。
+
+- **教训**
+  1. 「词典覆盖率高」不等于「界面是中文」：不走词典通道的界面（磁盘 HTML、自绘、
+     外部渲染控件）必须单独盘点，判据只能是**玩家可见文本**。
+  2. 双语注入（英文 + 【中文】）是给游戏自生成英文页的兜底，**不能当成已汉化**：
+     它会让缺口看起来被处理过，掩盖真实覆盖率。
+  3. 译文源不能一律塞进 `dict/src/`：那里的每个 `.json` 都会并进 `exact`，
+     页面级长句进去会污染整个界面词库。
+
+## R78 想定说明/任务简报整片乱码：HTML 没声明编码，mshtml 按 ANSI 解析（v4.2.5 后）
+
+- **来源**：用户实机截图——进入想定后「推演 → 想定说明」与「任务简报」两处正文全是
+  `娆㈣繋鏉ュ埌楂樼骇…` 一类的生僻字与 `▼◆` 符号。
+
+- **根因**：游戏用 mshtml（WinForms `WebBrowser`）渲染这些页面。页面里**没有 charset
+  声明**时，mshtml 回退到 ANSI 代码页（简中系统 = CP936），把 UTF-8 的中文按 GBK 解码。
+  英文原文是纯 ASCII，所以这个缺失在译文出现之前一直没有表现。
+  全盘扫描：**327 个含中文的 HTML 里 317 个没有声明**。
+
+- **复现（离线，同一渲染引擎）**：用 `System.Windows.Forms.WebBrowser` 打开游戏目录里
+  那个真实文件 → `娆㈣繋鏉ュ埌楂樼骇浣滄垬鏁欑▼銆`；插入 `<meta charset="utf-8">` 后同一文件
+  渲染出 `欢迎来到高级作战教程。`——修复前后的对照在同一控件上复现。
+
+- **修**
+  - `scripts/localize_html_files.py` 新增 `ensure_charset()`：输出时按**真实编码**声明
+    （GBK 页就声明 gb18030，不能一律写 utf-8），已有声明不重复加。
+  - 新增 `scripts/fix_static_html_charset.py`：就地修复已安装页面（本轮修 310 个），
+    只插声明，不碰正文与 `.orig`，卸载仍可还原；`--check` 供门禁。
+  - 安装器 `LocalizeScenarioBriefings` 兜底写入前同样补声明。
+
+- **度量**：修复前 `missing-declaration=310/320`，修复后 `0`；重建的 `Scenarios_HTML.zip`
+  里 320 个含中文页面 **100%** 带声明；实机同控件复检 `欢迎来到高级作战教程。`（0 个替换符）。
+
+- **门禁**：`R78-static-html-charset-tests`（6 条不变量：缺失补、已有不重复、落在 `<head>` 内、
+  按真实编码声明、utf-8-sig 归并为 utf-8、负向可检出）、`R78-static-html-charset-scan`
+  （已安装页面不得有「含中文但未声明编码」）。
+
+- **教训**
+  1. 把纯 ASCII 页面翻成中文，**只是加字并不够**：编码声明是译文的前置条件，
+     缺少它译文在特定渲染器上必然是乱码。
+  2. 这类缺陷静态看产物「有中文」会全绿，**只有在真实渲染引擎里读回文本**才暴露；
+     离线用同款控件复现比等实机截图快得多。
+  3. 声明要用**文件真实编码**：全写 utf-8 会把 GBK 页翻成另一种乱码。
+
+## 观察项：冷启动偶发 TypeInitializationException（2026-11-06，未复现）
+
+- **现象**：06:42 带引擎冷启动，`CMOLocalizer_Crash.log` 记录
+  `TypeInitializationException: The type initializer for 'Command.Client' threw an exception`
+  → `CSMaterial.OSVersionInfo.get_BuildVersion` → `int.Parse` `FormatException`，
+  `ourFrame=False`（栈里没有我们的帧），游戏弹出「错误」框。
+- **对照**：同一台机、同一份产物，禁用 appDomainManager 的对照组正常启动；之后带引擎
+  连开 **3 次**全部正常（含池注入 8,748 条成功）。故**未复现**，暂列观察项。
+- **可疑方向**（未证实）：池注入发生在极早期静态构造之前/之间，若被解析的版本串
+  恰好被注入改写，就会在 `int.Parse` 处炸；这属于「池串被当数据用」的同族风险
+  （参见 R77 的 `Steam Workshop` 被当目录名用）。
+- **建议**：再出现时保留 `CMOLocalizer_Crash.log` 与当时的 `dict/CMOLocalizer.json`
+  哈希，用二分 `force_offsets` 的办法缩小到具体偏移（`scripts/bisect_offsets.py`）。
+
+## R79 阵营简报/想定说明整篇英文：富文本编辑器里的 WebBrowser 没有翻译通道（v4.2.5 后）
+
+- **来源**：用户反馈「菜单里的想定说明和阵营简报现在是英文了」+「系列战役还是没翻译好」。
+
+- **实测（先看菜单，再看内容，避免把两件事混在一起）**
+  - `DUMP_MENUS` 实测：推演菜单项本身是中文（`想定说明`、`阵营简报`）——菜单没问题。
+  - 点开后的窗体检出两处英文：
+    1. **编辑器工具栏** 19 项全英文：`Cut` `Edit Redo` `Bold` `Underline` `Italic`
+       `Edit Font` `Edit Color` `Increase/Decrease Font` `Justify Left/Center/Right`
+       `Indent` `Outdent` `Insert Ordered/Unordered List` `Insert Image` `Find & Replace`
+       `Print Document`。
+    2. **简报正文整篇英文**（截图取证：OVERVIEW / ORDERS & CONDUCT OF OPERATIONS 两节
+       全部英文段落）。
+  - 战役抽样巡检（`build/probe_sweep.py`，13 个战役 × 2 个场景 × 2 个面 = **52 个面**）：
+    修复后只剩 6 行拉丁串，全是平台/型号名（`PKMR 212`、`Minsk [CVHG]`、
+    `RKR Petr Velikiy [Pr.1144.2M Orlan]` 等，按项目约定本就保留拉丁）。
+
+- **根因**
+  1. 两个窗口的正文都是 `HtmlEditorControl`（MSDN）→ 内部 `WebBrowser editorWebBrowser`。
+     引擎只给 `WebBrowser` 装了 `TranslateWebBrowser`，而它只做「英文 + 【中文】」子串注入，
+     且只在 `DocumentCompleted` 触发；对话框是**按需创建**，订阅时文档已经加载完，
+     事件不再来 → 整篇保持英文。
+  2. 即使触发，双语标注也不是玩家要的「中文」——简报需要的是**整段替换**。
+  3. 19 个工具栏项（ToolStripItem 文本）**词库里根本没有**（`exact` 与 `strings_pool`
+     都查不到，多数甚至不在字符串池里），所以引擎没有可用的译文。
+
+- **修**
+  - 引擎新增两条通道：`IsHtmlEditorBrowser()` 识别编辑器内部浏览器，
+    `TranslateHtmlEditorBrowser()` 只对**叶子元素**（唯一子节点是 `#text`）用
+    `TranslateBriefingText()` 整段替换成中文；先收集再回写，避免边遍历边改 DOM；
+    已是中文的节点直接跳过（幂等）。
+  - 新增只读诊断命令 `BRIEFING_DUMP`：导出当前简报正文到 `CMOLocalizer_Briefing.txt`，
+    返回字符/汉字/英文行数与样本——把「简报还剩多少英文」变成可测量、可回归的数字。
+  - 19 条工具栏词条进 `dict/src/labels.json`（UI 层专表，永不注入池）。
+
+- **度量**
+  | 指标 | 改动前 | 改动后 |
+  |---|---|---|
+  | 阵营简报工具栏英文项 | 19 | **0**（实测 30 项全中文） |
+  | 援手行动 阵营简报 | 整篇英文（0 汉字） | 1,098 字符 / 652 汉字 / 英文行 1（`Minsk [CVHG]`） |
+  | 援手行动 想定说明 | 整篇英文 | 359 字符 / 227 汉字 / 英文行 **0** |
+  | 战役抽样 52 个面 | — | **38 个面 0 英文行**；余下 6 行全是平台型号名 |
+
+- **门禁**：`R79-static-briefing-editor`（编辑器分支 + 实现 + 中文短路 + 只读探针四条接线
+  缺一条即红）。实机验收命令链：`CLICK_MENU 阵营简报` → `BRIEFING_DUMP` 看 `englishLines`。
+
+
+- **实机巡检（第二轮，补测）**：`build/probe_sweep3.py` 在干净重启后逐场景加载，
+  13 个战役 × 2 个场景 = **26 个阵营简报**（990 行）：
+  - 严格英文行（整行无汉字）**0 行**；
+  - 「拉丁词 ≥4」的可疑行 33 行（3.3%），加术语后降到 **~1~4 行/简报**，
+    集中在番号行（`· 356号 Fighter Squadron (16 x F-35A …)`）、舰名（`HMCS Qu'Appelle舰`）、
+    以及混排行（`… no later than 12:00:00标准时, August 21号, 2025.`）。
+  - 已知空简报：The Silent Service 的 2 个抽样场景 `chars=0`（该 DLC 该侧没有简报正文，
+    不是未翻译）。
+  - **尝试过的改进与回退**：在混合分支里对残留英文段跑组合翻译（`TryComposeTranslate`），
+    能把 `18号 Aggressor Squadron (…)` 拼成中文，但让 `R45-static-translate-idempotent`
+    变红（「中文标签 + 英文值必须整条汉化」用例失败）——**已回退**，不带红门禁发布。
+    要彻底解决这 3~4 行，需要单独设计「混合串尾部组合」并配幂等用例，属独立任务。
+
+- **测试环境的一个坑（值得记住）**：连续加载 40+ 个想定后，客户端会积累大量
+  `想定特性与拟真度选项` WPF 窗口（R53 僵尸窗口），`BRIEFING_DUMP` 随后一律返回空正文，
+  看起来像「翻译失效」。巡检脚本必须每轮 `CLOSE_FORM` 收尾，否则会得出假结论。
+
+
+- **全量巡检（145 个战役场景，2026-11-06）**：`build/probe_sweep_full.py` 跑完 11 个战役目录下
+  **全部 145 个想定 × 2 个面（阵营简报 + 想定说明）= 290 个面**，加载失败 0。脚本每 25 个场景
+  强制重启客户端（清僵尸窗口）、结果逐条落盘可续跑。
+  - 巡检前：**24 个面**存在整行英文；补 30 条词条 + 修 DOM 遍历后，**只剩 4 个场景共 9 行**。
+  - 残留下游：`Sub-Surface`、`COMMAND & CONTROL`、`§   (16 x H160m Guepard)`、
+    `·  617 Sqn RAF - F-35B Lightning II [8]` 这类。**词库能翻**（`XLATE` 实测全部返回中文），
+    是 `HtmlElement` API 拿不到「混排父元素里的 #text 节点」——`InnerText` 对 #text 节点无效，
+    `InnerHtml` 写入也不生效（实测）。要收尾需改用 `IHTMLDOMNode`/mshtml COM 直接改文本节点，
+    属独立改造。
+  - **两类不是汉化的问题（已排除）**：
+    1. `Desert Storm` 15 个想定的「想定说明」里有 13 个显示 `[LOADDOC]Assets`+反斜杠+`N. X.html[/LOADDOC]`
+       原文。用**英文 `.orig` 覆盖后逐字复现同样结果**，证明与汉化无关：这是游戏/DLC 自身未能
+       解析该引用（显示名还少了「 Desc」，是游戏侧行为）。文件与其 `.orig` 均在磁盘上、且用
+       mshtml 渲染该文件 1,082 字符 / 882 汉字正常。
+    2. `The Silent Service` 18 个想定的「阵营简报」正文为空（`chars=0`）：该 DLC 该侧没有简报
+       正文（其「想定说明」是内嵌散文，已全中文）。
+- **教训**
+  1. 「菜单是中文」不等于「点开是中文」：菜单项文本和窗口内容走的是**完全不同的通道**
+     （ToolStrip 文本 vs HTML 编辑器 DOM），验收必须看内容。
+  2. 订阅 `DocumentCompleted` 的钩子对**按需创建的对话框**天然漏拍：要么首次扫描就抓，
+     要么在订阅时补一次「文档已加载」的即时翻译。
+  3. 双语标注（英文 + 【中文】）只能当兜底；玩家要的是可用性，正文类界面必须整段替换。

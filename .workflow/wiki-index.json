@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": 1792403476383,
+  "generatedAt": 1793918122251,
   "entries": [
     {
       "id": "knowhow-dcs-20261012-2009",
@@ -1031,6 +1031,30 @@
       "createdBy": null,
       "sourceRef": "evidence:session:ksyn-2107ce852f0cfe00,docs/BUG_REGISTRY.md:589,src/engine/CMOLocalizer.cs:617",
       "parent": "knowhow-tip-20261018-ece485f8bf1f18e4",
+      "related": [],
+      "repoId": null
+    },
+    {
+      "id": "knowhow-tip-20261028-comments",
+      "type": "knowhow",
+      "title": "数据库查看器 Comments 显示在列表行尾：模板里查不到不等于不显示",
+      "summary": "- `assets/db_templates/*.html`（8 个详情面板模板）都没有 `Comments` 字段； - 游戏自带 `DB/Templates/*.html` 同样没有； - `Command.exe` 里 `Comments` 只出现 4 次（1 次是 MemberRecords 表结构、2 次是 INI 解析器成员名、 1 次是版本资源）——没有任何 UI 标签。",
+      "tags": [
+        "数据库查看器",
+        "Comments",
+        "可见性",
+        "实机对照",
+        "静态误判"
+      ],
+      "status": "active",
+      "created": "2026-10-27T20:48:23.740Z",
+      "updated": "2026-10-27T23:02:00.893Z",
+      "scope": null,
+      "category": "tip",
+      "specCategory": null,
+      "createdBy": null,
+      "sourceRef": null,
+      "parent": null,
       "related": [],
       "repoId": null
     },

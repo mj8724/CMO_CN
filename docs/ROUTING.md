@@ -153,6 +153,7 @@
 | `dict/src/live_audit_fixes.json` | 实机审计发现缺口的补齐 |
 | `dict/src/live_message.json`、`dict/src/live_side_p1.json`、`dict/src/live_side_p2.json` | 实机消息/简报补译 |
 | `dict/src/tutorial_gap_fixes.json`、`dict/src/tutorial_prose_fixes.json` | 教程缺口与散文修复 |
+| `dict/quickbattle_html.json` | **快速战斗表单页译文源**（20 个 `QuickBattle/<条目>/Form.html` 的显示文本，键为页面原文片段）。**刻意不放进 `dict/src/`**：`build_dict.py` 会 glob `dict/src/*.json` 全部并入 `exact`，长句进去会污染界面翻译。由 `scripts/quickbattle_html.py` 的 `work`/`import` 维护，`build` 阶段消费 |
 | `dict/src/db_*.json` | 数据库汉化（详见 §7.4） |
 | `dict/src/*_message.json`、`dict/src/*_side.json` | 各战役简报正文（Chains of War / Desert Storm / Falklands / Kashmir Fire / Northern Inferno / Red Tide / Shifting Sands / The Silent Service / Tides of War / Fail Safe 等） |
 | `dict/src/chunk0*.json` | 早期批量翻译的分片（历史批次，勿新增） |
@@ -231,12 +232,14 @@
 | `scripts/compose_terms.py` | 与引擎组合规则**一一对应**的镜像实现；`--check` 审计半译残留 |
 | `scripts/inject_filter.py` | 池级注入形状安全判定（**单一事实源**，构建与门禁共用） |
 | `scripts/identifiers.py` | 清除绝不该翻译的引擎标识符 |
+| `scripts/fix_static_html_charset.py` | **R78 简报 HTML 编码声明**：给「含中文但没声明 charset」的页面补 `<meta charset>`（不补则 mshtml 按 ANSI 解码、整片乱码），`--check` 供门禁，`--apply` 就地修复已安装文件 |
 
 ### 8.3 审计 / 统计工具（只读）
 
 | 路径 | 职责 |
 |---|---|
 | `scripts/audit_coverage.py` | 词典覆盖率审计 |
+| `scripts/audit_campaign_text.py` | **DLC 战役汉化盘点**：逐战役统计「内嵌 <ScenDescription> 散文未译段」与「[LOADDOC] 外部 HTML 的英文正文段」，区分元数据行与 LOADDOC 指令，`--json` 出机读报告。改战役译文后用它复核 |
 | `scripts/db_coverage_audit.py` | 数据库汉化覆盖审计（按缺口分类） |
 | `scripts/db_prose_gaps.py` | 数据库描述散文缺口审计 |
 | `scripts/db_prose_inventory.py` | 数据库描述散文存量盘点 |
@@ -304,6 +307,7 @@
 | `scripts/db_comments_work.py` | 数据库列表行尾 Comments（R72）待译清单 + 词表守卫：`--check` 供门禁（译文含中文、无纯数量键、无残留英文词），默认输出覆盖率与按行数排序的待译段 |
 | `scripts/fix_db_residue.py` | 数据库记录名括号外英文残留的**确定性**改写（R71）：`Type NNN`→`NNN型/式` + 人工核过的厂名与整串译名；绝不按词替换（实测会把 `PC2`→「巡逻艇2」）。产出 `build/residue_out/batch_*.json` 交 `merge_record_names.py` 合并 |
 | `scripts/merge_scenario_texts.py` | 想定文本合并（R52）：按批次清单的 `src` 写回**原归属** side/message 文件（全塞一个池会被字母序覆盖），DTG 时间码放行 |
+| `scripts/quickbattle_html.py` | **快速战斗表单页工具**（单一入口）：`work` 抽待译片段+属性指纹、`hints` 给每批附已审定术语、`import` 合入译文并过守卫、`build` 渲染纯中文页并打 `QuickBattle_HTML.zip`、`verify` 门禁（页数/属性未变/无残留英文）。改译文或改渲染规则时只动这里 |
 | `scripts/gen_v3_batches.py` | 按 `build/residue_gaps.json` 的当前真实剩余缺口，按表族生成 v3 精修批次（每类一套专用 instructions：传感器北约绰号、挂载弹种、设施编制、飞机绰号、卫星代号、武器弹头、基座形式、推进装置、舰艇舰级）。批次写入 `build/v3_batches/`，供 teammate 逐条精修 |
 | `scripts/verify_placenames.py` | 地名发布门禁 |
 | `scripts/test_placenames.py` | 地名离线回归（写操作只落在 `build/` 临时目录） |
@@ -344,6 +348,7 @@
 | `SCEN_*`（`SCEN_CTRL_TREE` / `SCEN_SELECT` / `SCEN_LOAD` / `SCEN_EXPAND_ALL`） | 想定加载流程 |
 | `POOL_DUMP` | 导出字符串池注入情况 |
 | `RELOAD_DICT` | 重载词典（改词典后免重启） |
+| `BRIEFING_DUMP` | 只读：把当前打开的富文本简报（阵营简报/想定说明）正文导到 `CMOLocalizer_Briefing.txt`，并返回字符/汉字/英文行数与样本。简报汉化只能靠这个数字验收 |
 
 ---
 
@@ -355,7 +360,6 @@
 | `assets/placenames/Cities.wwp` | 译好的城市地名集（同上，`Cities/`） |
 | `assets/launcher/stringsChinese.resx` | 启动器的中文字符串表 |
 | `assets/db_templates/*.html` | 数据库查看器 HTML 模板（Aircraft/Facility/GroundUnit/Platform/Satellite/Ship/Submarine/Weapon 8 个） |
-| `assets/community/*.png` | README「社区交流」段引用的图片。当前为 `wechat_group.png`（微信群二维码）。**微信群二维码 7 天过期**：本张有效至 2026-10-27；续期只需用新图 **同名覆盖** 此文件（README 无需改），`.gitignore` 对 `assets/community/*.png` 开了例外才能入库 |
 
 **运行时目录（不入库，`.gitignore`）**
 
@@ -446,6 +450,8 @@
 | `src/tests/DbListCommentsTests.cs` | 数据库列表行尾 Comments 接线与行为（R72）：接线到位、整段优先命中、未命中不拆词、纯代号不产生中文污染 | `R72-static-db-comments` |
 | `src/tests/DatabaseResidueTests.py` | 数据库记录名三道判据：场景源不得用句子碎片覆盖 db_* 干净译名、已修脏值不得回生、残留改写脚本不得按词污染型号（均带负向用例）| `R71-static-db-residue` |
 | `src/tests/SanitizeGuardTests.py` | R76 构建期守卫双向回归：分号句尾散文 / 番号后括号 / 全角括号互写不得误杀；真代码与括号结构差仍拦住 | `R76-static-sanitize-guards` |
+| `src/tests/WebBrowserInjectionTests.cs` | R77 中文页跳过【】双语注入：中文页/英文页/少量中文标签/空/null/长英文短中文六种判据 | `R77-static-webbrowser-injection` |
+| `src/tests/StaticHtmlCharsetTests.py` | R78 简报 HTML 编码声明：缺失时补上、已有不重复、按真实编码声明 | `R78-static-html-charset-tests`
 | `src/tests/README_WebViewTranslation.md` | 上面 WebView 系列测试的说明 | — |
 | `src/tests/search_methods.cs`、`src/tests/test_db_load.cs` | 方法搜索 / DB 加载试验（历史） | — |
 | `src/tests/README_MapTileServer.md` | 瓦片服务测试说明 | — |

@@ -43,7 +43,7 @@ namespace CMOLocalizerInstaller
 
         public InstallerForm(string initialPath)
         {
-            this.Text = "Command: Modern Operations (CMO) 完整中文汉化一键安装工具 v4.2.5（适配游戏内部版本 " + ReleaseConstants.GameBuild + "）";
+            this.Text = "Command: Modern Operations (CMO) 完整中文汉化一键安装工具 v4.3.0（适配游戏内部版本 " + ReleaseConstants.GameBuild + "）";
             this.Size = new Size(700, 770);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -1041,6 +1041,9 @@ namespace CMOLocalizerInstaller
                 // 部署已全量汉化的 Scenarios HTML 简报/教程正文（内嵌 zip，带 .orig 备份）
                 DeployScenarioHtml(gamePath);
 
+                // 部署汉化后的「快速战斗」表单页（内嵌 zip，带 .orig 备份）
+                DeployQuickBattleHtml(gamePath);
+
                 // 部署汉化地名集（地图矢量地名层的数据源，必须先于标签瓦片重绘）
                 DeployPlacenames(gamePath);
 
@@ -1230,12 +1233,31 @@ namespace CMOLocalizerInstaller
         /// </summary>
         private static void DeployScenarioHtml(string gamePath)
         {
+            DeployHtmlBundle(gamePath, "SCEN_HTML_ZIP", "Scenarios/");
+        }
+
+        /// <summary>
+        /// 部署汉化后的「快速战斗」表单页（内嵌 zip）。
+        /// 为什么需要：�速战斗的界面不是词典里的固定串，而是游戏从
+        /// QuickBattle/&lt;条目&gt;/Form.html 读出来、丢进 WinForms WebBrowser 渲染的整页 HTML；
+        /// 不换文件就只能看到英文原文。各页的 name/value 属性是 Script.lua 的数据契约，
+        /// 汉化时只改标签之间的文本（见 scripts/quickbattle_html.py 的 verify）。
+        /// </summary>
+        private static void DeployQuickBattleHtml(string gamePath)
+        {
+            DeployHtmlBundle(gamePath, "QB_HTML_ZIP", "QuickBattle/");
+        }
+
+        /// <summary>
+        /// 把一个内嵌 HTML 包写进游戏目录，覆盖前先写 .orig。
+        /// 已存在的 .orig 永不覆盖：卸载必须能 100% 还原英文原件。
+        /// </summary>
+        private static void DeployHtmlBundle(string gamePath, string resourceName, string requiredPrefix)
+        {
             try
             {
-                string scenDir = Path.Combine(gamePath, "Scenarios");
-                if (!Directory.Exists(scenDir)) return;
                 Assembly asm = Assembly.GetExecutingAssembly();
-                using (Stream s = asm.GetManifestResourceStream("SCEN_HTML_ZIP"))
+                using (Stream s = asm.GetManifestResourceStream(resourceName))
                 {
                     if (s == null) return;
                     using (ZipArchive zip = new ZipArchive(s, ZipArchiveMode.Read))
@@ -1243,6 +1265,11 @@ namespace CMOLocalizerInstaller
                         foreach (ZipArchiveEntry e in zip.Entries)
                         {
                             if (e.Length == 0) continue;
+                            if (!e.FullName.Replace('\\', '/').StartsWith(requiredPrefix, StringComparison.OrdinalIgnoreCase))
+                            {
+                                CmoLog.Warn("跳过越界 zip 条目: " + e.FullName);
+                                continue;
+                            }
                             string dest;
                             if (!CmoPaths.TryResolveInside(gamePath, e.FullName, out dest))
                             {
@@ -1267,6 +1294,22 @@ namespace CMOLocalizerInstaller
                             }
                         }
                     }
+                }
+            }
+            catch { }
+        }
+
+        /// <summary>卸载时按 .orig 还原「快速战斗」表单页。</summary>
+        private static void RestoreQuickBattleHtml(string gamePath)
+        {
+            string root = Path.Combine(gamePath, "QuickBattle");
+            if (!Directory.Exists(root)) return;
+            try
+            {
+                foreach (string orig in Directory.GetFiles(root, "*.orig", SearchOption.AllDirectories))
+                {
+                    string target = orig.Substring(0, orig.Length - ".orig".Length);
+                    File.Copy(orig, target, true);
                 }
             }
             catch { }
@@ -1348,6 +1391,7 @@ namespace CMOLocalizerInstaller
                     }
                     // .orig 只用于卸载还原；补译必须基于当前版本，不能回退更新后的正文。
                     Func<string, string> replacement = value => EncodeScenarioReplacement(value, encoding);
+                    text = EnsureCharsetDeclaration(text, encoding);
                     string trans = text
                         .Replace("<h2>Briefing</h2>", replacement("<h2>作战任务简报 (Briefing)</h2>"))
                         .Replace("<h1>Introduction</h1>", replacement("<h1>战役背景导言 (Introduction)</h1>"))
@@ -1375,6 +1419,35 @@ namespace CMOLocalizerInstaller
                 }
             }
             catch { }
+        }
+
+        /// <summary>
+        /// R78：给简报 HTML 补上编码声明。
+        /// 实测理由：这些页面原本都没有 charset 声明，游戏用 mshtml 渲染；没有声明时
+        /// mshtml 回退到 ANSI 代码页，把 UTF-8 中文按 GBK 解码，整页变成乱码
+        ///（「娆㈣繋鏉ュ埌楂樼骇…」而不是「欢迎来到高级…」）。英文原文是纯 ASCII，
+        /// 所以译文出现之前这个缺失一直没有表现。补声明后同一控件实测渲染正确。
+        /// </summary>
+        private static string EnsureCharsetDeclaration(string document, Encoding encoding)
+        {
+            string head = document.Length > 2048 ? document.Substring(0, 2048) : document;
+            if (System.Text.RegularExpressions.Regex.IsMatch(head, "<meta[^>]+charset\\s*=",
+                    System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+            {
+                return document;
+            }
+            string name = encoding.CodePage == 65001 ? "utf-8" : encoding.WebName;
+            string meta = "<meta charset=\"" + name + "\">";
+            System.Text.RegularExpressions.Match tag = System.Text.RegularExpressions.Regex.Match(
+                document, "<head[^>]*>", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            if (tag.Success)
+            {
+                return document.Insert(tag.Index + tag.Length, meta);
+            }
+            tag = System.Text.RegularExpressions.Regex.Match(
+                document, "<html[^>]*>", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            int at = tag.Success ? tag.Index + tag.Length : 0;
+            return document.Insert(at, "<head>" + meta + "</head>");
         }
 
         private static void RestoreScenarioBriefings(string scenDir)
@@ -1929,6 +2002,9 @@ namespace CMOLocalizerInstaller
 
                 // 还原 Scenarios 下的 .orig 简报备份
                 RestoreScenarioBriefings(Path.Combine(gamePath, "Scenarios"));
+
+                // 还原 QuickBattle 下的 .orig 表单页备份
+                RestoreQuickBattleHtml(gamePath);
 
                 // 还原 World Wind 标注图层瓦片
                 RestoreMapLabelTiles(gamePath);

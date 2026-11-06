@@ -56,8 +56,17 @@ def key_of(text: str) -> str:
 
 
 def localize_html(document: str, table: dict[str, str],
-                  normalized: dict[str, str] | None = None) -> tuple[str, dict]:
-    """Translate display text only; unknown strings are kept and reported."""
+                  normalized: dict[str, str] | None = None,
+                  protected: set[str] | None = None) -> tuple[str, dict]:
+    """Translate display text only; unknown strings are kept and reported.
+
+    Only *text between tags* is ever rewritten, so attribute values (`name`,
+    `value`, `type`) cannot be touched by construction.  ``protected`` lets a
+    caller widen or narrow the element set whose text stays English: the
+    scenario briefings keep `<select>`/`<option>` English on purpose, while the
+    Quick Battle forms need their dropdown labels translated.
+    """
+    protected_tags = PROTECTED if protected is None else protected
     stats = {"translated": 0, "missing": []}
     if normalized is None:
         normalized = normalized_table(table)
@@ -104,7 +113,7 @@ def localize_html(document: str, table: dict[str, str],
                 attributes = attributes_of(markup, tag.end())
                 editable = ("contenteditable" in attributes
                             and html.unescape(attributes["contenteditable"]).strip().lower() != "false")
-                stack.append((name, bool(protected or name in PROTECTED or editable)))
+                stack.append((name, bool(protected or name in protected_tags or editable)))
         position = token.end()
     tail = document[position:]
     parts.append(tail if stack and stack[-1][1] else translate(tail))
@@ -113,6 +122,33 @@ def localize_html(document: str, table: dict[str, str],
 
 def digest(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+CHARSET_META = re.compile(r"<meta[^>]+charset\s*=", re.I)
+
+
+def ensure_charset(document: str, encoding: str) -> tuple[str, bool]:
+    """Declare the document's own encoding so a legacy WebBrowser cannot guess.
+
+    The game renders briefings through mshtml (System.Windows.Forms.WebBrowser).
+    With no declaration it falls back to the ANSI codepage: UTF-8 Chinese is
+    decoded as GBK and the whole briefing shows as mojibake
+    ("娆㈣繋鏉ュ埌楂樼骇..." instead of "欢迎来到高级...").  Reproduced offline with
+    the same WebBrowser control: adding the declaration renders correctly.
+    The English originals were pure ASCII, which is why this was invisible until
+    the pages were translated.
+    """
+    if CHARSET_META.search(document[:2048]):
+        return document, False
+    declared = ("utf-8" if encoding.lower().replace("_", "-") in
+                ("utf-8", "utf-8-sig") else encoding)
+    meta = f'<meta charset="{declared}">'
+    head = re.search(r"<head[^>]*>", document, re.I)
+    if head:
+        return document[:head.end()] + meta + document[head.end():], True
+    html = re.search(r"<html[^>]*>", document, re.I)
+    at = html.end() if html else 0
+    return document[:at] + "<head>" + meta + "</head>" + document[at:], True
 
 
 def normalized_table(table: dict[str, str]) -> dict[str, str]:
@@ -176,6 +212,7 @@ def build_payload(game: Path, output: Path, dictionary: Path,
         # selected current file is authoritative; existing Chinese is preserved.
         source = path.read_bytes()
         document, encoding = decode_html(source)
+        document, charset_added = ensure_charset(document, encoding)
         translated, stats = localize_html(document, table, normalized)
         result = translated.encode(encoding, errors="xmlcharrefreplace")
         relative = path.relative_to(game).as_posix()
@@ -184,6 +221,7 @@ def build_payload(game: Path, output: Path, dictionary: Path,
         manifest["files"].append({"path": relative, "source_sha256": digest(source),
                                   "output_sha256": digest(result),
                                   "encoding": encoding,
+                                  "charset_declared": not charset_added,
                                   "translated_segments": stats["translated"],
                                   "untranslated_segments": len(stats["missing"]),
                                   "untranslated_samples": stats["missing"][:3]})

@@ -72,6 +72,30 @@ if count < 300:
     raise SystemExit(f"ERROR: scenario bundle contains only {count} HTML files")
 print(f"pack: {count} Scenarios HTML files, no loose .orig/config backups")
 PYEOF
+# Quick Battle form pages travel the same way: the game reads them from disk, so the
+# pack must ship the localized copies (the installer embeds the same bundle).
+"$PY" - "$ROOT" "$OUT/QuickBattle_HTML.zip" "$PACK" <<'PYEOF'
+import pathlib, sys, zipfile
+root, bundle, pack = map(pathlib.Path, sys.argv[1:])
+if not bundle.is_file():
+    raise SystemExit(f"ERROR: missing Quick Battle bundle: {bundle}")
+count = 0
+with zipfile.ZipFile(bundle) as z:
+    for name in z.namelist():
+        path = pathlib.PurePosixPath(name)
+        if "/" not in name or "\\" in name or path.is_absolute() or ".." in path.parts:
+            raise SystemExit(f"ERROR: unsafe Quick Battle entry: {name}")
+        if path.parts[0] != "QuickBattle" or path.name != "Form.html":
+            raise SystemExit(f"ERROR: unexpected Quick Battle entry: {name}")
+        dest = pack.joinpath(*path.parts)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        with dest.open("xb") as stream:
+            stream.write(z.read(name))
+        count += 1
+if count < 15:
+    raise SystemExit(f"ERROR: Quick Battle bundle contains only {count} pages")
+print(f"pack: {count} Quick Battle form pages")
+PYEOF
 cp "$ROOT/README.md" "$PACK/汉化说明.md"
 # Config is intentionally absent: the same embedded installer merges the target's
 # own runtime/bindingRedirects and preserves its first backup. --adopt alone only

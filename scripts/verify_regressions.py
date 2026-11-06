@@ -252,6 +252,27 @@ def _run_ui_scheduling_and_report_gates(r: Runner) -> None:
     py_case("R57-static-release-contract",
             "R57 发布契约：缺资产/错 SHA/旧或未来报告/已有资产都必须零写入拒绝",
             "src/tests/ReleaseContractTests.py")
+    # R77：快速战斗表单页。三条独立契约，缺一条玩家就继续看到英文：
+    #   ①随包发布的页面与译文源对齐（属性未变、无残留英文）
+    #   ②引擎只对英文页面做【】双语注入（中文页必须跳过）
+    #   ③安装器/绿色包真的把页面发下去（build.sh 的 QB_HTML_ZIP + package.sh 清单）
+    py_case("R77-static-quickbattle-pages",
+            "R77 快速战斗表单页：20 页全部汉化、name/value 属性与原文逐字一致",
+            "scripts/quickbattle_html.py", "verify")
+    cs_case("R77-static-webbrowser-injection",
+            "R77 WebBrowser 双语注入：中文页跳过、英文页照旧（否则中文页被塞回英文）",
+            "src/tests/WebBrowserInjectionTests.cs", [],
+            "src/tests/WebBrowserInjectionTests.cs")
+
+    py_case("R78-static-html-charset-tests",
+            "R78 简报 HTML 编码声明：缺失时补上、已有不重复、按真实编码声明",
+            "src/tests/StaticHtmlCharsetTests.py")
+    py_case("R78-static-html-charset-scan",
+            "R78 已安装简报 HTML 不得有「含中文但未声明编码」的页面（mshtml 会按 ANSI 解码成乱码）",
+            "scripts/fix_static_html_charset.py", "--check")
+    py_case("R77-static-campaign-text",
+            "R77 各 DLC 战役简报正文不得残留英文（内嵌 <ScenDescription> 散文 + [LOADDOC] 网页正文）",
+            "scripts/audit_campaign_text.py", "--check", "--samples", "0")
     py_case("R58-static-dictionary-source",
             "R58 词库源可重建：两次完整构建字节一致、删源不回生、产物不再作为输入",
             "src/tests/DictionarySourceTests.py", "--fixtures")
@@ -373,6 +394,52 @@ def run_static(r: Runner) -> None:
             if any(t in str(v) for t in ("Data Source", "SELECT ", " AND "))]
     r.record("R6-static-sql", "R6 offsets 不含 SQL/连接串片段",
              not bad, f"offenders={bad[:5] or 'none'}", "dict/CMOLocalizer.json")
+
+    # R77：快速战斗（Quick Battle）熵目名只走 UI 层。名字来自游戏目录 QuickBattle/ 下的
+    # 文件夹名，Script.lua 与 QuickBattlesRootPath 靠它定位，所以只能译显示层
+    # （labels.json -> exact），绝不能改文件夹，也不能注入 offsets（池里没有这些串）。
+    qb_names = (
+        "A2A BVR Duel, 1965", "A2A BVR Duel, 1975", "A2A BVR Duel, 1985",
+        "A2A BVR Duel, 1995", "A2A BVR Duel, 2012", "A2A BVR Duel, 2022",
+        "A2A BVR Duel, Any Aircraft", "Air & Surface ASW", "Fulda Gap Facedown",
+        "Iran-Iraq War A2A engagement", "Iraq 91 A2A engagement",
+        "Knife Fight in a Phone Booth, 1985", "Knife Fight in a Phone Booth, 2020s",
+        "Red Flag 2019", "Rolling Thunder 1967", "Simple A2A engagement",
+        "Submarine 1v1 duel", "Surface 1v1 engagement", "Yankee Station 1967",
+    )
+    labels = json.loads((ROOT / "dict/src/labels.json").read_text(encoding="utf-8"))
+    pool_values = set(json.loads((ROOT / "dict/strings_pool.json").read_text(encoding="utf-8")).values())
+    qb_lack = [n for n in qb_names
+               if not re.search(r"[\u4e00-\u9fff]", str(doc["exact"].get(n, "")))]
+    qb_offset_leak = [n for n in qb_names if n in pool_values]
+    qb_ok = not qb_lack and not qb_offset_leak
+    r.record("R77-static-quickbattle-terms",
+             "R77 快速战斗熵目名已汉化且未走池注入通道", qb_ok,
+             f"missing/no-Han={qb_lack or 'none'}; offsets-leak={qb_offset_leak or 'none'}",
+             "dict/src/labels.json")
+
+    qb_guard = re.search(
+        r"LooksLocalizedChinese\(html\)[^\n]*return", src)
+    r.record("R77-static-webbrowser-wiring",
+             "R77 中文页跳过注入的接线（守卫必须在 TranslateWebBrowser 里生效）",
+             bool(qb_guard), "LooksLocalizedChinese 接线存在" if qb_guard else "接线缺失",
+             str(ENGINE.relative_to(ROOT)))
+
+    # R79：富文本简报（阵营简报/想定说明）是 HtmlEditorControl 里的 WebBrowser，
+    # 内容需要「整段换成中文」而不是双语标注。三条接线缺一条，简报就是英文。
+    edit_hook = re.search(r"if \(IsHtmlEditorBrowser\(wb\)\)\s*TranslateHtmlEditorBrowser\(wb\)", src)
+    edit_impl = re.search(r"private static void TranslateHtmlEditorBrowser\(WebBrowser wb\)", src)
+    # 中文短路已抽到 WantsBriefingTranslation：断言它存在、内部判 ContainsChinese、且被两处调用。
+    edit_guard = re.search(
+        r"private static bool WantsBriefingTranslation\(string text\)[\s\S]{0,400}?ContainsChinese\(text\)", src)
+    guard_used = src.count("WantsBriefingTranslation(") >= 3
+    dump_cmd = re.search(r'cmd == "BRIEFING_DUMP"', src)
+    r.record("R79-static-briefing-editor",
+             "R79 富文本简报（阵营简报/想定说明）译文接线：编辑器分支 + 实现 + 中文短路 + 只读探针",
+             bool(edit_hook and edit_impl and edit_guard and guard_used and dump_cmd),
+             f"branch={bool(edit_hook)} impl={bool(edit_impl)} guard={bool(edit_guard)} "
+             f"used={guard_used} dump={bool(dump_cmd)}",
+             str(ENGINE.relative_to(ROOT)))
 
     term = proc_util.run([sys.executable, str(ROOT / "scripts/verify_terminology.py")],
                           cwd=str(ROOT), capture_output=True)

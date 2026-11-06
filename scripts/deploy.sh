@@ -78,6 +78,32 @@ cp "$ROOT/assets/db_templates/"*.html "$GAME/DB/Templates/"
 cp "$ROOT/assets/placenames/Synoptic.wwp" "$GAME/WW/PlacenameSets/Synoptic/0000_0000.wwp"
 cp "$ROOT/assets/placenames/Cities.wwp" "$GAME/WW/PlacenameSets/Cities/0000_0000.wwp"
 
+# 快速战斗表单页：游戏直接从 QuickBattle/<条目>/Form.html 读页面丢进 WebBrowser 渲染，
+# 不换文件就只能看到英文原文。先从 dict/quickbattle_html.json 重建，再带 .orig 备份落地。
+"$PY" "$ROOT/scripts/quickbattle_html.py" build
+"$PY" - "$ROOT" "$GAME" <<'PYEOF'
+import pathlib, shutil, sys, zipfile
+root, game = map(pathlib.Path, sys.argv[1:])
+bundle = root / "build/QuickBattle_HTML.zip"
+if not bundle.is_file():
+    raise SystemExit("missing QuickBattle_HTML.zip")
+written = 0
+with zipfile.ZipFile(bundle) as z:
+    for name in z.namelist():
+        rel = pathlib.PurePosixPath(name)
+        if rel.parts[0] != "QuickBattle" or rel.name != "Form.html" or ".." in rel.parts:
+            raise SystemExit("unexpected QuickBattle entry: " + name)
+        dest = game.joinpath(*rel.parts)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        # .orig 只写一次：卸载靠它还原英文原件，后续部署不得覆盖
+        orig = dest.with_suffix(dest.suffix + ".orig")
+        if dest.is_file() and not orig.is_file():
+            shutil.copy2(dest, orig)
+        dest.write_bytes(z.read(name))
+        written += 1
+print(f"deployed: {written} Quick Battle form pages (+.orig backups)")
+PYEOF
+
 "$PY" - "$ROOT" "$GAME" "$ENGINE" "$DICTIONARY" <<'PYEOF'
 import json, os, pathlib, sys
 from xml.dom import minidom
