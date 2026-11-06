@@ -2318,6 +2318,7 @@ python scripts/perf_probe.py          # 游戏已在想定里
 - **可疑方向**（未证实）：池注入发生在极早期静态构造之前/之间，若被解析的版本串
   恰好被注入改写，就会在 `int.Parse` 处炸；这属于「池串被当数据用」的同族风险
   （参见 R77 的 `Steam Workshop` 被当目录名用）。
+- **第 2 次发生（2026-11-06 19:50，发 4.3.0 期间）**：完全相同的栈（`Command.Client` → `CSMaterial.OSVersionInfo.get_BuildVersion` → `int.Parse`）。两次都发生在**部署后首次冷启动**，随后重启即正常，因此仍按观察项处理；发布版未阻塞（`L-build-adaptation` 等 live 用例在重启后全绿）。
 - **建议**：再出现时保留 `CMOLocalizer_Crash.log` 与当时的 `dict/CMOLocalizer.json`
   哈希，用二分 `force_offsets` 的办法缩小到具体偏移（`scripts/bisect_offsets.py`）。
 
