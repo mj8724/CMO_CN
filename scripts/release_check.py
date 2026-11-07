@@ -290,14 +290,17 @@ def read_artifacts(version: str, build_dir: Path | None = None) -> tuple[dict[st
     return files, problems
 
 
-def embedded_engine_hashes(setup: Path) -> dict[str, str]:
+def embedded_resource_hashes(setup: Path, names: tuple[str, ...]) -> dict[str, str]:
     """Read real CLR manifest resources with ReflectionOnlyLoad; never execute the installer."""
+    if not names:
+        raise ValueError("必须指明要核验的内嵌资源")
     literal = str(setup.resolve()).replace("'", "''")
+    listing = ", ".join("'" + name + "'" for name in names)
     code = """$ErrorActionPreference = 'Stop'
 $a = [Reflection.Assembly]::ReflectionOnlyLoad([IO.File]::ReadAllBytes('%s'))
 $sha = [Security.Cryptography.SHA256]::Create()
 try {
-  foreach ($name in @('CMOLocalizer.dll', 'CMOLocalizer.json')) {
+  foreach ($name in @(%s)) {
     $s = $a.GetManifestResourceStream($name)
     if ($null -eq $s -or $s.Length -eq 0) { throw ('missing embedded resource: ' + $name) }
     try { $h = [BitConverter]::ToString($sha.ComputeHash($s)).Replace('-', '').ToLowerInvariant() }
@@ -305,7 +308,7 @@ try {
     Write-Output ($name + '|' + $h)
   }
 } finally { $sha.Dispose() }
-""" % literal
+""" % (literal, listing)
     p = proc_util.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", code],
                        capture_output=True, timeout=60)
     if p.returncode:
@@ -315,9 +318,14 @@ try {
         name, sep, digest = line.strip().partition("|")
         if sep and re.fullmatch(r"[0-9a-f]{64}", digest):
             found[name] = digest
-    if set(found) != {"CMOLocalizer.dll", "CMOLocalizer.json"}:
-        raise ValueError("安装器缺少可核验的内嵌 dll/json")
+    missing = sorted(set(names) - set(found))
+    if missing:
+        raise ValueError("安装器缺少可核验的内嵌资源: " + ", ".join(missing))
     return found
+
+
+def embedded_engine_hashes(setup: Path) -> dict[str, str]:
+    return embedded_resource_hashes(setup, ("CMOLocalizer.dll", "CMOLocalizer.json"))
 
 
 def pack_problems(pack_bytes: bytes, version: str, *, setup_bytes: bytes | None = None,
@@ -369,6 +377,55 @@ def pack_problems(pack_bytes: bytes, version: str, *, setup_bytes: bytes | None 
     return problems
 
 
+PLACENAME_RESOURCES = (("PLACE_CITIES", "Cities"), ("PLACE_SYNOPTIC", "Synoptic"))
+PACK_PLACENAME_MEMBERS = {"Cities": "WW/PlacenameSets/Cities/0000_0000.wwp",
+                          "Synoptic": "WW/PlacenameSets/Synoptic/0000_0000.wwp"}
+
+
+def placename_asset_hashes(root: Path | None = None) -> dict[str, str]:
+    """只取仓库里实际存在的地名集：存在性归 verify_all.gate_placenames，这里只做资产↔产物对账。"""
+    base = ROOT if root is None else Path(root)
+    wanted: dict[str, str] = {}
+    for _, set_name in PLACENAME_RESOURCES:
+        path = base / "assets/placenames" / (set_name + ".wwp")
+        if path.is_file():
+            wanted[set_name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    return wanted
+
+
+def placename_payload_problems(setup: Path | None, pack: Path | None,
+                               root: Path | None = None) -> list[str]:
+    """地名集必须真的进包：exe 内嵌 PLACE_* 与绿色包 wwp 逐字节等于 assets/placenames。
+
+    v4.1.3 事故形态是「仓库里有、包里没有」；旧门禁只查绿色包“有条目”，从不核对 exe,
+    于是资源漏嵌或 exe 陈旧时会全绿通过，用户装完地图仍是英文。
+    """
+    wanted = placename_asset_hashes(root)
+    problems: list[str] = []
+    if not wanted:
+        return problems
+    if setup is not None:
+        names = tuple(resource for resource, set_name in PLACENAME_RESOURCES if set_name in wanted)
+        embedded = embedded_resource_hashes(setup, names)
+        for resource, set_name in PLACENAME_RESOURCES:
+            if set_name in wanted and embedded.get(resource) != wanted[set_name]:
+                problems.append(f"安装器内嵌 {resource} 与 assets/placenames/{set_name}.wwp 不一致")
+    if pack is not None:
+        try:
+            with zipfile.ZipFile(pack) as z:
+                names = set(z.namelist())
+                for set_name, member in PACK_PLACENAME_MEMBERS.items():
+                    if set_name not in wanted:
+                        continue
+                    if member not in names:
+                        problems.append(f"绿色包缺少 {member}")
+                    elif hashlib.sha256(z.read(member)).hexdigest() != wanted[set_name]:
+                        problems.append(f"绿色包 {member} 与 assets/placenames/{set_name}.wwp 不一致")
+        except (OSError, zipfile.BadZipFile) as exc:
+            problems.append(f"绿色包地名集无法核验: {exc}")
+    return problems
+
+
 def check_upload_preflight(version: str, *, root: Path | None = None,
                            build_dir: Path | None = None,
                            report_path: Path | None = None) -> tuple[dict[str, bytes], list[str]]:
@@ -404,6 +461,11 @@ def check_upload_preflight(version: str, *, root: Path | None = None,
                     problems.append("安装器在预检期间发生变化")
             except Exception as exc:
                 problems.append(f"安装器内嵌载荷核验失败: {exc}")
+            try:
+                problems += placename_payload_problems(build / setup_name if setup_name in files else None,
+                                                       build / pack_name if pack_name in files else None, root)
+            except Exception as exc:
+                problems.append(f"地名集载荷核验失败: {exc}")
     # File bytes are retained for upload so a later disk change cannot replace the validated asset.
     return files, problems
 
@@ -507,8 +569,8 @@ def main(argv: list[str] | None = None) -> int:
         check_artifacts()
         check_pack_contents()
         _, problems = check_upload_preflight(VERSION)
-        record("payload-binding", "四资产与报告/内嵌 dll/json 绑定", not problems,
-               "; ".join(problems) if problems else "内嵌载荷与报告/当前引擎/词库/绿色包一致")
+        record("payload-binding", "四资产与报告/内嵌 dll/json/地名集绑定", not problems,
+               "; ".join(problems) if problems else "内嵌载荷与报告/当前引擎/词库/地名集/绿色包一致")
 
     combined = [(n, ok, d) for n, ok, d in results] + [(n, ok, d) for n, ok, d in VA.results]
     width = max(len(n) for n, _, _ in combined)

@@ -2409,3 +2409,46 @@ python scripts/perf_probe.py          # 游戏已在想定里
   2. 订阅 `DocumentCompleted` 的钩子对**按需创建的对话框**天然漏拍：要么首次扫描就抓，
      要么在订阅时补一次「文档已加载」的即时翻译。
   3. 双语标注（英文 + 【中文】）只能当兜底；玩家要的是可用性，正文类界面必须整段替换。
+## R80 地图地名集入包无对账：exe 内嵌 PLACE_* 漏嵌/陈旧时门禁全绿、用户全英文（v4.3.0 后）
+
+- **来源**：用户反馈「没有打包地图翻译」；同时 v4.3.0 发版当天刚踩过同类（exe 内嵌词典
+  过期，被 R35/R36 的「词典 JSON 不一致」抓红），所以顺手核对地名集是否有同等对账。
+- **实测（先证伪用户说法，再找缺口）**
+  - v4.3.0 四资产**都在**：exe 内嵌 `PLACE_CITIES` 103,201B / `PLACE_SYNOPTIC` 7,743B，
+    与 `assets/placenames/*.wwp` **逐字节一致**；绿色包两条 wwp 同哈希；内容
+    4,287/4,287 城 + 321/321 国家/海域全中文；实机每次启动日志
+    `LocalTileServer started … with 4608 Chinese landmarks`。
+  - 对照历史版本实查：`CMO_Chinese_Pack_4.1.3.zip` 的 wwp 条目 **0 个**（事故属实），
+    `4.2.5` / `4.3.0` 两个哈希完全相同 → 用户反映的情形属 v4.1.3 及更早，或只拷了部分文件。
+- **根因（真缺口）**：`release_check.payload-binding` 只核验 exe 内嵌的
+  `CMOLocalizer.dll` / `.json`（`embedded_engine_hashes` 写死两个资源名）；绿色包侧只断言
+  「有条目」，从不比对内容。于是：
+  1. 资源漏嵌（`build.sh` 的 `-resource:…PLACE_*` 被误删/改名）→ `DeployPlacenames` 里
+     `ExtractEmbeddedResource` 返回 false 被外层 `catch` 静默吞掉 → 装完地图全英文，
+     **所有门禁全绿**（与 R77 的 `Steam Workshop` 同类：静默失败比报错更难查）。
+  2. exe 陈旧（重建了 `assets/placenames` 却没重编 exe）→ 安装器与绿色包给同一版本
+     不同地图，同样查不出来。
+- **修复**
+  - `scripts/release_check.py`：`embedded_engine_hashes` 泛化为
+    `embedded_resource_hashes(setup, names)`；新增 `placename_payload_problems(setup, pack, root)`：
+    exe 内嵌 `PLACE_CITIES`/`PLACE_SYNOPTIC` 与绿色包 `WW/PlacenameSets/*/0000_0000.wwp`
+    都必须与 `assets/placenames/*.wwp` 哈希一致；接入 `check_upload_preflight`
+    （完整 `release_check` 与 `publish_release.py` 都走它），门禁名同步为
+    `payload-binding … /内嵌 dll/json/地名集绑定`。
+  - 存在性不在此重复判：`verify_all.gate_placenames` 已保证 4,287/321 全审 + 元数据指纹；
+    合成测试目录没有地名集时本检查静默跳过（避免与 R57 契约测试的虚构仓库互相打架）。
+  - `scripts/test_release_placenames.py` 新增 7 条用例（陈旧 exe、陈旧绿色包字节、绿色包缺条目、
+    单侧资产、合成目录跳过、漏嵌抛错）；`scripts/verify_regressions.py` 新增静态门禁
+    `R80-static-placename-payload`（跑该测试模块）。
+- **验收证据**
+  - 正向：真实四资产 `placename_payload_problems(...)` → `[]`；`--static` **46/46**（含新门禁 PASS）。
+  - 负向 A：单元用例 16/16 OK；`src/tests/ReleaseContractTests.py` 31/31 OK（合成仓库不受影响）。
+  - 负向 B（真读 exe + 绿色包，把 `assets/placenames/Cities.wwp` 改一个字节）：同时报出
+    「安装器内嵌 PLACE_CITIES 与 assets… 不一致」与「绿色包 … 不一致」两条。
+- **教训**
+  1. 「绿色包有条目」≠「包里是对的」：凡「仓库资产 → 产物载荷」的搬运都要**内容哈希**对账，
+     且**每条交付路径各自对账**（exe 内嵌 / zip 条目 / 安装后落盘）。
+  2. 带静默 `catch {}` 的部署函数必须配一条产物侧门禁，否则失败只会在用户屏幕上出现。
+  3. 发版当天出现的失败（R35/R36 陈旧 exe）是覆盖缺口的最好线索：同一版本里「有对账」的
+     资源红过，就要追问「其余被搬运的资源是否也有对账」。
+

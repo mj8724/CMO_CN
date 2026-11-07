@@ -441,6 +441,18 @@ def run_static(r: Runner) -> None:
              f"used={guard_used} dump={bool(dump_cmd)}",
              str(ENGINE.relative_to(ROOT)))
 
+    # R80：地图地名集必须真的进包。v4.1.3 事故形态是「仓库里有、包里没有」，旧门禁只能
+    # 验证绿色包“有条目”，从不核对 exe 内嵌 PLACE_*，于是资源漏嵌或 exe 陈旧会全绿。
+    payload_tests = proc_util.run([sys.executable, "-X", "utf8", "-B",
+                                   str(ROOT / "scripts/test_release_placenames.py")],
+                                  cwd=str(ROOT), capture_output=True)
+    payload_tail = (payload_tests.stdout or payload_tests.stderr).strip().splitlines()[-1:] or [""]
+    r.record("R80-static-placename-payload",
+             "R80 地名集载荷入包对账（exe 内嵌 PLACE_* / 绿色包 wwp 逐字节等于 assets）",
+             payload_tests.returncode == 0,
+             payload_tail[0][:120],
+             "scripts/test_release_placenames.py")
+
     term = proc_util.run([sys.executable, str(ROOT / "scripts/verify_terminology.py")],
                           cwd=str(ROOT), capture_output=True)
     tail = (term.stdout or term.stderr).strip().splitlines()[-1:] or [""]

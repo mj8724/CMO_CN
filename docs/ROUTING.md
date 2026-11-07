@@ -63,7 +63,7 @@
 | `scripts/deploy.sh` | 把 `build/` 产物装进游戏目录 + 写 `Command.exe.config` | 部署清单变了 |
 | `scripts/package.sh` | 打绿色包 zip（含 `--no-report` 防覆盖 live 报告） | 包内文件清单变了 |
 | `scripts/publish_release.py` | 建 GitHub Release + 上传 4 个资产。**`--verify-only` 是纯只读校验** | 发布流程变了 |
-| `scripts/release_check.py` | 发版统一入库检查（17 项）。未发布前最后一道闸 | 新增发版前置条件 |
+| `scripts/release_check.py` | 发版统一入库检查（18 项；`payload-binding` 核验 exe 内嵌 dll/json/地名集与绿色包内容哈希）。未发布前最后一道闸 | 新增发版前置条件 |
 | `scripts/sync_readme_downloads.py` | 生成 README 下载区；`--check` 模式供门禁 | 下载表格式变了 |
 | `scripts/verify_release.py` | 词典产物级发布门禁（条目数/结构） | 词典契约变了 |
 | `scripts/verify_no_secrets.py` | 密钥门禁：禁止明文凭据入库 | 凭据规则变了 |
@@ -291,7 +291,7 @@
 | `scripts/placename_translation.py` | 坐标感知的译名映射（原版/本地化一对） |
 | `scripts/build_cities_placenames.py` | 离线构建译好的 Cities.wwp（优先用已评审坐标） |
 | `scripts/test_global_placenames.py` | 全量地名审核的一致性测试（4,287+321 逐点唯一命中、译名一致） |
-| `scripts/test_release_placenames.py` | 发布侧地名门禁测试（元数据指纹、flags/顺序/坐标篡改必须失败） |
+| `scripts/test_release_placenames.py` | 发布侧地名门禁测试（元数据指纹、flags/顺序/坐标篡改必须失败；含 `placename_payload_problems` 入包对账用例，供 `R80-static-placename-payload` 调用） |
 | `scripts/test_static_html.py` | 静态 HTML 汉化断言（编码/完整译文/`.orig` 备份保留） |
 | `scripts/test_scenario_html.ps1` | 想定 HTML 导出的 PowerShell 回归 |
 | `scripts/test_web_translation.cjs` | WebView2 译文脚本的 Node 侧契约测试 |
