@@ -159,6 +159,7 @@
 | `dict/src/chunk0*.json` | 早期批量翻译的分片（历史批次，勿新增） |
 | `dict/src/air_ops_terms.json` | 空中作战术语 |
 | `dict/src/dlc_briefing_fixes.json` | DLC 简报修复 |
+| `dict/src/dlc_briefing_paragraphs.json` | DLC 简报**整段**译文（R81）：键 = 实机 `InnerText` 原文，由 `build_dict` 简报批次（`allow_sensitive=True`）并入 `exact`；整段替换通道 ⓪ 消费。新增时键必须逐字符照抄 |
 | `dict/src/live_message.json`、`dict/src/live_side_p1.json`、`dict/src/live_side_p2.json` | 实机审计补译（消息正文 / 简报正文分片） |
 | `dict/src/showcase_message.json`、`dict/src/showcase_side.json` | Showcase 战役简报正文 |
 | `dict/src/standalone_scenarios_message.json`、`dict/src/standalone_scenarios_side_p1.json`、`dict/src/standalone_scenarios_side_p2.json`、`dict/src/standalone_scenarios_side_p3_c1.json`、`dict/src/standalone_scenarios_side_p3_c2.json`、`dict/src/standalone_scenarios_side_p3_c3.json`、`dict/src/standalone_scenarios_side_p4_c1.json`、`dict/src/standalone_scenarios_side_p4_c2.json`、`dict/src/standalone_scenarios_side_p4_c3.json` | 独立想定简报正文（消息 + 按章节切分的 side 分片） |
