@@ -159,6 +159,7 @@
 | `dict/src/chunk0*.json` | 早期批量翻译的分片（历史批次，勿新增） |
 | `dict/src/air_ops_terms.json` | 空中作战术语 |
 | `dict/src/dlc_briefing_fixes.json` | DLC 简报修复 |
+| `dict/briefing_source_paragraphs.json` | 简报原文清单（英文段落 = 运行时整段键），由 `audit_briefing_paragraphs.py --export` 生成，供 R82 门禁消费 |
 | `dict/src/dlc_briefing_paragraphs.json` | DLC 简报**整段**译文（R81）：键 = 实机 `InnerText` 原文，由 `build_dict` 简报批次（`allow_sensitive=True`）并入 `exact`；整段替换通道 ⓪ 消费。新增时键必须逐字符照抄 |
 | `dict/src/live_message.json`、`dict/src/live_side_p1.json`、`dict/src/live_side_p2.json` | 实机审计补译（消息正文 / 简报正文分片） |
 | `dict/src/showcase_message.json`、`dict/src/showcase_side.json` | Showcase 战役简报正文 |
@@ -240,6 +241,7 @@
 | 路径 | 职责 |
 |---|---|
 | `scripts/audit_coverage.py` | 词典覆盖率审计 |
+| `scripts/audit_briefing_paragraphs.py` | 简报**整段**覆盖门禁（R82）：`--check` 校验 `dict/briefing_source_paragraphs.json` 每段都能命中整段中文键；`--export DIR` 从 `BRIEFING_RAW_DUMP` 抓的原文重建清单 |
 | `scripts/audit_campaign_text.py` | **DLC 战役汉化盘点**：逐战役统计「内嵌 <ScenDescription> 散文未译段」与「[LOADDOC] 外部 HTML 的英文正文段」，区分元数据行与 LOADDOC 指令，`--json` 出机读报告。改战役译文后用它复核 |
 | `scripts/db_coverage_audit.py` | 数据库汉化覆盖审计（按缺口分类） |
 | `scripts/db_prose_gaps.py` | 数据库描述散文缺口审计 |

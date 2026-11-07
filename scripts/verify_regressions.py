@@ -453,6 +453,19 @@ def run_static(r: Runner) -> None:
              payload_tail[0][:120],
              "scripts/test_release_placenames.py")
 
+    # R82：简报「整段」覆盖。DLC 简报是 Word 粘贴 HTML（一个 <P> 里几十个 <SPAN>），
+    # 只有整段建键才能翻；碎片键（The/这、chance/机会）只会拼出电报体（R81）。
+    # 清单 = dict/briefing_source_paragraphs.json（由 BRIEFING_RAW_DUMP 抓的原文导出）。
+    brief_paragraphs = proc_util.run([sys.executable, "-X", "utf8", "-B",
+                                      str(ROOT / "scripts/audit_briefing_paragraphs.py"), "--check"],
+                                     cwd=str(ROOT), capture_output=True)
+    brief_tail = (brief_paragraphs.stdout or brief_paragraphs.stderr).strip().splitlines()[-1:] or [""]
+    r.record("R82-static-briefing-paragraphs",
+             "R82 简报整段覆盖（清单每段都能命中整段中文键，无英文残留）",
+             brief_paragraphs.returncode == 0,
+             brief_tail[0][:120],
+             "scripts/audit_briefing_paragraphs.py")
+
     term = proc_util.run([sys.executable, str(ROOT / "scripts/verify_terminology.py")],
                           cwd=str(ROOT), capture_output=True)
     tail = (term.stdout or term.stderr).strip().splitlines()[-1:] or [""]
