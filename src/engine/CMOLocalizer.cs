@@ -2724,6 +2724,8 @@ namespace CMOLocalizer
             try
             {
                 if (wb.Document == null || wb.Document.Body == null) return;
+                // 只记第一次：此后的调用拿到的是已翻译内容（RAW_BRIEFING_DUMP 依赖原始英文串）。
+                try { RememberRawBriefingOnce(wb, wb.Document.Body.InnerHtml); } catch { }
                 HtmlElementCollection all = wb.Document.Body.All;
                 if (all == null) return;
                 List<HtmlElement> targets = new List<HtmlElement>();
@@ -2813,6 +2815,37 @@ namespace CMOLocalizer
             }
             catch { }
         }
+
+        /// <summary>
+        /// 保留「翻译前」的简报 HTML，供只读探针 RAW_BRIEFING_DUMP 使用。
+        /// 没有它就无法拿到被游戏切碎的原始英文串，也就无法为池片段拼出的简报建键（R81）。
+        /// </summary>
+        private static void RememberRawBriefingOnce(WebBrowser wb, string html)
+        {
+            if (wb == null || string.IsNullOrEmpty(html)) return;
+            try
+            {
+                lock (rawBriefingLock)
+                {
+                    int key = wb.GetHashCode();
+                    if (rawBriefingHtml.ContainsKey(key)) return;
+                    rawBriefingHtml[key] = html;
+                    while (rawBriefingOrder.Count >= 6)
+                    {
+                        int oldest = rawBriefingOrder[0];
+                        rawBriefingOrder.RemoveAt(0);
+                        rawBriefingHtml.Remove(oldest);
+                    }
+                    int hash = wb.GetHashCode();
+                    if (!rawBriefingOrder.Contains(hash)) rawBriefingOrder.Add(hash);
+                }
+            }
+            catch { }
+        }
+
+        private static readonly object rawBriefingLock = new object();
+        private static readonly Dictionary<int, string> rawBriefingHtml = new Dictionary<int, string>();
+        private static readonly List<int> rawBriefingOrder = new List<int>();
 
         /// <summary>简报里的「段落容器」：只认承载整段正文的块标签。</summary>
         private static bool IsParagraphBlock(HtmlElement el)
@@ -6336,6 +6369,68 @@ namespace CMOLocalizer
         }
 
         /// <summary>
+        /// BRIEFING_RAW_DUMP：导出翻译前的简报 HTML（含标签结构），并报出英文行数与样本。
+        /// 它回答「原始英文串到底长什么样」——整段键能不能建、有没有被标签/链接切断。
+        /// </summary>
+        private static string HandleBriefingRawDump()
+        {
+            WebBrowser target = null;
+            string formName = "";
+            foreach (Form f in OpenFormsSnapshot())
+            {
+                if (f == null || f.IsDisposed) continue;
+                WebBrowser wb = FindHtmlEditorBrowser(f);
+                if (wb == null) continue;
+                target = wb;
+                formName = f.Name;
+                break;
+            }
+            if (target == null) return "{\"status\":\"error\",\"message\":\"no briefing editor open\"}";
+            string html = null;
+            lock (rawBriefingLock)
+            {
+                string cached;
+                if (rawBriefingHtml.TryGetValue(target.GetHashCode(), out cached)) html = cached;
+            }
+            if (string.IsNullOrEmpty(html))
+            {
+                try
+                {
+                    target.Invoke((MethodInvoker)delegate
+                    {
+                        try
+                        {
+                            if (target.Document != null && target.Document.Body != null)
+                                html = target.Document.Body.InnerHtml ?? "";
+                        }
+                        catch { }
+                    });
+                }
+                catch { }
+            }
+            html = html ?? "";
+            string text = Regex.Replace(html, "<[^>]*>", "\n");
+            text = Regex.Replace(text, "&nbsp;", " ");
+            string outFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CMOLocalizer_Briefing_RAW.html");
+            try { File.WriteAllText(outFile, html, new UTF8Encoding(false)); } catch { }
+            int englishLines = 0;
+            string[] lines = text.Replace("\r", "").Split('\n');
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string line = lines[i].Trim();
+                if (line.Length < 4 || ContainsChinese(line) || !HasAsciiLetter(line)) continue;
+                englishLines++;
+            }
+            StringBuilder jb = new StringBuilder();
+            jb.Append("{\"status\":\"ok\",\"form\":\"").Append(JsonEsc(formName)).Append('"');
+            jb.Append(",\"file\":\"").Append(JsonEsc(outFile)).Append('"');
+            jb.Append(",\"bytes\":").Append(html.Length);
+            jb.Append(",\"englishLines\":").Append(englishLines);
+            jb.Append('}');
+            return jb.ToString();
+        }
+
+        /// <summary>
         /// BRIEFING_DUMP：导出富文本简报正文到 CMOLocalizer_Briefing.txt，并返回
         /// 字符数/汉字数/英文行数与英文行样本。只读：不修改任何控件。
         /// </summary>
@@ -6674,6 +6769,12 @@ namespace CMOLocalizer
                 // 只读诊断：把当前打开的富文本简报（阵营简报/想定说明）正文导出，
                 // 并报出「还剩多少英文行」。没有这个数字，简报汉化就只能靠肉眼截图判断。
                 return HandleBriefingDump();
+            }
+
+            if (cmd == "BRIEFING_RAW_DUMP")
+            {
+                // 只读诊断：导出「翻译发生之前」的简报 HTML，用于给池片段拼接的简报建键（R81）。
+                return HandleBriefingRawDump();
             }
 
             if (cmd == "DUMP_OPEN_FORMS")

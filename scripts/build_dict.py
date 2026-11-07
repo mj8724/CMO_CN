@@ -361,6 +361,9 @@ def build() -> dict:
     brief1_file = DICT / "briefing_dict.json"
     brief2_file = DICT / "brief_translations.json"
     brief3_file = SRC / "dlc_briefing_fixes.json"
+    # DLC 简报整段译文（R81）：简报正文是散文，会被 is_script_or_schema 误判成
+    # 脚本/模式串（型号里的括号、数字），所以必须与其它简报源一样走 allow_sensitive=True。
+    brief4_file = SRC / "dlc_briefing_paragraphs.json"
     all_briefs: dict[str, str] = {}
     if brief1_file.is_file():
         all_briefs.update(load(brief1_file))
@@ -368,6 +371,8 @@ def build() -> dict:
         all_briefs.update(load(brief2_file))
     if brief3_file.is_file():
         all_briefs.update(load(brief3_file))
+    if brief4_file.is_file():
+        all_briefs.update(load(brief4_file))
 
     for en, zh in all_briefs.items():
         if not en or not zh or en in blacklist:

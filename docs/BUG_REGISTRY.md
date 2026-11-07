@@ -2509,3 +2509,22 @@ python scripts/perf_probe.py          # 游戏已在想定里
      后者会产出半词键，反过来污染别的文本（本次三处 garbage 全来自这条弯路）。
   3. 词表/术语表只应服务名字与型号；散文一律整句查表，否则「词都认识」反而制造夹生串。
 
+### R81 续（2026-11-07）：整段补译落地 + 原始英文串导出探针
+
+- **新增只读探针 `BRIEFING_RAW_DUMP`**（引擎）：在 `TranslateHtmlEditorBrowser` 首次调用时缓存
+  「翻译前」的简报 HTML（每个浏览器只记第一次），命令把它写到 `CMOLocalizer_Briefing_RAW.html`。
+  这是给「池片段拼接」的简报建键的唯一原文来源——实机转出来的文本已经是半中半英，不能拿来当键。
+- **新数据源 `dict/src/dlc_briefing_paragraphs.json`**：135 条整段译文（133 段正文 + 2 条战斗序列行），
+  键与实机 `InnerText` 逐字符一致。`build_dict.py` 把它并入简报批次（`brief4`，`allow_sensitive=True`）：
+  散文会被 `is_script_or_schema` 误判成脚本串（型号括号 + 数字），走普通源会被整条丢弃
+  （实测 133 条只进 132 条，就是这个原因）。
+- **实测（`sweep_titles` + `sweep_after`，受影响 6 战役）**
+  - Shifting Sands 9 类「词表碎片拼出来的电报体」全部消失，整段中文替换生效；
+  - 整行英文只剩 2 条**战斗序列/编号行**（`A Coy, 3rd Bn, 2nd Marines (part of 22nd MEU …)`、
+    `§ (16 x H160m Guepard)`），已补译；
+  - 三层门禁仍绿：`verify_regressions --static` 46/46、`verify_all` 11/11。
+- **测试坑（写下来免得再踩）**：想定选择树显示的是 **ScenTitle**（`Showcase: Queen Elizabeth`、
+  `Deliverance`、`The Mighty"O"`），不是 `.scen` 文件名；用文件 stem 发 `SCEN_SELECT` 会整体匹配失败。
+  `SCEN_SELECT` 本身是 `IndexOf` 子串匹配，带引号/逗号的标题仍可能选不中（本次 28 个剧本因此在
+  自动化里反复 `load failed`），这些剧本的结论取自 stem 版 sweep 的同一批面。
+
