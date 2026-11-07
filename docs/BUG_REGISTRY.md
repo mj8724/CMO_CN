@@ -2452,3 +2452,60 @@ python scripts/perf_probe.py          # 游戏已在想定里
   3. 发版当天出现的失败（R35/R36 陈旧 exe）是覆盖缺口的最好线索：同一版本里「有对账」的
      资源红过，就要追问「其余被搬运的资源是否也有对账」。
 
+## R81 DLC 战役「剧本」大量半中半英：段落被内联标签切碎 + 半词碎片键 + 词表拼接散文（v4.3.0 后）
+
+- **来源**：用户反馈「很多 DLC 战役的剧本没有汉化，你每个都检查下」。
+- **盘点方法（先给数据，再动代码）**
+  - 实机侧：`build/live_evidence/sweep_full/`（145 场景 × 阵营简报/想定说明 = 290 面，
+    `BRIEFING_DUMP` 抓取）逐行判定英文散文（≥4 个连续拉丁词，排除编号列表）。
+  - 静态侧：`.scen` 的 `<ScenDescription>` 与 `[LOADDOC]` 页分类（正文/图片/缺失）。
+  - 结果：**56 个英文段落**，集中在 Showcase 20、Shifting Sands 18、Red Tide 6、Falklands 4、
+    Northern Inferno 3、The Silent Service 3、Desert Storm 2。其中 **16 条的译文本来就在词典里**。
+- **根因（三类，互相叠加）**
+  1. **段落被内联标签切碎**：`<P>…<I>USS John F Kennedy</I>…</P>` 这类段落，词典键是**整段**，
+     但 DOM 里被切成多个 `#text`。`TranslateHtmlEditorBrowser` 只有「叶子元素」和
+     「混排父元素的直接 `#text`」两条通道，整段永远匹配不上 ⇒ 译文存在也显示英文
+     （The Silent Service/15 的 `Yesterday NATO conducted…` 逐字节就是词典键，实机却是英文）。
+  2. **半词碎片键**：早期用「按已译片段切割再补译」的办法处理上述切碎，产出了
+     `"ort": "残文ort电"`（来自 p|ort）、`"orthern": "部地区"`（N|orthern）、`"issions": "任务"`
+     这类半个单词的键。它们一旦被运行时的词表/拼接通道命中，就会把别的英文词切开，
+     实机出现 `p残文ort电`、`n部地区` 这种不可读串。
+  3. **词表拼接散文**：`TryComposeTranslate` 对「整串不含中文」的文本一律尝试按术语表
+     逐词拼接；词库覆盖足够广时，英文句子会被拼成中英夹生串
+     （实测 `The 五国联防安排 (协防通报 FPDA 联合戒备) are a number of defense accords…`）。
+     R8 当年写下「No word-level composition」，但只对**生词**生效；词都认识时仍然会拼。
+- **修复**
+  - 引擎（`src/engine/CMOLocalizer.cs`）
+    - 新增「整段替换」通道 ⓪：对 `P/LI/TD/TH/H1-H6` 取 `InnerText`、归一化空白后整段查表，
+      命中就把整个元素内容替换为中文（转义写回）。跳过含 `A/IMG/TABLE/INPUT/SELECT/…` 或
+      嵌套块元素的容器，避免破坏结构。幂等：写回的是中文，再查不到键。
+    - 新增 `LooksLikeProseSentence`：散文（含常见虚词/≥7 词/句末标点/`. `）不参与词表拼接，
+      只认整句查表——半中半英的夹生串从源头消失。
+  - 数据：删除 3 个半词碎片键（`ort` / `orthern` / `issions`，分别在
+    `dict/src/shifting_sands_side.json`、`dict/brief_translations.json`、`dict/briefing_dict.json`）。
+  - 构建守卫（`scripts/build_dict.py` 的 `find_fragment_keys`）：任何「只作为更长英文单词的
+    **后缀**出现、从不独立成词」的小写单键一律拒绝构建（`build_dict` 直接 SystemExit）。
+    负向自检：喂入 `ort` 会红；`thorough`（前缀词）与 `port`（独立词）不误杀。
+- **验收证据（同一套实机 sweep，6 个受影响战役 81 个剧本）**
+  - 覆盖：80/81 面测到（仅 `Showcase Queen Elizabeth` 稳定加载失败，`.scen` 存在，属 UI 选择问题）。
+  - 「译文已在词典但显示英文」：**16 → 1**（剩 Red Tide/8 一段，见遗留）。
+  - 整行英文（strictEnglish）：**4 行**，且 4 行都不是正文散文
+    （`§ (16 x H160m Guepard)`、`Sub-Surface`、`COMMAND & CONTROL` ×2 节标题/编号）。
+  - 之前的中英夹生串（`p残文ort电`、`n部地区`、`The 五国联防安排 …`）在新 sweep 中不再出现。
+  - 静态门禁：`verify_regressions --static` **46/46**（含 `R45-static-translate-idempotent` 20 条
+    幂等用例、`R79-static-briefing-editor` 接线）。
+- **遗留（下一步，不在本条目内假装修好）**
+  1. 39 行「词典缺失」仍半中半英：这些**简报正文来自游戏字符串池的片段拼接**
+     （例：`任务作战单位372. 01. 06 Based at RAF Ascension Island`），句子被池条目切碎，
+     只有整句入池才能翻。需要先做「原始英文串采集」（把未翻译的 briefing 原文导出），
+     再按整句补词条；否则只能翻到片段。
+  2. Red Tide/8 那段整段译文存在却仍英文：该 `<P>` 内可能含链接或重复文档，整段通道被
+     `HasRichDescendant` 保守跳过，需要单独看 DOM 结构。
+  3. `Showcase Queen Elizabeth` 加载失败：先确认列出名（`SCEN_SELECT`）与 `.scen` 标题是否一致。
+- **教训**
+  1. 「译文在词典里」不等于「界面上会显示」：必须以实机 dump 为验收面，静态查表覆盖只能当
+     充分条件的一半。
+  2. 遇到「句子被标签切碎」时，正确做法是**升到段落层整段替换**，而不是「把残句逐个补译」——
+     后者会产出半词键，反过来污染别的文本（本次三处 garbage 全来自这条弯路）。
+  3. 词表/术语表只应服务名字与型号；散文一律整句查表，否则「词都认识」反而制造夹生串。
+

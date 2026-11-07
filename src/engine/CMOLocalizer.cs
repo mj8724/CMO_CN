@@ -2728,6 +2728,27 @@ namespace CMOLocalizer
                 if (all == null) return;
                 List<HtmlElement> targets = new List<HtmlElement>();
                 List<string> sources = new List<string>();
+                List<HtmlElement> htmlTargets = new List<HtmlElement>();
+                List<string> htmlSources = new List<string>();
+                // ⓪ 整段替换：<P>…<I>USS John F Kennedy</I>…</P> 这类段落被内联标签切成
+                //    多个 #text，逐节点查表永远落空（词典键是整段英文）。实测这是 DLC 简报
+                //    半中半英的主因：译文存在，但通道拿不到整段。
+                //    条件收紧：只碰内联格式标签、不含链接/图片/表格/输入框，避免破坏结构。
+                for (int i = 0; i < all.Count; i++)
+                {
+                    HtmlElement el = all[i];
+                    if (!IsParagraphBlock(el)) continue;
+                    if (HasRichDescendant(el)) continue;
+                    string inner = null;
+                    try { inner = el.InnerText; } catch { }
+                    string normalized = NormalizeBriefingWhitespace(inner);
+                    if (!WantsBriefingTranslation(normalized)) continue;
+                    string translated = TranslateBriefingText(normalized);
+                    if (string.IsNullOrEmpty(translated) || translated == normalized) continue;
+                    if (!ContainsChinese(translated) || !HasAsciiLetter(normalized)) continue;
+                    htmlTargets.Add(el);
+                    htmlSources.Add(EscapeHtmlText(translated));
+                }
                 bool byHtml = false;
                 // ① 叶子元素（唯一子节点是 #text）：这是最常见形态，实测有效。
                 for (int i = 0; i < all.Count; i++)
@@ -2779,11 +2800,66 @@ namespace CMOLocalizer
                     }
                     catch { }
                 }
+                for (int i = 0; i < htmlTargets.Count; i++)
+                {
+                    try { htmlTargets[i].InnerHtml = htmlSources[i]; }
+                    catch { }
+                }
+                if (htmlTargets.Count > 0)
+                    Log("Briefing paragraphs replaced: " + htmlTargets.Count + " blocks (" + wb.Name + ")");
                 if (targets.Count > 0)
                     Log("Briefing HTML translated: " + targets.Count + " nodes (" + wb.Name
                         + (byHtml ? ", html mode" : "") + ")");
             }
             catch { }
+        }
+
+        /// <summary>简报里的「段落容器」：只认承载整段正文的块标签。</summary>
+        private static bool IsParagraphBlock(HtmlElement el)
+        {
+            if (el == null) return false;
+            string tag = el.TagName;
+            if (string.IsNullOrEmpty(tag)) return false;
+            tag = tag.ToUpperInvariant();
+            return tag == "P" || tag == "LI" || tag == "TD" || tag == "TH"
+                || tag == "H1" || tag == "H2" || tag == "H3" || tag == "H4" || tag == "H5" || tag == "H6";
+        }
+
+        /// <summary>段落里出现链接、图片、表格、控件、嵌套段落时不能整段覆盖（会丢结构）。</summary>
+        private static bool HasRichDescendant(HtmlElement el)
+        {
+            try
+            {
+                HtmlElementCollection kids = el.All;
+                if (kids == null) return false;
+                for (int i = 0; i < kids.Count; i++)
+                {
+                    HtmlElement kid = kids[i];
+                    if (kid == null) continue;
+                    string tag = kid.TagName;
+                    if (string.IsNullOrEmpty(tag)) continue;
+                    tag = tag.ToUpperInvariant();
+                    if (tag == "A" || tag == "IMG" || tag == "TABLE" || tag == "INPUT"
+                        || tag == "SELECT" || tag == "TEXTAREA" || tag == "BUTTON"
+                        || tag == "P" || tag == "DIV" || tag == "LI" || tag == "TD"
+                        || tag == "H1" || tag == "H2" || tag == "H3" || tag == "H4"
+                        || tag == "H5" || tag == "H6" || tag == "OBJECT" || tag == "IFRAME")
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch { }
+            return false;
+        }
+
+        /// <summary>整段查表前的归一化：换行/多空格/不换行空格都压成单空格。</summary>
+        private static string NormalizeBriefingWhitespace(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return text;
+            string s = text.Replace('\u00a0', ' ').Replace("\r", " ").Replace("\n", " ").Replace("\t", " ");
+            s = Regex.Replace(s, "\\s+", " ").Trim();
+            return s;
         }
 
         /// <summary>简报文本是否值得送翻译：有字母、且不是「已中文且残留英文不超过 1 个词」。</summary>
@@ -5840,13 +5916,47 @@ namespace CMOLocalizer
             // 新增装备只要由已有词组成就自动成句，不必再逐条手写。
             if (!ContainsChinese(raw))
             {
-                string composed;
-                if (TryComposeTranslate(raw, out composed) && !string.IsNullOrEmpty(composed) && composed != raw)
+                // 散文不参与“词表拼接”：词表覆盖得足够广时，逐词拼凑会把英文句
+                // 子拼成中英夹生串（实测「The 五国联防安排 … are a number of defense
+                // accords」）。名字/型号才是组合对象，句子只认整句查表。
+                if (!LooksLikeProseSentence(raw))
                 {
-                    return composed;
+                    string composed;
+                    if (TryComposeTranslate(raw, out composed) && !string.IsNullOrEmpty(composed) && composed != raw)
+                    {
+                        return composed;
+                    }
                 }
             }
             return raw;
+        }
+
+        /// <summary>
+        /// 是否是一句「散文」（而不是名字/型号）：句子只能整句查表翻译，不能靠词表拼接。
+        /// 判据取保守值——命中任意一条就算散文：句末句号/问号/叹号、含 ". " 分隔、
+        /// 含常见虚词作为独立词。名字（`USS John F Kennedy`）不会命中。
+        /// </summary>
+        private static bool LooksLikeProseSentence(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return false;
+            string t = text.Trim();
+            int words = 0;
+            foreach (Match m in Regex.Matches(t, "[A-Za-z][A-Za-z'-]+"))
+            {
+                words++;
+                string w = m.Value.ToLowerInvariant();
+                if (w == "the" || w == "are" || w == "was" || w == "were" || w == "have" || w == "been"
+                    || w == "this" || w == "that" || w == "with" || w == "from" || w == "will"
+                    || w == "would" || w == "which" || w == "their" || w == "there" || w == "into"
+                    || w == "they" || w == "will" || w == "should")
+                {
+                    return true;
+                }
+            }
+            if (words >= 7) return true;
+            if (t.EndsWith(".") || t.EndsWith("?") || t.EndsWith("!")) return true;
+            if (t.IndexOf(". ") >= 0) return true;
+            return false;
         }
 
         private static void LoadDictionaries(string jsonPath)

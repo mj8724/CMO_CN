@@ -549,6 +549,16 @@ def build() -> dict:
         exact = {k: apply_naming_standard(v, name_rules) for k, v in exact.items()}
         offsets = {k: apply_naming_standard(v, name_rules) for k, v in offsets.items()}
 
+    # --- fragment guard: a mid-word key can only damage live text ---------
+    # History（R81）：`ort`（来自 p|ort）、`orthern`（N|orthern）这类「半个单词」键
+    # 一旦进入词库，就会在运行时被拼进别的英文词里，产出 `p残文ort电`、`n部地区`
+    # 这种不可读的串。它们永远不可能是游戏单独显示的一个字符串，所以直接拒绝。
+    # 判据：小写单词 + 无数字 + 只在更长的英文单词里作为**后缀**出现（从不独立成词）。
+    fragment_keys = find_fragment_keys(exact)
+    if fragment_keys:
+        raise SystemExit("build_dict: 发现半词碎片键，会破碎实机文本，请从数据源删除："
+                         + ", ".join(repr(k) for k in fragment_keys))
+
     terms = load_terms()
     ordered_words = {k: terms[k] for k in sorted(terms)}
     commented = load_comments()
@@ -581,6 +591,24 @@ def build() -> dict:
         "partial": ordered_partial,
         "words": ordered_words,
     }
+
+
+def find_fragment_keys(exact: dict[str, str]) -> list[str]:
+    """找出「半个单词」键：只作为更长英文单词的后缀出现、从不独立成词的小写单键。"""
+    corpus = "\n".join(k for k in exact if isinstance(k, str) and len(k) > 12)
+    if not corpus:
+        return []
+    found = []
+    for key in exact:
+        if not isinstance(key, str) or " " in key or not (1 <= len(key) <= 10):
+            continue
+        if not re.fullmatch(r"[a-z]+", key):
+            continue
+        if re.search(r"(?<![A-Za-z])" + re.escape(key) + r"(?![A-Za-z])", corpus):
+            continue          # 在句子中独立成词 → 真词
+        if re.search(r"[A-Za-z]" + re.escape(key) + r"(?![A-Za-z])", corpus):
+            found.append(key)  # 只作为别的单词的后缀出现 → 半个词
+    return sorted(found)
 
 
 def write(doc: dict, path: Path) -> None:
