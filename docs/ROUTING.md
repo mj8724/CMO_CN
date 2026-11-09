@@ -85,7 +85,7 @@
 | `src/engine/UiTranslationQueue.cs` | 有界增量翻译队列：按 UI 线程派发，执行前复核控件归属与输入保护 |
 | `src/engine/UiPerfMetrics.cs` | 实际 UI 回调耗时与待执行计量；投递、执行、完成分别计数，供性能探针识别排队与超帧 |
 | `src/engine/WpfTranslationQueue.cs` | 每 Dispatcher 一份有界合并队列，以节点/Inline 游标分片；换根或卸载取消旧工作，避免全树异线程积压 |
-| `src/engine/WebViewTranslation.cs` | WebView2 译文注入宿主：注册文档脚本、限制来源/nonce/容量、拒绝旧回包与编辑区写入 |
+| `src/engine/WebViewTranslation.cs` | WebView2 译文注入宿主：注册文档脚本、限制来源/nonce/容量、拒绝旧回包与编辑区写入；含页→宿主通道探帧看门狗（1.6s 无回执就改宿主轮询 `take()`，R84）与只读探针 `WEBVIEW_DIAG` |
 | `src/engine/WebViewTranslation.js` | 上面宿主注入页面的脚本。**以嵌入资源 `CMOLocalizer.WebViewTranslation.js` 打进 DLL**（`scripts/build.ps1` 负责 `-resource:`），改名或移动会运行期抛 `Missing WebViewTranslation.js embedded resource` |
 | `src/engine/WpfValueTranslation.cs` | WPF 值翻译（`Content`/`Text`/绑定安全写回）、武器子树的只读绑定/Inline/时序诊断，以及**挂在稳定 ItemsControl 容器上的武器行绑定投影**（R68）；从 `CMOLocalizer.cs` 抽出的 partial 分片 |
 ### `CMOLocalizer.cs` 内部地图（按子系统找，不要按行号找）
@@ -160,7 +160,7 @@
 | `dict/src/air_ops_terms.json` | 空中作战术语 |
 | `dict/src/dlc_briefing_fixes.json` | DLC 简报修复 |
 | `dict/briefing_source_paragraphs.json` | 简报原文清单（英文段落 = 运行时整段键），由 `audit_briefing_paragraphs.py --export` 生成，供 R82 门禁消费 |
-| `dict/src/dlc_briefing_paragraphs.json` | DLC 简报**整段**译文（R81）：键 = 实机 `InnerText` 原文，由 `build_dict` 简报批次（`allow_sensitive=True`）并入 `exact`；整段替换通道 ⓪ 消费。新增时键必须逐字符照抄 |
+| `dict/src/dlc_briefing_paragraphs.json` | DLC 简报与战役介绍/结局的**整段**译文（R81/R83）：键 = 实机 `InnerText`/文本节点原文，由 `build_dict` 简报批次（`allow_sensitive=True`）并入 `exact`；整段替换通道 ⓪ 与 WebView2 桥消费。新增时键必须逐字符照抄 |
 | `dict/src/live_message.json`、`dict/src/live_side_p1.json`、`dict/src/live_side_p2.json` | 实机审计补译（消息正文 / 简报正文分片） |
 | `dict/src/showcase_message.json`、`dict/src/showcase_side.json` | Showcase 战役简报正文 |
 | `dict/src/standalone_scenarios_message.json`、`dict/src/standalone_scenarios_side_p1.json`、`dict/src/standalone_scenarios_side_p2.json`、`dict/src/standalone_scenarios_side_p3_c1.json`、`dict/src/standalone_scenarios_side_p3_c2.json`、`dict/src/standalone_scenarios_side_p3_c3.json`、`dict/src/standalone_scenarios_side_p4_c1.json`、`dict/src/standalone_scenarios_side_p4_c2.json`、`dict/src/standalone_scenarios_side_p4_c3.json` | 独立想定简报正文（消息 + 按章节切分的 side 分片） |
@@ -242,7 +242,7 @@
 |---|---|
 | `scripts/audit_coverage.py` | 词典覆盖率审计 |
 | `scripts/audit_briefing_paragraphs.py` | 简报**整段**覆盖门禁（R82）：`--check` 校验 `dict/briefing_source_paragraphs.json` 每段都能命中整段中文键；`--export DIR` 从 `BRIEFING_RAW_DUMP` 抓的原文重建清单 |
-| `scripts/audit_campaign_text.py` | **DLC 战役汉化盘点**：逐战役统计「内嵌 <ScenDescription> 散文未译段」与「[LOADDOC] 外部 HTML 的英文正文段」，区分元数据行与 LOADDOC 指令，`--json` 出机读报告。改战役译文后用它复核 |
+| `scripts/audit_campaign_text.py` | **DLC 战役汉化盘点**：逐战役统计「内嵌 <ScenDescription> 散文未译段」「`*.campaign` 的 <Description>/<EndingText> 内联散文未译段」与「[LOADDOC] 外部 HTML 的英文正文段」，区分元数据行与 LOADDOC 指令，`--json` 出机读报告。改战役译文后用它复核 |
 | `scripts/db_coverage_audit.py` | 数据库汉化覆盖审计（按缺口分类） |
 | `scripts/db_prose_gaps.py` | 数据库描述散文缺口审计 |
 | `scripts/db_prose_inventory.py` | 数据库描述散文存量盘点 |
@@ -352,6 +352,8 @@
 | `POOL_DUMP` | 导出字符串池注入情况 |
 | `RELOAD_DICT` | 重载词典（改词典后免重启） |
 | `BRIEFING_DUMP` | 只读：把当前打开的富文本简报（阵营简报/想定说明）正文导到 `CMOLocalizer_Briefing.txt`，并返回字符/汉字/英文行数与样本。简报汉化只能靠这个数字验收 |
+| `WEBVIEW_TEXT <窗体>` / `WEBVIEW_JS <窗体> <脚本>` | 只读：在该窗体的 WebView2 里取 `body.innerText` / 执行一段脚本（阵营选择、系列战役描述面板只在这里能看到 DOM） |
+| `WEBVIEW_DIAG <窗体>` | 只读：WebView2 桥状态——消息事件是否接上、回执计数 `messageEvents`、文档 nonce/来源、队列与首个丢弃原因（R84 靠它分清「译文没命中/回包被拒/通道死了」） |
 
 ---
 
@@ -381,7 +383,7 @@
 | 路径 | 职责 |
 |---|---|
 | `docs/ROUTING.md` | **本文件**。新增文件必须登记 |
-| `docs/BUG_REGISTRY.md` | 缺陷台账 R1–R50，**只增不改**。修 bug 必须登记 |
+| `docs/BUG_REGISTRY.md` | 缺陷台账 R1–R84（CRLF，**只增不改**）。修 bug 必须登记 |
 | `docs/CHANGELOG.md` | 发布说明；`publish_release.py` 取顶部段落作为 Release 正文 |
 | `docs/RELEASE_MANIFEST.md` | 发版清单与规则（含"已发布资产只增不改"） |
 | `docs/RELEASE_TEST_SOP.md` | 发版测试 SOP |

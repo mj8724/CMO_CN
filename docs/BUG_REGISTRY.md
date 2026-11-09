@@ -2528,3 +2528,76 @@ python scripts/perf_probe.py          # 游戏已在想定里
   `SCEN_SELECT` 本身是 `IndexOf` 子串匹配，带引号/逗号的标题仍可能选不中（本次 28 个剧本因此在
   自动化里反复 `load failed`），这些剧本的结论取自 stem 版 sweep 的同一批面。
 
+## R83 DLC「系列战役」选单：Fail Safe / Tides of War 的介绍与结局正文整段英文（v4.3.0 后）
+
+> 编号说明：R82（简报整段覆盖门禁）随提交 `fddf233` 落地，台账未单列条目；本条沿用其后编号。
+
+- **来源**：用户反馈两张实机截图——系列战役对话框右侧描述对 Fail Safe、Tides of War 仍是英文。
+- **盘点（先定位覆盖面，再动数据）**
+  - `Scenarios/*/*.campaign` 共 11 个：**只有** Fail Safe、Tides of War 的
+    `<Description>`/`<EndingText>` 是内联 HTML，其余 9 个战役都是 `[LOADDOC]xxx.html`
+    （由 `Scenarios_HTML.zip` 就地落盘汉化，本来就不经过词典）。
+  - 这两处内联正文任何通道都没覆盖：`dict/src/dlc_briefing_paragraphs.json` 里没有对应整段键。
+- **根因（两层，缺一都还会复现）**
+  1. **数据**：该面板是 WebView2（`CampaignPlayWindow/WebBrowser1`），页面把**每个文本节点整串**
+     送宿主，宿主按 `TranslateBriefingText(key.Trim())` 整串查表。Tides of War 那段
+     由 4 条**已存在**的整句键平铺而成，逐句键永远命中不了整段；
+     Fail Safe 的 3 段介绍 + 5 段结局（含引语/出处两行）则完全没有键。
+  2. **门禁盲区**：`audit_campaign_text.py` 只扫 `.scen` 的 `<ScenDescription>` 与 `[LOADDOC]` 页，
+     **完全没有 `.campaign` 这一层** ⇒ 静态盘点永远是 0 未译，问题只能靠用户截图发现。
+- **修复**
+  - 数据（`dict/src/dlc_briefing_paragraphs.json`，135 → 144 条）：新增 9 条**整段**键，
+    键逐字符取自实机 `WEBVIEW_JS` 抓到的文本节点（`Trim()` 后），不用文件推导，避免 R82 那类
+    「内联标签插入空格导致键差一个字符」的坑。Tides of War 那段直接拼接 4 条已审定整句译文，
+    术语与既有简报一致（东盟团结演习 / 十段线 / 小蓝人 / 海上民兵 / 中华人民共和国中央军事委员会）。
+  - 门禁（`scripts/audit_campaign_text.py`）：新增 `campaign_rows()`，把每个 `*.campaign` 的
+    `<Description>`/`<EndingText>` 内联散文并入 `inline_prose`/`inline_untranslated`，
+    `[LOADDOC]` 引用并入断裂引用校验，机读报告新增 `campaign_detail`。
+- **验收证据**
+  - 静态：`audit_campaign_text.py --check` → 13 个战役 0 未译 0 断裂引用；
+    `audit_briefing_paragraphs.py --check` 300/300；`build_dict` 两次构建 sha256 一致
+    （`f29ae9aa…316b`，exact=71076）；`verify_regressions --static` **47/47**。
+  - 负向用例（证明门禁真会红）：把 `DICT` 指回 HEAD 版词典跑同一 audit →
+    Fail Safe 报 8 段未译、Tides of War 报 1 段未译，正是新增的 9 条键。
+  - 实机：两战役描述面板全中文，截图 `evidence/live/v413/r83_final_failsafe.png`、
+    `r83_final_tides.png`；同页 DOM 文本探针亦返回中文（无「英文 + 【中文】」夹生）。
+- **教训**
+  1. 战役正文有两个层级（`.scen` 的想定说明、`.campaign` 的战役介绍/结局），盘点脚本只覆盖一层时，
+     门禁会给出「全部已汉化」的假结论。覆盖面本身就是验收对象。
+  2. 「翻译源文件里的段落」不等于「运行时文本节点」：键必须取自运行时（`WEBVIEW_JS` /
+     `BRIEFING_RAW_DUMP`），否则一个 `<BR>`、一个内联标签就会让整段键落空。
+
+## R84 WebView2 页→宿主消息静默丢失：系列战役描述面板的译文永远送不回页面（v4.3.0 后）
+
+- **来源**：R83 补完词典后实机仍是英文——`XLATE` 的 briefing 通道对同一串返回中文，页面却不动。
+- **取证（新增只读探针 `WEBVIEW_DIAG <窗体>`，一次把三种可能分清）**
+  - `CampaignPlayWindow/WebBrowser1`：`coreMatches=true`、`messagesWired=true`、
+    `messagesEnabled=true`、`registrationHandled=true`、`scriptId=2`，
+    但 `messageEvents=0`、`documentNonce`/`documentSource` 一直为空
+    ⇒ 页面的 `postMessage` **一条都没到宿主**；而同一控件的宿主→页
+    （`ExecuteScriptAsync`，`WEBVIEW_JS`）完全正常。
+  - 排他：`lastReject` 为空、`staleBatches=0` ⇒ 不是 origin/nonce/批次校验拦的
+    （那些路径现在都有计数和首因日志），而是这个控件的**页→宿主通道本身不可用**。
+  - 对照证据：同一日志里另一处 WebView2 的 `postMessage` 能到达（被记为 malformed envelope），
+    说明宿主事件订阅本身没坏。
+- **修复（`src/engine/WebViewTranslation.cs`）**
+  - **通道探帧看门狗**：注册脚本落地后 1.6s 内每 400ms 由宿主执行一次
+    `postMessage('CMO_WEB_V1_HELLO\t'+documentId)`；收到回执 ⇒ `MessageEvents++`、停表；
+    超时 ⇒ 记日志并切到既有的宿主轮询通道（`take()`）——`take()` 会把已发出的请求
+    重新排队取回，译文因此能落回 DOM。
+  - **丢弃不再静默**：`RejectWebMessage` 记录首个丢弃原因（坏信封 / 来源不符 / 陈旧 core /
+    过期 nonce / 队列满），批次被新文档顶掉记 `StaleBatches`。此前这些都 `return;`，
+    「词典有译文但界面不显示」根本无从定位。
+  - 新增只读探针 `WEBVIEW_DIAG <窗体>`：桥状态、文档 nonce/来源、队列与回执计数、首个丢弃原因。
+- **验收证据**
+  - 实机：两战役描述全中文（`evidence/live/v413/r83_final_*.png`）。
+  - 日志：`Web translation: page messages never arrived; using host polling (WebBrowser1)`，
+    随后 `WEBVIEW_DIAG` 显示 `fallback=true`、`documentNonce` 已建立、`outstandingItems=0`。
+  - 回归：`verify_regressions --static` **47/47**（含 R79 简报编辑器接线用例）。
+- **教训**
+  1. 「控件属性说消息是开的」不等于「消息能到」：`IsWebMessageEnabled` 只是个设置位。
+     通道能力必须用一次**真实回执**证明，否则宿主会一直以为「发出去了」。
+  2. 单向可用是真实存在的形态（宿主→页通、页→宿主死）。设计桥时必须假设两向独立可用性，
+     并自带第二条腿（轮询）兜底。
+  3. 调试探针要能回答「哪一步被丢」，而不是只回答「有没有译文」：
+     `messageEvents=0` 这一个数字，一次分清「译文没命中 / 回包被拒 / 通道死了」。

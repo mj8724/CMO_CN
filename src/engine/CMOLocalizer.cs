@@ -7533,6 +7533,12 @@ namespace CMOLocalizer
                 return "{\"status\":\"ok\",\"action\":\"DB_DOM_DUMP\",\"file\":\"CMOLocalizer_DBDOM.json\"}";
             }
 
+            if (cmd == "WEBVIEW_DIAG")
+            {
+                // 只读诊断：WebView2 桥为何不落字（消息是否接上、批次为何被丢）。
+                return HandleWebViewDiag(arg.Trim());
+            }
+
             // 只读探针：导出任意窗口里 WebView2 的文本 / 执行一段 JS（默认只读）。
             // 为什么需要它：阵营选择面板（ChooseSide）的「进入想定」按钮是 WebView2 里的 HTML 元素，
             // CTRL_TREE / WPF_DUMP 都看不到它，也没有 Win32 几何信息可供按坐标点击；

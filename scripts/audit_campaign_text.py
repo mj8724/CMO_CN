@@ -8,6 +8,14 @@ Two text surfaces carry campaign briefings, and they fail differently:
 * prose embedded directly in ``<ScenDescription>`` -- localized through the
   dictionary, because the .scen itself is never rewritten.
 
+The same split exists one level up in ``*.campaign``: most campaigns point
+``<Description>``/``<EndingText>`` at an HTML page, while Fail Safe and Tides of
+War embed the HTML inline. That inline campaign prose is painted into a WebView2
+pane (CampaignPlayWindow), which sends whole text nodes to the dictionary, so a
+missing whole-paragraph key shows up as untranslated text in the campaign
+selector (R83). Both levels are audited here: a surface that only one of them
+covers is exactly how the campaign intros stayed English.
+
 The audit separates real prose from metadata lines (``Location:``,
 ``Playable Side:``, ``Date/Time:``) and from the LOADDOC directive itself, so a
 "0%" campaign that actually loads translated HTML is not reported as untranslated.
@@ -99,6 +107,35 @@ def scenario_rows(folder: Path, exact: dict[str, str]) -> tuple[list[dict], set[
     return rows, referenced
 
 
+def campaign_rows(folder: Path, exact: dict[str, str]) -> tuple[list[dict], set[Path]]:
+    """``*.campaign`` Description/EndingText: inline prose vs LOADDOC reference."""
+    rows, referenced = [], set()
+    for camp in sorted(folder.glob("*.campaign")):
+        try:
+            root = ET.parse(camp).getroot()
+        except ET.ParseError:
+            continue
+        title = (root.findtext("Name") or camp.stem).strip()
+        inline, refs = [], []
+        for tag in ("Description", "EndingText"):
+            element = root.find(tag)
+            if element is None:
+                continue
+            document = "".join(element.itertext())
+            refs.extend(m.strip() for m in LOADDOC.findall(document))
+            inline.extend(c for c in chunks(document) if is_prose(c))
+        for ref in refs:
+            referenced.add((camp.parent / ref).resolve())
+        untranslated = [c for c in inline if c not in exact]
+        rows.append({
+            "scen": camp.name, "title": title,
+            "pages": [{"ref": r, "exists": (camp.parent / r).is_file()} for r in refs],
+            "inline_prose": len(inline), "inline_untranslated": len(untranslated),
+            "samples": untranslated[:3],
+        })
+    return rows, referenced
+
+
 def page_rows(folder: Path, exact: dict[str, str], referenced: set[Path]) -> dict:
     pages = {}
     for path in sorted(folder.rglob("*.htm*")):
@@ -124,17 +161,19 @@ def audit(campaigns: list[str], game: Path) -> dict:
         if not folder.is_dir():
             continue
         scenarios, referenced = scenario_rows(folder, exact)
-        pages = page_rows(folder, exact, referenced)
-        inline_total = sum(r["inline_prose"] for r in scenarios)
-        inline_missing = sum(r["inline_untranslated"] for r in scenarios)
+        campaigns, campaign_refs = campaign_rows(folder, exact)
+        pages = page_rows(folder, exact, referenced | campaign_refs)
+        inline_total = sum(r["inline_prose"] for r in scenarios + campaigns)
+        inline_missing = sum(r["inline_untranslated"] for r in scenarios + campaigns)
         page_prose = sum(p["prose"] for p in pages.values())
         page_english = sum(p["english"] for p in pages.values())
         report[name] = {
             "scenarios": len(scenarios),
-            "broken_refs": sum(1 for r in scenarios for p in r["pages"] if not p["exists"]),
+            "broken_refs": sum(1 for r in scenarios + campaigns
+                                for p in r["pages"] if not p["exists"]),
             "inline_prose": inline_total, "inline_untranslated": inline_missing,
             "pages": len(pages), "page_prose": page_prose, "page_english": page_english,
-            "detail": scenarios, "page_detail": pages,
+            "detail": scenarios, "campaign_detail": campaigns, "page_detail": pages,
         }
     return report
 
@@ -159,7 +198,7 @@ def main() -> int:
         print("\n未译样例：")
         for name, row in report.items():
             shown = 0
-            for scen in row["detail"]:
+            for scen in row["detail"] + row["campaign_detail"]:
                 for sample in scen["samples"][:args.samples]:
                     print(f"  [{name} / {scen['scen'][:34]}] {sample[:120]}")
                     shown += 1

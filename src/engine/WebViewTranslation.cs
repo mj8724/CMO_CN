@@ -37,6 +37,14 @@ namespace CMOLocalizer
             public bool RegistrationMessagesEnabled;
             public bool RegistrationHandled;
             public string ScriptId;
+            // 诊断计数：消息为何被丢。只读探针 WEBVIEW_DIAG 读它，日志只记首次。
+            public int StaleBatches;
+            public int MessageEvents;
+            public System.Windows.Forms.Timer MessageWatchdog;
+            public DateTime MessageWatchdogStart;
+            public bool MessageWatchdogLogged;
+            public bool MessageVerifiedLogged;
+            public string LastReject;
             public bool Disposed;
             public bool SourceWarningLogged;
             public bool CapabilityWarningLogged;
@@ -251,7 +259,11 @@ namespace CMOLocalizer
                 state.ScriptId = registration.Result;
                 // Preserve the registered mode; Attach reconciles subsequent settings changes.
                 if (state.RegistrationMessagesEnabled && !state.Fallback)
+                {
                     ExecuteWebTranslation(state, script);
+                    // 脚本已在本页跑过一次（含 hello 回执）；没回音就改宿主轮询。
+                    EnsureWebMessageWatchdog(state);
+                }
                 else EnableWebFallback(state);
             }
         }
@@ -269,6 +281,72 @@ namespace CMOLocalizer
             if (state.CapabilityWarningLogged) return;
             state.CapabilityWarningLogged = true;
             Log("Web translation: " + message);
+        }
+
+        /// <summary>
+        /// 页面消息通道的死活只能主动探测：CMO 的系列战役描述面板
+        /// （CampaignPlayWindow/WebBrowser1）就是反例——控件属性说 IsWebMessageEnabled=true、
+        /// 事件也挂上了，但页面的 postMessage 一条也到不了（WEBVIEW_DIAG 实测
+        /// messageEvents=0），回包因此永远发不出去。
+        /// 轮询发 hello 探帧：收到就算通道可用；超时就改宿主轮询（take()），
+        /// 让已发出的请求重新取回来翻译。不能只看「有没有译文需求」，否则无正文的页面
+        /// 会被误判成通道已死。
+        /// </summary>
+        private static void EnsureWebMessageWatchdog(WebTranslationState state)
+        {
+            if (state.Disposed || state.Fallback || state.MessageEvents > 0) return;
+            try
+            {
+                lock (state.WorkLock)
+                {
+                    if (state.MessageWatchdog != null || state.MessageEvents > 0) return;
+                    state.MessageWatchdog = new System.Windows.Forms.Timer { Interval = 400 };
+                    state.MessageWatchdogStart = DateTime.UtcNow;
+                }
+                state.MessageWatchdog.Tick += (sender, args) =>
+                {
+                    if (state.Disposed || state.Fallback || state.MessageEvents > 0)
+                    {
+                        StopWebMessageWatchdog(state);
+                        return;
+                    }
+                    if ((DateTime.UtcNow - state.MessageWatchdogStart).TotalSeconds >= 1.6)
+                    {
+                        StopWebMessageWatchdog(state);
+                        if (!state.MessageWatchdogLogged)
+                        {
+                            state.MessageWatchdogLogged = true;
+                            Log("Web translation: page messages never arrived; using host polling ("
+                                + (state.Owner == null ? "?" : state.Owner.Name) + ")");
+                        }
+                        EnableWebFallback(state);
+                        return;
+                    }
+                    // 探帧：宿主→页→宿主的回路，能收到就说明消息通道真能用。
+                    ExecuteWebTranslation(state,
+                        "window.__cmoWebTranslation && window.chrome && window.chrome.webview"
+                        + " && window.chrome.webview.postMessage('CMO_WEB_V1_HELLO\\t'"
+                        + " + window.__cmoWebTranslation.documentId);");
+                };
+                state.MessageWatchdog.Start();
+            }
+            catch (Exception ex)
+            {
+                WarnWebCapability(state, "watchdog unavailable: " + ex.GetBaseException().Message);
+            }
+        }
+
+        private static void StopWebMessageWatchdog(WebTranslationState state)
+        {
+            System.Windows.Forms.Timer timer;
+            lock (state.WorkLock)
+            {
+                timer = state.MessageWatchdog;
+                state.MessageWatchdog = null;
+            }
+            if (timer == null) return;
+            try { timer.Stop(); timer.Dispose(); }
+            catch { }
         }
 
         private static void EnableWebFallback(WebTranslationState state)
@@ -392,6 +470,17 @@ namespace CMOLocalizer
             catch (Exception) { } // Other game messages may have an unrelated shape.
         }
 
+        private static void RejectWebMessage(WebTranslationState state, string reason)
+        {
+            // 静默丢弃会让「译文在词典里但界面不显示」无从定位，所以首次丢弃必须留痕；
+            // 之后只计数，避免每次扫描刷日志。
+            if (state.LastReject != reason)
+            {
+                state.LastReject = reason;
+                Log("Web translation: message dropped (" + reason + ")");
+            }
+        }
+
         private static void ProcessWebTranslationMessage(WebTranslationState state, string message, string eventSource)
         {
             string nonce;
@@ -400,34 +489,86 @@ namespace CMOLocalizer
             try
             {
                 if (state.Disposed || !state.Owner.IsHandleCreated || message == null
-                    || !message.StartsWith("CMO_WEB_V1\t", StringComparison.Ordinal) || message.Length > 524288) return;
+                    || message.Length > 524288)
+                {
+                    RejectWebMessage(state, "malformed envelope");
+                    return;
+                }
+                if (!message.StartsWith("CMO_WEB_V1\t", StringComparison.Ordinal)
+                    && !message.StartsWith("CMO_WEB_V1_HELLO\t", StringComparison.Ordinal))
+                {
+                    RejectWebMessage(state, "malformed envelope");
+                    return;
+                }
                 nativeSource = WebNativeSource(state.Core);
                 if (!TrustedWebSource(nativeSource) || (eventSource != null && !TrustedWebSource(eventSource)))
                 {
                     if (!state.SourceWarningLogged) Log("Web translation: untrusted document origin; native bridge ignored");
                     state.SourceWarningLogged = true;
+                    RejectWebMessage(state, "untrusted origin: " + (nativeSource ?? "<null>"));
                     return;
                 }
                 // Trusted but different local pages are still different documents.
-                if (!string.Equals(nativeSource, eventSource, StringComparison.Ordinal)) return;
+                if (!string.Equals(nativeSource, eventSource, StringComparison.Ordinal))
+                {
+                    RejectWebMessage(state, "source mismatch: native=" + (nativeSource ?? "<null>")
+                        + " event=" + (eventSource ?? "<null>"));
+                    return;
+                }
                 PropertyInfo actual = state.Owner.GetType().GetProperty("CoreWebView2");
-                if (actual == null || !ReferenceEquals(actual.GetValue(state.Owner, null), state.Core)) return;
+                if (actual == null || !ReferenceEquals(actual.GetValue(state.Owner, null), state.Core))
+                {
+                    RejectWebMessage(state, "stale core");
+                    return;
+                }
+                if (message.StartsWith("CMO_WEB_V1_HELLO\t", StringComparison.Ordinal))
+                {
+                    // 通道存活回执：收到它就证明这个控件的页→宿主消息真的能走通。
+                    state.MessageEvents++;
+                    if (!state.MessageVerifiedLogged)
+                    {
+                        state.MessageVerifiedLogged = true;
+                        Log("Web translation: page messages verified ("
+                            + (state.Owner == null ? "?" : state.Owner.Name) + ")");
+                    }
+                    return;
+                }
                 string[] lines = message.Split('\n');
-                if (lines.Length < 2 || lines.Length > 65) return;
+                if (lines.Length < 2 || lines.Length > 65)
+                {
+                    RejectWebMessage(state, "bad batch size: " + lines.Length);
+                    return;
+                }
                 nonce = lines[0].Substring(11);
-                if (nonce.Length == 0 || nonce.Length > 80) return;
+                if (nonce.Length == 0 || nonce.Length > 80)
+                {
+                    RejectWebMessage(state, "bad nonce length");
+                    return;
+                }
                 var ids = new HashSet<int>();
                 for (int i = 1; i < lines.Length; i++)
                 {
                     int tab = lines[i].IndexOf('\t');
                     int id;
-                    if (tab < 1 || !int.TryParse(lines[i].Substring(0, tab), out id) || id < 1 || !ids.Add(id)) return;
+                    if (tab < 1 || !int.TryParse(lines[i].Substring(0, tab), out id) || id < 1 || !ids.Add(id))
+                    {
+                        RejectWebMessage(state, "bad item header");
+                        return;
+                    }
                     string source = Uri.UnescapeDataString(lines[i].Substring(tab + 1));
-                    if (source.Length > 16384 || source.Trim().Length == 0) return;
+                    if (source.Length > 16384 || source.Trim().Length == 0)
+                    {
+                        RejectWebMessage(state, "bad item text");
+                        return;
+                    }
                     items.Add(new KeyValuePair<int, string>(id, source));
                 }
             }
-            catch (Exception) { return; } // Native event boundaries must also tolerate unrelated/malformed page messages.
+            catch (Exception ex)
+            {
+                RejectWebMessage(state, "parse: " + ex.GetBaseException().Message);
+                return; // Native event boundaries must also tolerate unrelated/malformed page messages.
+            }
             var batch = new WebTranslationBatch
             {
                 Core = state.Core, Source = nativeSource, Nonce = nonce, Items = items,
@@ -436,7 +577,11 @@ namespace CMOLocalizer
             bool start = false;
             lock (state.WorkLock)
             {
-                if (state.Disposed || state.RetiredNonces.Contains(nonce)) return;
+                if (state.Disposed || state.RetiredNonces.Contains(nonce))
+                {
+                    RejectWebMessage(state, "retired nonce");
+                    return;
+                }
                 if (state.DocumentNonce != nonce || state.DocumentSource != nativeSource)
                 {
                     ResetWebTranslationWork(state, true);
@@ -445,7 +590,11 @@ namespace CMOLocalizer
                 }
                 // Include work already translated but awaiting its UI callback.
                 // One worker per Core prevents a burst from creating 2,048 workers.
-                if (state.OutstandingItems + items.Count > MaxWebTranslationItems) return;
+                if (state.OutstandingItems + items.Count > MaxWebTranslationItems)
+                {
+                    RejectWebMessage(state, "work queue full");
+                    return;
+                }
                 batch.Version = state.WorkVersion;
                 state.OutstandingItems += items.Count;
                 state.Work.Enqueue(batch);
@@ -505,7 +654,12 @@ namespace CMOLocalizer
                 bool posted = false;
                 try
                 {
-                    if (!CurrentWebTranslationBatch(state, batch)) continue;
+                    if (!CurrentWebTranslationBatch(state, batch))
+                    {
+                        state.StaleBatches++;
+                        if (state.StaleBatches == 1) Log("Web translation: batch superseded before translation (nonce/version changed)");
+                        continue;
+                    }
                     var reply = new StringBuilder("window.__cmoWebTranslation && window.__cmoWebTranslation.receive(");
                     reply.Append(WebJsString(batch.Nonce)).Append(",[");
                     bool current = true;
@@ -529,6 +683,8 @@ namespace CMOLocalizer
                     {
                         try
                         {
+                            // UI 线程才能建 Timer；消息通道没回音时切到宿主轮询。
+                            if (state.MessageEvents == 0) EnsureWebMessageWatchdog(state);
                             PropertyInfo actual = state.Owner.GetType().GetProperty("CoreWebView2");
                             if (CurrentWebTranslationBatch(state, batch) && state.Owner.IsHandleCreated
                                 && actual != null && ReferenceEquals(actual.GetValue(state.Owner, null), batch.Core)
@@ -541,6 +697,93 @@ namespace CMOLocalizer
                 catch (Exception ex) { Log("Web translation batch: " + ex.GetBaseException().Message); }
                 finally { if (!posted) CompleteWebTranslationBatch(state, batch); }
             }
+        }
+
+        /// <summary>
+        /// WEBVIEW_DIAG：只读导出某个窗体里 WebView2 桥的状态。
+        /// 「词典有译文但界面还是英文」必须先分清是「桥没接上」「批次被丢」还是
+        /// 「译文没命中」，否则只能靠改新代码试错。
+        /// </summary>
+        private static string HandleWebViewDiag(string filter)
+        {
+            Form host = null;
+            Form[] forms = OpenFormsSnapshot();
+            for (int i = 0; i < forms.Length; i++)
+            {
+                Form f = forms[i];
+                if (f == null || f.IsDisposed) continue;
+                if (!string.IsNullOrEmpty(filter)
+                    && (f.Name ?? "").IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0
+                    && (f.Text ?? "").IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0) continue;
+                host = f;
+                break;
+            }
+            if (host == null) return "{\"status\":\"error\",\"message\":\"form not found\"}";
+            string report = null;
+            string failure = null;
+            host.BeginInvoke(new Action(delegate
+            {
+                try
+                {
+                    Control wv = FindWebView2In(host);
+                    if (wv == null) { failure = "WebView2 not found in form"; return; }
+                    WebTranslationState state;
+                    if (!webTranslations.TryGetValue(wv, out state) || state == null)
+                    {
+                        report = "{\"status\":\"ok\",\"attached\":false,\"control\":\"" + JsonEsc(wv.Name) + "\"}";
+                        return;
+                    }
+                    object core = state.Core;
+                    string nativeSource = null;
+                    bool trusted = false;
+                    bool messagesEnabled = false;
+                    try
+                    {
+                        if (core != null) nativeSource = WebNativeSource(core);
+                        trusted = TrustedWebSource(nativeSource);
+                    }
+                    catch { }
+                    try { if (core != null) messagesEnabled = WebMessagesEnabled(core); } catch { }
+                    StringBuilder sb2 = new StringBuilder();
+                    sb2.Append("{\"status\":\"ok\",\"attached\":true");
+                    sb2.Append(",\"form\":\"").Append(JsonEsc(host.Name)).Append('"');
+                    sb2.Append(",\"control\":\"").Append(JsonEsc(wv.Name)).Append('"');
+                    sb2.Append(",\"corePresent\":").Append(core != null ? "true" : "false");
+                    sb2.Append(",\"handleCreated\":").Append(wv.IsHandleCreated ? "true" : "false");
+                    sb2.Append(",\"messagesWired\":").Append(state.Messages != null ? "true" : "false");
+                    sb2.Append(",\"messagesEnabled\":").Append(messagesEnabled ? "true" : "false");
+                    sb2.Append(",\"fallback\":").Append(state.Fallback ? "true" : "false");
+                    sb2.Append(",\"registrationHandled\":").Append(state.RegistrationHandled ? "true" : "false");
+                    sb2.Append(",\"scriptId\":\"").Append(JsonEsc(state.ScriptId ?? "")).Append('"');
+                    sb2.Append(",\"documentNonce\":\"").Append(JsonEsc(state.DocumentNonce ?? "")).Append('"');
+                    sb2.Append(",\"documentSource\":\"").Append(JsonEsc(state.DocumentSource ?? "")).Append('"');
+                    sb2.Append(",\"nativeSource\":\"").Append(JsonEsc(nativeSource ?? "")).Append('"');
+                    sb2.Append(",\"trustedSource\":").Append(trusted ? "true" : "false");
+                    sb2.Append(",\"workVersion\":").Append(state.WorkVersion);
+                    sb2.Append(",\"outstandingItems\":").Append(state.OutstandingItems);
+                    sb2.Append(",\"workerRunning\":").Append(state.WorkerRunning ? "true" : "false");
+                    sb2.Append(",\"queuedBatches\":").Append(state.Work.Count);
+                    sb2.Append(",\"retiredNonces\":").Append(state.RetiredNonces.Count);
+                    sb2.Append(",\"staleBatches\":").Append(state.StaleBatches);
+                    sb2.Append(",\"messageEvents\":").Append(state.MessageEvents);
+                    bool coreMatches = false;
+                    try
+                    {
+                        PropertyInfo current = wv.GetType().GetProperty("CoreWebView2");
+                        coreMatches = current != null && ReferenceEquals(current.GetValue(wv, null), state.Core);
+                    }
+                    catch { }
+                    sb2.Append(",\"coreMatches\":").Append(coreMatches ? "true" : "false");
+                    sb2.Append(",\"lastReject\":\"").Append(JsonEsc(state.LastReject ?? "")).Append('"');
+                    sb2.Append('}');
+                    report = sb2.ToString();
+                }
+                catch (Exception ex) { failure = ex.GetBaseException().Message; }
+            }));
+            for (int i = 0; i < 100 && report == null && failure == null; i++) Thread.Sleep(50);
+            if (failure != null) return "{\"status\":\"error\",\"message\":\"" + JsonEsc(failure) + "\"}";
+            if (report == null) return "{\"status\":\"error\",\"message\":\"diag timeout\"}";
+            return report;
         }
 
         private static string WebNativeSource(object core)
