@@ -786,6 +786,41 @@ namespace CMOLocalizer
             }
             if (tDecrypt == null)
             {
+                // 第二轮（R89）：Command 程序集里没找到时，按结构特征在**其余已加载程序集**里再找一遍。
+                // 只在第一轮失败后才跑，健康构建（第一轮命中）完全不受影响；
+                // 目的：游戏把解密类挪到别的程序集/改名时不用等我们出补丁。
+                Type[] others = null;
+                foreach (Assembly other in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    if (ReferenceEquals(other, host)) continue;
+                    string otherName = "";
+                    try { otherName = other.GetName().Name ?? ""; } catch (Exception) { continue; }
+                    if (otherName.Length == 0 || otherName == "mscorlib"
+                        || otherName.StartsWith("System", StringComparison.Ordinal)
+                        || otherName.StartsWith("Microsoft", StringComparison.Ordinal)) continue;
+                    Type[] types = null;
+                    try { types = other.GetTypes(); }
+                    catch (ReflectionTypeLoadException rtle) { types = rtle.Types; }
+                    catch (Exception) { continue; }
+                    if (types == null) continue;
+                    foreach (Type candidate in types)
+                    {
+                        if (candidate != null && HasPoolShape(candidate))
+                        {
+                            others = new Type[] { candidate };
+                            break;
+                        }
+                    }
+                    if (others != null) break;
+                }
+                if (others != null && others.Length > 0)
+                {
+                    tDecrypt = others[0];
+                    Log("CoreDecryption: pool class found outside the Command assembly: " + tDecrypt.FullName);
+                }
+            }
+            if (tDecrypt == null)
+            {
                 note = "pool class not found（游戏更新后需重做注入点探测，见 docs/BUG_REGISTRY.md R31）.";
                 poolFailureNote = note;
                 return false;

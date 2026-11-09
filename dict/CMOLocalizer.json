@@ -1,7 +1,7 @@
 {
  "_meta": {
   "engine": "CMOLocalizer",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "counts": {
    "n_offsets": 8760,
    "n_exact": 71079,
