@@ -191,6 +191,7 @@
 | `dict/placenames/cities.json` | **城市地名审核源**（4,287 条，按 WWP 顺序）。逐项含原名/坐标/中文/来源/说明，是 Cities.wwp 的唯一事实源 |
 | `dict/placenames/synoptic.json` | **区域标签审核源**（321 条）。同上结构，对应 Synoptic.wwp |
 | `dict/placenames/metadata.json` | 地名审核的固定元数据指纹。`verify_all` / `verify_placenames.py` / `package.sh` 都用它判断「记录集合是否被改过」（改 flags、换顺序、容差内挪坐标都会失败） |
+| `dict/placenames/regions.json` | **省/州级标签审核源**（3,245 条，R88）：中文取 Natural Earth `name_zh`，锚点取同记录的 label 点，`min_zoom` 沿用上游建议值。是词典 `places` 分区的唯一事实源（不进 WWP：WWP 无缩放字段，且两套集有指纹门禁） |
 | `dict/all_scen_items.json` | 从所有想定抽出的可译条目快照 |
 | `dict/extracted_campaigns_scens.json` | 战役内想定清单抽取结果 |
 | `dict/scen_tree_dict.json` | 想定树结构词典（加载对话框用） |
@@ -230,6 +231,8 @@
 | `scripts/verify_terminology.py` | 术语一致性 |
 | `scripts/verify_menu.py` | 菜单串全译 + 输出术语表 |
 | `scripts/verify_placenames.py` | 已评审地名检查（可证明只发布批准过的名字） |
+| `scripts/build_regions_placenames.py` | 从 Natural Earth `ne_10m_admin_1_states_provinces.dbf` 生成 `dict/placenames/regions.json`（省/州层，R88）；`--check` 校验提交版与 DBF 重建一致。不联网：DBF 路径由参数传入 |
+| `scripts/verify_regions_placenames.py` | **省/州标签覆盖门禁**（R88）：源条数下限、中文/坐标/min_zoom 合法性、去重，并校对词典 `places` 与源一一对应；`verify_all` 的 placenames 门禁调用它 |
 | `scripts/verify_live_test.py` | 实机测试产物/截图/证据完整性 |
 | `scripts/compose_terms.py` | 与引擎组合规则**一一对应**的镜像实现；`--check` 审计半译残留 |
 | `scripts/inject_filter.py` | 池级注入形状安全判定（**单一事实源**，构建与门禁共用） |
@@ -384,7 +387,7 @@
 | 路径 | 职责 |
 |---|---|
 | `docs/ROUTING.md` | **本文件**。新增文件必须登记 |
-| `docs/BUG_REGISTRY.md` | 缺陷台账 R1–R87（CRLF，**只增不改**）。修 bug 必须登记 |
+| `docs/BUG_REGISTRY.md` | 缺陷台账 R1–R88（CRLF，**只增不改**）。修 bug 必须登记 |
 | `docs/CHANGELOG.md` | 发布说明；`publish_release.py` 取顶部段落作为 Release 正文 |
 | `docs/RELEASE_MANIFEST.md` | 发版清单与规则（含"已发布资产只增不改"） |
 | `docs/RELEASE_TEST_SOP.md` | 发版测试 SOP |

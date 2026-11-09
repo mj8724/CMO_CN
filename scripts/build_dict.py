@@ -51,7 +51,7 @@ MAIN = DICT / "CMOLocalizer.json"
 # The engine's own scanner (scripts/verify_engine_parse.py) and the offset
 # injection path require exactly these top-level sections.  Any other producer
 # (see the legacy engines) must fail loudly rather than ship a foreign schema.
-TOP_LEVEL_SECTIONS = frozenset({"_meta", "comments", "offsets", "exact", "partial", "words"})
+TOP_LEVEL_SECTIONS = frozenset({"_meta", "places", "comments", "offsets", "exact", "partial", "words"})
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from triage import classify, is_script_or_schema  # noqa: E402
@@ -119,6 +119,29 @@ def load_terms() -> dict:
             continue
         terms[k] = v
     return terms
+
+
+def load_region_places() -> list:
+    """省/州级地图标签（R88）：[中文, lat, lon, min_zoom]。
+
+    放在词典里而不是新增引擎资产，是为了不扩大安装/打包/入包对账的接口面；
+    该分区刻意排在 `comments` 之前，旧引擎（只认 comments/offsets/exact/partial/words）
+    会连同 `_meta` 一起忽略，向后兼容不受影响。
+    """
+    path = ROOT / "dict/placenames/regions.json"
+    if not path.is_file():
+        return []
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    out = []
+    for row in rows:
+        zh = row.get("zh")
+        if not zh or row.get("lat") is None or row.get("lon") is None:
+            continue
+        out.append([zh, round(float(row["lat"]), 4), round(float(row["lon"]), 4),
+                    round(float(row.get("min_zoom") or 0), 1)])
+    # 确定性：同 zoom 内按名字/坐标排序，构建两次字节一致
+    out.sort(key=lambda e: (e[3], e[0], e[1], e[2]))
+    return out
 
 
 def load_comments() -> dict:
@@ -568,6 +591,7 @@ def build() -> dict:
     ordered_words = {k: terms[k] for k in sorted(terms)}
     commented = load_comments()
     ordered_comments = {k: commented[k] for k in sorted(commented)}
+    ordered_places = load_region_places()
 
     ordered_offsets = {str(k): offsets[k] for k in sorted(offsets)}
     ordered_exact = {k: exact[k] for k in sorted(exact)}
@@ -587,9 +611,10 @@ def build() -> dict:
                 "n_words": len(ordered_words),
             },
         },
-        # `comments` 必须排在**第一个**已知分区之前：旧引擎的分区扫描只认
-        # offsets/exact/partial/words，它会忽略第一个已知分区之前的所有内容，
-        # 因此新词典仍能被旧引擎正常读取（向后兼容是硬要求，R72）。
+        # `places`（省/州地图标签，R88）与 `comments` 都必须排在第一个已知分区之前：
+        # 旧引擎的分区扫描只认 offsets/exact/partial/words，它会忽略第一个已知分区
+        # 之前的所有内容，因此新词典仍能被旧引擎正常读取（向后兼容是硬要求，R72/R88）。
+        "places": ordered_places,
         "comments": ordered_comments,
         "offsets": ordered_offsets,
         "exact": ordered_exact,

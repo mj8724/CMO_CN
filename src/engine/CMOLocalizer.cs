@@ -376,6 +376,20 @@ namespace CMOLocalizer
                 loadWwp(synWwp, 0);
                 loadWwp(citWwp, 1);
 
+                // 省/州级标签（R88）：原版 Stamen 标签层里有省级名字，而两套 WWP 只有
+                // 城市与国家，重绘后省级标签整体消失。数据放在词典 `places` 分区（不新增资产）。
+                try
+                {
+                    string dictPath = Path.Combine(baseDir, "CMOLocalizer.json");
+                    List<CMOShared.MapLabelPlace> regions = CMOShared.MapLabelRegions.LoadFromDictionary(dictPath);
+                    if (regions.Count > 0) mapPlaces.AddRange(regions);
+                    Log("Region labels: " + regions.Count + " 省/州级标签已并入（原版深度对齐）。");
+                }
+                catch (Exception regionError)
+                {
+                    Log("Region labels failed: " + regionError.GetBaseException().Message);
+                }
+
                 tileListener = new TcpListener(IPAddress.Loopback, 0);
                 tileListener.Start();
                 int port = ((IPEndPoint)tileListener.LocalEndpoint).Port;

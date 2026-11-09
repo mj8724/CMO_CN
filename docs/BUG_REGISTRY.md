@@ -2699,3 +2699,46 @@ python scripts/perf_probe.py          # 游戏已在想定里
   `verify_regressions --installer` 只针对 `build/CMO_Chinese_Setup_v<VER>.exe`（当前为 4.3.0 的
   已发布构建）。更新器 UI 的这处改动只做了编译与代码路径核对，**必须在下一次授权发布的
   构建里跑 installer 门禁**才算验收闭环；未授权前不重打发布资产。
+
+## R88 地图地名只到大区：省/州级标签整体缺失（原版却有）
+
+- **来源**：用户反馈「地图地名被漏掉，只到省级，市及以下的都没有」，随后要求「按原版深度补齐」。
+- **盘点（把「原版有多深」变成可比对的证据）**
+  - 我们的标签层是**自绘**的：引擎本机 tile server（`offsetMap[1789870]`）用
+    `WW/PlacenameSets/{Synoptic,Cities}` 两套 WWP 渲染，安装器再把已缓存瓦片重绘一遍。
+  - 两套 WWP 的内容只有：Cities 4,287 条（城市/城镇）+ Synoptic 321 条（国家/海域）——
+    **没有任何省/州记录**。
+  - 原始 Stamen 标签瓦片里却有：z5 中国瓦片 `HEBEI/SHANDONG/HENAN/JIANGSU PROVINCE`，
+    z4 有 `宫崎县/鹿儿岛县` 这类一级行政区；我们同位置只剩 `渤海/辽东湾` 两个海域名。
+    ⇒ 整瓦片替换把「一级行政区」这一层整体丢掉了（用户看到的就是这一层消失）。
+- **数据来源（与 Stamen 同源，可复核）**
+  Natural Earth `ne_10m_admin_1_states_provinces`（公共领域）：4,596 条，
+  **每条都带 `name_zh`** 与 label 点（`latitude`/`longitude`）+ 上游建议的 `min_zoom`。
+  落地 3,245 条（丢弃 7 条无名字段、1,344 条 `min_zoom>9` 的细分单元——原版也不画），
+  分带 z2:75 / z3:76 / z4:195 / z5:8 / z6:760 / z7:683 / z8:1054 / z9:394。
+- **实现（不新增引擎资产，兼容旧引擎）**
+  - `dict/placenames/regions.json`：审核源（中文取 `name_zh`，不机器翻译，不做字母拼接）。
+  - `build_dict.py`：写进词典新分区 `places`（`[[中文, lat, lon, min_zoom], ...]`，
+    排在 `comments` **之前**）——旧引擎的分区扫描会连同 `_meta` 一起忽略它，向后兼容不变。
+  - `CMOShared.MapLabelRegions.LoadFromDictionary`：读该分区（不反斜杠字面量，
+    用 `(char)92` 常量，避免跨工具链粘贴被多解一层）。
+  - 渲染：`MapLabelPlace` 增加 `Rank`/`MinZoom`；层级改为
+    「国家/海域全缩放（粗体）→ 省/州 `z ≥ ceil(min_zoom)` 且 `z ≤ 8`（粗体）→ 城市 `z>5`（常规）」，
+    绘制顺序 0→1→2（原版就是大区名压住城市名，反过来会让省名被城市挤光）。
+  - 引擎与安装器（`LocalizeMapLabelTiles`）都走同一个读取器：
+    缓存重绘与运行时用同一份数据，不会出现「同一张地图两副样子」。
+- **验收证据**
+  - 运行时与**缓存瓦片逐字节相同**（z5 中国瓦片 7,518 B 两边一致）：
+    `河北省/山东省/河南省/江苏省/安徽省/北京市`，与原版 z5 的 5 个省级标签**同位置同深度**；
+    z4 出现 `宫崎县/鹿儿岛县`；z7 南京出现 `江苏省 + 淮安/盐城/泰州/南京/南通`。
+  - 引擎日志：`Region labels: 3245 省/州级标签已并入`，`LocalTileServer … with 7853 Chinese landmarks`
+    （原 4,608）。
+  - 门禁：新增 `verify_regions_placenames.py`（源条数下限/中文/坐标/min_zoom/去重 +
+    词典 `places` 与源一一对应），已接入 `verify_all.gate_placenames`：
+    `Cities 4287/4287; Synoptic 321/321; Regions 3245/3245 places`。
+    负向用例：把词典 `places` 删 5 条 → 报「词典缺少 5 条省/州标签」。
+- **限制（写清楚）**
+  1. `name_zh` 是**结构化来源**，不是本项目逐条人工审定（cities.json 那种 review 流程）。
+     若后续要做人工审定，落点是 `dict/placenames/regions.json` 的 `source_type`/`note` 字段。
+  2. 原版瓦片里还有**湖泊**（我们 Synoptic 只有五大湖等 5 条）与更细的城镇层级：
+     湖泊需另取 Natural Earth `ne_10m_lakes` 并补几何中心；本轮只对齐「一级行政区」这一层。

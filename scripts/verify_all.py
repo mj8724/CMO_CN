@@ -154,6 +154,13 @@ def gate_placenames() -> None:
                                   DICT / "placenames/metadata.json", name))
         summaries.append(f"{name} {result['verified_records']}/{config['count']} reviewed")
         errors.extend(f"{name}: {error}" for error in result["errors"])
+    # 省/州级标签（R88）：两套 WWP 之外的第三层，走词典 places 分区。
+    from verify_regions_placenames import collect_problems
+    region_problems, region_summary = collect_problems()
+    if region_problems:
+        errors.extend(region_problems[:6])
+    else:
+        summaries.append(f"Regions {region_summary.get('matched', 0)}/{region_summary.get('source_entries', 0)} places")
     record("placenames", not errors, "; ".join(summaries + errors[:6]))
 
 

@@ -1519,6 +1519,14 @@ namespace CMOLocalizerInstaller
 
                 loadWwp(synWwp, 0);
                 loadWwp(citWwp, 1);
+                // 省/州级标签（R88）来自词典 places 分区：缓存重绘与运行时必须用同一份数据，
+                // 否则安装器重绘的瓦片会缺省级名，而运行时新瓦片有——同一张地图两副样子。
+                try
+                {
+                    string dictPath = Path.Combine(gamePath, "CMOLocalizer.json");
+                    list.AddRange(MapLabelRegions.LoadFromDictionary(dictPath));
+                }
+                catch { }
                 if (list.Count == 0) return 0;
 
                 string[] pngs = Directory.GetFiles(cacheDir, "*.png", SearchOption.AllDirectories);
