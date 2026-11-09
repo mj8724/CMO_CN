@@ -108,9 +108,14 @@ def scenario_rows(folder: Path, exact: dict[str, str]) -> tuple[list[dict], set[
 
 
 def campaign_rows(folder: Path, exact: dict[str, str]) -> tuple[list[dict], set[Path]]:
-    """``*.campaign`` Description/EndingText: inline prose vs LOADDOC reference."""
+    """``*.campaign`` Description/EndingText: inline prose vs LOADDOC reference.
+
+    Recursive on purpose: tutorial campaigns live under
+    ``Tutorials/Air Warfare Tutorials/<name>/<name>.campaign``, and a non-recursive
+    glob silently reported "everything translated" for them (R85).
+    """
     rows, referenced = [], set()
-    for camp in sorted(folder.glob("*.campaign")):
+    for camp in sorted(folder.rglob("*.campaign")):
         try:
             root = ET.parse(camp).getroot()
         except ET.ParseError:

@@ -2601,3 +2601,39 @@ python scripts/perf_probe.py          # 游戏已在想定里
      并自带第二条腿（轮询）兜底。
   3. 调试探针要能回答「哪一步被丢」，而不是只回答「有没有译文」：
      `messageEvents=0` 这一个数字，一次分清「译文没命中 / 回包被拒 / 通道死了」。
+
+## R85 「系列战役」仍见英文：嵌套教程战役未盘点 + WebView2 通道验证粒度错在「控件」而非「文档」（v4.3.0 后）
+
+- **来源**：用户复报——Fail Safe 介绍仍是英文，且 Strike Tutorial（打击作战教程）的介绍也是英文。
+- **盘点（先分清是数据缺还是通道缺）**
+  - `XLATE` 对 Fail Safe 三段返回中文 ⇒ 词典有译文，问题在通道。
+  - 全文递归扫 `*.campaign`：Strike Tutorial 在
+    `Tutorials/Air Warfare Tutorials/Strike Tutorial/Strike Tutorial.campaign`（深度 3），
+    而 `audit_campaign_text.py` 的 `campaign_rows()` 用的是 `glob("*.campaign")`（非递归）
+    ⇒ 这一层被静默跳过，门禁报「全部已汉化」。缺 3 段（介绍 192 字 + 结局 196/164 字）。
+- **根因（两条，独立）**
+  1. **数据 + 盘点盲区**：嵌套教程战役既没译文也没被盘点（同上）。
+  2. **通道**：WebView2 的通道存活验证是「每控件一次」（`MessageEvents > 0` 就永久收工），
+     但 CMO 每次换战役都会在该控件里导航出**新 document**；新文档的页→宿主消息仍然全丢，
+     于是不再切宿主轮询 ⇒ 新文档整篇英文。实机日志正是先
+     `page messages verified (WebBrowser1)`、后 `never arrived; using host polling` 的错序。
+- **修复**
+  - 数据：`dict/src/dlc_briefing_paragraphs.json` 144 → 147 条（Strike Tutorial 三段；
+    短段「Strike Tutorial / Congratulations! / 作者行」原已在词典）。
+  - 门禁：`campaign_rows()` 改 `rglob`，docstring 写明嵌套教程战役为何必须递归。
+  - 引擎（`src/engine/WebViewTranslation.cs`）：通道验证改为**按文档**——
+    `ChannelGeneration`（导航/换 core 就 +1）与 `VerifiedGeneration`（收到 hello 才相等），
+    `NavigationStarting` 时重新武装探帧看门狗，`WEBVIEW_DIAG` 暴露这两个计数。
+- **验收证据**
+  - 静态：`audit_campaign_text.py --check` 13 战役 0 未译 0 断裂（Tutorials prose 100 → 105）；
+    负向用例指向 HEAD 版词典时报 Tutorials 3 段未译；`build_dict` 两次构建 sha256 一致；
+    `verify_regressions --static` **47/47**。
+  - 实机：打开对话框后**立刻**点 Fail Safe → 1s 内描述即中文；同一会话内换选
+    Strike Tutorial / Tides of War 均中文；关闭重开对话框再选仍中文。
+    每份文档 `WEBVIEW_DIAG` 都是 `fallback=true`、`channelGeneration` 递增、
+    `verifiedGeneration=0`、`documentNonce` 有值。
+- **教训**
+  1. 「验证过一次」不等于「一直可用」：WebView2 的 document 是会被换掉的，
+     通道能力必须跟 document 绑定（代际比较），不能挂在控件上。
+  2. 盘点脚本的**递归深度**也是覆盖面：教程战役放在三层目录下，
+     非递归 glob 会让门禁给出「全部已汉化」的假结论。

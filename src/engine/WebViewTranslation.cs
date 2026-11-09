@@ -40,6 +40,10 @@ namespace CMOLocalizer
             // 诊断计数：消息为何被丢。只读探针 WEBVIEW_DIAG 读它，日志只记首次。
             public int StaleBatches;
             public int MessageEvents;
+            // 通道验证按**文档**算：面板每次换战役都会导航出新 document，
+            // 上一份文档验过的通道不能给下一份背书（R85）。
+            public int ChannelGeneration = 1;
+            public int VerifiedGeneration;
             public System.Windows.Forms.Timer MessageWatchdog;
             public DateTime MessageWatchdogStart;
             public bool MessageWatchdogLogged;
@@ -99,6 +103,7 @@ namespace CMOLocalizer
                 state.Disposed = true;
                 InvalidateWebTranslationWork(state);
                 if (state.FallbackTimer != null) state.FallbackTimer.Dispose();
+                StopWebMessageWatchdog(state);
                 DetachWebMessages(state);
                 if (state.InitializationHandler != null)
                     state.Initialization.RemoveEventHandler(owner, state.InitializationHandler);
@@ -169,6 +174,8 @@ namespace CMOLocalizer
                 state.Fallback = false;
                 state.FallbackInFlight = false;
                 state.FallbackVersion++;
+                // 新 core 也必须重新证明通道；旧回执不算数。
+                lock (state.WorkLock) { state.ChannelGeneration++; state.VerifiedGeneration = 0; }
                 state.Registration = null;
                 state.RegistrationScript = null;
                 state.RegistrationHandled = false;
@@ -204,6 +211,9 @@ namespace CMOLocalizer
                         InvalidateWebTranslationWork(state, false);
                         state.FallbackVersion++;
                         state.FallbackInFlight = false;
+                        // 新文档要自己证明一次页→宿主通道（R85）。
+                        lock (state.WorkLock) state.ChannelGeneration++;
+                        EnsureWebMessageWatchdog(state);
                     });
                     state.Navigation.AddEventHandler(core, state.NavigationHandler);
                 }
@@ -288,24 +298,32 @@ namespace CMOLocalizer
         /// （CampaignPlayWindow/WebBrowser1）就是反例——控件属性说 IsWebMessageEnabled=true、
         /// 事件也挂上了，但页面的 postMessage 一条也到不了（WEBVIEW_DIAG 实测
         /// messageEvents=0），回包因此永远发不出去。
-        /// 轮询发 hello 探帧：收到就算通道可用；超时就改宿主轮询（take()），
-        /// 让已发出的请求重新取回来翻译。不能只看「有没有译文需求」，否则无正文的页面
-        /// 会被误判成通道已死。
+        /// 轮询发 hello 探帧：收到就算**本份文档**可用；超时就改宿主轮询（take()），
+        /// 让已发出的请求重新取回来翻译。验证粒度必须是每份文档：实测同一控件先
+        /// verified、后仍 dead（换战役会导航出新 document，旧回执不能给新文档背书）。
         /// </summary>
         private static void EnsureWebMessageWatchdog(WebTranslationState state)
         {
-            if (state.Disposed || state.Fallback || state.MessageEvents > 0) return;
+            if (state.Disposed || state.Fallback) return;
             try
             {
                 lock (state.WorkLock)
                 {
-                    if (state.MessageWatchdog != null || state.MessageEvents > 0) return;
+                    if (state.MessageWatchdog != null) return;
+                    if (state.VerifiedGeneration == state.ChannelGeneration) return;
                     state.MessageWatchdog = new System.Windows.Forms.Timer { Interval = 400 };
                     state.MessageWatchdogStart = DateTime.UtcNow;
                 }
                 state.MessageWatchdog.Tick += (sender, args) =>
                 {
-                    if (state.Disposed || state.Fallback || state.MessageEvents > 0)
+                    if (state.Disposed || state.Fallback)
+                    {
+                        StopWebMessageWatchdog(state);
+                        return;
+                    }
+                    bool verified;
+                    lock (state.WorkLock) verified = state.VerifiedGeneration == state.ChannelGeneration;
+                    if (verified)
                     {
                         StopWebMessageWatchdog(state);
                         return;
@@ -523,8 +541,9 @@ namespace CMOLocalizer
                 }
                 if (message.StartsWith("CMO_WEB_V1_HELLO\t", StringComparison.Ordinal))
                 {
-                    // 通道存活回执：收到它就证明这个控件的页→宿主消息真的能走通。
+                    // 通道存活回执：只能给**当前这份文档**背书。
                     state.MessageEvents++;
+                    lock (state.WorkLock) state.VerifiedGeneration = state.ChannelGeneration;
                     if (!state.MessageVerifiedLogged)
                     {
                         state.MessageVerifiedLogged = true;
@@ -683,8 +702,8 @@ namespace CMOLocalizer
                     {
                         try
                         {
-                            // UI 线程才能建 Timer；消息通道没回音时切到宿主轮询。
-                            if (state.MessageEvents == 0) EnsureWebMessageWatchdog(state);
+                            // UI 线程才能建 Timer；本份文档的回执还没到就重新探测通道。
+                            EnsureWebMessageWatchdog(state);
                             PropertyInfo actual = state.Owner.GetType().GetProperty("CoreWebView2");
                             if (CurrentWebTranslationBatch(state, batch) && state.Owner.IsHandleCreated
                                 && actual != null && ReferenceEquals(actual.GetValue(state.Owner, null), batch.Core)
@@ -766,6 +785,8 @@ namespace CMOLocalizer
                     sb2.Append(",\"retiredNonces\":").Append(state.RetiredNonces.Count);
                     sb2.Append(",\"staleBatches\":").Append(state.StaleBatches);
                     sb2.Append(",\"messageEvents\":").Append(state.MessageEvents);
+                    sb2.Append(",\"channelGeneration\":").Append(state.ChannelGeneration);
+                    sb2.Append(",\"verifiedGeneration\":").Append(state.VerifiedGeneration);
                     bool coreMatches = false;
                     try
                     {

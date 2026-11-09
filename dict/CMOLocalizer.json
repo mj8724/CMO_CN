@@ -4,7 +4,7 @@
   "version": "4.3.0",
   "counts": {
    "n_offsets": 8760,
-   "n_exact": 71076,
+   "n_exact": 71079,
    "n_partial": 0,
    "n_words": 3173
   }
@@ -76066,6 +76066,7 @@
   "This is a large, single-sided battleset scenario with a duration of 3 days.": "此为大型单边战役想定，持续 3 天。",
   "This is a large, single-sided battleset scenario with a duration of 6 days.": "此为大型单边战役想定，持续 6 天。",
   "This is a new doctrine setting to prevent multiple tankers randomly refuelling each other when not desired. In this case it is what we want though, so go to the mission editor, open the Mission Doctrine window and set the refuel doctrine to Always. Again, with update 1.11 you now get feedback on the reason for nothing happening in the message log.": "这是一项旨在防止多架加油机在未经授权的情况下互相随意加油的新条令设置。不过眼下我们恰恰需要加油机给加油机加油，因此请打开“任务编辑器 (Mission Editor)”（F11），点开“任务条令 (Mission Doctrine)”窗口，将该任务的空中加油条令修改为“总是 (Always)”。同样，在 1.11 版本更新后，你可以在消息日志中清楚地看到刚才未能执行加油的具体原因反馈。",
+  "This is a simple campaign comprising a series of simple tutorials that will take you from the most basic of air attacks to quite advanced methods of using stealth, jamming, SEAD and deception.": "这是一个简单战役，由一系列从简到繁的教程构成，带你从最基本的空中攻击，一路走到隐蔽、电子干扰、压制敌防空（SEAD）与欺骗等相当高级的战法。",
   "This is a single side campaign scenario, meant to be played from the South Korean side only. Scenario duration is 9 hours.": "这是单方战役想定，只可扮演韩国一方。想定持续时间为9小时。",
   "This is a single-sided ASW oriented battleset scenario with a duration of 8 hours.": "此为单边反潜 (ASW) 专项战役想定，持续 8 小时。",
   "This is a single-sided campaign scenario designed to be played from the Chinese side. The intent is to demonstrate Chinese capabilities and platforms to the player, so they will be familiar with them when squaring off against them later in the campaign.": "这是一个单边战役想定，设计为从中国一方进行游戏。目的是向玩家展示中国的作战能力与平台，以便玩家在其后战役中与之对抗时能熟悉这些装备。",
@@ -81980,6 +81981,7 @@
   "You have six F-16I Sufa and two Gulfstream G550 AEW Nahshon under your command. Two 707 Saknayee tankers and two Hermes 900 Star UAV have arrived at Ramat David to support you.": "你指挥 6 架 F-16I「风暴」与 2 架湾流 G550「纳赫雄」预警机。2 架 707「萨克奈」加油机与 2 架赫尔墨斯 900「星」无人机已抵达拉马特戴维支援你。",
   "You have six F-16I Sufa, two Gulfstream G550 AEW Nahshon, two 707 Saknayee tankers, and two Hermes 900 Star UAV under your command.": "你指挥6架 F-16I「苏法」、2架湾流 G550 AEW「纳雄」、2架 707「萨克奈」加油机和2架 Hermes 900 Star 无人机。",
   "You have some stealth aircraft under your command. They aircraft are harder to detect and to target, and thus can get closer to the enemy.": "你手下有若干隐身飞机。这类飞机更难被探测和瞄准，因此可以更接近敌人。",
+  "You have successfully completed the Strike Tutorial campaign. Armed with the knowledge you have gained in these tutorials you should be well equipped to tackle a large number of Command scenarios.": "你已成功通关「打击作战教程」战役。凭借在这些教程中学到的本领，你应已具备应对大量《指挥》想定的能力。",
   "You have successfully completed this tutorial and learned a bit of history about Air-to-Air combat!": "恭喜你成功完成了本教程，并重温了一段精彩的空战发展史！",
   "You have sustained unacceptable losses!": "你遭受了不可接受的惨重损失！",
   "You have the 14th Frigate Squadron at your disposal, supported by 330 Squadron of the Fleet Air Arm operating from INS Kunjali.": "第14护卫舰中队归你指挥，并由自印度海军昆贾利起降场出动的舰队航空兵第330中队提供支援。",
@@ -82053,6 +82055,7 @@
   "You should  identify properly your targets before engaging them.": "开火前务必正确判明目标后再接战。",
   "You should already know how the Mission Editor window works, so after assigning the 6 MH-60S and the 6 MH-53E to the mission, you are ready to proceed.": "你应该已经熟悉“任务编辑器 (Mission Editor)”窗口的操作方式了，将 6 架 MH-60S 和 6 架 MH-53E 直升机分配给该任务后，即可继续下一步。",
   "You should be thankful we don’t have Gulag’s anymore…": "你该庆幸我等已无古拉格了……",
+  "You should consider moving onto Uncle Marks Tutorials, which are stepping stones to many of the fantastic community built scenarios available in the Community Pack.": "你可以考虑接着挑战 Uncle Marks 教程——它们是通往社区包中众多出色玩家自制想定的垫脚石。",
   "You should feel free to practice this tutorial multiple times to try out various methods. Your base has unlimited munitions so feel free to mix things up. The scenario lasts 24 hours and you can play longer than that if you like so the 6 hours it takes to change munitions can be sped through pretty quickly or set it up in the Editor.": "你可放心多次练习本教程，尝试各种方法。你的基地弹药无限，因此尽可变换打法。本想定持续 24 小时，若你愿意还可以打更久，因此更换弹药所需的 6 小时可以快速推进，或在编辑器中预先设置。",
   "You should get a warning message about flight size. Remember that you have it set to the default of 2, and you have only added 1 aircraft. Change the Flight size to a single aircraft.": "你应会收到一条关于编队规模的告警消息。请记住该值默认为 2，而你只添加了 1 架飞机。请将编队规模改为单机。",
   "You should have one bomb left, allocate it to this target.": "此时你应还剩一枚炸弹，将其分配至该目标。",
