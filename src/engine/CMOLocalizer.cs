@@ -5552,11 +5552,17 @@ namespace CMOLocalizer
                 if (target.Length == 0)
                 {
                     Log("GameBuild: 安装清单未记录适配构建号（旧版安装包）——无法比对。");
+                    RecordStatus("build_check", "UNKNOWN detected=" + detectedGameBuild + " pack=<none>");
                 }
                 else if (target != detectedGameBuild)
                 {
                     Log("GameBuild: 警告！游戏已更新到 " + detectedGameBuild + "，本汉化适配的是 " + target
                         + " —— 部分界面可能退回英文或行为异常，请等待对应版本的汉化补丁。");
+                    RecordStatus("build_check", "MISMATCH detected=" + detectedGameBuild + " pack=" + target);
+                }
+                else
+                {
+                    RecordStatus("build_check", "OK detected=" + detectedGameBuild);
                 }
             }
             catch (Exception ex)

@@ -539,6 +539,43 @@ namespace CMOUpdater
                 return false;
             }
         }
+
+        /// <summary>
+        /// 读引擎自检文件，返回「构建号不匹配」提示；一切正常/读不到时返回空串。
+        /// 只读、不抛异常：更新器不能因为旁边多了个日志文件就打不开。
+        /// </summary>
+        internal static string InstalledBuildNote(string gamePath)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(gamePath)) return "";
+                string status = System.IO.Path.Combine(gamePath, "CMOLocalizer_Status.txt");
+                if (!System.IO.File.Exists(status)) return "";
+                string check = "";
+                foreach (string line in System.IO.File.ReadAllLines(status, Encoding.UTF8))
+                {
+                    string t = line.Trim();
+                    if (t.StartsWith("build_check=MISMATCH", StringComparison.Ordinal)) { check = t; break; }
+                }
+                if (check.Length == 0) return "";
+                string detected = Between(check, "detected=", " pack=");
+                int packAt = check.IndexOf("pack=", StringComparison.Ordinal);
+                string pack = packAt < 0 ? "?" : check.Substring(packAt + 5).Trim();
+                return "注意：游戏已更新到 " + detected + "，本包适配 " + pack
+                    + " —— 装入后部分文本（顶部状态栏/地形提示/地图标签）会保持英文，请等待适配补丁。";
+            }
+            catch { return ""; }
+        }
+
+        private static string Between(string text, string start, string end)
+        {
+            int a = text.IndexOf(start, StringComparison.Ordinal);
+            if (a < 0) return "?";
+            a += start.Length;
+            int b = text.IndexOf(end, a, StringComparison.Ordinal);
+            return (b < 0 ? text.Substring(a) : text.Substring(a, b - a)).Trim();
+        }
+
     }
 
     internal sealed class TrayApp : ApplicationContext
@@ -944,6 +981,16 @@ namespace CMOUpdater
                 : ("发布日期 " + SafeDate(r.PublishedAt) + "　·　安装包 " + SizeText(r.SetupSize) + "　·　当前版本 v" + Cfg.InstalledVersion);
             sub.Text += "\n适配游戏内部版本 " + ReleaseConstants.GameBuild + "（游戏标题里的 Build 号）";
             sub.ForeColor = Color.DimGray;
+            // 引擎把「游戏实际构建号 vs 本包适配构建号」写进 CMOLocalizer_Status.txt（R86）。
+            // 版本不匹配时池注入会整体失效：顶部状态栏/地形提示/地图标签都会退回英文，
+            // 这种「装上去半英文」的状态必须在装之前说清楚，而不是让用户以为是译文缺口。
+            string buildNote = UpdateService.InstalledBuildNote(Cfg.GamePath);
+            if (buildNote.Length > 0)
+            {
+                sub.Text += "\n" + buildNote;
+                sub.ForeColor = Color.FromArgb(180, 40, 40);
+            }
+
             sub.AutoSize = true;
             sub.Location = new Point(22, 52);
             this.Controls.Add(sub);

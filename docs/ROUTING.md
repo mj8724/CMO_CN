@@ -120,7 +120,7 @@
 | 路径 | 职责 |
 |---|---|
 | `src/installer/CMO_Chinese_Setup.cs` | 安装器（约 2000 行，**CRLF**）：安装→清单→设置保留→回退 |
-| `src/updater/CMO_Updater.cs` | 更新助手（约 1500 行）：`--check` 检测新版本、提示升级/回退 |
+| `src/updater/CMO_Updater.cs` | 更新助手（约 1500 行）：`--check` 检测新版本、提示升级/回退；安装对话框读 `CMOLocalizer_Status.txt` 的 `build_check`，构建号与本包不匹配时红字示警（R87） |
 
 两者都依赖 `src/shared/CMOShared.cs`。改动后必须跑 installer 门禁（见 §8）。
 
@@ -354,7 +354,7 @@
 | `BRIEFING_DUMP` | 只读：把当前打开的富文本简报（阵营简报/想定说明）正文导到 `CMOLocalizer_Briefing.txt`，并返回字符/汉字/英文行数与样本。简报汉化只能靠这个数字验收 |
 | `WEBVIEW_TEXT <窗体>` / `WEBVIEW_JS <窗体> <脚本>` | 只读：在该窗体的 WebView2 里取 `body.innerText` / 执行一段脚本（阵营选择、系列战役描述面板只在这里能看到 DOM） |
 | `WEBVIEW_DIAG <窗体>` | 只读：WebView2 桥状态——消息事件是否接上、回执计数 `messageEvents`、文档 nonce/来源、队列与首个丢弃原因（R84 靠它分清「译文没命中/回包被拒/通道死了」） |
-| `CMOLocalizer_Status.txt`（游戏目录，运行时自写） | **本地化自检**：游戏内部版本（取自主窗体标题）、词典条数、池注入结果（OK/FAILED + 原因）、标签层 URL 是否重定向、标签服务端口与地标数、已服务瓦片数。用户报「顶部状态栏/地形提示/地图标签仍英文」时先要这个文件（R86） |
+| `CMOLocalizer_Status.txt`（游戏目录，运行时自写） | **本地化自检**：游戏内部版本（取自主窗体标题）、词典条数、池注入结果（OK/FAILED + 原因）、`build_check`（游戏构建号 vs 安装清单适配号）、标签层 URL 是否重定向、标签服务端口与地标数、已服务瓦片数。更新器读 `build_check` 在安装前示警（R87）；用户报「顶部状态栏/地形提示/地图标签仍英文」时先要这个文件（R86） |
 
 ---
 
@@ -384,7 +384,7 @@
 | 路径 | 职责 |
 |---|---|
 | `docs/ROUTING.md` | **本文件**。新增文件必须登记 |
-| `docs/BUG_REGISTRY.md` | 缺陷台账 R1–R86（CRLF，**只增不改**）。修 bug 必须登记 |
+| `docs/BUG_REGISTRY.md` | 缺陷台账 R1–R87（CRLF，**只增不改**）。修 bug 必须登记 |
 | `docs/CHANGELOG.md` | 发布说明；`publish_release.py` 取顶部段落作为 Release 正文 |
 | `docs/RELEASE_MANIFEST.md` | 发版清单与规则（含"已发布资产只增不改"） |
 | `docs/RELEASE_TEST_SOP.md` | 发版测试 SOP |

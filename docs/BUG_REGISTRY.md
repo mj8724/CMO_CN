@@ -2673,3 +2673,29 @@ python scripts/perf_probe.py          # 游戏已在想定里
      地图标签 URL 都只走池。用户报「有的地方中文有的地方英文」时先看这个组合，不要先怀疑译文缺口。
   2. 只重绘「已存在的缓存瓦片」意味着**部分汉化的缓存在用户机上会长期卡住**：
      要么重绘全部覆盖范围，要么保证运行时服务一定接管——否则同一张地图会中英混排。
+
+## R87 构建号不匹配必须在「装之前」说清楚：更新器读引擎自检并示警
+
+- **来源**：R86 定位到「池注入整体失效」是同机英文现象的唯一解释，而当时的检测结果只落在
+  `CMOLocalizer.log` 里（`GameBuild: 警告！…`）——用户看不到，于是被当成「汉化没做」。
+- **修复**
+  - 引擎（`NoteGameBuild`）：比对结果写进自检文件 `CMOLocalizer_Status.txt` 的
+    `build_check=OK detected=X` / `build_check=MISMATCH detected=X pack=Y` /
+    `build_check=UNKNOWN detected=X pack=<none>`（旧包无 manifest 字段时）。
+  - 更新器（`CMO_Updater.cs` / `UpdateService.InstalledBuildNote`）：安装对话框读取该文件，
+    版本不匹配时就地把 `适配游戏内部版本 …` 一行追加为红字提示
+    「注意：游戏已更新到 X，本包适配 Y —— 装入后部分文本（顶部状态栏/地形提示/地图标签）
+    会保持英文，请等待适配补丁」。读不到/正常时静默（不抛异常）。
+- **验收证据**
+  - 正常：`build_check=OK detected=1900.24`（本机 1900.24 + manifest 1900.24）。
+  - 负向（把 manifest 的 `game_build` 临时改成 1900.99 再重启）：
+    `build_check=MISMATCH detected=1900.24 pack=1900.99`，
+    日志同帧出现「GameBuild: 警告！游戏已更新到 1900.24，本汉化适配的是 1900.99」；
+    恢复 manifest 后重新实测回到 `OK`。
+  - 候选构建：`bash scripts/build.sh --candidate build/cand-r86` 全量编译通过
+    （引擎 + 更新器 + SetupCandidate.exe），未触碰已发布资产。
+  - `verify_regressions --static` 47/47。
+- **限制（写清楚免得误以为验过）**
+  `verify_regressions --installer` 只针对 `build/CMO_Chinese_Setup_v<VER>.exe`（当前为 4.3.0 的
+  已发布构建）。更新器 UI 的这处改动只做了编译与代码路径核对，**必须在下一次授权发布的
+  构建里跑 installer 门禁**才算验收闭环；未授权前不重打发布资产。
