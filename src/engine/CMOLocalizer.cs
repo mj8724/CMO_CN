@@ -385,6 +385,7 @@ namespace CMOLocalizer
                 offsetMap[21564] = "zh-CN";
                 offsetMap[62636] = "zh-CN";
                 Log("LocalTileServer started on " + localUrl + " with " + mapPlaces.Count + " Chinese landmarks.");
+                RecordStatus("label_server", localUrl + " landmarks=" + mapPlaces.Count);
 
                 // Game downloads also use the CLR pool. Keep both accepting and
                 // serving independent, with bounded workers and queued sockets.
@@ -489,6 +490,10 @@ namespace CMOLocalizer
                     bw.Flush();
                     LogTileRequest(string.Format("z={0} x={1} y={2} candidates={3} rendered={4} bytes={5} ms={6}",
                         z, x, y, candidates, rendered, pngBytes.Length, elapsed.ElapsedMilliseconds));
+                    int served = Interlocked.Increment(ref labelTilesServed);
+                    // 只在少数节点写盘（1/10/100/1000/10000），否则每个瓦片都写一次会拖慢服务。
+                    if (served == 1 || served == 10 || served == 100 || served == 1000 || served == 10000)
+                        RecordStatus("label_tiles_served", served.ToString());
                 }
             }
             catch (Exception ex) { LogTileRequest("error " + ex.GetType().Name + ": " + ex.Message); }
@@ -504,21 +509,64 @@ namespace CMOLocalizer
             }
         }
 
+        /// <summary>
+        /// 本地化自检状态（写到游戏目录 CMOLocalizer_Status.txt）。
+        /// 用户报「顶部状态栏/地形提示/地图标签还是英文」时，靠这三个数字就能分清：
+        /// 池注入是否生效、标签服务是否起来、游戏有没有真的来请求标签瓦片。
+        /// 日志要翻十几万行，状态文件只要几行。
+        /// </summary>
+        private static readonly Dictionary<string, string> statusFields =
+            new Dictionary<string, string>(StringComparer.Ordinal);
+        private static string poolFailureNote = "";
+        private static int labelTilesServed;
+        private static bool gameWindowRecorded;
+
+        private static void RecordStatus(string key, string value)
+        {
+            try
+            {
+                lock (statusFields)
+                {
+                    statusFields[key] = value ?? "";
+                    StringBuilder sb = new StringBuilder();
+                    foreach (KeyValuePair<string, string> kv in statusFields)
+                        sb.Append(kv.Key).Append('=').Append(kv.Value).Append("\r\n");
+                    File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CMOLocalizer_Status.txt"),
+                        sb.ToString(), Encoding.UTF8);
+                }
+            }
+            catch { }
+        }
+
         private static void HookWorker()
         {
             try
             {
                 string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                string gameExe = Path.Combine(baseDir, "Command.exe");
+                try
+                {
+                    if (File.Exists(gameExe))
+                    {
+                        System.Diagnostics.FileVersionInfo vi = System.Diagnostics.FileVersionInfo.GetVersionInfo(gameExe);
+                        RecordStatus("game", (vi.FileVersion ?? "?") + " product=" + (vi.ProductVersion ?? "?"));
+                    }
+                }
+                catch { }
+
                 string dictPath = Path.Combine(baseDir, "CMOLocalizer.json");
                 if (File.Exists(dictPath))
                 {
                     LoadDictionaries(dictPath);
                     Log(string.Format("Loaded dictionaries: {0} offsets, {1} exact texts, {2} partial terms, {3} word roots.",
                         offsetMap.Count, exactMap.Count, partialMap.Count, wordsMap.Count));
+                    RecordStatus("dictionary", string.Format("offsets={0} exact={1} words={2}",
+                        offsetMap.Count, exactMap.Count, wordsMap.Count));
                 }
                 else
                 {
                     Log("Warning: CMOLocalizer.json not found at " + dictPath);
+                    RecordStatus("dictionary", "MISSING at " + dictPath);
                 }
 
                 // Start UI watcher loop in a background thread to translate WinForms controls
@@ -546,6 +594,15 @@ namespace CMOLocalizer
                         break;
                     }
                     Thread.Sleep(500);
+                }
+                if (!injectedEngine)
+                {
+                    // 池注入没生效时，顶部状态栏、地形提示、地图标签层的 URL 重定向
+                    // 全部不会发生（它们都靠池偏移）——必须留一条能直接读懂的现场。
+                    string why = string.IsNullOrEmpty(poolFailureNote) ? "pool discovery failed" : poolFailureNote;
+                    Log("本地化降级：字符串池注入未生效（" + why + "，重试 " + tries + " 次）"
+                        + "——顶部状态栏/地形提示/地图标签会保持英文。请核对游戏内部版本与汉化包是否匹配。");
+                    RecordStatus("pool", "FAILED tries=" + tries + " reason=" + why);
                 }
             }
             catch (Exception ex)
@@ -579,6 +636,7 @@ namespace CMOLocalizer
                 string note;
                 if (!TryFindPool(out tDecrypt, out fStrings, out fOffsets, out buf, out fBuf, out note))
                 {
+                    poolFailureNote = note;
                     Log("CoreDecryption: string pool not available on this game build — offset injection disabled. " + note);
                     return false;
                 }
@@ -599,6 +657,8 @@ namespace CMOLocalizer
                 List<int> offList = (List<int>)fOffsets.GetValue(null);
                 if (strList == null || offList == null || offsetMap.Count == 0)
                 {
+                    poolFailureNote = string.Format("pool not ready (strList={0} offList={1} offsetMap={2})",
+                        strList != null, offList != null, offsetMap.Count);
                     Log(string.Format("CoreDecryption: pool not ready (strList={0} offList={1} offsetMap={2}) — offset injection skipped.",
                         strList != null, offList != null, offsetMap.Count));
                     return false;
@@ -636,6 +696,9 @@ namespace CMOLocalizer
                 }
                 Log(string.Format("Successfully pre-populated {0} translated strings into {1} string pool! (offsets out of range: {2})",
                     count, tDecrypt.Name, outOfRange));
+                RecordStatus("pool", string.Format("OK injected={0}/{1} outOfRange={2} class={3}",
+                    count, offsetMap.Count, outOfRange, tDecrypt.Name));
+                RecordStatus("label_layer_url", offsetMap.ContainsKey(1789870) ? "injected@1789870" : "NOT injected");
                 return true;
             }
             catch (Exception ex)
@@ -700,6 +763,7 @@ namespace CMOLocalizer
             if (tDecrypt == null)
             {
                 note = "pool class not found（游戏更新后需重做注入点探测，见 docs/BUG_REGISTRY.md R31）.";
+                poolFailureNote = note;
                 return false;
             }
 
@@ -716,6 +780,7 @@ namespace CMOLocalizer
             {
                 note = string.Format("pool fields incomplete in {0} (strings={1} offsets={2} byte[]={3}).",
                     tDecrypt.FullName, fStrings != null, fOffsets != null, bufFields.Count);
+                poolFailureNote = note;
                 return false;
             }
 
@@ -840,6 +905,19 @@ namespace CMOLocalizer
                     Form[] openFormsSnapshot = OpenFormsSnapshot();
                     if (openFormsSnapshot.Length > 0)
                     {
+                        // 游戏标识只能从主窗体标题拿到（Command.exe 的 File/Assembly 版本恒为 1.0.0.0）：
+                        // 标题里的「内部版本 1900.24」是判断「包与游戏是否匹配」的唯一现场。
+                        if (!gameWindowRecorded)
+                        {
+                            foreach (Form probe in openFormsSnapshot)
+                            {
+                                if (probe == null || probe.IsDisposed) continue;
+                                if (probe.GetType().Name != "MainForm" && probe.Name != "MainForm") continue;
+                                try { RecordStatus("game_window", probe.Text); } catch { }
+                                gameWindowRecorded = true;
+                                break;
+                            }
+                        }
                         foreach (Form frm in openFormsSnapshot)
                         {
                             if (frm != null && !frm.IsDisposed)
