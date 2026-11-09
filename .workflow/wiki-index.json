@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": 1793918122251,
+  "generatedAt": 1794191270597,
   "entries": [
     {
       "id": "knowhow-dcs-20261012-2009",
@@ -1054,6 +1054,55 @@
       "specCategory": null,
       "createdBy": null,
       "sourceRef": null,
+      "parent": null,
+      "related": [],
+      "repoId": null
+    },
+    {
+      "id": "knowhow-tip-20261109-scen-scendescription-campaign-descriptio",
+      "type": "knowhow",
+      "title": "战役正文有两层：.scen ScenDescription 与 .campaign Description/EndingText",
+      "summary": "用户反馈「某两个 DLC 战役没汉化」，截图是**系列战役选单**右侧的介绍面板。",
+      "tags": [
+        "DLC 战役",
+        "系列战役",
+        "campaign",
+        "ScenDescription",
+        "盘点覆盖面"
+      ],
+      "status": "active",
+      "created": "2026-11-09T02:27:45.059Z",
+      "updated": "2026-11-09T02:27:45.059Z",
+      "scope": null,
+      "category": "tip",
+      "specCategory": null,
+      "createdBy": null,
+      "sourceRef": "BUG_REGISTRY R83",
+      "parent": null,
+      "related": [],
+      "repoId": null
+    },
+    {
+      "id": "knowhow-tip-20261109-webview2",
+      "type": "knowhow",
+      "title": "WebView2 桥：页→宿主通道必须用真实回执证明（单向可用是真实形态）",
+      "summary": "界面某处仍是英文，但词典里明明有整段译文（`XLATE` 的 `briefing` 通道返回中文）。 本项目实测案例：`CampaignPlayWindow/WebBrowser1`（系列战役描述面板）。",
+      "tags": [
+        "WebView2",
+        "postMessage",
+        "WebMessageReceived",
+        "WEBVIEW_DIAG",
+        "通道存活",
+        "轮询兜底"
+      ],
+      "status": "active",
+      "created": "2026-11-09T02:27:33.892Z",
+      "updated": "2026-11-09T02:27:33.892Z",
+      "scope": null,
+      "category": "tip",
+      "specCategory": null,
+      "createdBy": null,
+      "sourceRef": "BUG_REGISTRY R84",
       "parent": null,
       "related": [],
       "repoId": null
