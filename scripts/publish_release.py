@@ -308,6 +308,10 @@ def main(argv: list[str] | None = None) -> int:
         # Do not echo request headers, response bodies, or secrets. Partial writes remain immutable;
         # any repair is a separately authorized new version, not an automatic destructive retry.
         print(f"FAIL: 发布中止（{type(exc).__name__}）；未删除或覆盖任何历史资产", file=sys.stderr)
+        # 只在显式要求时打印调用栈（栈只含源码行，不含局部变量/请求头/凭据）。
+        if os.environ.get("CMO_PUBLISH_DEBUG") == "1":
+            import traceback
+            traceback.print_exc()
         return 1
 
 
