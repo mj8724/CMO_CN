@@ -288,6 +288,22 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         print(f"PASS: {tag} 四资产发布并 GET 复核通过（历史资产未修改）")
         return 0
+    except urllib.error.HTTPError as exc:
+        # 只回显 HTTP 状态码与 GitHub 的 message 字段：不带请求头/凭据，也不回显整个响应体。
+        # 之前这里只打异常类型名，出现「HTTPError」时无从判断是 403/422 还是别的。
+        detail = ""
+        try:
+            body = json.loads(exc.read().decode("utf-8", "replace"))
+            message = str(body.get("message", "")).strip()
+            errors = body.get("errors")
+            if message:
+                detail = " " + message[:200]
+            if isinstance(errors, list) and errors:
+                detail += " / " + str(errors)[:200]
+        except Exception:
+            pass
+        print(f"FAIL: 发布中止（HTTP {exc.code}{detail}）；未删除或覆盖任何历史资产", file=sys.stderr)
+        return 1
     except (OSError, ValueError, KeyError, TypeError, urllib.error.URLError, subprocess.TimeoutExpired) as exc:
         # Do not echo request headers, response bodies, or secrets. Partial writes remain immutable;
         # any repair is a separately authorized new version, not an automatic destructive retry.
