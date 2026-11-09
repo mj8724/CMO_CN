@@ -532,6 +532,7 @@ namespace CMOLocalizer
         private static readonly Dictionary<string, string> statusFields =
             new Dictionary<string, string>(StringComparer.Ordinal);
         private static string poolFailureNote = "";
+        private static int poolFailureAttempts;
         private static int labelTilesServed;
         private static bool gameWindowRecorded;
 
@@ -591,32 +592,33 @@ namespace CMOLocalizer
                 // 地图端点仍须先写入 URL 偏移；其数据准备不再阻塞界面发现。
                 StartLocalTileServer(baseDir);
 
-                // Wait for target assembly and types to load
+                // 池注入要等到游戏的解密类/字段真正就绪：先 500ms 密集重试 2 分钟，
+                // 之后降到 15s 一次但**永不放弃**。报告人那台机器上池注入整体没生效
+                // （状态栏/地形提示/地图标签一起英文），我们拿不到它的构建，
+                // 唯一能做且无风险的事就是把「晚就绪 / 稍后才发现」这些情况自动救回来。
                 int tries = 0;
                 bool injectedEngine = false;
-                while (tries < 120)
+                bool warnedDegraded = false;
+                while (true)
                 {
                     tries++;
-
-                    if (!injectedEngine)
-                    {
-                        injectedEngine = TryInjectCoreDecryption();
-                    }
-
+                    injectedEngine = TryInjectCoreDecryption();
                     if (injectedEngine)
                     {
+                        if (warnedDegraded)
+                            Log("本地化恢复：字符串池注入在第 " + tries + " 次重试后生效。");
+                        RecordStatus("pool_retries", tries.ToString());
                         break;
                     }
-                    Thread.Sleep(500);
-                }
-                if (!injectedEngine)
-                {
-                    // 池注入没生效时，顶部状态栏、地形提示、地图标签层的 URL 重定向
-                    // 全部不会发生（它们都靠池偏移）——必须留一条能直接读懂的现场。
-                    string why = string.IsNullOrEmpty(poolFailureNote) ? "pool discovery failed" : poolFailureNote;
-                    Log("本地化降级：字符串池注入未生效（" + why + "，重试 " + tries + " 次）"
-                        + "——顶部状态栏/地形提示/地图标签会保持英文。请核对游戏内部版本与汉化包是否匹配。");
-                    RecordStatus("pool", "FAILED tries=" + tries + " reason=" + why);
+                    if (!warnedDegraded && tries >= 120)
+                    {
+                        warnedDegraded = true;
+                        string why = string.IsNullOrEmpty(poolFailureNote) ? "pool discovery failed" : poolFailureNote;
+                        Log("本地化降级：字符串池注入暂未生效（" + why + "）"
+                            + "——顶部状态栏/地形提示/地图标签会保持英文；将继续每 15 秒重试。"
+                            + "请核对游戏内部版本与汉化包是否匹配（见 CMOLocalizer_Status.txt 的 build_check）。");
+                    }
+                    Thread.Sleep(tries < 120 ? 500 : 15000);
                 }
             }
             catch (Exception ex)
@@ -650,8 +652,16 @@ namespace CMOLocalizer
                 string note;
                 if (!TryFindPool(out tDecrypt, out fStrings, out fOffsets, out buf, out fBuf, out note))
                 {
+                    poolFailureAttempts++;
+                    bool firstOrChanged = note != poolFailureNote;
                     poolFailureNote = note;
-                    Log("CoreDecryption: string pool not available on this game build — offset injection disabled. " + note);
+                    RecordStatus("pool", "FAILED attempts=" + poolFailureAttempts + " reason=" + note);
+                    // 以前每次重试都打一行，坏构建上会刷 120 行同样的话，现场反而更难读。
+                    if (firstOrChanged || poolFailureAttempts % 30 == 0)
+                    {
+                        Log("CoreDecryption: string pool not available on this game build — offset injection disabled (attempt "
+                            + poolFailureAttempts + "). " + note);
+                    }
                     return false;
                 }
 
@@ -927,7 +937,12 @@ namespace CMOLocalizer
                             {
                                 if (probe == null || probe.IsDisposed) continue;
                                 if (probe.GetType().Name != "MainForm" && probe.Name != "MainForm") continue;
-                                try { RecordStatus("game_window", probe.Text); } catch { }
+                                // 标题一开始只是 "Command"，要等它带上「内部版本/Build」再记，
+                                // 否则状态文件里留下的是一句没用的占位。
+                                string title = probe.Text ?? "";
+                                if (title.IndexOf("内部版本", StringComparison.Ordinal) < 0
+                                    && title.IndexOf("Build", StringComparison.OrdinalIgnoreCase) < 0) continue;
+                                try { RecordStatus("game_window", title); } catch { }
                                 gameWindowRecorded = true;
                                 break;
                             }

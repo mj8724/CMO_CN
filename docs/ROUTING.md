@@ -387,7 +387,7 @@
 | 路径 | 职责 |
 |---|---|
 | `docs/ROUTING.md` | **本文件**。新增文件必须登记 |
-| `docs/BUG_REGISTRY.md` | 缺陷台账 R1–R88（CRLF，**只增不改**）。修 bug 必须登记 |
+| `docs/BUG_REGISTRY.md` | 缺陷台账 R1–R89（CRLF，**只增不改**；R89 为未闭环条目）。修 bug 必须登记 |
 | `docs/CHANGELOG.md` | 发布说明；`publish_release.py` 取顶部段落作为 Release 正文 |
 | `docs/RELEASE_MANIFEST.md` | 发版清单与规则（含"已发布资产只增不改"） |
 | `docs/RELEASE_TEST_SOP.md` | 发版测试 SOP |
