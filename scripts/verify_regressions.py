@@ -1267,6 +1267,8 @@ def run_live(r: Runner) -> None:
 
     # L5：界面英文残留抽样（R27——天气/快捷键/控制台等窗口）
     _ui_residual_probe(H, r, pid)
+    # L7：快捷键窗口正文整段中文（R91——只读富文本框不再是盲区）
+    _hotkeys_probe(H, r, pid)
 
     # L6：条令下拉项全中文 + 无新增写拉锯熔断（R28）
     _doctrine_probe(H, r, pid)
@@ -1515,8 +1517,8 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
 
     历史：天气编辑器的 Calm/Hurricane/Level 0、快捷键窗口的 Own Units、Lua 控制台的
     Insert/RUN 都是「用户看得见的英文」——而那 6 条当时根本不在词典里。
-    已知盲区：快捷键窗口的正文在 DarkRichTextBox 里（富文本，直接改 Text 会丢格式且
-    碰 R19 的输入保护不变量），本用例显式跳过并报告条数，不算它失败。
+    R91 起富文本不再是盲区：只读 RichTextBox 走整段 exact 查表（R27 盲区 1 已闭环），
+    所以这里不再跳过富文本节点——它的正文现在要么是中文，要么就是真缺口。
     R29：「想定特性与设置」是 WPF 窗口（CTRL_TREE 看不见），必须改用 WPF_DUMP 断言——
     实测该列表无 ScrollViewer/ItemsControl，17 条特性全部 realize 且同屏可见，
     所以那 4 条英文是真缺词条，不是「WPF 虚拟化离屏项」（旧判断已纠正）。
@@ -1541,7 +1543,6 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
         exact = {}
     missing: list[str] = []
     residual: list[str] = []
-    rich_skipped = 0
     checked_forms = 0
     for menu, label in windows:
         H.send("CLOSE_FORM ALL", timeout=20)
@@ -1577,9 +1578,6 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
         for c in nodes:
             t = (c.get("text") or "").strip()
             if not t or t in base or len(t) > 40 or not c.get("v"):
-                continue
-            if "RichTextBox" in (c.get("t") or ""):
-                rich_skipped += 1
                 continue
             if any("\u4e00" <= ch <= "\u9fff" for ch in t):
                 continue
@@ -1659,13 +1657,58 @@ def _ui_residual_probe(H, r: Runner, pid: int | None) -> None:
     r.record(name, title, ok,
              f"抽查 {checked_forms}/{len(windows)} 个窗口；已入词典却仍显英文 {len(residual)} 条"
              + (f"（{residual[:4]}）" if residual else "")
-             + (f"；已知盲区跳过富文本 {rich_skipped} 处" if rich_skipped else "")
              + ("；WPF 想定特性：战役模式下窗口不可重开，跳过" if wpf_skipped
                 else f"；WPF 想定特性 {wpf_rows} 条（仍显英文 {len(wpf_en_left)}、缺译文 {len(wpf_missing)}）")
              + (f"；{wpf_open_err}" if wpf_open_err else "")
              + (f"；缺失: {missing + wpf_missing}" if (missing or wpf_missing) else ""),
              "evidence/live/scan")
 
+def _hotkeys_probe(H, r: Runner, pid: int | None) -> None:
+    """R91 实机探针：快捷键窗口 9 段正文必须整段中文（6 段靠 exact，3 段靠池注入）。
+
+    历史（R27 盲区 1）：`DarkRichTextBox` 继承 `TextBoxBase`，引擎把它当用户输入整体跳过，
+    于是整窗的快捷键说明永远是英文——哪怕词典里早有对应译文。修法是只读富文本按整段
+    exact 查表写回（不碰可编辑富文本），本用例用 `CTRL_TEXT`（不截断，`CTRL_TREE` 只给 120 字符）
+    逐行断言「制表符之后的说明文字必须含中文」。
+    """
+    name, title = "L-hotkeys", "R91 快捷键窗口正文整段中文（只读富文本框不再漏译）"
+    evidence = "evidence/live/v413/hotkeys_after.png"
+    H.send("CLOSE_FORM ALL", timeout=20)
+    time.sleep(1.2)
+    if H.send("CLICK_MENU 快捷键", timeout=20).get("status") != "ok":
+        r.record(name, title, False, "打不开 帮助→快捷键", evidence)
+        return
+    boxes: dict[str, str] = {}
+    for _ in range(3):
+        time.sleep(3.5)
+        payload = H.send("CTRL_TEXT 快捷键", timeout=60)
+        boxes = {it.get("name"): it.get("text") or ""
+                 for it in payload.get("items", [])
+                 if it.get("type") == "DarkRichTextBox"}
+        if len(boxes) >= 6 and any(any("\u4e00" <= ch <= "\u9fff" for ch in t)
+                                   for t in boxes.values()):
+            break
+    english_lines: list[str] = []
+    empty_boxes: list[str] = []
+    lines = 0
+    for box, text in sorted(boxes.items()):
+        if not text.strip():
+            empty_boxes.append(box)
+            continue
+        for ln in text.split("\n"):
+            body = ln[ln.rfind("\t") + 1:].strip()
+            if not body:
+                continue
+            lines += 1
+            if not any("\u4e00" <= ch <= "\u9fff" for ch in body):
+                english_lines.append(f"{box}:{body[:28]}")
+    H.send("CLOSE_FORM 快捷键", timeout=20)
+    ok = bool(boxes) and not english_lines and not empty_boxes and lines >= 60
+    r.record(name, title, ok,
+             f"富文本框 {len(boxes)} 个 / 说明行 {lines} 条；仍显英文 {len(english_lines)} 条"
+             + (f"（{english_lines[:4]}）" if english_lines else "")
+             + (f"；空箱子 {empty_boxes[:4]}" if empty_boxes else ""),
+             evidence)
 
 def _mixed_prefix_probe(H, r: Runner, pid: int | None) -> None:
     """R42 实机探针：全进程下拉项不得出现「英文 Inherited 前缀 + 中文字尾」。

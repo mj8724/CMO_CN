@@ -410,6 +410,25 @@ def build() -> dict:
             exact[en] = fixed
             labels_only.add(en)
 
+    # --- 快捷键窗口正文（R91）------------------------------------------
+    # 6 段 DarkRichTextBox 的整段文本，靠「键列 + 制表符/补空格」排两列。只做 HAN_GAP 与
+    # sanitize(allow_sensitive)：简报批次的「多空格合并 / 虚词剔除」是散文启发式，会把
+    # 列位置挤歪、把标题里的 -- 分隔符吃掉。这 6 段的英文原文不在字符串池里，运行时只能
+    # 靠引擎的「只读富文本整段 exact 查表」写入。
+    hotkeys_file = SRC / "hotkeys_ui.json"
+    if hotkeys_file.is_file():
+        hotkey_count = 0
+        for en, zh in load(hotkeys_file).items():
+            if not en or not zh or en in blacklist:
+                continue
+            fixed = sanitize(en, HAN_GAP.sub("", zh), allow_sensitive=True)
+            if fixed is None:
+                continue
+            exact[en] = fixed
+            labels_only.add(en)
+            hotkey_count += 1
+        print(f"[hotkeys] 快捷键窗口正文 {hotkey_count} 段")
+
     # --- sanitize: repair or drop every surviving entry ------------------
     for en in list(exact):
         fixed = sanitize(en, exact[en], allow_sensitive=en in labels_only)

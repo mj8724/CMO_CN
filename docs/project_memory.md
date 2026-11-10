@@ -357,9 +357,13 @@
    - WPF → 用 `WPF_DUMP`（大厅 `StartGameMenuWindow` 属这一层，`CTRL_TREE` 完全看不到）；
    - 大厅的 WebView2 面板（如启动时的 Professional Edition 介绍）→ 两者都够不到，审计日志也从不记录，
      属当前机制的盲区。
-3. **富文本控件（`DarkRichTextBox`）是引擎的翻译盲区**：`ctrl.Text` 有值但引擎不改写其内容
-   （改 Text 会丢 Tab 排版，并触碰 R19 的输入保护不变量）。快捷键窗口整窗英文就属于这一类；
-   读它们要用 `CTRL_TREE`（能读到 Text），不要用审计日志（它只记引擎尝试翻译过的串）。
+3. **富文本控件（`DarkRichTextBox`）：只读的已不再是盲区（R91），可编辑的仍是禁区**。
+   历史：`RichTextBox` 继承 `TextBoxBase`，引擎把它当用户输入整体跳过，所以快捷键窗口整窗英文；
+   而同一窗口里 3 个已经中文的箱子是**池注入**换了整段原文（那几段原文池里确实有），另外 6 段
+   根本不在池里。R91 起：只读富文本按整段 `exact` 查表写回（**不要**走 `TranslateString`，
+   组合/半译管道会把 `F2			Throttle - Altitude/Depth` 拼成残文），可编辑富文本（Lua 控制台）
+   一律不动。读这类控件用 `CTRL_TEXT`（不截断；`CTRL_TREE` 每个 text 只给 120 字符），
+   不要用审计日志（只记引擎尝试翻译过的串）。
 
 配套工具：`evidence/team-review-20261016/sweep.py`（WinForms 窗口扫描）、`sweep_units.py`（单位命令系，
 当前被第 1 条挡住）、产物在 `evidence/team-review-20261016/sweep/`。

@@ -13,10 +13,11 @@ Gates
   4. scenario meta 100% of <ScenTitle> / <ScenSetting> translated
   5. briefings     HTML briefings carry Chinese prose, structure intact
   6. placenames    all Synoptic + Cities labels uniquely match approved reviews
-  7. db templates  8 DB HTML templates localized
-  8. version       VERSION consistent across VERSION / engine / installer
-  9. repository    git worktree clean
- 10. secrets       no plaintext credentials in worktree or git history
+  7. hotkeys       快捷键窗口正文（DarkRichTextBox）与实机原文逐行对齐（R91）
+  8. db templates  8 DB HTML templates localized
+  9. version       VERSION consistent across VERSION / engine / installer
+ 10. repository    git worktree clean
+ 11. secrets       no plaintext credentials in worktree or git history
 """
 from __future__ import annotations
 
@@ -163,6 +164,14 @@ def gate_placenames() -> None:
         summaries.append(f"Regions {region_summary.get('matched', 0)}/{region_summary.get('source_entries', 0)} places")
     record("placenames", not errors, "; ".join(summaries + errors[:6]))
 
+def gate_hotkeys() -> None:
+    """快捷键窗口正文（R91）：整段译文与实机采集原文逐行对齐，词典产物一致。"""
+    from verify_hotkeys_ui import collect_problems
+
+    problems, stats = collect_problems()
+    detail = (f"{stats.get('boxes', 0)} 段 / {stats.get('lines', 0)} 行与实机原文对齐"
+              if not problems else "; ".join(problems[:4]))
+    record("hotkeys", not problems, detail)
 
 def gate_db_templates() -> None:
     tpl = GAME / "DB/Templates"
@@ -304,7 +313,7 @@ def gate_routing() -> None:
 
 def main() -> int:
     for g in (gate_dictionary, gate_menu, gate_engine_parse,
-              gate_scenario_meta, gate_briefings, gate_placenames,
+              gate_scenario_meta, gate_briefings, gate_placenames, gate_hotkeys,
               gate_db_templates, gate_version, gate_no_secrets,
               gate_routing, gate_repository):
         try:

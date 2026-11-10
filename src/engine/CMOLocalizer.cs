@@ -1614,6 +1614,64 @@ namespace CMOLocalizer
             return sb.ToString();
         }
 
+        // 只读：取控件完整文本（CTRL_TREE 会把每个 text 截到 120 字符）。多行富文本
+        // （快捷键窗口正文）靠 CTRL_TREE 拿不到原文，也就做不成整段译文键（R91）。
+        private static string HandleCtrlText(string cmd)
+        {
+            string rest = cmd.Length > "CTRL_TEXT".Length ? cmd.Substring("CTRL_TEXT".Length).Trim() : "";
+            int sp = rest.IndexOf(' ');
+            string filter = sp < 0 ? rest : rest.Substring(0, sp).Trim();
+            string want = sp < 0 ? "" : rest.Substring(sp + 1).Trim();
+            StringBuilder sb = new StringBuilder();
+            sb.Append("{\"status\":\"ok\",\"filter\":\"").Append(JsonEsc(filter))
+              .Append("\",\"want\":\"").Append(JsonEsc(want)).Append("\",\"items\":[");
+            bool first = true;
+            int count = 0;
+            Form[] forms = OpenFormsSnapshot();
+            foreach (Form f in forms)
+            {
+                if (f == null || f.IsDisposed) continue;
+                string ft = f.Text ?? "";
+                string fn = f.Name ?? "";
+                if (filter.Length > 0 &&
+                    ft.IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0 &&
+                    fn.IndexOf(filter, StringComparison.OrdinalIgnoreCase) < 0) continue;
+                if (want.Length == 0)
+                {
+                    AppendControlTexts(f, sb, ref first, ref count);
+                }
+                else
+                {
+                    Control c = FindControlByTypeOrName(f, want);
+                    if (c != null) AppendControlText(c, sb, ref first, ref count);
+                }
+            }
+            sb.Append("]}");
+            return sb.ToString();
+        }
+
+        private static void AppendControlTexts(Control root, StringBuilder sb, ref bool first, ref int count)
+        {
+            if (root == null || count >= 200) return;
+            AppendControlText(root, sb, ref first, ref count);
+            foreach (Control child in root.Controls) AppendControlTexts(child, sb, ref first, ref count);
+        }
+
+        private static void AppendControlText(Control c, StringBuilder sb, ref bool first, ref int count)
+        {
+            if (c == null) return;
+            string t = "";
+            try { t = c.Text ?? ""; } catch { }
+            if (t.Length == 0) return;
+            if (!first) sb.Append(',');
+            first = false;
+            count++;
+            sb.Append("{\"name\":\"").Append(JsonEsc(c.Name))
+              .Append("\",\"type\":\"").Append(JsonEsc(c.GetType().Name))
+              .Append("\",\"len\":").Append(t.Length)
+              .Append(",\"text\":\"").Append(JsonEsc(t)).Append("\"}");
+        }
+
         private static void TranslateWpfElement(System.Windows.DependencyObject dep)
         {
             if (dep == null || IsEditableWpfTarget(dep)) return;
@@ -4670,6 +4728,28 @@ namespace CMOLocalizer
             if (ctrl is TextBoxBase)
             {
                 TextBoxBase tb = (TextBoxBase)ctrl;
+                // 只读富文本是纯显示区（快捷键窗口的 8 个 DarkRichTextBox）：走整段 exact 译文，
+                // 制表符排版原样保留。可编辑富文本（Lua 脚本控制台）一律不碰——R19 输入保护不变量。
+                // 不看焦点/选区：只读=不能输入，用户点进去看也不会变成「正在输入」；
+                // 反过来要求未聚焦会让开窗默认聚焦的那个框永远漏译（R91 实测：目标接触框英文）。
+                RichTextBox rtb = tb as RichTextBox;
+                if (rtb != null && rtb.ReadOnly)
+                {
+                    // 只认整段 exact 译文，**不走** TranslateString 的混合/组合管道：这类正文靠制表符
+                    // 排两列，走通用管道会把 “F2\t\t\tThrottle - Altitude/Depth” 拼成
+                    // “F2油门档位 - Altitude/Depth”（R91 实测：标、列、尾部全毁）。
+                    string richText = tb.Text;
+                    if (!string.IsNullOrEmpty(richText))
+                    {
+                        string hit;
+                        if (exactMap.TryGetValue(richText, out hit)
+                            && !string.IsNullOrEmpty(hit) && hit != richText)
+                        {
+                            tb.Text = hit;
+                        }
+                    }
+                    return;
+                }
                 if (!string.IsNullOrEmpty(tb.Text) && tb.Text.StartsWith("Enter Database ID for this "))
                 {
                     tb.Text = "输入该型装备的数据库 ID...";
@@ -7126,6 +7206,12 @@ namespace CMOLocalizer
                 // 必须传原始命令：过滤词在第二个 token 里，而 cmd 只有首 token（大写）——
                 // 传 cmd 会让 filter 永远是空串，「CTRL_TREE <窗体过滤>」静默退化成全量导出。
                 return HandleCtrlTree(rawCmd);
+            }
+
+            if (cmd.StartsWith("CTRL_TEXT"))
+            {
+                // 同 CTRL_TREE：过滤词与控件名在后续 token 里，必须传原始命令。
+                return HandleCtrlText(rawCmd);
             }
 
             if (cmd == "CLOSE_FORM")

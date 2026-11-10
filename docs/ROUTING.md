@@ -161,6 +161,7 @@
 | `dict/src/dlc_briefing_fixes.json` | DLC 简报修复 |
 | `dict/briefing_source_paragraphs.json` | 简报原文清单（英文段落 = 运行时整段键），由 `audit_briefing_paragraphs.py --export` 生成，供 R82 门禁消费 |
 | `dict/src/dlc_briefing_paragraphs.json` | DLC 简报与战役介绍/结局的**整段**译文（R81/R83）：键 = 实机 `InnerText`/文本节点原文，由 `build_dict` 简报批次（`allow_sensitive=True`）并入 `exact`；整段替换通道 ⓪ 与 WebView2 桥消费。新增时键必须逐字符照抄 |
+| `dict/src/hotkeys_ui.json` | **快捷键窗口正文整段译文**（R91，6 段）：键 = `DarkRichTextBox` 的完整英文文本（制表符/补空格原样），值 = 中文整段。只进 `exact`、不进 `offsets`（池里没有这些原文）；构建走独立循环，**不做**简报批次的散文清洗（多空格合并会把两列排版挤歪）。改快捷键文案时同步 `dict/hotkeys/hotkeys_source.json` |
 | `dict/src/live_message.json`、`dict/src/live_side_p1.json`、`dict/src/live_side_p2.json` | 实机审计补译（消息正文 / 简报正文分片） |
 | `dict/src/showcase_message.json`、`dict/src/showcase_side.json` | Showcase 战役简报正文 |
 | `dict/src/standalone_scenarios_message.json`、`dict/src/standalone_scenarios_side_p1.json`、`dict/src/standalone_scenarios_side_p2.json`、`dict/src/standalone_scenarios_side_p3_c1.json`、`dict/src/standalone_scenarios_side_p3_c2.json`、`dict/src/standalone_scenarios_side_p3_c3.json`、`dict/src/standalone_scenarios_side_p4_c1.json`、`dict/src/standalone_scenarios_side_p4_c2.json`、`dict/src/standalone_scenarios_side_p4_c3.json` | 独立想定简报正文（消息 + 按章节切分的 side 分片） |
@@ -192,6 +193,7 @@
 | `dict/placenames/synoptic.json` | **区域标签审核源**（321 条）。同上结构，对应 Synoptic.wwp |
 | `dict/placenames/metadata.json` | 地名审核的固定元数据指纹。`verify_all` / `verify_placenames.py` / `package.sh` 都用它判断「记录集合是否被改过」（改 flags、换顺序、容差内挪坐标都会失败） |
 | `dict/placenames/regions.json` | **省/州级标签审核源**（3,245 条，R88）：中文取 Natural Earth `name_zh`，锚点取同记录的 label 点，`min_zoom` 沿用上游建议值。是词典 `places` 分区的唯一事实源（不进 WWP：WWP 无缩放字段，且两套集有指纹门禁） |
+| `dict/hotkeys/hotkeys_source.json` | **快捷键窗口英文原文采集**（R91，6 段控件全文本）：由实机 `CTRL_TEXT 快捷键` 导出，是 `verify_hotkeys_ui.py` 的对照底座。游戏更新改了这些文案时重新采集 |
 | `dict/all_scen_items.json` | 从所有想定抽出的可译条目快照 |
 | `dict/extracted_campaigns_scens.json` | 战役内想定清单抽取结果 |
 | `dict/scen_tree_dict.json` | 想定树结构词典（加载对话框用） |
@@ -233,6 +235,7 @@
 | `scripts/verify_placenames.py` | 已评审地名检查（可证明只发布批准过的名字） |
 | `scripts/build_regions_placenames.py` | 从 Natural Earth `ne_10m_admin_1_states_provinces.dbf` 生成 `dict/placenames/regions.json`（省/州层，R88）；`--check` 校验提交版与 DBF 重建一致。不联网：DBF 路径由参数传入 |
 | `scripts/verify_regions_placenames.py` | **省/州标签覆盖门禁**（R88）：源条数下限、中文/坐标/min_zoom 合法性、去重，并校对词典 `places` 与源一一对应；`verify_all` 的 placenames 门禁调用它 |
+| `scripts/verify_hotkeys_ui.py` | **快捷键窗口正文门禁**（R91）：源/译文行数与键列（含制表符）逐字节对齐、说明含中文且无残留虚词、词典产物与源一致；`verify_all` 的 hotkeys 门禁调用它 |
 | `scripts/verify_live_test.py` | 实机测试产物/截图/证据完整性 |
 | `scripts/compose_terms.py` | 与引擎组合规则**一一对应**的镜像实现；`--check` 审计半译残留 |
 | `scripts/inject_filter.py` | 池级注入形状安全判定（**单一事实源**，构建与门禁共用） |
@@ -347,6 +350,7 @@
 | `WPF_DUMP` / `WPF_TEXTLOG` | 导出 WPF 控件树 / 文本变更日志 |
 | `WEAPONS_DIAG SNAPSHOT / START / STOP` | 只读武器子树诊断：绑定/Inline/位置与 8 秒有界 Loaded/属性钩子/Rendering 记录；不是像素或首帧验收结果 |
 | `CTRL_TREE [过滤]` | 控件树（可按窗体名过滤） |
+| `CTRL_TEXT [窗体过滤] [控件名]` | 只读：取控件**完整**文本（`CTRL_TREE` 每个 text 截到 120 字符，多行富文本靠它拿不到原文）；省略控件名则导出该窗体所有非空文本。R91 用它采集快捷键窗口 6 段正文 |
 | `TRACE_START` / `TRACE_STOP` / `TRACE_DUMP` | 事件追踪（含 `renderTicks`、`elementHostScans` 计数） |
 | `FLICKER_PROBE` / `FLICKER_RESULT` | 频闪检测（按树内位置路径做 key） |
 | `DUMP_COMBOS` / `DUMP_LISTS` / `DUMP_MENUS` / `DUMP_OPEN_FORMS` | 下拉框/列表/菜单/窗体导出 |
