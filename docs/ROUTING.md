@@ -522,7 +522,8 @@
 | 改安装器 | `src/installer/CMO_Chinese_Setup.cs` → `build.sh` → `verify_regressions --static --installer` |
 | 改更新助手 | `src/updater/CMO_Updater.cs` + `docs/AUTO_UPDATE_DESIGN.md` → `test_updater_live.py` |
 | 改地名译名 | `dict/placenames/cities.json` / `synoptic.json`（审核源）+ `scripts/placename_translation.py` → `apply_placenames.py` / `build_cities_placenames.py` → `verify_placenames.py` |
-| 改数据库描述 | `dict/src/db_descriptions.json`（或走 `db_desc_work.py` 抽取 → 译 → `db_desc_merge.py` 合回） |
+| 改数据库描述 | `dict/src/db_descriptions.json`（或走 `db_desc_work.py` 抽取 → 译 → `db_desc_merge.py` 合回） |
+| 改快捷键窗口正文（按键/说明） | `dict/hotkeys/hotkeys_source.json`（实机原文，先 `CTRL_TEXT 快捷键` 重新采集）→ `dict/src/hotkeys_ui.json`（整段译文，键列/制表符逐字节保留）→ `build_dict.py` → `verify_hotkeys_ui.py`；**别走**简报批次（会把两列排版挤歪） |
 | 游戏更新适配 | `GAME_BUILD` → 结构探测 → 偏移复核 → `verify_all.gate_version` + `L-build-adaptation` |
 | 发版 | `docs/RELEASE_MANIFEST.md` → `docs/RELEASE_TEST_SOP.md`（**先拿用户授权**） |
 | 加新脚本/新源文件 | **必须在本表登记**，否则 `verify_routing` 报红 |
