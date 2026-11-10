@@ -66,3 +66,4 @@
 {"type":"cli","id":"CLI-1792914814856-1","timestamp":"2026-10-25T07:53:34.856Z","command":"load","args":{"type":"spec","id":"spec:project:learnings-001"}}
 {"type":"cli","id":"CLI-1793100057676-1","timestamp":"2026-10-27T11:20:57.676Z","command":"load","args":{"type":"knowhow","id":"knowhow-tip-20261015-b3e6c7fed2efa60d"}}
 {"type":"cli","id":"CLI-1793974195728-1","timestamp":"2026-11-06T14:09:55.728Z","command":"load","args":{"type":"knowhow","id":"knowhow-DCS-20261015-1351-001"}}
+{"type":"cli","id":"CLI-1794299563722-1","timestamp":"2026-11-10T08:32:43.722Z","command":"load","args":{"type":"auto","id":"knowhow-tip-20261018-ece485f8bf1f18e4"}}
